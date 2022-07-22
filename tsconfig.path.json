@@ -16,6 +16,7 @@
       "@router": ["router"],
       "@router/*": ["router/*"],
       "@store/*": ["store/*"],
+      "@styles": ["styles"],
       "@styles/*": ["styles/*"],
       "@type/*": ["type/*"],
       "@utils/*": ["utils/*"]
