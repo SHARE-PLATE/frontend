@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import Address from '@components/Address';
 import * as S from '@components/Header/Header.style';
+import LoginButton from '@components/LoginButton';
 
 const Header = () => {
   return (
@@ -14,7 +15,7 @@ const Header = () => {
       </div>
       <div>
         <span>알림 </span>
-        <span>로그인 </span>
+        <LoginButton />
         <span>메뉴</span>
       </div>
     </Wrapper>
