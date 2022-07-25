@@ -38,6 +38,24 @@ const GlobalStyle = createGlobalStyle`
         opacity: 0;
       }
     }
+
+    @keyframes slideout {
+      from {
+        margin-right: -30%;
+      }
+      to {
+        margin-right: 0;
+      }
+    }
+
+    @keyframes slidein {
+      from {
+        margin-right: 0;
+      }
+      to {
+        margin-right: -30%;
+      }
+    }
   `}
 `;
 
