@@ -14,7 +14,7 @@ const LoginButton = () => {
   return (
     <button onClick={() => setIsPortal(true)}>
       {LOGIN}
-      <Portal setIsPortal={setIsPortal} isPortal={isPortal}>
+      <Portal setIsPortal={setIsPortal} isPortal={isPortal} type='modal'>
         <S.LoginWrapper>
           {loginMention}
           <S.KakaoLoginButton>{kakaoLoginMention}</S.KakaoLoginButton>
