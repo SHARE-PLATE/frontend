@@ -9,4 +9,5 @@ export const SideBarWrapper = styled.div`
 export const SideBarContent = styled.button`
   text-align: left;
   height: 2rem;
+  width: 100%;
 `;

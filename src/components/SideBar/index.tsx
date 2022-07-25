@@ -1,3 +1,4 @@
+import { Link, useLocation } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 
 import Portal from '@components/Portal';
@@ -8,35 +9,30 @@ import * as S from './Sidebar.style';
 const Sidebar = () => {
   const [isSidebarPortal, setIsSidebarPortal] = useRecoilState(sidebarState);
   const setIsModalPortal = useSetRecoilState(modalState);
-
-  const showSideBar = () => {
-    setIsSidebarPortal(true);
-  };
-
-  const showLoginModal = () => {
-    setIsSidebarPortal(false);
-    setIsModalPortal(true);
-  };
-
+  const { pathname } = useLocation();
   const sideBarContentsInfo = [
-    { id: 0, name: '로그인', clickHandler: () => showLoginModal() },
-    { id: 1, name: '홈' },
-    { id: 2, name: '배달 쉐어' },
-    { id: 3, name: '재료 쉐어' },
-    { id: 4, name: '쉐어 작성' },
-    { id: 5, name: '기타' },
+    { id: 0, name: '로그인', clickHandler: () => setIsModalPortal(true) },
+    { id: 1, name: '홈', link: '/' },
+    { id: 2, name: '배달 쉐어', link: '/share-list' },
+    { id: 3, name: '재료 쉐어', link: '/share-list' },
+    { id: 4, name: '쉐어 작성', link: 'share-form' },
+    { id: 5, name: '기타', link: 'notice' },
   ];
 
-  const sidebarContents = sideBarContentsInfo.map(({ id, name, clickHandler }) => {
+  const sidebarContents = sideBarContentsInfo.map(({ id, name, clickHandler, link }) => {
+    const clickButtonHandler = () => {
+      setIsSidebarPortal(false);
+      if (clickHandler) clickHandler();
+    };
     return (
-      <S.SideBarContent key={id} onClick={clickHandler}>
-        {name}
-      </S.SideBarContent>
+      <Link to={link || pathname} key={id}>
+        <S.SideBarContent onClick={clickButtonHandler}>{name}</S.SideBarContent>
+      </Link>
     );
   });
 
   return (
-    <button onClick={showSideBar}>
+    <button onClick={() => setIsSidebarPortal(true)}>
       SIDEBAR
       <Portal isPortal={isSidebarPortal} setIsPortal={setIsSidebarPortal} type='sidebar'>
         <S.SideBarWrapper>{sidebarContents}</S.SideBarWrapper>
