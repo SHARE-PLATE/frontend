@@ -3,11 +3,17 @@ import styled from 'styled-components';
 export const SideBarWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+
+  > :first-child {
+    border-bottom: solid 1px black;
+  }
+  > :last-child {
+    border-top: solid 1px black;
+  }
 `;
 
 export const SideBarContent = styled.button`
   text-align: left;
-  height: 2rem;
+  height: 3rem;
   width: 100%;
 `;
