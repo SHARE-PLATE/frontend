@@ -47,6 +47,12 @@ export const PortalContent = styled.div<PortalStylePropsType>`
     `}
 
     ${portalType === 'sidebar' &&
+    !isPortal &&
+    css`
+      animation: fadeout 0.5s;
+    `}
+
+    ${portalType === 'sidebar' &&
     css`
       animation: slideout 0.5s;
       position: absolute;

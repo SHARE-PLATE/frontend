@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import { useRecoilState } from 'recoil';
 
 import Portal from '@components/Portal';
+import { modalState } from '@store/portal';
 
 import * as S from './LoginButton.style';
 
@@ -9,7 +10,7 @@ const loginMention = '카카오로 로그인하고\n여러 사람들과 쉐어�
 const kakaoLoginMention = '카카오로 로그인';
 
 const LoginButton = () => {
-  const [isPortal, setIsPortal] = useState(false);
+  const [isPortal, setIsPortal] = useRecoilState(modalState);
 
   return (
     <button onClick={() => setIsPortal(true)}>
