@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 import Address from '@components/Address';
-import * as S from '@components/Header/Header.style';
 import LoginButton from '@components/LoginButton';
+import SideBar from '@components/SideBar';
 
 const Header = () => {
   return (
@@ -16,7 +16,7 @@ const Header = () => {
       <div>
         <span>알림 </span>
         <LoginButton />
-        <span>메뉴</span>
+        <SideBar />
       </div>
     </Wrapper>
   );
