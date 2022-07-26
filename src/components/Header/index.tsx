@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import Address from '@components/Address';
 import LoginButton from '@components/LoginButton';
-import SideBar from '@components/Sidebar';
+import SideBar from '@components/SideBar';
 
 const Header = () => {
   return (
