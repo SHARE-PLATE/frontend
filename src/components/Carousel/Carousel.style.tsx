@@ -39,7 +39,9 @@ export const CarouselSlider = styled(Slider)`
 
   .slick-prev,
   .slick-next {
+    height: 100%;
     z-index: 2;
+
     ::before {
       opacity: 0.5;
       color: black;
@@ -47,11 +49,11 @@ export const CarouselSlider = styled(Slider)`
   }
 
   .slick-prev {
-    left: 1rem;
+    left: 0.5rem;
   }
 
   .slick-next {
-    right: 1rem;
+    right: 0.5rem;
   }
 `;
 
