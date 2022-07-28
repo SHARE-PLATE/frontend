@@ -2,9 +2,9 @@ import * as S from '@components/Ads/Ads.style';
 import Carousel from '@components/Carousel';
 
 const settings = {
-  dots: true,
   infinite: true,
   speed: 800,
+  arrows: false,
   slidesToShow: 1,
   slidesToScroll: 1,
   autoplay: true,
