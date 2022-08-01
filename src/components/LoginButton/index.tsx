@@ -1,13 +1,11 @@
 import { useRecoilState } from 'recoil';
 
 import Portal from '@components/Portal';
+import { loginMention, kakaoLoginMention } from '@constants/mentions';
+import { LOGIN } from '@constants/words';
 import { modalState } from '@store/portal';
 
 import * as S from './LoginButton.style';
-
-const LOGIN = 'LOGIN';
-const loginMention = '카카오로 로그인하고\n여러 사람들과 쉐어하기\n🍕🍕🍕🍕';
-const kakaoLoginMention = '카카오로 로그인';
 
 const LoginButton = () => {
   const [isPortal, setIsPortal] = useRecoilState(modalState);

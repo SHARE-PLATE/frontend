@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 import Address from '@components/Address';
 import LoginButton from '@components/LoginButton';
-import SideBar from '@components/Sidebar';
+import SideBar from '@components/SideBar';
+import { Pc } from '@query/mediaQuery';
 
 const Header = () => {
   return (
@@ -16,7 +17,9 @@ const Header = () => {
       <div>
         <span>알림 </span>
         <LoginButton />
-        <SideBar />
+        <Pc>
+          <SideBar />
+        </Pc>
       </div>
     </Wrapper>
   );

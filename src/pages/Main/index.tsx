@@ -1,7 +1,7 @@
-import React from 'react';
+import Ads from '@components/Ads';
 
 const Main = () => {
-  return <div></div>;
+  return <Ads />;
 };
 
 export default Main;
