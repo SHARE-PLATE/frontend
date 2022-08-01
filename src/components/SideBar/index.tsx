@@ -2,7 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 
 import Portal from '@components/Portal';
-import * as S from '@components/SideBar/SideBar.style';
+import * as S from '@components/SideBar/Sidebar.style';
 import { sidebarState, modalState } from '@store/portal';
 
 import { sideBarContentsInfo } from './sidebarContentsInfo';

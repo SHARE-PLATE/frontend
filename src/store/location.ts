@@ -1,6 +1,13 @@
-import { atom } from 'recoil';
+import { atom, selector } from 'recoil';
 
-export const currentLatitudeLongitude = atom({
+import { getLocation } from '@utils/getLocation';
+
+export interface currentLatitudeLongitudeType {
+  lat: number;
+  lng: number;
+}
+
+export const currentLatitudeLongitude = atom<currentLatitudeLongitudeType>({
   key: 'currentLatitudeLongitude',
   default: { lat: 0, lng: 0 },
 });
@@ -8,4 +15,14 @@ export const currentLatitudeLongitude = atom({
 export const currentLocation = atom({
   key: 'currentLocation',
   default: '',
+});
+
+export const changeLatitudeLongitude = selector({
+  key: 'changeLatitudeLongitude',
+  get: async ({ get }) => {
+    const currentLatLon = get(currentLatitudeLongitude);
+
+    const locationData = await getLocation(currentLatLon);
+    return locationData;
+  },
 });
