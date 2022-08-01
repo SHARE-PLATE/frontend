@@ -9,3 +9,8 @@ export const sidebarState = atom<boolean>({
   key: 'sidebar',
   default: false,
 });
+
+export const fullState = atom<boolean>({
+  key: 'full',
+  default: false,
+});
