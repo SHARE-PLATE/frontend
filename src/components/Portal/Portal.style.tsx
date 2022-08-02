@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-type PortalType = 'modal' | 'sidebar';
+export type PortalType = 'modal' | 'sidebar' | 'full';
 
 type PortalStylePropsType = {
   isPortal: boolean;
@@ -46,6 +46,12 @@ export const PortalContent = styled.div<PortalStylePropsType>`
       min-height: 300px;
     `}
 
+    ${portalType === 'full' &&
+    css`
+      width: 100%;
+      height: 100%;
+    `}
+
     ${portalType === 'sidebar' &&
     !isPortal &&
     css`
@@ -89,6 +95,12 @@ export const PortalCloseButton = styled.button<{ portalType: PortalType }>`
     css`
       right: 0;
       top: 0;
+    `}
+
+    ${portalType === 'full' &&
+    css`
+      left: 1rem;
+      top: 1rem;
     `}
   `}
 `;

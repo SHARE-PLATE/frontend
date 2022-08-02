@@ -1,13 +1,12 @@
 import { ReactNode } from 'react';
 
-import { isDesktop, isMobile } from 'react-device-detect';
+import { isDesktop } from 'react-device-detect';
 import { useMediaQuery } from 'react-responsive';
 
 export const Mobile = ({ children }: { children: ReactNode }) => {
   const isMobileEnv = useMediaQuery({
     query: '(max-width: 769px)',
   });
-  console.log(isDesktop, isMobile);
   return <>{!isDesktop && isMobileEnv && children}</>;
 };
 

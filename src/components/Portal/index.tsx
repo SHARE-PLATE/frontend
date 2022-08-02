@@ -1,4 +1,4 @@
-import React, { ReactNode, useRef, MouseEvent, useEffect } from 'react';
+import React, { ReactNode, useRef, useEffect } from 'react';
 
 import { createPortal } from 'react-dom';
 
@@ -8,7 +8,8 @@ type PortalPropsType = {
   isPortal: boolean;
   setIsPortal: React.Dispatch<React.SetStateAction<boolean>>;
   children: ReactNode;
-  type: 'modal' | 'sidebar';
+  type: S.PortalType;
+  closeBtn?: React.RefObject<HTMLButtonElement>;
 };
 
 const PortalRoot = ({ children }: { children: ReactNode }) => {
@@ -16,11 +17,10 @@ const PortalRoot = ({ children }: { children: ReactNode }) => {
   return element && createPortal(children, element);
 };
 
-const Portal = ({ setIsPortal, isPortal, children, type }: PortalPropsType) => {
+const Portal = ({ setIsPortal, isPortal, children, type, closeBtn }: PortalPropsType) => {
   const backgroundRef = useRef<HTMLDivElement>(null);
 
-  const closePortal = (event: MouseEvent) => {
-    event.stopPropagation();
+  const closePortal = () => {
     setIsPortal(false);
   };
 
@@ -37,6 +37,11 @@ const Portal = ({ setIsPortal, isPortal, children, type }: PortalPropsType) => {
     if (isPortal) changeBackgroundDisplay({ isShowed: true });
   }, [isPortal]);
 
+  useEffect(() => {
+    if (!closeBtn) return;
+    closeBtn.current?.addEventListener('click', closePortal);
+  }, [closeBtn]);
+
   return (
     <PortalRoot>
       <S.PortalBackground
@@ -51,9 +56,6 @@ const Portal = ({ setIsPortal, isPortal, children, type }: PortalPropsType) => {
           portalType={type}
           isPortal={isPortal}
         >
-          <S.PortalCloseButton onClick={closePortal} portalType={type}>
-            X
-          </S.PortalCloseButton>
           {children}
         </S.PortalContent>
       </S.PortalBackground>
