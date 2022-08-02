@@ -12,13 +12,13 @@ const SearchRecent = () => {
   const [recentListInfoMap, setRecentListInfoMap] = useRecoilState(searchRecent);
 
   const handleClickDeleteBtn = ({ name }: { name?: string }) => {
-    setRecentListInfoMap((prevMap) => {
-      const newMap = new Map([...prevMap]);
-      if (name) newMap.delete(name);
-      if (!name) newMap.clear();
-      setLocalStorageInfo({ key: SEARCH_RECENT_KEY, info: [...newMap] });
-      return newMap;
-    });
+    const newMap = new Map([...recentListInfoMap]);
+
+    if (name) newMap.delete(name);
+    if (!name) newMap.clear();
+
+    setLocalStorageInfo({ key: SEARCH_RECENT_KEY, info: [...newMap] });
+    setRecentListInfoMap(newMap);
   };
 
   const noRecentList = <S.NoRecentListWrapper>{noRecentListMention}</S.NoRecentListWrapper>;
