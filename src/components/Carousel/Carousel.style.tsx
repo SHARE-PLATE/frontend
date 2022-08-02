@@ -62,5 +62,20 @@ export const CarouselWrapper = styled.div<{ width: number; height: number }>`
     width: ${width}%;
     height: ${height}%;
     overflow: hidden;
+    position: relative;
   `}
+`;
+
+export const CarouselCount = styled.div`
+  position: absolute;
+  width: 4rem;
+  display: block;
+  left: 1rem;
+  top: 1rem;
+  border-radius: 1rem;
+  padding: 1rem 0.5rem;
+  font-size: 0.8rem;
+  background-color: black;
+  color: white;
+  text-align: center;
 `;

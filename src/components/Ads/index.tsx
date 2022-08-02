@@ -1,9 +1,11 @@
+import { Settings } from 'react-slick';
+
 import * as S from '@components/Ads/Ads.style';
 import Carousel from '@components/Carousel';
 
-const settings = {
+const settings: Settings = {
   infinite: true,
-  speed: 800,
+  speed: 400,
   arrows: false,
   slidesToShow: 1,
   slidesToScroll: 1,
