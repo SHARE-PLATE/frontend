@@ -4,19 +4,17 @@ import { useRecoilState } from 'recoil';
 
 import Portal from '@components/Portal';
 import SearchRecent from '@components/SearchRecent';
+import { searchRecent } from '@store/localStorage';
 import { fullState } from '@store/portal';
 import { getMonthDate } from '@utils/getTime';
-import {
-  getLocalStorageInfo,
-  setLocalStorageInfo,
-  SEARCH_RECENT_KEY,
-} from '@utils/useLocalStorage';
+import { setLocalStorageInfo, SEARCH_RECENT_KEY } from '@utils/useLocalStorage';
 
 import * as S from './Search.style';
 
 const Search = () => {
   const [inputValue, setInputValue] = useState('');
   const [isPortal, setIsPortal] = useRecoilState(fullState);
+  const [recentListInfoMap, setRecentListInfoMap] = useRecoilState(searchRecent);
   const closeBtn = useRef<HTMLButtonElement>(null);
 
   const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
@@ -27,11 +25,11 @@ const Search = () => {
     event.preventDefault();
     if (!inputValue.length) return;
 
-    const localStorageInfo = getLocalStorageInfo(SEARCH_RECENT_KEY);
-    const prevSearchRecent = new Map(localStorageInfo);
-    prevSearchRecent.set(inputValue, { name: inputValue, date: getMonthDate() });
+    recentListInfoMap.set(inputValue, { name: inputValue, date: getMonthDate() });
 
-    setLocalStorageInfo({ key: SEARCH_RECENT_KEY, info: [...prevSearchRecent] });
+    setLocalStorageInfo({ key: SEARCH_RECENT_KEY, info: [...recentListInfoMap] });
+    setRecentListInfoMap(() => recentListInfoMap);
+    setInputValue('');
     setIsPortal(false);
   };
 

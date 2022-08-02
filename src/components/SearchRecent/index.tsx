@@ -1,16 +1,28 @@
+import { useRecoilState } from 'recoil';
 import { v4 as createRandomKey } from 'uuid';
 
 import * as S from '@components/SearchRecent/SearchRecent.style';
 import { noRecentListMention } from '@constants/mentions';
-import { getLocalStorageInfo, SEARCH_RECENT_KEY } from '@utils/useLocalStorage';
-
-type recentListInfoType = [string, { name: string; date: string }][];
+import { RECENT_KEYWORD, DELETE_ALL } from '@constants/words';
+import { searchRecent } from '@store/localStorage';
+import { setLocalStorageInfo, SEARCH_RECENT_KEY } from '@utils/useLocalStorage';
 
 const SearchRecent = () => {
-  const recentListInfo: recentListInfoType = getLocalStorageInfo(SEARCH_RECENT_KEY);
+  // 배열 내에 잘못된 값이 들어오는 경우에 대한 추가 처리 필요
+  const [recentListInfoMap, setRecentListInfoMap] = useRecoilState(searchRecent);
+
+  const handleClickDeleteBtn = ({ name }: { name?: string }) => {
+    setRecentListInfoMap((prevMap) => {
+      const newMap = new Map([...prevMap]);
+      if (name) newMap.delete(name);
+      if (!name) newMap.clear();
+      setLocalStorageInfo({ key: SEARCH_RECENT_KEY, info: [...newMap] });
+      return newMap;
+    });
+  };
 
   const noRecentList = <S.NoRecentListWrapper>{noRecentListMention}</S.NoRecentListWrapper>;
-  const recentList = recentListInfo.map((info) => {
+  const recentList = [...recentListInfoMap].map((info) => {
     const { name, date } = info[1];
 
     return (
@@ -19,7 +31,7 @@ const SearchRecent = () => {
           <div>{`🔎 ${name}`}</div>
           <div>{date}</div>
         </S.RecentItemInfo>
-        <S.RecentDeleteBtn>X</S.RecentDeleteBtn>
+        <S.RecentDeleteBtn onClick={() => handleClickDeleteBtn({ name })}>X</S.RecentDeleteBtn>
       </S.RecentItemWrapper>
     );
   });
@@ -27,9 +39,14 @@ const SearchRecent = () => {
   return (
     <S.RecentWrapper>
       <S.RecentHeader>
-        최근 검색어<S.RecentDeleteAllBtn>전체 삭제</S.RecentDeleteAllBtn>
+        {RECENT_KEYWORD}
+        <S.RecentDeleteAllBtn onClick={() => handleClickDeleteBtn({})}>
+          {DELETE_ALL}
+        </S.RecentDeleteAllBtn>
       </S.RecentHeader>
-      <S.RecentListWrapper>{recentListInfo ? recentList : noRecentList}</S.RecentListWrapper>
+      <S.RecentListWrapper>
+        {recentListInfoMap.size ? recentList : noRecentList}
+      </S.RecentListWrapper>
     </S.RecentWrapper>
   );
 };
