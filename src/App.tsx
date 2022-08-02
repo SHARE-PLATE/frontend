@@ -1,6 +1,5 @@
 import { useRoutes } from 'react-router-dom';
 
-import Header from '@components/Header';
 import NavigationBar from '@components/NavigationBar';
 import { Mobile } from '@query/mediaQuery';
 import { routes } from '@router';
