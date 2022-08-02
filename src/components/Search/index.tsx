@@ -14,6 +14,7 @@ const testWords = [
 ];
 
 const SEARCH_RECENT_KEY = 'searchRecent';
+const NO_RECENT_LIST = '최근 검색 기록이 없습니다';
 
 const getLocalStorageInfo = (key: string) => {
   const data = window.localStorage.getItem(key);
@@ -36,25 +37,25 @@ const getMonthDate = () => {
 
 const SearchRecent = () => {
   const recentListInfo = getLocalStorageInfo(SEARCH_RECENT_KEY);
-  console.log(recentListInfo);
 
+  const noRecentList = <S.NoRecentListWrapper>{NO_RECENT_LIST}</S.NoRecentListWrapper>;
   const recentList = testWords.map(({ id, name, date }) => (
-    <S.SearchRecentItemWrapper key={id}>
-      <S.SearchRecentItemInfo>
+    <S.RecentItemWrapper key={id}>
+      <S.RecentItemInfo>
         <div>{`🔎 ${name}`}</div>
         <div>{date}</div>
-      </S.SearchRecentItemInfo>
-      <S.SearchRecentDeleteBtn>X</S.SearchRecentDeleteBtn>
-    </S.SearchRecentItemWrapper>
+      </S.RecentItemInfo>
+      <S.RecentDeleteBtn>X</S.RecentDeleteBtn>
+    </S.RecentItemWrapper>
   ));
 
   return (
-    <S.SearchRecentWrapper>
-      <S.SearchRecentHeader>
-        최근 검색어<S.SearchRecentDeleteAllBtn>전체 삭제</S.SearchRecentDeleteAllBtn>
-      </S.SearchRecentHeader>
-      <S.SearchRecentListWrapper>{recentList}</S.SearchRecentListWrapper>
-    </S.SearchRecentWrapper>
+    <S.RecentWrapper>
+      <S.RecentHeader>
+        최근 검색어<S.RecentDeleteAllBtn>전체 삭제</S.RecentDeleteAllBtn>
+      </S.RecentHeader>
+      <S.RecentListWrapper>{recentListInfo ? recentList : noRecentList}</S.RecentListWrapper>
+    </S.RecentWrapper>
   );
 };
 
@@ -69,6 +70,7 @@ const Search = () => {
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
+    if (!inputValue.length) return;
 
     const localInfo = getLocalStorageInfo(SEARCH_RECENT_KEY);
     const date = getMonthDate();
@@ -80,16 +82,16 @@ const Search = () => {
 
   return (
     <Portal type='full' isPortal={isPortal} setIsPortal={setIsPortal} closeBtn={closeBtn}>
-      <S.SearchWrapper>
-        <S.SearchHeader>
-          <S.SearchForm onSubmit={handleSubmit}>
-            <S.SearchInput value={inputValue} onChange={handleChangeInput} />
-            <S.SearchSubmitBtn>🔎</S.SearchSubmitBtn>
-          </S.SearchForm>
-          <S.SearchCloseBtn ref={closeBtn}>X</S.SearchCloseBtn>
-        </S.SearchHeader>
+      <S.Wrapper>
+        <S.Header>
+          <S.Form onSubmit={handleSubmit}>
+            <S.Input value={inputValue} onChange={handleChangeInput} />
+            <S.SubmitBtn>🔎</S.SubmitBtn>
+          </S.Form>
+          <S.CloseBtn ref={closeBtn}>X</S.CloseBtn>
+        </S.Header>
         <SearchRecent />
-      </S.SearchWrapper>
+      </S.Wrapper>
     </Portal>
   );
 };
