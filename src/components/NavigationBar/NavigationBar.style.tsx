@@ -7,6 +7,7 @@ export const NavigationBarWrapper = styled.div`
   color: white;
   background-color: black;
   width: 100%;
+  max-width: 750px;
   aspect-ratio: 100 / 15;
   position: fixed;
   bottom: 0;
