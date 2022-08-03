@@ -3,6 +3,7 @@ import { useSetRecoilState } from 'recoil';
 
 import * as S from '@components/NavigationBar/NavigationBar.style';
 import Search from '@components/Search';
+import ShareFormButton from '@components/ShareFormButton';
 import { fullState } from '@store/portal';
 
 const useNavigationBarInfo = () => {
@@ -30,6 +31,7 @@ const NavigationBar = () => {
   return (
     <S.NavigationBarWrapper>
       <Search />
+      <ShareFormButton />
       {NavigtaionBarBtns}
     </S.NavigationBarWrapper>
   );

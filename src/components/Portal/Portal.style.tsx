@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export type PortalType = 'modal' | 'sidebar' | 'full';
+import { PortalType } from '@type/PortalType';
 
 type PortalStylePropsType = {
   isPortal: boolean;
@@ -14,12 +14,12 @@ export const PortalBackground = styled.div<PortalStylePropsType>`
   position: fixed;
   inset: 0;
   background-color: #00000040; // 투명도 조절 필요
-  animation: fadein 0.5s;
+  animation: fadein 0.3s;
 
   ${({ isPortal, portalType }) => css`
     ${!isPortal &&
     css`
-      animation: fadeout 0.5s;
+      animation: fadeout 0.3s;
     `}
 
     ${portalType === 'modal' &&

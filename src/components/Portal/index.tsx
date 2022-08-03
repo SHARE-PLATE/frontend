@@ -1,14 +1,17 @@
 import React, { ReactNode, useRef, useEffect } from 'react';
 
 import { createPortal } from 'react-dom';
+import { SetterOrUpdater } from 'recoil';
+
+import { PortalType } from '@type/PortalType';
 
 import * as S from './Portal.style';
 
 type PortalPropsType = {
   isPortal: boolean;
-  setIsPortal: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsPortal: SetterOrUpdater<boolean>;
   children: ReactNode;
-  type: S.PortalType;
+  type: PortalType;
   closeBtn?: React.RefObject<HTMLButtonElement>;
 };
 
@@ -20,7 +23,8 @@ const PortalRoot = ({ children }: { children: ReactNode }) => {
 const Portal = ({ setIsPortal, isPortal, children, type, closeBtn }: PortalPropsType) => {
   const backgroundRef = useRef<HTMLDivElement>(null);
 
-  const closePortal = () => {
+  const closePortal = (event: React.MouseEvent | MouseEvent) => {
+    event.stopPropagation();
     setIsPortal(false);
   };
 
