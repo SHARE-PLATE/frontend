@@ -12,7 +12,7 @@ const Header = () => {
         <Address />
       </div>
       <div>
-        <Icon iconName={ICON_NAME.NOTICE} iconSize={ICON_SIZE.LARGE} />
+        <Icon iconName={ICON_NAME.NOTICE_ON} iconSize={ICON_SIZE.LARGE} />
       </div>
     </S.Wrapper>
   );
