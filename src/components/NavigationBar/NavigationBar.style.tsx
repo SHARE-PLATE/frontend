@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const NavigationBarWrapper = styled.div`
+  z-index: 3;
   display: flex;
   justify-content: space-around;
   padding: 0.4rem;

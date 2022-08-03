@@ -2,7 +2,6 @@ import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
   margin-top: 2rem;
-  margin-bottom: 1.2rem;
 `;
 
 export const Header = styled.div`
