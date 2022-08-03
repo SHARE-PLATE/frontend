@@ -2,7 +2,18 @@ const defaultFontSize = '16px';
 
 const defaultWidth = {};
 
-const fonts = {};
+const fonts = {
+  medium: {
+    'font-size': '14px',
+  },
+  large: {
+    'font-size': '16px',
+  },
+  xLargeBold: {
+    'font-size': '18px',
+    'font-weight': '700',
+  },
+};
 
 const colors = {};
 

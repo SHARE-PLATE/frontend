@@ -21,6 +21,7 @@ const GlobalStyle = createGlobalStyle`
     #root {
       width: 100vw;
       height: 100vh;
+      max-width: 750px;
     }
 
     @keyframes fadein {
