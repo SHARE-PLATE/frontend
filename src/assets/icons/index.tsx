@@ -17,18 +17,15 @@ export const Icons = {
   NoticeOn,
   User,
   Form,
-<<<<<<< HEAD
   NoticeOff,
   Option,
   RightArrow,
   SalesHistory,
   PurchaseHistory,
   Heart,
-=======
   Back,
   Clock,
   DeleteCircle,
->>>>>>> 64cd3b3 (feat : 필요한 icon svg 추가)
 } as const;
 
 export type IconsType = keyof typeof Icons;
