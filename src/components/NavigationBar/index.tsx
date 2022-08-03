@@ -4,14 +4,14 @@ import { useSetRecoilState } from 'recoil';
 import * as S from '@components/NavigationBar/NavigationBar.style';
 import Search from '@components/Search';
 import ShareFormButton from '@components/ShareFormButton';
-import { fullState } from '@store/portal';
+import { portalState } from '@store/portal';
 
 const useNavigationBarInfo = () => {
-  const setIsFullPortal = useSetRecoilState(fullState);
+  const setIsFullPortal = useSetRecoilState(portalState);
   const navigationBarInfo = [
     { id: 0, name: 'HOME', link: '/' },
     { id: 1, name: 'SHARE', link: 'share-list' },
-    { id: 2, name: 'SEARCH', clickHandler: () => setIsFullPortal(true) },
+    { id: 2, name: 'SEARCH', clickHandler: () => setIsFullPortal('full') },
     { id: 3, name: 'FORM', link: 'share-form' },
     { id: 4, name: 'PROFILE', link: 'profile' },
   ];

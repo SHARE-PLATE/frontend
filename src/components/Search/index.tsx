@@ -8,15 +8,17 @@ import SearchRecent from '@components/SearchRecent';
 import Icon from '@components/common/Icon';
 import { inputKeyword } from '@constants/mentions';
 import { searchRecent } from '@store/localStorage';
-import { fullState } from '@store/portal';
+import { portalState } from '@store/portal';
 import { getMonthDate } from '@utils/getTime';
 import { setLocalStorageInfo, SEARCH_RECENT_KEY } from '@utils/useLocalStorage';
 
 import * as S from './Search.style';
 
+const portalType = 'full';
+
 const Search = () => {
   const [inputValue, setInputValue] = useState('');
-  const [isPortal, setIsPortal] = useRecoilState(fullState);
+  const [portal, setPortal] = useRecoilState(portalState);
   const [recentListInfoMap, setRecentListInfoMap] = useRecoilState(searchRecent);
   const closeBtn = useRef<HTMLButtonElement>(null);
 
@@ -40,11 +42,16 @@ const Search = () => {
     setLocalStorageInfo({ key: SEARCH_RECENT_KEY, info: [...recentListInfoMap] });
     setRecentListInfoMap(() => recentListInfoMap);
     setInputValue('');
-    setIsPortal(false);
+    setPortal(null);
   };
 
   return (
-    <Portal type='full' isPortal={isPortal} setIsPortal={setIsPortal} closeBtn={closeBtn}>
+    <Portal
+      type={portalType}
+      isPortal={portal === portalType}
+      setPortal={setPortal}
+      closeBtn={closeBtn}
+    >
       <S.Wrapper>
         <S.Header>
           <S.FormWrapper>

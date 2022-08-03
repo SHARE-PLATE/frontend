@@ -3,15 +3,15 @@ import React, { ReactNode, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { SetterOrUpdater } from 'recoil';
 
-import { PortalType } from '@type/PortalType';
+import { PortalStateType } from '@store/portal';
 
 import * as S from './Portal.style';
 
 type PortalPropsType = {
   isPortal: boolean;
-  setIsPortal: SetterOrUpdater<boolean>;
+  setPortal: SetterOrUpdater<PortalStateType>;
   children: ReactNode;
-  type: PortalType;
+  type: PortalStateType;
   closeBtn?: React.RefObject<HTMLButtonElement>;
 };
 
@@ -20,12 +20,12 @@ const PortalRoot = ({ children }: { children: ReactNode }) => {
   return element && createPortal(children, element);
 };
 
-const Portal = ({ setIsPortal, isPortal, children, type, closeBtn }: PortalPropsType) => {
+const Portal = ({ setPortal, isPortal, children, type, closeBtn }: PortalPropsType) => {
   const backgroundRef = useRef<HTMLDivElement>(null);
 
   const closePortal = (event: React.MouseEvent | MouseEvent) => {
     event.stopPropagation();
-    setIsPortal(false);
+    setPortal(null);
   };
 
   const changeBackgroundDisplay = ({ isShowed }: { isShowed: boolean }) => {
