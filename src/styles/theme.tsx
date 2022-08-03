@@ -3,6 +3,9 @@ const defaultFontSize = '16px';
 const defaultWidth = {};
 
 const fonts = {
+  main: {
+    'font-family': 'Noto Sans KR',
+  },
   medium: {
     'font-size': '14px',
   },
