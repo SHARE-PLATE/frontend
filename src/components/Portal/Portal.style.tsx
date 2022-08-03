@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export type PortalType = 'modal' | 'sidebar' | 'full';
+import { PortalType } from '@type/PortalType';
 
 type PortalStylePropsType = {
   isPortal: boolean;
