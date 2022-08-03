@@ -5,9 +5,9 @@ import { useMediaQuery } from 'react-responsive';
 
 export const Mobile = ({ children }: { children: ReactNode }) => {
   const isMobileEnv = useMediaQuery({
-    query: '(max-width: 769px)',
+    query: '(max-width: 10000px)',
   });
-  return <>{!isDesktop && isMobileEnv && children}</>;
+  return <>{isMobileEnv && children}</>;
 };
 
 export const Pc = ({ children }: { children: ReactNode }) => {
