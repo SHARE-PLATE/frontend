@@ -69,5 +69,4 @@ const Cost = styled.div`
   font-size: 14px;
 `;
 
->>>>>>> 3307aa3fd78d60e5060b2e24e472b3afa0c89e8c
 export default PreviewShareList;
