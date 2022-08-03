@@ -16,6 +16,10 @@ export const Contents = styled.div`
   display: flex;
   gap: 0.8rem;
   overflow-x: scroll;
+
+  ::-webkit-scrollbar {
+    background: transparent;
+  }
 `;
 
 export const Content = styled.div`
