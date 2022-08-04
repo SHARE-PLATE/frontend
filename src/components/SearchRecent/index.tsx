@@ -1,13 +1,20 @@
+import { FormEvent } from 'react';
+
 import { useRecoilState } from 'recoil';
 import { v4 as createRandomKey } from 'uuid';
 
 import * as S from '@components/SearchRecent/SearchRecent.style';
+import Icon from '@components/common/Icon';
 import { noRecentListMention } from '@constants/mentions';
 import { RECENT_KEYWORD, DELETE_ALL } from '@constants/words';
 import { searchRecent } from '@store/localStorage';
 import { setLocalStorageInfo, SEARCH_RECENT_KEY } from '@utils/useLocalStorage';
 
-const SearchRecent = () => {
+type SearchRecentPropsType = {
+  clickHandler: (event: FormEvent | string) => void;
+};
+
+const SearchRecent = ({ clickHandler }: SearchRecentPropsType) => {
   // 배열 내에 잘못된 값이 들어오는 경우에 대한 추가 처리 필요
   const [recentListInfoMap, setRecentListInfoMap] = useRecoilState(searchRecent);
 
@@ -27,11 +34,16 @@ const SearchRecent = () => {
 
     return (
       <S.RecentItemWrapper key={createRandomKey()}>
-        <S.RecentItemInfo>
-          <div>{`🔎 ${name}`}</div>
-          <div>{date}</div>
+        <S.RecentItemInfo onClick={() => clickHandler(name)}>
+          <S.RecentItemName>
+            <Icon iconName='Clock' />
+            <div>{name}</div>
+          </S.RecentItemName>
+          <S.RecentItemDate>{date}</S.RecentItemDate>
         </S.RecentItemInfo>
-        <S.RecentDeleteBtn onClick={() => handleClickDeleteBtn({ name })}>X</S.RecentDeleteBtn>
+        <S.RecentDeleteBtn onClick={() => handleClickDeleteBtn({ name })}>
+          <Icon iconName='DeleteCircle' />
+        </S.RecentDeleteBtn>
       </S.RecentItemWrapper>
     );
   });

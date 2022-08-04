@@ -1,14 +1,16 @@
 import { createGlobalStyle, css } from 'styled-components';
+import '@assets/fonts/font.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const GlobalStyle = createGlobalStyle`
-	${({ theme: { defaultFontSize } }) => css`
+	${({ theme: { defaultFontSize, fonts } }) => css`
     html {
       font-size: ${defaultFontSize};
     }
 
     * {
+      ${fonts.main};
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
       box-sizing: border-box;
@@ -21,6 +23,7 @@ const GlobalStyle = createGlobalStyle`
     #root {
       width: 100vw;
       height: 100vh;
+      max-width: 750px;
     }
 
     @keyframes fadein {

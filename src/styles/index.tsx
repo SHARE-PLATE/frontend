@@ -5,6 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyle from '@styles/GlobalStyle';
 import Reset from '@styles/Reset';
 import theme from '@styles/theme';
+import '@assets/fonts/font.css';
 
 const Styles = ({ children }: { children: ReactNode }) => {
   return (

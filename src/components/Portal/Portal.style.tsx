@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components';
 
-import { PortalType } from '@type/PortalType';
+import { PortalStateType } from '@store/portal';
 
 type PortalStylePropsType = {
   isPortal: boolean;
-  portalType: PortalType;
+  portalType: PortalStateType;
 };
 
 export const PortalBackground = styled.div<PortalStylePropsType>`
@@ -79,7 +79,7 @@ export const PortalContent = styled.div<PortalStylePropsType>`
   `}
 `;
 
-export const PortalCloseButton = styled.button<{ portalType: PortalType }>`
+export const PortalCloseButton = styled.button<{ portalType: PortalStateType }>`
   position: absolute;
   width: 1.5rem;
   height: 1.5rem;

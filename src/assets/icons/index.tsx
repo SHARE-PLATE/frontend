@@ -1,3 +1,6 @@
+import Back from '@assets/icons/back.svg';
+import Clock from '@assets/icons/clock.svg';
+import DeleteCircle from '@assets/icons/deleteCircle.svg';
 import Form from '@assets/icons/form.svg';
 import Heart from '@assets/icons/heart.svg';
 import Logo from '@assets/icons/logo.svg';
@@ -14,12 +17,18 @@ export const Icons = {
   NoticeOn,
   User,
   Form,
+<<<<<<< HEAD
   NoticeOff,
   Option,
   RightArrow,
   SalesHistory,
   PurchaseHistory,
   Heart,
+=======
+  Back,
+  Clock,
+  DeleteCircle,
+>>>>>>> 64cd3b3 (feat : 필요한 icon svg 추가)
 } as const;
 
 export type IconsType = keyof typeof Icons;
