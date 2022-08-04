@@ -28,11 +28,8 @@ export const Icons = {
   Back,
   Clock,
   DeleteCircle,
-<<<<<<< HEAD
   SharePlate,
   Kakao,
-=======
->>>>>>> 6881383 (feat : 필요한 icon svg 추가)
 } as const;
 
 export type IconsType = keyof typeof Icons;
