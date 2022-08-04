@@ -17,6 +17,7 @@ const GlobalStyle = createGlobalStyle`
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent; // 모바일에서 터치 시 색상 변형 방지
     }
 
     html {

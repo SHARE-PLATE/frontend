@@ -36,7 +36,7 @@ const Search = () => {
       event.preventDefault();
       value = inputValue;
       if (!value.length) return;
-      inputRef.current?.blur();
+      inputRef.current?.blur(); // 모바일에서 submit시 타자 영역 없어지도록 함
     }
 
     recentListInfoMap.set(value, { name: value, date: getMonthDate() });

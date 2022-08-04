@@ -5,13 +5,13 @@ export const NavigationBarWrapper = styled.div`
     position: fixed;
     display: flex;
     justify-content: space-around;
-    padding: 0.4rem;
+    padding: 0.6rem;
     color: ${colors.grey4};
     background-color: ${colors.white1};
     box-shadow: 0px -10px 40px #67676740;
     width: 100%;
     ${defaultWidth};
-    height: 7%;
+    height: 8%;
     max-height: 60px;
     bottom: 0;
   `}
