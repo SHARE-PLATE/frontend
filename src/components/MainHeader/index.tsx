@@ -1,8 +1,9 @@
 import Address from '@components/Address';
-import * as S from '@components/Header/Header.style';
+import * as S from '@components/MainHeader/MainHeader.style';
 import Icon from '@components/common/Icon';
 import { ICON_NAME, ICON_SIZE } from '@components/common/Icon/constants';
-const Header = () => {
+
+const MainHeader = () => {
   return (
     <S.Wrapper>
       <div>
@@ -18,4 +19,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default MainHeader;
