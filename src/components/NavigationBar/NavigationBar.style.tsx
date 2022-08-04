@@ -19,12 +19,14 @@ export const NavigationBarWrapper = styled.div`
 
 export const NavigationBarBtn = styled.button<{ isSelected: boolean }>`
   ${({ theme: { colors, fonts }, isSelected }) => css`
+    transition: all 0.3s;
     color: ${colors.grey4};
     ${fonts.small};
     ${isSelected &&
     css`
       color: ${colors.black};
       path {
+        transition: all 0.3s;
         stroke: ${colors.black};
       }
     `}
