@@ -12,6 +12,17 @@ const GlobalStyle = createGlobalStyle`
       height: 100vh;
     }
 
+    body {
+      display: flex;
+      justify-content: center;
+      overflow: hidden;
+      background-color: ${colors.grey1};
+
+      > * {
+        background-color: ${colors.white1};
+      }
+    }
+
     * {
       ${fonts.main};
       -webkit-box-sizing: border-box;
