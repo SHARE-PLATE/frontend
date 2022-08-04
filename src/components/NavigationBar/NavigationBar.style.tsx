@@ -10,6 +10,7 @@ export const NavigationBarWrapper = styled.div`
   width: 100%;
   max-width: 750px;
   aspect-ratio: 100 / 15;
+  max-height: 60px;
   position: fixed;
   bottom: 0;
   left: 0;
