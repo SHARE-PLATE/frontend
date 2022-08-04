@@ -22,7 +22,10 @@ export const Contents = styled.div`
 `;
 
 export const Content = styled.div`
-  border: #d9d9df solid 1px;
+  ${({ theme: { colors } }) => css`
+    border: ${colors.grey3} solid 1px;
+  `}
+
   border-radius: 0.25rem;
   display: flex;
   width: fit-content;
@@ -31,7 +34,7 @@ export const Content = styled.div`
   gap: 0.4rem;
   flex: 0 0 auto;
 
-  ${({ theme: { fonts } }) => css`
+  ${({ theme: { fonts, colors } }) => css`
     > :first-child {
       ${fonts.medium};
       font-weight: 600;
@@ -39,7 +42,7 @@ export const Content = styled.div`
     > :last-child {
       ${fonts.medium};
       font-weight: 400;
-      color: #666666;
+      color: ${colors.grey5};
     }
   `}
 `;

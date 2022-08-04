@@ -22,9 +22,9 @@ export const RecentHeader = styled.div`
 `;
 
 export const RecentDeleteAllBtn = styled.button`
-  ${({ theme: { fonts } }) => css`
+  ${({ theme: { fonts, colors } }) => css`
     ${fonts.medium};
-    color: #999999;
+    color: ${colors.grey4};
   `}
 `;
 
@@ -64,10 +64,13 @@ export const RecentItemName = styled.div`
 `;
 
 export const RecentItemDate = styled.div`
+  ${({ theme: { colors } }) => css`
+    color: ${colors.grey4};
+  `}
+
   display: flex;
   align-items: center;
   padding-top: 0.2rem;
-  color: #999999;
 `;
 
 export const RecentDeleteBtn = styled.button`
