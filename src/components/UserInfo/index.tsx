@@ -12,10 +12,10 @@ const UserInfo = () => {
     <Wrapper>
       <InfoContainer>
         <Image src={userInfo.profileImageUrl} alt='유저 이미지' />
-        <A>
+        <Info>
           <Nickname>{userInfo.nickname}</Nickname>
           <Email>{userInfo.email}</Email>
-        </A>
+        </Info>
       </InfoContainer>
       <IconContainer>
         <Icon iconName={ICON_NAME.RIGHT_ARROW} iconSize={ICON_SIZE.LARGE} />
@@ -24,16 +24,7 @@ const UserInfo = () => {
   );
 };
 
-const A = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  gap: 10px;
-`;
-
 const Wrapper = styled.div`
-  /* position: relative; */
   ${flexBetween}
   margin-left: 20px;
 `;
@@ -50,6 +41,13 @@ const InfoContainer = styled.div`
   display: flex;
 `;
 
+const Info = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+`;
+
 const Nickname = styled.h2`
   font-weight: bold;
 `;
@@ -59,9 +57,7 @@ const Email = styled.span`
 `;
 
 const IconContainer = styled.div`
-  /* position: absolute;
-  top: 18px;
-  right: 10px; */
+  margin-right: 26px;
 `;
 
 export default UserInfo;
