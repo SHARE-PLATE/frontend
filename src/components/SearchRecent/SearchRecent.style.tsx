@@ -9,6 +9,10 @@ export const RecentWrapper = styled.div`
 `;
 
 export const NoRecentListWrapper = styled.div`
+  ${({ theme: { colors } }) => css`
+    color: ${colors.grey4};
+  `}
+
   height: 10rem;
   text-align: center;
   display: flex;

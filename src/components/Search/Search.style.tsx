@@ -38,8 +38,10 @@ export const CloseBtn = styled.button`
 `;
 
 export const Form = styled.form`
+  ${({ theme: { colors } }) => css`
+    background-color: ${colors.grey2};
+  `}
   flex-grow: 1;
-  background-color: #d2d1d1;
   border-radius: 0.5rem;
   padding: 0.5rem;
   display: flex;
@@ -48,11 +50,11 @@ export const Form = styled.form`
 `;
 
 export const Input = styled.input`
-  ${({ theme: { fonts } }) => css`
-    ${fonts.large}// 16px 미만일 시, 아이폰에서 focus할 때 확대 발생
+  ${({ theme: { fonts, colors } }) => css`
+    ${fonts.large} // 16px 미만일 시, 아이폰에서 focus할 때 확대 발생
+    background-color: ${colors.grey2};
   `}
 
-  background-color: #d2d1d1;
   outline: none;
   border: none;
   margin-right: 0.5rem;
