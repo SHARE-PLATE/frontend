@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 
 import { IconsType } from '@assets/icons';
+import Login from '@components/Login';
 import * as S from '@components/NavigationBar/NavigationBar.style';
 import Search from '@components/Search';
 import ShareFormButton from '@components/ShareFormButton';
@@ -33,9 +34,14 @@ const useNavigationBarInfo = () => {
       id: 2,
       icon: 'Clock',
       name: '검색',
-      clickHandler: () => (!portal ? setPortal('full') : setPortal(null)),
+      clickHandler: () => (!portal ? setPortal('search') : setPortal(null)),
     },
-    { id: 3, icon: 'Clock', name: '채팅', clickHandler, link: '/share-form' },
+    {
+      id: 3,
+      icon: 'Clock',
+      name: '채팅',
+      clickHandler: () => (!portal ? setPortal('login') : setPortal(null)),
+    },
     { id: 4, icon: 'Clock', name: '마이메뉴', clickHandler, link: '/profile' },
   ];
 
@@ -59,6 +65,7 @@ const NavigationBar = () => {
   return (
     <S.NavigationBarWrapper>
       <Search />
+      <Login />
       <ShareFormButton />
       {NavigtaionBarBtns}
     </S.NavigationBarWrapper>
