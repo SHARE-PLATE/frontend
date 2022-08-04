@@ -67,15 +67,24 @@ export const CarouselWrapper = styled.div<{ width: number; height: number }>`
 `;
 
 export const CarouselCount = styled.div`
+  ${({ theme: { fonts, colors } }) => css`
+    ${fonts.small};
+    background-color: #454545e0;
+    color: ${colors.white2};
+  `}
+
   position: absolute;
-  width: 4rem;
+  width: 3rem;
+  height: 1.5rem;
   display: block;
-  left: 1rem;
-  top: 1rem;
+  right: 1rem;
+  bottom: 1rem;
   border-radius: 1rem;
-  padding: 1rem 0.5rem;
+  padding: 0.4rem 0.4rem;
   font-size: 0.8rem;
-  background-color: black;
-  color: white;
   text-align: center;
+`;
+
+export const ShowedIndexWrapper = styled.span`
+  font-weight: 700;
 `;
