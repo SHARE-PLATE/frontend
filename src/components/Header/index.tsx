@@ -1,13 +1,10 @@
-import styled from 'styled-components';
-
 import Address from '@components/Address';
+import * as S from '@components/Header/Header.style';
 import Icon from '@components/common/Icon';
 import { ICON_NAME, ICON_SIZE } from '@components/common/Icon/constants';
-import { flexBetween } from '@styles/mixin';
-
 const Header = () => {
   return (
-    <Wrapper>
+    <S.Wrapper>
       <div>
         <Icon iconName={ICON_NAME.LOGO} iconSize={ICON_SIZE.LARGE} />
       </div>
@@ -15,15 +12,10 @@ const Header = () => {
         <Address />
       </div>
       <div>
-        <Icon iconName={ICON_NAME.NOTICE} iconSize={ICON_SIZE.LARGE} />
+        <Icon iconName={ICON_NAME.NOTICE_ON} iconSize={ICON_SIZE.LARGE} />
       </div>
-    </Wrapper>
+    </S.Wrapper>
   );
 };
-
-const Wrapper = styled.div`
-  ${flexBetween}
-  height: 40px;
-`;
 
 export default Header;

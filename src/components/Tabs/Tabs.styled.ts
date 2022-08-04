@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import { flexBetween } from '@styles/mixin';
+import { flexCenter } from '@styles/mixin';
 
 export const Wrapper = styled.div`
-  ${flexBetween}
-  height: 52px;
+  ${flexCenter}
+  margin-top: 12px;
 `;

@@ -1,7 +1,15 @@
-import React from 'react';
+import MyMenu from '@components/MyMenu';
+import ProfileHeader from '@components/ProfileHeader';
+import UserInfo from '@components/UserInfo';
 
 const Profile = () => {
-  return <div></div>;
+  return (
+    <>
+      <ProfileHeader />
+      <UserInfo />
+      <MyMenu />
+    </>
+  );
 };
 
 export default Profile;
