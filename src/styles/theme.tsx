@@ -1,6 +1,6 @@
 const defaultFontSize = '16px';
 
-const defaultWidth = {};
+const defaultWidth = { 'max-width': '750px', 'min-width': '300px' };
 
 const fonts = {
   main: {

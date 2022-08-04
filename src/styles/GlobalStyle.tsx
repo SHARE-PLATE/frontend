@@ -4,9 +4,26 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const GlobalStyle = createGlobalStyle`
-	${({ theme: { defaultFontSize, fonts } }) => css`
+	${({ theme: { defaultWidth, defaultFontSize, fonts, colors } }) => css`
+    #root {
+      ${defaultWidth};
+      width: 100vw;
+      height: 100vh;
+    }
+
     html {
       font-size: ${defaultFontSize};
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      overflow: hidden;
+      background-color: ${colors.grey1};
+
+      > * {
+        background-color: ${colors.white1};
+      }
     }
 
     * {
@@ -18,12 +35,6 @@ const GlobalStyle = createGlobalStyle`
 
     button {
       cursor: pointer;
-    }
-
-    #root {
-      width: 100vw;
-      height: 100vh;
-      max-width: 750px;
     }
 
     @keyframes fadein {
