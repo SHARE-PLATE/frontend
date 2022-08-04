@@ -26,6 +26,7 @@ export const Content = styled.div`
     border: ${colors.grey3} solid 1px;
   `}
 
+  cursor: pointer;
   border-radius: 0.25rem;
   display: flex;
   width: fit-content;

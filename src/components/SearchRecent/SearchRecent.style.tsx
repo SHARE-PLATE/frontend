@@ -1,6 +1,9 @@
 import styled, { css } from 'styled-components';
 
 export const RecentWrapper = styled.div`
+  ${({ theme: { colors } }) => css`
+    background-color: ${colors.white1};
+  `}
   flex-grow: 1;
   padding: 1rem;
 `;
@@ -37,6 +40,7 @@ export const RecentListWrapper = styled.div`
 
 export const RecentItemWrapper = styled.div`
   display: flex;
+  cursor: pointer;
   justify-content: space-between;
   gap: 0.5rem;
 `;

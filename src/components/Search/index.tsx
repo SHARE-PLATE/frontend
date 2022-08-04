@@ -60,7 +60,7 @@ const Search = () => {
             </S.CloseBtn>
             <S.Form onSubmit={handleSubmit}>
               <S.Input value={inputValue} onChange={handleChangeInput} placeholder={inputKeyword} />
-              <S.SubmitBtn></S.SubmitBtn>
+              {/* <S.SubmitBtn></S.SubmitBtn> 추후 검색 입력 버튼 사용 시*/}
             </S.Form>
           </S.FormWrapper>
           <SearchPopular clickHandler={handleSubmit} />
