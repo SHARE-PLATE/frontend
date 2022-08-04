@@ -3,10 +3,14 @@ export const ICON_NAME = {
   NOTICE_ON: 'NoticeOn',
   USER: 'User',
   NOTICE_OFF: 'NoticeOff',
+  OPTION: 'Option',
+  RIGHT_ARROW: 'RightArrow',
+  SALES_HISTORY: 'SalesHistory',
+  PURCHASE_HISTORY: 'PurchaseHistory',
+  HEART: 'Heart',
 } as const;
 
 export const ICON_SIZE = {
   SMALL: 'SMALL',
-  MEDIUM: 'MEDIUM',
   LARGE: 'LARGE',
 } as const;
