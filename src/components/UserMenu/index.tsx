@@ -20,15 +20,14 @@ const UserMenu = () => {
 
 const Wrapper = styled.section`
   display: flex;
-  flex-flow: row wrap;
+  align-items: center;
   justify-content: space-between;
-  margin: 25px 15px;
+  padding: 1rem 0;
 `;
 
 const Title = styled.div`
-  text-align: left;
   font-weight: bold;
-  width: 75%;
   height: 10%;
+  flex-grow: 1;
 `;
 export default UserMenu;
