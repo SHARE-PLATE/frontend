@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+const NavigationBarHeight = '3.5rem';
+
 export const NavigationBarWrapper = styled.div`
   ${({ theme: { defaultWidth, colors } }) => css`
     position: fixed;
@@ -11,8 +13,7 @@ export const NavigationBarWrapper = styled.div`
     box-shadow: 0px -10px 40px #67676740;
     width: 100%;
     ${defaultWidth};
-    height: 8%;
-    max-height: 60px;
+    height: ${NavigationBarHeight};
     bottom: 0;
   `}
 `;
@@ -40,7 +41,6 @@ export const NavigationBarBtn = styled.button<{ isSelected: boolean }>`
 `;
 
 export const NavigationArea = styled.div`
-  height: 8%;
-  max-height: 60px;
+  height: ${NavigationBarHeight};
   // NavigationBar와 같은 높이 형성
 `;
