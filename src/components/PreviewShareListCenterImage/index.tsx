@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import { sharingExampleType } from '@data/sharing';
@@ -9,6 +9,8 @@ interface PreviewShareListCenterImagePropsType {
 }
 
 const PreviewShareListCenterImage = ({ title, data }: PreviewShareListCenterImagePropsType) => {
+  const noListMention = `현재 ${title}하신\n목록이 없습니다.`;
+
   return data ? (
     <Wrapper>
       {data.map((listItem) => (
@@ -22,7 +24,7 @@ const PreviewShareListCenterImage = ({ title, data }: PreviewShareListCenterImag
       ))}
     </Wrapper>
   ) : (
-    <Container>현재 {title}하신 목록이 없습니다. </Container>
+    <NoListContainer>{noListMention}</NoListContainer>
   );
 };
 
@@ -30,13 +32,33 @@ const Wrapper = styled.div`
   display: flex;
   overflow-y: scroll;
   width: 100%;
-  margin-bottom: 15px;
+  padding: 1rem 0;
+  gap: 0.75rem;
 `;
 
 const Container = styled.div`
+  ${({ theme: { fonts } }) => css`
+    ${fonts.medium};
+  `}
   display: flex;
   flex-direction: column;
-  margin: 15px;
+
+  img {
+    border-radius: 20px;
+  }
+`;
+
+const NoListContainer = styled.div`
+  ${({ theme: { colors, fonts } }) => css`
+    color: ${colors.grey4};
+    ${fonts.medium};
+  `}
+  display: flex;
+  flex-direction: column;
+  padding: 2.5rem 0;
+  text-align: center;
+  line-height: 1.2rem;
+  white-space: pre;
 
   img {
     border-radius: 20px;
@@ -44,13 +66,19 @@ const Container = styled.div`
 `;
 
 const ShareInfo = styled.div`
+  ${({ theme: { fonts } }) => css`
+    ${fonts.medium};
+  `}
+
   width: 110px;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: left;
-  font-weight: bold;
-  margin: 10px 5px;
+
+  > h2 {
+    margin-top: 0.5rem;
+    font-weight: 600;
+  }
 `;
 
 export default PreviewShareListCenterImage;

@@ -20,21 +20,22 @@ const PersonnelStatus = ({ curPersonnel, totalPersonnel }: PersonnelStatusPropsT
 };
 
 const Wrapper = styled.div`
-  display: inline;
-  text-align: center;
-  justify-content: center;
+  margin-top: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
 `;
 
 const Content = styled.span`
-  display: inline-block;
-  color: white;
-  ${({ theme: { colors } }) => css`
+  ${({ theme: { colors, fonts } }) => css`
     background-color: ${colors.orange2};
+    color: ${colors.white1};
+    ${fonts.small};
   `}
-  border-radius: 4px;
 
-  font-size: 12px;
-  padding: 4px;
+  display: inline-block;
+  border-radius: 4px;
+  padding: 0.2rem 0.5rem;
 `;
 
 export default PersonnelStatus;
