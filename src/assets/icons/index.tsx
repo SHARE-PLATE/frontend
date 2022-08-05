@@ -4,9 +4,13 @@ import DeleteCircle from '@assets/icons/deleteCircle.svg';
 import Form from '@assets/icons/form.svg';
 import Heart from '@assets/icons/heart.svg';
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import Kakao from '@assets/icons/kakao.svg';
 >>>>>>> 013f609ed2997f37385d3cf5436b19d6dfacc6ee
+=======
+import Kakao from '@assets/icons/kakao.svg';
+>>>>>>> 07faeaac71401351c7c7577430cc0434f72ee558
 import Logo from '@assets/icons/logo.svg';
 import NoticeOff from '@assets/icons/noticeOff.svg';
 import NoticeOn from '@assets/icons/noticeOn.svg';
@@ -15,9 +19,13 @@ import PurchaseHistory from '@assets/icons/purchaseHistory.svg';
 import RightArrow from '@assets/icons/rightArrow.svg';
 import SalesHistory from '@assets/icons/salesHistory.svg';
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import SharePlate from '@assets/icons/sharePlate.svg';
 >>>>>>> 013f609ed2997f37385d3cf5436b19d6dfacc6ee
+=======
+import SharePlate from '@assets/icons/sharePlate.svg';
+>>>>>>> 07faeaac71401351c7c7577430cc0434f72ee558
 import User from '@assets/icons/user.svg';
 
 export const Icons = {
@@ -32,13 +40,19 @@ export const Icons = {
   PurchaseHistory,
   Heart,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 07faeaac71401351c7c7577430cc0434f72ee558
   Back,
   Clock,
   DeleteCircle,
   SharePlate,
   Kakao,
+<<<<<<< HEAD
 >>>>>>> 013f609ed2997f37385d3cf5436b19d6dfacc6ee
+=======
+>>>>>>> 07faeaac71401351c7c7577430cc0434f72ee558
 } as const;
 
 export type IconsType = keyof typeof Icons;
