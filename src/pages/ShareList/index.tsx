@@ -36,11 +36,7 @@ const ShareList = () => {
       <ShareListHeader />
       <Tabs firstTitle='배달쉐어' secondTitle='재료쉐어' />
       <CategoryButton />
-<<<<<<< HEAD
       <PreviewShareListLeftImage data={getData()} />
-=======
-      <PreviewShareList data={getData()} />
->>>>>>> 013f609ed2997f37385d3cf5436b19d6dfacc6ee
     </>
   );
 };
