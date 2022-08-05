@@ -30,8 +30,7 @@ export const Content = styled.div`
   border-radius: 0.25rem;
   display: flex;
   width: fit-content;
-  padding: 0.7rem 0.9rem;
-  padding-top: 0.8rem;
+  padding: 0.5rem 0.7rem;
   gap: 0.4rem;
   flex: 0 0 auto;
 
