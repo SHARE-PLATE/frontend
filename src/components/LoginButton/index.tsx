@@ -3,17 +3,19 @@ import { useRecoilState } from 'recoil';
 import Portal from '@components/Portal';
 import { loginMention, kakaoLoginMention } from '@constants/mentions';
 import { LOGIN } from '@constants/words';
-import { modalState } from '@store/portal';
+import { portalState } from '@store/portal';
 
 import * as S from './LoginButton.style';
 
+const portalType = 'modal';
+
 const LoginButton = () => {
-  const [isPortal, setIsPortal] = useRecoilState(modalState);
+  const [portal, setPortal] = useRecoilState(portalState);
 
   return (
-    <button onClick={() => setIsPortal(true)}>
+    <button onClick={() => setPortal(portalType)}>
       {LOGIN}
-      <Portal setIsPortal={setIsPortal} isPortal={isPortal} type='modal'>
+      <Portal setPortal={setPortal} isPortal={portal === portalType} type={portalType}>
         <S.LoginWrapper>
           {loginMention}
           <S.KakaoLoginButton>{kakaoLoginMention}</S.KakaoLoginButton>

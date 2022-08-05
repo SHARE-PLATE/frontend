@@ -1,15 +1,19 @@
-import { Link } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import { Wrapper } from '@components/ShareFormButton/ShareFormButton.style';
 import Icon from '@components/common/Icon';
 
+const shareFormLink = '/share-form';
+
 const ShareFormButton = () => {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const isShareForm = pathname === shareFormLink;
+
   return (
-    <Link to='share-form'>
-      <Wrapper>
-        <Icon iconName='Form' iconSize='MEDIUM' />
-      </Wrapper>
-    </Link>
+    <Wrapper onClick={() => navigate(shareFormLink)} isShareForm={isShareForm}>
+      <Icon iconName='Form' iconSize='MEDIUM' />
+    </Wrapper>
   );
 };
 

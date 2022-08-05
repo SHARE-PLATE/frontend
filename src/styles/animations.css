@@ -1,0 +1,53 @@
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideout {
+  from {
+    margin-right: -30%;
+  }
+  to {
+    margin-right: 0;
+  }
+}
+
+@keyframes slidein {
+  from {
+    margin-right: 0;
+  }
+  to {
+    margin-right: -30%;
+  }
+}
+
+@keyframes slideout-bottom {
+  from {
+    margin-bottom: -75%;
+  }
+  to {
+    margin-bottom: 0;
+  }
+}
+
+@keyframes slidein-bottom {
+  from {
+    margin-bottom: 0;
+  }
+  to {
+    margin-bottom: -75%;
+  }
+}
