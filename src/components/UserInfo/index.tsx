@@ -17,16 +17,13 @@ const UserInfo = () => {
           <Email>{userInfo.email}</Email>
         </Info>
       </InfoContainer>
-      <IconContainer>
-        <Icon iconName={ICON_NAME.RIGHT_ARROW} iconSize={ICON_SIZE.LARGE} />
-      </IconContainer>
+      <Icon iconName={ICON_NAME.RIGHT_ARROW} iconSize={ICON_SIZE.LARGE} />
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  ${flexBetween}
-  margin-left: 20px;
+  ${flexBetween};
 `;
 
 const Image = styled.img`
@@ -54,10 +51,6 @@ const Nickname = styled.h2`
 
 const Email = styled.span`
   font-size: 12px;
-`;
-
-const IconContainer = styled.div`
-  margin-right: 26px;
 `;
 
 export default UserInfo;

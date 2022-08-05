@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import Icon from '@components/common/Icon';
 import { ICON_NAME, ICON_SIZE } from '@components/common/Icon/constants';
@@ -24,22 +24,25 @@ const MyMenu = () => {
 };
 
 const Wrapper = styled.ul`
-  ${flexBetween}
-  margin: 30px 20px;
+  padding-top: 1rem;
+  ${flexBetween};
 `;
 
 const Menu = styled.li`
+  ${({ theme: { fonts } }) => css`
+    ${fonts.small};
+  `}
   display: flex;
   flex-direction: column;
   position: relative;
   width: 33%;
-  padding: 12px;
+  padding: 1rem;
 
   ::after {
     content: '|';
     position: absolute;
-    left: 100px;
-    top: 30px;
+    right: 0;
+    top: 50%;
   }
 
   :last-child::after {
