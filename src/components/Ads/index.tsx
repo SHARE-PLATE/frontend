@@ -31,7 +31,7 @@ const Ads = () => {
     </S.AdWrapper>
   ));
 
-  return <Carousel contents={adsContents} settings={settings} height={30} />;
+  return <Carousel contents={adsContents} settings={settings} height='15rem' />;
 };
 
 export default Ads;
