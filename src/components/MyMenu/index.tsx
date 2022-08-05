@@ -29,35 +29,40 @@ const Wrapper = styled.ul`
 `;
 
 const Menu = styled.li`
-  ${({ theme: { fonts } }) => css`
+  ${({ theme: { fonts, colors } }) => css`
     ${fonts.small};
+
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: calc(100% / 3);
+    padding: 1rem;
+
+    ::after {
+      content: '|';
+      color: ${colors.grey4};
+      font-size: 20px;
+      font-weight: 700;
+      position: absolute;
+      display: flex;
+      right: 0;
+      top: 40%;
+    }
+
+    :last-child::after {
+      content: '';
+    }
+
+    svg {
+      margin: 0px auto;
+      margin-bottom: 8px;
+    }
+
+    p {
+      text-align: center;
+      font-weight: bold;
+    }
   `}
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  width: 33%;
-  padding: 1rem;
-
-  ::after {
-    content: '|';
-    position: absolute;
-    right: 0;
-    top: 50%;
-  }
-
-  :last-child::after {
-    content: '';
-  }
-
-  svg {
-    margin: 0px auto;
-    margin-bottom: 8px;
-  }
-
-  p {
-    text-align: center;
-    font-weight: bold;
-  }
 `;
 
 export default MyMenu;
