@@ -6,16 +6,7 @@ import 'slick-carousel/slick/slick-theme.css';
 
 const GlobalStyle = createGlobalStyle`
 	${({ theme: { defaultWidth, defaultFontSize, fonts, colors } }) => css`
-    .App {
-      ${defaultWidth};
-      width: 100vw;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
     * {
-      ${fonts.main};
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
       box-sizing: border-box;
@@ -34,6 +25,19 @@ const GlobalStyle = createGlobalStyle`
 
     button {
       cursor: pointer;
+    }
+
+    .App {
+      ${defaultWidth};
+      width: 100vw;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #portal-root,
+    #root {
+      ${fonts.main};
     }
   `}
 `;
