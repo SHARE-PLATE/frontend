@@ -26,11 +26,11 @@ const Wrapper = styled.div`
 `;
 
 const Content = styled.span`
+  display: inline-block;
+  color: white;
   ${({ theme: { colors } }) => css`
     background-color: ${colors.orange2};
   `}
-  display: inline-block;
-  color: white;
   border-radius: 4px;
 
   font-size: 12px;

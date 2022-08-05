@@ -38,7 +38,7 @@ const Menu = styled.li`
   ::after {
     content: '|';
     position: absolute;
-    left: 94px;
+    left: 100px;
     top: 30px;
   }
 
@@ -52,6 +52,7 @@ const Menu = styled.li`
   }
 
   p {
+    text-align: center;
     font-weight: bold;
   }
 `;

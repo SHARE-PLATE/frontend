@@ -1,7 +1,7 @@
 import { useRecoilValue } from 'recoil';
 
 import CategoryButton from '@components/CategoryButton';
-import PreviewShareList from '@components/PreviewShareList';
+import PreviewShareListLeftImage from '@components/PreviewShareListLeftImage';
 import ShareListHeader from '@components/ShareListHeader';
 import Tabs from '@components/Tabs';
 import { listExample, listExampleType } from '@data/shareList';
@@ -36,7 +36,7 @@ const ShareList = () => {
       <ShareListHeader />
       <Tabs firstTitle='배달쉐어' secondTitle='재료쉐어' />
       <CategoryButton />
-      <PreviewShareList data={getData()} />
+      <PreviewShareListLeftImage data={getData()} />
     </>
   );
 };

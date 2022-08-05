@@ -1,10 +1,10 @@
 import Ads from '@components/Ads';
-import Header from '@components/Header';
+import MainHeader from '@components/MainHeader';
 
 const Main = () => {
   return (
     <>
-      <Header />
+      <MainHeader />
       <Ads />
     </>
   );

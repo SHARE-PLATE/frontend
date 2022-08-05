@@ -13,8 +13,7 @@ export interface listExampleType {
 export const listExample: listExampleType[] = [
   {
     id: 1,
-    thumbnailUrl:
-      'https://dn-img-page.kakao.com/download/resource?kid=cjkvcL/hzCteePBKL/sbDIMr3ywrQfNuePWeAZYk&filename=th2',
+    thumbnailUrl: 'https://avatars.githubusercontent.com/u/67730358?v=4',
     title: '가격 3 시간 2',
     location: '강남역',
     latitude: 37.498095,
@@ -25,8 +24,7 @@ export const listExample: listExampleType[] = [
   },
   {
     id: 2,
-    thumbnailUrl:
-      'https://dn-img-page.kakao.com/download/resource?kid=cjkvcL/hzCteePBKL/sbDIMr3ywrQfNuePWeAZYk&filename=th2',
+    thumbnailUrl: 'https://avatars.githubusercontent.com/u/67730358?v=4',
     title: '가격 1 시간 3',
     location: '역삼역',
     latitude: 37.498095,
@@ -37,8 +35,7 @@ export const listExample: listExampleType[] = [
   },
   {
     id: 3,
-    thumbnailUrl:
-      'https://dn-img-page.kakao.com/download/resource?kid=cjkvcL/hzCteePBKL/sbDIMr3ywrQfNuePWeAZYk&filename=th2',
+    thumbnailUrl: 'https://avatars.githubusercontent.com/u/67730358?v=4',
     title: '가격 2 시간 1',
     location: '강남역',
     latitude: 37.498095,
