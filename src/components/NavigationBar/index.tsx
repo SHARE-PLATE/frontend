@@ -1,26 +1,42 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 
+import { IconsType } from '@assets/icons';
 import * as S from '@components/NavigationBar/NavigationBar.style';
 import Search from '@components/Search';
 import ShareFormButton from '@components/ShareFormButton';
+import Icon from '@components/common/Icon';
 import { portalState } from '@store/portal';
+
+type NavigationBarInfoType = {
+  id: number;
+  icon: IconsType;
+  name: string;
+  link?: string;
+  clickHandler: (link: string) => void;
+}[];
 
 const useNavigationBarInfo = () => {
   const [portal, setPortal] = useRecoilState(portalState);
+  const { pathname } = useLocation();
   const navigate = useNavigate();
 
   const clickHandler = (link: string) => {
     portal && setPortal(null);
-    navigate(link);
+    navigate(link || pathname);
   };
 
-  const navigationBarInfo = [
-    { id: 0, name: 'HOME', link: '/', clickHandler },
-    { id: 1, name: 'SHARE', link: 'share-list', clickHandler },
-    { id: 2, name: 'SEARCH', clickHandler: () => (!portal ? setPortal('full') : setPortal(null)) },
-    { id: 3, name: 'FORM', link: 'share-form', clickHandler },
-    { id: 4, name: 'PROFILE', link: 'profile', clickHandler },
+  const navigationBarInfo: NavigationBarInfoType = [
+    { id: 0, icon: 'Clock', name: '홈', clickHandler, link: '/' },
+    { id: 1, icon: 'Clock', name: '쉐어', clickHandler, link: '/share-list' },
+    {
+      id: 2,
+      icon: 'Clock',
+      name: '검색',
+      clickHandler: () => (!portal ? setPortal('full') : setPortal(null)),
+    },
+    { id: 3, icon: 'Clock', name: '채팅', clickHandler, link: '/share-form' },
+    { id: 4, icon: 'Clock', name: '마이메뉴', clickHandler, link: '/profile' },
   ];
 
   return navigationBarInfo;
@@ -29,8 +45,13 @@ const useNavigationBarInfo = () => {
 const NavigationBar = () => {
   const { pathname } = useLocation();
   const navigationBarInfo = useNavigationBarInfo();
-  const NavigtaionBarBtns = navigationBarInfo.map(({ id, name, link, clickHandler }) => (
-    <S.NavigationBarBtn key={id} onClick={() => clickHandler(link || pathname)}>
+  const NavigtaionBarBtns = navigationBarInfo.map(({ id, name, link, clickHandler, icon }) => (
+    <S.NavigationBarBtn
+      key={id}
+      onClick={() => clickHandler(link || pathname)}
+      isSelected={link === pathname}
+    >
+      <Icon iconName={icon} />
       {name}
     </S.NavigationBarBtn>
   ));

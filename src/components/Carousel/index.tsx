@@ -13,13 +13,15 @@ interface CarouselPropsType {
 
 const Carousel = ({ settings, contents, width = 100, height = 50 }: CarouselPropsType) => {
   const [current, setCurrent] = useState(0);
-  const showedIndex = `${current + 1} / ${contents.length}`;
 
   const showCurIndex = (curIndex: number) => setCurrent(curIndex);
 
   return (
     <S.CarouselWrapper width={width} height={height}>
-      <S.CarouselCount>{showedIndex}</S.CarouselCount>
+      <S.CarouselCount>
+        <S.ShowedIndexWrapper>{current + 1}</S.ShowedIndexWrapper>
+        {` / ${contents.length}`}
+      </S.CarouselCount>
       <S.CarouselSlider {...settings} afterChange={showCurIndex}>
         {contents}
       </S.CarouselSlider>

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import Icon from '@components/common/Icon';
 import { ICON_NAME } from '@components/common/Icon/constants';
@@ -26,9 +26,11 @@ const Wrapper = styled.div`
 `;
 
 const Content = styled.span`
+  ${({ theme: { colors } }) => css`
+    background-color: ${colors.orange2};
+  `}
   display: inline-block;
   color: white;
-  background-color: #ff5c21;
   border-radius: 4px;
 
   font-size: 12px;

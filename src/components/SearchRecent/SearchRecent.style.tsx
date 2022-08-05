@@ -1,11 +1,18 @@
 import styled, { css } from 'styled-components';
 
 export const RecentWrapper = styled.div`
+  ${({ theme: { colors } }) => css`
+    background-color: ${colors.white1};
+  `}
   flex-grow: 1;
   padding: 1rem;
 `;
 
 export const NoRecentListWrapper = styled.div`
+  ${({ theme: { colors } }) => css`
+    color: ${colors.grey4};
+  `}
+
   height: 10rem;
   text-align: center;
   display: flex;
@@ -22,9 +29,9 @@ export const RecentHeader = styled.div`
 `;
 
 export const RecentDeleteAllBtn = styled.button`
-  ${({ theme: { fonts } }) => css`
+  ${({ theme: { fonts, colors } }) => css`
     ${fonts.medium};
-    color: #999999;
+    color: ${colors.grey4};
   `}
 `;
 
@@ -37,6 +44,7 @@ export const RecentListWrapper = styled.div`
 
 export const RecentItemWrapper = styled.div`
   display: flex;
+  cursor: pointer;
   justify-content: space-between;
   gap: 0.5rem;
 `;
@@ -64,10 +72,13 @@ export const RecentItemName = styled.div`
 `;
 
 export const RecentItemDate = styled.div`
+  ${({ theme: { colors } }) => css`
+    color: ${colors.grey4};
+  `}
+
   display: flex;
   align-items: center;
   padding-top: 0.2rem;
-  color: #999999;
 `;
 
 export const RecentDeleteBtn = styled.button`
