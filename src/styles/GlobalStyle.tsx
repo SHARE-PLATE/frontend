@@ -9,7 +9,9 @@ const GlobalStyle = createGlobalStyle`
     .App {
       ${defaultWidth};
       width: 100vw;
-      height: 100vh;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     * {
@@ -28,10 +30,6 @@ const GlobalStyle = createGlobalStyle`
       display: flex;
       justify-content: center;
       background-color: ${colors.grey1};
-
-      > * {
-        background-color: ${colors.white1};
-      }
     }
 
     button {
