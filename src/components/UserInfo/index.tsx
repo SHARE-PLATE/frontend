@@ -1,63 +1,25 @@
-import styled from 'styled-components';
-
+import * as S from '@components/UserInfo/UserInfo.style';
 import Icon from '@components/common/Icon';
 import { ICON_NAME, ICON_SIZE } from '@components/common/Icon/constants';
 import { userInfoExample } from '@data/userInfo';
-import { flexBetween } from '@styles/mixin';
 
 const UserInfo = () => {
   const userInfo = userInfoExample;
 
   return (
-    <Wrapper>
-      <InfoContainer>
-        <Image src={userInfo.profileImageUrl} alt='유저 이미지' />
-        <Info>
-          <Nickname>{userInfo.nickname}</Nickname>
-          <Email>{userInfo.email}</Email>
-        </Info>
-      </InfoContainer>
-      <IconContainer>
+    <S.Wrapper>
+      <S.InfoContainer>
+        <S.Image src={userInfo.profileImageUrl} alt='유저 이미지' />
+        <S.Info>
+          <S.Nickname>{userInfo.nickname}</S.Nickname>
+          <S.Email>{userInfo.email}</S.Email>
+        </S.Info>
+      </S.InfoContainer>
+      <S.IconContainer>
         <Icon iconName={ICON_NAME.RIGHT_ARROW} iconSize={ICON_SIZE.LARGE} />
-      </IconContainer>
-    </Wrapper>
+      </S.IconContainer>
+    </S.Wrapper>
   );
 };
-
-const Wrapper = styled.div`
-  ${flexBetween}
-  margin-left: 20px;
-`;
-
-const Image = styled.img`
-  width: 60px;
-  height: 60px;
-  border-radius: 50px;
-  float: left;
-  margin-right: 20px;
-`;
-
-const InfoContainer = styled.div`
-  display: flex;
-`;
-
-const Info = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 10px;
-`;
-
-const Nickname = styled.h2`
-  font-weight: bold;
-`;
-
-const Email = styled.span`
-  font-size: 12px;
-`;
-
-const IconContainer = styled.div`
-  margin-right: 26px;
-`;
 
 export default UserInfo;

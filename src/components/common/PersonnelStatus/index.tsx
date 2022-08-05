@@ -1,7 +1,6 @@
-import styled, { css } from 'styled-components';
-
 import Icon from '@components/common/Icon';
 import { ICON_NAME } from '@components/common/Icon/constants';
+import * as S from '@components/common/PersonnelStatus/PersonnelStatus.style';
 
 interface PersonnelStatusPropsType {
   curPersonnel: number;
@@ -10,31 +9,13 @@ interface PersonnelStatusPropsType {
 
 const PersonnelStatus = ({ curPersonnel, totalPersonnel }: PersonnelStatusPropsType) => {
   return (
-    <Wrapper>
+    <S.Wrapper>
       <Icon iconName={ICON_NAME.USER} />
-      <Content>
+      <S.Content>
         {curPersonnel} / {totalPersonnel}
-      </Content>
-    </Wrapper>
+      </S.Content>
+    </S.Wrapper>
   );
 };
-
-const Wrapper = styled.div`
-  display: inline;
-  text-align: center;
-  justify-content: center;
-`;
-
-const Content = styled.span`
-  display: inline-block;
-  color: white;
-  ${({ theme: { colors } }) => css`
-    background-color: ${colors.orange2};
-  `}
-  border-radius: 4px;
-
-  font-size: 12px;
-  padding: 4px;
-`;
 
 export default PersonnelStatus;
