@@ -9,12 +9,14 @@ const App = () => {
   const element = useRoutes(routes);
 
   return (
-    <Styles>
-      {element}
-      <Mobile>
-        <NavigationBar />
-      </Mobile>
-    </Styles>
+    <div className='App'>
+      <Styles>
+        {element}
+        <Mobile>
+          <NavigationBar />
+        </Mobile>
+      </Styles>
+    </div>
   );
 };
 

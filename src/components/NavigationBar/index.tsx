@@ -63,12 +63,15 @@ const NavigationBar = () => {
   ));
 
   return (
-    <S.NavigationBarWrapper>
-      <Search />
-      <Login />
-      <ShareFormButton />
-      {NavigtaionBarBtns}
-    </S.NavigationBarWrapper>
+    <>
+      <S.NavigationArea />
+      <S.NavigationBarWrapper>
+        <Search />
+        <Login />
+        <ShareFormButton />
+        {NavigtaionBarBtns}
+      </S.NavigationBarWrapper>
+    </>
   );
 };
 

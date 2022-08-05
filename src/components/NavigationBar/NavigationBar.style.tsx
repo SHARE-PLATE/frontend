@@ -38,3 +38,9 @@ export const NavigationBarBtn = styled.button<{ isSelected: boolean }>`
   align-items: center;
   justify-content: center;
 `;
+
+export const NavigationArea = styled.div`
+  height: 8%;
+  max-height: 60px;
+  // NavigationBar와 같은 높이 형성
+`;

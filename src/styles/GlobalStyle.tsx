@@ -6,7 +6,7 @@ import 'slick-carousel/slick/slick-theme.css';
 
 const GlobalStyle = createGlobalStyle`
 	${({ theme: { defaultWidth, defaultFontSize, fonts, colors } }) => css`
-    #root {
+    .App {
       ${defaultWidth};
       width: 100vw;
       height: 100vh;
@@ -27,7 +27,6 @@ const GlobalStyle = createGlobalStyle`
     body {
       display: flex;
       justify-content: center;
-      overflow: hidden;
       background-color: ${colors.grey1};
 
       > * {
