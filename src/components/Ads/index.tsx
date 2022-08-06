@@ -26,12 +26,15 @@ const adsInfo = [
 const Ads = () => {
   const adsContents = adsInfo.map(({ id, name }) => (
     <S.AdWrapper key={id}>
-      <div>test</div>
-      <div>{name}</div>
+      <S.AdContentWrapper>{name}</S.AdContentWrapper>
     </S.AdWrapper>
   ));
 
-  return <Carousel contents={adsContents} settings={settings} height='15rem' />;
+  return (
+    <S.AdsWrapper>
+      <Carousel contents={adsContents} settings={settings} height='14rem' />
+    </S.AdsWrapper>
+  );
 };
 
 export default Ads;
