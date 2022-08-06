@@ -36,6 +36,7 @@ export const NavigationBarBtn = styled.button<{ isSelected: boolean }>`
   display: flex;
   flex-basis: 100%;
   flex-direction: column;
+  gap: 0.2rem;
   align-items: center;
   justify-content: center;
 `;

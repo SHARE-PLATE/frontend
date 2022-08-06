@@ -49,6 +49,5 @@ export const ShareInfo = styled.div`
 
   > h2 {
     margin-top: 0.5rem;
-    font-weight: 600;
   }
 `;
