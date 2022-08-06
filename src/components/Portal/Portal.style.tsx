@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import { PortalType } from '@store/portal';
-
+import { defaultPageStyle } from '@styles/mixin';
 type PortalStylePropsType = {
   isPortal: boolean;
   portalType: PortalType;
@@ -31,9 +31,7 @@ export const PortalBackground = styled.div<PortalStylePropsType>`
 `;
 
 export const PortalContent = styled.div<PortalStylePropsType>`
-  ${({ portalType, isPortal, theme: { defaultWidth, colors } }) => css`
-    background-color: ${colors.white1};
-
+  ${({ theme: { defaultWidth }, portalType, isPortal }) => css`
     ${portalType === 'modal' &&
     css`
       box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
@@ -48,6 +46,7 @@ export const PortalContent = styled.div<PortalStylePropsType>`
 
     ${portalType === 'full' &&
     css`
+      ${defaultPageStyle};
       ${defaultWidth};
       animation: 'slideout-bottom' 0.3s;
       width: 100%;

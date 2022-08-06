@@ -20,6 +20,9 @@ export const defaultBoxStyle = css`
 `;
 
 export const defaultPageStyle = css`
+  ${({ theme: { colors } }) => css`
+    background-color: ${colors.grey2};
+  `}
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
