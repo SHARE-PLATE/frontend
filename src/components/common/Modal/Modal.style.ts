@@ -23,7 +23,7 @@ export const ModalContainer = styled.div<{ position: string }>`
   background: #e0e0e0;
   box-shadow: 0 4px 10px rgba(51, 51, 51, 0.1), 0 0 4px rgba(51, 51, 51, 0.05);
   border-radius: 10px;
-  z-index: 3;
+  z-index: 5;
 
   /* 포지션 */
   ${positionStyles}

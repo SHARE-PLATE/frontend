@@ -6,15 +6,15 @@ import { ICON_NAME, ICON_SIZE } from '@components/common/Icon/constants';
 const MainHeader = () => {
   return (
     <S.Wrapper>
-      <div>
+      <S.IconWrapper>
         <Icon iconName={ICON_NAME.LOGO} iconSize={ICON_SIZE.LARGE} />
-      </div>
-      <div>
+      </S.IconWrapper>
+      <S.HeaderAddressWrapper>
         <Address />
-      </div>
-      <div>
+      </S.HeaderAddressWrapper>
+      <S.IconWrapper>
         <Icon iconName={ICON_NAME.NOTICE_ON} iconSize={ICON_SIZE.LARGE} />
-      </div>
+      </S.IconWrapper>
     </S.Wrapper>
   );
 };
