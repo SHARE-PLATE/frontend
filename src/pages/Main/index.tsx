@@ -1,5 +1,6 @@
 import Ads from '@components/Ads';
 import MainHeader from '@components/MainHeader';
+import PreviewShareListLongImage from '@components/PreviewShareListLongImage';
 import * as S from '@pages/Main/Main.style';
 
 const Main = () => {
@@ -8,6 +9,7 @@ const Main = () => {
       <S.MainHeaderWrapper>
         <MainHeader />
         <Ads />
+        <PreviewShareListLongImage />
       </S.MainHeaderWrapper>
     </S.MainWrapper>
   );
