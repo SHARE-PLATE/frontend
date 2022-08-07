@@ -25,7 +25,10 @@ export const InfoWrapper = styled.div`
 `;
 
 export const ItemTitle = styled.div`
-  font-weight: 500;
+  ${({ theme: { fonts } }) => css`
+    ${fonts.mediumBold};
+  `}
+  line-height: 1.2rem;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
