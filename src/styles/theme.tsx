@@ -8,15 +8,26 @@ const fonts = {
   main: {
     'font-family': 'Noto Sans KR',
   },
+  xSmall: {
+    'font-size': '10px',
+  },
+  xSmallBold: {
+    'font-size': '10px',
+    'font-weight': '600',
+  },
   small: {
     'font-size': '12px',
+  },
+  smallBold: {
+    'font-size': '12px',
+    'font-weight': '600',
   },
   medium: {
     'font-size': '14px',
   },
   mediumBold: {
     'font-size': '14px',
-    'font-weight': '700',
+    'font-weight': '600',
   },
   large: {
     'font-size': '16px',
