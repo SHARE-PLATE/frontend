@@ -8,7 +8,7 @@ import Icon from '@components/common/Icon';
 import { noRecentListMention } from '@constants/mentions';
 import { RECENT_KEYWORD, DELETE_ALL } from '@constants/words';
 import { searchRecent } from '@store/localStorage';
-import { setLocalStorageInfo, SEARCH_RECENT_KEY } from '@utils/useLocalStorage';
+import { setLocalStorageInfo, SEARCH_RECENT_KEY } from '@utils/LocalStorage';
 
 type SearchRecentPropsType = {
   clickHandler: (event: FormEvent | string) => void;
