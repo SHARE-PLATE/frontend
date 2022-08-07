@@ -9,8 +9,8 @@ import Icon from '@components/common/Icon';
 import { inputKeyword } from '@constants/mentions';
 import { searchRecent } from '@store/localStorage';
 import { PortalNameType, portalState } from '@store/portal';
+import { setLocalStorageInfo, SEARCH_RECENT_KEY } from '@utils/LocalStorage';
 import { getMonthDate } from '@utils/getTime';
-import { setLocalStorageInfo, SEARCH_RECENT_KEY } from '@utils/useLocalStorage';
 
 import * as S from './Search.style';
 
