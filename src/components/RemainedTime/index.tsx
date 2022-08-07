@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 import * as S from '@components/RemainedTime/RemainedTime.style';
 import { useInterval } from '@hooks/useInterval';
-import 'moment/locale/ko';
 import { getTimeDiffInHour } from '@utils/getTimeDiff';
 
 const defaultTime = '00:00';

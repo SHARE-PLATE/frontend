@@ -16,8 +16,13 @@ export const MentionWrapper = styled.div`
 
 export const ListWrapper = styled.div`
   display: flex;
-  margin-top: 1rem;
-  overflow-y: scroll;
+  padding: 1rem 0;
+  height: fit-content;
   width: 100%;
+  overflow-x: scroll;
   gap: 0.8rem;
+
+  ::-webkit-scrollbar-track {
+    color: transparent;
+  }
 `;
