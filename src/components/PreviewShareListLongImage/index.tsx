@@ -6,7 +6,7 @@ import { getDeadlineSort } from '@utils/ShareListSort';
 
 const PreviewShareListLongImage = () => {
   const data = getDeadlineSort(listExample);
-  const list = data.map((item) => <ShareListItemLongImage itemInfo={item} />);
+  const list = data.map((item) => <ShareListItemLongImage key={item.id} itemInfo={item} />);
 
   return (
     <S.Wrapper>
