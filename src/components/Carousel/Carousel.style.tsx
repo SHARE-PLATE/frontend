@@ -77,15 +77,16 @@ export const CarouselCount = styled.div`
     justify-content: center;
     white-space: pre;
     position: absolute;
-    width: 3rem;
+    width: 3.3rem;
     height: 1.5rem;
     right: 1rem;
     bottom: 1rem;
     border-radius: 1rem;
-    padding: 0.4rem 0.4rem;
+    padding: 0.4rem;
+    padding-top: 0.3rem;
   `}
 `;
 
 export const ShowedIndexWrapper = styled.span`
-  font-weight: 700;
+  font-weight: 600;
 `;

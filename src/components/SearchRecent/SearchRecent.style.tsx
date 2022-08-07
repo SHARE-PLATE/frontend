@@ -67,7 +67,6 @@ export const RecentItemName = styled.div`
   > div {
     display: flex;
     align-items: center;
-    padding-top: 0.25rem;
   }
 `;
 
@@ -78,7 +77,6 @@ export const RecentItemDate = styled.div`
 
   display: flex;
   align-items: center;
-  padding-top: 0.2rem;
 `;
 
 export const RecentDeleteBtn = styled.button`

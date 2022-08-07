@@ -41,6 +41,9 @@ export const NavigationBarBtn = styled.button<{ isSelected: boolean }>`
 `;
 
 export const NavigationArea = styled.div`
-  height: ${NavigationBarHeight};
-  // NavigationBar와 같은 높이 형성
+  ${({ theme: { colors } }) => css`
+    height: ${NavigationBarHeight};
+    background-color: ${colors.white1};
+    // NavigationBar와 같은 높이 형성
+  `}
 `;
