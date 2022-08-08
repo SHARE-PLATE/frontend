@@ -2,19 +2,32 @@ const defaultFontSize = '16px';
 
 const defaultWidth = { 'max-width': '750px', 'min-width': '330px' };
 
+const defaultPadding = { padding: '0 1rem' };
+
 const fonts = {
   main: {
     'font-family': 'Noto Sans KR',
   },
+  xSmall: {
+    'font-size': '10px',
+  },
+  xSmallBold: {
+    'font-size': '10px',
+    'font-weight': '600',
+  },
   small: {
     'font-size': '12px',
+  },
+  smallBold: {
+    'font-size': '12px',
+    'font-weight': '600',
   },
   medium: {
     'font-size': '14px',
   },
   mediumBold: {
     'font-size': '14px',
-    'font-weight': '700',
+    'font-weight': '600',
   },
   large: {
     'font-size': '16px',
@@ -42,7 +55,7 @@ const colors = {
   orange2: '#ff5c21',
 };
 
-const theme = { defaultFontSize, defaultWidth, fonts, colors };
+const theme = { defaultFontSize, defaultWidth, fonts, colors, defaultPadding };
 
 type ThemeType = typeof theme;
 type FontsType = keyof typeof fonts;

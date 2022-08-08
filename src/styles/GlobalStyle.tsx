@@ -29,6 +29,7 @@ const GlobalStyle = createGlobalStyle`
 
     .App {
       ${defaultWidth};
+      ${fonts.medium};
       width: 100vw;
       min-height: 100vh;
       display: flex;

@@ -15,7 +15,7 @@ export const flexBetween = css`
 `;
 
 export const defaultBoxStyle = css`
-  padding: 0 1rem;
+  ${theme.defaultPadding};
   background-color: ${theme.colors.white1};
 `;
 

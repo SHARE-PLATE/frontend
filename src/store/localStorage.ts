@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 
-import { getLocalStorageInfo, SEARCH_RECENT_KEY } from '@utils/useLocalStorage';
+import { getLocalStorageInfo, SEARCH_RECENT_KEY } from '@utils/LocalStorage';
 
 type recentListInfoType = [string, { name: string; date: string }][];
 

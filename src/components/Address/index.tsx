@@ -2,6 +2,7 @@ import { useRef } from 'react';
 
 import { useRecoilValue } from 'recoil';
 
+import * as S from '@components/Address/Address.style';
 import AddressModal from '@components/ModalContainer/AddressModal';
 import useGeolocation from '@hooks/useGeolocation';
 import useModal from '@hooks/useModal';
@@ -17,7 +18,9 @@ const Address = () => {
   const closeAddressModal = () => setIsAddressModalOpen(false);
   return (
     <>
-      <div onClick={openAddressModal}>{curLocation ? curLocation : '강남역'}</div>
+      <S.AddressWrapper onClick={openAddressModal}>
+        {curLocation ? curLocation : '강남역'}
+      </S.AddressWrapper>
       {isAddressModalOpen && (
         <AddressModal modalRef={modalRef} closeAddressModal={closeAddressModal} />
       )}
