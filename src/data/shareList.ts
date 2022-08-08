@@ -20,7 +20,7 @@ export const listExample: listExampleType[] = [
     longitude: 127.02761,
     price: 10000,
     originalPrice: 20000,
-    appointmentDateTime: '2022-08-07 11:50',
+    appointmentDateTime: '2022-08-08 11:42',
   },
   {
     id: 9,
@@ -31,7 +31,7 @@ export const listExample: listExampleType[] = [
     longitude: 127.02761,
     price: 10000,
     originalPrice: 20000,
-    appointmentDateTime: '2022-08-07 12:12',
+    appointmentDateTime: '2022-08-08 11:38',
   },
   {
     id: 121,
@@ -42,7 +42,7 @@ export const listExample: listExampleType[] = [
     longitude: 127.02761,
     price: 10000,
     originalPrice: 20000,
-    appointmentDateTime: '2022-08-07 12:30',
+    appointmentDateTime: '2022-08-08 12:00',
   },
   {
     id: 2,
@@ -53,7 +53,7 @@ export const listExample: listExampleType[] = [
     longitude: 127.02761,
     price: 9000,
     originalPrice: 18000,
-    appointmentDateTime: '2022-08-08 12:16',
+    appointmentDateTime: '2022-08-08 11:28',
   },
   {
     id: 3,
