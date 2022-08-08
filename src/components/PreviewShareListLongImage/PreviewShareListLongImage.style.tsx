@@ -26,3 +26,16 @@ export const ListWrapper = styled.div`
     color: transparent;
   }
 `;
+
+export const noListWrapper = styled.div`
+  ${({ theme: { colors } }) => css`
+    color: ${colors.grey4};
+    display: flex;
+    height: 10rem;
+    align-items: center;
+    line-height: 1.5rem;
+    justify-content: center;
+    text-align: center;
+    white-space: pre;
+  `}
+`;

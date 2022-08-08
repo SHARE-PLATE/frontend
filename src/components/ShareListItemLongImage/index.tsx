@@ -2,12 +2,9 @@ import { RemainedTime } from '@components/RemainedTime';
 import * as S from '@components/ShareListItemLongImage/ShareListItemLongImage.style';
 import { listExampleType } from '@data/shareList';
 import { getPriceType } from '@utils/getPriceType';
-import { getTimeDiffInHour } from '@utils/getTimeDiff';
 
 export const ShareListItemLongImage = ({ itemInfo }: { itemInfo: listExampleType }) => {
   const { title, location, price, originalPrice, thumbnailUrl, appointmentDateTime } = itemInfo;
-  const timeDiff = getTimeDiffInHour(appointmentDateTime);
-  if (timeDiff === 'over' || timeDiff === 'done') return null;
 
   return (
     <S.ItemWrapper>
