@@ -1,18 +1,19 @@
 import styled, { css } from 'styled-components';
 
+const NavigationBarHeight = '3.5rem';
+
 export const NavigationBarWrapper = styled.div`
   ${({ theme: { defaultWidth, colors } }) => css`
     position: fixed;
     display: flex;
     justify-content: space-around;
-    padding: 0.4rem;
+    padding: 0.6rem;
     color: ${colors.grey4};
     background-color: ${colors.white1};
     box-shadow: 0px -10px 40px #67676740;
     width: 100%;
     ${defaultWidth};
-    height: 7%;
-    max-height: 60px;
+    height: ${NavigationBarHeight};
     bottom: 0;
   `}
 `;
@@ -35,6 +36,12 @@ export const NavigationBarBtn = styled.button<{ isSelected: boolean }>`
   display: flex;
   flex-basis: 100%;
   flex-direction: column;
+  gap: 0.2rem;
   align-items: center;
   justify-content: center;
+`;
+
+export const NavigationArea = styled.div`
+  height: ${NavigationBarHeight};
+  // NavigationBar와 같은 높이 형성
 `;

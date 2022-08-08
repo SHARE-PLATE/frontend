@@ -1,20 +1,20 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 
 import Portal from '@components/Portal';
 import * as S from '@components/SideBar/SideBar.style';
 import { sideBarContentsInfo } from '@components/SideBar/sidebarContentsInfo';
-import { portalState } from '@store/portal';
+import { PortalNameType, portalState } from '@store/portal';
 
-const portalType = 'sidebar';
+const portalName: PortalNameType = 'sidebar';
 
 const Sidebar = () => {
-  const [portal, setPortal] = useRecoilState(portalState);
+  const setPortal = useSetRecoilState(portalState);
   const { pathname } = useLocation();
   const sidebarContents = sideBarContentsInfo.map(({ id, name, link }) => {
     const clickButtonHandler = () => {
       setPortal(null);
-      if (name === '로그인') setPortal('modal');
+      if (name === '로그인') setPortal('login');
     };
     return (
       <Link to={link || pathname} key={id}>
@@ -24,9 +24,9 @@ const Sidebar = () => {
   });
 
   return (
-    <button onClick={() => setPortal(portalType)}>
+    <button onClick={() => setPortal(portalName)}>
       SIDEBAR
-      <Portal isPortal={portal === portalType} setPortal={setPortal} type={portalType}>
+      <Portal portalName={portalName} type='sidebar'>
         <S.SideBarWrapper>{sidebarContents}</S.SideBarWrapper>
       </Portal>
     </button>

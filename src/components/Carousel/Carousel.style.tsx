@@ -57,10 +57,10 @@ export const CarouselSlider = styled(Slider)`
   }
 `;
 
-export const CarouselWrapper = styled.div<{ width: number; height: number }>`
+export const CarouselWrapper = styled.div<{ width: string; height: string }>`
   ${({ width, height }) => css`
-    width: ${width}%;
-    height: ${height}%;
+    width: ${width};
+    height: ${height};
     overflow: hidden;
     position: relative;
   `}

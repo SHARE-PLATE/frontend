@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components';
 
-import { PortalStateType } from '@store/portal';
-
+import { PortalType } from '@store/portal';
+import { defaultPageStyle } from '@styles/mixin';
 type PortalStylePropsType = {
   isPortal: boolean;
-  portalType: PortalStateType;
+  portalType: PortalType;
 };
 
 export const PortalBackground = styled.div<PortalStylePropsType>`
@@ -31,9 +31,7 @@ export const PortalBackground = styled.div<PortalStylePropsType>`
 `;
 
 export const PortalContent = styled.div<PortalStylePropsType>`
-  ${({ portalType, isPortal, theme: { defaultWidth, colors } }) => css`
-    background-color: ${colors.white1};
-
+  ${({ theme: { defaultWidth }, portalType, isPortal }) => css`
     ${portalType === 'modal' &&
     css`
       box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
@@ -48,15 +46,17 @@ export const PortalContent = styled.div<PortalStylePropsType>`
 
     ${portalType === 'full' &&
     css`
+      ${defaultPageStyle};
       ${defaultWidth};
+      animation: 'slideout-bottom' 0.3s;
       width: 100%;
       height: 100%;
     `}
 
-    ${portalType === 'sidebar' &&
+    ${portalType === 'full' &&
     !isPortal &&
     css`
-      animation: fadeout 0.5s;
+      animation: 'slidein-bottom' 0.3s;
     `}
 
     ${portalType === 'sidebar' &&
@@ -75,12 +75,13 @@ export const PortalContent = styled.div<PortalStylePropsType>`
     ${portalType === 'sidebar' &&
     !isPortal &&
     css`
+      animation: fadeout 0.5s;
       animation: slidein 0.5s;
     `}
   `}
 `;
 
-export const PortalCloseButton = styled.button<{ portalType: PortalStateType }>`
+export const PortalCloseButton = styled.button<{ portalType: PortalType }>`
   position: absolute;
   width: 1.5rem;
   height: 1.5rem;

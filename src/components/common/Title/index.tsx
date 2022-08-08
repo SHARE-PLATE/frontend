@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import * as S from '@components/common/Title/Title.style';
 
 interface TitlePropsType {
   contentTitle: string;
@@ -7,29 +7,13 @@ interface TitlePropsType {
 
 const Title = ({ contentTitle, isContent = false }: TitlePropsType) => {
   return (
-    <TitleContainer>
-      <TitleHeader>{contentTitle}</TitleHeader>
-      {isContent && <More>더보기👉</More>}
-    </TitleContainer>
+    <S.TitleContainer>
+      <S.TitleHeader>
+        {contentTitle}
+        {isContent && <div>더보기 👉</div>}
+      </S.TitleHeader>
+    </S.TitleContainer>
   );
 };
 
-const TitleContainer = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  padding: 4px 15px;
-`;
-
-const TitleHeader = styled.span`
-  text-align: left;
-  font-weight: bold;
-  width: 75%;
-`;
-
-const More = styled.span`
-  font-weight: bold;
-  padding: 8px;
-  text-align: right;
-  width: 25%;
-`;
 export default Title;

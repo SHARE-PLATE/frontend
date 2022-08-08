@@ -1,17 +1,16 @@
 import React, { ReactNode, useRef, useEffect } from 'react';
 
 import { createPortal } from 'react-dom';
-import { SetterOrUpdater } from 'recoil';
+import { useRecoilState } from 'recoil';
 
-import { PortalStateType } from '@store/portal';
+import { PortalNameType, PortalType, portalState } from '@store/portal';
 
 import * as S from './Portal.style';
 
 type PortalPropsType = {
-  isPortal: boolean;
-  setPortal: SetterOrUpdater<PortalStateType>;
+  portalName: PortalNameType;
   children: ReactNode;
-  type: PortalStateType;
+  type: PortalType;
   closeBtn?: React.RefObject<HTMLButtonElement>;
 };
 
@@ -20,7 +19,9 @@ const PortalRoot = ({ children }: { children: ReactNode }) => {
   return element && createPortal(children, element);
 };
 
-const Portal = ({ setPortal, isPortal, children, type, closeBtn }: PortalPropsType) => {
+const Portal = ({ portalName, children, type, closeBtn }: PortalPropsType) => {
+  const [portal, setPortal] = useRecoilState(portalState);
+  const isPortal = portal === portalName;
   const backgroundRef = useRef<HTMLDivElement>(null);
 
   const closePortal = (event: React.MouseEvent | MouseEvent) => {

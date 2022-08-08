@@ -1,6 +1,6 @@
 import { useRef, FormEvent, useState, ChangeEvent } from 'react';
 
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 
 import Portal from '@components/Portal';
 import SearchPopular from '@components/SearchPopular';
@@ -8,17 +8,18 @@ import SearchRecent from '@components/SearchRecent';
 import Icon from '@components/common/Icon';
 import { inputKeyword } from '@constants/mentions';
 import { searchRecent } from '@store/localStorage';
-import { portalState } from '@store/portal';
+import { PortalNameType, portalState } from '@store/portal';
 import { getMonthDate } from '@utils/getTime';
 import { setLocalStorageInfo, SEARCH_RECENT_KEY } from '@utils/useLocalStorage';
 
 import * as S from './Search.style';
 
-const portalType = 'full';
+const portalName: PortalNameType = 'search';
 
 const Search = () => {
   const [inputValue, setInputValue] = useState('');
-  const [portal, setPortal] = useRecoilState(portalState);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const setPortal = useSetRecoilState(portalState);
   const [recentListInfoMap, setRecentListInfoMap] = useRecoilState(searchRecent);
   const closeBtn = useRef<HTMLButtonElement>(null);
 
@@ -35,6 +36,7 @@ const Search = () => {
       event.preventDefault();
       value = inputValue;
       if (!value.length) return;
+      inputRef.current?.blur(); // 모바일에서 submit시 타자 영역 없어지도록 함
     }
 
     recentListInfoMap.set(value, { name: value, date: getMonthDate() });
@@ -46,12 +48,7 @@ const Search = () => {
   };
 
   return (
-    <Portal
-      type={portalType}
-      isPortal={portal === portalType}
-      setPortal={setPortal}
-      closeBtn={closeBtn}
-    >
+    <Portal type='full' portalName={portalName} closeBtn={closeBtn}>
       <S.Wrapper>
         <S.Header>
           <S.FormWrapper>
@@ -59,7 +56,12 @@ const Search = () => {
               <Icon iconName='Back' iconSize='MEDIUM' />
             </S.CloseBtn>
             <S.Form onSubmit={handleSubmit}>
-              <S.Input value={inputValue} onChange={handleChangeInput} placeholder={inputKeyword} />
+              <S.Input
+                value={inputValue}
+                onChange={handleChangeInput}
+                placeholder={inputKeyword}
+                ref={inputRef}
+              />
               {/* <S.SubmitBtn></S.SubmitBtn> 추후 검색 입력 버튼 사용 시*/}
             </S.Form>
           </S.FormWrapper>

@@ -9,19 +9,31 @@ import ShareForm from '@pages/ShareForm';
 import ShareList from '@pages/ShareList';
 import ProtectedRoute from '@router/ProtectedRoute';
 
+export const pathName = {
+  main: '',
+  shareList: 'share-list',
+  loginCallback: 'login-callback',
+  shareDetail: 'share-detail',
+  notice: 'notice',
+  error: 'error',
+  shareForm: 'share-form',
+  profile: 'profile',
+  other: '*',
+};
+
 export const routes = [
-  { path: '/', element: <Main /> },
-  { path: '/login-callback', element: <LoginCallback /> },
-  { path: '/share-list', element: <ShareList /> },
-  { path: '/share-detail', element: <ShareDetail /> },
-  { path: '/notice', element: <Notice /> },
-  { path: '/error', element: <Error /> },
+  { path: pathName.main, element: <Main /> },
+  { path: pathName.loginCallback, element: <LoginCallback /> },
+  { path: pathName.shareList, element: <ShareList /> },
+  { path: pathName.shareDetail, element: <ShareDetail /> },
+  { path: pathName.notice, element: <Notice /> },
+  { path: pathName.error, element: <Error /> },
   {
     element: <ProtectedRoute />,
     children: [
-      { path: '/share-form', element: <ShareForm /> },
-      { path: '/profile', element: <Profile /> },
+      { path: pathName.shareForm, element: <ShareForm /> },
+      { path: pathName.profile, element: <Profile /> },
     ],
   },
-  { path: '*', element: <NotFound /> },
+  { path: pathName.other, element: <NotFound /> },
 ];
