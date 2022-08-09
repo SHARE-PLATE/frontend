@@ -1,20 +1,57 @@
+import { SetterOrUpdater, useRecoilState } from 'recoil';
+
 import * as S from '@components/Tabs/Tabs.styled';
-import Button from '@components/common/Button';
-import { BUTTON_SIZE } from '@components/common/Button/constants';
+import { activeShareList } from '@store/filterShareList';
 
 interface TabsPropsType {
-  firstTitle: string;
-  secondTitle: string;
+  curShareList: string;
+  setCurShareList: SetterOrUpdater<string>;
 }
-const Tabs = ({ firstTitle, secondTitle }: TabsPropsType) => {
+
+const Tabs = ({ curShareList, setCurShareList }: TabsPropsType) => {
+  const [activeShareListValue, setActiveShareListValue] = useRecoilState(activeShareList);
+
+  const shareListTabs = [
+    {
+      title: '배달쉐어',
+      value: 'delivery',
+      active: activeShareListValue.delivery,
+    },
+    {
+      title: '재료쉐어',
+      value: 'ingredient',
+      active: activeShareListValue.ingredient,
+    },
+  ];
+
+  const changeTab = (value: string) => {
+    if (curShareList === value) return;
+
+    if (curShareList === 'delivery') setCurShareList('ingredient');
+
+    if (curShareList === 'ingredient') setCurShareList('delivery');
+
+    setActiveShareListValue({
+      delivery: !activeShareListValue.delivery,
+      ingredient: !activeShareListValue.ingredient,
+    });
+  };
+
   return (
     <S.Wrapper>
-      <Button size={BUTTON_SIZE.LARGE} onClick={() => {}}>
-        {firstTitle}
-      </Button>
-      <Button size={BUTTON_SIZE.LARGE} onClick={() => {}}>
-        {secondTitle}
-      </Button>
+      <S.TabMenu>
+        {shareListTabs.map(({ title, value, active }) => {
+          return (
+            <div
+              key={value}
+              className={'tabMenu ' + value + (active ? ' active' : '')}
+              onClick={() => changeTab(value)}
+            >
+              <h2>{title}</h2>
+            </div>
+          );
+        })}
+      </S.TabMenu>
     </S.Wrapper>
   );
 };
