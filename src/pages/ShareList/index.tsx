@@ -28,7 +28,7 @@ const ShareList = () => {
       case 'distance':
         return getPriceSort(data);
       case 'recency':
-        return getDeadlineSort(data);
+        return getRecencySort(data);
       case 'deadline':
         return getDeadlineSort(data);
     }
@@ -36,7 +36,7 @@ const ShareList = () => {
   };
 
   return (
-    <>
+    <S.Wrapper>
       <S.ListHeader>
         <ShareListHeader />
         <Tabs curShareList={curShareList} setCurShareList={setCurShareList} />
@@ -53,7 +53,7 @@ const ShareList = () => {
       ) : (
         ''
       )}
-    </>
+    </S.Wrapper>
   );
 };
 
