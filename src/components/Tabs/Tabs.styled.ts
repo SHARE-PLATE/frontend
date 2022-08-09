@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { flexCenter } from '@styles/mixin';
 
 export const Wrapper = styled.div`
-  ${flexCenter}
+  ${flexCenter};
   width: 100%;
   margin-top: 12px;
 `;

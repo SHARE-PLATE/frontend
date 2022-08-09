@@ -1,11 +1,24 @@
 import styled from 'styled-components';
 
-export const ListHeader = styled.div`
+import { defaultPageStyle } from '@styles/mixin';
+
+export const Wrapper = styled.div`
+  ${defaultPageStyle};
+`;
+
+export const ListHeader = styled.header`
   position: fixed;
   top: 0;
-  left: 0;
-  right: 0;
   z-index: 1;
+  width: 100%;
+  padding: 0;
+  ${({ theme }) => theme.defaultWidth};
+
+  > :first-child,
+  > :last-child {
+    padding: 0 1rem;
+  }
+
   background-color: ${({ theme }) => theme.colors.white1};
 `;
 
