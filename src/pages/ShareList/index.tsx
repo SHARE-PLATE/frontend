@@ -1,11 +1,13 @@
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 import CategoryButton from '@components/CategoryButton';
+import PreviewShareListBigSizeImage from '@components/PreviewShareListBigSizeImage';
 import PreviewShareListLeftImage from '@components/PreviewShareListLeftImage';
 import ShareListHeader from '@components/ShareListHeader';
 import Tabs from '@components/Tabs';
 import { listExample, listExampleType } from '@data/shareList';
-import { currentShareList } from '@store/shareList';
+import * as S from '@pages/ShareList/ShareList.style';
+import { currentFilterShareList, currentShareList } from '@store/filterShareList';
 import {
   getDeadlineSort,
   getDistanceSort,
@@ -14,11 +16,13 @@ import {
 } from '@utils/ShareListSort';
 
 const ShareList = () => {
-  const curShareList = useRecoilValue(currentShareList);
+  const curShareFilterList = useRecoilValue(currentFilterShareList);
+  const [curShareList, setCurShareList] = useRecoilState(currentShareList);
+
   const data = listExample;
 
   const getData = (): listExampleType[] => {
-    switch (curShareList) {
+    switch (curShareFilterList) {
       case 'price':
         return getPriceSort(data);
       case 'distance':
@@ -33,10 +37,22 @@ const ShareList = () => {
 
   return (
     <>
-      <ShareListHeader />
-      <Tabs firstTitle='배달쉐어' secondTitle='재료쉐어' />
-      <CategoryButton />
-      <PreviewShareListLeftImage data={getData()} />
+      <S.ListHeader>
+        <ShareListHeader />
+        <Tabs curShareList={curShareList} setCurShareList={setCurShareList} />
+        <CategoryButton />
+      </S.ListHeader>
+      {curShareList === 'delivery' ? (
+        <S.ListContents>
+          <PreviewShareListBigSizeImage data={getData()} />
+        </S.ListContents>
+      ) : curShareList === 'ingredient' ? (
+        <S.ListContents>
+          <PreviewShareListLeftImage data={getData()} />
+        </S.ListContents>
+      ) : (
+        ''
+      )}
     </>
   );
 };
