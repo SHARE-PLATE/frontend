@@ -47,3 +47,14 @@ export const Cost = styled.div`
   font-weight: bold;
   font-size: 14px;
 `;
+
+export const ImageOriginalPrice = styled.span`
+  display: inline-block;
+  margin-left: 4px;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 16px;
+  text-decoration-line: line-through;
+  color: #a8a8a8;
+  opacity: 0.6;
+`;

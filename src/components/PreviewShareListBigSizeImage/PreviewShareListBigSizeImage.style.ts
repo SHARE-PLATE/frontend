@@ -45,7 +45,12 @@ export const ImagePriceBlock = styled.div`
   justify-content: space-between;
 `;
 
-export const ImagePrice = styled.span`
+export const Location = styled.div`
+  color: #a8a8a8;
+  font-size: 10px;
+`;
+
+export const ImageContents = styled.span`
   font-weight: 600;
   font-size: 15px;
   line-height: 24px;

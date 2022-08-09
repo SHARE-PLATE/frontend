@@ -2,6 +2,7 @@ import * as S from '@components/PreviewShareListBigSizeImage/PreviewShareListBig
 import { RemainedTime } from '@components/RemainedTime';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import { listExampleType } from '@data/shareList';
+import { calcTwoTimeDifference } from '@utils/getTimeDiff';
 interface PreviewShareListBigSizeImagePropsType {
   data: listExampleType[];
 }
@@ -9,25 +10,44 @@ interface PreviewShareListBigSizeImagePropsType {
 const PreviewShareListBigSizeImage = ({ data }: PreviewShareListBigSizeImagePropsType) => {
   return (
     <>
-      {data.map((item) => (
-        <S.Wrapper key={item.id}>
-          <S.ImageContainer>
-            <img src={item.thumbnailUrl} alt={item.title} width='330' height='100' />
-            <RemainedTime targetTime={item.appointmentDateTime} />
-          </S.ImageContainer>
-          <S.Container>
-            <S.TextContainer>
-              <S.ImageTitle>{item.title}</S.ImageTitle>
-              <PersonnelStatus curPersonnel={1} totalPersonnel={4} />
-            </S.TextContainer>
-            <S.ImagePriceBlock>
-              <S.ImagePrice>
-                {item.price}원<S.ImageOriginalPrice>원가 {item.originalPrice}</S.ImageOriginalPrice>
-              </S.ImagePrice>
-            </S.ImagePriceBlock>
-          </S.Container>
-        </S.Wrapper>
-      ))}
+      {data.map(
+        ({
+          id,
+          thumbnailUrl,
+          title,
+          location,
+          price,
+          originalPrice,
+          currentRecruitment,
+          finalRecruitment,
+          createdDateTime,
+          appointmentDateTime,
+        }) => (
+          <S.Wrapper key={id}>
+            <S.ImageContainer>
+              <img src={thumbnailUrl} alt={title} width='330' height='100' />
+              <RemainedTime targetTime={appointmentDateTime} />
+            </S.ImageContainer>
+            <S.Container>
+              <S.TextContainer>
+                <S.ImageTitle>{title}</S.ImageTitle>
+                <PersonnelStatus
+                  curPersonnel={currentRecruitment}
+                  totalPersonnel={finalRecruitment}
+                />
+              </S.TextContainer>
+              <S.ImagePriceBlock>
+                <S.ImageContents>
+                  <S.Location>
+                    {location} / {calcTwoTimeDifference(createdDateTime)}
+                  </S.Location>
+                  {price}원<S.ImageOriginalPrice>원가 {originalPrice}</S.ImageOriginalPrice>
+                </S.ImageContents>
+              </S.ImagePriceBlock>
+            </S.Container>
+          </S.Wrapper>
+        ),
+      )}
     </>
   );
 };
