@@ -6,6 +6,20 @@ interface SizeStylesType {
   size: string;
 }
 
+interface ActiveStylesType {
+  active: boolean;
+}
+
+const activeStyles = css<ActiveStylesType>`
+  ${({ active }) =>
+    active &&
+    css`
+      background-color: ${({ theme }) => theme.colors.orange2};
+    `}
+
+  ${({ active }) => !active && css``}
+`;
+
 const sizeStyles = css<SizeStylesType>`
   ${({ size }) =>
     size === BUTTON_SIZE.SMALL &&
@@ -26,7 +40,7 @@ const sizeStyles = css<SizeStylesType>`
     `}
 `;
 
-export const Button = styled.button<SizeStylesType>`
+export const Button = styled.button<SizeStylesType & ActiveStylesType>`
   border: 1px solid #000;
   margin: 6px;
   &:disabled {
@@ -34,4 +48,6 @@ export const Button = styled.button<SizeStylesType>`
   }
 
   ${sizeStyles}
+
+  ${activeStyles}
 `;
