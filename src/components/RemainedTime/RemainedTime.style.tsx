@@ -9,7 +9,7 @@ export const RemainedTimeWrapper = styled.div`
     border-radius: 0.4rem;
     display: inline-block;
     position: absolute;
-    left: 0.75rem;
-    top: 0.75rem;
+    left: 0.5rem;
+    top: 0.5rem;
   `}
 `;
