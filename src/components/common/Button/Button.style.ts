@@ -11,7 +11,7 @@ const sizeStyles = css<SizeStylesType>`
     size === BUTTON_SIZE.SMALL &&
     css`
       width: 59px;
-      height: 40px;
+      height: 30px;
       font-size: 12px;
       border-radius: 20px;
     `}
