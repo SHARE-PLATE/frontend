@@ -46,6 +46,5 @@ export const NavigationArea = styled.div`
     background-color: ${colors.white1};
     padding-top: 1rem;
     height: ${NavigationBarHeight};
-    padding-top: 1rem;
   `}
 `;
