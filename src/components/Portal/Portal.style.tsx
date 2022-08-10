@@ -49,7 +49,6 @@ export const PortalContent = styled.div<PortalStylePropsType>`
 
     ${portalType === 'full' &&
     css`
-      ${defaultPageStyle}
       ${defaultWidth}
       width: 100%;
       height: 100%;

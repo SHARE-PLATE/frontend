@@ -23,6 +23,7 @@ export const RecentHeader = styled.div`
     ${fonts.xLargeBold}
 
     display: flex;
+    padding-top: 1rem;
     justify-content: space-between;
     padding-top: 1rem;
   `}
