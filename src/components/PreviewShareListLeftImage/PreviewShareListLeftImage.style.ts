@@ -2,34 +2,49 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 20px;
+  justify-content: space-between;
 `;
 
 export const Container = styled.div`
-  position: relative;
+  display: flex;
   width: 100%;
-  height: 100px;
+  gap: 0.75rem;
+  flex-basis: 0;
+`;
+
+export const ImgWrapper = styled.div`
+  width: 7rem;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  aspect-ratio: 1 / 1;
+  position: relative;
 
   img {
-    position: absolute;
-    top: 0px;
-    border-radius: 8px;
+    margin-top: -25%;
+    margin-left: -25%;
+    width: 150%;
   }
 `;
 
 export const ListInfo = styled.div`
   display: flex;
-  position: absolute;
-  left: 30%;
   flex-direction: column;
-  gap: 6px;
-  padding: 3px;
+  justify-content: space-between;
   overflow-wrap: break-word;
+  width: 12.7rem;
+  padding: 0.2rem;
+`;
+
+export const ListInfoTexts = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
 `;
 
 export const Title = styled.div`
-  width: 200px;
+  width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
