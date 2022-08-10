@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   position: relative;
-  width: 100%;
   padding-left: 30px;
+  width: 100%;
 
   img {
     position: absolute;

@@ -8,14 +8,14 @@ type PortalStylePropsType = {
 };
 
 export const PortalBackground = styled.div<PortalStylePropsType>`
-  z-index: 1000;
-  width: 100%;
-  height: 100%;
   display: none;
   position: fixed;
-  inset: 0;
-  background-color: #00000040; // 투명도 조절 필요
+  z-index: 1000;
+  background-color: #00000040;
+  width: 100%;
+  height: 100%;
   animation: fadein 0.3s;
+  inset: 0;
 
   ${({ isPortal, portalType }) => css`
     ${!isPortal &&
@@ -25,8 +25,8 @@ export const PortalBackground = styled.div<PortalStylePropsType>`
 
     ${(portalType === 'modal' || portalType === 'full') &&
     css`
-      justify-content: center;
       align-items: center;
+      justify-content: center;
     `}
   `}
 `;
@@ -35,23 +35,23 @@ export const PortalContent = styled.div<PortalStylePropsType>`
   ${({ theme: { defaultWidth }, portalType, isPortal }) => css`
     ${portalType === 'modal' &&
     css`
-      box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
       position: relative;
       border-radius: 1.5rem;
+      box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
       padding: 2.5rem;
       width: 30%;
-      height: 25%;
       min-width: 300px;
+      height: 25%;
       min-height: 300px;
     `}
 
     ${portalType === 'full' &&
     css`
-      ${defaultPageStyle};
-      ${defaultWidth};
-      animation: 'slideout-bottom' 0.3s;
+      ${defaultPageStyle}
+      ${defaultWidth}
       width: 100%;
       height: 100%;
+      animation: 'slideout-bottom' 0.3s;
     `}
 
     ${portalType === 'full' &&
@@ -62,15 +62,15 @@ export const PortalContent = styled.div<PortalStylePropsType>`
 
     ${portalType === 'sidebar' &&
     css`
-      animation: slideout 0.5s;
       position: absolute;
-      right: 0;
       top: 0;
+      right: 0;
       border-radius: 1.5rem 0 0 1.5rem;
-      width: 60%;
-      height: 100%;
-      max-width: 300px;
       padding: 2rem;
+      width: 60%;
+      max-width: 300px;
+      height: 100%;
+      animation: slideout 0.5s;
     `}
 
     ${portalType === 'sidebar' &&
@@ -90,20 +90,20 @@ export const PortalCloseButton = styled.button<{ portalType: PortalType }>`
   ${({ portalType }) => css`
     ${portalType === 'modal' &&
     css`
-      right: 1rem;
       top: 1rem;
+      right: 1rem;
     `}
 
     ${portalType === 'sidebar' &&
     css`
-      right: 0;
       top: 0;
+      right: 0;
     `}
 
     ${portalType === 'full' &&
     css`
-      left: 1rem;
       top: 1rem;
+      left: 1rem;
     `}
   `}
 `;

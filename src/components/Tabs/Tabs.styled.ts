@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { flexCenter } from '@styles/mixin';
 
 export const Wrapper = styled.div`
-  ${flexCenter};
-  width: 100%;
+  ${flexCenter}
   margin-top: 12px;
+  width: 100%;
 `;
 
 export const TabMenu = styled.nav`
@@ -15,21 +15,21 @@ export const TabMenu = styled.nav`
   width: 100%;
 
   .tabMenu {
-    border-bottom: 5px solid gray;
     position: relative;
+    border-bottom: 5px solid gray;
+    cursor: pointer;
+    padding-bottom: 10px;
     width: 100%;
     text-align: center;
-    padding-bottom: 10px;
-    cursor: pointer;
 
     &::after {
-      content: '';
       position: absolute;
-      width: 100%;
       bottom: -5px;
-      height: 5px;
-      background: #ff5c21;
       transition: 0.5s ease-out;
+      background: #ff5c21;
+      width: 100%;
+      height: 5px;
+      content: '';
     }
 
     &.delivery::after {

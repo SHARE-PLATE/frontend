@@ -11,7 +11,7 @@ export const AdsWrapper = styled.div``;
 
 export const AdContentWrapper = styled.div`
   display: flex;
-  height: calc(100% + 3rem);
   align-items: center;
   justify-content: center;
+  height: calc(100% + 3rem);
 `;

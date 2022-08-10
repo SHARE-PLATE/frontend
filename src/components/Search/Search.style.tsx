@@ -2,67 +2,65 @@ import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
   ${({ theme: { colors } }) => css`
+    display: flex;
+    flex-direction: column;
     background-color: ${colors.grey1};
+    width: 100%;
+    height: 100%;
   `}
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
 `;
 
 export const Header = styled.div`
   ${({ theme: { colors } }) => css`
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 6px;
     background-color: ${colors.white1};
+    padding: 0.5rem 1rem;
   `}
-
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  margin-bottom: 6px;
 `;
 
 export const FormWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
   gap: 0.5rem;
+  justify-content: space-between;
 `;
 
 export const CloseBtn = styled.button`
-  width: 10%;
-  min-width: 30px;
-  max-width: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 10%;
+  min-width: 30px;
+  max-width: 50px;
 `;
 
 export const Form = styled.form`
   ${({ theme: { colors } }) => css`
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    border-radius: 0.5rem;
     background-color: ${colors.grey2};
+    padding: 0.5rem;
+    height: 3rem;
   `}
-  flex-grow: 1;
-  border-radius: 0.5rem;
-  padding: 0.5rem;
-  display: flex;
-  height: 3rem;
-  justify-content: space-between;
 `;
 
 export const Input = styled.input`
   ${({ theme: { fonts, colors } }) => css`
-    ${fonts.large} // 16px 미만일 시, 아이폰에서 focus할 때 확대 발생
+    ${fonts.large}
+    margin-right: 0.5rem;
+    outline: none;
+    border: none;
     background-color: ${colors.grey2};
+    width: 100%;
+
+    :focus::placeholder {
+      color: transparent;
+    }
   `}
-
-  outline: none;
-  border: none;
-  margin-right: 0.5rem;
-  width: 100%;
-
-  :focus::placeholder {
-    color: transparent;
-  }
 `;
 
 export const SubmitBtn = styled.button`

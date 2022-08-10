@@ -2,11 +2,11 @@ import styled, { css } from 'styled-components';
 
 export const AddressWrapper = styled.div`
   ${({ theme: { fonts } }) => css`
-    ${fonts.large};
+    ${fonts.large}
     width: 100%;
-    text-align: center;
-    white-space: nowrap;
     overflow: hidden;
+    text-align: center;
     text-overflow: ellipsis;
+    white-space: nowrap;
   `}
 `;

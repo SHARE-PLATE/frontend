@@ -2,27 +2,26 @@ import styled, { css } from 'styled-components';
 
 export const RecentWrapper = styled.div`
   ${({ theme: { colors } }) => css`
+    flex-grow: 1;
     background-color: ${colors.white1};
+    padding: 1rem;
   `}
-  flex-grow: 1;
-  padding: 1rem;
 `;
 
 export const NoRecentListWrapper = styled.div`
   ${({ theme: { colors } }) => css`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 10rem;
+    text-align: center;
     color: ${colors.grey4};
   `}
-
-  height: 10rem;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 `;
 
 export const RecentHeader = styled.div`
   ${({ theme: { fonts } }) => css`
-    ${fonts.xLargeBold};
+    ${fonts.xLargeBold}
     display: flex;
     justify-content: space-between;
   `}
@@ -30,39 +29,38 @@ export const RecentHeader = styled.div`
 
 export const RecentDeleteAllBtn = styled.button`
   ${({ theme: { fonts, colors } }) => css`
-    ${fonts.medium};
+    ${fonts.medium}
     color: ${colors.grey4};
   `}
 `;
 
 export const RecentListWrapper = styled.div`
-  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  margin-top: 1rem;
 `;
 
 export const RecentItemWrapper = styled.div`
   display: flex;
-  cursor: pointer;
-  justify-content: space-between;
   gap: 0.5rem;
+  justify-content: space-between;
+  cursor: pointer;
 `;
 
 export const RecentItemInfo = styled.div`
   ${({ theme: { fonts } }) => css`
     ${fonts.medium}
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
   `}
-
-  display: flex;
-  justify-content: space-between;
-  flex-grow: 1;
 `;
 
 export const RecentItemName = styled.div`
   display: flex;
-  align-items: center;
   gap: 0.5rem;
+  align-items: center;
 
   > div {
     display: flex;
@@ -72,11 +70,10 @@ export const RecentItemName = styled.div`
 
 export const RecentItemDate = styled.div`
   ${({ theme: { colors } }) => css`
+    display: flex;
+    align-items: center;
     color: ${colors.grey4};
   `}
-
-  display: flex;
-  align-items: center;
 `;
 
 export const RecentDeleteBtn = styled.button`

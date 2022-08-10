@@ -1,9 +1,10 @@
 {
   "extends": [
-    "stylelint-config-styled-components",
     "stylelint-config-prettier",
     "stylelint-config-recommended",
+    "stylelint-config-styled-components",
     "stylelint-config-concentric-order"
   ],
-  "customSyntax": "@stylelint/postcss-css-in-js"
+  "customSyntax": "@stylelint/postcss-css-in-js",
+  "rules": { "function-no-unknown": null, "no-descending-specificity": null }
 }

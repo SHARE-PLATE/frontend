@@ -7,10 +7,10 @@ import 'slick-carousel/slick/slick-theme.css';
 const GlobalStyle = createGlobalStyle`
 	${({ theme: { defaultWidth, defaultFontSize, fonts, colors } }) => css`
     * {
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
       box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent; // 모바일에서 터치 시 색상 변형 방지
+      box-sizing: border-box;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
 
     html {
@@ -28,17 +28,17 @@ const GlobalStyle = createGlobalStyle`
     }
 
     .App {
-      ${defaultWidth};
-      ${fonts.medium};
-      width: 100vw;
-      min-height: 100vh;
+      ${defaultWidth}
+      ${fonts.medium}
       display: flex;
       flex-direction: column;
+      width: 100vw;
+      min-height: 100vh;
     }
 
     #portal-root,
     #root {
-      ${fonts.main};
+      ${fonts.main}
     }
   `}
 `;
