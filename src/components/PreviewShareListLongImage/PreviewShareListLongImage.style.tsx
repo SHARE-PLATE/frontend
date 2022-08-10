@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { subTitle } from '@styles/mixin';
+
 export const Wrapper = styled.div`
   ${({ theme: { defaultPadding, defaultWidth } }) => css`
     ${defaultPadding}
@@ -8,10 +10,7 @@ export const Wrapper = styled.div`
 `;
 
 export const MentionWrapper = styled.div`
-  ${({ theme: { fonts } }) => css`
-    margin-top: 2rem;
-    ${fonts.xLargeBold}
-  `}
+  ${subTitle};
 `;
 
 export const ListWrapper = styled.div`

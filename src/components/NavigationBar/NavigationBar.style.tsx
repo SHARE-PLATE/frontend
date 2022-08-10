@@ -45,5 +45,6 @@ export const NavigationArea = styled.div`
   ${({ theme: { colors } }) => css`
     background-color: ${colors.white1};
     height: ${NavigationBarHeight};
+    padding-top: 1rem;
   `}
 `;

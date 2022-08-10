@@ -3,6 +3,8 @@ import styled, { css } from 'styled-components';
 export const RemainedTimeWrapper = styled.div`
   ${({ theme: { colors, fonts } }) => css`
     ${fonts.xSmallBold}
+    width: 2.5rem;
+    text-align: center;
     display: inline-block;
     position: absolute;
     top: 0.5rem;
