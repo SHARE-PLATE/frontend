@@ -12,9 +12,7 @@ const Main = () => {
         <Ads />
         <PreviewShareListLongImage />
       </S.MainHeaderWrapper>
-      <div>
-        <MainContents />
-      </div>
+      <MainContents />
     </S.MainWrapper>
   );
 };
