@@ -8,13 +8,20 @@ export const getPriceSort = (data: listExampleType[]): listExampleType[] => {
 
 export const getDistanceSort = (data: listExampleType[]) => {};
 
-export const getRecencySort = (data: listExampleType[]) => {};
+export const getRecencySort = (data: listExampleType[]) => {
+  const earlyDate = data.sort(
+    (a: listExampleType, b: listExampleType) =>
+      Number(new Date(b.createdDateTime)) - Number(new Date(a.createdDateTime)),
+  );
+
+  return earlyDate;
+};
 
 export const getDeadlineSort = (data: listExampleType[]): listExampleType[] => {
-  const orderedDate = data.sort(
+  const lateDate = data.sort(
     (a: listExampleType, b: listExampleType) =>
       Number(new Date(a.appointmentDateTime)) - Number(new Date(b.appointmentDateTime)),
   );
 
-  return orderedDate;
+  return lateDate;
 };

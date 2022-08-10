@@ -10,7 +10,6 @@ export const Container = styled.div`
   position: relative;
   width: 100%;
   height: 100px;
-  padding-left: 20px;
 
   img {
     position: absolute;
@@ -21,7 +20,7 @@ export const Container = styled.div`
 
 export const ListInfo = styled.div`
   position: absolute;
-  left: 36%;
+  left: 30%;
   padding: 3px;
   display: flex;
   flex-direction: column;
@@ -30,15 +29,32 @@ export const ListInfo = styled.div`
 `;
 
 export const Title = styled.div`
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
   font-weight: bold;
   font-size: 14px;
-  overflow-wrap: break-word;
 `;
+
 export const Location = styled.div`
   color: #918b8b;
   font-size: 10px;
 `;
+
 export const Cost = styled.div`
   font-weight: bold;
   font-size: 14px;
+`;
+
+export const ImageOriginalPrice = styled.span`
+  display: inline-block;
+  margin-left: 4px;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 16px;
+  text-decoration-line: line-through;
+  color: #a8a8a8;
+  opacity: 0.6;
 `;

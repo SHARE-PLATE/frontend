@@ -18,3 +18,14 @@ export const getTimeDiffInHour = (targetTime: string) => {
 
   return remainedTime;
 };
+
+export const calcTwoTimeDifference = (currentDate: string) => {
+  const updateTime = new Date();
+  const curDate = new Date(currentDate);
+  const diffMinutes = curDate.getTime() - updateTime.getTime();
+  const result = Math.abs(diffMinutes / (1000 * 60));
+
+  if (result < 60) return `${result.toFixed()}분전`;
+  else if (result < 1440) return `${(result / 60).toFixed()}시간 ${(result % 60).toFixed()}분전`;
+  return `${(result / 1440).toFixed()}일 전`;
+};
