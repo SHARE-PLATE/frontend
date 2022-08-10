@@ -1,7 +1,10 @@
 import styled, { css } from 'styled-components';
 
+import { defaultPageStyle } from '@styles/mixin';
+
 export const Wrapper = styled.div`
   ${({ theme: { colors } }) => css`
+    ${defaultPageStyle};
     display: flex;
     flex-direction: column;
     background-color: ${colors.grey1};
@@ -15,7 +18,6 @@ export const Header = styled.div`
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    margin-bottom: 6px;
     background-color: ${colors.white1};
     padding: 0.5rem 1rem;
   `}
