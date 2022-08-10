@@ -6,14 +6,14 @@ export const Wrapper = styled.div`
 
 export const Header = styled.div`
   ${({ theme: { fonts } }) => css`
-    ${fonts.xLargeBold};
+    ${fonts.xLargeBold}
   `}
 `;
 
 export const Contents = styled.div`
-  margin-top: 0.8rem;
   display: flex;
   gap: 0.8rem;
+  margin-top: 0.8rem;
   overflow-x: scroll;
 
   ::-webkit-scrollbar {
@@ -23,26 +23,26 @@ export const Contents = styled.div`
 
 export const Content = styled.div`
   ${({ theme: { colors } }) => css`
+    display: flex;
+    flex: 0 0 auto;
+    gap: 0.4rem;
     border: ${colors.grey3} solid 1px;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    padding: 0.5rem 0.7rem;
+    width: fit-content;
   `}
 
-  cursor: pointer;
-  border-radius: 0.25rem;
-  display: flex;
-  width: fit-content;
-  padding: 0.5rem 0.7rem;
-  gap: 0.4rem;
-  flex: 0 0 auto;
 
   ${({ theme: { fonts, colors } }) => css`
     > :first-child {
-      ${fonts.medium};
+      ${fonts.medium}
       font-weight: 600;
     }
     > :last-child {
-      ${fonts.medium};
-      font-weight: 400;
+      ${fonts.medium}
       color: ${colors.grey5};
+      font-weight: 400;
     }
   `}
 `;

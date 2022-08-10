@@ -34,9 +34,9 @@ const Wrapper = styled.div`
 
 const Container = styled.div`
   position: relative;
+  padding-left: 20px;
   width: 100%;
   height: 100px;
-  padding-left: 20px;
 
   img {
     position: absolute;
@@ -46,18 +46,18 @@ const Container = styled.div`
 `;
 
 const ListInfo = styled.div`
+  display: flex;
   position: absolute;
   left: 36%;
-  padding: 3px;
-  display: flex;
   flex-direction: column;
   gap: 6px;
+  padding: 3px;
   overflow-wrap: break-word;
 `;
 
 const Title = styled.div`
-  font-weight: bold;
   font-size: 14px;
+  font-weight: bold;
   overflow-wrap: break-word;
 `;
 const Location = styled.div`
@@ -65,8 +65,8 @@ const Location = styled.div`
   font-size: 10px;
 `;
 const Cost = styled.div`
-  font-weight: bold;
   font-size: 14px;
+  font-weight: bold;
 `;
 
 export default PreviewShareList;

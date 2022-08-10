@@ -4,28 +4,28 @@ import { flexBetween } from '@styles/mixin';
 
 export const Wrapper = styled.ul`
   padding-top: 1rem;
-  ${flexBetween};
+  ${flexBetween}
 `;
 
 export const Menu = styled.li`
   ${({ theme: { fonts, colors } }) => css`
-    ${fonts.small};
+    ${fonts.small}
 
     display: flex;
-    flex-direction: column;
     position: relative;
-    width: calc(100% / 3);
+    flex-direction: column;
     padding: 1rem;
+    width: calc(100% / 3);
 
     ::after {
-      content: '|';
+      display: flex;
+      position: absolute;
+      top: 40%;
+      right: 0;
       color: ${colors.grey4};
       font-size: 20px;
       font-weight: 700;
-      position: absolute;
-      display: flex;
-      right: 0;
-      top: 40%;
+      content: '|';
     }
 
     :last-child::after {

@@ -4,20 +4,20 @@ import { flexBetween } from '@styles/mixin';
 import theme from '@styles/theme';
 
 export const Wrapper = styled.div`
-  ${flexBetween};
-  ${theme.defaultPadding};
-  ${theme.defaultWidth};
-  width: 100%;
+  ${flexBetween}
+  ${theme.defaultPadding}
+  ${theme.defaultWidth}
   position: absolute;
   z-index: 2;
-  height: 3rem;
   background-color: #ffffff5e;
+  width: 100%;
+  height: 3rem;
 `;
 
 export const IconWrapper = styled.div``;
 
 export const HeaderAddressWrapper = styled.div`
-  width: 70%;
   display: flex;
   justify-content: center;
+  width: 70%;
 `;

@@ -8,12 +8,12 @@ export const TitleContainer = styled.div`
 
 export const TitleHeader = styled.span`
   ${({ theme: { fonts } }) => css`
-    ${fonts.large};
-  `}
+    ${fonts.large}
 
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: bold;
-  width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-weight: bold;
+  `}
 `;

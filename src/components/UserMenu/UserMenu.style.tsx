@@ -8,7 +8,7 @@ export const Wrapper = styled.section`
 `;
 
 export const Title = styled.div`
-  font-weight: bold;
-  height: 10%;
   flex-grow: 1;
+  height: 10%;
+  font-weight: bold;
 `;

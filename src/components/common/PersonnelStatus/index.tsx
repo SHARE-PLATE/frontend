@@ -20,17 +20,17 @@ const PersonnelStatus = ({ curPersonnel, totalPersonnel }: PersonnelStatusPropsT
 };
 
 const Wrapper = styled.div`
-  margin-top: 0.4rem;
   display: flex;
-  align-items: center;
   gap: 0.2rem;
+  align-items: center;
+  margin-top: 0.4rem;
 `;
 
 const Content = styled.span`
   ${({ theme: { colors, fonts } }) => css`
     background-color: ${colors.orange2};
     color: ${colors.white1};
-    ${fonts.small};
+    ${fonts.small}
   `}
 
   display: inline-block;

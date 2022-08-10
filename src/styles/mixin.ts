@@ -4,8 +4,8 @@ import theme from '@styles/theme';
 
 export const flexCenter = css`
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 `;
 
 export const flexBetween = css`
@@ -15,21 +15,21 @@ export const flexBetween = css`
 `;
 
 export const defaultBoxStyle = css`
-  ${theme.defaultPadding};
+  ${theme.defaultPadding}
   background-color: ${theme.colors.white1};
 `;
 
 export const defaultPageStyle = css`
   ${({ theme: { colors } }) => css`
     background-color: ${colors.grey2};
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    flex-grow: 1;
   `}
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  flex-grow: 1;
 
   > * {
-    ${defaultBoxStyle};
+    ${defaultBoxStyle}
   }
 
   > :last-child {

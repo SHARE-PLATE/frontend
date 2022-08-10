@@ -20,11 +20,11 @@ const Reset = createGlobalStyle`
   menu, nav, output, ruby, section, summary,
   time, mark, audio, video {
     margin: 0;
-    padding: 0;
     border: 0;
-    font-size: 100%;
-    font: inherit;
+    padding: 0;
     vertical-align: baseline;
+    font: inherit;
+    font-size: 100%;
   }
 
   /* HTML5 display-role reset for older browsers */
@@ -61,15 +61,15 @@ const Reset = createGlobalStyle`
 
   button {
     border: 0;
-    padding: 0;
     background-color: transparent;
+    padding: 0;
   }
 
   a {
     all: reset;
-    :link { color: inherit; text-decoration: none;}
-    :visited { color: inherit; text-decoration: none;}
-    :hover { color: inherit; text-decoration: none;}
+    :link { text-decoration: none; color: inherit;}
+    :visited { text-decoration: none; color: inherit;}
+    :hover { text-decoration: none; color: inherit;}
   }
 `;
 

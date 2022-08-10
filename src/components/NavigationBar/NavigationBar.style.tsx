@@ -4,17 +4,17 @@ const NavigationBarHeight = '3.5rem';
 
 export const NavigationBarWrapper = styled.div`
   ${({ theme: { defaultWidth, colors } }) => css`
-    position: fixed;
+    ${defaultWidth}
     display: flex;
-    justify-content: space-around;
-    padding: 0.6rem;
-    color: ${colors.grey4};
-    background-color: ${colors.white1};
-    box-shadow: 0px -10px 40px #67676740;
-    width: 100%;
-    ${defaultWidth};
-    height: ${NavigationBarHeight};
+    position: fixed;
     bottom: 0;
+    justify-content: space-around;
+    box-shadow: 0px -10px 40px #67676740;
+    background-color: ${colors.white1};
+    padding: 0.6rem;
+    width: 100%;
+    height: ${NavigationBarHeight};
+    color: ${colors.grey4};
   `}
 `;
 
@@ -22,7 +22,7 @@ export const NavigationBarBtn = styled.button<{ isSelected: boolean }>`
   ${({ theme: { colors, fonts }, isSelected }) => css`
     transition: all 0.3s;
     color: ${colors.grey4};
-    ${fonts.small};
+    ${fonts.small}
     ${isSelected &&
     css`
       color: ${colors.black};
@@ -43,8 +43,7 @@ export const NavigationBarBtn = styled.button<{ isSelected: boolean }>`
 
 export const NavigationArea = styled.div`
   ${({ theme: { colors } }) => css`
-    height: ${NavigationBarHeight};
     background-color: ${colors.white1};
-    // NavigationBar와 같은 높이 형성
+    height: ${NavigationBarHeight};
   `}
 `;

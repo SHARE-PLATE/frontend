@@ -19,12 +19,12 @@ export const Container = styled.div`
 `;
 
 export const ListInfo = styled.div`
+  display: flex;
   position: absolute;
   left: 30%;
-  padding: 3px;
-  display: flex;
   flex-direction: column;
   gap: 6px;
+  padding: 3px;
   overflow-wrap: break-word;
 `;
 
@@ -33,9 +33,9 @@ export const Title = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-size: 14px;
 
   font-weight: bold;
-  font-size: 14px;
 `;
 
 export const Location = styled.div`
@@ -44,17 +44,17 @@ export const Location = styled.div`
 `;
 
 export const Cost = styled.div`
-  font-weight: bold;
   font-size: 14px;
+  font-weight: bold;
 `;
 
 export const ImageOriginalPrice = styled.span`
   display: inline-block;
-  margin-left: 4px;
-  font-weight: 400;
-  font-size: 11px;
-  line-height: 16px;
-  text-decoration-line: line-through;
-  color: #a8a8a8;
   opacity: 0.6;
+  margin-left: 4px;
+  text-decoration-line: line-through;
+  line-height: 16px;
+  color: #a8a8a8;
+  font-size: 11px;
+  font-weight: 400;
 `;

@@ -2,11 +2,10 @@ import Slider from 'react-slick';
 import styled, { css } from 'styled-components';
 
 export const CarouselSlider = styled(Slider)`
-  height: 100%;
   width: 100%;
+  height: 100%;
 
   .slick-dots {
-    // carousel 하단 점 아이콘 설정
     bottom: 0.5rem;
 
     button {
@@ -39,8 +38,8 @@ export const CarouselSlider = styled(Slider)`
 
   .slick-prev,
   .slick-next {
-    height: 100%;
     z-index: 2;
+    height: 100%;
 
     ::before {
       opacity: 0.5;
@@ -59,31 +58,31 @@ export const CarouselSlider = styled(Slider)`
 
 export const CarouselWrapper = styled.div<{ width: string; height: string }>`
   ${({ width, height }) => css`
+    position: relative;
     width: ${width};
     height: ${height};
     overflow: hidden;
-    position: relative;
   `}
 `;
 
 export const CarouselCount = styled.div`
   ${({ theme: { fonts, colors } }) => css`
-    ${fonts.small};
-    z-index: 1;
-    background-color: #00000059;
-    color: ${colors.white2};
+    ${fonts.small}
     display: flex;
-    align-items: center;
-    justify-content: center;
-    white-space: pre;
     position: absolute;
-    width: 3.3rem;
-    height: 1.5rem;
     right: 1rem;
     bottom: 1rem;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
     border-radius: 1rem;
+    background-color: #00000059;
     padding: 0.4rem;
     padding-top: 0.3rem;
+    width: 3.3rem;
+    height: 1.5rem;
+    white-space: pre;
+    color: ${colors.white2};
   `}
 `;
 

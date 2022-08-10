@@ -1,44 +1,44 @@
 import styled, { css } from 'styled-components';
 
 export const ItemWrapper = styled.div`
-  width: 9.5rem;
   position: relative;
+  width: 9.5rem;
 `;
 
 export const ImgWrapper = styled.div`
+  border-radius: 0.5rem;
   width: 9.5rem;
   overflow: hidden;
   aspect-ratio: 15 / 24;
-  border-radius: 0.5rem;
 `;
 
 export const StyledImg = styled.img`
-  height: 100%;
   margin-left: -50%;
+  height: 100%;
 `;
 
 export const InfoWrapper = styled.div`
-  margin-top: 0.8rem;
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
+  margin-top: 0.8rem;
 `;
 
 export const ItemTitle = styled.div`
   ${({ theme: { fonts } }) => css`
-    ${fonts.mediumBold};
+    ${fonts.mediumBold}
+    display: box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2rem;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   `}
-  line-height: 1.2rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
 `;
 
 export const ItemLocation = styled.div`
   ${({ theme: { fonts, colors } }) => css`
-    ${fonts.xSmall};
+    ${fonts.xSmall}
     color: ${colors.grey4};
     font-weight: 500;
   `}
@@ -49,12 +49,12 @@ export const ItemPrice = styled.div`
   gap: 0.2rem;
   align-items: center;
   ${({ theme: { fonts, colors } }) => css`
-    ${fonts.smallBold};
+    ${fonts.smallBold}
 
     > :nth-child(2) {
       text-decoration: line-through;
       color: ${colors.grey4};
-      ${fonts.xSmall};
+      ${fonts.xSmall}
     }
   `}
 `;
