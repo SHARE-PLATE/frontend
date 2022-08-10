@@ -9,17 +9,17 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
   display: flex;
-  width: 100%;
-  gap: 0.75rem;
   flex-basis: 0;
+  gap: 0.75rem;
+  width: 100%;
 `;
 
 export const ImgWrapper = styled.div`
+  position: relative;
+  border-radius: 0.5rem;
   width: 7rem;
   overflow: hidden;
-  border-radius: 0.5rem;
   aspect-ratio: 1 / 1;
-  position: relative;
 
   img {
     margin-top: -25%;
@@ -32,9 +32,9 @@ export const ListInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  overflow-wrap: break-word;
-  width: 12.7rem;
   padding: 0.2rem;
+  width: 12.7rem;
+  overflow-wrap: break-word;
 `;
 
 export const ListInfoTexts = styled.div`

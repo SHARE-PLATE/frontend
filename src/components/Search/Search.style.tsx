@@ -4,7 +4,7 @@ import { defaultPageStyle } from '@styles/mixin';
 
 export const Wrapper = styled.div`
   ${({ theme: { colors } }) => css`
-    ${defaultPageStyle};
+    ${defaultPageStyle}
     display: flex;
     flex-direction: column;
     background-color: ${colors.grey1};

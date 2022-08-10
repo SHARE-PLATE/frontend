@@ -21,15 +21,16 @@ export const NoRecentListWrapper = styled.div`
 export const RecentHeader = styled.div`
   ${({ theme: { fonts } }) => css`
     ${fonts.xLargeBold}
+
     display: flex;
-    padding-top: 1rem;
     justify-content: space-between;
+    padding-top: 1rem;
   `}
 `;
 
 export const RecentDeleteAllBtn = styled.button`
   ${({ theme: { fonts, colors } }) => css`
-    ${fonts.medium}
+    ${fonts.medium};
     color: ${colors.grey4};
   `}
 `;

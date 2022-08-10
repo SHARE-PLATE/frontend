@@ -44,7 +44,7 @@ export const NavigationBarBtn = styled.button<{ isSelected: boolean }>`
 export const NavigationArea = styled.div`
   ${({ theme: { colors } }) => css`
     background-color: ${colors.white1};
-    height: ${NavigationBarHeight};
     padding-top: 1rem;
+    height: ${NavigationBarHeight};
   `}
 `;

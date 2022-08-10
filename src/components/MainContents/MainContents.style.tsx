@@ -7,15 +7,15 @@ export const Wrapper = styled.div`
 `;
 
 export const SubTitle = styled.div`
-  ${subTitle};
+  ${subTitle}
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 `;
 
 export const More = styled.div`
   ${({ theme: { colors, fonts } }) => css`
-    ${fonts.small};
+    ${fonts.small}
     color: ${colors.grey4};
   `}
 `;

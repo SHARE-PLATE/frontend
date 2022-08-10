@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
 `;
 
 export const MentionWrapper = styled.div`
-  ${subTitle};
+  ${subTitle}
 `;
 
 export const ListWrapper = styled.div`
