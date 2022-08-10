@@ -1,3 +1,4 @@
+import LoginArea from '@components/LoginArea';
 import * as S from '@components/MainContents/MainContents.style';
 import PreviewShareListLeftImage from '@components/PreviewShareListLeftImage';
 import { listExample } from '@data/shareList';
@@ -24,6 +25,7 @@ const MainContents = () => {
       <S.PreviewWrapper>
         <PreviewShareListLeftImage data={listExample} count={mainPageShareListCount} />
       </S.PreviewWrapper>
+      <LoginArea />
     </S.Wrapper>
   );
 };
