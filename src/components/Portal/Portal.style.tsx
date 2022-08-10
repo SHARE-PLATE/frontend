@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import { PortalType } from '@store/portal';
+import { defaultPageStyle } from '@styles/mixin';
 
 type PortalStylePropsType = {
   isPortal: boolean;
@@ -47,6 +48,7 @@ export const PortalContent = styled.div<PortalStylePropsType>`
 
     ${portalType === 'full' &&
     css`
+      ${defaultPageStyle}
       ${defaultWidth}
       width: 100%;
       height: 100%;

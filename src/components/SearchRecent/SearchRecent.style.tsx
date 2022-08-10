@@ -30,7 +30,7 @@ export const RecentHeader = styled.div`
 
 export const RecentDeleteAllBtn = styled.button`
   ${({ theme: { fonts, colors } }) => css`
-    ${fonts.medium};
+    ${fonts.medium}
     color: ${colors.grey4};
   `}
 `;

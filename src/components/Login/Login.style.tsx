@@ -3,12 +3,14 @@ import styled, { css } from 'styled-components';
 export const LoginWrapper = styled.div`
   ${({ theme: { colors, fonts } }) => css`
     ${fonts.medium}
+
     display: flex;
     position: relative;
     flex-direction: column;
     gap: 1rem;
     align-items: center;
     justify-content: center;
+    padding: 0 !important;
     width: 100%;
     height: 100%;
     text-align: center;
@@ -31,12 +33,11 @@ export const KakaoLoginButton = styled.button`
     background-color: #fee502;
     width: 60%;
     height: 3rem;
-  
+
     svg {
       margin-top: 0.2rem;
     }
   `}
-
 `;
 
 export const CloseBtn = styled.button`

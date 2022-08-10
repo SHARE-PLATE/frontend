@@ -1,18 +1,5 @@
 import styled, { css } from 'styled-components';
 
-import { defaultPageStyle } from '@styles/mixin';
-
-export const Wrapper = styled.div`
-  ${({ theme: { colors } }) => css`
-    ${defaultPageStyle}
-    display: flex;
-    flex-direction: column;
-    background-color: ${colors.grey1};
-    width: 100%;
-    height: 100%;
-  `}
-`;
-
 export const Header = styled.div`
   ${({ theme: { colors } }) => css`
     display: flex;
