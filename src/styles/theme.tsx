@@ -7,6 +7,7 @@ const defaultPadding = { padding: '0 1rem' };
 const fonts = {
   main: {
     'font-family': 'Noto Sans KR',
+    'letter-spacing': '-0.02rem',
   },
   xSmall: {
     'font-size': '10px',
@@ -55,6 +56,7 @@ const colors = {
   grey5: '#666666',
   grey6: '#343434',
   black: '#191919',
+  orange0: '#ffd6c7',
   orange1: '#ff8e65',
   orange2: '#ff5c21',
 };
