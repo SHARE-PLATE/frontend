@@ -1,6 +1,6 @@
 const defaultFontSize = '16px';
 
-const defaultWidth = { 'max-width': '750px', 'min-width': '330px' };
+const defaultWidth = { 'max-width': '750px', 'min-width': '350px' };
 
 const defaultPadding = { padding: '0 1rem' };
 
@@ -31,6 +31,10 @@ const fonts = {
   },
   large: {
     'font-size': '16px',
+  },
+  largeBold: {
+    'font-size': '16px',
+    'font-weight': '700',
   },
   xLarge: {
     'font-size': '18px',
