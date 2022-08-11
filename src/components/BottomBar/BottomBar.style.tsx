@@ -2,18 +2,23 @@ import styled, { css } from 'styled-components';
 
 const NavigationBarHeight = '3.5rem';
 
-export const NavigationBarWrapper = styled.div`
-  ${({ theme: { defaultWidth, colors } }) => css`
-    ${defaultWidth}
-    display: flex;
+export const BottomBarWrapper = styled.div`
+  ${({ theme: { defaultWidth } }) => css`
+    ${defaultWidth};
+    width: 100%;
     position: fixed;
     bottom: 0;
-    justify-content: space-around;
     box-shadow: 0px -10px 40px #67676740;
+    height: ${NavigationBarHeight};
+  `}
+`;
+
+export const NavigationBarWrapper = styled.ul`
+  ${({ theme: { colors } }) => css`
+    display: flex;
+    justify-content: space-around;
     background-color: ${colors.white1};
     padding: 0.6rem;
-    width: 100%;
-    height: ${NavigationBarHeight};
     color: ${colors.grey4};
   `}
 `;

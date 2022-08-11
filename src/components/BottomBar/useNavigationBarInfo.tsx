@@ -2,11 +2,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 
 import { IconsType } from '@assets/icons';
-import Login from '@components/Login';
-import * as S from '@components/NavigationBar/NavigationBar.style';
-import Search from '@components/Search';
-import ShareFormButton from '@components/ShareFormButton';
-import Icon from '@components/common/Icon';
 import { portalState } from '@store/portal';
 
 type NavigationBarInfoType = {
@@ -48,31 +43,4 @@ const useNavigationBarInfo = () => {
   return navigationBarInfo;
 };
 
-const NavigationBar = () => {
-  const { pathname } = useLocation();
-  const navigationBarInfo = useNavigationBarInfo();
-  const NavigationBarBtns = navigationBarInfo.map(({ id, name, link, clickHandler, icon }) => (
-    <S.NavigationBarBtn
-      key={id}
-      onClick={() => clickHandler(link || pathname)}
-      isSelected={link === pathname}
-    >
-      <Icon iconName={icon} />
-      {name}
-    </S.NavigationBarBtn>
-  ));
-
-  return (
-    <>
-      <S.NavigationArea />
-      <S.NavigationBarWrapper>
-        <Search />
-        <Login />
-        <ShareFormButton />
-        {NavigationBarBtns}
-      </S.NavigationBarWrapper>
-    </>
-  );
-};
-
-export default NavigationBar;
+export default useNavigationBarInfo;
