@@ -57,3 +57,9 @@ export const Button = styled.button`
     height: 2.5rem;
   `}
 `;
+
+export const ScrollToTopBtnWrapper = styled.div`
+  position: absolute;
+  top: calc(-2.25rem - 1rem);
+  right: 1rem;
+`;

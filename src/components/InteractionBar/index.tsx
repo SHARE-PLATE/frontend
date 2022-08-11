@@ -1,4 +1,5 @@
 import * as S from '@components/InteractionBar/InteractionBar.style';
+import ScrollToTopBtn from '@components/ScrollToTopBtn';
 import Icon from '@components/common/Icon';
 import { CHATTING, PARTICIPATING } from '@constants/words';
 import { getPriceType } from '@utils/getPriceType';
@@ -9,6 +10,9 @@ const originPrice = 20000;
 const InteractionBar = () => {
   return (
     <S.Wrapper>
+      <S.ScrollToTopBtnWrapper>
+        <ScrollToTopBtn />
+      </S.ScrollToTopBtnWrapper>
       <S.LeftWrapper>
         <Icon iconName='HeartEmpty' iconSize='MEDIUM' />
         <S.PriceWrapper>

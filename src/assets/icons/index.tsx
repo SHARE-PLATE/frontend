@@ -1,3 +1,4 @@
+import ArrowUp from '@assets/icons/arrowUp.svg';
 import Back from '@assets/icons/back.svg';
 import Clock from '@assets/icons/clock.svg';
 import DeleteCircle from '@assets/icons/deleteCircle.svg';
@@ -16,6 +17,7 @@ import SharePlate from '@assets/icons/sharePlate.svg';
 import User from '@assets/icons/user.svg';
 
 export const Icons = {
+  ArrowUp,
   Logo,
   NoticeOn,
   User,
