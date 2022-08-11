@@ -1,0 +1,31 @@
+export const detailExample = {
+  id: 1,
+  imageUrls: [
+    'https://avatars.githubusercontent.com/u/68788849?v=4',
+    'https://avatars.githubusercontent.com/u/68788849?v=4',
+    'https://avatars.githubusercontent.com/u/68788849?v=4',
+    'https://avatars.githubusercontent.com/u/68788849?v=4',
+    'https://avatars.githubusercontent.com/u/68788849?v=4',
+  ],
+  writer: '글쓴이',
+  writerThumbnailImageUrl: '글쓴이',
+  title: '파자헛 슈퍼콤보 패밀리사이즈 공유합니다. 4명까지 사람모으고 있어요..!',
+  location: '강남파출소 앞',
+  latitude: 37.498095,
+  longitude: 127.02761,
+  description:
+    '피자펏 시킨 음식이 남을까봐 나누기 신청합니다. 음식이 아직남아있습니다. 영수증 인증가능하고 냉장보관 중입니다. 또한 포장까지 드리겠습니다.',
+  price: 10000,
+  originalPrice: 40000,
+  currentRecruitment: 3,
+  finalRecruitment: 4,
+  recruitmentMemberThumbnailImageUrls: [
+    'https://avatars.githubusercontent.com/u/68788849?v=4',
+    'https://avatars.githubusercontent.com/u/68788849?v=4',
+    'https://avatars.githubusercontent.com/u/68788849?v=4',
+  ],
+  createdDateTime: '2022-08-03/13:57',
+  appointmentDateTime: '2022-12-30/14:00',
+  wish: true,
+  entry: true,
+};
