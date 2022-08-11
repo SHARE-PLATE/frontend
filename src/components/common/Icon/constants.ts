@@ -8,6 +8,7 @@ export const ICON_NAME = {
   SALES_HISTORY: 'SalesHistory',
   PURCHASE_HISTORY: 'PurchaseHistory',
   HEART: 'Heart',
+  BACK: 'Back',
 } as const;
 
 export const ICON_SIZE = {
