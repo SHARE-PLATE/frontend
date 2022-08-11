@@ -21,7 +21,7 @@ export const defaultBoxStyle = css`
 
 export const defaultPageStyle = css`
   ${({ theme: { colors } }) => css`
-    background-color: ${colors.grey2};
+    background-color: ${colors.grey1};
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
@@ -35,4 +35,11 @@ export const defaultPageStyle = css`
   > :last-child {
     flex-grow: 1;
   }
+`;
+
+export const subTitle = css`
+  ${({ theme: { fonts } }) => css`
+    margin-top: 2rem;
+    ${fonts.xLargeBold}
+  `}
 `;
