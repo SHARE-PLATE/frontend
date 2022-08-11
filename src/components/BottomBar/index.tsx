@@ -1,34 +1,24 @@
 import { useLocation } from 'react-router-dom';
 
 import * as S from '@components/BottomBar/BottomBar.style';
-import ShareFormButton from '@components/ShareFormButton';
-import Icon from '@components/common/Icon';
+import InteractionBar from '@components/InteractionBar';
+import NavigationBar from '@components/NavigationBar';
+import { pathName } from '@constants/pathName';
 
-import useNavigationBarInfo from './useNavigationBarInfo';
+const { shareDetail } = pathName;
+
+const bottomBarContentByPathname = {
+  [`/${shareDetail}`]: <InteractionBar />,
+};
 
 const BottomBar = () => {
   const { pathname } = useLocation();
-  const navigationBarInfo = useNavigationBarInfo();
-  const navigationBarBtns = navigationBarInfo.map(({ id, name, link, clickHandler, icon }) => (
-    <S.NavigationBarBtn
-      key={id}
-      onClick={() => clickHandler(link || pathname)}
-      isSelected={link === pathname}
-    >
-      <Icon iconName={icon} />
-      {name}
-    </S.NavigationBarBtn>
-  ));
+  const bottomBarContent = bottomBarContentByPathname[pathname] || <NavigationBar />;
 
   return (
     <>
-      <S.NavigationArea />
-      <S.BottomBarWrapper>
-        <S.NavigationBarWrapper>
-          <ShareFormButton />
-          {navigationBarBtns}
-        </S.NavigationBarWrapper>
-      </S.BottomBarWrapper>
+      <S.BottomBarArea />
+      <S.BottomBarWrapper>{bottomBarContent}</S.BottomBarWrapper>
     </>
   );
 };

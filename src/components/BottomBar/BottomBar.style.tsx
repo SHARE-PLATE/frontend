@@ -1,7 +1,5 @@
 import styled, { css } from 'styled-components';
 
-const NavigationBarHeight = '3.5rem';
-
 export const BottomBarWrapper = styled.div`
   ${({ theme: { defaultWidth } }) => css`
     ${defaultWidth};
@@ -9,47 +7,13 @@ export const BottomBarWrapper = styled.div`
     position: fixed;
     bottom: 0;
     box-shadow: 0px -10px 40px #67676740;
-    height: ${NavigationBarHeight};
   `}
 `;
 
-export const NavigationBarWrapper = styled.ul`
-  ${({ theme: { colors } }) => css`
-    display: flex;
-    justify-content: space-around;
-    background-color: ${colors.white1};
-    padding: 0.6rem;
-    color: ${colors.grey4};
-  `}
-`;
-
-export const NavigationBarBtn = styled.button<{ isSelected: boolean }>`
-  ${({ theme: { colors, fonts }, isSelected }) => css`
-    transition: all 0.3s;
-    color: ${colors.grey4};
-    ${fonts.small}
-    ${isSelected &&
-    css`
-      color: ${colors.black};
-      path {
-        transition: all 0.3s;
-        stroke: ${colors.black};
-      }
-    `}
-  `}
-
-  display: flex;
-  flex-basis: 100%;
-  flex-direction: column;
-  gap: 0.2rem;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const NavigationArea = styled.div`
+export const BottomBarArea = styled.div`
   ${({ theme: { colors } }) => css`
     background-color: ${colors.white1};
     padding-top: 1rem;
-    height: ${NavigationBarHeight};
+    height: 5rem;
   `}
 `;
