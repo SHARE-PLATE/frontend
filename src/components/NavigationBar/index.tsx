@@ -21,7 +21,9 @@ const NavigationBar = () => {
 
   return (
     <S.NavigationBarWrapper>
-      <ShareFormButton />
+      <S.ShareFormBtnWrapper>
+        <ShareFormButton />
+      </S.ShareFormBtnWrapper>
       {navigationBarBtns}
     </S.NavigationBarWrapper>
   );

@@ -6,7 +6,6 @@ export const NavigationBarWrapper = styled.ul`
     height: 3.5rem;
     justify-content: space-around;
     background-color: ${colors.white1};
-    padding: 0.6rem;
     color: ${colors.grey4};
   `}
 `;
@@ -32,4 +31,10 @@ export const NavigationBarBtn = styled.button<{ isSelected: boolean }>`
   gap: 0.2rem;
   align-items: center;
   justify-content: center;
+`;
+
+export const ShareFormBtnWrapper = styled.div`
+  position: absolute;
+  top: calc(-3.5rem - 1rem);
+  right: 1rem;
 `;
