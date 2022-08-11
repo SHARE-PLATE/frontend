@@ -3,6 +3,7 @@ import Clock from '@assets/icons/clock.svg';
 import DeleteCircle from '@assets/icons/deleteCircle.svg';
 import Form from '@assets/icons/form.svg';
 import Heart from '@assets/icons/heart.svg';
+import HeartEmpty from '@assets/icons/heartEmpty.svg';
 import Kakao from '@assets/icons/kakao.svg';
 import Logo from '@assets/icons/logo.svg';
 import NoticeOff from '@assets/icons/noticeOff.svg';
@@ -25,6 +26,7 @@ export const Icons = {
   SalesHistory,
   PurchaseHistory,
   Heart,
+  HeartEmpty,
   Back,
   Clock,
   DeleteCircle,
