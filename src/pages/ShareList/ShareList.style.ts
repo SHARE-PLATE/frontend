@@ -25,5 +25,4 @@ export const ListHeader = styled.header`
 export const ListContents = styled.div`
   padding: 1rem;
   padding-top: 155px;
-  height: 100%;
 `;
