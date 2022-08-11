@@ -13,7 +13,7 @@ export const pathName = {
   main: '',
   shareList: 'share-list',
   loginCallback: 'login-callback',
-  shareDetail: 'share-detail',
+  shareDetail: 'share-detail/:id',
   notice: 'notice',
   error: 'error',
   shareForm: 'share-form',
