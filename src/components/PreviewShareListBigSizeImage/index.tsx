@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import * as S from '@components/PreviewShareListBigSizeImage/PreviewShareListBigSizeImage.style';
 import { RemainedTime } from '@components/RemainedTime';
 import PersonnelStatus from '@components/common/PersonnelStatus';
@@ -8,6 +10,7 @@ interface PreviewShareListBigSizeImagePropsType {
 }
 
 const PreviewShareListBigSizeImage = ({ data }: PreviewShareListBigSizeImagePropsType) => {
+  const navigate = useNavigate();
   return (
     <>
       {data.map(
@@ -23,7 +26,12 @@ const PreviewShareListBigSizeImage = ({ data }: PreviewShareListBigSizeImageProp
           createdDateTime,
           appointmentDateTime,
         }) => (
-          <S.Wrapper key={id}>
+          <S.Wrapper
+            key={id}
+            onClick={() => {
+              navigate(`/share-detail/${id}`, { replace: true });
+            }}
+          >
             <S.ImageContainer>
               <img src={thumbnailUrl} alt={title} width='330' height='100' />
               <RemainedTime targetTime={appointmentDateTime} />
