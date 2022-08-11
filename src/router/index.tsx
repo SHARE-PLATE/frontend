@@ -1,3 +1,4 @@
+import { pathName as P } from '@constants/pathName';
 import Error from '@pages/Error';
 import LoginCallback from '@pages/LoginCallback';
 import Main from '@pages/Main';
@@ -13,7 +14,7 @@ export const pathName = {
   main: '',
   shareList: 'share-list',
   loginCallback: 'login-callback',
-  shareDetail: 'share-detail/:id',
+  shareDetail: 'share-detail',
   notice: 'notice',
   error: 'error',
   shareForm: 'share-form',
@@ -22,18 +23,18 @@ export const pathName = {
 };
 
 export const routes = [
-  { path: pathName.main, element: <Main /> },
-  { path: pathName.loginCallback, element: <LoginCallback /> },
-  { path: pathName.shareList, element: <ShareList /> },
-  { path: pathName.shareDetail, element: <ShareDetail /> },
-  { path: pathName.notice, element: <Notice /> },
-  { path: pathName.error, element: <Error /> },
+  { path: P.main, element: <Main /> },
+  { path: P.loginCallback, element: <LoginCallback /> },
+  { path: P.shareList, element: <ShareList /> },
+  { path: P.shareDetail, element: <ShareDetail /> },
+  { path: P.notice, element: <Notice /> },
+  { path: P.error, element: <Error /> },
   {
     element: <ProtectedRoute />,
     children: [
-      { path: pathName.shareForm, element: <ShareForm /> },
-      { path: pathName.profile, element: <Profile /> },
+      { path: P.shareForm, element: <ShareForm /> },
+      { path: P.profile, element: <Profile /> },
     ],
   },
-  { path: pathName.other, element: <NotFound /> },
+  { path: P.other, element: <NotFound /> },
 ];
