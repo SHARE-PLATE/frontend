@@ -29,7 +29,7 @@ const PreviewShareListBigSizeImage = ({ data }: PreviewShareListBigSizeImageProp
           <S.Wrapper
             key={id}
             onClick={() => {
-              navigate(`/share-detail/${id}`, { replace: true });
+              navigate(`/share-detail/${id}`);
             }}
           >
             <S.ImageContainer>

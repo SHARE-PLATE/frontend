@@ -1,3 +1,5 @@
+import { ReactElement } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 
 import * as S from '@components/PreviewShareListLeftImage/PreviewShareListLeftImage.style';
@@ -8,34 +10,42 @@ import { calcTwoTimeDifference } from '@utils/getTimeDiff';
 
 interface PreviewShareListLeftImagePropsType {
   data: listExampleType[];
+  count?: number;
 }
-const PreviewShareListLeftImage = ({ data }: PreviewShareListLeftImagePropsType) => {
+const PreviewShareListLeftImage = ({ data, count }: PreviewShareListLeftImagePropsType) => {
   const navigate = useNavigate();
 
-  return (
-    <S.Wrapper>
-      {data.map(
-        ({
-          id,
-          thumbnailUrl,
-          title,
-          location,
-          price,
-          originalPrice,
-          currentRecruitment,
-          finalRecruitment,
-          createdDateTime,
-          appointmentDateTime,
-        }) => (
-          <S.Container
-            key={id}
-            onClick={() => {
-              navigate(`/share-detail/${id}`, { replace: true });
-            }}
-          >
-            <img src={thumbnailUrl} alt={title} width='100' height='100' />
+  const list: ReactElement[] = [];
+
+  data.every(
+    (
+      {
+        id,
+        thumbnailUrl,
+        title,
+        location,
+        price,
+        originalPrice,
+        currentRecruitment,
+        finalRecruitment,
+        createdDateTime,
+        appointmentDateTime,
+      },
+      dataCount,
+    ) => {
+      list.push(
+        <S.Container
+          key={id}
+          onClick={() => {
+            navigate(`/share-detail/${id}`);
+          }}
+        >
+          <S.ImgWrapper>
+            <img src={thumbnailUrl} alt={title} />
             <RemainedTime targetTime={appointmentDateTime} />
-            <S.ListInfo>
+          </S.ImgWrapper>
+          <S.ListInfo>
+            <S.ListInfoTexts>
               <S.Title>{title}</S.Title>
               <S.Location>
                 {location} / {calcTwoTimeDifference(createdDateTime)}
@@ -44,18 +54,17 @@ const PreviewShareListLeftImage = ({ data }: PreviewShareListLeftImagePropsType)
                 {price}
                 <S.ImageOriginalPrice>원가 {originalPrice}</S.ImageOriginalPrice>
               </S.Cost>
-              <div>
-                <PersonnelStatus
-                  curPersonnel={currentRecruitment}
-                  totalPersonnel={finalRecruitment}
-                />
-              </div>
-            </S.ListInfo>
-          </S.Container>
-        ),
-      )}
-    </S.Wrapper>
+            </S.ListInfoTexts>
+            <PersonnelStatus curPersonnel={currentRecruitment} totalPersonnel={finalRecruitment} />
+          </S.ListInfo>
+        </S.Container>,
+      );
+
+      return dataCount + 1 === count ? false : true;
+    },
   );
+
+  return <S.Wrapper>{list}</S.Wrapper>;
 };
 
 export default PreviewShareListLeftImage;

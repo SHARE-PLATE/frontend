@@ -4,7 +4,6 @@ export const RecentWrapper = styled.div`
   ${({ theme: { colors } }) => css`
     flex-grow: 1;
     background-color: ${colors.white1};
-    padding: 1rem;
   `}
 `;
 
@@ -22,8 +21,10 @@ export const NoRecentListWrapper = styled.div`
 export const RecentHeader = styled.div`
   ${({ theme: { fonts } }) => css`
     ${fonts.xLargeBold}
+
     display: flex;
     justify-content: space-between;
+    padding-top: 1rem;
   `}
 `;
 

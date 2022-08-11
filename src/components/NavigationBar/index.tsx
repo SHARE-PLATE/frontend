@@ -51,7 +51,7 @@ const useNavigationBarInfo = () => {
 const NavigationBar = () => {
   const { pathname } = useLocation();
   const navigationBarInfo = useNavigationBarInfo();
-  const NavigtaionBarBtns = navigationBarInfo.map(({ id, name, link, clickHandler, icon }) => (
+  const NavigationBarBtns = navigationBarInfo.map(({ id, name, link, clickHandler, icon }) => (
     <S.NavigationBarBtn
       key={id}
       onClick={() => clickHandler(link || pathname)}
@@ -69,7 +69,7 @@ const NavigationBar = () => {
         <Search />
         <Login />
         <ShareFormButton />
-        {NavigtaionBarBtns}
+        {NavigationBarBtns}
       </S.NavigationBarWrapper>
     </>
   );

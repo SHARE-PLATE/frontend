@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { PortalType } from '@store/portal';
 import { defaultPageStyle } from '@styles/mixin';
+
 type PortalStylePropsType = {
   isPortal: boolean;
   portalType: PortalType;

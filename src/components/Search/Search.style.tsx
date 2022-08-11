@@ -1,21 +1,10 @@
 import styled, { css } from 'styled-components';
 
-export const Wrapper = styled.div`
-  ${({ theme: { colors } }) => css`
-    display: flex;
-    flex-direction: column;
-    background-color: ${colors.grey1};
-    width: 100%;
-    height: 100%;
-  `}
-`;
-
 export const Header = styled.div`
   ${({ theme: { colors } }) => css`
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    margin-bottom: 6px;
     background-color: ${colors.white1};
     padding: 0.5rem 1rem;
   `}
