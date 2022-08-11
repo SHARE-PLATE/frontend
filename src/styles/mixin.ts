@@ -39,7 +39,7 @@ export const defaultPageStyle = css`
 
 export const subTitle = css`
   ${({ theme: { fonts } }) => css`
-    margin-top: 2rem;
+    padding-top: 2rem;
     ${fonts.xLargeBold}
   `}
 `;

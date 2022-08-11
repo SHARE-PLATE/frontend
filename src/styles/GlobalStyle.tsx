@@ -15,6 +15,7 @@ const GlobalStyle = createGlobalStyle`
 
     html {
       font-size: ${defaultFontSize};
+      color: ${colors.black};
     }
 
     body {
@@ -25,6 +26,7 @@ const GlobalStyle = createGlobalStyle`
 
     button {
       cursor: pointer;
+      color: ${colors.black};
     }
 
     .App {

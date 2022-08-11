@@ -1,6 +1,6 @@
 const defaultFontSize = '16px';
 
-const defaultWidth = { 'max-width': '750px', 'min-width': '350px' };
+const defaultWidth = { 'max-width': '755px', 'min-width': '355px' };
 
 const defaultPadding = { padding: '0 1rem' };
 
