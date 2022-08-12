@@ -23,7 +23,7 @@ const UserInfoWithFollow = () => {
         </S.InfoWrapper>
       </S.LeftWrapper>
       <S.FollowBtn>
-        <Icon iconName='Plus' iconSize='MEDIUM' />
+        <Icon iconName='Plus' />
         팔로우
       </S.FollowBtn>
     </S.Wrapper>

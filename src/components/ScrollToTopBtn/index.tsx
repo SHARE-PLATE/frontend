@@ -12,7 +12,7 @@ const ScrollToTopBtn = () => {
 
   return (
     <S.Wrapper isShowed={isShowed} onClick={handleClickBtn}>
-      <Icon iconName='ArrowUp' iconSize='MEDIUM' />
+      <Icon iconName='ArrowUp' />
     </S.Wrapper>
   );
 };

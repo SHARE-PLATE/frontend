@@ -13,7 +13,7 @@ const ShareFormButton = () => {
 
   return (
     <Wrapper onClick={() => navigate(shareForm)} isShareForm={isShareForm}>
-      <Icon iconName='Form' iconSize='MEDIUM' />
+      <Icon iconName='Form' />
     </Wrapper>
   );
 };

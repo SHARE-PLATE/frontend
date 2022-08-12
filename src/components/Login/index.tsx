@@ -15,15 +15,15 @@ const Login = () => {
     <Portal portalName={portalName} type='full' closeBtn={closeBtn}>
       <S.LoginWrapper>
         <S.CloseBtn ref={closeBtn}>
-          <Icon iconName='Back' iconSize='MEDIUM' />
+          <Icon iconName='Back' />
         </S.CloseBtn>
         <S.LogoWrapper>
-          <Icon iconName='Logo' iconSize='MEDIUM' />
-          <Icon iconName='SharePlate' iconSize='MEDIUM' />
+          <Icon iconName='Logo' />
+          <Icon iconName='SharePlate' />
         </S.LogoWrapper>
         {loginMention}
         <S.KakaoLoginButton>
-          <Icon iconName='Kakao' iconSize='MEDIUM' />
+          <Icon iconName='Kakao' />
           {kakaoLoginMention}
         </S.KakaoLoginButton>
       </S.LoginWrapper>

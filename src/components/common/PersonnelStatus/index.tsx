@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 
 import Icon from '@components/common/Icon';
-import { ICON_NAME } from '@components/common/Icon/constants';
 
 interface PersonnelStatusPropsType {
   curPersonnel: number;
@@ -11,7 +10,7 @@ interface PersonnelStatusPropsType {
 const PersonnelStatus = ({ curPersonnel, totalPersonnel }: PersonnelStatusPropsType) => {
   return (
     <Wrapper>
-      <Icon iconName={ICON_NAME.USER} />
+      <Icon iconName='User' />
       <Content>
         {curPersonnel} / {totalPersonnel}
       </Content>

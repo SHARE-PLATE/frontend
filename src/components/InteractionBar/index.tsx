@@ -14,7 +14,7 @@ const InteractionBar = () => {
         <ScrollToTopBtn />
       </S.ScrollToTopBtnWrapper>
       <S.LeftWrapper>
-        <Icon iconName='HeartEmpty' iconSize='MEDIUM' />
+        <Icon iconName='HeartEmpty' />
         <S.PriceWrapper>
           <div>{getPriceType({ price, isUnit: true })}</div>
           <div>{getPriceType({ price: originPrice, isUnit: true })}</div>

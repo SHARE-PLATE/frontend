@@ -12,8 +12,8 @@ const ShareDetailHeader = ({ imageUrls, title, appointmentDateTime }: any) => {
   return (
     <S.Wrapper>
       <S.IconsWrapper>
-        <Icon iconName='Back' iconSize='MEDIUM' handleClick={handleClickGoBack} />
-        <Icon iconName='Upload' iconSize='MEDIUM' />
+        <Icon iconName='Back' handleClick={handleClickGoBack} />
+        <Icon iconName='Upload' />
       </S.IconsWrapper>
       <S.ImageContainer>
         <img src={imageUrls[0]} alt={title} />
