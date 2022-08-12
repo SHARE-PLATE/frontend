@@ -2,6 +2,7 @@ import { ReactElement, useEffect, useState } from 'react';
 
 import * as S from '@components/PreviewShareListHalfImage/PreviewShareListHalfImage.style';
 import ShareListItemHalfImage from '@components/ShareListItemHalfImage';
+import Title from '@components/common/Title';
 import { listExampleType } from '@data/shareList';
 
 type PreviewShareListHalfImagePropsType = {
@@ -41,10 +42,7 @@ const PreviewShareListHalfImage = ({
 
   return (
     <S.Wrapper>
-      <S.TitleWrapper>
-        {title}
-        {showMoreOption && <S.showMoreBtn onClick={() => showMoreOption()}>더보기</S.showMoreBtn>}
-      </S.TitleWrapper>
+      <Title contentTitle={title} handleClick={() => showMoreOption && showMoreOption()} />
       {showedList}
     </S.Wrapper>
   );
