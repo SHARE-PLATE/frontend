@@ -15,11 +15,13 @@ import PurchaseHistory from '@assets/icons/purchaseHistory.svg';
 import RightArrow from '@assets/icons/rightArrow.svg';
 import SalesHistory from '@assets/icons/salesHistory.svg';
 import SharePlate from '@assets/icons/sharePlate.svg';
+import Upload from '@assets/icons/upload.svg';
 import User from '@assets/icons/user.svg';
 
 export const Icons = {
   ArrowUp,
   Logo,
+  Upload,
   NoticeOn,
   User,
   Form,
