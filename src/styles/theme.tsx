@@ -8,6 +8,11 @@ const fonts = {
   main: {
     'font-family': 'Noto Sans KR',
     'letter-spacing': '-0.02rem',
+    'font-weight': '500',
+  },
+  xSmallRegular: {
+    'font-size': '10px',
+    'font-weight': '400',
   },
   xSmall: {
     'font-size': '10px',
@@ -16,6 +21,10 @@ const fonts = {
     'font-size': '10px',
     'font-weight': '600',
   },
+  smallRegular: {
+    'font-size': '12px',
+    'font-weight': '400',
+  },
   small: {
     'font-size': '12px',
   },
@@ -23,12 +32,20 @@ const fonts = {
     'font-size': '12px',
     'font-weight': '600',
   },
+  mediumRegular: {
+    'font-size': '14px',
+    'font-weight': '400',
+  },
   medium: {
     'font-size': '14px',
   },
   mediumBold: {
     'font-size': '14px',
-    'font-weight': '600',
+    'font-weight': '700',
+  },
+  largeRegular: {
+    'font-size': '16px',
+    'font-weight': '400',
   },
   large: {
     'font-size': '16px',
@@ -36,6 +53,10 @@ const fonts = {
   largeBold: {
     'font-size': '16px',
     'font-weight': '700',
+  },
+  xLargeRegular: {
+    'font-size': '18px',
+    'font-weight': '400',
   },
   xLarge: {
     'font-size': '18px',
