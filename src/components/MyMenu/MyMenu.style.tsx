@@ -39,7 +39,7 @@ export const Menu = styled.li`
 
     p {
       text-align: center;
-      ${fonts.small};
+      ${fonts.small}
     }
   `}
 `;

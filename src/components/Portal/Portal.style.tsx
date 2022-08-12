@@ -9,13 +9,13 @@ type PortalStylePropsType = {
 };
 
 export const PortalBackground = styled.div<PortalStylePropsType>`
-  overflow: hidden;
   display: none;
   position: fixed;
   z-index: 1000;
   background-color: #00000040;
   width: 100%;
   height: 100%;
+  overflow: hidden;
   animation: fadein 0.3s;
   inset: 0;
 

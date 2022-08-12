@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
 
 export const TitleWrapper = styled.div`
   ${subTitle}
+
   display: flex;
   justify-content: space-between;
 `;
@@ -16,9 +17,9 @@ export const ListWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
+  justify-content: space-between;
   padding-top: 1rem;
   width: 100%;
-  justify-content: space-between;
 `;
 
 export const noListWrapper = styled.div`
@@ -36,8 +37,9 @@ export const noListWrapper = styled.div`
 
 export const showMoreBtn = styled.button`
   ${({ theme: { colors, fonts } }) => css`
-    ${fonts.small};
-    font-weight: 500;
+    ${fonts.small}
+
     color: ${colors.grey4};
+    font-weight: 500;
   `}
 `;

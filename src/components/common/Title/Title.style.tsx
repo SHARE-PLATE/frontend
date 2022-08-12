@@ -22,8 +22,8 @@ export const TitleContainer = styled.div<TitleHeaderPropsType>`
 
 export const TitleHeader = styled.span<TitleHeaderPropsType>`
   ${({ theme: { fonts }, size }) => css`
-    ${size === 'MEDIUM' && fonts.largeBold};
-    ${size === 'LARGE' && fonts.xLargeBold};
+    ${size === 'MEDIUM' && fonts.largeBold}
+    ${size === 'LARGE' && fonts.xLargeBold}
 
     display: flex;
     align-items: center;
@@ -34,8 +34,8 @@ export const TitleHeader = styled.span<TitleHeaderPropsType>`
 
 export const OptionButton = styled.button`
   ${({ theme: { colors, fonts } }) => css`
-    ${fonts.small};
-    font-weight: 500;
+    ${fonts.small}
     color: ${colors.grey4};
+    font-weight: 500;
   `}
 `;

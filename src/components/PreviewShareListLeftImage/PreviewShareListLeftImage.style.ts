@@ -52,22 +52,22 @@ export const Title = styled.div`
 
 export const Location = styled.div`
   ${({ theme: { colors, fonts } }) => css`
-    ${fonts.xSmall};
+    ${fonts.xSmall}
     color: ${colors.grey4};
   `}
 `;
 
 export const Cost = styled.div`
   ${({ theme: { fonts, colors } }) => css`
-    ${fonts.smallBold};
+    ${fonts.smallBold}
     display: flex;
     gap: 0.2rem;
     align-items: center;
 
     > :nth-child(2) {
-      ${fonts.xSmallRegular};
-      color: ${colors.grey4};
+      ${fonts.xSmallRegular}
       text-decoration: line-through;
+      color: ${colors.grey4};
     }
   `}
 `;

@@ -3,9 +3,9 @@ import styled, { css } from 'styled-components';
 export const NavigationBarWrapper = styled.ul`
   ${({ theme: { colors } }) => css`
     display: flex;
-    height: 3.5rem;
     justify-content: space-around;
     background-color: ${colors.white1};
+    height: 3.5rem;
     color: ${colors.grey4};
   `}
 `;

@@ -6,20 +6,19 @@ export const Wrapper = styled.div`
 `;
 
 export const IconWrapper = styled.div`
-  height: 1.25rem;
   display: flex;
   align-items: center;
+  height: 1.25rem;
 `;
 
 export const Content = styled.div`
   ${({ theme: { colors, fonts } }) => css`
-    ${fonts.small};
-
-    height: 1.25rem;
-    background-color: ${colors.orange2};
-    color: ${colors.white1};
+    ${fonts.small}
     display: inline-block;
     border-radius: 0.25rem;
+    background-color: ${colors.orange2};
     padding: 0.2rem 0.5rem;
+    height: 1.25rem;
+    color: ${colors.white1};
   `}
 `;

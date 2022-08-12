@@ -14,8 +14,8 @@ const GlobalStyle = createGlobalStyle`
     }
 
     html {
-      font-size: ${defaultFontSize};
       color: ${colors.black};
+      font-size: ${defaultFontSize};
     }
 
     body {

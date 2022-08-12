@@ -21,13 +21,13 @@ export const ImageContainer = styled.div`
 export const IconsWrapper = styled.div`
   ${({ theme: { defaultPadding, colors } }) => css`
     ${defaultPadding}
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: space-between;
     z-index: 2;
     width: 100%;
     height: 3.25rem;
-    position: absolute;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 
     path {
       stroke: ${colors.white1};

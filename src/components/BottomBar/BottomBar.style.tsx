@@ -2,11 +2,11 @@ import styled, { css } from 'styled-components';
 
 export const BottomBarWrapper = styled.div`
   ${({ theme: { defaultWidth } }) => css`
-    ${defaultWidth};
-    width: 100%;
+    ${defaultWidth}
     position: fixed;
     bottom: 0;
     box-shadow: 0px -10px 40px #67676740;
+    width: 100%;
   `}
 `;
 
