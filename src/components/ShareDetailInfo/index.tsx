@@ -15,17 +15,19 @@ const ShareDetailInfo = ({
   return (
     <S.ContentsContainer>
       <S.Title>{title}</S.Title>
-      <S.InfoContainer>
+      <S.UpperInfo>
         <S.LocationInfo>
           <S.Location>{location}</S.Location>
           <S.Location>협의가능</S.Location>
         </S.LocationInfo>
         <S.CreateTime>{calcTwoTimeDifference(createdDateTime)}</S.CreateTime>
-      </S.InfoContainer>
-      <S.InfoContainer>
-        <S.Image src={recruitmentMemberThumbnailImageUrls[0]} alt='이미지' />
+      </S.UpperInfo>
+      <S.LowerInfo>
+        <S.ImgWrapper>
+          <img src={recruitmentMemberThumbnailImageUrls[0]} alt='이미지' />
+        </S.ImgWrapper>
         <PersonnelStatus curPersonnel={currentRecruitment} totalPersonnel={finalRecruitment} />
-      </S.InfoContainer>
+      </S.LowerInfo>
       <S.Description>{description}</S.Description>
     </S.ContentsContainer>
   );
