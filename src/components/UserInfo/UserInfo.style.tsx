@@ -4,6 +4,7 @@ import { flexBetween } from '@styles/mixin';
 
 export const Wrapper = styled.div`
   ${flexBetween}
+  padding-top: 1rem;
 `;
 
 export const Image = styled.img`

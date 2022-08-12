@@ -29,6 +29,7 @@ const sizeStyles = css<StyledIconProps>`
 
 export const Icon = styled(SVG)<StyledIconProps>`
   ${sizeStyles}
+
   flex-shrink: 0;
   cursor: pointer;
 `;
