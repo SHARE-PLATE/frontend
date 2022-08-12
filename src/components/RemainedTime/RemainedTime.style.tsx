@@ -11,6 +11,11 @@ export const RemainedTimeWrapper = styled.div<BottomStylesPositionType>`
   ${({ theme: { colors, fonts }, left, right, top, bottom }) => css`
     ${fonts.xSmallBold}
 
+    left: ${left};
+    right: ${right};
+    top: ${top};
+    bottom: ${bottom};
+
     display: inline-block;
     position: absolute;
     top: ${top};
