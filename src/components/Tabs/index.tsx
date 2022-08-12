@@ -1,11 +1,11 @@
 import { SetterOrUpdater, useRecoilState } from 'recoil';
 
 import * as S from '@components/Tabs/Tabs.styled';
-import { activeShareList } from '@store/filterShareList';
+import { activeShareList, CurrentShareListType } from '@store/filterShareList';
 
 interface TabsPropsType {
   curShareList: string;
-  setCurShareList: SetterOrUpdater<string>;
+  setCurShareList: SetterOrUpdater<CurrentShareListType>;
 }
 
 const Tabs = ({ curShareList, setCurShareList }: TabsPropsType) => {
@@ -47,7 +47,7 @@ const Tabs = ({ curShareList, setCurShareList }: TabsPropsType) => {
               className={'tabMenu ' + value + (active ? ' active' : '')}
               onClick={() => changeTab(value)}
             >
-              <h2>{title}</h2>
+              {title}
             </div>
           );
         })}
