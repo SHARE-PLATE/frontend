@@ -1,12 +1,13 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const ContentsContainer = styled.div`
+  ${({ theme: { defaultPadding } }) => css`
+    ${defaultPadding};
+  `}
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 18px;
-
-  padding: 7px 24px;
 `;
 
 export const Title = styled.h2`

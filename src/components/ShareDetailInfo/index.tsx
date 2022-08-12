@@ -1,23 +1,20 @@
-import * as S from '@components/ShareDetailImage/ShareDetailImage.style';
+import * as S from '@components/ShareDetailInfo/ShareDetailInfo.style';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import { calcTwoTimeDifference } from '@utils/getTimeDiff';
 
-const ShareDetailImage = ({
-  data: {
-    title,
-    location,
-    createdDateTime,
-    recruitmentMemberThumbnailImageUrls,
-    currentRecruitment,
-    finalRecruitment,
-    description,
-  },
+const ShareDetailInfo = ({
+  title,
+  location,
+  createdDateTime,
+  recruitmentMemberThumbnailImageUrls,
+  currentRecruitment,
+  finalRecruitment,
+  description,
 }: any) => {
   // data 타입 정해지면 any 바뀔예정
   return (
     <S.ContentsContainer>
       <S.Title>{title}</S.Title>
-
       <S.InfoContainer>
         <S.LocationInfo>
           <S.Location>{location}</S.Location>
@@ -34,4 +31,4 @@ const ShareDetailImage = ({
   );
 };
 
-export default ShareDetailImage;
+export default ShareDetailInfo;
