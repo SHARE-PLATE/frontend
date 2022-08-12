@@ -18,8 +18,8 @@ const Login = () => {
           <Icon iconName='Back' />
         </S.CloseBtn>
         <S.LogoWrapper>
-          <Icon iconName='Logo' />
-          <Icon iconName='SharePlate' />
+          <Icon iconName='Logo' iconSize={2} />
+          <Icon iconName='SharePlate' iconSize={11.5} />
         </S.LogoWrapper>
         {loginMention}
         <S.KakaoLoginButton>

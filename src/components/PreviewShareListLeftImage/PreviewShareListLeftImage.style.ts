@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -40,7 +40,7 @@ export const ListInfo = styled.div`
 export const ListInfoTexts = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.4rem;
 `;
 
 export const Title = styled.div`
@@ -48,28 +48,26 @@ export const Title = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 14px;
-
-  font-weight: bold;
 `;
 
 export const Location = styled.div`
-  color: #918b8b;
-  font-size: 10px;
+  ${({ theme: { colors, fonts } }) => css`
+    ${fonts.xSmall};
+    color: ${colors.grey4};
+  `}
 `;
 
 export const Cost = styled.div`
-  font-size: 14px;
-  font-weight: bold;
-`;
+  ${({ theme: { fonts, colors } }) => css`
+    ${fonts.smallBold};
+    display: flex;
+    gap: 0.2rem;
+    align-items: center;
 
-export const ImageOriginalPrice = styled.span`
-  display: inline-block;
-  opacity: 0.6;
-  margin-left: 4px;
-  text-decoration-line: line-through;
-  line-height: 16px;
-  color: #a8a8a8;
-  font-size: 11px;
-  font-weight: 400;
+    > :nth-child(2) {
+      ${fonts.xSmallRegular};
+      color: ${colors.grey4};
+      text-decoration: line-through;
+    }
+  `}
 `;
