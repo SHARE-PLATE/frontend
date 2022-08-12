@@ -7,13 +7,10 @@ import { pathName } from '@constants/pathName';
 
 const { shareDetail } = pathName;
 
-const bottomBarContentByPathname = {
-  [`/${shareDetail}`]: <InteractionBar />,
-};
-
 const BottomBar = () => {
   const { pathname } = useLocation();
-  const bottomBarContent = bottomBarContentByPathname[pathname] || <NavigationBar />;
+  const isShareDetailPage = pathname.includes(shareDetail);
+  const bottomBarContent = isShareDetailPage ? <InteractionBar /> : <NavigationBar />;
 
   return (
     <>
