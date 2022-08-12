@@ -7,8 +7,5 @@ export const Wrapper = styled.div`
 `;
 
 export const UpperWrapper = styled.section`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
   padding: 0;
 `;
