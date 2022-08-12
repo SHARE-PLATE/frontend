@@ -3,9 +3,8 @@ import { useSetRecoilState } from 'recoil';
 
 import Portal from '@components/Portal';
 import * as S from '@components/SideBar/SideBar.style';
-import { sideBarContentsInfo } from '@components/SideBar/sideBarContentsInfo';
+import { sideBarContentsInfo } from '@components/SideBar/SideBarContents';
 import { PortalNameType, portalState } from '@store/portal';
-
 const portalName: PortalNameType = 'sidebar';
 
 const Sidebar = () => {

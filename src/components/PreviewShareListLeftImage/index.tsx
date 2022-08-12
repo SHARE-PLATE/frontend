@@ -1,5 +1,7 @@
 import { ReactElement } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 import * as S from '@components/PreviewShareListLeftImage/PreviewShareListLeftImage.style';
 import { RemainedTime } from '@components/RemainedTime';
 import PersonnelStatus from '@components/common/PersonnelStatus';
@@ -11,6 +13,8 @@ interface PreviewShareListLeftImagePropsType {
   count?: number;
 }
 const PreviewShareListLeftImage = ({ data, count }: PreviewShareListLeftImagePropsType) => {
+  const navigate = useNavigate();
+
   const list: ReactElement[] = [];
 
   data.every(
@@ -30,7 +34,12 @@ const PreviewShareListLeftImage = ({ data, count }: PreviewShareListLeftImagePro
       dataCount,
     ) => {
       list.push(
-        <S.Container key={id}>
+        <S.Container
+          key={id}
+          onClick={() => {
+            navigate(`/share-detail/${id}`);
+          }}
+        >
           <S.ImgWrapper>
             <img src={thumbnailUrl} alt={title} />
             <RemainedTime targetTime={appointmentDateTime} />

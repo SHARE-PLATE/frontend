@@ -4,10 +4,15 @@ import * as S from '@components/RemainedTime/RemainedTime.style';
 import { useInterval } from '@hooks/useInterval';
 import { getTimeDiffInHour } from '@utils/getTimeDiff';
 
+interface RemainedTimePropsType {
+  targetTime: string;
+  locationBottom?: boolean;
+}
+
 const defaultTime = '00:00';
 const changeInterval = 1000;
 
-export const RemainedTime = ({ targetTime }: { targetTime: string }) => {
+export const RemainedTime = ({ targetTime, locationBottom = false }: RemainedTimePropsType) => {
   const [showedTime, setShowedTime] = useState(defaultTime);
 
   useInterval(() => {
@@ -20,5 +25,7 @@ export const RemainedTime = ({ targetTime }: { targetTime: string }) => {
     setShowedTime(timeDiff);
   }, changeInterval);
 
-  return <S.RemainedTimeWrapper>{showedTime}</S.RemainedTimeWrapper>;
+  return (
+    <S.RemainedTimeWrapper locationBottom={locationBottom}>{showedTime}</S.RemainedTimeWrapper>
+  );
 };
