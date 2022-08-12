@@ -1,43 +1,58 @@
 import styled, { css } from 'styled-components';
 
-export const Wrapper = styled.div`
+export const ListWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+`;
+
+export const ItemWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 0 auto;
-  margin-bottom: 10px;
   border-radius: 8px;
-  width: 330px;
+  @media (max-width: 27rem) {
+    width: 100%;
+    max-width: 24.4rem;
+  }
+  width: calc(50% - 0.75rem);
 `;
 
-export const ImageContainer = styled.div`
-  display: flex;
+export const ImgWrapper = styled.div`
   position: relative;
-  justify-content: center;
+  height: 9.6rem;
+  overflow: hidden;
+  border-radius: 0.5rem;
+
+  img {
+    width: 100%;
+    margin-top: -15%;
+    /* 추후에 이미지 가운데 조정 필요 */
+  }
 `;
 
 export const Container = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  padding: 7px 0px;
-`;
-
-export const TextContainer = styled.div`
-  display: flex;
   justify-content: space-between;
+  padding-top: 0.75rem;
 `;
 
-export const ImageTitle = styled.h2`
-  width: 260px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  line-height: 28px;
-  white-space: nowrap;
-  color: #010101;
+export const TextWrapper = styled.div`
+  display: flex;
+  flex-grow: 1;
+  max-width: 75%;
+  flex-direction: column;
+`;
 
-  font-size: 18px;
+export const Title = styled.h2`
+  ${({ theme: { fonts } }) => css`
+    ${fonts.large}
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  `}
 `;
 
 export const ImagePriceBlock = styled.div`
@@ -46,28 +61,30 @@ export const ImagePriceBlock = styled.div`
 `;
 
 export const Location = styled.div`
-  ${({ theme: { colors } }) => css`
+  ${({ theme: { colors, fonts } }) => css`
+    ${fonts.xSmall}
     color: ${colors.grey7};
-    font-size: 10px;
+    padding-top: 0.4rem;
   `}
 `;
 
-export const ImageContents = styled.span`
-  line-height: 24px;
-  color: #010101;
-  font-size: 15px;
-  font-weight: 600;
+export const PriceWrapper = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+  align-items: center;
 `;
 
-export const ImageOriginalPrice = styled.span`
-  ${({ theme: { colors } }) => css`
-    display: inline-block;
-    opacity: 0.6;
-    margin-left: 4px;
+export const Price = styled.div`
+  ${({ theme: { fonts } }) => css`
+    ${fonts.mediumBold};
+  `}
+`;
+
+export const OriginPrice = styled.span`
+  ${({ theme: { colors, fonts } }) => css`
+    ${fonts.smallRegular};
+    color: ${colors.grey4};
     text-decoration-line: line-through;
-    line-height: 16px;
-    color: ${colors.grey7};
-    font-size: 11px;
-    font-weight: 400;
   `}
 `;
