@@ -39,7 +39,7 @@ export const Menu = styled.li`
 
     p {
       text-align: center;
-      font-weight: bold;
+      ${fonts.small};
     }
   `}
 `;

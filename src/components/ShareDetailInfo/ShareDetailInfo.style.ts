@@ -51,8 +51,10 @@ export const LowerInfo = styled.div`
 `;
 
 export const CreateTime = styled.div`
-  color: #a8a8a8;
-  font-size: 10px;
+  ${({ theme: { colors } }) => css`
+    color: ${colors.grey7};
+    font-size: 10px;
+  `}
 `;
 
 export const ImgWrapper = styled.div`

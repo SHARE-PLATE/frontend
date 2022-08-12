@@ -13,7 +13,7 @@ export const Container = styled.div`
     ${fonts.medium}
     display: flex;
     flex-direction: column;
-  
+
     img {
       border-radius: 20px;
     }
@@ -30,7 +30,7 @@ export const NoListContainer = styled.div`
     text-align: center;
     line-height: 1.2rem;
     white-space: pre;
-    color: ${colors.grey4};
+    color: ${colors.grey7};
 
     img {
       border-radius: 20px;
@@ -48,7 +48,8 @@ export const ShareInfo = styled.div`
     text-overflow: ellipsis;
 
     > h2 {
-      margin-top: 0.5rem;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
     }
   `}
 `;
