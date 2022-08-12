@@ -9,7 +9,7 @@ export interface currentLatitudeLongitudeType {
 
 export const currentLatitudeLongitude = atom<currentLatitudeLongitudeType>({
   key: 'currentLatitudeLongitude',
-  default: { lat: 0, lng: 0 },
+  default: { lat: 37.498095, lng: 127.027611 },
 });
 
 export const currentLocation = atom({

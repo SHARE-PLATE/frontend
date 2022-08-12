@@ -1,12 +1,31 @@
 import { listExampleType } from '@data/shareList';
 
-export const getPriceSort = (data: listExampleType[]): listExampleType[] => {
+export const getSortData = (
+  curShareFilterList: string,
+  data: listExampleType[],
+): listExampleType[] => {
+  switch (curShareFilterList) {
+    case 'price':
+      return getPriceSort(data);
+    case 'distance':
+      return getDistanceSort(data);
+    case 'recency':
+      return getRecencySort(data);
+    case 'deadline':
+      return getDeadlineSort(data);
+  }
+  return getPriceSort(data);
+};
+
+const getPriceSort = (data: listExampleType[]): listExampleType[] => {
   const sortData = data.sort((a: listExampleType, b: listExampleType) => a.price - b.price);
 
   return sortData;
 };
 
-export const getDistanceSort = (data: listExampleType[]) => {};
+const getDistanceSort = (data: listExampleType[]) => {
+  return data;
+};
 
 export const getRecencySort = (data: listExampleType[]) => {
   const earlyDate = data.sort(

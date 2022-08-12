@@ -1,16 +1,14 @@
 import { SetterOrUpdater, useRecoilState } from 'recoil';
 
 import * as S from '@components/Tabs/Tabs.styled';
-import { activeShareList } from '@store/filterShareList';
+import { activeShareList, activeShareListType } from '@store/filterShareList';
 
 interface TabsPropsType {
-  curShareList: string;
-  setCurShareList: SetterOrUpdater<string>;
+  activeShareListValue: activeShareListType;
+  setActiveShareListValue: SetterOrUpdater<activeShareListType>;
 }
 
-const Tabs = ({ curShareList, setCurShareList }: TabsPropsType) => {
-  const [activeShareListValue, setActiveShareListValue] = useRecoilState(activeShareList);
-
+const Tabs = ({ activeShareListValue, setActiveShareListValue }: TabsPropsType) => {
   const shareListTabs = [
     {
       title: '배달쉐어',
@@ -25,11 +23,11 @@ const Tabs = ({ curShareList, setCurShareList }: TabsPropsType) => {
   ];
 
   const changeTab = (value: string) => {
-    if (curShareList === value) return;
-
-    if (curShareList === 'delivery') setCurShareList('ingredient');
-
-    if (curShareList === 'ingredient') setCurShareList('delivery');
+    if (
+      (value === 'delivery' && activeShareListValue.delivery) ||
+      (value === 'ingredient' && activeShareListValue.ingredient)
+    )
+      return;
 
     setActiveShareListValue({
       delivery: !activeShareListValue.delivery,

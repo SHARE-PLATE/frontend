@@ -1,4 +1,4 @@
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useRecoilValueLoadable } from 'recoil';
 
 import CategoryButton from '@components/CategoryButton';
 import PreviewShareListBigSizeImage from '@components/PreviewShareListBigSizeImage';
@@ -7,54 +7,72 @@ import ShareListHeader from '@components/ShareListHeader';
 import Tabs from '@components/Tabs';
 import { listExample, listExampleType } from '@data/shareList';
 import * as S from '@pages/ShareList/ShareList.style';
-import { currentFilterShareList, currentShareList } from '@store/filterShareList';
-import {
-  getDeadlineSort,
-  getDistanceSort,
-  getPriceSort,
-  getRecencySort,
-} from '@utils/ShareListSort';
+import { activeShareList, currentFilterShareList } from '@store/filterShareList';
+import { getShareListsData } from '@store/shareList';
+import { getSortData } from '@utils/ShareListSort';
 
 const ShareList = () => {
   const curShareFilterList = useRecoilValue(currentFilterShareList);
-  const [curShareList, setCurShareList] = useRecoilState(currentShareList);
+  const [activeShareListValue, setActiveShareListValue] = useRecoilState(activeShareList);
 
-  const data = listExample;
+  // const data = listExample;
 
-  const getData = (): listExampleType[] => {
-    switch (curShareFilterList) {
-      case 'price':
-        return getPriceSort(data);
-      case 'distance':
-        return getPriceSort(data);
-      case 'recency':
-        return getRecencySort(data);
-      case 'deadline':
-        return getDeadlineSort(data);
-    }
-    return getPriceSort(data);
-  };
+  const data = useRecoilValueLoadable(getShareListsData);
+  console.log(data);
+  switch (data.state) {
+    case 'hasValue':
+      return (
+        <S.Wrapper>
+          <S.ListHeader>
+            <ShareListHeader />
+            <Tabs
+              activeShareListValue={activeShareListValue}
+              setActiveShareListValue={setActiveShareListValue}
+            />
+            <CategoryButton />
+          </S.ListHeader>
+          {activeShareListValue.delivery ? (
+            <S.ListContents>
+              <PreviewShareListBigSizeImage data={getSortData(curShareFilterList, data.contents)} />
+            </S.ListContents>
+          ) : activeShareListValue.ingredient ? (
+            <S.ListContents>
+              <PreviewShareListLeftImage data={getSortData(curShareFilterList, data.contents)} />
+            </S.ListContents>
+          ) : (
+            ''
+          )}
+        </S.Wrapper>
+      );
+    case 'loading':
+      return <div>1</div>;
+    case 'hasError':
+      return <div>1</div>;
+  }
 
-  return (
-    <S.Wrapper>
-      <S.ListHeader>
-        <ShareListHeader />
-        <Tabs curShareList={curShareList} setCurShareList={setCurShareList} />
-        <CategoryButton />
-      </S.ListHeader>
-      {curShareList === 'delivery' ? (
-        <S.ListContents>
-          <PreviewShareListBigSizeImage data={getData()} />
-        </S.ListContents>
-      ) : curShareList === 'ingredient' ? (
-        <S.ListContents>
-          <PreviewShareListLeftImage data={getData()} />
-        </S.ListContents>
-      ) : (
-        ''
-      )}
-    </S.Wrapper>
-  );
+  // return (
+  //   <S.Wrapper>
+  //     <S.ListHeader>
+  //       <ShareListHeader />
+  //       <Tabs
+  //         activeShareListValue={activeShareListValue}
+  //         setActiveShareListValue={setActiveShareListValue}
+  //       />
+  //       <CategoryButton />
+  //     </S.ListHeader>
+  //     {activeShareListValue.delivery ? (
+  //       <S.ListContents>
+  //         <PreviewShareListBigSizeImage data={getSortData(curShareFilterList, data)} />
+  //       </S.ListContents>
+  //     ) : activeShareListValue.ingredient ? (
+  //       <S.ListContents>
+  //         <PreviewShareListLeftImage data={getSortData(curShareFilterList, data)} />
+  //       </S.ListContents>
+  //     ) : (
+  //       ''
+  //     )}
+  //   </S.Wrapper>
+  // );
 };
 
 export default ShareList;
