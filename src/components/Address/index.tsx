@@ -4,6 +4,7 @@ import { useRecoilValue } from 'recoil';
 
 import * as S from '@components/Address/Address.style';
 import AddressModal from '@components/ModalContainer/AddressModal';
+import Icon from '@components/common/Icon';
 import useGeolocation from '@hooks/useGeolocation';
 import useModal from '@hooks/useModal';
 import { currentLocation } from '@store/location';
@@ -17,14 +18,17 @@ const Address = () => {
   const openAddressModal = () => setIsAddressModalOpen(true);
   const closeAddressModal = () => setIsAddressModalOpen(false);
   return (
-    <>
-      <S.AddressWrapper onClick={openAddressModal}>
+    <S.Wrapper>
+      <S.LocationWrapper onClick={openAddressModal}>
         {curLocation ? curLocation : '강남역'}
-      </S.AddressWrapper>
+      </S.LocationWrapper>
+      <S.IconWrapper>
+        <Icon iconName='ChevronDown' />
+      </S.IconWrapper>
       {isAddressModalOpen && (
         <AddressModal modalRef={modalRef} closeAddressModal={closeAddressModal} />
       )}
-    </>
+    </S.Wrapper>
   );
 };
 
