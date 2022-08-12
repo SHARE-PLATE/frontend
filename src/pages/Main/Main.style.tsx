@@ -9,3 +9,10 @@ export const MainWrapper = styled.div`
 export const MainHeaderWrapper = styled.div`
   padding: 0;
 `;
+
+export const HeaderBarWrapper = styled.div`
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  background-color: #ffffff3c;
+`;
