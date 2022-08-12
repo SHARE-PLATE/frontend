@@ -34,7 +34,10 @@ const PreviewShareListBigSizeImage = ({ data }: PreviewShareListBigSizeImageProp
           >
             <S.ImageContainer>
               <img src={thumbnailUrl} alt={title} width='330' height='100' />
-              <RemainedTime targetTime={appointmentDateTime} />
+              <RemainedTime
+                targetTime={appointmentDateTime}
+                position={{ top: '0.75rem', left: '0.75rem' }}
+              />
             </S.ImageContainer>
             <S.Container>
               <S.TextContainer>

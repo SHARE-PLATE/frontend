@@ -3,7 +3,6 @@ import { ReactElement } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import * as S from '@components/PreviewShareListLeftImage/PreviewShareListLeftImage.style';
-import { RemainedTime } from '@components/RemainedTime';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import { listExampleType } from '@data/shareList';
 import { calcTwoTimeDifference } from '@utils/getTimeDiff';
@@ -29,7 +28,6 @@ const PreviewShareListLeftImage = ({ data, count }: PreviewShareListLeftImagePro
         currentRecruitment,
         finalRecruitment,
         createdDateTime,
-        appointmentDateTime,
       },
       dataCount,
     ) => {
@@ -42,7 +40,6 @@ const PreviewShareListLeftImage = ({ data, count }: PreviewShareListLeftImagePro
         >
           <S.ImgWrapper>
             <img src={thumbnailUrl} alt={title} />
-            <RemainedTime targetTime={appointmentDateTime} />
           </S.ImgWrapper>
           <S.ListInfo>
             <S.ListInfoTexts>

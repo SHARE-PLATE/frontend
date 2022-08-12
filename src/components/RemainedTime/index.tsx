@@ -6,13 +6,13 @@ import { getTimeDiffInHour } from '@utils/getTimeDiff';
 
 interface RemainedTimePropsType {
   targetTime: string;
-  locationBottom?: boolean;
+  position: S.BottomStylesPositionType;
 }
 
 const defaultTime = '00:00';
 const changeInterval = 1000;
 
-export const RemainedTime = ({ targetTime, locationBottom = false }: RemainedTimePropsType) => {
+export const RemainedTime = ({ targetTime, position }: RemainedTimePropsType) => {
   const [showedTime, setShowedTime] = useState(defaultTime);
 
   useInterval(() => {
@@ -25,7 +25,5 @@ export const RemainedTime = ({ targetTime, locationBottom = false }: RemainedTim
     setShowedTime(timeDiff);
   }, changeInterval);
 
-  return (
-    <S.RemainedTimeWrapper locationBottom={locationBottom}>{showedTime}</S.RemainedTimeWrapper>
-  );
+  return <S.RemainedTimeWrapper {...position}>{showedTime}</S.RemainedTimeWrapper>;
 };

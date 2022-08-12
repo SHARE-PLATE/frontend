@@ -8,7 +8,10 @@ export const ShareListItemLongImage = ({ itemInfo }: { itemInfo: listExampleType
 
   return (
     <S.ItemWrapper>
-      <RemainedTime targetTime={appointmentDateTime} />
+      <RemainedTime
+        targetTime={appointmentDateTime}
+        position={{ top: '0.75rem', left: '0.75rem' }}
+      />
       <S.ImgWrapper>
         <S.StyledImg src={thumbnailUrl} alt={title} />
       </S.ImgWrapper>
