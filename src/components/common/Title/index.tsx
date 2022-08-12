@@ -1,16 +1,18 @@
 import * as S from '@components/common/Title/Title.style';
+import { SHOW_MORE } from '@constants/words';
 
 interface TitlePropsType {
   contentTitle: string;
-  isContent?: boolean;
+  handleClick?: () => void;
+  size?: S.TitleHeaderSizeType;
 }
 
-const Title = ({ contentTitle, isContent = false }: TitlePropsType) => {
+const Title = ({ contentTitle, handleClick, size = 'MEDIUM' }: TitlePropsType) => {
   return (
-    <S.TitleContainer>
-      <S.TitleHeader>
+    <S.TitleContainer size={size}>
+      <S.TitleHeader size={size}>
         {contentTitle}
-        {isContent && <div>더보기 👉</div>}
+        {handleClick && <S.OptionButton onClick={handleClick}>{SHOW_MORE}</S.OptionButton>}
       </S.TitleHeader>
     </S.TitleContainer>
   );
