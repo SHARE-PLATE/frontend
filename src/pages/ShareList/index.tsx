@@ -8,12 +8,7 @@ import Tabs from '@components/Tabs';
 import { listExample, listExampleType } from '@data/shareList';
 import * as S from '@pages/ShareList/ShareList.style';
 import { currentFilterShareList, currentShareList } from '@store/filterShareList';
-import {
-  getDeadlineSort,
-  getDistanceSort,
-  getPriceSort,
-  getRecencySort,
-} from '@utils/ShareListSort';
+import { getDeadlineSort, getPriceSort, getRecencySort } from '@utils/ShareListSort';
 
 const showedListComponent = {
   delivery: PreviewShareListBigSizeImage,

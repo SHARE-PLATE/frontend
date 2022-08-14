@@ -56,7 +56,7 @@ const PreviewShareListBigSizeImage = ({ data }: PreviewShareListBigSizeImageProp
     ),
   );
 
-  if (showedList.length % 2) showedList.push(<S.ItemWrapper />);
+  if (showedList.length % 2) showedList.push(<S.ItemWrapper key={Math.random()} />);
 
   return <S.ListWrapper>{showedList}</S.ListWrapper>;
 };
