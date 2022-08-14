@@ -13,24 +13,24 @@ export const ImgWrapper = styled.div`
   border-radius: 0.5rem;
   width: 100%;
   overflow: hidden;
-
-  @media (max-width: 27rem) {
-    aspect-ratio: 1.43 / 1;
-  }
   aspect-ratio: 1.8 / 1;
 
   img {
     margin-top: -25%;
     width: 100%;
   }
+
+  @media (max-width: 27rem) {
+    aspect-ratio: 1.43 / 1;
+  }
 `;
 
 export const InfoWrapper = styled.div`
   ${({ theme: { fonts } }) => css`
-    padding-top: 0.5rem;
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
+    padding-top: 0.5rem;
 
     > :nth-child(1) {
       width: 100%;

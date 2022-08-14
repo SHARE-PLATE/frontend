@@ -9,9 +9,10 @@ export const Wrapper = styled.div`
   ${flexBetween}
   ${theme.defaultPadding}
   ${theme.defaultWidth}
+
+  gap: 1rem;
   width: 100%;
   height: ${mainHeaderHeight};
-  gap: 1rem;
 `;
 
 export const HeaderAddressWrapper = styled.div``;

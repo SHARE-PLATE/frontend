@@ -25,7 +25,6 @@ const Tabs = ({ curShareList, setCurShareList }: TabsPropsType) => {
   ];
 
   const handleClickTab = (value: CurrentShareListType) => {
-    console.log(value);
     if (curShareList === value) return;
     if (curShareList === 'delivery') setCurShareList('ingredient');
     if (curShareList === 'ingredient') setCurShareList('delivery');

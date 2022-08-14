@@ -18,7 +18,7 @@ export const listExample: listExampleType[] = [
   {
     id: 1,
     thumbnailUrl: 'https://avatars.githubusercontent.com/u/68788849?v=4',
-    title: '제목1',
+    title: '제목1제목1제목1제목1제목1제목1제목1제목1제목1제목1제목1제목1제목1제목1',
     location: '강남역',
     price: 10000,
     originalPrice: 30000,

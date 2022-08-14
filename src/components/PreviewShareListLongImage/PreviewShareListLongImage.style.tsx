@@ -14,7 +14,7 @@ export const MentionWrapper = styled.div`
 `;
 
 export const ListWrapper = styled.div`
-  ${noScrollBar};
+  ${noScrollBar}
 
   display: flex;
   gap: 0.8rem;

@@ -13,6 +13,6 @@ export const MainHeaderWrapper = styled.div`
 export const HeaderBarWrapper = styled.div`
   position: absolute;
   z-index: 2;
-  width: 100%;
   background-color: #ffffff3c;
+  width: 100%;
 `;
