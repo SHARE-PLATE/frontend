@@ -4,7 +4,7 @@ import * as S from '@components/Tabs/Tabs.styled';
 import { activeShareList, CurrentShareListType } from '@store/filterShareList';
 
 interface TabsPropsType {
-  curShareList: string;
+  curShareList: CurrentShareListType;
   setCurShareList: SetterOrUpdater<CurrentShareListType>;
 }
 
@@ -14,21 +14,20 @@ const Tabs = ({ curShareList, setCurShareList }: TabsPropsType) => {
   const shareListTabs = [
     {
       title: '배달쉐어',
-      value: 'delivery',
+      value: 'delivery' as const,
       active: activeShareListValue.delivery,
     },
     {
       title: '재료쉐어',
-      value: 'ingredient',
+      value: 'ingredient' as const,
       active: activeShareListValue.ingredient,
     },
   ];
 
-  const changeTab = (value: string) => {
+  const handleClickTab = (value: CurrentShareListType) => {
+    console.log(value);
     if (curShareList === value) return;
-
     if (curShareList === 'delivery') setCurShareList('ingredient');
-
     if (curShareList === 'ingredient') setCurShareList('delivery');
 
     setActiveShareListValue({
@@ -37,23 +36,13 @@ const Tabs = ({ curShareList, setCurShareList }: TabsPropsType) => {
     });
   };
 
-  return (
-    <S.Wrapper>
-      <S.TabMenu>
-        {shareListTabs.map(({ title, value, active }) => {
-          return (
-            <div
-              key={value}
-              className={'tabMenu ' + value + (active ? ' active' : '')}
-              onClick={() => changeTab(value)}
-            >
-              {title}
-            </div>
-          );
-        })}
-      </S.TabMenu>
-    </S.Wrapper>
-  );
+  const tabs = shareListTabs.map(({ title, value, active }) => (
+    <S.TabWrapper key={value} onClick={() => handleClickTab(value)} active={active} value={value}>
+      {title}
+    </S.TabWrapper>
+  ));
+
+  return <S.Wrapper>{tabs}</S.Wrapper>;
 };
 
 export default Tabs;

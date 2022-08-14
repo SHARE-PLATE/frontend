@@ -1,53 +1,65 @@
 import styled, { css } from 'styled-components';
 
+import { CurrentShareListType } from '@store/filterShareList';
 import { flexCenter } from '@styles/mixin';
+
+type TabWrapperPropsType = {
+  active: boolean;
+  value: CurrentShareListType;
+};
 
 export const tabsHeight = '2.6rem';
 
-export const Wrapper = styled.div`
-  ${flexCenter}
-  width: 100%;
-  height: ${tabsHeight};
+export const Wrapper = styled.nav`
+  ${({ theme: { colors } }) => css`
+    ${flexCenter};
+
+    width: 100%;
+    height: ${tabsHeight};
+    border-bottom: 0.125rem solid ${colors.grey2};
+  `}
 `;
 
-export const TabMenu = styled.nav`
-  ${({ theme: { colors } }) => css`
-    display: flex;
+export const TabWrapper = styled.div<TabWrapperPropsType>`
+  ${({ theme: { colors }, active, value }) => css`
     height: 100%;
-    align-items: center;
+    display: flex;
+    position: relative;
+    cursor: pointer;
+    width: 50%;
     justify-content: center;
-    width: 100%;
-    border-bottom: 0.125rem solid ${colors.grey2};
+    align-items: center;
 
-    .tabMenu {
-      height: 100%;
-      display: flex;
-      position: relative;
-      cursor: pointer;
+    ::after {
+      position: absolute;
+      transition: 0.3s ease-out;
+      height: 2.6rem;
+      border-bottom: solid 0.125rem ${colors.orange2};
       width: 100%;
-      justify-content: center;
-      align-items: center;
+      content: '';
+    }
 
-      &::after {
-        position: absolute;
-        transition: 0.3s ease-out;
-        height: 2.6rem;
-        border-bottom: solid 0.125rem ${colors.orange2};
-        width: 100%;
-        content: '';
-      }
-
-      &.delivery::after {
+    ${value === 'delivery' &&
+    css`
+      ::after {
+        pointer-events: none;
         left: 100%;
       }
+    `}
 
-      &.ingredient::after {
+    ${value === 'ingredient' &&
+    css`
+      ::after {
+        pointer-events: none;
         left: -100%;
       }
+    `}
 
-      &.active::after {
+    ${active &&
+    css`
+      ::after {
         left: 0;
       }
-    }
+    `}
   `}
 `;
