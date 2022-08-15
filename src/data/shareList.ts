@@ -26,7 +26,7 @@ export const listExample: listExampleType[] = [
     finalRecruitment: 3,
     recruitmentLimit: true,
     createdDateTime: '2022-08-03 13:57',
-    appointmentDateTime: '2022-08-11 00:00',
+    appointmentDateTime: '2022-08-15 15:00',
   },
   {
     id: 2,
@@ -39,7 +39,7 @@ export const listExample: listExampleType[] = [
     finalRecruitment: 4,
     recruitmentLimit: false,
     createdDateTime: '2022-08-03 15:57',
-    appointmentDateTime: '2022-08-11 00:00',
+    appointmentDateTime: '2022-08-15 15:00',
   },
   {
     id: 3,
@@ -52,7 +52,7 @@ export const listExample: listExampleType[] = [
     finalRecruitment: 2,
     recruitmentLimit: true,
     createdDateTime: '2022-08-03 14:57',
-    appointmentDateTime: '2022-08-11 00:00',
+    appointmentDateTime: '2022-08-15 15:00',
   },
   {
     id: 4,
