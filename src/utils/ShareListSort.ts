@@ -18,7 +18,9 @@ export const getSortData = (
 };
 
 const getPriceSort = (data: listExampleType[]): listExampleType[] => {
-  const sortData = data.sort((a: listExampleType, b: listExampleType) => a.price - b.price);
+  const newArray = [...data];
+
+  const sortData = newArray.sort((a: listExampleType, b: listExampleType) => a.price - b.price);
 
   return sortData;
 };
@@ -28,7 +30,9 @@ const getDistanceSort = (data: listExampleType[]) => {
 };
 
 export const getRecencySort = (data: listExampleType[]) => {
-  const earlyDate = data.sort(
+  const newArray = [...data];
+
+  const earlyDate = newArray.sort(
     (a: listExampleType, b: listExampleType) =>
       Number(new Date(b.createdDateTime)) - Number(new Date(a.createdDateTime)),
   );
@@ -37,7 +41,9 @@ export const getRecencySort = (data: listExampleType[]) => {
 };
 
 export const getDeadlineSort = (data: listExampleType[]): listExampleType[] => {
-  const lateDate = data.sort(
+  const newArray = [...data];
+
+  const lateDate = newArray.sort(
     (a: listExampleType, b: listExampleType) =>
       Number(new Date(a.appointmentDateTime)) - Number(new Date(b.appointmentDateTime)),
   );
