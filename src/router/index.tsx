@@ -23,8 +23,6 @@ export const routes = [
   {
     element: <ProtectedRoute />,
     children: [
-      { path: P.chatting, element: <Chatting /> },
-      { path: P.chattingDetail + '/:id', element: <ChattingDetail /> },
       { path: P.shareForm + '/:type', element: <ShareRegistration /> },
       { path: P.profile, element: <Profile /> },
     ],
