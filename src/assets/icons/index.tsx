@@ -9,6 +9,7 @@ import Heart from '@assets/icons/heart.svg';
 import HeartEmpty from '@assets/icons/heartEmpty.svg';
 import Kakao from '@assets/icons/kakao.svg';
 import Logo from '@assets/icons/logo.svg';
+import Map from '@assets/icons/map.svg';
 import NoticeOff from '@assets/icons/noticeOff.svg';
 import NoticeOn from '@assets/icons/noticeOn.svg';
 import Option from '@assets/icons/option.svg';
@@ -22,6 +23,7 @@ import User from '@assets/icons/user.svg';
 
 export const Icons = {
   ArrowUp,
+  Map,
   Logo,
   Upload,
   ChevronDown,
