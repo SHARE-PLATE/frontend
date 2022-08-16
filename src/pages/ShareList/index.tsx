@@ -28,13 +28,13 @@ const ShareList = () => {
             <CategoryButton />
           </S.ListHeader>
           {activeShareListValue.delivery ? (
-            <S.ListContents>
+            <S.ListContent>
               <PreviewShareListBigSizeImage data={getSortData(curShareFilterList, data.contents)} />
-            </S.ListContents>
+            </S.ListContent>
           ) : activeShareListValue.ingredient ? (
-            <S.ListContents>
+            <S.ListContent>
               <PreviewShareListLeftImage data={getSortData(curShareFilterList, data.contents)} />
-            </S.ListContents>
+            </S.ListContent>
           ) : (
             ''
           )}

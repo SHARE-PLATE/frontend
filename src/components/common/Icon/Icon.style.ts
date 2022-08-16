@@ -1,27 +1,35 @@
 import SVG from 'react-inlinesvg';
 import styled, { css } from 'styled-components';
 
-import { ICON_SIZE } from '@components/common/Icon/constants';
+export type IconSizeType = 'SMALL' | 'LARGE' | number;
 
 type StyledIconProps = {
-  size: string;
+  size: IconSizeType;
 };
 
 const sizeStyles = css<StyledIconProps>`
   ${({ size }) =>
-    size === ICON_SIZE.SMALL &&
+    size === 'SMALL' &&
     css`
       width: 1rem;
     `}
 
   ${({ size }) =>
-    size === ICON_SIZE.LARGE &&
+    size === 'LARGE' &&
     css`
       width: 2rem;
+    `}
+
+    ${({ size }) =>
+    typeof size === 'number' &&
+    css`
+      width: ${`${size}rem`};
     `}
 `;
 
 export const Icon = styled(SVG)<StyledIconProps>`
-  flex-shrink: 0;
   ${sizeStyles}
+
+  flex-shrink: 0;
+  cursor: pointer;
 `;

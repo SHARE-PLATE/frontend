@@ -1,14 +1,14 @@
 import { Icons, IconsType } from '@assets/icons';
 import * as S from '@components/common/Icon/Icon.style';
-import { ICON_SIZE } from '@components/common/Icon/constants';
 
 export interface IconPropsType {
   iconName: IconsType;
-  iconSize?: string;
+  iconSize?: S.IconSizeType;
+  handleClick?: (params: any) => void;
 }
 
-const Icon = ({ iconName, iconSize = ICON_SIZE.SMALL }: IconPropsType) => {
-  return <S.Icon src={Icons[iconName]} size={iconSize} />;
+const Icon = ({ iconName, iconSize = 'SMALL', handleClick }: IconPropsType) => {
+  return <S.Icon src={Icons[iconName]} size={iconSize} onClick={handleClick} />;
 };
 
 export default Icon;

@@ -8,7 +8,9 @@ const Main = () => {
   return (
     <S.MainWrapper>
       <S.MainHeaderWrapper>
-        <MainHeader />
+        <S.HeaderBarWrapper>
+          <MainHeader />
+        </S.HeaderBarWrapper>
         <Ads />
         <PreviewShareListLongImage />
       </S.MainHeaderWrapper>

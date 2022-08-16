@@ -24,7 +24,7 @@ export const defaultPageStyle = css`
     background-color: ${colors.grey1};
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 0.375rem;
     flex-grow: 1;
   `}
 
@@ -34,12 +34,20 @@ export const defaultPageStyle = css`
 
   > :last-child {
     flex-grow: 1;
+    padding-bottom: 4.4rem;
   }
 `;
 
 export const subTitle = css`
   ${({ theme: { fonts } }) => css`
-    margin-top: 2rem;
+    padding-top: 2rem;
     ${fonts.xLargeBold}
   `}
+`;
+
+export const noScrollBar = css`
+  scrollbar-width: none;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;

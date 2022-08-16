@@ -1,9 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { flexBetween } from '@styles/mixin';
 
 export const Wrapper = styled.div`
   ${flexBetween}
+  padding-top: 1rem;
 `;
 
 export const Image = styled.img`
@@ -25,10 +26,11 @@ export const Info = styled.div`
   justify-content: center;
 `;
 
-export const Nickname = styled.h2`
-  font-weight: bold;
-`;
+export const Nickname = styled.h2``;
 
 export const Email = styled.span`
-  font-size: 12px;
+  ${({ theme: { fonts, colors } }) => css`
+    ${fonts.smallRegular}
+    color:${colors.grey4};
+  `}
 `;

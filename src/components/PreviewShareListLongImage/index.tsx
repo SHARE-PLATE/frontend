@@ -2,6 +2,7 @@ import { ReactElement, useEffect, useState } from 'react';
 
 import * as S from '@components/PreviewShareListLongImage/PreviewShareListLongImage.style';
 import { ShareListItemLongImage } from '@components/ShareListItemLongImage';
+import Title from '@components/common/Title';
 import { littleDeadlineMention, noLittleTimeListMention } from '@constants/mentions';
 import { listExample } from '@data/shareList';
 import { getDeadlineSort } from '@utils/ShareListSort';
@@ -34,7 +35,7 @@ const PreviewShareListLongImage = () => {
 
   return (
     <S.Wrapper>
-      <S.MentionWrapper>{littleDeadlineMention}</S.MentionWrapper>
+      <Title contentTitle={littleDeadlineMention} size='LARGE' />
       {showedList}
     </S.Wrapper>
   );

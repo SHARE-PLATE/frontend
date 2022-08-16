@@ -4,60 +4,61 @@ import * as S from '@components/PreviewShareListBigSizeImage/PreviewShareListBig
 import { RemainedTime } from '@components/RemainedTime';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import { listExampleType } from '@data/shareList';
+import { getPriceType } from '@utils/getPriceType';
 import { calcTwoTimeDifference } from '@utils/getTimeDiff';
+
 interface PreviewShareListBigSizeImagePropsType {
   data: listExampleType[];
 }
 
 const PreviewShareListBigSizeImage = ({ data }: PreviewShareListBigSizeImagePropsType) => {
   const navigate = useNavigate();
-  return (
-    <>
-      {data.map(
-        ({
-          id,
-          thumbnailUrl,
-          title,
-          location,
-          price,
-          originalPrice,
-          currentRecruitment,
-          finalRecruitment,
-          createdDateTime,
-          appointmentDateTime,
-        }) => (
-          <S.Wrapper
-            key={id}
-            onClick={() => {
-              navigate(`/share-detail/${id}`);
-            }}
-          >
-            <S.ImageContainer>
-              <img src={thumbnailUrl} alt={title} width='330' height='100' />
-              <RemainedTime targetTime={appointmentDateTime} />
-            </S.ImageContainer>
-            <S.Container>
-              <S.TextContainer>
-                <S.ImageTitle>{title}</S.ImageTitle>
-                <PersonnelStatus
-                  curPersonnel={currentRecruitment}
-                  totalPersonnel={finalRecruitment}
-                />
-              </S.TextContainer>
-              <S.ImagePriceBlock>
-                <S.ImageContents>
-                  <S.Location>
-                    {location} / {calcTwoTimeDifference(createdDateTime)}
-                  </S.Location>
-                  {price}원<S.ImageOriginalPrice>원가 {originalPrice}</S.ImageOriginalPrice>
-                </S.ImageContents>
-              </S.ImagePriceBlock>
-            </S.Container>
-          </S.Wrapper>
-        ),
-      )}
-    </>
+  const showedList = data.map(
+    ({
+      id,
+      thumbnailUrl,
+      title,
+      location,
+      price,
+      originalPrice,
+      currentRecruitment,
+      finalRecruitment,
+      createdDateTime,
+      appointmentDateTime,
+    }) => (
+      <S.ItemWrapper
+        key={id}
+        onClick={() => {
+          navigate(`/share-detail/${id}`);
+        }}
+      >
+        <S.ImgWrapper>
+          <img src={thumbnailUrl} alt={title} />
+          <RemainedTime
+            targetTime={appointmentDateTime}
+            position={{ top: '0.75rem', left: '0.75rem' }}
+          />
+        </S.ImgWrapper>
+        <S.Container>
+          <S.TextWrapper>
+            <S.Title>{title}</S.Title>
+            <S.Location>
+              {location} / {calcTwoTimeDifference(createdDateTime)}
+            </S.Location>
+            <S.PriceWrapper>
+              <S.Price>{getPriceType({ price, isUnit: true })}</S.Price>
+              <S.OriginPrice>{getPriceType({ price: originalPrice, isUnit: true })}</S.OriginPrice>
+            </S.PriceWrapper>
+          </S.TextWrapper>
+          <PersonnelStatus curPersonnel={currentRecruitment} totalPersonnel={finalRecruitment} />
+        </S.Container>
+      </S.ItemWrapper>
+    ),
   );
+
+  if (showedList.length % 2) showedList.push(<S.ItemWrapper key={Math.random()} />);
+
+  return <S.ListWrapper>{showedList}</S.ListWrapper>;
 };
 
 export default PreviewShareListBigSizeImage;

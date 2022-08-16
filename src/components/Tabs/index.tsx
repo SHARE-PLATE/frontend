@@ -12,12 +12,12 @@ const Tabs = ({ activeShareListValue, setActiveShareListValue }: TabsPropsType) 
   const shareListTabs = [
     {
       title: '배달쉐어',
-      value: 'delivery',
+      value: 'delivery' as const,
       active: activeShareListValue.delivery,
     },
     {
       title: '재료쉐어',
-      value: 'ingredient',
+      value: 'ingredient' as const,
       active: activeShareListValue.ingredient,
     },
   ];
@@ -35,23 +35,13 @@ const Tabs = ({ activeShareListValue, setActiveShareListValue }: TabsPropsType) 
     });
   };
 
-  return (
-    <S.Wrapper>
-      <S.TabMenu>
-        {shareListTabs.map(({ title, value, active }) => {
-          return (
-            <div
-              key={value}
-              className={'tabMenu ' + value + (active ? ' active' : '')}
-              onClick={() => changeTab(value)}
-            >
-              <h2>{title}</h2>
-            </div>
-          );
-        })}
-      </S.TabMenu>
-    </S.Wrapper>
-  );
+  const tabs = shareListTabs.map(({ title, value, active }) => (
+    <S.TabWrapper key={value} onClick={() => changeTab(value)} active={active} value={value}>
+      {title}
+    </S.TabWrapper>
+  ));
+
+  return <S.Wrapper>{tabs}</S.Wrapper>;
 };
 
 export default Tabs;

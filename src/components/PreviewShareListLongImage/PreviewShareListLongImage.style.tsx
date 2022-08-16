@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { subTitle } from '@styles/mixin';
+import { noScrollBar, subTitle } from '@styles/mixin';
 
 export const Wrapper = styled.div`
   ${({ theme: { defaultPadding, defaultWidth } }) => css`
@@ -14,16 +14,14 @@ export const MentionWrapper = styled.div`
 `;
 
 export const ListWrapper = styled.div`
+  ${noScrollBar}
+
   display: flex;
   gap: 0.8rem;
   padding: 1rem 0;
   width: 100%;
   height: fit-content;
   overflow-x: scroll;
-
-  ::-webkit-scrollbar-track {
-    color: transparent;
-  }
 `;
 
 export const noListWrapper = styled.div`

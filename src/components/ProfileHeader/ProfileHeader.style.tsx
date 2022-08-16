@@ -1,15 +1,18 @@
 import styled from 'styled-components';
 
-import { flexBetween } from '@styles/mixin';
-
 export const Wrapper = styled.div`
-  ${flexBetween}
-  height: 52px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: right;
+  height: 3.25rem;
 `;
 
 export const Title = styled.h2`
-  display: flex;
-  justify-content: center;
+  ${({ theme: { fonts } }) => fonts.xLarge}
+  position: absolute;
+  width: 100%;
+  text-align: center;
 `;
 
 export const Icons = styled.div`

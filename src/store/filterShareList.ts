@@ -1,4 +1,7 @@
 import { atom } from 'recoil';
+
+export type CurrentShareListType = 'ingredient' | 'delivery';
+
 export const currentFilterShareList = atom({
   key: 'currentFilterShareList',
   default: 'price',

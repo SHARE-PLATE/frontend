@@ -8,3 +8,5 @@ export const noLittleTimeListMention = '1시간 이내로 남은\n쉐어 목록�
 export const loginForServiceMention = '로그인을 통해서\n서비스를 이용해주세요';
 export const shareDeliveryMention = '함께 음식을 나눠먹어요!';
 export const shareIngredientMention = '함께 재료를 나눠보아요!';
+export const noRelatedShareList = '관련된 쉐어가 없습니다.';
+export const offerShare = '이런 쉐어는 어떠세요?';

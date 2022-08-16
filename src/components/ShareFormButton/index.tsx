@@ -2,7 +2,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 import { Wrapper } from '@components/ShareFormButton/ShareFormButton.style';
 import Icon from '@components/common/Icon';
-import { pathName } from '@router';
+import { pathName } from '@constants/pathName';
 
 const { shareForm, profile } = pathName;
 
@@ -13,7 +13,7 @@ const ShareFormButton = () => {
 
   return (
     <Wrapper onClick={() => navigate(shareForm)} isShareForm={isShareForm}>
-      <Icon iconName='Form' iconSize='MEDIUM' />
+      <Icon iconName='Form' />
     </Wrapper>
   );
 };

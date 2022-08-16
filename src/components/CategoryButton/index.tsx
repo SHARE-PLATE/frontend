@@ -4,7 +4,6 @@ import { useSetRecoilState } from 'recoil';
 
 import * as S from '@components/CategoryButton/CategoryButton.tsyle';
 import Button from '@components/common/Button';
-import { BUTTON_SIZE } from '@components/common/Button/constants';
 import { categoryItem } from '@constants/category';
 import { currentFilterShareList } from '@store/filterShareList';
 
@@ -24,7 +23,7 @@ const CategoryButton = () => {
       {categoryItem.map(({ id, name, filter }, idx) => (
         <S.Item key={id}>
           <Button
-            size={BUTTON_SIZE.SMALL}
+            size='small'
             active={activeIndex === idx}
             onClick={() => {
               handelClickChangeList(filter);

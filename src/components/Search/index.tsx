@@ -52,7 +52,7 @@ const Search = () => {
       <S.Header>
         <S.FormWrapper>
           <S.CloseBtn ref={closeBtn}>
-            <Icon iconName='Back' iconSize='MEDIUM' />
+            <Icon iconName='Back' />
           </S.CloseBtn>
           <S.Form onSubmit={handleSubmit}>
             <S.Input

@@ -1,6 +1,5 @@
 import * as S from '@components/UserInfo/UserInfo.style';
 import Icon from '@components/common/Icon';
-import { ICON_NAME, ICON_SIZE } from '@components/common/Icon/constants';
 import { userInfoExample } from '@data/userInfo';
 
 const UserInfo = () => {
@@ -15,7 +14,7 @@ const UserInfo = () => {
           <S.Email>{userInfo.email}</S.Email>
         </S.Info>
       </S.InfoContainer>
-      <Icon iconName={ICON_NAME.RIGHT_ARROW} iconSize={ICON_SIZE.LARGE} />
+      <Icon iconName='RightArrow' iconSize='LARGE' />
     </S.Wrapper>
   );
 };

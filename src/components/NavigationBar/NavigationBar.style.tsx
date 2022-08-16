@@ -1,19 +1,11 @@
 import styled, { css } from 'styled-components';
 
-const NavigationBarHeight = '3.5rem';
-
-export const NavigationBarWrapper = styled.div`
-  ${({ theme: { defaultWidth, colors } }) => css`
-    ${defaultWidth}
+export const NavigationBarWrapper = styled.ul`
+  ${({ theme: { colors } }) => css`
     display: flex;
-    position: fixed;
-    bottom: 0;
     justify-content: space-around;
-    box-shadow: 0px -10px 40px #67676740;
     background-color: ${colors.white1};
-    padding: 0.6rem;
-    width: 100%;
-    height: ${NavigationBarHeight};
+    height: 3.5rem;
     color: ${colors.grey4};
   `}
 `;
@@ -41,10 +33,8 @@ export const NavigationBarBtn = styled.button<{ isSelected: boolean }>`
   justify-content: center;
 `;
 
-export const NavigationArea = styled.div`
-  ${({ theme: { colors } }) => css`
-    background-color: ${colors.white1};
-    padding-top: 1rem;
-    height: ${NavigationBarHeight};
-  `}
+export const ShareFormBtnWrapper = styled.div`
+  position: absolute;
+  top: calc(-3.5rem - 1rem);
+  right: 1rem;
 `;
