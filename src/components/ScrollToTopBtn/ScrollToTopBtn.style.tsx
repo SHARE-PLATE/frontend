@@ -1,16 +1,16 @@
 import styled, { css } from 'styled-components';
 
-type WrapperPropsType = { isShowed: boolean };
+type WrapperPropsType = { isShareDetail: boolean };
 
 export const Wrapper = styled.button<WrapperPropsType>`
-  ${({ theme: { colors }, isShowed }) => css`
-    ${isShowed &&
+  ${({ theme: { colors }, isShareDetail }) => css`
+    ${!isShareDetail &&
     css`
       animation: fadeout 0.2s forwards;
       pointer-events: none;
     `}
 
-    ${!isShowed &&
+    ${isShareDetail &&
     css`
       animation: fadein 0.2s forwards;
     `}

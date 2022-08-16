@@ -5,8 +5,9 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import * as S from '@components/ShareFormButton/ShareFormButton.style';
 import Icon from '@components/common/Icon';
 import { pathName } from '@constants/pathName';
+import useCheckPathname from '@hooks/useCheckPathname';
 
-const { shareForm, profile } = pathName;
+const { shareForm } = pathName;
 
 const ShareFormButton = () => {
   const navigate = useNavigate();

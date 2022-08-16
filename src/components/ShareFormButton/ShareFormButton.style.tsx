@@ -1,16 +1,16 @@
 import styled, { css } from 'styled-components';
 
-type WrapperPropsType = { isShareForm: boolean };
+type WrapperPropsType = { isShareFormOrProfile: boolean };
 
 export const Wrapper = styled.div<WrapperPropsType>`
-  ${({ theme: { colors }, isShareForm }) => css`
-    ${isShareForm &&
+  ${({ theme: { colors }, isShareFormOrProfile }) => css`
+    ${isShareFormOrProfile &&
     css`
       animation: fadeout 0.2s forwards;
       pointer-events: none;
     `}
 
-    ${!isShareForm &&
+    ${!isShareFormOrProfile &&
     css`
       animation: fadein 0.2s forwards;
     `}

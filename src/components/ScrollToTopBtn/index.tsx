@@ -1,17 +1,15 @@
-import { useLocation } from 'react-router-dom';
-
 import * as S from '@components/ScrollToTopBtn/ScrollToTopBtn.style';
 import Icon from '@components/common/Icon';
-import { pathName } from '@constants/pathName';
+import useCheckPathname from '@hooks/useCheckPathname';
 
 const ScrollToTopBtn = () => {
-  const { pathname } = useLocation();
-  const isShowed = `/${pathname}` === pathName.shareDetail;
+  const isShareDetail = useCheckPathname({ targetPaths: ['shareDetail'] });
+  console.log(isShareDetail);
 
   const handleClickBtn = () => window.scrollTo(0, 0);
 
   return (
-    <S.Wrapper isShowed={isShowed} onClick={handleClickBtn}>
+    <S.Wrapper isShareDetail={isShareDetail} onClick={handleClickBtn}>
       <Icon iconName='ArrowUp' />
     </S.Wrapper>
   );
