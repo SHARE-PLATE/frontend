@@ -1,12 +1,18 @@
 const defaultFontSize = '16px';
 
-const defaultWidth = { 'max-width': '750px', 'min-width': '330px' };
+const defaultWidth = { 'max-width': '755px', 'min-width': '355px' };
 
 const defaultPadding = { padding: '0 1rem' };
 
 const fonts = {
   main: {
     'font-family': 'Noto Sans KR',
+    'letter-spacing': '-0.02rem',
+    'font-weight': '500',
+  },
+  xSmallRegular: {
+    'font-size': '10px',
+    'font-weight': '400',
   },
   xSmall: {
     'font-size': '10px',
@@ -15,6 +21,10 @@ const fonts = {
     'font-size': '10px',
     'font-weight': '600',
   },
+  smallRegular: {
+    'font-size': '12px',
+    'font-weight': '400',
+  },
   small: {
     'font-size': '12px',
   },
@@ -22,15 +32,31 @@ const fonts = {
     'font-size': '12px',
     'font-weight': '600',
   },
+  mediumRegular: {
+    'font-size': '14px',
+    'font-weight': '400',
+  },
   medium: {
     'font-size': '14px',
   },
   mediumBold: {
     'font-size': '14px',
-    'font-weight': '600',
+    'font-weight': '700',
+  },
+  largeRegular: {
+    'font-size': '16px',
+    'font-weight': '400',
   },
   large: {
     'font-size': '16px',
+  },
+  largeBold: {
+    'font-size': '16px',
+    'font-weight': '700',
+  },
+  xLargeRegular: {
+    'font-size': '18px',
+    'font-weight': '400',
   },
   xLarge: {
     'font-size': '18px',
@@ -50,7 +76,9 @@ const colors = {
   grey4: '#999999',
   grey5: '#666666',
   grey6: '#343434',
+  grey7: '#a8a8a8',
   black: '#191919',
+  orange0: '#ffd6c7',
   orange1: '#ff8e65',
   orange2: '#ff5c21',
 };

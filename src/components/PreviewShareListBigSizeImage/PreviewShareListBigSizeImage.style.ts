@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -46,8 +46,10 @@ export const ImagePriceBlock = styled.div`
 `;
 
 export const Location = styled.div`
-  color: #a8a8a8;
-  font-size: 10px;
+  ${({ theme: { colors } }) => css`
+    color: ${colors.grey7};
+    font-size: 10px;
+  `}
 `;
 
 export const ImageContents = styled.span`
@@ -58,12 +60,14 @@ export const ImageContents = styled.span`
 `;
 
 export const ImageOriginalPrice = styled.span`
-  display: inline-block;
-  opacity: 0.6;
-  margin-left: 4px;
-  text-decoration-line: line-through;
-  line-height: 16px;
-  color: #a8a8a8;
-  font-size: 11px;
-  font-weight: 400;
+  ${({ theme: { colors } }) => css`
+    display: inline-block;
+    opacity: 0.6;
+    margin-left: 4px;
+    text-decoration-line: line-through;
+    line-height: 16px;
+    color: ${colors.grey7};
+    font-size: 11px;
+    font-weight: 400;
+  `}
 `;

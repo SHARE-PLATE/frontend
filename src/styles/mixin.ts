@@ -24,7 +24,7 @@ export const defaultPageStyle = css`
     background-color: ${colors.grey1};
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 0.375rem;
     flex-grow: 1;
   `}
 
@@ -39,7 +39,7 @@ export const defaultPageStyle = css`
 
 export const subTitle = css`
   ${({ theme: { fonts } }) => css`
-    margin-top: 2rem;
+    padding-top: 2rem;
     ${fonts.xLargeBold}
   `}
 `;

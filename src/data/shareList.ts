@@ -26,7 +26,7 @@ export const listExample: listExampleType[] = [
     finalRecruitment: 3,
     recruitmentLimit: true,
     createdDateTime: '2022-08-03 13:57',
-    appointmentDateTime: '2022-08-10 12:00',
+    appointmentDateTime: '2022-08-11 00:00',
   },
   {
     id: 2,
@@ -39,7 +39,7 @@ export const listExample: listExampleType[] = [
     finalRecruitment: 4,
     recruitmentLimit: false,
     createdDateTime: '2022-08-03 15:57',
-    appointmentDateTime: '2022-08-10 15:00',
+    appointmentDateTime: '2022-08-11 00:00',
   },
   {
     id: 3,
@@ -52,7 +52,7 @@ export const listExample: listExampleType[] = [
     finalRecruitment: 2,
     recruitmentLimit: true,
     createdDateTime: '2022-08-03 14:57',
-    appointmentDateTime: '2022-08-10 14:00',
+    appointmentDateTime: '2022-08-11 00:00',
   },
   {
     id: 4,
@@ -79,18 +79,5 @@ export const listExample: listExampleType[] = [
     recruitmentLimit: false,
     createdDateTime: '2022-08-03 19:57',
     appointmentDateTime: '2022-08-10 16:00',
-  },
-  {
-    id: 6,
-    thumbnailUrl: 'https://avatars.githubusercontent.com/u/68788849?v=4',
-    title: '제목6',
-    location: '역삼역',
-    price: 25000,
-    originalPrice: 50000,
-    currentRecruitment: 1,
-    finalRecruitment: 2,
-    recruitmentLimit: true,
-    createdDateTime: '2022-08-09 09:57',
-    appointmentDateTime: '2022-08-10 11:00',
   },
 ];

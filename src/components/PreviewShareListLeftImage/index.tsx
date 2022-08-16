@@ -3,9 +3,9 @@ import { ReactElement } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import * as S from '@components/PreviewShareListLeftImage/PreviewShareListLeftImage.style';
-import { RemainedTime } from '@components/RemainedTime';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import { listExampleType } from '@data/shareList';
+import { getPriceType } from '@utils/getPriceType';
 import { calcTwoTimeDifference } from '@utils/getTimeDiff';
 
 interface PreviewShareListLeftImagePropsType {
@@ -29,7 +29,6 @@ const PreviewShareListLeftImage = ({ data, count }: PreviewShareListLeftImagePro
         currentRecruitment,
         finalRecruitment,
         createdDateTime,
-        appointmentDateTime,
       },
       dataCount,
     ) => {
@@ -42,7 +41,6 @@ const PreviewShareListLeftImage = ({ data, count }: PreviewShareListLeftImagePro
         >
           <S.ImgWrapper>
             <img src={thumbnailUrl} alt={title} />
-            <RemainedTime targetTime={appointmentDateTime} />
           </S.ImgWrapper>
           <S.ListInfo>
             <S.ListInfoTexts>
@@ -51,8 +49,8 @@ const PreviewShareListLeftImage = ({ data, count }: PreviewShareListLeftImagePro
                 {location} / {calcTwoTimeDifference(createdDateTime)}
               </S.Location>
               <S.Cost>
-                {price}
-                <S.ImageOriginalPrice>원가 {originalPrice}</S.ImageOriginalPrice>
+                <div>{getPriceType({ price, isUnit: true })}</div>
+                <div>{getPriceType({ price: originalPrice, isUnit: true })}</div>
               </S.Cost>
             </S.ListInfoTexts>
             <PersonnelStatus curPersonnel={currentRecruitment} totalPersonnel={finalRecruitment} />

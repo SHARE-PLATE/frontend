@@ -15,6 +15,7 @@ export const PortalBackground = styled.div<PortalStylePropsType>`
   background-color: #00000040;
   width: 100%;
   height: 100%;
+  overflow: hidden;
   animation: fadein 0.3s;
   inset: 0;
 

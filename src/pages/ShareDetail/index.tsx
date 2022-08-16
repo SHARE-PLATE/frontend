@@ -1,32 +1,45 @@
 import { useState } from 'react';
 
-import styled from 'styled-components';
-
-import ShareDetailContents from '@components/ShareDetailContents';
-import ShareDetailImage from '@components/ShareDetailImage';
+import PreviewShareListHalfImage from '@components/PreviewShareListHalfImage';
+import ShareDetailHeader from '@components/ShareDetailHeader';
+import ShareDetailInfo from '@components/ShareDetailInfo';
+import UserInfoWithFollow from '@components/UserInfoWithFollow';
+import { noRelatedShareList, offerShare } from '@constants/mentions';
 import { detailExample } from '@data/detail';
+import { listExample } from '@data/shareList';
+import * as S from '@pages/ShareDetail/ShareDetail.style';
+
+const user = 'JinJeon';
 
 const ShareDetail = () => {
   const [data, setData] = useState(detailExample);
 
   return (
-    <Wrapper>
+    <S.Wrapper>
       {data && (
-        <Container>
-          <ShareDetailContents data={data} />
-          <ShareDetailImage data={data} />
-        </Container>
+        <>
+          <S.UpperWrapper>
+            <ShareDetailHeader {...data} />
+            <ShareDetailInfo {...data} />
+          </S.UpperWrapper>
+          <div>
+            <UserInfoWithFollow />
+            <PreviewShareListHalfImage
+              title={`${user}님의 쉐어상품`}
+              data={[]}
+              emptyMention={noRelatedShareList}
+              showMoreOption={() => console.log('더보기')}
+            />
+            <PreviewShareListHalfImage
+              title={offerShare}
+              data={listExample}
+              emptyMention={noRelatedShareList}
+            />
+          </div>
+        </>
       )}
-    </Wrapper>
+    </S.Wrapper>
   );
 };
-
-const Wrapper = styled.div``;
-
-const Container = styled.section`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-`;
 
 export default ShareDetail;

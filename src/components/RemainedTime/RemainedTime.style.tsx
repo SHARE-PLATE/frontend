@@ -1,33 +1,22 @@
 import styled, { css } from 'styled-components';
 
-interface LocationBottomStyleType {
-  locationBottom: boolean;
+export interface BottomStylesPositionType {
+  left?: string;
+  right?: string;
+  top?: string;
+  bottom?: string;
 }
 
-const bottomStyles = css<LocationBottomStyleType>`
-  ${({ locationBottom }) =>
-    locationBottom &&
-    css`
-      bottom: 0.5rem;
-      left: 0.5rem;
-    `}
-
-  ${({ locationBottom }) =>
-    !locationBottom &&
-    css`
-      top: 0.5rem;
-      left: 0.5rem;
-    `}
-`;
-
-export const RemainedTimeWrapper = styled.div<LocationBottomStyleType>`
-  ${bottomStyles}
-  ${({ theme: { colors, fonts } }) => css`
+export const RemainedTimeWrapper = styled.div<BottomStylesPositionType>`
+  ${({ theme: { colors, fonts }, left, right, top, bottom }) => css`
     ${fonts.xSmallBold}
 
     display: inline-block;
     position: absolute;
-
+    top: ${top};
+    right: ${right};
+    bottom: ${bottom};
+    left: ${left};
     border-radius: 0.4rem;
     background-color: ${colors.orange2};
     padding: 0.2rem 0.4rem;
