@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.section`
+export const Wrapper = styled.div``;
+
+export const ItemWrapper = styled.section`
   display: flex;
   align-items: center;
   justify-content: space-between;

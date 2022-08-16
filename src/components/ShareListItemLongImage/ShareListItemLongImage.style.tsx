@@ -27,12 +27,10 @@ export const InfoWrapper = styled.div`
 export const ItemTitle = styled.div`
   ${({ theme: { fonts } }) => css`
     ${fonts.mediumBold}
-    display: box;
+
     overflow: hidden;
     text-overflow: ellipsis;
-    line-height: 1.2rem;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+    white-space: nowrap;
   `}
 `;
 

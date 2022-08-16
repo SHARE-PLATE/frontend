@@ -5,14 +5,14 @@ import { userMenu, userMenuType } from '@constants/userMenu';
 const UserMenu = () => {
   const mokData: userMenuType[] = userMenu;
   return (
-    <div>
+    <S.Wrapper>
       {mokData.map((data: userMenuType) => (
-        <S.Wrapper key={data.id}>
+        <S.ItemWrapper key={data.id}>
           <S.Title>{data.title}</S.Title>
           <Icon iconName='RightArrow' iconSize='LARGE' />
-        </S.Wrapper>
+        </S.ItemWrapper>
       ))}
-    </div>
+    </S.Wrapper>
   );
 };
 

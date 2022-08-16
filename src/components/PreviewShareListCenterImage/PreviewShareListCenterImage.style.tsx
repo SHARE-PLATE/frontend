@@ -1,6 +1,10 @@
 import styled, { css } from 'styled-components';
 
+import { noScrollBar } from '@styles/mixin';
+
 export const Wrapper = styled.div`
+  ${noScrollBar}
+
   display: flex;
   gap: 0.75rem;
   padding: 1rem 0;

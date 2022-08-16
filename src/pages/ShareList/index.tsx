@@ -1,24 +1,24 @@
 import { useRecoilState, useRecoilValue } from 'recoil';
 
 import CategoryButton from '@components/CategoryButton';
+import MainHeader from '@components/MainHeader';
 import PreviewShareListBigSizeImage from '@components/PreviewShareListBigSizeImage';
 import PreviewShareListLeftImage from '@components/PreviewShareListLeftImage';
-import ShareListHeader from '@components/ShareListHeader';
 import Tabs from '@components/Tabs';
 import { listExample, listExampleType } from '@data/shareList';
 import * as S from '@pages/ShareList/ShareList.style';
 import { currentFilterShareList, currentShareList } from '@store/filterShareList';
-import {
-  getDeadlineSort,
-  getDistanceSort,
-  getPriceSort,
-  getRecencySort,
-} from '@utils/ShareListSort';
+import { getDeadlineSort, getPriceSort, getRecencySort } from '@utils/ShareListSort';
+
+const showedListComponent = {
+  delivery: PreviewShareListBigSizeImage,
+  ingredient: PreviewShareListLeftImage,
+};
 
 const ShareList = () => {
   const curShareFilterList = useRecoilValue(currentFilterShareList);
   const [curShareList, setCurShareList] = useRecoilState(currentShareList);
-
+  const ShowedList = showedListComponent[curShareList];
   const data = listExample;
 
   const getData = (): listExampleType[] => {
@@ -38,21 +38,14 @@ const ShareList = () => {
   return (
     <S.Wrapper>
       <S.ListHeader>
-        <ShareListHeader />
+        <MainHeader />
         <Tabs curShareList={curShareList} setCurShareList={setCurShareList} />
         <CategoryButton />
       </S.ListHeader>
-      {curShareList === 'delivery' ? (
-        <S.ListContents>
-          <PreviewShareListBigSizeImage data={getData()} />
-        </S.ListContents>
-      ) : curShareList === 'ingredient' ? (
-        <S.ListContents>
-          <PreviewShareListLeftImage data={getData()} />
-        </S.ListContents>
-      ) : (
-        ''
-      )}
+      <S.ListContent>
+        <S.EmptyArea />
+        <ShowedList data={getData()} />
+      </S.ListContent>
     </S.Wrapper>
   );
 };

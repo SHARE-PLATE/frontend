@@ -2,9 +2,8 @@ import { ReactNode } from 'react';
 
 import * as S from '@components/common/Button/Button.style';
 
-interface ButtonPropsType {
+interface ButtonPropsType extends S.SizeStylesType {
   children: ReactNode;
-  size: string;
   active?: boolean;
   onClick: () => void;
 }

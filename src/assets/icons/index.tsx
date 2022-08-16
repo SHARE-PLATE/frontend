@@ -1,5 +1,6 @@
 import ArrowUp from '@assets/icons/arrowUp.svg';
 import Back from '@assets/icons/back.svg';
+import ChevronDown from '@assets/icons/chevronDown.svg';
 import Clock from '@assets/icons/clock.svg';
 import DeleteCircle from '@assets/icons/deleteCircle.svg';
 import Form from '@assets/icons/form.svg';
@@ -22,6 +23,7 @@ export const Icons = {
   ArrowUp,
   Logo,
   Upload,
+  ChevronDown,
   NoticeOn,
   User,
   Form,

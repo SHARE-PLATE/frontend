@@ -34,6 +34,7 @@ export const defaultPageStyle = css`
 
   > :last-child {
     flex-grow: 1;
+    padding-bottom: 4.4rem;
   }
 `;
 
@@ -42,4 +43,11 @@ export const subTitle = css`
     padding-top: 2rem;
     ${fonts.xLargeBold}
   `}
+`;
+
+export const noScrollBar = css`
+  scrollbar-width: none;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
