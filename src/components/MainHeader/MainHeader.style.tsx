@@ -19,12 +19,3 @@ export const Wrapper = styled.div`
 `;
 
 export const HeaderAddressWrapper = styled.div``;
-
-export const IconsWrapper = styled.div<IconsWrappersPropsType>`
-  ${({ position }) => css`
-    display: flex;
-    align-items: center;
-    justify-content: ${position};
-    width: 3.625rem;
-  `}
-`;
