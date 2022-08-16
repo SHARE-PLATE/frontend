@@ -13,8 +13,8 @@ import { getSortData } from '@utils/ShareListSort';
 const ShareList = () => {
   const curShareFilterList = useRecoilValue(currentFilterShareList);
   const [activeShareListValue, setActiveShareListValue] = useRecoilState(activeShareList);
-
   const data = useRecoilValueLoadable(getShareListsData);
+
   switch (data.state) {
     case 'hasValue':
       return (
@@ -27,17 +27,15 @@ const ShareList = () => {
             />
             <CategoryButton />
           </S.ListHeader>
-          {activeShareListValue.delivery ? (
-            <S.ListContent>
+          <S.ListContent>
+            {activeShareListValue.delivery ? (
               <PreviewShareListBigSizeImage data={getSortData(curShareFilterList, data.contents)} />
-            </S.ListContent>
-          ) : activeShareListValue.ingredient ? (
-            <S.ListContent>
+            ) : activeShareListValue.ingredient ? (
               <PreviewShareListLeftImage data={getSortData(curShareFilterList, data.contents)} />
-            </S.ListContent>
-          ) : (
-            ''
-          )}
+            ) : (
+              ''
+            )}
+          </S.ListContent>
         </S.Wrapper>
       );
     case 'loading':
