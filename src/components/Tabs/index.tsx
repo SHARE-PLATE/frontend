@@ -1,16 +1,14 @@
 import { SetterOrUpdater, useRecoilState } from 'recoil';
 
 import * as S from '@components/Tabs/Tabs.styled';
-import { activeShareList, CurrentShareListType } from '@store/filterShareList';
+import { activeShareList, activeShareListType } from '@store/filterShareList';
 
 interface TabsPropsType {
-  curShareList: CurrentShareListType;
-  setCurShareList: SetterOrUpdater<CurrentShareListType>;
+  activeShareListValue: activeShareListType;
+  setActiveShareListValue: SetterOrUpdater<activeShareListType>;
 }
 
-const Tabs = ({ curShareList, setCurShareList }: TabsPropsType) => {
-  const [activeShareListValue, setActiveShareListValue] = useRecoilState(activeShareList);
-
+const Tabs = ({ activeShareListValue, setActiveShareListValue }: TabsPropsType) => {
   const shareListTabs = [
     {
       title: '배달쉐어',
@@ -24,10 +22,12 @@ const Tabs = ({ curShareList, setCurShareList }: TabsPropsType) => {
     },
   ];
 
-  const handleClickTab = (value: CurrentShareListType) => {
-    if (curShareList === value) return;
-    if (curShareList === 'delivery') setCurShareList('ingredient');
-    if (curShareList === 'ingredient') setCurShareList('delivery');
+  const changeTab = (value: string) => {
+    if (
+      (value === 'delivery' && activeShareListValue.delivery) ||
+      (value === 'ingredient' && activeShareListValue.ingredient)
+    )
+      return;
 
     setActiveShareListValue({
       delivery: !activeShareListValue.delivery,
@@ -36,7 +36,7 @@ const Tabs = ({ curShareList, setCurShareList }: TabsPropsType) => {
   };
 
   const tabs = shareListTabs.map(({ title, value, active }) => (
-    <S.TabWrapper key={value} onClick={() => handleClickTab(value)} active={active} value={value}>
+    <S.TabWrapper key={value} onClick={() => changeTab(value)} active={active} value={value}>
       {title}
     </S.TabWrapper>
   ));

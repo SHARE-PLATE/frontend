@@ -16,7 +16,8 @@ const useGeolocation = () => {
     loaded: false,
     coordinates: { lat: 0, lng: 0 },
   });
-  const setCurrentLocation = useSetRecoilState(currentLatitudeLongitude);
+  // 서버 요청 계속 보내짐
+  // const setCurrentLocation = useSetRecoilState(currentLatitudeLongitude);
 
   // 성공에 대한 로직
   const onSuccess = (location: { coords: { latitude: number; longitude: number } }) => {
@@ -27,10 +28,10 @@ const useGeolocation = () => {
         lng: location.coords.longitude,
       },
     });
-    setCurrentLocation({
-      lat: location.coords.latitude,
-      lng: location.coords.longitude,
-    });
+    // setCurrentLocation({
+    //   lat: location.coords.latitude,
+    //   lng: location.coords.longitude,
+    // });
   };
 
   // 에러에 대한 로직
@@ -39,10 +40,10 @@ const useGeolocation = () => {
       loaded: false,
       error,
     });
-    setCurrentLocation({
-      lat: defaultLat,
-      lng: defaultLag,
-    });
+    // setCurrentLocation({
+    //   lat: defaultLat,
+    //   lng: defaultLag,
+    // });
   };
 
   useEffect(() => {

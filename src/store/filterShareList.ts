@@ -7,12 +7,12 @@ export const currentFilterShareList = atom({
   default: 'price',
 });
 
-export const currentShareList = atom<CurrentShareListType>({
-  key: 'currentShareList',
-  default: 'delivery',
-});
+export interface activeShareListType {
+  delivery: boolean;
+  ingredient: boolean;
+}
 
-export const activeShareList = atom({
+export const activeShareList = atom<activeShareListType>({
   key: 'activeShareList',
   default: { delivery: true, ingredient: false },
 });
