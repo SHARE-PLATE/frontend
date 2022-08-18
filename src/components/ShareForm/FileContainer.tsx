@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 
-import FileRegistrationFailedModal from '@components/FileRegistrationFailedModal.tsx';
+import FileRegistrationFailedModal from '@components/FileRegistrationFailedModal';
 import * as S from '@components/ShareForm/ShareForm.style';
 import Icon from '@components/common/Icon';
 import useModal from '@hooks/useModal';
