@@ -6,7 +6,7 @@ import { useSetRecoilState } from 'recoil';
 
 import { registrationShareListData } from '@api/shareList';
 import { FileContainer, TextContainer, ContentDescription } from '@components/ShareForm';
-import ShareFormHeader from '@components/ShareFormHeader.tsx';
+import ShareFormHeader from '@components/ShareFormHeader';
 import useInput from '@hooks/useInput';
 import * as S from '@pages/ShareRegistration/ShareRegistration.style';
 import { shareListTrigger } from '@store/shareList';
