@@ -1,9 +1,15 @@
 import * as S from '@components/common/InputForm/InputForm.style';
 
-const InputForm = ({ ...props }) => {
+type InputFormPropsType = {
+  inputValue: string;
+  onChange?: ({ target }: { target: HTMLInputElement }) => void;
+  [x: string]: any;
+};
+
+const InputForm: React.FC<InputFormPropsType> = ({ inputValue, onChange, ...props }) => {
   return (
     <S.Wrapper>
-      <S.InputBox {...props} />
+      <S.InputBox value={inputValue} onChange={onChange} {...props} />
     </S.Wrapper>
   );
 };
