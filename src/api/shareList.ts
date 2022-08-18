@@ -24,3 +24,23 @@ export const getShareListData = async (
     throw err;
   }
 };
+
+export const registrationShareListData = async (formData: any) => {
+  const accessToken = localStorage.getItem('accessToken')!;
+  try {
+    const response = await axios.post(
+      `${API.SHARE_REGISTRATION}`,
+      { formData },
+      {
+        headers: {
+          Authorization: `${JSON.parse(accessToken)}`,
+          'Content-Type': 'multipart/form-data',
+        },
+      },
+    );
+    if (response.status === 200) return true;
+    else throw Error('잘못된 요청입니다.');
+  } catch (error) {
+    throw error;
+  }
+};
