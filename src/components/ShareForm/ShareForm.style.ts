@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { flexCenter } from '@styles/mixin';
+
 export const FileContainer = styled.div`
   display: flex;
   margin-top: 15px;
@@ -34,6 +36,16 @@ export const LongTextBlock = styled.div`
   display: flex;
   gap: 12px;
   flex-direction: column;
+`;
+
+export const DateInputForm = styled.input`
+  ${flexCenter}
+  height: 40px;
+  line-height: 20px;
+  padding: 11px 16px;
+
+  letter-spacing: 1px;
+  width: 100%;
 `;
 
 export const DescriptionWrapper = styled.div`
