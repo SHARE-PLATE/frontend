@@ -1,14 +1,23 @@
 import * as S from '@components/ShareForm/ShareForm.style';
-import { UseInputReturnType } from '@hooks/useInput';
 
 interface ContentDescriptionPropsType {
-  descriptionInput: UseInputReturnType;
+  descriptionValue: string;
+  setDescriptionValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const ContentDescription = ({ descriptionInput }: ContentDescriptionPropsType) => {
+const ContentDescription = ({
+  descriptionValue,
+  setDescriptionValue,
+}: ContentDescriptionPropsType) => {
+  const handleMessageChange = ({ target }: any) => setDescriptionValue(target.value);
+
   return (
     <S.DescriptionWrapper>
-      <S.ContentDescriptionInput placeholder='내용을 입력해주세요' />
+      <S.ContentDescriptionInput
+        placeholder='내용을 입력해주세요'
+        value={descriptionValue}
+        onChange={handleMessageChange}
+      />
     </S.DescriptionWrapper>
   );
 };
