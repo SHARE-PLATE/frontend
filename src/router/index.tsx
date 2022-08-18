@@ -15,13 +15,13 @@ export const routes = [
   { path: P.loginCallback, element: <LoginCallback /> },
   { path: P.shareList, element: <ShareList /> },
   { path: P.shareDetail + '/:id', element: <ShareDetail /> },
-  { path: P.shareForm, element: <ShareRegistration /> }, // 삭제예정
+  { path: P.shareForm + '/:type', element: <ShareRegistration /> }, // 삭제예정
   { path: P.notice, element: <Notice /> },
   { path: P.error, element: <Error /> },
   {
     element: <ProtectedRoute />,
     children: [
-      { path: P.shareForm, element: <ShareRegistration /> },
+      { path: P.shareForm + '/:type', element: <ShareRegistration /> },
       { path: P.profile, element: <Profile /> },
     ],
   },
