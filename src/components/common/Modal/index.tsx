@@ -2,7 +2,7 @@ import * as S from '@components/common/Modal/Modal.style';
 
 export interface ModalPropsTypes {
   position: string;
-  closeAddressModal: () => void;
+  closeModal?: () => void;
   children?: JSX.Element;
 }
 
@@ -11,10 +11,10 @@ export const MODAL_POSITION = {
   CENTER: 'Center',
 };
 
-const Modal = ({ position, closeAddressModal, children }: ModalPropsTypes) => {
+const Modal = ({ position, closeModal, children }: ModalPropsTypes) => {
   return (
     <S.ModalContainer position={position}>
-      <S.CloseButton onClick={closeAddressModal}>닫기</S.CloseButton>
+      {closeModal && <S.CloseButton onClick={closeModal}>닫기</S.CloseButton>}
       {children}
     </S.ModalContainer>
   );

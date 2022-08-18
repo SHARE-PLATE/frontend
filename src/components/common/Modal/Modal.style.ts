@@ -20,7 +20,7 @@ const positionStyles = css<{ position: string }>`
 export const ModalContainer = styled.div<{ position: string }>`
   position: absolute;
   z-index: 5;
-  margin-top: 40px;
+  margin-top: 60px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(51, 51, 51, 0.1), 0 0 4px rgba(51, 51, 51, 0.05);
   background: #e0e0e0;

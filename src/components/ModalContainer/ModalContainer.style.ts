@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   padding: 0 15px;
   width: 350px;
-  height: 540px;
+  height: 515px;
 `;
 
 export const CurLocation = styled.div`

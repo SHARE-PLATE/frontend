@@ -33,7 +33,7 @@ const AddressModal = ({ modalRef, closeAddressModal }: AddressModalPropsTypes) =
   };
 
   return (
-    <Modal position={MODAL_POSITION.CENTER} closeAddressModal={closeAddressModal}>
+    <Modal position={MODAL_POSITION.CENTER} closeModal={closeAddressModal}>
       <S.Wrapper ref={modalRef}>
         <S.CurLocation>현재위치 : {curLocation ? curLocation : '강남역'}</S.CurLocation>
         <DaumPostcode style={S.PostCodeStyle} onComplete={handlePostCode} />
