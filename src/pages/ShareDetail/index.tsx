@@ -18,7 +18,7 @@ const user = 'JinJeon';
 const ShareDetail = () => {
   const { id } = useParams();
   const [data, setData] = useState(detailExample);
-  console.log(data);
+
   useEffect(() => {
     (async () => {
       const { data } = await axios.get(`${API.SHARE_DETAIL(id)}`);

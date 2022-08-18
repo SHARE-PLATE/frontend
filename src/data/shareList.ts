@@ -1,20 +1,6 @@
-export interface listExampleType {
-  id: number;
-  thumbnailUrl: string;
-  title: string;
-  location: string;
-  latitude?: number;
-  longitude?: number;
-  price: number;
-  originalPrice: number;
-  finalRecruitment: number;
-  currentRecruitment: number;
-  createdDateTime: string;
-  recruitmentLimit: boolean;
-  appointmentDateTime: string;
-}
+import { thumbnailUrlListType } from '@type/shareList';
 
-export const listExample: listExampleType[] = [
+export const listExample: thumbnailUrlListType[] = [
   {
     id: 1,
     thumbnailUrl: 'https://avatars.githubusercontent.com/u/68788849?v=4',
@@ -24,7 +10,6 @@ export const listExample: listExampleType[] = [
     originalPrice: 30000,
     currentRecruitment: 1,
     finalRecruitment: 3,
-    recruitmentLimit: true,
     createdDateTime: '2022-08-03 13:57',
     appointmentDateTime: '2022-08-15 15:00',
   },
@@ -37,7 +22,6 @@ export const listExample: listExampleType[] = [
     originalPrice: 46000,
     currentRecruitment: 1,
     finalRecruitment: 4,
-    recruitmentLimit: false,
     createdDateTime: '2022-08-03 15:57',
     appointmentDateTime: '2022-08-15 15:00',
   },
@@ -50,7 +34,6 @@ export const listExample: listExampleType[] = [
     originalPrice: 10000,
     currentRecruitment: 1,
     finalRecruitment: 2,
-    recruitmentLimit: true,
     createdDateTime: '2022-08-03 14:57',
     appointmentDateTime: '2022-08-15 15:00',
   },
@@ -63,7 +46,6 @@ export const listExample: listExampleType[] = [
     originalPrice: 30000,
     currentRecruitment: 2,
     finalRecruitment: 5,
-    recruitmentLimit: true,
     createdDateTime: '2022-08-09 17:57',
     appointmentDateTime: '2022-08-10 11:30',
   },
@@ -76,7 +58,6 @@ export const listExample: listExampleType[] = [
     originalPrice: 9900,
     currentRecruitment: 1,
     finalRecruitment: 3,
-    recruitmentLimit: false,
     createdDateTime: '2022-08-03 19:57',
     appointmentDateTime: '2022-08-10 16:00',
   },
