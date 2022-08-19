@@ -2,8 +2,8 @@ import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
   ${({ theme: { defaultHeaderHeight } }) => css`
-    position: relative;
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: right;
     height: ${defaultHeaderHeight};
@@ -12,9 +12,10 @@ export const Wrapper = styled.div`
 
 export const Title = styled.div`
   ${({ theme: { fonts } }) => css`
-    ${fonts.xLarge};
+    ${fonts.xLarge}
+
     position: absolute;
-    text-align: center;
     width: 100%;
+    text-align: center;
   `}
 `;

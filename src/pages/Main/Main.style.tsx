@@ -12,7 +12,7 @@ export const MainHeaderWrapper = styled.div`
 
 export const HeaderBarWrapper = styled.div`
   ${({ theme }) => css`
-    ${theme.defaultWidth};
+    ${theme.defaultWidth}
     position: absolute;
     z-index: 2;
     background-color: #ffffff3c;

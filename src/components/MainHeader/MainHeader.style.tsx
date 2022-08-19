@@ -22,9 +22,9 @@ export const HeaderAddressWrapper = styled.div``;
 
 export const IconsWrapper = styled.div<IconsWrappersPropsType>`
   ${({ position }) => css`
-    width: 3.625rem;
     display: flex;
     align-items: center;
     justify-content: ${position};
+    width: 3.625rem;
   `}
 `;

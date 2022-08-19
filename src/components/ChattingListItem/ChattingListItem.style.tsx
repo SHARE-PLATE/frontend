@@ -2,9 +2,9 @@ import styled, { css } from 'styled-components';
 
 export const OuterWrapper = styled.div`
   position: relative;
+  width: 100%;
   height: 5.5rem;
   overflow: hidden;
-  width: 100%;
 `;
 
 export type MovingType = 'left' | 'right' | null;
@@ -21,21 +21,21 @@ export const InnerWrapper = styled.div<{ moving: MovingType }>`
     `}
   `}
 
+  display: flex;
   position: absolute;
   left: 0;
-  height: 100%;
-  display: flex;
   gap: 1rem;
   width: 100%;
+  height: 100%;
 `;
 
 export const ShowedWrapper = styled.div`
   display: flex;
-  width: 100%;
   flex-shrink: 0;
   gap: 0.75rem;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 `;
 
 export const InfoWrapper = styled.div`
@@ -47,10 +47,10 @@ export const InfoWrapper = styled.div`
 
 export const ImgsWrapper = styled.div<{ count?: number }>`
   ${({ theme: { colors }, count = 1 }) => css`
-    height: 3rem;
+    position: relative;
     width: 3rem;
     min-width: 3rem;
-    position: relative;
+    height: 3rem;
 
     > div {
       position: absolute;
@@ -60,8 +60,8 @@ export const ImgsWrapper = styled.div<{ count?: number }>`
 
       ${count === 1 &&
       css`
-        left: 0;
         top: 0;
+        left: 0;
         width: 3rem;
         height: 3rem;
       `}
@@ -71,8 +71,8 @@ export const ImgsWrapper = styled.div<{ count?: number }>`
         width: 2.25rem;
         height: 2.25rem;
         :nth-child(1) {
-          left: 0;
           top: 0;
+          left: 0;
         }
         :nth-child(2) {
           right: 0;
@@ -85,16 +85,16 @@ export const ImgsWrapper = styled.div<{ count?: number }>`
         width: 1.88rem;
         height: 1.88rem;
         :nth-child(1) {
-          left: 0;
           bottom: 0;
+          left: 0;
         }
         :nth-child(2) {
           right: 0;
           bottom: 0;
         }
         :nth-child(3) {
-          left: calc((3rem - 1.88rem) / 2);
           top: 0;
+          left: calc((3rem - 1.88rem) / 2);
         }
       `}
 
@@ -103,16 +103,16 @@ export const ImgsWrapper = styled.div<{ count?: number }>`
         width: 1.47rem;
         height: 1.47rem;
         :nth-child(1) {
-          left: 0;
           top: 0;
+          left: 0;
         }
         :nth-child(2) {
-          right: 0;
           top: 0;
+          right: 0;
         }
         :nth-child(3) {
-          left: 0;
           bottom: 0;
+          left: 0;
         }
         :nth-child(4) {
           right: 0;
@@ -134,9 +134,9 @@ export const ImgWrapper = styled.div`
 export const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height: 2.2rem;
   justify-content: space-between;
   width: 100%;
+  height: 2.2rem;
 `;
 
 export const TextUpper = styled.div`
@@ -145,15 +145,15 @@ export const TextUpper = styled.div`
 `;
 
 export const WritersNames = styled.div`
+  max-width: 10rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 10rem;
 `;
 
 export const WritersCount = styled.div`
   ${({ theme: { colors, fonts } }) => css`
-    ${fonts.small};
+    ${fonts.small}
     padding-left: 0.2rem;
     color: ${colors.grey4};
   `}
@@ -161,39 +161,41 @@ export const WritersCount = styled.div`
 
 export const Time = styled.div`
   ${({ theme: { colors, fonts } }) => css`
-    ${fonts.xSmall};
+    ${fonts.xSmall}
+
     padding-left: 0.3rem;
-    color: ${colors.grey4};
     white-space: nowrap;
+    color: ${colors.grey4};
   `}
 `;
 
 export const Content = styled.div`
   ${({ theme: { fonts } }) => css`
-    ${fonts.smallRegular};
+    ${fonts.smallRegular}
+
+    width: 70%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    width: 70%;
   `}
 `;
 
 export const ShareImgWrapper = styled.div`
   ${({ theme: { colors } }) => css`
-    background-color: ${colors.grey2};
     border-radius: 0.25rem;
-    height: 3rem;
+    background-color: ${colors.grey2};
     width: 3rem;
     min-width: 3rem;
+    height: 3rem;
   `}
 `;
 
 export const ExitBtn = styled.button`
   ${({ theme: { colors } }) => css`
-    color: ${colors.white1};
     background-color: ${colors.orange2};
     width: 5rem;
     min-width: 5rem;
     height: 100%;
+    color: ${colors.white1};
   `}
 `;
