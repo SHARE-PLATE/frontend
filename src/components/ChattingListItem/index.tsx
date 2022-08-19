@@ -2,6 +2,7 @@ import { MouseEvent, TouchEvent, useRef, useState } from 'react';
 
 import moment from 'moment';
 import 'moment/locale/ko';
+import { useNavigate } from 'react-router-dom';
 import { v4 as createRandomKey } from 'uuid';
 
 import * as S from '@components/ChattingListItem/ChattingListItem.style';
@@ -16,9 +17,11 @@ type ChattingListItemPropsType = {
   writers: writersType;
   content: string;
   time: string;
+  id: number;
 };
 
-const ChattingListItem = ({ writers, content, time }: ChattingListItemPropsType) => {
+const ChattingListItem = ({ writers, content, time, id }: ChattingListItemPropsType) => {
+  const navigate = useNavigate();
   const [startPoint, setStartPoint] = useState(0);
   const [moving, setMoving] = useState<S.MovingType>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -86,6 +89,7 @@ const ChattingListItem = ({ writers, content, time }: ChattingListItemPropsType)
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseLeaveOrUp}
         onMouseLeave={handleMouseLeaveOrUp}
+        onClick={() => navigate(`/chatting-detail/${id}`)}
       >
         <S.ShowedWrapper>
           <S.InfoWrapper>
