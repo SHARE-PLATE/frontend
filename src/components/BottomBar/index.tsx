@@ -4,8 +4,14 @@ import NavigationBar from '@components/NavigationBar';
 import useCheckPathname from '@hooks/useCheckPathname';
 
 const BottomBar = () => {
+  let bottomBarContent;
+
   const isShareDetail = useCheckPathname({ targetPaths: ['shareDetail'] });
-  const bottomBarContent = isShareDetail ? <InteractionBar /> : <NavigationBar />;
+  const isShareForm = useCheckPathname({ targetPaths: ['shareForm'] });
+
+  if (isShareDetail) bottomBarContent = <InteractionBar />;
+  if (isShareForm) bottomBarContent = null;
+  if (bottomBarContent === undefined) bottomBarContent = <NavigationBar />;
 
   return (
     <>
