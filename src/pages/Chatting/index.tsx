@@ -1,9 +1,7 @@
-import { useState } from 'react';
-
 import ChattingHeader from '@components/ChattingHeader';
 import ChattingListItem from '@components/ChattingListItem';
-import { testChattingsInfo } from '@data/testChattingsInfo';
 import * as S from '@pages/Chatting/Chatting.style';
+import { testChattingsInfo } from '@pages/Chatting/chatting';
 
 const Chatting = () => {
   const ChattingList = testChattingsInfo.map((info) => (
