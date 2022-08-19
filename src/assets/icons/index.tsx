@@ -4,6 +4,7 @@ import Camera from '@assets/icons/camera.svg';
 import ChevronDown from '@assets/icons/chevronDown.svg';
 import Clock from '@assets/icons/clock.svg';
 import DeleteCircle from '@assets/icons/deleteCircle.svg';
+import DotsVertical from '@assets/icons/dotsVertical.svg';
 import Form from '@assets/icons/form.svg';
 import Heart from '@assets/icons/heart.svg';
 import HeartEmpty from '@assets/icons/heartEmpty.svg';
@@ -22,6 +23,7 @@ import Upload from '@assets/icons/upload.svg';
 import User from '@assets/icons/user.svg';
 
 export const Icons = {
+  DotsVertical,
   ArrowUp,
   Map,
   Logo,
