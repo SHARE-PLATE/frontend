@@ -8,6 +8,7 @@ export const pathName = {
   shareForm: '/share-registration',
   profile: '/profile',
   chatting: '/chatting',
+  chattingDetail: '/chatting-detail',
   other: '/*',
 };
 
