@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 import * as S from '@components/PreviewShareListLeftImage/PreviewShareListLeftImage.style';
 import PersonnelStatus from '@components/common/PersonnelStatus';
+import Price from '@components/common/Price';
 import { listExampleType } from '@data/shareList';
-import { getPriceType } from '@utils/getPriceType';
 import { calcTwoTimeDifference } from '@utils/getTimeDiff';
 
 interface PreviewShareListLeftImagePropsType {
@@ -48,10 +48,7 @@ const PreviewShareListLeftImage = ({ data, count }: PreviewShareListLeftImagePro
               <S.Location>
                 {location} / {calcTwoTimeDifference(createdDateTime)}
               </S.Location>
-              <S.Cost>
-                <div>{getPriceType({ price, isUnit: true })}</div>
-                <div>{getPriceType({ price: originalPrice, isUnit: true })}</div>
-              </S.Cost>
+              <Price price={price} originalPrice={originalPrice} />
             </S.ListInfoTexts>
             <PersonnelStatus curPersonnel={currentRecruitment} totalPersonnel={finalRecruitment} />
           </S.ListInfo>
