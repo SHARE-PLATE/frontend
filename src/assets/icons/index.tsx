@@ -14,6 +14,7 @@ import Map from '@assets/icons/map.svg';
 import NoticeOff from '@assets/icons/noticeOff.svg';
 import NoticeOn from '@assets/icons/noticeOn.svg';
 import Option from '@assets/icons/option.svg';
+import PaperAirplane from '@assets/icons/paperAirplane.svg';
 import Plus from '@assets/icons/plus.svg';
 import PurchaseHistory from '@assets/icons/purchaseHistory.svg';
 import RightArrow from '@assets/icons/rightArrow.svg';
@@ -24,6 +25,7 @@ import User from '@assets/icons/user.svg';
 
 export const Icons = {
   DotsVertical,
+  PaperAirplane,
   ArrowUp,
   Map,
   Logo,
