@@ -14,6 +14,12 @@ import { getChattingDetailsData } from '@store/chattingDetail';
 import { testChattingDetailData } from './chattingDetailData';
 
 const ChattingDetail = () => {
+  const Loading = (
+    <S.LoadingWrapper>
+      <LoadingAnimation color='grey2' size={20} border={5} />
+    </S.LoadingWrapper>
+  );
+
   const { id } = useParams();
   const {
     state,
