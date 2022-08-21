@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
     position: relative;
     align-items: center;
     justify-content: right;
-    height: ${defaultHeaderHeight};
+    height: ${defaultHeaderHeight}rem;
   `}
 `;
 
