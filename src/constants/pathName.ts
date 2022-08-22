@@ -5,7 +5,7 @@ export const pathName = {
   shareDetail: 'share-detail',
   notice: 'notice',
   error: 'error',
-  shareForm: 'share-form',
+  shareForm: 'share-registration',
   profile: 'profile',
   other: '*',
 };

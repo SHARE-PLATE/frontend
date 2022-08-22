@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 type WrapperPropsType = { isShareForm: boolean };
 
-export const Wrapper = styled.button<WrapperPropsType>`
+export const Wrapper = styled.div<WrapperPropsType>`
   ${({ theme: { colors }, isShareForm }) => css`
     ${isShareForm &&
     css`
@@ -23,5 +23,17 @@ export const Wrapper = styled.button<WrapperPropsType>`
     background-color: ${colors.orange2};
     height: 3.5rem;
     aspect-ratio: 1 / 1;
+    position: relative;
   `}
+`;
+
+export const IngredientButton = styled.button`
+  position: absolute;
+  top: -40px;
+  left: 0px;
+`;
+export const DeliveryButton = styled.button`
+  position: absolute;
+  top: -20px;
+  left: 0px;
 `;
