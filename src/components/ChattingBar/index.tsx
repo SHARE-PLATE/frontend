@@ -17,6 +17,7 @@ const ChattingBar = () => {
 
     setChatValue('');
     sendChat({ writer: 'JinJeon', content: chatValue }); // 보낼 메시지 내용 입력
+    window.scrollTo(0, document.body.offsetHeight);
   };
 
   return (
@@ -30,7 +31,9 @@ const ChattingBar = () => {
         onChange={handleChangechatValue}
         placeholder='메시지를 입력하세요.'
       />
-      <Icon iconName='PaperAirplane' iconSize='LARGE' />
+      <button>
+        <Icon iconName='PaperAirplane' iconSize='LARGE' />
+      </button>
     </S.Wrapper>
   );
 };
