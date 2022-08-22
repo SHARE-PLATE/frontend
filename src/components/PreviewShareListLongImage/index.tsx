@@ -1,42 +1,39 @@
 import { ReactElement, useEffect, useState } from 'react';
 
+import { useRecoilValue } from 'recoil';
+
+import { getShareListRecommendedData } from '@api/shareRecommended';
 import * as S from '@components/PreviewShareListLongImage/PreviewShareListLongImage.style';
 import { ShareListItemLongImage } from '@components/ShareListItemLongImage';
 import Title from '@components/common/Title';
 import { littleDeadlineMention, noLittleTimeListMention } from '@constants/mentions';
-import { listExample } from '@data/shareList';
-import { getDeadlineSort } from '@utils/ShareListSort';
-import { getTimeDiffInHour } from '@utils/getTimeDiff';
+import { currentLatitudeLongitude } from '@store/location';
+import { thumbnailUrlListType } from '@type/shareList';
 
 const PreviewShareListLongImage = () => {
-  const [showedList, setShowedList] = useState<ReactElement>();
-
-  const setNewListWithData = () => {
-    const itemData = getDeadlineSort(listExample);
-    const itemListArray = itemData.map((item) => {
-      const timeDiff = getTimeDiffInHour(item.appointmentDateTime);
-
-      if (timeDiff === 'over' || timeDiff === 'done') return null;
-      return <ShareListItemLongImage key={item.id} itemInfo={item} />;
-    });
-
-    const isEmpty = !itemListArray.filter((item) => item).length;
-    const itemList = isEmpty ? (
-      <S.noListWrapper>{noLittleTimeListMention}</S.noListWrapper>
-    ) : (
-      <S.ListWrapper>{itemListArray}</S.ListWrapper>
-    );
-    setShowedList(itemList);
-  };
+  const [recommendedData, setRecommendedData] = useState<thumbnailUrlListType[]>();
+  const { lat, lng } = useRecoilValue(currentLatitudeLongitude);
 
   useEffect(() => {
-    setNewListWithData();
-  }, []);
+    (async () => {
+      const recommendedFetchData = await getShareListRecommendedData(lat, lng);
+
+      setRecommendedData(recommendedFetchData);
+    })();
+  }, [lat, lng]);
 
   return (
     <S.Wrapper>
       <Title contentTitle={littleDeadlineMention} size='LARGE' />
-      {showedList}
+      {recommendedData ? (
+        <S.ListWrapper>
+          {recommendedData.map((item) => (
+            <ShareListItemLongImage key={item.id} itemInfo={item} />
+          ))}
+        </S.ListWrapper>
+      ) : (
+        <S.noListWrapper>{noLittleTimeListMention}</S.noListWrapper>
+      )}
     </S.Wrapper>
   );
 };

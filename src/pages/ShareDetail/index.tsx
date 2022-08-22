@@ -19,7 +19,7 @@ import { imageUrlsArrayListType, thumbnailUrlListType } from '@type/shareList';
 const ShareDetail = () => {
   const { id } = useParams();
   const [detailData, setDetailData] = useState<imageUrlsArrayListType>();
-  const [recommendedData, setRecommendedData] = useState<thumbnailUrlListType>();
+  const [recommendedData, setRecommendedData] = useState<thumbnailUrlListType[]>();
   const { lat, lng } = useRecoilValue(currentLatitudeLongitude);
 
   useEffect(() => {
@@ -32,12 +32,12 @@ const ShareDetail = () => {
 
   useEffect(() => {
     (async () => {
-      const { data } = await getShareListRecommendedData(lat, lng);
-      setRecommendedData(data);
+      const recommendedFetchData = await getShareListRecommendedData(lat, lng);
+
+      setRecommendedData(recommendedFetchData);
     })();
   }, [lat, lng]);
 
-  console.log(recommendedData);
   return (
     <S.Wrapper>
       {detailData?.id && (
@@ -54,12 +54,14 @@ const ShareDetail = () => {
               emptyMention={noRelatedShareList}
               showMoreOption={() => console.log('더보기')}
             />
-            <PreviewShareListHalfImage
-              title={offerShare}
-              data={listExample}
-              emptyMention={noRelatedShareList}
-              showMoreOption={() => console.log('더보기')}
-            />
+            {recommendedData && (
+              <PreviewShareListHalfImage
+                title={offerShare}
+                data={recommendedData}
+                emptyMention={noRelatedShareList}
+                showMoreOption={() => console.log('더보기')}
+              />
+            )}
           </div>
         </>
       )}
