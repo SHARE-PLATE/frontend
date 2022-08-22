@@ -2,13 +2,21 @@ import styled, { css } from 'styled-components';
 
 import { ColorsType } from '@styles/theme';
 
-type LoadingAnimationPropsType = {
+export type AnimationPropsType = {
   color: ColorsType;
   size: number;
   border: number;
 };
 
-const LoadingAnimation = styled.div<LoadingAnimationPropsType>`
+export const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Animation = styled.div<AnimationPropsType>`
   ${({ theme: { colors }, color, size, border }) => css`
     margin: 0 auto;
     border: solid ${border}px;
@@ -28,5 +36,3 @@ const LoadingAnimation = styled.div<LoadingAnimationPropsType>`
     }
   `}
 `;
-
-export default LoadingAnimation;
