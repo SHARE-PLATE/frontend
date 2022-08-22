@@ -59,6 +59,11 @@ export const CreateTime = styled.div`
 `;
 
 export const ImgWrapper = styled.div`
+  display: flex;
+  gap: 12px;
+`;
+
+export const ImgContainer = styled.div`
   border-radius: 10rem;
   width: 2.9rem;
   height: 2.9rem;
