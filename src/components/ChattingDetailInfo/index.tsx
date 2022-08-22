@@ -1,7 +1,6 @@
 import * as S from '@components/ChattingDetailInfo/ChattingDetailInfo.style';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import Price from '@components/common/Price';
-import { TestChattingDetailShareType } from '@pages/ChattingDetail/chattingDetailData';
 
 type ChattingDetailInfoPropsType = {
   thumbnailImageUrl: string;
