@@ -1,5 +1,7 @@
 import { ReactElement, useEffect, useState } from 'react';
 
+import { v4 as createRandomKey } from 'uuid';
+
 import * as S from '@components/PreviewShareListHalfImage/PreviewShareListHalfImage.style';
 import ShareListItemHalfImage from '@components/ShareListItemHalfImage';
 import Title from '@components/common/Title';
@@ -25,7 +27,7 @@ const PreviewShareListHalfImage = ({
       <ShareListItemHalfImage key={item.id} itemInfo={item} />
     ));
     if (itemListArray.length % 2)
-      itemListArray.push(<ShareListItemHalfImage key={Math.random()} />);
+      itemListArray.push(<ShareListItemHalfImage key={createRandomKey()} />);
 
     const itemList = !itemListArray.length ? (
       <S.noListWrapper>{emptyMention}</S.noListWrapper>

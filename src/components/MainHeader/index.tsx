@@ -5,9 +5,14 @@ import Icon from '@components/common/Icon';
 const MainHeader = () => {
   return (
     <S.Wrapper>
-      <Icon iconName='Logo' iconSize='LARGE' />
+      <S.IconsWrapper position='left'>
+        <Icon iconName='Logo' iconSize='LARGE' />
+      </S.IconsWrapper>
       <Address />
-      <Icon iconName='NoticeOn' iconSize='LARGE' />
+      <S.IconsWrapper position='space-between'>
+        <Icon iconName='NoticeOn' iconSize='LARGE' />
+        <Icon iconName='Map' iconSize='LARGE' />
+      </S.IconsWrapper>
     </S.Wrapper>
   );
 };

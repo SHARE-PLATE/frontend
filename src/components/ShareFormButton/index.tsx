@@ -1,22 +1,19 @@
 import { useState } from 'react';
 
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import * as S from '@components/ShareFormButton/ShareFormButton.style';
 import Icon from '@components/common/Icon';
-import { pathName } from '@constants/pathName';
-
-const { shareForm, profile } = pathName;
+import useCheckPathname from '@hooks/useCheckPathname';
 
 const ShareFormButton = () => {
   const navigate = useNavigate();
-  const { pathname } = useLocation();
   const [isOpen, setIsOpen] = useState(false);
-  const isShareForm = pathname === '/' + shareForm || pathname === '/' + profile;
+  const isShareFormOrProfile = useCheckPathname({ targetPaths: ['shareForm', 'profile'] });
   const showMenuBar = () => setIsOpen(!isOpen);
 
   return (
-    <S.Wrapper onClick={showMenuBar} isShareForm={isShareForm}>
+    <S.Wrapper onClick={showMenuBar} isShareFormOrProfile={isShareFormOrProfile}>
       {isOpen ? (
         <>
           <span>토글</span>

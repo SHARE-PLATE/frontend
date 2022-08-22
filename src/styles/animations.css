@@ -51,3 +51,21 @@
     margin-bottom: -75%;
   }
 }
+
+@keyframes slidein-left {
+  from {
+    left: -20px;
+  }
+  to {
+    left: -96px;
+  }
+}
+
+@keyframes slideout-left {
+  from {
+    left: -96px;
+  }
+  to {
+    left: 0;
+  }
+}

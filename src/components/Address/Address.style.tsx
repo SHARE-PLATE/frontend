@@ -3,8 +3,7 @@ import styled, { css } from 'styled-components';
 export const Wrapper = styled.div`
   display: flex;
   gap: 0.5rem;
-  width: fit-content;
-  max-width: 70%;
+  max-width: 50%;
 `;
 
 export const LocationWrapper = styled.div`

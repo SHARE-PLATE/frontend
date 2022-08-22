@@ -32,6 +32,7 @@ const GlobalStyle = createGlobalStyle`
     .App {
       ${defaultWidth}
       ${fonts.medium}
+
       display: flex;
       flex-direction: column;
       width: 100vw;

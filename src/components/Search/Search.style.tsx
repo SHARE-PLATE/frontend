@@ -41,7 +41,6 @@ export const Input = styled.input`
   ${({ theme: { fonts, colors } }) => css`
     ${fonts.large}
     margin-right: 0.5rem;
-    outline: none;
     border: none;
     background-color: ${colors.grey2};
     width: 100%;
