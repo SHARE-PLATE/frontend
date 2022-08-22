@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { v4 as createRandomKey } from 'uuid';
 
 import * as S from '@components/PreviewShareListBigSizeImage/PreviewShareListBigSizeImage.style';
 import { RemainedTime } from '@components/RemainedTime';
@@ -56,7 +57,7 @@ const PreviewShareListBigSizeImage = ({ data }: PreviewShareListBigSizeImageProp
     ),
   );
 
-  if (showedList.length % 2) showedList.push(<S.ItemWrapper key={Math.random()} />);
+  if (showedList.length % 2) showedList.push(<S.ItemWrapper key={createRandomKey()} />);
 
   return <S.ListWrapper>{showedList}</S.ListWrapper>;
 };

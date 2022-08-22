@@ -5,7 +5,7 @@ import { CHATTING, PARTICIPATING } from '@constants/words';
 import { getPriceType } from '@utils/getPriceType';
 
 const price = 10000;
-const originPrice = 20000;
+const originalPrice = 20000;
 
 const InteractionBar = () => {
   return (
@@ -17,7 +17,7 @@ const InteractionBar = () => {
         <Icon iconName='HeartEmpty' />
         <S.PriceWrapper>
           <div>{getPriceType({ price, isUnit: true })}</div>
-          <div>{getPriceType({ price: originPrice, isUnit: true })}</div>
+          <div>{getPriceType({ price: originalPrice, isUnit: true })}</div>
         </S.PriceWrapper>
       </S.LeftWrapper>
       <S.RightWrapper>
