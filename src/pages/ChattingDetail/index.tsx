@@ -6,7 +6,7 @@ import { useRecoilValueLoadable } from 'recoil';
 import ChattingDetailContents from '@components/ChattingDetailContents';
 import ChattingDatailHeader from '@components/ChattingDetailHeader';
 import ChattingDetailInfo from '@components/ChattingDetailInfo';
-import ChattingError from '@components/ChattingError';
+// import ChattingError from '@components/ChattingError';
 import LoadingAnimation from '@components/LoadingAnimation';
 import * as S from '@pages/ChattingDetail/ChattingDetail.style';
 import { getChattingDetailsData } from '@store/chattingDetail';
@@ -47,7 +47,7 @@ const ChattingDetail = () => {
             <ChattingDetailInfo {...testChattingDetailData.share} />
           </S.TopFixedWrapper>
           <ChattingDetailContents chats={testChattingDetailData.chats} />
-        </>,
+        </>, // api 정상 작동 시 삭제
       );
       // setPageContents(<ChattingError />); // 실제 에러 시 사용
     }

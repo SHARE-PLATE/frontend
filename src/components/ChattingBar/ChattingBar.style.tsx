@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.form`
   ${({ theme: { colors } }) => css`
     background-color: ${colors.white1};
     height: 3.5rem;
@@ -27,7 +27,7 @@ export const PlusBtn = styled.button`
   `}
 `;
 
-export const MessageInput = styled.input`
+export const ChatInput = styled.input`
   ${({ theme: { colors, fonts } }) => css`
     ${fonts.largeRegular};
     background-color: ${colors.grey2};

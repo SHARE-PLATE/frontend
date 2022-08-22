@@ -3,9 +3,10 @@ import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import { v4 as createRandomKey } from 'uuid';
 
+import { API } from '@constants/api';
 import * as S from '@pages/Chatting/Chatting.style';
 
-import { chattingConnect, sendMessage } from './socket';
+// import { chattingConnect, sendMessage } from './socket';
 
 const writer = 'JinJeon';
 
@@ -20,38 +21,38 @@ const Chatting = () => {
     </S.ListWrapper>
   ));
 
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
-    if (!content.length) return;
+  // const handleSubmit = (event: FormEvent) => {
+  //   event.preventDefault();
+  //   if (!content.length) return;
 
-    setContent('');
-    sendMessage({ writer, content });
-  };
+  //   setContent('');
+  //   sendMessage({ writer, content });
+  // };
 
-  const getMessages = async () => {
-    const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/rooms/1`);
-    const { data: chattingData } = response;
-    setMessages([...chattingData]);
-  };
+  // const getMessages = async () => {
+  //   const response = await axios.get(`${API.CHATTING_DETAIL}/rooms/1`);
+  //   const { data: chattingData } = response;
+  //   setMessages([...chattingData]);
+  // };
 
   const handleContentChange = (event: ChangeEvent<HTMLInputElement>) => {
     setContent(event.target.value);
   };
 
-  useMemo(() => {
-    chattingConnect({ setter: setMessages });
-  }, []);
+  // useMemo(() => {
+  //   chattingConnect({ setter: setMessages });
+  // }, []);
 
-  useEffect(() => {
-    getMessages();
-  }, []);
+  // useEffect(() => {
+  //   getMessages();
+  // }, []);
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <button>SEND</button>
-        <input value={content} onChange={handleContentChange} />
-      </form>
+      {/* <form onSubmit={handleSubmit}> */}
+      <button>SEND</button>
+      <input value={content} onChange={handleContentChange} />
+      {/* </form> */}
       <div>{messagesList}</div>
     </>
   );

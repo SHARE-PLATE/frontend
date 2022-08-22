@@ -1,24 +1,33 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 
 import * as S from '@components/ChattingBar/ChattingBar.style';
 import Icon from '@components/common/Icon';
+import { sendChat } from '@pages/ChattingDetail/socket';
 
 const ChattingBar = () => {
-  const [messageValue, setMessageValue] = useState('');
+  const [chatValue, setChatValue] = useState('');
 
-  const handleChangeMessageValue = (event: ChangeEvent<HTMLInputElement>) => {
-    setMessageValue(event.target.value);
+  const handleChangechatValue = (event: ChangeEvent<HTMLInputElement>) => {
+    setChatValue(event.target.value);
+  };
+
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
+    if (!chatValue.length) return;
+
+    setChatValue('');
+    sendChat({ writer: 'JinJeon', content: chatValue }); // 보낼 메시지 내용 입력
   };
 
   return (
-    <S.Wrapper>
+    <S.Wrapper onSubmit={handleSubmit}>
       <S.PlusBtn>
         <Icon iconName='Plus' iconSize='LARGE' />
       </S.PlusBtn>
-      <S.MessageInput
-        value={messageValue}
+      <S.ChatInput
+        value={chatValue}
         onFocus={() => window.scrollTo(0, document.body.offsetHeight)}
-        onChange={handleChangeMessageValue}
+        onChange={handleChangechatValue}
         placeholder='메시지를 입력하세요.'
       />
       <Icon iconName='PaperAirplane' iconSize='LARGE' />

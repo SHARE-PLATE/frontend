@@ -1,8 +1,11 @@
-// import { useState } from 'react';
+import { useMemo, useState } from 'react';
+
+import { v4 as createRandomKey } from 'uuid';
 
 import Chat from '@components/Chat';
 import * as S from '@components/ChattingDetailContents/ChattingDetailContents.style';
 import { TestChattingDetailChatsType } from '@pages/ChattingDetail/chattingDetailData';
+import { chattingConnect } from '@pages/ChattingDetail/socket';
 
 type ChattingDetailContentsPropsType = {
   chats: TestChattingDetailChatsType;
@@ -10,7 +13,12 @@ type ChattingDetailContentsPropsType = {
 
 const ChattingDetailContents = ({ chats }: ChattingDetailContentsPropsType) => {
   // const [date, setDate] = useState('');
-  const chattingLogs = chats.map((info) => <Chat {...info} />);
+  const [curChats, setCurChats] = useState(chats);
+  const chattingLogs = curChats.map((info) => <Chat {...info} key={createRandomKey()} />);
+
+  useMemo(() => {
+    chattingConnect({ setter: setCurChats });
+  }, []);
 
   return (
     <S.Wrapper>
