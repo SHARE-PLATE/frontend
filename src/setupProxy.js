@@ -12,7 +12,7 @@ module.exports = function (app) {
     }),
   );
   app.use(
-    'https://d3ew6nkgwjgkva.cloudfront.net//api',
+    'https://d3ew6nkgwjgkva.cloudfront.net/api',
     createProxyMiddleware({
       target: 'http://louie-03.com',
       changeOrigin: true,
