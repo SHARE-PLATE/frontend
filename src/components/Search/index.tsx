@@ -7,10 +7,11 @@ import SearchPopular from '@components/SearchPopular';
 import SearchRecent from '@components/SearchRecent';
 import Icon from '@components/common/Icon';
 import { inputKeyword } from '@constants/mentions';
+import { SEARCH_RECENT } from '@constants/words';
 import { searchRecent } from '@store/localStorage';
 import { PortalNameType, portalState } from '@store/portal';
-import { setLocalStorageInfo, SEARCH_RECENT_KEY } from '@utils/LocalStorage';
 import { getMonthDate } from '@utils/getTime';
+import { setLocalStorageInfo } from '@utils/localStorage';
 
 import * as S from './Search.style';
 
@@ -41,7 +42,7 @@ const Search = () => {
 
     recentListInfoMap.set(value, { name: value, date: getMonthDate() });
 
-    setLocalStorageInfo({ key: SEARCH_RECENT_KEY, info: [...recentListInfoMap] });
+    setLocalStorageInfo({ key: SEARCH_RECENT, info: [...recentListInfoMap] });
     setRecentListInfoMap(() => recentListInfoMap);
     setInputValue('');
     setPortal(null);

@@ -1,43 +1,44 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 
 import { IconsType } from '@assets/icons';
+import { pathName, pathNameKeysType } from '@constants/pathName';
 import { portalState } from '@store/portal';
 
 type NavigationBarInfoType = {
   id: number;
   icon: IconsType;
   name: string;
-  link?: string;
-  clickHandler: (link: string) => void;
+  link?: pathNameKeysType;
+  clickHandler: (link?: pathNameKeysType) => void;
 }[];
 
 const useNavigationBarInfo = () => {
   const [portal, setPortal] = useRecoilState(portalState);
-  const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  const clickHandler = (link: string) => {
+  const clickHandler = (link?: pathNameKeysType) => {
     portal && setPortal(null);
-    navigate(link || pathname);
+    if (link) navigate(pathName[link]);
   };
 
   const navigationBarInfo: NavigationBarInfoType = [
-    { id: 0, icon: 'Clock', name: '홈', clickHandler, link: '/' },
-    { id: 1, icon: 'Clock', name: '쉐어', clickHandler, link: '/share-list' },
+    { id: 0, icon: 'Clock', name: '홈', clickHandler, link: 'main' },
     {
       id: 2,
       icon: 'Clock',
       name: '검색',
       clickHandler: () => (!portal ? setPortal('search') : setPortal(null)),
     },
+    { id: 1, icon: 'Clock', name: '쉐어', clickHandler, link: 'shareList' },
     {
       id: 3,
       icon: 'Clock',
       name: '채팅',
-      clickHandler: () => (!portal ? setPortal('login') : setPortal(null)),
+      clickHandler,
+      link: 'chatting',
     },
-    { id: 4, icon: 'Clock', name: '마이메뉴', clickHandler, link: '/profile' },
+    { id: 4, icon: 'Clock', name: '마이메뉴', clickHandler, link: 'profile' },
   ];
 
   return navigationBarInfo;

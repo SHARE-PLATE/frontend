@@ -12,9 +12,8 @@ export const ImageContainer = styled.div`
   overflow: hidden;
 
   img {
-    margin-top: -10%;
-    /* 테스트 위치 조정. 이미지 크기에 따라 중앙 정렬되도록 수정 필요 */
     width: 100%;
+    height: 100%;
   }
 `;
 

@@ -1,9 +1,9 @@
 import { RemainedTime } from '@components/RemainedTime';
 import * as S from '@components/ShareListItemLongImage/ShareListItemLongImage.style';
-import { listExampleType } from '@data/shareList';
+import { thumbnailUrlListType } from '@type/shareList';
 import { getPriceType } from '@utils/getPriceType';
 
-export const ShareListItemLongImage = ({ itemInfo }: { itemInfo: listExampleType }) => {
+export const ShareListItemLongImage = ({ itemInfo }: { itemInfo: thumbnailUrlListType }) => {
   const { title, location, price, originalPrice, thumbnailUrl, appointmentDateTime } = itemInfo;
 
   return (

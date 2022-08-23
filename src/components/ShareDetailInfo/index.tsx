@@ -2,6 +2,16 @@ import * as S from '@components/ShareDetailInfo/ShareDetailInfo.style';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import { calcTwoTimeDifference } from '@utils/getTimeDiff';
 
+interface ShareDetailInfoPropsType {
+  title: string;
+  location: string;
+  createdDateTime: string;
+  recruitmentMemberThumbnailImageUrls: string[];
+  currentRecruitment: number;
+  finalRecruitment: number;
+  description: string;
+}
+
 const ShareDetailInfo = ({
   title,
   location,
@@ -10,8 +20,13 @@ const ShareDetailInfo = ({
   currentRecruitment,
   finalRecruitment,
   description,
-}: any) => {
-  // data 타입 정해지면 any 바뀔예정
+}: ShareDetailInfoPropsType) => {
+  const ImgContents = recruitmentMemberThumbnailImageUrls.map((member: string) => (
+    <S.ImgContainer key={member}>
+      <img src={member} alt='멤버 이미지' />
+    </S.ImgContainer>
+  ));
+
   return (
     <S.ContentsContainer>
       <S.Title>{title}</S.Title>
@@ -23,9 +38,7 @@ const ShareDetailInfo = ({
         <S.CreateTime>{calcTwoTimeDifference(createdDateTime)}</S.CreateTime>
       </S.UpperInfo>
       <S.LowerInfo>
-        <S.ImgWrapper>
-          <img src={recruitmentMemberThumbnailImageUrls[0]} alt='이미지' />
-        </S.ImgWrapper>
+        <S.ImgWrapper>{ImgContents}</S.ImgWrapper>
         <PersonnelStatus curPersonnel={currentRecruitment} totalPersonnel={finalRecruitment} />
       </S.LowerInfo>
       <S.Description>{description}</S.Description>

@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 
+import { getLoginPage } from '@api/account';
 import * as S from '@components/Login/Login.style';
 import Portal from '@components/Portal';
 import Icon from '@components/common/Icon';
@@ -22,7 +23,7 @@ const Login = () => {
           <Icon iconName='SharePlate' iconSize={11.5} />
         </S.LogoWrapper>
         {loginMention}
-        <S.KakaoLoginButton>
+        <S.KakaoLoginButton onClick={getLoginPage}>
           <Icon iconName='Kakao' />
           {kakaoLoginMention}
         </S.KakaoLoginButton>

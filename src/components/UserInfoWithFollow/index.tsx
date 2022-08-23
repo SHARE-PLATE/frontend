@@ -1,23 +1,28 @@
 import * as S from '@components/UserInfoWithFollow/UserInfoWithFollow.style';
 import Icon from '@components/common/Icon';
 
-const imgUrl = 'https://avatars.githubusercontent.com/u/67730358?v=4';
+interface UserInfoWithFollowPropsType {
+  writerThumbnailImageUrl: string;
+  writer: string;
+}
 
-const UserInfoWithFollow = () => {
+const UserInfoWithFollow = ({ writerThumbnailImageUrl, writer }: UserInfoWithFollowPropsType) => {
   return (
     <S.Wrapper>
       <S.LeftWrapper>
         <S.ImgWrapper>
-          <img src={imgUrl} />
+          <img src={writerThumbnailImageUrl} />
         </S.ImgWrapper>
         <S.InfoWrapper>
-          <div>안녕하세요</div>
+          <div>{writer}</div>
           <S.InfoDetailWrapper>
             <span>
               전체상품 <span className='number'>10</span>
+              {/* 전체상품 데이터 필요 */}
             </span>
             <span>
               팔로워 <span className='number'>9</span>
+              {/* 팔로워 데이터 필요 */}
             </span>
           </S.InfoDetailWrapper>
         </S.InfoWrapper>

@@ -1,6 +1,6 @@
 import { Settings } from 'react-slick';
 
-import * as S from '@components/Ads/Ads.style';
+import * as S from '@components/Advertisement/Advertisement.style';
 import Carousel from '@components/Carousel';
 
 const settings: Settings = {
@@ -23,7 +23,7 @@ const adsInfo = [
   { id: 5, name: '5번입니다' },
 ];
 
-const Ads = () => {
+const Advertisement = () => {
   const adsContents = adsInfo.map(({ id, name }) => (
     <S.AdWrapper key={id}>
       <S.AdContentWrapper>{name}</S.AdContentWrapper>
@@ -37,4 +37,4 @@ const Ads = () => {
   );
 };
 
-export default Ads;
+export default Advertisement;

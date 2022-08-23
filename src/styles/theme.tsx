@@ -2,6 +2,8 @@ const defaultFontSize = '16px';
 
 const defaultWidth = { 'max-width': '755px', 'min-width': '355px' };
 
+const defaultHeaderHeight = 3.25; // rem
+
 const defaultPadding = { padding: '0 1rem' };
 
 const fonts = {
@@ -83,7 +85,7 @@ const colors = {
   orange2: '#ff5c21',
 };
 
-const theme = { defaultFontSize, defaultWidth, fonts, colors, defaultPadding };
+const theme = { defaultFontSize, defaultWidth, fonts, colors, defaultPadding, defaultHeaderHeight };
 
 type ThemeType = typeof theme;
 type FontsType = keyof typeof fonts;

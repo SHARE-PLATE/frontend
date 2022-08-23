@@ -25,6 +25,8 @@ const GlobalStyle = createGlobalStyle`
     }
 
     button {
+      ${fonts.main}
+
       cursor: pointer;
       color: ${colors.black};
     }
@@ -32,6 +34,7 @@ const GlobalStyle = createGlobalStyle`
     .App {
       ${defaultWidth}
       ${fonts.medium}
+
       display: flex;
       flex-direction: column;
       width: 100vw;
