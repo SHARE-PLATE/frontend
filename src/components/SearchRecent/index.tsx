@@ -6,9 +6,9 @@ import { v4 as createRandomKey } from 'uuid';
 import * as S from '@components/SearchRecent/SearchRecent.style';
 import Icon from '@components/common/Icon';
 import { noRecentListMention } from '@constants/mentions';
-import { RECENT_KEYWORD, DELETE_ALL } from '@constants/words';
+import { RECENT_KEYWORD, DELETE_ALL, SEARCH_RECENT } from '@constants/words';
 import { searchRecent } from '@store/localStorage';
-import { setLocalStorageInfo, SEARCH_RECENT_KEY } from '@utils/LocalStorage';
+import { setLocalStorageInfo } from '@utils/localStorage';
 
 type SearchRecentPropsType = {
   clickHandler: (event: FormEvent | string) => void;
@@ -24,7 +24,7 @@ const SearchRecent = ({ clickHandler }: SearchRecentPropsType) => {
     if (name) newMap.delete(name);
     if (!name) newMap.clear();
 
-    setLocalStorageInfo({ key: SEARCH_RECENT_KEY, info: [...newMap] });
+    setLocalStorageInfo({ key: SEARCH_RECENT, info: [...newMap] });
     setRecentListInfoMap(newMap);
   };
 
