@@ -5,4 +5,7 @@ export const API = {
   SHARE_RECOMMENDED: `/api/shares/recommendation`,
   CHATTING_DETAIL: '/api/chatrooms',
   SOCKET: 'api/socket',
+  LOGIN: 'api/login',
+  LOGOUT: 'api/logout',
+  LOGIN_FORM: 'api/login/form',
 };
