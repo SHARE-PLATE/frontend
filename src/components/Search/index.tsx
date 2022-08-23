@@ -10,8 +10,8 @@ import { inputKeyword } from '@constants/mentions';
 import { SEARCH_RECENT } from '@constants/words';
 import { searchRecent } from '@store/localStorage';
 import { PortalNameType, portalState } from '@store/portal';
-import { setLocalStorageInfo } from '@utils/data';
 import { getMonthDate } from '@utils/getTime';
+import { setLocalStorageInfo } from '@utils/localStorage';
 
 import * as S from './Search.style';
 
