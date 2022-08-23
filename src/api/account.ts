@@ -12,10 +12,7 @@ import {
 } from '@utils/localStorage';
 
 export const getLoginPage = async () => {
-  // window.location.href =
-  //   'https://accounts.kakao.com/login?continue=https%3A%2F%2Fkauth.kakao.com%2Foauth%2Fauthorize%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fd3ew6nkgwjgkva.cloudfront.net%252Flogin-callback%26through_account%3Dtrue%26client_id%3D5ef75caaf5c9d707dabc7f9c736c35b9';
-  const response = await axios.get(API.LOGIN_FORM);
-  return response;
+  window.location.href = process.env.REACT_APP_BASE_URL + API.LOGIN_FORM;
 };
 
 export const useLogin = (code: string | null) => {
