@@ -13,7 +13,7 @@ export const ImgWrapper = styled.div`
 `;
 
 export const StyledImg = styled.img`
-  margin-left: -50%;
+  width: 100%;
   height: 100%;
 `;
 

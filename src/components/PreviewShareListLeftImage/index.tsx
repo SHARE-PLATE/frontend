@@ -5,11 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import * as S from '@components/PreviewShareListLeftImage/PreviewShareListLeftImage.style';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import Price from '@components/common/Price';
-import { listExampleType } from '@data/shareList';
+import { thumbnailUrlListType } from '@type/shareList';
 import { calcTwoTimeDifference } from '@utils/getTimeDiff';
 
 interface PreviewShareListLeftImagePropsType {
-  data: listExampleType[];
+  data: thumbnailUrlListType[];
   count?: number;
 }
 const PreviewShareListLeftImage = ({ data, count }: PreviewShareListLeftImagePropsType) => {

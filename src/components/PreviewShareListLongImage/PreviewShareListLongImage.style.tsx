@@ -3,9 +3,9 @@ import styled, { css } from 'styled-components';
 import { noScrollBar, subTitle } from '@styles/mixin';
 
 export const Wrapper = styled.div`
-  ${({ theme: { defaultPadding, defaultWidth } }) => css`
-    ${defaultPadding}
+  ${({ theme: { defaultWidth } }) => css`
     ${defaultWidth}
+    padding-left: 1rem;
   `}
 `;
 

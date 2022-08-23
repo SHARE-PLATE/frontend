@@ -1,4 +1,4 @@
-import Ads from '@components/Ads';
+import Advertisement from '@components/Advertisement';
 import MainContents from '@components/MainContents';
 import MainHeader from '@components/MainHeader';
 import PreviewShareListLongImage from '@components/PreviewShareListLongImage';
@@ -11,7 +11,7 @@ const Main = () => {
         <S.HeaderBarWrapper>
           <MainHeader />
         </S.HeaderBarWrapper>
-        <Ads />
+        <Advertisement />
         <PreviewShareListLongImage />
       </S.MainHeaderWrapper>
       <MainContents />

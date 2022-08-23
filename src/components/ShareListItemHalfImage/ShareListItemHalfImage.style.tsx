@@ -16,8 +16,8 @@ export const ImgWrapper = styled.div`
   aspect-ratio: 1.8 / 1;
 
   img {
-    margin-top: -25%;
     width: 100%;
+    height: 100%;
   }
 
   @media (max-width: 27rem) {

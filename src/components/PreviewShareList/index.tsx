@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 
 import PersonnelStatus from '@components/common/PersonnelStatus';
-import { listExampleType } from '@data/shareList';
+import { thumbnailUrlListType } from '@type/shareList';
 
 interface PreviewShareListPropsType {
-  data: listExampleType[];
+  data: thumbnailUrlListType[];
 }
 const PreviewShareList = ({ data }: PreviewShareListPropsType) => {
   return (
     <Wrapper>
-      {data.map((listItem: listExampleType) => (
+      {data.map((listItem: thumbnailUrlListType) => (
         <Container key={listItem.id}>
           <img src={listItem.thumbnailUrl} alt={listItem.title} width='100' height='100'></img>
           <ListInfo>

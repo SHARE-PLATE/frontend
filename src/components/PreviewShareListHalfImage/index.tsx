@@ -5,12 +5,12 @@ import { v4 as createRandomKey } from 'uuid';
 import * as S from '@components/PreviewShareListHalfImage/PreviewShareListHalfImage.style';
 import ShareListItemHalfImage from '@components/ShareListItemHalfImage';
 import Title from '@components/common/Title';
-import { listExampleType } from '@data/shareList';
+import { thumbnailUrlListType } from '@type/shareList';
 
 type PreviewShareListHalfImagePropsType = {
   title: string;
   emptyMention: string;
-  data: listExampleType[];
+  data: thumbnailUrlListType[];
   showMoreOption?: () => void;
 };
 

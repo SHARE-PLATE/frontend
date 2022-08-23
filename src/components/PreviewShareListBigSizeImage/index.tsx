@@ -4,12 +4,12 @@ import { v4 as createRandomKey } from 'uuid';
 import * as S from '@components/PreviewShareListBigSizeImage/PreviewShareListBigSizeImage.style';
 import { RemainedTime } from '@components/RemainedTime';
 import PersonnelStatus from '@components/common/PersonnelStatus';
-import { listExampleType } from '@data/shareList';
+import { thumbnailUrlListType } from '@type/shareList';
 import { getPriceType } from '@utils/getPriceType';
 import { calcTwoTimeDifference } from '@utils/getTimeDiff';
 
 interface PreviewShareListBigSizeImagePropsType {
-  data: listExampleType[];
+  data: thumbnailUrlListType[];
 }
 
 const PreviewShareListBigSizeImage = ({ data }: PreviewShareListBigSizeImagePropsType) => {
