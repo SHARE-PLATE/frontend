@@ -4,13 +4,12 @@ import { API } from '@constants/api';
 
 export const getShareListRecommendedData = async (lat: number, lng: number) => {
   try {
-    const response = await axios.get(`${API.SHARE_RECOMMENDED}`, {
+    const response = await axios.get(`http://louie-03.com/shares/recommendation`, {
       params: {
         latitude: lat,
         longitude: lng,
       },
     });
-    console.log(response);
 
     return response.data;
   } catch (err) {
