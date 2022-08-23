@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { useSearchParams, useNavigate } from 'react-router-dom';
 
-import { getLoginPage, useLogin, useLogout } from '@api/account';
+import { useLogin, useLogout } from '@api/account';
 import Loading from '@components/Loading';
 import Icon from '@components/common/Icon';
 import { LOGIN_FAILED } from '@constants/mentions';
