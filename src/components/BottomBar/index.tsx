@@ -8,11 +8,13 @@ const BottomBar = () => {
   let bottomBarContent;
 
   const isShareDetail = useCheckPathname({ targetPaths: ['shareDetail'] });
-  const isShareForm = useCheckPathname({ targetPaths: ['shareForm'] });
+  const isShareFormOrLoginCallback = useCheckPathname({
+    targetPaths: ['shareForm', 'loginCallback'],
+  });
   const isChattingDetail = useCheckPathname({ targetPaths: ['chattingDetail'] });
 
   if (isShareDetail) bottomBarContent = <InteractionBar />;
-  if (isShareForm) bottomBarContent = null;
+  if (isShareFormOrLoginCallback) bottomBarContent = null;
   if (isChattingDetail) bottomBarContent = <ChattingBar />;
   if (bottomBarContent === undefined) bottomBarContent = <NavigationBar />;
 
