@@ -10,7 +10,7 @@ const id = ''; // 연결을 끊을 id
 const sendDestination = '/app/rooms/1/message'; // 서버의 데이터를 받을 위치
 const receiveDestination = '/topic/rooms/1'; // 서버의 데이터를 받을 위치
 
-const sockServer = 'http://louie-03.com/websocket'; // 들어갈 주소 설정
+const sockServer = 'https://louie-03.com/websocket'; // 들어갈 주소 설정
 const sock = new SockJs(sockServer);
 const stompClient = StompJs.over(sock);
 
