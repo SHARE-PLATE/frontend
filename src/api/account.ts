@@ -9,7 +9,7 @@ import {
   getLocalStorageInfo,
   LocalStorageKeyType,
   removeLocalStorageInfo,
-} from '@utils/localStorage';
+} from '@utils/data';
 
 export const getLoginPage = async () => {
   window.location.href = process.env.REACT_APP_BASE_URL + API.LOGIN_FORM;
