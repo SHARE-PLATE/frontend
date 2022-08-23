@@ -13,6 +13,7 @@ import { thumbnailUrlListType } from '@type/shareList';
 const PreviewShareListLongImage = () => {
   const [recommendedData, setRecommendedData] = useState<thumbnailUrlListType[]>();
   const { lat, lng } = useRecoilValue(currentLatitudeLongitude);
+  console.log(recommendedData);
 
   useEffect(() => {
     (async () => {

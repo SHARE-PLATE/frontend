@@ -10,6 +10,7 @@ export const getShareListRecommendedData = async (lat: number, lng: number) => {
         longitude: lng,
       },
     });
+    console.log(response);
 
     return response.data;
   } catch (err) {
