@@ -25,6 +25,8 @@ const GlobalStyle = createGlobalStyle`
     }
 
     button {
+      ${fonts.main}
+
       cursor: pointer;
       color: ${colors.black};
     }

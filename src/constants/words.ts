@@ -1,4 +1,10 @@
 export const LOGIN = 'LOGIN';
+export const CODE = 'code';
+export const HOME = 'HOME';
+export const ACCESS_TOKEN = 'access-token';
+export const REFRESH_TOKEN = 'refresh-token';
+export const SEARCH_RECENT = 'searchRecent';
+export const THUMBNAIL_IMAGE_URL = 'thumbnailImageUrl';
 export const DELETE_ALL = '모두 지우기';
 export const RECENT_KEYWORD = '최근 검색어';
 export const LOGIN_SIGNUP = '로그인 / 회원가입';

@@ -11,7 +11,6 @@ import ShareDetailInfo from '@components/ShareDetailInfo';
 import UserInfoWithFollow from '@components/UserInfoWithFollow';
 import { API } from '@constants/api';
 import { noRelatedShareList, offerShare } from '@constants/mentions';
-import { listExample } from '@data/shareList';
 import * as S from '@pages/ShareDetail/ShareDetail.style';
 import { currentLatitudeLongitude } from '@store/location';
 import { imageUrlsArrayListType, thumbnailUrlListType } from '@type/shareList';
