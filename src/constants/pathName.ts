@@ -9,6 +9,7 @@ export const pathName = {
   profile: '/profile',
   chatting: '/chatting',
   chattingDetail: '/chatting-detail',
+  searchShare: '/search-share',
   other: '/*',
 };
 
