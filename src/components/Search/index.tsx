@@ -1,36 +1,36 @@
 import { useRef, FormEvent, useState, ChangeEvent } from 'react';
 
+import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 
 import Portal from '@components/Portal';
+import * as S from '@components/Search/Search.style';
 import SearchPopular from '@components/SearchPopular';
 import SearchRecent from '@components/SearchRecent';
 import Icon from '@components/common/Icon';
 import { inputKeyword } from '@constants/mentions';
 import { SEARCH_RECENT } from '@constants/words';
-import { searchRecent } from '@store/localStorage';
+import { currentMapKey, searchRecent } from '@store/localStorage';
 import { PortalNameType, portalState } from '@store/portal';
 import { getMonthDate } from '@utils/getTime';
 import { setLocalStorageInfo } from '@utils/localStorage';
-
-import * as S from './Search.style';
 
 const portalName: PortalNameType = 'search';
 
 const Search = () => {
   const [inputValue, setInputValue] = useState('');
-  const inputRef = useRef<HTMLInputElement>(null);
-  const setPortal = useSetRecoilState(portalState);
   const [recentListInfoMap, setRecentListInfoMap] = useRecoilState(searchRecent);
+  const setCurrentMapKey = useSetRecoilState(currentMapKey);
+  const setPortal = useSetRecoilState(portalState);
+  const navigate = useNavigate();
+  const inputRef = useRef<HTMLInputElement>(null);
   const closeBtn = useRef<HTMLButtonElement>(null);
-
   const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
 
   const handleSubmit = (event: FormEvent | string) => {
     let value;
-
     if (typeof event === 'string') {
       value = event;
     } else {
@@ -44,8 +44,10 @@ const Search = () => {
 
     setLocalStorageInfo({ key: SEARCH_RECENT, info: [...recentListInfoMap] });
     setRecentListInfoMap(() => recentListInfoMap);
+    setCurrentMapKey(value);
     setInputValue('');
     setPortal(null);
+    navigate('/search-share');
   };
 
   return (
