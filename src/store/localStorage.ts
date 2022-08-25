@@ -13,3 +13,8 @@ export const searchRecent = atom<Map<any, any>>({
   key: 'searchRecent',
   default: new Map(recentListInfo),
 });
+
+export const currentMapKey = atom({
+  key: 'currentMapKey',
+  default: '',
+});
