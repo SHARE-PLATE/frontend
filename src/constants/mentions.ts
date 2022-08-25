@@ -11,3 +11,4 @@ export const shareIngredientMention = '함께 재료를 나눠보아요!';
 export const noRelatedShareList = '관련된 쉐어가 없습니다.';
 export const offerShare = '이런 쉐어는 어떠세요?';
 export const LOGIN_FAILED = 'LOGIN FAILED';
+export const searchFailed = '검색 결과가 없습니다.';
