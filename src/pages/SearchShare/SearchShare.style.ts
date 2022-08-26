@@ -1,8 +1,5 @@
 import styled from 'styled-components';
 
-import { categoryButtonHeight } from '@components/CategoryButton/CategoryButton.tsyle';
-import { mainHeaderHeight } from '@components/MainHeader/MainHeader.style';
-import { tabsHeight } from '@components/Tabs/Tabs.styled';
 import { defaultPageStyle } from '@styles/mixin';
 
 export const Wrapper = styled.div`
@@ -25,10 +22,6 @@ export const ListHeader = styled.header`
   }
 `;
 
-export const EmptyArea = styled.div`
-  height: calc(${mainHeaderHeight} + ${tabsHeight} + ${categoryButtonHeight});
-`;
-
 export const ListContent = styled.div`
-  margin-top: 170px;
+  margin-top: 120px;
 `;

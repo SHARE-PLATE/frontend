@@ -19,6 +19,7 @@ import Plus from '@assets/icons/plus.svg';
 import PurchaseHistory from '@assets/icons/purchaseHistory.svg';
 import RightArrow from '@assets/icons/rightArrow.svg';
 import SalesHistory from '@assets/icons/salesHistory.svg';
+import Search from '@assets/icons/search.svg';
 import SharePlate from '@assets/icons/sharePlate.svg';
 import Upload from '@assets/icons/upload.svg';
 import User from '@assets/icons/user.svg';
@@ -48,6 +49,7 @@ export const Icons = {
   Kakao,
   Plus,
   Camera,
+  Search,
 } as const;
 
 export type IconsType = keyof typeof Icons;
