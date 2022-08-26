@@ -18,6 +18,22 @@ export const LeftWrapper = styled.div`
   margin-left: 0.2rem;
 `;
 
+export const IconWrapper = styled.div<{ isWished: boolean }>`
+  ${({ theme: { colors }, isWished }) => css`
+    transition: all 0.3s;
+
+    ${isWished &&
+    css`
+      svg {
+        fill: ${colors.orange2};
+      }
+      path {
+        stroke: ${colors.orange2};
+      }
+    `}
+  `}
+`;
+
 export const PriceWrapper = styled.div`
   ${({ theme: { fonts, colors } }) => css`
     display: flex;
