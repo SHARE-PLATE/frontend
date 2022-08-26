@@ -1,20 +1,17 @@
 import * as S from '@components/BottomBar/BottomBar.style';
 import ChattingBar from '@components/ChattingBar';
-import InteractionBar from '@components/InteractionBar';
 import NavigationBar from '@components/NavigationBar';
 import useCheckPathname from '@hooks/useCheckPathname';
 
 const BottomBar = () => {
   let bottomBarContent;
 
-  const isShareDetail = useCheckPathname({ targetPaths: ['shareDetail'] });
-  const isShareFormOrLoginCallback = useCheckPathname({
-    targetPaths: ['shareForm', 'loginCallback'],
+  const isNoBottomBar = useCheckPathname({
+    targetPaths: ['shareForm', 'loginCallback', 'shareDetail'],
   });
   const isChattingDetail = useCheckPathname({ targetPaths: ['chattingDetail'] });
 
-  if (isShareDetail) bottomBarContent = <InteractionBar />;
-  if (isShareFormOrLoginCallback) bottomBarContent = null;
+  if (isNoBottomBar) bottomBarContent = null;
   if (isChattingDetail) bottomBarContent = <ChattingBar />;
   if (bottomBarContent === undefined) bottomBarContent = <NavigationBar />;
 
