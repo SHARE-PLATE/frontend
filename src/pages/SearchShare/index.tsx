@@ -46,7 +46,7 @@ const SearchShare = () => {
         <SearchShareHeader keyWord={searchRecentValue} />
         <CategoryButton />
       </S.ListHeader>
-      {searchData ? (
+      {searchData?.length ? (
         <S.ListContent>
           <PreviewShareListLeftImage data={getSortData(curShareFilterList, searchData)} />
         </S.ListContent>
