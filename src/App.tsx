@@ -9,7 +9,6 @@ import Styles from '@styles';
 
 const App = () => {
   const element = useRoutes(routes);
-  console.log('https 테스트!');
 
   return (
     <div className='App'>

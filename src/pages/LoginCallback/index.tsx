@@ -8,6 +8,7 @@ import Icon from '@components/common/Icon';
 import { LOGIN_FAILED } from '@constants/mentions';
 import { CODE, HOME, LOGIN } from '@constants/words';
 import * as S from '@pages/LoginCallback/LoginCallback.style';
+import { setLocalStorageInfo } from '@utils/localStorage';
 
 const LoginCallback = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -28,6 +29,7 @@ const LoginCallback = () => {
   };
 
   useEffect(() => {
+    setLocalStorageInfo({ key: 'searchRecent', info: code });
     checkCode();
   }, []);
 
