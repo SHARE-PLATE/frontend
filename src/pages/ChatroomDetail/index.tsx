@@ -3,19 +3,19 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useRecoilValueLoadable } from 'recoil';
 
-import ChattingDetailContents from '@components/ChattingDetailContents';
-import ChattingDatailHeader from '@components/ChattingDetailHeader';
-import ChattingDetailInfo from '@components/ChattingDetailInfo';
+import ChatroomDetailContents from '@components/ChatroomDetailContents';
+import ChattingDatailHeader from '@components/ChatroomDetailHeader';
+import ChatroomDetailInfo from '@components/ChatroomDetailInfo';
 // import ChattingError from '@components/ChattingError';
 import Loading from '@components/Loading';
-import * as S from '@pages/ChattingDetail/ChattingDetail.style';
-import { getChatroomsDetail } from '@store/chattingDetail';
+import * as S from '@pages/ChatroomDetail/ChatroomDetail.style';
+import { getChatroomDetail } from '@store/chatroomDetail';
 
-import { testChattingDetailData } from './chattingDetailData';
+import { testChatroomDetailData } from './chatroomDetailData';
 
-const ChattingDetail = () => {
+const ChatroomDetail = () => {
   const { id } = useParams();
-  const chatroomDetailState = getChatroomsDetail(`${id}`);
+  const chatroomDetailState = getChatroomDetail(`${id}`);
   const {
     state,
     contents: { share, chats },
@@ -28,9 +28,9 @@ const ChattingDetail = () => {
         <>
           <S.TopFixedWrapper>
             <ChattingDatailHeader />
-            <ChattingDetailInfo {...share} />
+            <ChatroomDetailInfo {...share} />
           </S.TopFixedWrapper>
-          <ChattingDetailContents chats={chats} />
+          <ChatroomDetailContents chats={chats} />
         </>,
       );
     }
@@ -39,9 +39,9 @@ const ChattingDetail = () => {
         <>
           <S.TopFixedWrapper>
             <ChattingDatailHeader />
-            <ChattingDetailInfo {...testChattingDetailData.share} />
+            <ChatroomDetailInfo {...testChatroomDetailData.share} />
           </S.TopFixedWrapper>
-          <ChattingDetailContents chats={testChattingDetailData.chats} />
+          <ChatroomDetailContents chats={testChatroomDetailData.chats} />
         </>, // api 정상 작동 시 삭제
       );
       // setPageContents(<ChattingError />); // 실제 에러 시 사용
@@ -51,4 +51,4 @@ const ChattingDetail = () => {
   return <S.Wrapper>{pageContents}</S.Wrapper>;
 };
 
-export default ChattingDetail;
+export default ChatroomDetail;

@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 
-export const ChattingDetailInfoHeight = 4.5; // rem
+export const ChatroomDetailInfoHeight = 4.5; // rem
 
 export const Wrapper = styled.div`
+  height: ${ChatroomDetailInfoHeight}rem;
   display: flex;
   gap: 0.38rem;
   align-items: center;
   z-index: 3;
-  height: ${ChattingDetailInfoHeight}rem;
+  gap: 0.38rem;
 `;
 
 export const ImgWrapper = styled.div`
@@ -27,7 +28,6 @@ export const TextWrapper = styled.div`
   max-width: calc(100% - 2rem - 1.5rem);
   flex-direction: column;
   gap: 0.5rem;
-  max-width: calc(100% - 2rem - 1.5rem);
 `;
 
 export const Title = styled.div`

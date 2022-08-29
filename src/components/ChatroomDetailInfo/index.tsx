@@ -1,8 +1,8 @@
-import * as S from '@components/ChattingDetailInfo/ChattingDetailInfo.style';
+import * as S from '@components/ChatroomDetailInfo/ChatroomDetailInfo.style';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import Price from '@components/common/Price';
 
-type ChattingDetailInfoPropsType = {
+type ChatroomDetailInfoPropsType = {
   thumbnailImageUrl: string;
   title: string;
   price: number;
@@ -11,14 +11,14 @@ type ChattingDetailInfoPropsType = {
   finalRecruitment: number;
 };
 
-const ChattingDetailInfo = ({
+const ChatroomDetailInfo = ({
   thumbnailImageUrl,
   title,
   price,
   originalPrice,
   currentRecruitment,
   finalRecruitment,
-}: ChattingDetailInfoPropsType) => {
+}: ChatroomDetailInfoPropsType) => {
   return (
     <S.Wrapper>
       <S.ImgWrapper>
@@ -35,4 +35,4 @@ const ChattingDetailInfo = ({
   );
 };
 
-export default ChattingDetailInfo;
+export default ChatroomDetailInfo;

@@ -1,4 +1,4 @@
-export const testChattingDetailShare = {
+export const testChatroomDetailShare = {
   id: 1,
   thumbnailImageUrl: 'https://avatars.githubusercontent.com/u/67730358?v=4',
   title:
@@ -9,7 +9,7 @@ export const testChattingDetailShare = {
   finalRecruitment: 4,
 };
 
-export const testChattingDetailChats = [
+export const testChatroomDetailChats = [
   {
     contents:
       '안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 ',
@@ -107,13 +107,13 @@ export const testChattingDetailChats = [
   },
 ];
 
-export const testChattingDetailData = {
-  share: testChattingDetailShare,
-  chats: testChattingDetailChats,
+export const testChatroomDetailData = {
+  share: testChatroomDetailShare,
+  chats: testChatroomDetailChats,
 };
 
-export type TestChattingDetailShareType = typeof testChattingDetailShare;
+export type TestChatroomDetailShareType = typeof testChatroomDetailShare;
 
-export type TestChattingDetailChatsType = typeof testChattingDetailChats;
+export type TestChatroomDetailChatsType = typeof testChatroomDetailChats;
 
-export type TestChattingDetailDataType = typeof testChattingDetailData;
+export type TestChatroomDetailDataType = typeof testChatroomDetailData;

@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { ChattingDetailInfoHeight } from '@components/ChattingDetailInfo/ChattingDetailInfo.style';
+import { ChatroomDetailInfoHeight } from '@components/ChatroomDetailInfo/ChatroomDetailInfo.style';
 import { defaultPageStyle } from '@styles/mixin';
 
 export const Wrapper = styled.div`
@@ -25,7 +25,7 @@ export const TopFixedWrapper = styled.div`
     width: 100%;
 
     + * {
-      padding-top: ${defaultHeaderHeight + ChattingDetailInfoHeight}rem;
+      padding-top: ${defaultHeaderHeight + ChatroomDetailInfoHeight}rem;
     }
   `}
 `;

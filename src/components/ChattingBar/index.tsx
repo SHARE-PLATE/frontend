@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 
 import * as S from '@components/ChattingBar/ChattingBar.style';
 import Icon from '@components/common/Icon';
-import { sendChat } from '@pages/ChattingDetail/socket';
+import { sendChat } from '@pages/ChatroomDetail/socket';
 
 const ChattingBar = () => {
   const [chatValue, setChatValue] = useState('');

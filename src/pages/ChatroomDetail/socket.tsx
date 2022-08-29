@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction } from 'react';
 import SockJs from 'sockjs-client';
 import StompJs from 'stompjs';
 
-import { TestChattingDetailChatsType } from './chattingDetailData';
+import { TestChatroomDetailChatsType } from './chatroomDetailData';
 
 const header = {}; // 서버와의 작업 시 지정할 헤
 const id = ''; // 연결을 끊을 id
@@ -15,7 +15,7 @@ const sock = new SockJs(sockServer);
 const stompClient = StompJs.over(sock);
 
 type subscribeParamsType = {
-  setter: Dispatch<SetStateAction<TestChattingDetailChatsType>>;
+  setter: Dispatch<SetStateAction<TestChatroomDetailChatsType>>;
 };
 
 const subscribe = ({ setter }: subscribeParamsType) => {

@@ -9,10 +9,10 @@ const BottomBar = () => {
   const isNoBottomBar = useCheckPathname({
     targetPaths: ['shareForm', 'loginCallback', 'shareDetail'],
   });
-  const isChattingDetail = useCheckPathname({ targetPaths: ['chattingDetail'] });
+  const isChatroomDetail = useCheckPathname({ targetPaths: ['chatroomDetail'] });
 
   if (isNoBottomBar) bottomBarContent = null;
-  if (isChattingDetail) bottomBarContent = <ChattingBar />;
+  if (isChatroomDetail) bottomBarContent = <ChattingBar />;
   if (bottomBarContent === undefined) bottomBarContent = <NavigationBar />;
 
   return <S.BottomBarWrapper>{bottomBarContent}</S.BottomBarWrapper>;

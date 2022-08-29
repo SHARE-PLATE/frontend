@@ -23,8 +23,8 @@ export const chatroomsState = selector<chatroomType[]>({
   get: async ({ get }) => {
     get(chatroomsTrigger);
 
-    const chattingDetailData = await getChatroomsData();
+    const chatroomDetailData = await getChatroomsData();
 
-    return chattingDetailData;
+    return chatroomDetailData;
   },
 });

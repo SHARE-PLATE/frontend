@@ -3,15 +3,15 @@ import { useMemo, useState } from 'react';
 import { v4 as createRandomKey } from 'uuid';
 
 import Chat from '@components/Chat';
-import * as S from '@components/ChattingDetailContents/ChattingDetailContents.style';
-import { TestChattingDetailChatsType } from '@pages/ChattingDetail/chattingDetailData';
-import { chattingConnect } from '@pages/ChattingDetail/socket';
+import * as S from '@components/ChatroomDetailContents/ChatroomDetailContents.style';
+import { TestChatroomDetailChatsType } from '@pages/ChatroomDetail/chatroomDetailData';
+import { chattingConnect } from '@pages/ChatroomDetail/socket';
 
-type ChattingDetailContentsPropsType = {
-  chats: TestChattingDetailChatsType;
+type ChatroomDetailContentsPropsType = {
+  chats: TestChatroomDetailChatsType;
 };
 
-const ChattingDetailContents = ({ chats }: ChattingDetailContentsPropsType) => {
+const ChatroomDetailContents = ({ chats }: ChatroomDetailContentsPropsType) => {
   // const [date, setDate] = useState('');
   const [curChats, setCurChats] = useState(chats);
   const chattingLogs = curChats.map((info) => <Chat {...info} key={createRandomKey()} />);
@@ -28,4 +28,4 @@ const ChattingDetailContents = ({ chats }: ChattingDetailContentsPropsType) => {
   );
 };
 
-export default ChattingDetailContents;
+export default ChatroomDetailContents;

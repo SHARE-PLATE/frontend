@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import * as S from '@components/ChattingDetailHeader/ChattingDetailHeader.style';
+import * as S from '@components/ChatroomDetailHeader/ChatroomDetailHeader.style';
 import Icon from '@components/common/Icon';
 
 const ChattingDatailHeader = () => {
