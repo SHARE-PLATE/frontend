@@ -2,6 +2,7 @@ import { pathName as P } from '@constants/pathName';
 import Chatting from '@pages/Chatting';
 import ChattingDetail from '@pages/ChattingDetail';
 import Error from '@pages/Error';
+import History from '@pages/History';
 import LoginCallback from '@pages/LoginCallback';
 import Main from '@pages/Main';
 import NotFound from '@pages/NotFound';
@@ -19,7 +20,6 @@ export const routes = [
   { path: P.shareList, element: <ShareList /> },
   { path: P.shareDetail + '/:id', element: <ShareDetail /> },
   { path: P.searchShare, element: <SearchShare /> },
-  { path: P.shareForm + '/:type', element: <ShareRegistration /> }, // 삭제예정
   { path: P.notice, element: <Notice /> },
   { path: P.error, element: <Error /> },
   {
@@ -29,6 +29,8 @@ export const routes = [
       { path: P.chattingDetail + '/:id', element: <ChattingDetail /> },
       { path: P.shareForm + '/:type', element: <ShareRegistration /> },
       { path: P.profile, element: <Profile /> },
+      { path: P.salesHistory, element: <History historyType='sales' /> },
+      { path: P.purchaseHistory, element: <History historyType='purchase' /> },
     ],
   },
   { path: P.other, element: <NotFound /> },
