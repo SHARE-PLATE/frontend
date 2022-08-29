@@ -1,19 +1,30 @@
+import { useEffect, useState } from 'react';
+
+import { useRecoilValueLoadable } from 'recoil';
+
+import ChatroomsItem from '@components/ChatroomsItem';
 import ChattingHeader from '@components/ChattingHeader';
-import ChattingListItem from '@components/ChattingListItem';
+import Loading from '@components/Loading';
 import * as S from '@pages/Chatting/Chatting.style';
-import { testChattingsInfo } from '@pages/Chatting/chatting';
+import { chatroomsState } from '@store/chatrooms';
 
 const Chatting = () => {
-  const ChattingList = testChattingsInfo.map((info) => (
-    <ChattingListItem key={info.id} {...info} />
-  ));
+  const { contents: chatroomsData, state } = useRecoilValueLoadable(chatroomsState);
+  const [content, setContent] = useState(<Loading color='orange2' size={60} border={6} />);
+
+  useEffect(() => {
+    if (state === 'hasValue') {
+      const chatrooms = chatroomsData.map((info) => <ChatroomsItem key={info.id} {...info} />);
+      setContent(<>{chatrooms}</>);
+    }
+  }, [state]);
 
   return (
     <S.Wrapper>
       <div>
         <ChattingHeader />
       </div>
-      <div>{ChattingList}</div>
+      <S.ContentWrapper state={state}>{content}</S.ContentWrapper>
     </S.Wrapper>
   );
 };
