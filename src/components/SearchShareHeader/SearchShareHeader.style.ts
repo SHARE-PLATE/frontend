@@ -7,9 +7,9 @@ export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    margin-top: 1rem;
     background-color: ${colors.white1};
     padding: 0.5rem 1rem;
-    margin-top: 1rem;
   `}
 `;
 

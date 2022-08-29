@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const FailedContent = styled.div`
-  margin-top: 120px;
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  justify-content: center;
+  margin-top: 120px;
   height: 200px;
   svg {
     margin: 0 auto;

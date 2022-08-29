@@ -4,10 +4,11 @@ export const Wrapper = styled.div``;
 
 export const Date = styled.div`
   ${({ theme: { colors, fonts } }) => css`
-    ${fonts.smallRegular};
+    ${fonts.smallRegular}
+
     padding-top: 1rem;
-    color: ${colors.grey4};
     text-align: center;
+    color: ${colors.grey4};
   `}
 `;
 

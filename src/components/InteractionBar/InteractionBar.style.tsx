@@ -2,18 +2,18 @@ import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
   ${({ theme: { defaultWidth, defaultPadding, colors } }) => css`
-    ${defaultPadding};
-    ${defaultWidth};
+    ${defaultPadding}
+    ${defaultWidth}
 
-    position: fixed;
     display: flex;
+    position: fixed;
+    bottom: 0;
     gap: 0.5rem;
     justify-content: space-between;
-    background-color: ${colors.white1};
-    height: 4.5rem;
-    width: 100%;
-    bottom: 0;
     box-shadow: 0px -10px 40px #67676740;
+    background-color: ${colors.white1};
+    width: 100%;
+    height: 4.5rem;
   `}
 `;
 

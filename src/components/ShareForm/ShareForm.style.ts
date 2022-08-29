@@ -8,12 +8,12 @@ export const FileContainer = styled.div`
 `;
 
 export const FileLabel = styled.label`
-  padding: 6px 25px;
-  background-color: #efefef;
   border-radius: 4px;
-  color: #000;
+  background-color: #efefef;
   cursor: pointer;
+  padding: 6px 25px;
   text-align: center;
+  color: #000;
 `;
 
 export const FileForm = styled.input`
@@ -28,24 +28,24 @@ export const TextContainer = styled.div`
 
 export const TowTextBlock = styled.div`
   display: flex;
-  justify-content: space-between;
   gap: 12px;
+  justify-content: space-between;
 `;
 
 export const LongTextBlock = styled.div`
   display: flex;
-  gap: 12px;
   flex-direction: column;
+  gap: 12px;
 `;
 
 export const DateInputForm = styled.input`
   ${flexCenter}
+
+  padding: 11px 16px;
+  width: 100%;
   height: 40px;
   line-height: 20px;
-  padding: 11px 16px;
-
   letter-spacing: 1px;
-  width: 100%;
 `;
 
 export const DescriptionWrapper = styled.div`
@@ -53,7 +53,7 @@ export const DescriptionWrapper = styled.div`
 `;
 
 export const ContentDescriptionInput = styled.textarea`
-  min-height: 236px;
   width: 100%;
+  min-height: 236px;
   resize: none;
 `;
