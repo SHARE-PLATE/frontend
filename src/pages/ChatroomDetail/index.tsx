@@ -4,9 +4,9 @@ import { useParams } from 'react-router-dom';
 import { useRecoilValueLoadable } from 'recoil';
 
 import ChatroomDetailContents from '@components/ChatroomDetailContents';
-import ChattingDatailHeader from '@components/ChatroomDetailHeader';
+import ChatroomDatailHeader from '@components/ChatroomDetailHeader';
 import ChatroomDetailInfo from '@components/ChatroomDetailInfo';
-// import ChattingError from '@components/ChattingError';
+// import ChatroomError from '@components/ChatroomError';
 import Loading from '@components/Loading';
 import * as S from '@pages/ChatroomDetail/ChatroomDetail.style';
 import { getChatroomDetail } from '@store/chatroomDetail';
@@ -27,7 +27,7 @@ const ChatroomDetail = () => {
       setPageContents(
         <>
           <S.TopFixedWrapper>
-            <ChattingDatailHeader />
+            <ChatroomDatailHeader />
             <ChatroomDetailInfo {...share} />
           </S.TopFixedWrapper>
           <ChatroomDetailContents chats={chats} />
@@ -38,13 +38,13 @@ const ChatroomDetail = () => {
       setPageContents(
         <>
           <S.TopFixedWrapper>
-            <ChattingDatailHeader />
+            <ChatroomDatailHeader />
             <ChatroomDetailInfo {...testChatroomDetailData.share} />
           </S.TopFixedWrapper>
           <ChatroomDetailContents chats={testChatroomDetailData.chats} />
         </>, // api 정상 작동 시 삭제
       );
-      // setPageContents(<ChattingError />); // 실제 에러 시 사용
+      // setPageContents(<ChatroomError />); // 실제 에러 시 사용
     }
   }, [state]);
 

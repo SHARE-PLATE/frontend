@@ -37,7 +37,7 @@ const unsubscribe = () => {
   stompClient.unsubscribe(id);
 };
 
-export const chattingConnect = (subscribeParams: subscribeParamsType) => {
+export const chatroomConnect = (subscribeParams: subscribeParamsType) => {
   try {
     // stompClient.debug = () => null;
     stompClient.connect(header, () => subscribe(subscribeParams));
@@ -46,7 +46,7 @@ export const chattingConnect = (subscribeParams: subscribeParamsType) => {
   }
 };
 
-export const chattingDisconnect = () => {
+export const chatroomDisconnect = () => {
   try {
     stompClient.debug = () => null;
     stompClient.disconnect(unsubscribe, header);

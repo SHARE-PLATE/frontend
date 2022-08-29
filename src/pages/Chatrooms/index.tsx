@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useRecoilValueLoadable } from 'recoil';
 
 import ChatroomsItem from '@components/ChatroomsItem';
-import ChattingHeader from '@components/ChattingHeader';
+import ChatroomHeader from '@components/ChatroomHeader';
 import Loading from '@components/Loading';
 import * as S from '@pages/Chatrooms/Chatrooms.style';
 import { chatroomsState } from '@store/chatrooms';
@@ -22,7 +22,7 @@ const Chatrooms = () => {
   return (
     <S.Wrapper>
       <div>
-        <ChattingHeader />
+        <ChatroomHeader />
       </div>
       <S.ContentWrapper state={state}>{content}</S.ContentWrapper>
     </S.Wrapper>

@@ -1,9 +1,9 @@
-import * as S from '@components/ChattingHeader/ChattingHeader.style';
+import * as S from '@components/ChatroomHeader/ChatroomHeader.style';
 import Icon from '@components/common/Icon';
 
 const CHATTING = '채팅';
 
-const ChattingHeader = () => {
+const ChatroomHeader = () => {
   return (
     <S.Wrapper>
       <S.Title>{CHATTING}</S.Title>
@@ -12,4 +12,4 @@ const ChattingHeader = () => {
   );
 };
 
-export default ChattingHeader;
+export default ChatroomHeader;

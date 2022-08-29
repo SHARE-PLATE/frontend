@@ -8,7 +8,7 @@ export const pathName = {
   shareForm: '/share-registration',
   profile: '/profile',
   chatrooms: '/chatrooms',
-  chatroomDetail: '/chatting-detail',
+  chatroomDetail: '/chatroom-detail',
   searchShare: '/search-share',
   salesHistory: '/profile/sales-history',
   purchaseHistory: '/profile/purchase-history',

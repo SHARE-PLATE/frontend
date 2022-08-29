@@ -1,10 +1,10 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 
-import * as S from '@components/ChattingBar/ChattingBar.style';
+import * as S from '@components/ChatroomBar/ChatroomBar.style';
 import Icon from '@components/common/Icon';
 import { sendChat } from '@pages/ChatroomDetail/socket';
 
-const ChattingBar = () => {
+const ChatroomBar = () => {
   const [chatValue, setChatValue] = useState('');
 
   const handleChangechatValue = (event: ChangeEvent<HTMLInputElement>) => {
@@ -38,4 +38,4 @@ const ChattingBar = () => {
   );
 };
 
-export default ChattingBar;
+export default ChatroomBar;

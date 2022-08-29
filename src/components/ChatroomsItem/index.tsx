@@ -78,7 +78,7 @@ const ChatroomsItem = ({
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseLeaveOrUp}
         onMouseLeave={handleMouseLeaveOrUp}
-        onClick={() => navigate(`/chatting-detail/${id}`)}
+        onClick={() => navigate(`/chatroom-detail/${id}`)}
       >
         <S.ShowedWrapper>
           <S.InfoWrapper>

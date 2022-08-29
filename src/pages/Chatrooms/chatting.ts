@@ -1,4 +1,4 @@
-export const testChattingsInfo = [
+export const testChatroomsInfo = [
   {
     id: 0,
     writers: [
