@@ -14,8 +14,9 @@ export const Wrapper = styled.div<WrapperPropsType>`
     css`
       animation: fadein 0.2s forwards;
     `}
-  
+
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: center;
     border-radius: 10rem;
@@ -23,7 +24,6 @@ export const Wrapper = styled.div<WrapperPropsType>`
     background-color: ${colors.orange2};
     height: 3.5rem;
     aspect-ratio: 1 / 1;
-    position: relative;
   `}
 `;
 

@@ -2,50 +2,50 @@ import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
   ${({ theme: { colors } }) => css`
-    flex-grow: 1;
-    height: 100%;
     display: flex;
-    gap: 3rem;
     flex-direction: column;
-    justify-content: center;
+    flex-grow: 1;
+    gap: 3rem;
     align-items: center;
+    justify-content: center;
     background-color: ${colors.white1};
+    height: 100%;
   `}
 `;
 
 export const IconsWrapper = styled.div`
-  width: 100%;
   display: flex;
   gap: 0.5rem;
   align-items: center;
   justify-content: center;
+  width: 100%;
 `;
 
 export const LoginFailed = styled.div`
   ${({ theme: { colors, fonts } }) => css`
     ${fonts.xLargeBold}
 
-    color: ${colors.orange2};
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 1rem;
+    align-items: center;
+    color: ${colors.orange2};
   `}
 `;
 
 export const ButtonsWrapper = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
   gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Button = styled.button`
   ${({ theme: { colors, fonts } }) => css`
     ${fonts.small}
 
-    background-color: ${colors.orange2};
     border-radius: 0.5rem;
+    background-color: ${colors.orange2};
     width: 3.7rem;
     height: 2rem;
     color: ${colors.white1};

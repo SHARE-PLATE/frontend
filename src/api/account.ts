@@ -47,6 +47,11 @@ export const useLogin = (code: string | null) => {
 
 export const useLogout = () => {
   const resetThumbnailImageUrl = useResetRecoilState(thumbnailImageUrl);
+  const headers: any = {}; // headers 초기 설정 재정리 필요
+
+  headers[ACCESS_TOKEN] = getLocalStorageInfo(ACCESS_TOKEN);
+  headers[REFRESH_TOKEN] = getLocalStorageInfo(REFRESH_TOKEN);
+
   const removeUserInfo = () => {
     resetThumbnailImageUrl();
     removeLocalStorageInfo({ key: ACCESS_TOKEN });
@@ -54,13 +59,27 @@ export const useLogout = () => {
   };
 
   return async () => {
-    const headers: any = {}; // headers 초기 설정 재정리 필요
-
-    headers[ACCESS_TOKEN] = getLocalStorageInfo(ACCESS_TOKEN);
-    headers[REFRESH_TOKEN] = getLocalStorageInfo(REFRESH_TOKEN);
-
     const response = await axios.post(API.LOGOUT, null, { headers });
-
     if (response.status === 200) removeUserInfo();
+  };
+};
+
+export const useCheckLogin = () => {
+  const headers: any = {};
+
+  headers[ACCESS_TOKEN] = getLocalStorageInfo(ACCESS_TOKEN);
+  headers[REFRESH_TOKEN] = getLocalStorageInfo(REFRESH_TOKEN);
+
+  return async () => {
+    const response = await axios.get(API.CHECK_LOGIN, { headers }).catch((err) => err.message);
+
+    if (typeof response === 'string') {
+      // when error occurs
+      return false;
+    } else {
+      const { headers } = response;
+      setLocalStorageInfo({ key: ACCESS_TOKEN, info: headers[ACCESS_TOKEN] });
+      return true;
+    }
   };
 };

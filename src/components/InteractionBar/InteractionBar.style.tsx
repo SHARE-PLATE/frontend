@@ -1,13 +1,18 @@
 import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
-  ${({ theme: { defaultPadding, colors } }) => css`
+  ${({ theme: { defaultWidth, defaultPadding, colors } }) => css`
     ${defaultPadding}
+    ${defaultWidth}
 
     display: flex;
+    position: fixed;
+    bottom: 0;
     gap: 0.5rem;
     justify-content: space-between;
+    box-shadow: 0px -10px 40px #67676740;
     background-color: ${colors.white1};
+    width: 100%;
     height: 4.5rem;
   `}
 `;
@@ -16,6 +21,20 @@ export const LeftWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-left: 0.2rem;
+`;
+
+export const IconWrapper = styled.div<{ isWished?: boolean }>`
+  ${({ theme: { colors }, isWished }) => css`
+    ${isWished &&
+    css`
+      svg {
+        fill: ${colors.orange2};
+      }
+      path {
+        stroke: ${colors.orange2};
+      }
+    `}
+  `}
 `;
 
 export const PriceWrapper = styled.div`

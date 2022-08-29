@@ -10,6 +10,7 @@ export const Wrapper = styled.div`
 
 export const Title = styled.h2`
   ${({ theme: { fonts } }) => fonts.xLarge}
-  text-align: center;
+
   margin: 0 auto;
+  text-align: center;
 `;

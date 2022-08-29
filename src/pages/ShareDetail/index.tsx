@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
 import { getShareListRecommendedData } from '@api/shareRecommended';
+import InteractionBar from '@components/InteractionBar';
 import PreviewShareListHalfImage from '@components/PreviewShareListHalfImage';
 import ShareDetailHeader from '@components/ShareDetailHeader';
 import ShareDetailInfo from '@components/ShareDetailInfo';
@@ -38,33 +39,36 @@ const ShareDetail = () => {
   }, [lat, lng]);
 
   return (
-    <S.Wrapper>
-      {detailData?.id && (
-        <>
-          <S.UpperWrapper>
-            <ShareDetailHeader {...detailData} />
-            <ShareDetailInfo {...detailData} />
-          </S.UpperWrapper>
-          <div>
-            <UserInfoWithFollow {...detailData} />
-            <PreviewShareListHalfImage
-              title={`${detailData.writer}님의 쉐어상품`}
-              data={[]}
-              emptyMention={noRelatedShareList}
-              showMoreOption={() => console.log('더보기')}
-            />
-            {recommendedData && (
+    <>
+      <S.Wrapper>
+        {detailData?.id && (
+          <>
+            <S.UpperWrapper>
+              <ShareDetailHeader {...detailData} />
+              <ShareDetailInfo {...detailData} />
+            </S.UpperWrapper>
+            <div>
+              <UserInfoWithFollow {...detailData} />
               <PreviewShareListHalfImage
-                title={offerShare}
-                data={recommendedData}
+                title={`${detailData.writer}님의 쉐어상품`}
+                data={[]}
                 emptyMention={noRelatedShareList}
                 showMoreOption={() => console.log('더보기')}
               />
-            )}
-          </div>
-        </>
-      )}
-    </S.Wrapper>
+              {recommendedData && (
+                <PreviewShareListHalfImage
+                  title={offerShare}
+                  data={recommendedData}
+                  emptyMention={noRelatedShareList}
+                  showMoreOption={() => console.log('더보기')}
+                />
+              )}
+            </div>
+          </>
+        )}
+      </S.Wrapper>
+      <InteractionBar isWished={detailData?.wish} />
+    </>
   );
 };
 

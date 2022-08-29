@@ -4,7 +4,6 @@ import useCheckPathname from '@hooks/useCheckPathname';
 
 const ScrollToTopBtn = () => {
   const isShareDetail = useCheckPathname({ targetPaths: ['shareDetail'] });
-  console.log(isShareDetail);
 
   const handleClickBtn = () => window.scrollTo(0, 0);
 
