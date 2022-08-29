@@ -1,23 +1,37 @@
+import { useEffect, useState } from 'react';
+
+import { useParams } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 
+import { changeWish, ChangeWishOptionType } from '@api/wish';
 import * as S from '@components/InteractionBar/InteractionBar.style';
 import ScrollToTopBtn from '@components/ScrollToTopBtn';
 import Icon from '@components/common/Icon';
 import { CHATTING, PARTICIPATING } from '@constants/words';
 import { portalState } from '@store/portal';
 import { getPriceType } from '@utils/getPriceType';
-import { getLocalStorageInfo } from '@utils/localStorage';
+
+type InteractionBarPropsType = {
+  isWished?: boolean;
+};
 
 const price = 10000;
 const originalPrice = 20000;
 
-const InteractionBar = () => {
-  const token = getLocalStorageInfo('access-token');
-  const isWished = true;
+const InteractionBar = ({ isWished }: InteractionBarPropsType) => {
   const setPortalState = useSetRecoilState(portalState);
+  const [isWishedNow, setIsWishedNow] = useState(isWished);
+  const { id } = useParams();
 
-  const handleClickWishIcon = () => {
-    if (!token) setPortalState('login');
+  const handleClickWishIcon = async () => {
+    const wishControlOption: ChangeWishOptionType = !isWishedNow ? 'enroll' : 'cancel';
+    const response = await changeWish({ option: wishControlOption, id });
+
+    if (response?.status === 200) {
+      setIsWishedNow(!isWishedNow);
+    } else {
+      setPortalState('login');
+    }
   };
 
   return (
@@ -26,7 +40,7 @@ const InteractionBar = () => {
         <ScrollToTopBtn />
       </S.ScrollToTopBtnWrapper>
       <S.LeftWrapper>
-        <S.IconWrapper isWished={isWished}>
+        <S.IconWrapper isWished={isWishedNow}>
           <Icon iconName='HeartEmpty' handleClick={handleClickWishIcon} />
         </S.IconWrapper>
         <S.PriceWrapper>

@@ -23,10 +23,8 @@ export const LeftWrapper = styled.div`
   margin-left: 0.2rem;
 `;
 
-export const IconWrapper = styled.div<{ isWished: boolean }>`
+export const IconWrapper = styled.div<{ isWished?: boolean }>`
   ${({ theme: { colors }, isWished }) => css`
-    transition: all 0.3s;
-
     ${isWished &&
     css`
       svg {
