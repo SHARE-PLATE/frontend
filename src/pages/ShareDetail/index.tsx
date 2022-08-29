@@ -67,7 +67,7 @@ const ShareDetail = () => {
           </>
         )}
       </S.Wrapper>
-      <InteractionBar />
+      <InteractionBar isWished={detailData?.wish} />
     </>
   );
 };
