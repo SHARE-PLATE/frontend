@@ -4,25 +4,25 @@ import { ChattingDetailInfoHeight } from '@components/ChattingDetailInfo/Chattin
 import { defaultPageStyle } from '@styles/mixin';
 
 export const Wrapper = styled.div`
-  ${defaultPageStyle};
+  ${defaultPageStyle}
 
   gap: 0;
 `;
 
 export const LoadingWrapper = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 `;
 
 export const TopFixedWrapper = styled.div`
   ${({ theme: { defaultHeaderHeight, defaultWidth } }) => css`
-    ${defaultWidth};
+    ${defaultWidth}
 
-    width: 100%;
     position: fixed;
     top: 0;
     box-shadow: 0px 5px 5px #bbbaba47;
+    width: 100%;
 
     + * {
       padding-top: ${defaultHeaderHeight + ChattingDetailInfoHeight}rem;

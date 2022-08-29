@@ -3,18 +3,18 @@ import styled from 'styled-components';
 export const ChattingDetailInfoHeight = 4.5; // rem
 
 export const Wrapper = styled.div`
-  height: ${ChattingDetailInfoHeight}rem;
   display: flex;
+  gap: 0.38rem;
   align-items: center;
   z-index: 3;
-  gap: 0.38rem;
+  height: ${ChattingDetailInfoHeight}rem;
 `;
 
 export const ImgWrapper = styled.div`
-  width: 3rem;
-  height: 3rem;
-  min-width: 3rem;
   border-radius: 0.25rem;
+  width: 3rem;
+  min-width: 3rem;
+  height: 3rem;
   overflow: hidden;
   img {
     width: 100%;
@@ -23,9 +23,9 @@ export const ImgWrapper = styled.div`
 
 export const TextWrapper = styled.div`
   display: flex;
-  max-width: calc(100% - 2rem - 1.5rem);
   flex-direction: column;
   gap: 0.5rem;
+  max-width: calc(100% - 2rem - 1.5rem);
 `;
 
 export const Title = styled.div`
@@ -36,6 +36,6 @@ export const Title = styled.div`
 
 export const Numbers = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 `;

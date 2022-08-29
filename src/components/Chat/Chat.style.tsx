@@ -12,11 +12,11 @@ export const Wrapper = styled.div<{ writtenByMe: boolean }>`
 `;
 
 export const ImgWrapper = styled.div`
-  width: 2.25rem;
-  height: 2.25rem;
-  min-width: 2.25rem;
-  overflow: hidden;
   border-radius: 3rem;
+  width: 2.25rem;
+  min-width: 2.25rem;
+  height: 2.25rem;
+  overflow: hidden;
   img {
     width: 100%;
   }
@@ -30,7 +30,7 @@ export const TextWrapper = styled.div`
 
 export const Writer = styled.div<{ writtenByMe: boolean }>`
   ${({ theme: { fonts }, writtenByMe }) => css`
-    ${fonts.small};
+    ${fonts.small}
     ${writtenByMe &&
     css`
       text-align: right;
@@ -53,35 +53,36 @@ export const ContentsTimeWrapper = styled.div<{ writtenByMe: boolean }>`
 
 export const Contents = styled.div<{ writtenByMe: boolean }>`
   ${({ theme: { colors, fonts }, writtenByMe }) => css`
-    ${fonts.smallRegular};
-    line-height: 1.2rem;
-    padding: 0.6rem;
-    background-color: ${colors.grey2};
+    ${fonts.smallRegular}
+
     border-radius: 0.5rem;
     border-top-left-radius: 0;
+    background-color: ${colors.grey2};
+    padding: 0.6rem;
+    line-height: 1.2rem;
 
     ${writtenByMe &&
     css`
-      background-color: ${colors.orange2};
-      color: ${colors.white1};
       border-radius: 0.5rem;
       border-top-right-radius: 0;
+      background-color: ${colors.orange2};
+      color: ${colors.white1};
     `}
   `}
 `;
 
 export const DateTime = styled.div<{ writtenByMe: boolean }>`
   ${({ theme: { colors, fonts }, writtenByMe }) => css`
-    ${fonts.xSmallRegular};
+    ${fonts.xSmallRegular}
     ${writtenByMe &&
     css`
       text-align: right;
     `}
 
     display: flex;
-    min-width: 2.6rem;
     flex-direction: column;
     justify-content: end;
+    min-width: 2.6rem;
     color: ${colors.grey4};
   `}
 `;

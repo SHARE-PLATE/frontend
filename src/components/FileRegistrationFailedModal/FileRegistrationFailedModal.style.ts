@@ -4,6 +4,7 @@ import { flexCenter } from '@styles/mixin';
 
 export const Wrapper = styled.div`
   ${flexCenter}
+
   flex-direction: column;
   padding: 0 15px;
   width: 22rem;
@@ -12,16 +13,18 @@ export const Wrapper = styled.div`
 
 export const Text = styled.p`
   ${({ theme: { colors, fonts } }) => css`
-    color: ${colors.black};
     ${fonts.largeBold}
+
     margin-bottom: 20px;
+    color: ${colors.black};
   `}
 `;
 
 export const CloseButton = styled.button`
   ${flexCenter}
-  width: 100%;
-  height: 30px;
+
   border-radius: 4px;
   background: #ff5c21;
+  width: 100%;
+  height: 30px;
 `;
