@@ -1,16 +1,32 @@
 import axios from 'axios';
 
 import { API } from '@constants/api';
-import { AUTHORIZATION, ACCESS_TOKEN } from '@constants/words';
-import { getLocalStorageInfo } from '@utils/localStorage';
+import { getAuthHeaders } from '@utils/getAuthHeaders';
+
+import { CHATROOM_ID } from './../constants/words';
 
 export const getChatroomsData = async (id?: string) => {
-  const headers = { [AUTHORIZATION]: getLocalStorageInfo(ACCESS_TOKEN) };
+  const headers = getAuthHeaders();
 
   try {
-    const response = await axios.get(`${API.CHATTING_ROOMS}/${id || ''}`, { headers });
+    const response = await axios.get(`${API.CHATROOMS}/${id || ''}`, { headers });
 
     return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteChatroomData = async (id: string) => {
+  const data = JSON.stringify({ [CHATROOM_ID]: id });
+  const headers: any = getAuthHeaders();
+
+  headers['Content-Type'] = 'application/json';
+
+  try {
+    const response = axios.delete(API.CHATROOM_MEMBERS, { headers, data });
+
+    return response;
   } catch (error) {
     throw error;
   }
