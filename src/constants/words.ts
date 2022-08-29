@@ -1,4 +1,5 @@
 export const LOGIN = 'LOGIN';
+export const AUTHORIZATION = 'Authorization';
 export const CODE = 'code';
 export const HOME = 'HOME';
 export const AUTHORIZATION = 'Authorization';
