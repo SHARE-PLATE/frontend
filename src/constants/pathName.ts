@@ -7,7 +7,7 @@ export const pathName = {
   error: '/error',
   shareForm: '/share-registration',
   profile: '/profile',
-  chatting: '/chatting',
+  chatrooms: '/chatrooms',
   chattingDetail: '/chatting-detail',
   searchShare: '/search-share',
   salesHistory: '/profile/sales-history',

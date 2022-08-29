@@ -1,5 +1,5 @@
 import { pathName as P } from '@constants/pathName';
-import Chatting from '@pages/Chatting';
+import Chatrooms from '@pages/Chatrooms';
 import ChattingDetail from '@pages/ChattingDetail';
 import Error from '@pages/Error';
 import History from '@pages/History';
@@ -25,7 +25,7 @@ export const routes = [
   {
     element: <ProtectedRoute />,
     children: [
-      { path: P.chatting, element: <Chatting /> },
+      { path: P.chatrooms, element: <Chatrooms /> },
       { path: P.chattingDetail + '/:id', element: <ChattingDetail /> },
       { path: P.shareForm + '/:type', element: <ShareRegistration /> },
       { path: P.profile, element: <Profile /> },

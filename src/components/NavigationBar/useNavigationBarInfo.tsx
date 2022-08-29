@@ -36,7 +36,7 @@ const useNavigationBarInfo = () => {
       icon: 'Clock',
       name: '채팅',
       clickHandler,
-      link: 'chatting',
+      link: 'chatrooms',
     },
     { id: 4, icon: 'Clock', name: '마이메뉴', clickHandler, link: 'profile' },
   ];

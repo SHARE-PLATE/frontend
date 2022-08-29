@@ -5,10 +5,10 @@ import { useRecoilValueLoadable } from 'recoil';
 import ChatroomsItem from '@components/ChatroomsItem';
 import ChattingHeader from '@components/ChattingHeader';
 import Loading from '@components/Loading';
-import * as S from '@pages/Chatting/Chatting.style';
+import * as S from '@pages/Chatrooms/Chatrooms.style';
 import { chatroomsState } from '@store/chatrooms';
 
-const Chatting = () => {
+const Chatrooms = () => {
   const { contents: chatroomsData, state } = useRecoilValueLoadable(chatroomsState);
   const [content, setContent] = useState(<Loading color='orange2' size={60} border={6} />);
 
@@ -29,4 +29,4 @@ const Chatting = () => {
   );
 };
 
-export default Chatting;
+export default Chatrooms;
