@@ -23,6 +23,8 @@ export const ImgWrapper = styled.div`
 
 export const TextWrapper = styled.div`
   display: flex;
+  width: 100%;
+  max-width: calc(100% - 2rem - 1.5rem);
   flex-direction: column;
   gap: 0.5rem;
   max-width: calc(100% - 2rem - 1.5rem);

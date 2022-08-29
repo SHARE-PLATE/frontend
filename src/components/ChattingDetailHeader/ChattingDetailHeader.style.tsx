@@ -12,9 +12,9 @@ export const Wrapper = styled.div`
 export const HeaderInfo = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
   justify-content: center;
   text-align: center;
+  gap: 0.5rem;
 `;
 
 export const Location = styled.div`
