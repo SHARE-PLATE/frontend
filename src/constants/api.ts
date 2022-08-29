@@ -8,4 +8,5 @@ export const API = {
   LOGIN: '/api/login',
   LOGOUT: '/api/logout',
   LOGIN_FORM: '/login/form',
+  MY_SHARE: '/api/shares/mine',
 };
