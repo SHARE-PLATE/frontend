@@ -37,11 +37,15 @@ const Tabs = ({ activeShareListValue, setActiveShareListValue }: TabsPropsType) 
 
   const tabs = shareListTabs.map(({ title, value, active }) => (
     <S.TabWrapper key={value} onClick={() => changeTab(value)} active={active} value={value}>
-      {title}
+      <span> {title}</span>
     </S.TabWrapper>
   ));
 
-  return <S.Wrapper>{tabs}</S.Wrapper>;
+  return (
+    <S.Wrapper>
+      <S.Container>{tabs}</S.Container>
+    </S.Wrapper>
+  );
 };
 
 export default Tabs;
