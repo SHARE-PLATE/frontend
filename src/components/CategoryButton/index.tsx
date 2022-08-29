@@ -1,18 +1,20 @@
 import { useState } from 'react';
 
-import { useSetRecoilState } from 'recoil';
+import { SetterOrUpdater } from 'recoil';
 
-import * as S from '@components/CategoryButton/CategoryButton.tsyle';
+import * as S from '@components/CategoryButton/CategoryButton.style';
 import Button from '@components/common/Button';
-import { categoryItem } from '@constants/category';
-import { currentFilterShareList } from '@store/filterShareList';
+import { CategoryItemType, HistoryListCategoryItemType } from '@constants/category';
 
-const CategoryButton = () => {
+interface CategoryButtonPropsType {
+  categoryItem: HistoryListCategoryItemType[] | CategoryItemType[];
+  setCurrentFilterList: SetterOrUpdater<any>;
+}
+
+const CategoryButton = ({ categoryItem, setCurrentFilterList }: CategoryButtonPropsType) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
-  const setCurrentFilterShareList = useSetRecoilState(currentFilterShareList);
-
-  const handelClickChangeList = (filter: string) => setCurrentFilterShareList(filter);
+  const handelClickChangeList = (filter: boolean | string) => setCurrentFilterList(filter);
 
   const handelClickChangeActiveIdx = (idx: number) => {
     setActiveIndex(idx);
