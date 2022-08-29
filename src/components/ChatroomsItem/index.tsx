@@ -3,10 +3,12 @@ import { MouseEvent, TouchEvent, useRef, useState } from 'react';
 import moment from 'moment';
 import 'moment/locale/ko';
 import { useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 import { v4 as createRandomKey } from 'uuid';
 
+import { deleteChatroomData } from '@api/chat';
 import * as S from '@components/ChatroomsItem/ChatroomsItem.style';
-import { chatroomType } from '@store/chatrooms';
+import { chatroomsTrigger, chatroomType } from '@store/chatrooms';
 
 const ChatroomsItem = ({
   id,
@@ -19,6 +21,7 @@ const ChatroomsItem = ({
   unreadCount,
 }: chatroomType) => {
   const navigate = useNavigate();
+  const setChatroomsTrigger = useSetRecoilState(chatroomsTrigger);
   const [startPoint, setStartPoint] = useState(0);
   const [moving, setMoving] = useState<S.MovingType>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -37,6 +40,13 @@ const ChatroomsItem = ({
     if (distance > 0 && distance < 20) wrapperRef.current.style.left = `-${distance / 10}px`;
     if (distance < 0 && distance > -20) wrapperRef.current.style.left = `${distance / 10}px`;
     if (distance <= -20) setMoving('right');
+  };
+
+  const handleClickExitBtn = async (event: MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+
+    const response = await deleteChatroomData(id);
+    if (response.status === 200) setChatroomsTrigger((trigger) => trigger + 1);
   };
 
   const handleMoveEnd = (distance: number) => {
@@ -98,7 +108,7 @@ const ChatroomsItem = ({
             <img src={shareThumbnailImageUrl} />
           </S.ShareImgWrapper>
         </S.ShowedWrapper>
-        <S.ExitBtn>나가기</S.ExitBtn>
+        <S.ExitBtn onClick={handleClickExitBtn}>나가기</S.ExitBtn>
       </S.InnerWrapper>
     </S.OuterWrapper>
   );

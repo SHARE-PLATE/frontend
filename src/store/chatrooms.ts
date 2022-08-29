@@ -3,7 +3,7 @@ import { atom, selector } from 'recoil';
 import { getChatroomsData } from '@api/chat';
 
 export type chatroomType = {
-  id: number;
+  id: string;
   shareThumbnailImageUrl: string;
   currentRecruitment: number;
   recentMessage: string;
@@ -13,9 +13,9 @@ export type chatroomType = {
   unreadCount: number;
 };
 
-export const chatroomsTrigger = atom<chatroomType[]>({
+export const chatroomsTrigger = atom({
   key: 'chatroomsTrigger',
-  default: [],
+  default: 0,
 });
 
 export const chatroomsState = selector<chatroomType[]>({
