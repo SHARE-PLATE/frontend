@@ -5,38 +5,27 @@ import 'moment/locale/ko';
 import { useNavigate } from 'react-router-dom';
 import { v4 as createRandomKey } from 'uuid';
 
-import * as S from '@components/ChattingListItem/ChattingListItem.style';
+import * as S from '@components/ChatroomsItem/ChatroomsItem.style';
+import { chatroomType } from '@store/chatrooms';
 
-type writersType = {
-  id: number;
-  writer: string;
-  img: string;
-}[];
-
-type ChattingListItemPropsType = {
-  writers: writersType;
-  content: string;
-  time: string;
-  id: number;
-};
-
-const ChattingListItem = ({ writers, content, time, id }: ChattingListItemPropsType) => {
+const ChatroomsItem = ({
+  id,
+  shareThumbnailImageUrl,
+  currentRecruitment,
+  recentMessage,
+  recentMessageDataTime,
+  recruitmentMemberNicknames,
+  recruitmentMemberImageUrls,
+  unreadCount,
+}: chatroomType) => {
   const navigate = useNavigate();
   const [startPoint, setStartPoint] = useState(0);
   const [moving, setMoving] = useState<S.MovingType>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const writersNamesArray: string[] = [];
-  const writersImgsArray: string[] = [];
 
-  writers.forEach(({ writer, img }) => {
-    writersNamesArray.push(writer);
-    writersImgsArray.push(img);
-  });
-
-  const diffTime = moment(time).fromNow();
-  const writersCount = writers.length;
-  const writersNames = writersNamesArray.join(', ');
-  const writersImgs = writersImgsArray.map((img) => (
+  const diffTime = moment(recentMessageDataTime).fromNow();
+  const recruitmentMemberNicknamesJoined = recruitmentMemberNicknames.join(', ');
+  const recruitmentMemberImages = recruitmentMemberImageUrls.map((img) => (
     <S.ImgWrapper key={createRandomKey()}>
       <img src={img} />
     </S.ImgWrapper>
@@ -93,17 +82,21 @@ const ChattingListItem = ({ writers, content, time, id }: ChattingListItemPropsT
       >
         <S.ShowedWrapper>
           <S.InfoWrapper>
-            <S.ImgsWrapper count={writersCount}>{writersImgs}</S.ImgsWrapper>
+            <S.ImgsWrapper count={recruitmentMemberImages.length}>
+              {recruitmentMemberImages}
+            </S.ImgsWrapper>
             <S.TextWrapper>
               <S.TextUpper>
-                <S.WritersNames>{writersNames}</S.WritersNames>
-                <S.WritersCount>{writersCount}</S.WritersCount>
+                <S.WritersNames>{recruitmentMemberNicknamesJoined}</S.WritersNames>
+                <S.WritersCount>{currentRecruitment}</S.WritersCount>
                 <S.Time>{diffTime}</S.Time>
               </S.TextUpper>
-              <S.Content>{content}</S.Content>
+              <S.Content>{recentMessage}</S.Content>
             </S.TextWrapper>
           </S.InfoWrapper>
-          <S.ShareImgWrapper />
+          <S.ShareImgWrapper>
+            <img src={shareThumbnailImageUrl} />
+          </S.ShareImgWrapper>
         </S.ShowedWrapper>
         <S.ExitBtn>나가기</S.ExitBtn>
       </S.InnerWrapper>
@@ -111,4 +104,4 @@ const ChattingListItem = ({ writers, content, time, id }: ChattingListItemPropsT
   );
 };
 
-export default ChattingListItem;
+export default ChatroomsItem;

@@ -187,6 +187,11 @@ export const ShareImgWrapper = styled.div`
     width: 3rem;
     min-width: 3rem;
     height: 3rem;
+    overflow: hidden;
+
+    img {
+      width: 130%;
+    }
   `}
 `;
 
