@@ -1,18 +1,18 @@
 import { atom, selector } from 'recoil';
 
-import { getChattingDetailData } from '@api/chattingDetail';
+import { getChatroomsData } from '@api/chat';
 
-export const chattingDetailTrigger = atom<number>({
-  key: 'chattingDetailTrigger',
+export const chatroomsDetailTrigger = atom<number>({
+  key: 'chatroomsDetailTrigger',
   default: 0,
 });
 
-export const getChattingDetailsData = (id: string) =>
+export const getChatroomsDetail = (id: string) =>
   selector({
-    key: 'GET/chattingDetailsData',
+    key: `GET/chattingDetailsData/${id}`,
     get: async ({ get }) => {
-      get(chattingDetailTrigger);
-      const chattingDetailData = await getChattingDetailData(id);
+      get(chatroomsDetailTrigger);
+      const chattingDetailData = await getChatroomsData(id);
       return chattingDetailData;
     },
   });

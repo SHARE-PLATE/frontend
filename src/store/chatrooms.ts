@@ -19,7 +19,7 @@ export const chatroomsTrigger = atom<chatroomType[]>({
 });
 
 export const chatroomsState = selector<chatroomType[]>({
-  key: 'GET/chattingDetailsData',
+  key: 'GET/chatroomsState',
   get: async ({ get }) => {
     get(chatroomsTrigger);
 
