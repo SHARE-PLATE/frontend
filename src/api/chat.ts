@@ -1,0 +1,17 @@
+import axios from 'axios';
+
+import { API } from '@constants/api';
+import { AUTHORIZATION, ACCESS_TOKEN } from '@constants/words';
+import { getLocalStorageInfo } from '@utils/localStorage';
+
+export const getChatroomsData = async () => {
+  const headers = { [AUTHORIZATION]: getLocalStorageInfo(ACCESS_TOKEN) };
+
+  try {
+    const response = await axios.get(`${API.CHATTING_ROOMS}`, { headers });
+
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

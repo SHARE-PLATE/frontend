@@ -3,7 +3,7 @@ export const API = {
   SHARE_REGISTRATION: `/api/shares`,
   SHARE_DETAIL: (id?: string) => `/api/shares/${id}`,
   SHARE_RECOMMENDED: `/api/shares/recommendation`,
-  CHATTING_DETAIL: '/api/chatrooms',
+  CHATTING_ROOMS: '/api/chatrooms',
   SOCKET: '/api/socket',
   LOGIN_FORM: '/login/form',
   LOGIN: '/api/login',
