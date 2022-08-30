@@ -7,11 +7,6 @@ export const currentFilterShareList = atom({
   default: 'price',
 });
 
-export const currentFilterHistoryList = atom({
-  key: 'currentFilterHistoryList',
-  default: false,
-});
-
 export interface activeShareListType {
   delivery: boolean;
   ingredient: boolean;
