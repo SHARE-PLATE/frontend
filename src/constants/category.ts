@@ -15,9 +15,12 @@ export interface HistoryListCategoryItemType {
   id: number;
   name: string;
   filter: boolean;
+  type: string;
 }
 
 export const historyListCategoryItem: HistoryListCategoryItemType[] = [
-  { id: 1, name: '쉐어중', filter: false },
-  { id: 2, name: '기간만료', filter: true },
+  { id: 1, name: '쉐어중', filter: false, type: 'sales' },
+  { id: 2, name: '기간만료', filter: true, type: 'sales' },
+  { id: 3, name: '예약중', filter: false, type: 'purchase' },
+  { id: 4, name: '기간만료', filter: true, type: 'purchase' },
 ];

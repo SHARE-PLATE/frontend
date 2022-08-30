@@ -1,7 +1,7 @@
-import { SetterOrUpdater, useRecoilState } from 'recoil';
+import { SetterOrUpdater } from 'recoil';
 
 import * as S from '@components/Tabs/Tabs.styled';
-import { activeShareList, activeShareListType } from '@store/filterShareList';
+import { activeShareListType } from '@store/filterShareList';
 
 interface TabsPropsType {
   activeShareListValue: activeShareListType;

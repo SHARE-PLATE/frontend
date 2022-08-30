@@ -15,26 +15,20 @@ export const Wrapper = styled.div`
 `;
 
 export const Container = styled.nav`
-  ${({ theme: { colors } }) => css`
-    ${flexCenter}
-
-    border-bottom: 0.125rem solid ${colors.grey2};
-    width: 50%;
-    height: ${tabsHeight};
-  `}
+  display: flex;
+  justify-content: flex-start;
+  width: 50%;
+  height: ${tabsHeight};
 `;
 
 export const TabWrapper = styled.div<TabWrapperPropsType>`
   ${({ theme: { colors }, active, value }) => css`
-    display: flex;
+    ${flexCenter}
     position: relative;
-    align-items: center;
-    justify-content: center;
     cursor: pointer;
-    width: 50%;
+    width: 40%;
     height: 100%;
     transition: 0.3s ease-out;
-
     ${active
       ? css`
           font-weight: ${({ theme }) => theme.fonts.smallBold};

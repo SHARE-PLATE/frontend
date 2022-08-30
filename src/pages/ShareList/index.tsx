@@ -15,7 +15,7 @@ const ShareList = () => {
   const [activeShareListValue, setActiveShareListValue] = useRecoilState(activeShareList);
   const [curShareFilterList, setCurrentFilterShareList] = useRecoilState(currentFilterShareList);
 
-  const data = useRecoilValueLoadable(getShareListsData);
+  const { state, contents } = useRecoilValueLoadable(getShareListsData);
 
   const getListContents = (state: string) => {
     switch (state) {
@@ -23,9 +23,9 @@ const ShareList = () => {
         return (
           <S.ListContent>
             {activeShareListValue.delivery ? (
-              <PreviewShareListBigSizeImage data={getSortData(curShareFilterList, data.contents)} />
+              <PreviewShareListBigSizeImage data={getSortData(curShareFilterList, contents)} />
             ) : activeShareListValue.ingredient ? (
-              <PreviewShareListLeftImage data={getSortData(curShareFilterList, data.contents)} />
+              <PreviewShareListLeftImage data={getSortData(curShareFilterList, contents)} />
             ) : (
               ''
             )}
@@ -51,7 +51,7 @@ const ShareList = () => {
           setCurrentFilterList={setCurrentFilterShareList}
         />
       </S.ListHeader>
-      {getListContents(data.state)}
+      {getListContents(state)}
     </S.Wrapper>
   );
 };
