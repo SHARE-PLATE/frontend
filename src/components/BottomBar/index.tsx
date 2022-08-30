@@ -1,5 +1,5 @@
 import * as S from '@components/BottomBar/BottomBar.style';
-import ChattingBar from '@components/ChattingBar';
+import ChatroomBar from '@components/ChatroomBar';
 import NavigationBar from '@components/NavigationBar';
 import useCheckPathname from '@hooks/useCheckPathname';
 
@@ -12,7 +12,7 @@ const BottomBar = () => {
   const isChatroomDetail = useCheckPathname({ targetPaths: ['chatroomDetail'] });
 
   if (isNoBottomBar) bottomBarContent = null;
-  if (isChatroomDetail) bottomBarContent = <ChattingBar />;
+  if (isChatroomDetail) bottomBarContent = <ChatroomBar />;
   if (bottomBarContent === undefined) bottomBarContent = <NavigationBar />;
 
   return <S.BottomBarWrapper>{bottomBarContent}</S.BottomBarWrapper>;
