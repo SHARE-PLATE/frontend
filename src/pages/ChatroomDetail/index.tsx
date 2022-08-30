@@ -6,8 +6,8 @@ import { useRecoilValueLoadable } from 'recoil';
 import ChatroomDetailContents from '@components/ChatroomDetailContents';
 import ChatroomDatailHeader from '@components/ChatroomDetailHeader';
 import ChatroomDetailInfo from '@components/ChatroomDetailInfo';
-import ChatroomError from '@components/ChatroomError';
 import Loading from '@components/Loading';
+import Icon from '@components/common/Icon';
 import * as S from '@pages/ChatroomDetail/ChatroomDetail.style';
 import { getChatroomDetail } from '@store/chatroomDetail';
 
@@ -22,7 +22,12 @@ const ChatroomDetail = () => {
 
   useEffect(() => {
     if (state === 'hasError') {
-      setPageContents(<ChatroomError mention='ERROR OCCURS!' />); // 에러 페이지 수정 필요
+      setPageContents(
+        <div>
+          <Icon iconName='Search' iconSize={30} />
+          NOT FOUND
+        </div>,
+      ); // 에러 페이지 수정 필요
     }
 
     if (state === 'hasValue') {
@@ -32,7 +37,7 @@ const ChatroomDetail = () => {
             <ChatroomDatailHeader />
             <ChatroomDetailInfo {...share} />
           </S.TopFixedWrapper>
-          <ChatroomDetailContents chats={chats} />
+          <ChatroomDetailContents chats={chats} chatroomId={id || ''} />
         </>,
       );
     }

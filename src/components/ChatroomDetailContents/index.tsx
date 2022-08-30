@@ -9,15 +9,16 @@ import { chatroomConnect } from '@pages/ChatroomDetail/socket';
 
 type ChatroomDetailContentsPropsType = {
   chats: TestChatroomDetailChatsType;
+  chatroomId: string;
 };
 
-const ChatroomDetailContents = ({ chats }: ChatroomDetailContentsPropsType) => {
+const ChatroomDetailContents = ({ chats, chatroomId }: ChatroomDetailContentsPropsType) => {
   // const [date, setDate] = useState('');
   const [curChats, setCurChats] = useState(chats);
   const chatroomLogs = curChats.map((info) => <Chat {...info} key={createRandomKey()} />);
 
   useMemo(() => {
-    chatroomConnect({ setter: setCurChats });
+    chatroomConnect({ setter: setCurChats, chatroomId });
   }, []);
 
   return (

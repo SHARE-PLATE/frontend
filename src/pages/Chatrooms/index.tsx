@@ -17,6 +17,10 @@ const Chatrooms = () => {
       const chatrooms = chatroomsData.map((info) => <ChatroomsItem key={info.id} {...info} />);
       setContent(<>{chatrooms}</>);
     }
+
+    if (state === 'hasError') {
+      setContent(<div>ERROR OCCURS!</div>);
+    }
   }, [state]);
 
   return (

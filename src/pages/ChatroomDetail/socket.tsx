@@ -3,12 +3,10 @@ import { Dispatch, SetStateAction } from 'react';
 import SockJs from 'sockjs-client';
 import StompJs from 'stompjs';
 
-import { TestChatroomDetailChatsType } from './chatroomDetailData';
+import { CHAT, CHATROOMS } from '@constants/words';
+import { getAuthHeaders } from '@utils/getAuthHeaders';
 
-const header = {}; // 서버와의 작업 시 지정할 헤
-const id = ''; // 연결을 끊을 id
-const sendDestination = '/app/rooms/1/message'; // 서버의 데이터를 받을 위치
-const receiveDestination = '/topic/rooms/1'; // 서버의 데이터를 받을 위치
+import { TestChatroomDetailChatsType } from './chatroomDetailData';
 
 const sockServer = 'http://louie-03.com/websocket'; // 들어갈 주소 설정
 const sock = new SockJs(sockServer);
@@ -16,11 +14,15 @@ const stompClient = StompJs.over(sock);
 
 type subscribeParamsType = {
   setter: Dispatch<SetStateAction<TestChatroomDetailChatsType>>;
+  chatroomId: string;
 };
 
-const subscribe = ({ setter }: subscribeParamsType) => {
+const subscribe = ({ setter, chatroomId }: subscribeParamsType) => {
+  const subscribeURL = `${CHATROOMS}/${chatroomId}`;
+  const headers = getAuthHeaders();
+
   stompClient.subscribe(
-    receiveDestination,
+    subscribeURL,
     (chatData) => {
       setter((chats) => {
         const newChat = JSON.parse(chatData.body);
@@ -29,32 +31,40 @@ const subscribe = ({ setter }: subscribeParamsType) => {
         return newChats;
       });
     },
-    header,
+    headers,
   );
 };
 
 const unsubscribe = () => {
+  const id = '';
   stompClient.unsubscribe(id);
 };
 
 export const chatroomConnect = (subscribeParams: subscribeParamsType) => {
+  const headers = getAuthHeaders();
+
   try {
     // stompClient.debug = () => null;
-    stompClient.connect(header, () => subscribe(subscribeParams));
+    stompClient.connect(headers, () => subscribe(subscribeParams));
   } catch (error) {
     console.log(error);
   }
 };
 
 export const chatroomDisconnect = () => {
+  const headers = getAuthHeaders();
+
   try {
-    stompClient.debug = () => null;
-    stompClient.disconnect(unsubscribe, header);
+    // stompClient.debug = () => null;
+    stompClient.disconnect(unsubscribe, headers);
   } catch (error) {
     console.log(error);
   }
 };
 
-export const sendChat = (chat: { writer: string; content: string }) => {
-  stompClient.send(sendDestination, header, JSON.stringify(chat));
+export const sendChat = ({ content, chatroomId }: { content: string; chatroomId?: string }) => {
+  const headers = getAuthHeaders();
+  const sendingURL = `${CHATROOMS}/${chatroomId}/${CHAT}`;
+
+  stompClient.send(sendingURL, headers, JSON.stringify({ content }));
 };
