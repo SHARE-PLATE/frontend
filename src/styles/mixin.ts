@@ -24,7 +24,6 @@ export const defaultPageStyle = css`
     background-color: ${colors.grey1};
     display: flex;
     flex-direction: column;
-    gap: 0.375rem;
     flex-grow: 1;
   `}
 

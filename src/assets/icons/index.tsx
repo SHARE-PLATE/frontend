@@ -1,6 +1,7 @@
 import ArrowUp from '@assets/icons/arrowUp.svg';
 import Back from '@assets/icons/back.svg';
 import Camera from '@assets/icons/camera.svg';
+import CheckCircle from '@assets/icons/checkCircle.svg';
 import ChevronDown from '@assets/icons/chevronDown.svg';
 import Clock from '@assets/icons/clock.svg';
 import DeleteCircle from '@assets/icons/deleteCircle.svg';
@@ -50,6 +51,7 @@ export const Icons = {
   Plus,
   Camera,
   Search,
+  CheckCircle,
 } as const;
 
 export type IconsType = keyof typeof Icons;

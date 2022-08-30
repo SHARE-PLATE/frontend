@@ -1,14 +1,18 @@
+import { useNavigate } from 'react-router-dom';
+
 import * as S from '@components/MyMenu/MyMenu.style';
 import Icon from '@components/common/Icon';
 
 const MyMenu = () => {
+  const navigate = useNavigate();
+
   return (
     <S.Wrapper>
-      <S.Menu>
+      <S.Menu onClick={() => navigate('/profile/sales-history')}>
         <Icon iconName='SalesHistory' iconSize='LARGE' />
         <p>판매내역</p>
       </S.Menu>
-      <S.Menu>
+      <S.Menu onClick={() => navigate('/profile/purchase-history')}>
         <Icon iconName='PurchaseHistory' iconSize='LARGE' />
         <p>구매내역</p>
       </S.Menu>

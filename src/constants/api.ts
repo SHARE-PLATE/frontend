@@ -10,4 +10,5 @@ export const API = {
   LOGOUT: '/api/logout',
   CHECK_LOGIN: '/api/reissue/access-token',
   WISH_LIST: '/api/wish-list',
+  MY_SHARE: '/api/shares/mine',
 };

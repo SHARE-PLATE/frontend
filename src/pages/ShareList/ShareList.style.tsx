@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { categoryButtonHeight } from '@components/CategoryButton/CategoryButton.tsyle';
+import { categoryButtonHeight } from '@components/CategoryButton/CategoryButton.style';
 import { mainHeaderHeight } from '@components/MainHeader/MainHeader.style';
 import { tabsHeight } from '@components/Tabs/Tabs.styled';
 import { defaultPageStyle } from '@styles/mixin';

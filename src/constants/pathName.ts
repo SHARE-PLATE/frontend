@@ -10,6 +10,8 @@ export const pathName = {
   chatting: '/chatting',
   chattingDetail: '/chatting-detail',
   searchShare: '/search-share',
+  salesHistory: '/profile/sales-history',
+  purchaseHistory: '/profile/purchase-history',
   other: '/*',
 };
 

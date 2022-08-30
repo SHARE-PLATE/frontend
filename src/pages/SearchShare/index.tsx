@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 
 import axios from 'axios';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 import CategoryButton from '@components/CategoryButton';
 import FailedContents from '@components/FailedContents';
 import PreviewShareListLeftImage from '@components/PreviewShareListLeftImage';
 import SearchShareHeader from '@components/SearchShareHeader';
 import { API } from '@constants/api';
-import { listExample } from '@data/shareList';
+import { shareListCategoryItem } from '@constants/category';
 import * as S from '@pages/SearchShare/SearchShare.style';
 import { currentFilterShareList } from '@store/filterShareList';
 import { currentMapKey, searchRecent } from '@store/localStorage';
@@ -18,7 +18,7 @@ import { getSortData } from '@utils/ShareListSort';
 
 const SearchShare = () => {
   const curMapKey = useRecoilValue(currentMapKey);
-  const curShareFilterList = useRecoilValue(currentFilterShareList);
+  const [curShareFilterList, setCurrentFilterShareList] = useRecoilState(currentFilterShareList);
   const searchRecentMapList = useRecoilValue(searchRecent);
   const searchRecentValue = searchRecentMapList.get(curMapKey).name;
   const { lat, lng } = useRecoilValue(currentLatitudeLongitude);
@@ -44,7 +44,10 @@ const SearchShare = () => {
     <S.Wrapper>
       <S.ListHeader>
         <SearchShareHeader keyWord={searchRecentValue} />
-        <CategoryButton />
+        <CategoryButton
+          categoryItem={shareListCategoryItem}
+          setCurrentFilterList={setCurrentFilterShareList}
+        />
       </S.ListHeader>
       {searchData?.length ? (
         <S.ListContent>
