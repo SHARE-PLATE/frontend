@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 
 import axios from 'axios';
 import { useRecoilState } from 'recoil';
-import styled from 'styled-components';
 
 import CategoryButton from '@components/CategoryButton';
 import { Item } from '@components/CategoryButton/CategoryButton.style';
