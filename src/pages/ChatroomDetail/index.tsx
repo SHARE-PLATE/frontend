@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useRecoilValueLoadable } from 'recoil';
 
+import ChatroomBar from '@components/ChatroomBar';
 import ChatroomDetailContents from '@components/ChatroomDetailContents';
 import ChatroomDatailHeader from '@components/ChatroomDetailHeader';
 import ChatroomDetailInfo from '@components/ChatroomDetailInfo';
@@ -13,7 +14,7 @@ import { getChatroomDetail } from '@store/chatroomDetail';
 
 const ChatroomDetail = () => {
   const { id } = useParams();
-  const chatroomDetailState = getChatroomDetail(`${id}`);
+  const chatroomDetailState = getChatroomDetail(id || '');
   const {
     state,
     contents: { share, chats },
@@ -33,6 +34,7 @@ const ChatroomDetail = () => {
     if (state === 'hasValue') {
       setPageContents(
         <>
+          <ChatroomBar chatroomId={id || ''} />
           <S.TopFixedWrapper>
             <ChatroomDatailHeader />
             <ChatroomDetailInfo {...share} />

@@ -9,11 +9,3 @@ export const BottomBarWrapper = styled.div`
     width: 100%;
   `}
 `;
-
-export const BottomBarArea = styled.div`
-  ${({ theme: { colors } }) => css`
-    background-color: ${colors.white1};
-    padding-top: 1rem;
-    height: 5rem;
-  `}
-`;
