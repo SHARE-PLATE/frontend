@@ -1,8 +1,13 @@
 import styled, { css } from 'styled-components';
 
-export const NavigationBarWrapper = styled.ul`
-  ${({ theme: { colors } }) => css`
-    display: flex;
+export const NavigationBarWrapper = styled.ul<{ isNavBarCondition: boolean }>`
+  ${({ theme: { colors, defaultWidth }, isNavBarCondition }) => css`
+    ${defaultWidth}
+    position: fixed;
+    display: ${isNavBarCondition ? 'flex' : 'none'};
+    bottom: 0;
+    box-shadow: 0px -10px 40px #67676740;
+    width: 100%;
     justify-content: space-around;
     background-color: ${colors.white1};
     height: 3.5rem;

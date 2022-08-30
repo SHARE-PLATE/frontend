@@ -5,6 +5,9 @@ import Icon from '@components/common/Icon';
 import useCheckPathname from '@hooks/useCheckPathname';
 
 const NavigationBar = () => {
+  const isNavBarCondition = !useCheckPathname({
+    targetPaths: ['shareForm', 'loginCallback', 'shareDetail', 'chatroomDetail'],
+  });
   const navigationBarInfo = useNavigationBarInfo();
   const navigationBarBtns = navigationBarInfo.map(
     ({ id, name, link, clickHandler, icon, iconFill }) => {
@@ -23,7 +26,7 @@ const NavigationBar = () => {
   );
 
   return (
-    <S.NavigationBarWrapper>
+    <S.NavigationBarWrapper isNavBarCondition={isNavBarCondition}>
       <S.ShareFormBtnWrapper>
         <ShareFormButton />
       </S.ShareFormBtnWrapper>
