@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction } from 'react';
 import SockJs from 'sockjs-client';
 import StompJs from 'stompjs';
 
-import { CHAT, CHATROOMS } from '@constants/words';
+import { APP, CHAT, CHATROOMS, TOPIC } from '@constants/words';
 import { getAuthHeaders } from '@utils/getAuthHeaders';
 
 import { TestChatroomDetailChatsType } from './chatroomDetailData';
@@ -18,16 +18,17 @@ type subscribeParamsType = {
 };
 
 const subscribe = ({ setter, chatroomId }: subscribeParamsType) => {
-  const subscribeURL = `${CHATROOMS}/${chatroomId}`;
+  const subscribeURL = `/${TOPIC}/${CHATROOMS}/${chatroomId}`;
   const headers = getAuthHeaders();
 
   stompClient.subscribe(
     subscribeURL,
     (chatData) => {
+      const newChat = JSON.parse(chatData.body);
+
       setter((chats) => {
-        const newChat = JSON.parse(chatData.body);
-        const newChats = [...chats];
-        newChats.push(newChat);
+        const newChats = [...chats, newChat];
+
         return newChats;
       });
     },
@@ -36,8 +37,7 @@ const subscribe = ({ setter, chatroomId }: subscribeParamsType) => {
 };
 
 const unsubscribe = () => {
-  const id = '';
-  stompClient.unsubscribe(id);
+  stompClient.unsubscribe('sub-0');
 };
 
 export const chatroomConnect = (subscribeParams: subscribeParamsType) => {
@@ -52,19 +52,17 @@ export const chatroomConnect = (subscribeParams: subscribeParamsType) => {
 };
 
 export const chatroomDisconnect = () => {
-  const headers = getAuthHeaders();
-
   try {
     // stompClient.debug = () => null;
-    stompClient.disconnect(unsubscribe, headers);
+    stompClient.disconnect(() => unsubscribe());
   } catch (error) {
     console.log(error);
   }
 };
 
-export const sendChat = ({ content, chatroomId }: { content: string; chatroomId?: string }) => {
+export const sendChat = ({ contents, chatroomId }: { contents: string; chatroomId?: string }) => {
   const headers = getAuthHeaders();
-  const sendingURL = `${CHATROOMS}/${chatroomId}/${CHAT}`;
+  const sendingURL = `/${APP}/${CHATROOMS}/${chatroomId}/${CHAT}`;
 
-  stompClient.send(sendingURL, headers, JSON.stringify({ content }));
+  stompClient.send(sendingURL, headers, JSON.stringify({ contents }));
 };
