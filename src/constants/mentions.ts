@@ -12,3 +12,6 @@ export const noRelatedShareList = '관련된 쉐어가 없습니다.';
 export const offerShare = '이런 쉐어는 어떠세요?';
 export const LOGIN_FAILED = 'LOGIN FAILED';
 export const searchFailed = '검색 결과가 없습니다.';
+export const notShare = '현재 쉐어 중인 목록이 없습니다.';
+export const notExpiry = '현재 만료된 목록이 없습니다.';
+export const notReservation = '현재 예약하신 목록이 없습니다.';
