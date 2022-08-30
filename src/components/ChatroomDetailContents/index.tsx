@@ -1,11 +1,11 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { v4 as createRandomKey } from 'uuid';
 
 import Chat from '@components/Chat';
 import * as S from '@components/ChatroomDetailContents/ChatroomDetailContents.style';
 import { TestChatroomDetailChatsType } from '@pages/ChatroomDetail/chatroomDetailData';
-import { chatroomConnect } from '@pages/ChatroomDetail/socket';
+import { chatroomConnect, chatroomDisconnect } from '@pages/ChatroomDetail/socket';
 
 type ChatroomDetailContentsPropsType = {
   chats: TestChatroomDetailChatsType;
@@ -19,6 +19,10 @@ const ChatroomDetailContents = ({ chats, chatroomId }: ChatroomDetailContentsPro
 
   useMemo(() => {
     chatroomConnect({ setter: setCurChats, chatroomId });
+  }, []);
+
+  useEffect(() => {
+    return chatroomDisconnect;
   }, []);
 
   return (
