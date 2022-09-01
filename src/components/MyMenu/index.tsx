@@ -8,11 +8,11 @@ const MyMenu = () => {
 
   return (
     <S.Wrapper>
-      <S.Menu onClick={() => navigate('/profile/sales-history')}>
+      <S.Menu onClick={() => navigate('./sales-history')}>
         <Icon iconName='SalesHistory' iconSize='LARGE' />
         <p>판매내역</p>
       </S.Menu>
-      <S.Menu onClick={() => navigate('/profile/purchase-history')}>
+      <S.Menu onClick={() => navigate('./purchase-history')}>
         <Icon iconName='PurchaseHistory' iconSize='LARGE' />
         <p>구매내역</p>
       </S.Menu>
