@@ -38,8 +38,6 @@ const SearchShare = () => {
     })();
   }, [searchRecentValue]);
 
-  console.log(searchData);
-
   return (
     <S.Wrapper>
       <S.ListHeader>
