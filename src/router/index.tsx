@@ -1,8 +1,10 @@
 import { pathName as P } from '@constants/pathName';
+import AddKeyword from '@pages/AddKeyword';
 import Chatting from '@pages/Chatting';
 import ChattingDetail from '@pages/ChattingDetail';
 import Error from '@pages/Error';
 import History from '@pages/History';
+import Keyword from '@pages/Keyword';
 import LoginCallback from '@pages/LoginCallback';
 import Main from '@pages/Main';
 import NotFound from '@pages/NotFound';
@@ -31,6 +33,8 @@ export const routes = [
       { path: P.profile, element: <Profile /> },
       { path: P.salesHistory, element: <History historyType='sales' /> },
       { path: P.purchaseHistory, element: <History historyType='purchase' /> },
+      { path: P.keyword, element: <Keyword /> },
+      { path: P.addKeyword, element: <AddKeyword /> },
     ],
   },
   { path: P.other, element: <NotFound /> },
