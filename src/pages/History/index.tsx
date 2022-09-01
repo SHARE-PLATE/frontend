@@ -5,9 +5,9 @@ import { useRecoilState } from 'recoil';
 
 import CategoryButton from '@components/CategoryButton';
 import { Item } from '@components/CategoryButton/CategoryButton.style';
-import HistoryHeader from '@components/HistoryHeader';
 import PreviewShareListLeftImage from '@components/PreviewShareListLeftImage';
 import Tabs from '@components/Tabs';
+import BackTitleHeader from '@components/common/BackTitleHeader';
 import { API } from '@constants/api';
 import { historyListCategoryItem } from '@constants/category';
 import { historyListItem } from '@constants/historyContent';
@@ -48,7 +48,7 @@ const History = ({ historyType }: { historyType: string }) => {
 
   return (
     <S.Wrapper>
-      <HistoryHeader title={currentType.title} />
+      <BackTitleHeader title={currentType.title} />
       <Tabs
         activeShareListValue={activeShareListValue}
         setActiveShareListValue={setActiveShareListValue}

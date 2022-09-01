@@ -12,6 +12,8 @@ export const pathName = {
   searchShare: '/search-share',
   salesHistory: '/profile/sales-history',
   purchaseHistory: '/profile/purchase-history',
+  keyword: '/profile/keyword',
+  addKeyword: '/profile/keyword/add-keyword',
   other: '/*',
 };
 

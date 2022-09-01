@@ -34,6 +34,7 @@ import Upload from '@assets/icons/upload.svg';
 import User from '@assets/icons/user.svg';
 import UserNav from '@assets/icons/userNav.svg';
 import UserNavFill from '@assets/icons/userNavFill.svg';
+import X_Icon from '@assets/icons/x_icon.svg';
 
 export const Icons = {
   ChatFill,
@@ -72,6 +73,7 @@ export const Icons = {
   Camera,
   Search,
   CheckCircle,
+  X_Icon,
 } as const;
 
 export type IconsType = keyof typeof Icons;

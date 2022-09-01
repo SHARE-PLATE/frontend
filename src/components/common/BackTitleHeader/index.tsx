@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 
-import * as S from '@components/HistoryHeader/HistoryHeader.style';
+import * as S from '@components/common/BackTitleHeader/BackTitleHeader.style';
 import Icon from '@components/common/Icon';
 
-const HistoryHeader = ({ title }: { title: string }) => {
+const BackTitleHeader = ({ title }: { title: string }) => {
   const navigate = useNavigate();
 
   const handleClickGoBack = () => navigate(-1);
@@ -15,4 +15,4 @@ const HistoryHeader = ({ title }: { title: string }) => {
   );
 };
 
-export default HistoryHeader;
+export default BackTitleHeader;

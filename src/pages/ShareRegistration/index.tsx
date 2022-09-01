@@ -23,7 +23,7 @@ const ShareRegistration = () => {
   const originalPriceInput = useInput('');
   const recruitmentInput = useInput('');
 
-  const handelSubmit = async (event: any) => {
+  const handelSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     const formData = new FormData();
 
