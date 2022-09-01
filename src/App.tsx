@@ -1,7 +1,7 @@
 import { useRoutes } from 'react-router-dom';
 
-import BottomBar from '@components/BottomBar';
 import Login from '@components/Login';
+import NavigationBar from '@components/NavigationBar';
 import Search from '@components/Search';
 import { Mobile } from '@query/mediaQuery';
 import { routes } from '@router';
@@ -17,7 +17,7 @@ const App = () => {
         <Login />
         <Search />
         <Mobile>
-          <BottomBar />
+          <NavigationBar />
         </Mobile>
       </Styles>
     </div>
