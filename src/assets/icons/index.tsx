@@ -24,6 +24,7 @@ import Search from '@assets/icons/search.svg';
 import SharePlate from '@assets/icons/sharePlate.svg';
 import Upload from '@assets/icons/upload.svg';
 import User from '@assets/icons/user.svg';
+import X_Icon from '@assets/icons/x_icon.svg';
 
 export const Icons = {
   DotsVertical,
@@ -52,6 +53,7 @@ export const Icons = {
   Camera,
   Search,
   CheckCircle,
+  X_Icon,
 } as const;
 
 export type IconsType = keyof typeof Icons;
