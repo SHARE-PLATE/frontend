@@ -20,7 +20,7 @@ const sizeStyles = css<StyledIconProps>`
       width: 2rem;
     `}
 
-    ${({ size }) =>
+  ${({ size }) =>
     typeof size === 'number' &&
     css`
       width: ${`${size}rem`};

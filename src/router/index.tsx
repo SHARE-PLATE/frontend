@@ -1,6 +1,6 @@
 import { pathName as P } from '@constants/pathName';
-import Chatting from '@pages/Chatting';
-import ChattingDetail from '@pages/ChattingDetail';
+import ChatroomDetail from '@pages/ChatroomDetail';
+import Chatrooms from '@pages/Chatrooms';
 import Error from '@pages/Error';
 import History from '@pages/History';
 import LoginCallback from '@pages/LoginCallback';
@@ -25,8 +25,8 @@ export const routes = [
   {
     element: <ProtectedRoute />,
     children: [
-      { path: P.chatting, element: <Chatting /> },
-      { path: P.chattingDetail + '/:id', element: <ChattingDetail /> },
+      { path: P.chatrooms, element: <Chatrooms /> },
+      { path: P.chatroomDetail + '/:id', element: <ChatroomDetail /> },
       { path: P.shareForm + '/:type', element: <ShareRegistration /> },
       { path: P.profile, element: <Profile /> },
       { path: P.salesHistory, element: <History historyType='sales' /> },

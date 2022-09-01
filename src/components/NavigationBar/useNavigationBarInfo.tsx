@@ -8,6 +8,7 @@ import { portalState } from '@store/portal';
 type NavigationBarInfoType = {
   id: number;
   icon: IconsType;
+  iconFill: IconsType;
   name: string;
   link?: pathNameKeysType;
   clickHandler: (link?: pathNameKeysType) => void;
@@ -23,22 +24,31 @@ const useNavigationBarInfo = () => {
   };
 
   const navigationBarInfo: NavigationBarInfoType = [
-    { id: 0, icon: 'Clock', name: '홈', clickHandler, link: 'main' },
+    { id: 0, icon: 'Home', iconFill: 'HomeFill', name: '홈', clickHandler, link: 'main' },
     {
       id: 2,
-      icon: 'Clock',
+      icon: 'SearchNav',
+      iconFill: 'SearchNav',
       name: '검색',
       clickHandler: () => (!portal ? setPortal('search') : setPortal(null)),
     },
-    { id: 1, icon: 'Clock', name: '쉐어', clickHandler, link: 'shareList' },
+    { id: 1, icon: 'Share', iconFill: 'ShareFill', name: '쉐어', clickHandler, link: 'shareList' },
     {
       id: 3,
-      icon: 'Clock',
+      icon: 'Chat',
+      iconFill: 'ChatFill',
       name: '채팅',
       clickHandler,
-      link: 'chatting',
+      link: 'chatrooms',
     },
-    { id: 4, icon: 'Clock', name: '마이메뉴', clickHandler, link: 'profile' },
+    {
+      id: 4,
+      icon: 'UserNav',
+      iconFill: 'UserNavFill',
+      name: '마이메뉴',
+      clickHandler,
+      link: 'profile',
+    },
   ];
 
   return navigationBarInfo;
