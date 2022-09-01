@@ -1,3 +1,4 @@
+import ImgContainer from '@components/ImgContainer';
 import { RemainedTime } from '@components/RemainedTime';
 import * as S from '@components/ShareListItemLongImage/ShareListItemLongImage.style';
 import { thumbnailUrlListType } from '@type/shareList';
@@ -12,9 +13,12 @@ export const ShareListItemLongImage = ({ itemInfo }: { itemInfo: thumbnailUrlLis
         targetTime={appointmentDateTime}
         position={{ top: '0.75rem', left: '0.75rem' }}
       />
-      <S.ImgWrapper>
-        <S.StyledImg src={thumbnailUrl} alt={title} />
-      </S.ImgWrapper>
+      <ImgContainer
+        imgSrc={thumbnailUrl}
+        imgTitle={title}
+        imgWrapperWidth='9.5rem'
+        imgWrapperRatio={15 / 24}
+      />
       <S.InfoWrapper>
         <S.ItemTitle>{title}</S.ItemTitle>
         <S.ItemLocation>{`${location} ∙ 몇 시간 전`}</S.ItemLocation>
