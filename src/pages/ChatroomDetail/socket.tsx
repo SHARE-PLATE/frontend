@@ -4,9 +4,8 @@ import SockJs from 'sockjs-client';
 import StompJs from 'stompjs';
 
 import { APP, CHAT, CHATROOMS, TOPIC } from '@constants/words';
+import { TestChatroomDetailChatsType } from '@pages/ChatroomDetail/chatroomDetailData';
 import { getAuthHeaders } from '@utils/getAuthHeaders';
-
-import { TestChatroomDetailChatsType } from './chatroomDetailData';
 
 const sockServer = 'http://louie-03.com/websocket'; // 들어갈 주소 설정
 const sock = new SockJs(sockServer);
