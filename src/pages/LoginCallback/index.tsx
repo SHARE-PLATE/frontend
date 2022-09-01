@@ -29,6 +29,11 @@ const LoginCallback = () => {
   };
 
   useEffect(() => {
+    if (process.env.NODE_ENV === 'development') {
+      window.location.href = `http://localhost:3000/login-callback?code=${code}`;
+      return;
+    }
+
     setLocalStorageInfo({ key: 'searchRecent', info: code });
     checkCode();
   }, []);
