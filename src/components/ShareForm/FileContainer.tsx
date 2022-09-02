@@ -27,14 +27,14 @@ const FileContainer = ({ fileImage, setFileImage }: FileContainerPropsType) => {
   };
 
   return (
-    <S.FileContainer>
+    <S.FileWrapper>
       <S.FileLabel htmlFor='input-file'>
         <Icon iconName='Camera' />
         <p>{fileImage ? fileImage.length : 0} / 5</p>
       </S.FileLabel>
       <S.FileForm type='file' id='input-file' accept='image/*' onChange={changeValues} multiple />
       {isModalOpen && <FileRegistrationFailedModal modalRef={modalRef} closeAModal={closeModal} />}
-    </S.FileContainer>
+    </S.FileWrapper>
   );
 };
 

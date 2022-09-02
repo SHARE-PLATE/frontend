@@ -16,14 +16,16 @@ const ShareRegistration = () => {
   const [fileImage, setFileImage] = useState<FileList>();
   const [descriptionValue, setDescriptionValue] = useState('');
   const [locationValue, setLocationValue] = useState();
+  const [recruitmentValue, setRecruitmentValue] = useState(1);
   const [appointmentDateTime, setAppointmentDateTime] = useState(moment().format('YYYY-MM-DD'));
+  const [appointmentTime, setAppointmentTime] = useState(moment().format('HH:mm'));
   const setShareListTrigger = useSetRecoilState(shareListTrigger);
   const titleInput = useInput('');
   const priceInput = useInput('');
   const originalPriceInput = useInput('');
-  const recruitmentInput = useInput('');
 
   const handelSubmit = async (event: React.SyntheticEvent) => {
+    console.log(1);
     event.preventDefault();
     const formData = new FormData();
 
@@ -37,7 +39,7 @@ const ShareRegistration = () => {
     formData.append('price', JSON.stringify(priceInput.inputValue));
     formData.append('originalPrice', JSON.stringify(originalPriceInput.inputValue));
     formData.append('location', JSON.stringify(locationValue));
-    formData.append('recruitment', JSON.stringify(recruitmentInput.inputValue));
+    formData.append('recruitment', JSON.stringify(recruitmentValue));
     formData.append('appointmentDateTime', JSON.stringify(appointmentDateTime));
     formData.append('description', JSON.stringify(descriptionValue));
 
@@ -58,15 +60,18 @@ const ShareRegistration = () => {
           titleInput={titleInput}
           priceInput={priceInput}
           originalPriceInput={originalPriceInput}
-          recruitmentInput={recruitmentInput}
           appointmentDateTime={appointmentDateTime}
           setAppointmentDateTime={setAppointmentDateTime}
+          appointmentTime={appointmentTime}
+          setAppointmentTime={setAppointmentTime}
+          recruitmentValue={recruitmentValue}
+          setRecruitmentValue={setRecruitmentValue}
         />
         <ContentDescription
           descriptionValue={descriptionValue}
           setDescriptionValue={setDescriptionValue}
         />
-        <S.SubmitBtn type='submit'>모집하기</S.SubmitBtn>
+        <S.SubmitBtn type='submit'>등록완료</S.SubmitBtn>
       </S.InputFormWrapper>
     </S.Wrapper>
   );
