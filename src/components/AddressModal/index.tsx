@@ -1,10 +1,10 @@
 import { RefObject } from 'react';
 
-import DaumPostcode from 'react-daum-postcode';
+import DaumPostcode, { Address } from 'react-daum-postcode';
 import { useRecoilState } from 'recoil';
 
-import * as S from '@components/ModalContainer/ModalContainer.style';
-import Modal, { MODAL_POSITION } from '@components/common/Modal';
+import * as S from '@components/AddressModal/AddressModal.style';
+import Modal from '@components/common/Modal';
 import { currentLocation } from '@store/location';
 
 interface AddressModalPropsTypes {
@@ -12,11 +12,15 @@ interface AddressModalPropsTypes {
   closeAddressModal: () => void;
 }
 
-const AddressModal = ({ modalRef, closeAddressModal }: AddressModalPropsTypes) => {
-  const [curLocation, setCutLocation] = useRecoilState(currentLocation);
+const addressModalPosition = {
+  top: '3.25rem',
+};
 
-  const handlePostCode = (data: any) => {
-    if (!data) return;
+const AddressModal = ({ modalRef, closeAddressModal }: AddressModalPropsTypes) => {
+  const [curLocation, setCurLocation] = useRecoilState(currentLocation);
+
+  const handlePostCode = (data: Address) => {
+    console.log(data);
     let fullAddress = data.address;
     let extraAddress = '';
 
@@ -29,15 +33,12 @@ const AddressModal = ({ modalRef, closeAddressModal }: AddressModalPropsTypes) =
       }
       fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
     }
-    setCutLocation((prev) => fullAddress);
+    setCurLocation((prev) => fullAddress);
   };
 
   return (
-    <Modal position={MODAL_POSITION.CENTER} closeModal={closeAddressModal}>
-      <S.Wrapper ref={modalRef}>
-        <S.CurLocation>현재위치 : {curLocation ? curLocation : '강남역'}</S.CurLocation>
-        <DaumPostcode style={S.PostCodeStyle} onComplete={handlePostCode} />
-      </S.Wrapper>
+    <Modal position={addressModalPosition} isFull={true}>
+      <DaumPostcode style={S.PostCodeStyle} onComplete={handlePostCode} />
     </Modal>
   );
 };

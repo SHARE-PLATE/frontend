@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  padding: 0 15px;
-  width: 350px;
-  height: 515px;
+  width: 100%;
+  height: 100%;
+  background-color: red;
 `;
 
 export const CurLocation = styled.div`
@@ -15,9 +15,5 @@ export const CurLocation = styled.div`
 
 export const PostCodeStyle = {
   display: 'block',
-  position: 'absolute',
-  top: '8%',
-  width: '90%',
-  height: '90%',
-  padding: '7px',
+  height: '100%',
 } as const;
