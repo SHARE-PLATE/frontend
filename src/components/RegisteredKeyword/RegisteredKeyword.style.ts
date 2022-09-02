@@ -15,6 +15,10 @@ export const ContentBox = styled.div`
   border-radius: 0.25rem;
   background-color: ${({ theme }) => theme.colors.orange2};
   padding: 4px 6px;
+
+  path {
+    stroke-width: 2;
+  }
 `;
 
 export const ContentItem = styled.span`

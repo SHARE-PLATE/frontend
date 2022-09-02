@@ -4,6 +4,7 @@ export const LoginWrapper = styled.div`
   ${({ theme: { colors, fonts } }) => css`
     ${fonts.medium}
 
+    background-color: ${colors.white1};
     display: flex;
     position: relative;
     flex-direction: column;
