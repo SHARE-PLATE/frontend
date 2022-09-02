@@ -11,7 +11,7 @@ export const InputBox = styled.input`
 
   padding: 11px 16px;
   width: 100%;
-  height: 40px;
+  height: 41px;
   line-height: 20px;
 
   letter-spacing: 1px;
