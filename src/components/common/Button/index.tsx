@@ -10,7 +10,7 @@ interface ButtonPropsType extends S.SizeStylesType {
 
 const Button = ({ children, size, onClick, active = false }: ButtonPropsType) => {
   return (
-    <S.Button onClick={onClick} size={size} active={active}>
+    <S.Button type='button' onClick={onClick} size={size} active={active}>
       {children}
     </S.Button>
   );

@@ -29,8 +29,8 @@ const sizeStyles = css<SizeStylesType>`
   ${({ size }) =>
     size === 'large' &&
     css`
-      border-radius: 20px;
-      font-size: 16px;
+      border-radius: 4px;
+      font-size: 14px;
     `}
 `;
 
@@ -39,7 +39,7 @@ export const Button = styled.button<SizeStylesType & ActiveStylesType>`
     ${fonts.smallRegular}
     transition: all 0.3s;
     border: 1px solid ${colors.grey3};
-    padding: 0.25rem 0.75rem;
+    padding: 0.26rem 0.75rem;
     line-height: 1.12rem;
     color: ${colors.grey5};
 
