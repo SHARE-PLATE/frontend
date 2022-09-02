@@ -6,6 +6,8 @@ import ChatFill from '@assets/icons/chatFill.svg';
 import CheckCircle from '@assets/icons/checkCircle.svg';
 import ChevronDown from '@assets/icons/chevronDown.svg';
 import Clock from '@assets/icons/clock.svg';
+import CountDown from '@assets/icons/countDown.svg';
+import CountUp from '@assets/icons/countUp.svg';
 import DeleteCircle from '@assets/icons/deleteCircle.svg';
 import DotsVertical from '@assets/icons/dotsVertical.svg';
 import Form from '@assets/icons/form.svg';
@@ -74,6 +76,8 @@ export const Icons = {
   Search,
   CheckCircle,
   X_Icon,
+  CountUp,
+  CountDown,
 } as const;
 
 export type IconsType = keyof typeof Icons;
