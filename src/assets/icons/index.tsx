@@ -5,6 +5,7 @@ import Camera from '@assets/icons/camera.svg';
 import Chat from '@assets/icons/chat.svg';
 import ChatFill from '@assets/icons/chatFill.svg';
 import CheckCircle from '@assets/icons/checkCircle.svg';
+import CheckCircleColor from '@assets/icons/checkCircleColor.svg';
 import ChevronDown from '@assets/icons/chevronDown.svg';
 import Clock from '@assets/icons/clock.svg';
 import DeleteCircle from '@assets/icons/deleteCircle.svg';
@@ -41,6 +42,7 @@ import UserNavFill from '@assets/icons/userNavFill.svg';
 import X_Icon from '@assets/icons/x_icon.svg';
 
 export const Icons = {
+  CheckCircleColor,
   BriefCase,
   HomeAdd,
   SearchSmall,
