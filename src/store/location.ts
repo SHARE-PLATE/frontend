@@ -14,7 +14,7 @@ export const currentLatitudeLongitude = atom<CurrentLatitudeLongitudeType>({
 
 export const currentLocation = atom({
   key: 'currentLocation',
-  default: '',
+  default: '강남역',
 });
 
 export const changeLatitudeLongitude = selector({
