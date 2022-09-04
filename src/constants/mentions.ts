@@ -18,3 +18,4 @@ export const notReservation = '현재 예약하신 목록이 없습니다.';
 export const addKeyword = '알림 키워드 추가해주세요!';
 export const searchWayMention = '건물명, 도로명 또는 지번으로 검색';
 export const searchAroundMention = '현재 위치로 주소 찾기';
+export const noAddressListMention = '검색 결과가 없습니다.\n지번, 도로명, 건물명을 입력해주세요.';
