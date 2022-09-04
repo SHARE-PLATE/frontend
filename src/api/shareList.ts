@@ -2,11 +2,11 @@ import axios from 'axios';
 
 import { API } from '@constants/api';
 import { activeShareListType } from '@store/filterShareList';
-import { currentLatitudeLongitudeType } from '@store/location';
+import { CurrentLatitudeLongitudeType } from '@store/location';
 
 export const getShareListData = async (
   type: activeShareListType,
-  location: currentLatitudeLongitudeType,
+  location: CurrentLatitudeLongitudeType,
 ) => {
   const curType = type.delivery ? 'delivery' : type.ingredient ? 'ingredient' : '';
   try {

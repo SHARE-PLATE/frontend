@@ -19,14 +19,18 @@ type GetAddressWithKeywordDataType = {
   documents: AddressListType[];
 };
 
+type GetAddressWithGeoParamsType = { x?: string; y?: string };
+
 const kakaoAddressKeywordApi = 'https://dapi.kakao.com/v2/local/search/keyword.json';
 const kakaoAddressGeoApi = 'https://dapi.kakao.com/v2/local/geo/coord2address.json';
 
-export const geoToAddress = (x: string, y: string) => {
-  axios.get(kakaoAddressGeoApi, {
+export const getAddressWithGeo = ({ x, y }: GetAddressWithGeoParamsType) => {
+  const response = axios.get(kakaoAddressGeoApi, {
     headers: { Authorization: `KakaoAK ${process.env.REACT_APP_KAKAO_REST_API_KEY}` },
     params: { x, y },
   });
+
+  return response;
 };
 
 export const getAddressWithKeyword = async (query: string) => {
