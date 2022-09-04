@@ -44,6 +44,10 @@ const GlobalStyle = createGlobalStyle`
     #portal-root,
     #root {
       ${fonts.main}
+
+      button {
+        cursor: pointer;
+      }
     }
   `}
 `;

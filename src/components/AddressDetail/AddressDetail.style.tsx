@@ -104,7 +104,9 @@ export const HomeCompanyBtn = styled.button`
 `;
 
 export const MapCheckBtn = styled.button`
-  ${({ theme: { colors } }) => css`
+  ${({ theme: { colors, fonts } }) => css`
+    ${fonts.medium};
+
     border: solid 1px ${colors.grey3};
     height: 2.7rem;
     width: 100%;
@@ -121,7 +123,7 @@ export const FinishBtn = styled.button`
     ${fonts.largeBold};
 
     margin-top: 2rem;
-    color: ${colors.white1};
+    color: ${colors.white1} !important;
     border-radius: 0.25rem;
     background-color: ${colors.orange2};
     width: 100%;
