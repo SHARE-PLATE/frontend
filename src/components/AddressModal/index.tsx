@@ -1,5 +1,6 @@
 import { RefObject } from 'react';
 
+import axios from 'axios';
 import DaumPostcode, { Address } from 'react-daum-postcode';
 import { useRecoilState } from 'recoil';
 
@@ -13,16 +14,21 @@ interface AddressModalPropsTypes {
 }
 
 const addressModalPosition = {
-  top: '3.25rem',
+  top: `${3.25 + 3.37}rem`, // 3.25 + 3.37
 };
 
 const AddressModal = ({ modalRef, closeAddressModal }: AddressModalPropsTypes) => {
   const [curLocation, setCurLocation] = useRecoilState(currentLocation);
 
-  const handlePostCode = (data: Address) => {
-    console.log(data);
+  const handlePostCode = async (data: Address) => {
     let fullAddress = data.address;
     let extraAddress = '';
+
+    const response = await axios.get('https://dapi.kakao.com/v2/local/search/address.json', {
+      params: { query: fullAddress },
+      headers: { Authorization: `KakaoAK ${process.env.REACT_APP_KAKAO_REST_API_KEY}` },
+    });
+    const info = response.data.documents[0];
 
     if (data.addressType === 'R') {
       if (data.bname !== '') {
