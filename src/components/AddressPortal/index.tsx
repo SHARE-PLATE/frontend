@@ -10,15 +10,15 @@ import Portal from '@components/Portal';
 import Icon from '@components/common/Icon';
 import { searchAroundMention, searchWayMention } from '@constants/mentions';
 import { SEARCH_ADDRESS, SET_ADDRESS } from '@constants/words';
-import { SelectedAddress } from '@store/address';
 import { portalState } from '@store/portal';
+import { selectedAddressState } from '@store/selectedAddress';
 
 const AddressPortal = () => {
   const closeBtn = useRef<HTMLButtonElement>(null);
   const [addressValue, setAddressValue] = useState('');
   const [isSearching, setIsSearching] = useState(false);
   const setPortal = useSetRecoilState(portalState);
-  const selectedAddress = useRecoilValue(SelectedAddress);
+  const selectedAddress = useRecoilValue(selectedAddressState);
   const isSelectedAddress = !!selectedAddress.x;
 
   const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {

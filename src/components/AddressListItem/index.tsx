@@ -3,7 +3,7 @@ import { useSetRecoilState } from 'recoil';
 import { AddressListType } from '@api/address';
 import * as S from '@components/AddressListItem/AddressListItem.style';
 import { ROAD_NAME } from '@constants/words';
-import { SelectedAddress } from '@store/address';
+import { selectedAddressState } from '@store/selectedAddress';
 
 const AddressListItem = ({
   id,
@@ -13,7 +13,7 @@ const AddressListItem = ({
   x,
   y,
 }: AddressListType) => {
-  const setSelectedAddress = useSetRecoilState(SelectedAddress);
+  const setSelectedAddress = useSetRecoilState(selectedAddressState);
 
   return (
     <S.Wrapper

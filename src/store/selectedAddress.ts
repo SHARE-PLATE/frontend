@@ -9,9 +9,9 @@ export type SelectedAddressType = {
   address_name?: string;
 };
 
-export const defaultSelectedAddress: SelectedAddressType = {};
+export const defaultSelectedAddressState: SelectedAddressType = {};
 
-export const SelectedAddress = atom({
+export const selectedAddressState = atom({
   key: 'selectedAddress',
-  default: defaultSelectedAddress,
+  default: defaultSelectedAddressState,
 });

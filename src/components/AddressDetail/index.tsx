@@ -12,10 +12,10 @@ import {
   DETAIL_ADDRESS,
   HOME_KOR,
 } from '@constants/words';
-import { SelectedAddress, defaultSelectedAddress } from '@store/address';
 import { addressRecentState } from '@store/localStorage';
 import { currentLatitudeLongitude, currentLocation } from '@store/location';
 import { portalState } from '@store/portal';
+import { selectedAddressState, defaultSelectedAddressState } from '@store/selectedAddress';
 import { setLocalStorageInfo } from '@utils/localStorage';
 
 const AddressDetail = ({
@@ -29,7 +29,7 @@ const AddressDetail = ({
   const setPortal = useSetRecoilState(portalState);
   const setLatitudeLongitude = useSetRecoilState(currentLatitudeLongitude);
   const setLocation = useSetRecoilState(currentLocation);
-  const [selectedAddress, setSelectedAddress] = useRecoilState(SelectedAddress);
+  const [selectedAddress, setSelectedAddress] = useRecoilState(selectedAddressState);
   const { x: lat, y: lng, place_name, road_address_name, address_name, id } = selectedAddress;
 
   const handleClickFinishBtn = () => {
@@ -39,7 +39,7 @@ const AddressDetail = ({
 
     setLatitudeLongitude({ lat, lng });
     setLocation(road_address_name);
-    setSelectedAddress(defaultSelectedAddress);
+    setSelectedAddress(defaultSelectedAddressState);
     setLocalStorageInfo({ key: ADDRESS_RECENT, info: [...addressRecentList] });
     setAddressRecentList(() => addressRecentList);
     setIsSearching(false);
@@ -49,7 +49,7 @@ const AddressDetail = ({
   return (
     <S.Wrapper>
       <S.Header>
-        <S.HeaderBtn onClick={() => setSelectedAddress(defaultSelectedAddress)}>
+        <S.HeaderBtn onClick={() => setSelectedAddress(defaultSelectedAddressState)}>
           <Icon iconName={'Back'} />
         </S.HeaderBtn>
         <S.HeaderTitle>{DETAIL_ADDRESS}</S.HeaderTitle>
