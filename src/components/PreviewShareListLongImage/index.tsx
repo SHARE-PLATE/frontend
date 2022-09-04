@@ -25,7 +25,7 @@ const PreviewShareListLongImage = () => {
   return (
     <S.Wrapper>
       <Title contentTitle={littleDeadlineMention} size='LARGE' />
-      {recommendedData ? (
+      {!!recommendedData?.length ? (
         <S.ListWrapper>
           {recommendedData.map((item) => (
             <ShareListItemLongImage key={item.id} itemInfo={item} />
