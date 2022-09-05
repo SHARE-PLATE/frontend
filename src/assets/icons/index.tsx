@@ -1,9 +1,11 @@
 import ArrowUp from '@assets/icons/arrowUp.svg';
 import Back from '@assets/icons/back.svg';
+import BriefCase from '@assets/icons/briefCase.svg';
 import Camera from '@assets/icons/camera.svg';
 import Chat from '@assets/icons/chat.svg';
 import ChatFill from '@assets/icons/chatFill.svg';
 import CheckCircle from '@assets/icons/checkCircle.svg';
+import CheckCircleColor from '@assets/icons/checkCircleColor.svg';
 import ChevronDown from '@assets/icons/chevronDown.svg';
 import Clock from '@assets/icons/clock.svg';
 import CountDown from '@assets/icons/countDown.svg';
@@ -14,8 +16,10 @@ import Form from '@assets/icons/form.svg';
 import Heart from '@assets/icons/heart.svg';
 import HeartEmpty from '@assets/icons/heartEmpty.svg';
 import Home from '@assets/icons/home.svg';
+import HomeAdd from '@assets/icons/homeAdd.svg';
 import HomeFill from '@assets/icons/homeFill.svg';
 import Kakao from '@assets/icons/kakao.svg';
+import LocationMarker from '@assets/icons/locationMarker.svg';
 import Logo from '@assets/icons/logo.svg';
 import Map from '@assets/icons/map.svg';
 import NoticeOff from '@assets/icons/noticeOff.svg';
@@ -29,6 +33,7 @@ import SalesHistory from '@assets/icons/salesHistory.svg';
 import Search from '@assets/icons/search.svg';
 import SearchNav from '@assets/icons/searchNav.svg';
 import SearchNavFill from '@assets/icons/searchNavFill.svg';
+import SearchSmall from '@assets/icons/searchSmall.svg';
 import Share from '@assets/icons/share.svg';
 import ShareFill from '@assets/icons/shareFill.svg';
 import SharePlate from '@assets/icons/sharePlate.svg';
@@ -39,6 +44,11 @@ import UserNavFill from '@assets/icons/userNavFill.svg';
 import X_Icon from '@assets/icons/x_icon.svg';
 
 export const Icons = {
+  CheckCircleColor,
+  BriefCase,
+  HomeAdd,
+  SearchSmall,
+  LocationMarker,
   ChatFill,
   SearchNavFill,
   HomeFill,

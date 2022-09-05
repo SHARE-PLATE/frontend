@@ -2,7 +2,7 @@ import { ReactElement, useState } from 'react';
 
 import { Settings } from 'react-slick';
 
-import * as S from './Carousel.style';
+import * as S from '@components/Carousel/Carousel.style';
 
 interface CarouselPropsType {
   settings: Settings;

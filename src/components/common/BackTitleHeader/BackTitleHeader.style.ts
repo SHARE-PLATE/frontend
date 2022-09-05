@@ -1,15 +1,17 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
-  display: flex;
-  position: relative;
-  align-items: center;
-  justify-content: left;
-  height: 3.25rem;
+  ${({ theme: { defaultHeaderHeight } }) => css`
+    height: ${defaultHeaderHeight}rem;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: left;
 
-  svg {
-    position: absolute;
-  }
+    svg {
+      position: absolute;
+    }
+  `}
 `;
 
 export const Title = styled.h2`

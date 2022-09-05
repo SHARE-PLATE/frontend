@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 
 import Portal from '@components/Portal';
-import * as S from '@components/Search/Search.style';
 import SearchPopular from '@components/SearchPopular';
+import * as S from '@components/SearchPortal/Search.style';
 import SearchRecent from '@components/SearchRecent';
 import Icon from '@components/common/Icon';
 import { inputKeyword } from '@constants/mentions';
@@ -17,7 +17,7 @@ import { setLocalStorageInfo } from '@utils/localStorage';
 
 const portalName: PortalNameType = 'search';
 
-const Search = () => {
+const SearchPortal = () => {
   const [inputValue, setInputValue] = useState('');
   const [recentListInfoMap, setRecentListInfoMap] = useRecoilState(searchRecent);
   const setCurrentMapKey = useSetRecoilState(currentMapKey);
@@ -52,26 +52,28 @@ const Search = () => {
 
   return (
     <Portal type='full' portalName={portalName} closeBtn={closeBtn}>
-      <S.Header>
-        <S.FormWrapper>
-          <S.CloseBtn ref={closeBtn}>
-            <Icon iconName='Back' />
-          </S.CloseBtn>
-          <S.Form onSubmit={handleSubmit}>
-            <S.Input
-              value={inputValue}
-              onChange={handleChangeInput}
-              placeholder={inputKeyword}
-              ref={inputRef}
-            />
-            {/* <S.SubmitBtn></S.SubmitBtn> 추후 검색 입력 버튼 사용 시*/}
-          </S.Form>
-        </S.FormWrapper>
-        <SearchPopular clickHandler={handleSubmit} />
-      </S.Header>
-      <SearchRecent clickHandler={handleSubmit} />
+      <S.Wrapper>
+        <S.Header>
+          <S.FormWrapper>
+            <S.CloseBtn ref={closeBtn}>
+              <Icon iconName='Back' />
+            </S.CloseBtn>
+            <S.Form onSubmit={handleSubmit}>
+              <S.Input
+                value={inputValue}
+                onChange={handleChangeInput}
+                placeholder={inputKeyword}
+                ref={inputRef}
+              />
+              {/* <S.SubmitBtn></S.SubmitBtn> 추후 검색 입력 버튼 사용 시*/}
+            </S.Form>
+          </S.FormWrapper>
+          <SearchPopular clickHandler={handleSubmit} />
+        </S.Header>
+        <SearchRecent clickHandler={handleSubmit} />
+      </S.Wrapper>
     </Portal>
   );
 };
 
-export default Search;
+export default SearchPortal;

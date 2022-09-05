@@ -1,9 +1,8 @@
 import axios from 'axios';
 
 import { API } from '@constants/api';
+import { CHATROOM_ID } from '@constants/words';
 import { getAuthHeaders } from '@utils/getAuthHeaders';
-
-import { CHATROOM_ID } from './../constants/words';
 
 export const getChatroomsData = async (id?: string) => {
   const headers = getAuthHeaders();

@@ -4,6 +4,7 @@ export const Wrapper = styled.div`
   display: flex;
   gap: 0.5rem;
   max-width: 50%;
+  cursor: pointer;
 `;
 
 export const LocationWrapper = styled.div`

@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 
-export type PortalNameType = 'search' | 'login' | 'sidebar' | null;
+export type PortalNameType = 'search' | 'login' | 'sidebar' | 'address' | null;
 
 export type PortalType = 'modal' | 'sidebar' | 'full' | null;
 

@@ -12,6 +12,10 @@ const fonts = {
     'letter-spacing': '-0.02rem',
     'font-weight': '500',
   },
+  xSmallLight: {
+    'font-size': '10px',
+    'font-weight': '200',
+  },
   xSmallRegular: {
     'font-size': '10px',
     'font-weight': '400',
@@ -22,6 +26,10 @@ const fonts = {
   xSmallBold: {
     'font-size': '10px',
     'font-weight': '600',
+  },
+  smallLight: {
+    'font-size': '12px',
+    'font-weight': '200',
   },
   smallRegular: {
     'font-size': '12px',
@@ -83,6 +91,7 @@ const colors = {
   orange0: '#ffd6c7',
   orange1: '#ff8e65',
   orange2: '#ff5c21',
+  blue0: '#1980E8',
 };
 
 const theme = { defaultFontSize, defaultWidth, fonts, colors, defaultPadding, defaultHeaderHeight };
