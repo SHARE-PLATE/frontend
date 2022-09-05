@@ -1,17 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-
-import * as S from '@components/MapPortal/MapPortal.style';
-import Portal from '@components/Portal';
+import * as S from '@components/AddressMap/AddressMap.style';
 import Icon from '@components/common/Icon';
-import { currentLatitudeLongitude } from '@store/location';
+import { SelectedAddressType } from '@store/selectedAddress';
 
 const { kakao } = window as any;
 
-const MapPortal = () => {
+const AddressMap = ({ x: lat, y: lng, address_name, road_address_name }: SelectedAddressType) => {
   const [mapState, setMapState] = useState(null);
-  const { lat, lng } = useRecoilValue(currentLatitudeLongitude);
   const mapRef = useRef(null);
 
   const initMap = () => {
@@ -51,11 +47,11 @@ const MapPortal = () => {
         <div className='map-area' ref={mapRef} />
       </S.MapContainer>
       <S.LocationDescription>
-        <S.FirstAddress>강남역</S.FirstAddress>
-        <S.SecondAddress>서울특별시 강남구 강남대로 지하 396</S.SecondAddress>
+        <S.FirstAddress>{road_address_name}</S.FirstAddress>
+        <S.SecondAddress>{address_name}</S.SecondAddress>
       </S.LocationDescription>
     </S.Wrapper>
   );
 };
 
-export default MapPortal;
+export default AddressMap;
