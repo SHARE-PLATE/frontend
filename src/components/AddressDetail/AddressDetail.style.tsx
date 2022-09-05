@@ -82,10 +82,11 @@ export const HomeCompanyBtnWrapper = styled.div`
   margin-bottom: 0.75rem;
 `;
 
-export const HomeCompanyBtn = styled.button`
-  ${({ theme: { colors, fonts } }) => css`
+export const HomeCompanyBtn = styled.button<{ isSelected: boolean }>`
+  ${({ theme: { colors, fonts }, isSelected }) => css`
     ${fonts.mediumRegular};
 
+    transition: 0.3s all;
     display: flex;
     flex-grow: 1;
     flex-direction: column;
@@ -100,6 +101,16 @@ export const HomeCompanyBtn = styled.button`
     path {
       stroke: ${colors.grey4};
     }
+
+    ${isSelected &&
+    css`
+      border: 1px solid ${colors.orange2};
+      background-color: ${colors.orange0};
+      color: ${colors.orange2};
+      path {
+        stroke: ${colors.orange2};
+      }
+    `}
   `}
 `;
 
