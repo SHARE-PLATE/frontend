@@ -6,6 +6,7 @@ export const TOPIC = 'topic';
 export const APP = 'app';
 export const CODE = 'code';
 export const HOME = 'HOME';
+export const COMPANY = 'COMPANY';
 export const AUTHORIZATION = 'Authorization';
 export const ACCESS_TOKEN = 'access-token';
 export const ADDRESS_RECENT = 'addressRecent';
