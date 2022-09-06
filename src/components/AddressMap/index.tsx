@@ -1,54 +1,65 @@
-import { useEffect, useRef, useState } from 'react';
+/*global kakao */
+
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 
 import * as S from '@components/AddressMap/AddressMap.style';
 import Icon from '@components/common/Icon';
 import { SelectedAddressType } from '@store/selectedAddress';
 
+import { locationMarker } from './locationMarker';
+
+interface AddressMapPropsType extends SelectedAddressType {
+  setIsMap: Dispatch<SetStateAction<boolean>>;
+}
+
 const { kakao } = window as any;
 
-const AddressMap = ({ x: lat, y: lng, address_name, road_address_name }: SelectedAddressType) => {
+const AddressMap = ({
+  x: lat,
+  y: lng,
+  address_name,
+  road_address_name,
+  setIsMap,
+}: AddressMapPropsType) => {
   const [mapState, setMapState] = useState(null);
   const mapRef = useRef(null);
 
+  const handleClickBackBtn = () => setIsMap(false);
+
   const initMap = () => {
-    const center = new kakao.maps.LatLng(lat, lng);
-    const options = {
-      center,
-      level: 2,
-    };
-    const map = new kakao.maps.Map(mapRef.current, options);
-    setMapState(map);
+    const position = new kakao.maps.LatLng(lat, lng);
+    const options = { center: position, level: 3 };
+    const newMap = new kakao.maps.Map(mapRef.current, options);
+
+    setMapState(newMap);
   };
 
-  const position = new kakao.maps.LatLng(lat, lng);
-  const content = `<div style="${S.overlayStyle}">쉐어장소</div>`;
-
   const drawOverlay = () => {
-    const overlay = new kakao.maps.CustomOverlay(position);
+    const position = new kakao.maps.LatLng(lat, lng);
+    const overlay = new kakao.maps.CustomOverlay({ position, content: locationMarker });
+
     overlay.setMap(mapState);
   };
 
-  const startOverlay = new kakao.maps.CustomOverlay({
-    position,
-    content,
-  });
+  useEffect(() => {
+    initMap();
+  }, [mapRef]);
 
-  startOverlay.setMap(mapState);
-
-  useEffect(initMap, [mapRef]);
-  useEffect(drawOverlay, [mapState]);
-
-  const handleClickClose = () => {};
+  useEffect(() => {
+    drawOverlay();
+  }, [mapState]);
 
   return (
     <S.Wrapper>
       <S.MapContainer>
-        <Icon iconName='Back' iconSize='LARGE' handleClick={handleClickClose} />
-        <div className='map-area' ref={mapRef} />
+        <S.BackBtn onClick={handleClickBackBtn}>
+          <Icon iconName='Back' />
+        </S.BackBtn>
+        <S.Map ref={mapRef} />
       </S.MapContainer>
       <S.LocationDescription>
-        <S.FirstAddress>{road_address_name}</S.FirstAddress>
-        <S.SecondAddress>{address_name}</S.SecondAddress>
+        <div>{road_address_name}</div>
+        <div>{address_name}</div>
       </S.LocationDescription>
     </S.Wrapper>
   );
