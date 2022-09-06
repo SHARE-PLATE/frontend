@@ -1,6 +1,12 @@
 import styled, { css } from 'styled-components';
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div<{ isMap: boolean }>`
+  ${({ isMap }) =>
+    isMap &&
+    css`
+      padding: 0 !important; // show map with full width
+    `}
+`;
 
 export const Header = styled.div`
   ${({ theme: { defaultHeaderHeight } }) => css`
@@ -105,10 +111,10 @@ export const HomeCompanyBtn = styled.button<{ isSelected: boolean }>`
     ${isSelected &&
     css`
       border: 1px solid ${colors.orange2};
-      background-color: ${colors.orange0};
-      color: ${colors.orange2};
+      background-color: ${colors.orange2};
+      color: ${colors.white1};
       path {
-        stroke: ${colors.orange2};
+        stroke: ${colors.white1};
       }
     `}
   `}

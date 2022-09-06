@@ -39,13 +39,13 @@ const AddressDetail = ({
 
   const handleClickHomeCompanyBtn = (target: 'HOME' | 'COMPANY') => {
     if (target === 'HOME') {
-      setIsHome(true);
+      setIsHome(!isHome);
       setIsCompany(false);
       return;
     }
     if (target === 'COMPANY') {
+      setIsCompany(!isCompany);
       setIsHome(false);
-      setIsCompany(true);
     }
   };
 
@@ -69,7 +69,7 @@ const AddressDetail = ({
   };
 
   return (
-    <S.Wrapper>
+    <S.Wrapper isMap={isMap}>
       {!isMap && (
         <>
           <S.Header>
@@ -115,7 +115,7 @@ const AddressDetail = ({
           <S.FinishBtn onClick={handleClickFinishBtn}>완료</S.FinishBtn>
         </>
       )}
-      {isMap && <AddressMap {...selectedAddress} />}
+      {isMap && <AddressMap setIsMap={setIsMap} {...selectedAddress} />}
     </S.Wrapper>
   );
 };
