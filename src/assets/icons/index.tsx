@@ -7,6 +7,7 @@ import ChatFill from '@assets/icons/chatFill.svg';
 import CheckCircle from '@assets/icons/checkCircle.svg';
 import CheckCircleColor from '@assets/icons/checkCircleColor.svg';
 import ChevronDown from '@assets/icons/chevronDown.svg';
+import ChevronRight from '@assets/icons/chevronRight.svg';
 import Clock from '@assets/icons/clock.svg';
 import CountDown from '@assets/icons/countDown.svg';
 import CountUp from '@assets/icons/countUp.svg';
@@ -18,6 +19,7 @@ import HeartEmpty from '@assets/icons/heartEmpty.svg';
 import Home from '@assets/icons/home.svg';
 import HomeAdd from '@assets/icons/homeAdd.svg';
 import HomeFill from '@assets/icons/homeFill.svg';
+import ImgDelete from '@assets/icons/imgDelete.svg';
 import Kakao from '@assets/icons/kakao.svg';
 import LocationMarker from '@assets/icons/locationMarker.svg';
 import Logo from '@assets/icons/logo.svg';
@@ -88,6 +90,8 @@ export const Icons = {
   X_Icon,
   CountUp,
   CountDown,
+  ChevronRight,
+  ImgDelete,
 } as const;
 
 export type IconsType = keyof typeof Icons;
