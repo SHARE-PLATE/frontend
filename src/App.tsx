@@ -3,6 +3,7 @@ import { useRoutes } from 'react-router-dom';
 import AddressPortal from '@components/AddressPortal';
 import Login from '@components/Login';
 import NavigationBar from '@components/NavigationBar';
+import OptionPortal from '@components/OptionPortal';
 import SearchPortal from '@components/SearchPortal';
 import { Mobile } from '@query/mediaQuery';
 import { routes } from '@router';
@@ -18,6 +19,7 @@ const App = () => {
         <Login />
         <SearchPortal />
         <AddressPortal />
+        <OptionPortal />
         <Mobile>
           <NavigationBar />
         </Mobile>
