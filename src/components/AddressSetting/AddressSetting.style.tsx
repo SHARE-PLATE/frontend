@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
-export const HomeAndCompanyWrapper = styled.div`
-  ${({ theme: { defaultPadding, fonts } }) => css`
+export const HomeCompanyWrapper = styled.div`
+  ${({ theme: { defaultPadding } }) => css`
     ${defaultPadding};
 
     padding-top: 1rem;
@@ -9,12 +9,23 @@ export const HomeAndCompanyWrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
+  `}
+`;
 
-    > button {
-      ${fonts.medium};
-      display: flex;
-      gap: 0.75rem;
-      align-items: center;
+export const HomeCompanyBtn = styled.button`
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+`;
+
+export const HomeCompanyText = styled.div`
+  ${({ theme: { fonts, colors } }) => css`
+    ${fonts.medium};
+    text-align: left;
+
+    > :nth-child(2) {
+      color: ${colors.grey4};
+      ${fonts.smallLight};
     }
   `}
 `;
@@ -22,6 +33,7 @@ export const HomeAndCompanyWrapper = styled.div`
 export const RegisteredAddressList = styled.div``;
 
 export const RegisteredAddress = styled.div`
+  cursor: pointer;
   display: flex;
   gap: 0.75rem;
   padding: 1rem 0;

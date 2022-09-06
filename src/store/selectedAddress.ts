@@ -1,13 +1,13 @@
 import { atom } from 'recoil';
 
-export type SelectedAddressType = {
+export interface SelectedAddressType {
   id?: string;
   x?: string;
   y?: string;
   place_name?: string;
   road_address_name?: string;
   address_name?: string;
-};
+}
 
 export const defaultSelectedAddressState: SelectedAddressType = {};
 
