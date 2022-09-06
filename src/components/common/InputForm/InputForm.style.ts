@@ -8,11 +8,10 @@ export const Wrapper = styled.div`
 
 export const InputBox = styled.input`
   ${flexCenter}
-
   padding: 11px 16px;
   width: 100%;
   height: 41px;
   line-height: 20px;
-
   letter-spacing: 1px;
+  border: 1px solid ${({ theme }) => theme.colors.grey3};
 `;
