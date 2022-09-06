@@ -79,6 +79,19 @@ export const PortalContent = styled.div<PortalStylePropsType>`
       animation: fadeout 0.5s;
       animation: slidein 0.5s;
     `}
+
+    ${portalType === 'half' &&
+    css`
+      ${defaultWidth}
+      width: 100%;
+      height: 78%;
+      position: absolute;
+      top: 61%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      animation: 'slideout-bottom' 0.3s;
+    `}
   `}
 `;
 
