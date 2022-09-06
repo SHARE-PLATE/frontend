@@ -16,7 +16,7 @@ export const SubmitBtn = styled.button`
   ${({ theme: { fonts, colors } }) => css`
     ${flexCenter};
     ${fonts.largeBold};
-    background: ${colors.orange2};
+    background: ${colors.orange3};
     color: ${colors.white1};
     border-radius: 4px;
     width: 100%;
