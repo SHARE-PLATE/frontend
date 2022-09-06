@@ -26,15 +26,39 @@ const FileContainer = ({ fileImage, setFileImage }: FileContainerPropsType) => {
     }
   };
 
+  const deleteImage = (clickedImage: File) => {
+    const dataTransfer = new DataTransfer();
+    if (fileImage) {
+      Array.from(fileImage)
+        .filter((file) => file !== clickedImage)
+        .forEach((file) => {
+          dataTransfer.items.add(file);
+        });
+
+      setFileImage(dataTransfer.files);
+    }
+  };
+
   return (
-    <S.FileContainer>
-      <S.FileLabel htmlFor='input-file'>
+    <S.FileWrapper>
+      <S.FileLabel htmlFor='input-file' isFile={fileImage?.length}>
         <Icon iconName='Camera' />
-        <p>{fileImage ? fileImage.length : 0} / 5</p>
+        <div>
+          <S.FileLength isFile={fileImage?.length}>{fileImage ? fileImage.length : 0}</S.FileLength>
+          <span>/5</span>
+        </div>
       </S.FileLabel>
       <S.FileForm type='file' id='input-file' accept='image/*' onChange={changeValues} multiple />
       {isModalOpen && <FileRegistrationFailedModal modalRef={modalRef} closeAModal={closeModal} />}
-    </S.FileContainer>
+
+      {fileImage &&
+        [...fileImage].map((file, idx) => (
+          <S.ImagePreviewContainer key={idx}>
+            <S.ImagePreview src={URL.createObjectURL(file)} />
+            <Icon iconName='ImgDelete' handleClick={() => deleteImage(file)} />
+          </S.ImagePreviewContainer>
+        ))}
+    </S.FileWrapper>
   );
 };
 

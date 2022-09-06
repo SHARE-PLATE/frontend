@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { defaultPageStyle, flexCenter } from '@styles/mixin';
 
@@ -13,10 +13,13 @@ export const InputFormWrapper = styled.form`
 `;
 
 export const SubmitBtn = styled.button`
-  ${flexCenter}
-
-  border-radius: 4px;
-  background: #ff5c21;
-  width: 100%;
-  height: 40px;
+  ${({ theme: { fonts, colors } }) => css`
+    ${flexCenter};
+    ${fonts.largeBold};
+    background: ${colors.orange3};
+    color: ${colors.white1};
+    border-radius: 4px;
+    width: 100%;
+    height: 40px;
+  `}
 `;

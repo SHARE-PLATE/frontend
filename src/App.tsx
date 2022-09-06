@@ -1,8 +1,10 @@
 import { useRoutes } from 'react-router-dom';
 
+import AddressPortal from '@components/AddressPortal';
 import Login from '@components/Login';
 import NavigationBar from '@components/NavigationBar';
-import Search from '@components/Search';
+import OptionPortal from '@components/OptionPortal';
+import SearchPortal from '@components/SearchPortal';
 import { Mobile } from '@query/mediaQuery';
 import { routes } from '@router';
 import Styles from '@styles';
@@ -15,7 +17,9 @@ const App = () => {
       <Styles>
         {element}
         <Login />
-        <Search />
+        <SearchPortal />
+        <AddressPortal />
+        <OptionPortal />
         <Mobile>
           <NavigationBar />
         </Mobile>

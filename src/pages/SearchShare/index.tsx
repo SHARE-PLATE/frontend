@@ -20,7 +20,7 @@ const SearchShare = () => {
   const curMapKey = useRecoilValue(currentMapKey);
   const [curShareFilterList, setCurrentFilterShareList] = useRecoilState(currentFilterShareList);
   const searchRecentMapList = useRecoilValue(searchRecent);
-  const searchRecentValue = searchRecentMapList.get(curMapKey).name;
+  const searchRecentValue = searchRecentMapList.get(curMapKey)?.name;
   const { lat, lng } = useRecoilValue(currentLatitudeLongitude);
   const [searchData, setSearchData] = useState<thumbnailUrlListType[]>();
 
@@ -41,7 +41,7 @@ const SearchShare = () => {
   return (
     <S.Wrapper>
       <S.ListHeader>
-        <SearchShareHeader keyWord={searchRecentValue} />
+        <SearchShareHeader keyWord={searchRecentValue || ''} />
         <CategoryButton
           categoryItem={shareListCategoryItem}
           setCurrentFilterList={setCurrentFilterShareList}

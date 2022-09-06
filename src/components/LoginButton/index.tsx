@@ -1,11 +1,10 @@
 import { useSetRecoilState } from 'recoil';
 
+import * as S from '@components/LoginButton/LoginButton.style';
 import Portal from '@components/Portal';
 import { loginMention, kakaoLoginMention } from '@constants/mentions';
 import { LOGIN } from '@constants/words';
 import { PortalNameType, portalState } from '@store/portal';
-
-import * as S from './LoginButton.style';
 
 const portalName: PortalNameType = 'login';
 

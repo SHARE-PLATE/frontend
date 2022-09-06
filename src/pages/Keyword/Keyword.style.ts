@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { defaultPageStyle, subTitle } from '@styles/mixin';
 
@@ -7,6 +7,9 @@ export const Wrapper = styled.div`
 `;
 
 export const Header = styled.div`
-  ${subTitle}
+  ${({ theme: { fonts } }) => css`
+    ${fonts.largeBold}
+  `}
+  padding-top: 1rem;
   padding-bottom: 1rem;
 `;
