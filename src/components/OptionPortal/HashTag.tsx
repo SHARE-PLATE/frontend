@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { useRecoilState } from 'recoil';
 
-import * as S from '@components/OptionPortal/Option.style';
+import * as S from '@components/OptionPortal/OptionPortal.style';
 import Icon from '@components/common/Icon';
 import { tagList } from '@store/shareRegistration';
 
