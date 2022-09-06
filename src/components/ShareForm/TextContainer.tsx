@@ -1,13 +1,18 @@
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+
 import * as S from '@components/ShareForm/ShareForm.style';
 import Button from '@components/common/Button';
 import Icon from '@components/common/Icon';
 import InputForm from '@components/common/InputForm';
 import { UseInputReturnType } from '@hooks/useInput';
+import { portalState } from '@store/portal';
+import { isSelectedOption } from '@store/shareRegistration';
 
 interface TextContainerPropsType {
   titleInput: UseInputReturnType;
   priceInput: UseInputReturnType;
   originalPriceInput: UseInputReturnType;
+  roadAddressName: string | undefined;
   appointmentDateTime: string;
   setAppointmentDateTime: React.Dispatch<React.SetStateAction<string>>;
   appointmentTime: string;
@@ -20,6 +25,7 @@ const TextContainer = ({
   titleInput,
   priceInput,
   originalPriceInput,
+  roadAddressName,
   appointmentDateTime,
   setAppointmentDateTime,
   appointmentTime,
@@ -27,6 +33,8 @@ const TextContainer = ({
   recruitmentValue,
   setRecruitmentValue,
 }: TextContainerPropsType) => {
+  const setPortal = useSetRecoilState(portalState);
+  const isSelectedOptionValue = useRecoilValue(isSelectedOption);
   const handelChangeDateTime = ({ target }: React.ChangeEvent<HTMLInputElement>) =>
     setAppointmentDateTime(target.value);
 
@@ -35,13 +43,13 @@ const TextContainer = ({
 
   const plusCount = () => {
     const maxCount = 99;
-    if (recruitmentValue === maxCount) return;
+    if (recruitmentValue >= maxCount) return;
     setRecruitmentValue((prev) => prev + 1);
   };
 
   const minusCount = () => {
     const minCount = 1;
-    if (recruitmentValue === minCount) return;
+    if (recruitmentValue <= minCount) return;
     setRecruitmentValue((prev) => prev - 1);
   };
 
@@ -57,7 +65,10 @@ const TextContainer = ({
       </S.TowTextBlock>
 
       <S.LongTextBlock>
-        <button>장소선택</button>
+        <S.LocationSelectButton type='button' onClick={() => setPortal('address')}>
+          <span>{roadAddressName ? roadAddressName : '주소선택'}</span>
+          <Icon iconName='ChevronRight' />
+        </S.LocationSelectButton>
       </S.LongTextBlock>
 
       <S.TowTextBlock>
@@ -78,7 +89,7 @@ const TextContainer = ({
           </S.ButtonContainer>
           <span>명 모집</span>
         </S.CountContainer>
-        <Button size='large' onClick={() => {}}>
+        <Button size='large' onClick={() => setPortal('option')} active={isSelectedOptionValue}>
           <span>옵션선택</span>
         </Button>
       </S.TowTextBlock>
