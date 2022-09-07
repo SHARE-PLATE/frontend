@@ -86,7 +86,7 @@ export const PortalContent = styled.div<PortalStylePropsType>`
       width: 100%;
       height: 78%;
       position: absolute;
-      top: 61%;
+      top: 59%;
       left: 50%;
       transform: translate(-50%, -50%);
       background-color: #fff;

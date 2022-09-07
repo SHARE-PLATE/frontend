@@ -6,9 +6,9 @@ export const Wrapper = styled.div`
   ${flexCenter}
 
   flex-direction: column;
-  padding: 0 15px;
-  width: 22rem;
-  height: 120px;
+  padding: 0 5px;
+  width: 17rem;
+  height: 8rem;
 `;
 
 export const Text = styled.p`
