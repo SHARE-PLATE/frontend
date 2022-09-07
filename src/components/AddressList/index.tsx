@@ -18,9 +18,7 @@ const AddressList = ({ addressValue }: AddressListPropsType) => {
   const [addressList, setAddressList] = useState<ReactElement>();
 
   const setAddressListWithData = async (value: string) => {
-    if (!value) return;
-
-    const addressListData = await getAddressWithKeyword(value);
+    const addressListData = await getAddressWithKeyword({ query: value });
     if (!addressListData.length) {
       const noAddressList = (
         <S.noAddressList>

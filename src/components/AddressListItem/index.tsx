@@ -13,6 +13,8 @@ const AddressListItem = ({
   x,
   y,
 }: AddressListType) => {
+  if (!road_address_name) return <></>;
+
   const setSelectedAddress = useSetRecoilState(selectedAddressState);
 
   return (

@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
 export const MapContainer = styled.div`
   position: relative;
   width: 100%;
-  flex-grow: 8.5;
+  flex-grow: 10;
 `;
 
 export const BackBtn = styled.button`
@@ -40,7 +40,7 @@ export const LocationDescription = styled.div`
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    flex-grow: 1.5;
+    flex-grow: 1;
     padding-top: 1.5rem;
 
     > :nth-child(1) {
@@ -51,5 +51,18 @@ export const LocationDescription = styled.div`
       ${fonts.mediumRegular};
       color: ${colors.grey4};
     }
+  `}
+`;
+
+export const FinishBtn = styled.button`
+  ${({ theme: { colors, fonts } }) => css`
+    ${fonts.largeBold};
+
+    margin-top: 1.8rem;
+    color: ${colors.white1} !important;
+    border-radius: 0.25rem;
+    background-color: ${colors.orange2};
+    width: 100%;
+    height: 2.75rem;
   `}
 `;
