@@ -13,7 +13,7 @@ export const ModalBackground = styled.div<{ isFull: boolean }>`
     ${isFull &&
     css`
       background-color: rgba(0, 0, 0, 0.2);
-      z-index: 100; !important
+      z-index: 2;
     `};
   `}
 `;

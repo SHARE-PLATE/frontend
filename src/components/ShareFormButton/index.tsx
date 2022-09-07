@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -23,8 +23,12 @@ const ShareFormButton = () => {
             <button>
               <Icon iconName='FormClose' iconSize={3.5} />
             </button>
-            <S.ButtonContainer>
-              <S.DeliveryButton onClick={() => navigate('/share-registration/delivery')}>
+            <S.ButtonContainer ref={modalRef}>
+              <S.DeliveryButton
+                onClick={() => {
+                  navigate('/share-registration/delivery');
+                }}
+              >
                 <Icon iconName='AddDelivery' iconSize='LARGE' />
                 <span>배달쉐어</span>
               </S.DeliveryButton>

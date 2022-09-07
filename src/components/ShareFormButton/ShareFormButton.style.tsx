@@ -26,14 +26,17 @@ export const ButtonContainer = styled.div`
   bottom: 65px;
   right: 0px;
   border-radius: 8px;
+  z-index: 3;
 `;
 
 export const DeliveryButton = styled.button`
   display: flex;
+  width: 100%;
   margin: 11px 12px;
 `;
 
 export const IngredientButton = styled.button`
   display: flex;
+  width: 100%;
   margin: 0px 12px;
 `;
