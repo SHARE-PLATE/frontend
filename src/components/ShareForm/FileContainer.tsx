@@ -49,7 +49,6 @@ const FileContainer = ({ fileImage, setFileImage }: FileContainerPropsType) => {
         </div>
       </S.FileLabel>
       <S.FileForm type='file' id='input-file' accept='image/*' onChange={changeValues} multiple />
-      {isModalOpen && <FileRegistrationFailedModal modalRef={modalRef} closeAModal={closeModal} />}
 
       {fileImage &&
         [...fileImage].map((file, idx) => (
@@ -58,6 +57,7 @@ const FileContainer = ({ fileImage, setFileImage }: FileContainerPropsType) => {
             <Icon iconName='ImgDelete' handleClick={() => deleteImage(file)} />
           </S.ImagePreviewContainer>
         ))}
+      {isModalOpen && <FileRegistrationFailedModal modalRef={modalRef} closeAModal={closeModal} />}
     </S.FileWrapper>
   );
 };
