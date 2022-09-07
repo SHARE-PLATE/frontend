@@ -3,7 +3,8 @@ import styled, { css } from 'styled-components';
 type WrapperPropsType = { isShareFormOrProfile: boolean };
 
 export const Wrapper = styled.div<WrapperPropsType>`
-  ${({ theme: { colors }, isShareFormOrProfile }) => css`
+  ${({ isShareFormOrProfile }) => css`
+    position: relative;
     ${isShareFormOrProfile &&
     css`
       animation: fadeout 0.2s forwards;
@@ -14,26 +15,28 @@ export const Wrapper = styled.div<WrapperPropsType>`
     css`
       animation: fadein 0.2s forwards;
     `}
-
-    display: flex;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10rem;
-    box-shadow: 0 4px 10px #4b4b4b40, 0 0 4px #4b4b4b40;
-    background-color: ${colors.orange2};
-    height: 3.5rem;
-    aspect-ratio: 1 / 1;
   `}
 `;
 
-export const IngredientButton = styled.button`
+export const ButtonContainer = styled.div`
+  background-color: ${({ theme }) => theme.colors.white1};
   position: absolute;
-  top: -40px;
-  left: 0px;
+  width: 130px;
+  height: 80px;
+  bottom: 65px;
+  right: 0px;
+  border-radius: 8px;
+  z-index: 3;
 `;
+
 export const DeliveryButton = styled.button`
-  position: absolute;
-  top: -20px;
-  left: 0px;
+  display: flex;
+  width: 100%;
+  margin: 11px 12px;
+`;
+
+export const IngredientButton = styled.button`
+  display: flex;
+  width: 100%;
+  margin: 0px 12px;
 `;

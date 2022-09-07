@@ -1,3 +1,5 @@
+import AddDelivery from '@assets/icons/addDelivery.svg';
+import AddIngredient from '@assets/icons/addIngredient.svg';
 import ArrowUp from '@assets/icons/arrowUp.svg';
 import Back from '@assets/icons/back.svg';
 import BriefCase from '@assets/icons/briefCase.svg';
@@ -14,6 +16,7 @@ import CountUp from '@assets/icons/countUp.svg';
 import DeleteCircle from '@assets/icons/deleteCircle.svg';
 import DotsVertical from '@assets/icons/dotsVertical.svg';
 import Form from '@assets/icons/form.svg';
+import FormClose from '@assets/icons/formClose.svg';
 import Heart from '@assets/icons/heart.svg';
 import HeartEmpty from '@assets/icons/heartEmpty.svg';
 import Home from '@assets/icons/home.svg';
@@ -71,6 +74,7 @@ export const Icons = {
   NoticeOn,
   User,
   Form,
+  FormClose,
   NoticeOff,
   Option,
   RightArrow,
@@ -92,6 +96,8 @@ export const Icons = {
   CountDown,
   ChevronRight,
   ImgDelete,
+  AddDelivery,
+  AddIngredient,
 } as const;
 
 export type IconsType = keyof typeof Icons;
