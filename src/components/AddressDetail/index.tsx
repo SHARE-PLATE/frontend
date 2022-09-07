@@ -7,52 +7,49 @@ import AddressMap from '@components/AddressMap';
 import Icon from '@components/common/Icon';
 import { checkAddressWithMap } from '@constants/mentions';
 import {
-  ADDRESS_DETAIL,
-  ADDRESS_GUIDE,
   ADDRESS_RECENT,
+  COMPANY,
   COMPANY_KOR,
   DETAIL_ADDRESS,
+  FINISH,
+  HOME,
   HOME_KOR,
 } from '@constants/words';
+import { useSetHomeCompany } from '@hooks/useSetHomeCompany';
 import { addressRecentState } from '@store/localStorage';
 import { currentLatitudeLongitude, currentLocation } from '@store/location';
 import { portalState } from '@store/portal';
 import { selectedAddressState, defaultSelectedAddressState } from '@store/selectedAddress';
 import { setLocalStorageInfo } from '@utils/localStorage';
 
+type FixedAddressType = typeof HOME | typeof COMPANY | '';
+
 const AddressDetail = ({
   setIsSearching,
 }: {
   setIsSearching: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const [addressDetail, setAddressDetail] = useState('');
-  const [guide, setGuide] = useState('');
-  const [isCompany, setIsCompany] = useState(false);
-  const [isHome, setIsHome] = useState(false);
+  const [fixedAddress, setFixedAddress] = useState<FixedAddressType>('');
   const [isMap, setIsMap] = useState(false);
-  const [addressRecentList, setAddressRecentList] = useRecoilState(addressRecentState);
+  const setHomeCompany = useSetHomeCompany();
+  const [addressRecent, setAddressRecent] = useRecoilState(addressRecentState);
   const setPortal = useSetRecoilState(portalState);
   const setLatitudeLongitude = useSetRecoilState(currentLatitudeLongitude);
   const setLocation = useSetRecoilState(currentLocation);
   const [selectedAddress, setSelectedAddress] = useRecoilState(selectedAddressState);
-  const { x: lat, y: lng, place_name, road_address_name, address_name, id } = selectedAddress;
+  const { x: lng, y: lat, place_name, road_address_name, address_name, id } = selectedAddress;
 
-  const handleClickHomeCompanyBtn = (target: 'HOME' | 'COMPANY') => {
-    if (target === 'HOME') {
-      setIsHome(!isHome);
-      setIsCompany(false);
-      return;
-    }
-    if (target === 'COMPANY') {
-      setIsCompany(!isCompany);
-      setIsHome(false);
-    }
+  const handleClickHomeCompanyBtn = (target: FixedAddressType) => {
+    setFixedAddress(target === fixedAddress ? '' : target);
   };
 
   const handleClickFinishBtn = () => {
-    if (!lat || !lng || !road_address_name || !id) return;
+    if (!lat || !lng || !place_name || !id) return;
 
-    addressRecentList.set(id, { lat, lng, place_name, road_address_name, address_name, id });
+    // change HOME or COMPANY
+
+    const newAddressRecent = new Map(addressRecent);
+    newAddressRecent.set(id, { lat, lng, place_name, road_address_name, address_name, id });
 
     // reset and close portal
     setPortal(null);
@@ -60,12 +57,17 @@ const AddressDetail = ({
 
     // set atoms
     setLatitudeLongitude({ lat, lng });
-    setLocation(road_address_name);
-    setAddressRecentList(() => addressRecentList);
+    setLocation(place_name);
     setSelectedAddress(defaultSelectedAddressState);
 
-    // set local storage
-    setLocalStorageInfo({ key: ADDRESS_RECENT, info: [...addressRecentList] });
+    // set address recent in atom, local storage
+    if (fixedAddress !== '') {
+      if (addressRecent.get(fixedAddress)) console.error(`${fixedAddress} CHANGED!`); // remove this line if alert modal is applied
+      setHomeCompany({ target: fixedAddress, lat, lng, place_name });
+    } else {
+      setAddressRecent(newAddressRecent);
+      setLocalStorageInfo({ key: ADDRESS_RECENT, info: [...newAddressRecent] });
+    }
   };
 
   return (
@@ -85,24 +87,17 @@ const AddressDetail = ({
               <div>{road_address_name}</div>
             </S.AddressInfoText>
           </S.AddressInfo>
-          <S.AddressInfoInput
-            placeholder={ADDRESS_DETAIL}
-            value={addressDetail}
-            onChange={({ target: { value } }) => setAddressDetail(value)}
-          />
-          <S.AddressInfoInput
-            placeholder={ADDRESS_GUIDE}
-            value={guide}
-            onChange={({ target: { value } }) => setGuide(value)}
-          />
           <S.HomeCompanyBtnWrapper>
-            <S.HomeCompanyBtn isSelected={isHome} onClick={() => handleClickHomeCompanyBtn('HOME')}>
+            <S.HomeCompanyBtn
+              isSelected={fixedAddress === HOME}
+              onClick={() => handleClickHomeCompanyBtn(HOME)}
+            >
               <Icon iconName='Home' />
               {HOME_KOR}
             </S.HomeCompanyBtn>
             <S.HomeCompanyBtn
-              isSelected={isCompany}
-              onClick={() => handleClickHomeCompanyBtn('COMPANY')}
+              isSelected={fixedAddress === COMPANY}
+              onClick={() => handleClickHomeCompanyBtn(COMPANY)}
             >
               <Icon iconName='BriefCase' />
               {COMPANY_KOR}
@@ -112,10 +107,17 @@ const AddressDetail = ({
             <Icon iconName='Map' />
             {checkAddressWithMap}
           </S.MapCheckBtn>
-          <S.FinishBtn onClick={handleClickFinishBtn}>완료</S.FinishBtn>
+          <S.FinishBtn onClick={handleClickFinishBtn}>{FINISH}</S.FinishBtn>
         </>
       )}
-      {isMap && <AddressMap setIsMap={setIsMap} {...selectedAddress} />}
+
+      {isMap && (
+        <AddressMap
+          setIsMap={setIsMap}
+          handleClickFinishBtn={handleClickFinishBtn}
+          {...selectedAddress}
+        />
+      )}
     </S.Wrapper>
   );
 };

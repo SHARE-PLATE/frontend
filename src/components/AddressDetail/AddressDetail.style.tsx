@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div<{ isMap: boolean }>`
+  position: relative;
   ${({ isMap }) =>
     isMap &&
     css`
@@ -113,6 +114,7 @@ export const HomeCompanyBtn = styled.button<{ isSelected: boolean }>`
       border: 1px solid ${colors.orange2};
       background-color: ${colors.orange2};
       color: ${colors.white1};
+      box-shadow: 3px 3px 6px ${colors.orange0};
       path {
         stroke: ${colors.white1};
       }
