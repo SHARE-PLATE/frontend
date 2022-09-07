@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { defaultPageStyle, subTitle } from '@styles/mixin';
+import { defaultPageStyle } from '@styles/mixin';
 
 export const Wrapper = styled.div`
   ${defaultPageStyle}
