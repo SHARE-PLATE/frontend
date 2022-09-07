@@ -1,18 +1,16 @@
 import * as S from '@components/common/Modal/Modal.style';
 
 export interface ModalPropsTypes {
-  position: S.PositionType;
-  closeModal?: () => void;
+  type: string;
   children?: JSX.Element;
-  isFull?: boolean;
+  isFull: boolean;
 }
 
-const Modal = ({ position, closeModal, children, isFull }: ModalPropsTypes) => {
+const Modal = ({ type, children, isFull }: ModalPropsTypes) => {
   return (
-    <S.ModalContainer position={position} isFull={isFull}>
-      {closeModal && <S.CloseButton onClick={closeModal}>닫기</S.CloseButton>}
-      {children}
-    </S.ModalContainer>
+    <S.ModalBackground isFull={isFull}>
+      <S.ModalContainer type={type}>{children}</S.ModalContainer>
+    </S.ModalBackground>
   );
 };
 

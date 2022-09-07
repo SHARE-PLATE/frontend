@@ -1,40 +1,37 @@
 import styled, { css } from 'styled-components';
 
-export type PositionType = {
-  top?: string;
-  right?: string;
-  bottom?: string;
-  left?: string;
-};
-
-type ModalContainerPropsType = {
-  position: PositionType;
-  isFull?: boolean;
-};
-
-export const ModalContainer = styled.div<ModalContainerPropsType>`
-  ${({ position: { top, right, bottom, left }, isFull, theme: { defaultWidth } }) => css`
-    position: absolute;
-    z-index: 5;
-    /* box-shadow: 0 4px 10px rgba(51, 51, 51, 0.1), 0 0 4px rgba(51, 51, 51, 0.05); */
-    /* background: #e0e0e0; */
-
-    top: ${top};
-    right: ${right};
-    bottom: ${bottom};
-    left: ${left};
-
+export const ModalBackground = styled.div<{ isFull: boolean }>`
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  ${({ isFull }) => css`
     ${isFull &&
     css`
-      ${defaultWidth};
-      width: 100%;
-      height: 100%;
-    `}
+      background-color: rgba(0, 0, 0, 0.2);
+      z-index: 100; !important
+    `};
   `}
 `;
 
-export const CloseButton = styled.button`
-  position: absolute;
-  top: 10px;
-  right: 10px;
+export const ModalContainer = styled.div<{ type: string }>`
+  ${({ type, theme: { colors } }) => css`
+    position: absolute;
+    border-radius: 8px;
+
+    ${type === 'center' &&
+    css`
+      background-color: ${colors.white1};
+      top: 27%;
+    `};
+    ${type === 'underRight' &&
+    css`
+      bottom: 60px;
+      right: 10px;
+    `};
+  `}
 `;
