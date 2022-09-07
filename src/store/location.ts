@@ -1,20 +1,21 @@
 import { atom, selector } from 'recoil';
 
+import { defaultLat, defaultLng, defaultLocation } from '@constants/defaultLocation';
 import { getLocation } from '@utils/getLocation';
 
 export interface CurrentLatitudeLongitudeType {
-  lat: string;
-  lng: string;
+  lat: string | number;
+  lng: string | number;
 }
 
 export const currentLatitudeLongitude = atom<CurrentLatitudeLongitudeType>({
   key: 'currentLatitudeLongitude',
-  default: { lat: '37.498095', lng: '127.027611' }, // 강남역
+  default: { lat: defaultLat, lng: defaultLng }, // 강남역
 });
 
 export const currentLocation = atom({
   key: 'currentLocation',
-  default: '강남역',
+  default: defaultLocation,
 });
 
 export const changeLatitudeLongitude = selector({
