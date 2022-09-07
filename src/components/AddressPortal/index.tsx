@@ -2,6 +2,7 @@ import { ChangeEvent, useRef, useState } from 'react';
 
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 
+import { getRegionWithGeo } from '@api/address';
 import AddressDetail from '@components/AddressDetail';
 import AddressList from '@components/AddressList';
 import * as S from '@components/AddressPortal/AddressPortal.style';
@@ -10,6 +11,7 @@ import Portal from '@components/Portal';
 import Icon from '@components/common/Icon';
 import { searchAroundMention, searchWayMention } from '@constants/mentions';
 import { SEARCH_ADDRESS, SET_ADDRESS } from '@constants/words';
+import useGeolocation from '@hooks/useGeolocation';
 import { portalState } from '@store/portal';
 import { selectedAddressState } from '@store/selectedAddress';
 
@@ -20,23 +22,44 @@ const AddressPortal = () => {
   const setPortal = useSetRecoilState(portalState);
   const selectedAddress = useRecoilValue(selectedAddressState);
   const isSelectedAddress = !!selectedAddress.x;
+  const { coordinates } = useGeolocation();
 
   const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
     const newAddressValue = event.target.value;
     setAddressValue(newAddressValue);
   };
 
+  const handleClickHeaderBtn = () => {
+    if (isSearching) {
+      setIsSearching(false);
+    } else {
+      setPortal(null);
+      setAddressValue('');
+    }
+  };
+
+  const handleClickAroundSearchBtn = async () => {
+    if (coordinates) {
+      const { lat, lng } = coordinates;
+      const data = await getRegionWithGeo({ x: String(lng), y: String(lat) });
+      const { address_name } = data;
+
+      setIsSearching(true);
+      setAddressValue(address_name);
+    }
+  };
+
   return (
-    <Portal type='full' portalName='address' closeBtn={closeBtn}>
+    <Portal type='full' portalName='address'>
       <S.Wrapper>
         {!isSelectedAddress && (
           <>
             <S.TopWrapper>
-              <S.Header onClick={() => setIsSearching(false)}>
+              <S.Header>
                 <S.HeaderBtn
                   ref={closeBtn}
                   isSearching={isSearching}
-                  onClick={() => !isSearching && setPortal(null)}
+                  onClick={() => handleClickHeaderBtn()}
                 >
                   <Icon iconName={!isSearching ? 'X_Icon' : 'Back'} />
                 </S.HeaderBtn>
@@ -56,7 +79,7 @@ const AddressPortal = () => {
                 />
               </S.AddressInputArea>
 
-              <S.AroundSearchButton>
+              <S.AroundSearchButton onClick={handleClickAroundSearchBtn}>
                 <Icon iconName='LocationMarker' />
                 {searchAroundMention}
               </S.AroundSearchButton>

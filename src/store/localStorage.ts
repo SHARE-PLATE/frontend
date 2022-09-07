@@ -7,8 +7,8 @@ import { ADDRESS_RECENT } from './../constants/words';
 
 export type AddressRecentType = {
   id: string;
-  lat: string;
-  lng: string;
+  lat: string | number;
+  lng: string | number;
   place_name?: string;
   road_address_name?: string;
   address_name?: string;

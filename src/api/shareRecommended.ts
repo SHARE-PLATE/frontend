@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { API } from '@constants/api';
 
-export const getShareListRecommendedData = async (lat: string, lng: string) => {
+export const getShareListRecommendedData = async (lat: string | number, lng: string | number) => {
   try {
     const response = await axios.get(`${API.SHARE_RECOMMENDED}`, {
       params: {

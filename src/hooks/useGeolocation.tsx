@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 
-import { defaultLag, defaultLat } from '@constants/defaultLocation';
-import { currentLatitudeLongitude } from '@store/location';
+import { getRegionWithGeo } from '@api/address';
+import { defaultLat, defaultLng, defaultLocation } from '@constants/defaultLocation';
+import { currentLocation, currentLatitudeLongitude } from '@store/location';
 
 interface locationType {
   loaded: boolean;
@@ -11,27 +12,33 @@ interface locationType {
   error?: { code: number; message: string };
 }
 
+type OnSuccessParamsType = { coords: { latitude: number; longitude: number } };
+
 const useGeolocation = () => {
   const [location, setLocation] = useState<locationType>({
     loaded: false,
     coordinates: { lat: 0, lng: 0 },
   });
-  // 서버 요청 계속 보내짐
-  // const setCurrentLocation = useSetRecoilState(currentLatitudeLongitude);
+  const [curLocation, setCurLocation] = useRecoilState(currentLocation);
+  const [{ lat: curLat, lng: curLng }, setCurLatLng] = useRecoilState(currentLatitudeLongitude);
 
   // 성공에 대한 로직
-  const onSuccess = (location: { coords: { latitude: number; longitude: number } }) => {
+  const onSuccess = async ({ coords: { latitude: lat, longitude: lng } }: OnSuccessParamsType) => {
+    const regionData = await getRegionWithGeo({ x: lng, y: lat });
+    const { address_name } = regionData;
+
     setLocation({
       loaded: true,
       coordinates: {
-        lat: location.coords.latitude,
-        lng: location.coords.longitude,
+        lat,
+        lng,
       },
     });
-    // setCurrentLocation({
-    //   lat: location.coords.latitude,
-    //   lng: location.coords.longitude,
-    // });
+
+    if (curLat === defaultLat && curLng === defaultLng && curLocation === defaultLocation) {
+      setCurLocation(address_name);
+      setCurLatLng({ lat, lng });
+    }
   };
 
   // 에러에 대한 로직
@@ -40,11 +47,9 @@ const useGeolocation = () => {
       loaded: false,
       error,
     });
-    // setCurrentLocation({
-    //   lat: defaultLat,
-    //   lng: defaultLag,
-    // });
   };
+
+  const requestCurrentPostion = () => navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
   useEffect(() => {
     // navigator 객체 안에 geolocation이 없다면
@@ -55,7 +60,7 @@ const useGeolocation = () => {
         message: 'Geolocation not supported',
       });
     }
-    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    requestCurrentPostion();
   }, []);
 
   return location;
