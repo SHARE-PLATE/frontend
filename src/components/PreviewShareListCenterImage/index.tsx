@@ -1,3 +1,4 @@
+import ImgContainer from '@components/ImgContainer';
 import * as S from '@components/PreviewShareListCenterImage/PreviewShareListCenterImage.style';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import { sharingExampleType } from '@data/sharing';
@@ -12,11 +13,16 @@ const PreviewShareListCenterImage = ({ title, data }: PreviewShareListCenterImag
 
   return data ? (
     <S.Wrapper>
-      {data.map((listItem) => (
-        <S.Container key={listItem.id}>
-          <img src={listItem.thumbnailUrl} alt={listItem.title} width='110' height='110' />
+      {data.map(({ id, thumbnailUrl, title }) => (
+        <S.Container key={id}>
+          <ImgContainer
+            imgSrc={thumbnailUrl}
+            imgTitle={title}
+            imgWrapperWidth='6.8rem'
+            imgWrapperRatio={1 / 1}
+          />
           <S.ShareInfo>
-            <h2>{listItem.title}</h2>
+            <h2>{title}</h2>
             <PersonnelStatus curPersonnel={1} totalPersonnel={4} />
           </S.ShareInfo>
         </S.Container>

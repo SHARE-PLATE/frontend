@@ -13,12 +13,10 @@ export const ImgWrapper = styled.div`
   border-radius: 0.5rem;
   width: 100%;
   overflow: hidden;
-  aspect-ratio: 1.8 / 1;
+`;
 
-  img {
-    width: 100%;
-    height: 100%;
-  }
+export const ImgAdditionalStyle = css`
+  aspect-ratio: 1.8 / 1;
 
   @media (max-width: 27rem) {
     aspect-ratio: 1.43 / 1;

@@ -24,12 +24,6 @@ export const ImgWrapper = styled.div`
   border-radius: 0.5rem;
   height: 9.6rem;
   overflow: hidden;
-
-  img {
-    margin-top: -15%;
-    width: 100%;
-    /* 추후에 이미지 가운데 조정 필요 */
-  }
 `;
 
 export const Container = styled.div`

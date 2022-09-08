@@ -1,3 +1,4 @@
+import ImgContainer from '@components/ImgContainer';
 import * as S from '@components/ShareListItemHalfImage/ShareListItemHalfImage.style';
 import { thumbnailUrlListType } from '@type/shareList';
 import { getPriceType } from '@utils/getPriceType';
@@ -13,9 +14,13 @@ const ShareListItemHalfImage = ({ itemInfo }: ShareListItemHalfImagePropsType) =
 
   return (
     <S.Wrapper>
-      <S.ImgWrapper>
-        <img src={thumbnailUrl} />
-      </S.ImgWrapper>
+      <ImgContainer
+        imgSrc={thumbnailUrl}
+        imgTitle={title}
+        imgWrapperWidth='100%'
+        imgWrapperRatio={1.8 / 1}
+        additionalStyle={S.ImgAdditionalStyle}
+      />
       <S.InfoWrapper>
         <div>{title}</div>
         <div>{getPriceType({ price, isUnit: true })}</div>
