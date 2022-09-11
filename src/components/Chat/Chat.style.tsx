@@ -11,15 +11,8 @@ export const Wrapper = styled.div<{ writtenByMe: boolean }>`
     `}
 `;
 
-export const ImgWrapper = styled.div`
-  border-radius: 3rem;
-  width: 2.25rem;
-  min-width: 2.25rem;
+export const AdditionalImgStyle = css`
   height: 2.25rem;
-  overflow: hidden;
-  img {
-    width: 100%;
-  }
 `;
 
 export const TextWrapper = styled.div`

@@ -18,7 +18,7 @@ const PreviewShareListCenterImage = ({ title, data }: PreviewShareListCenterImag
           <ImgContainer
             imgSrc={thumbnailUrl}
             imgTitle={title}
-            imgWrapperWidth='6.8rem'
+            imgWrapperWidth='7.5rem'
             imgWrapperRatio={1 / 1}
           />
           <S.ShareInfo>

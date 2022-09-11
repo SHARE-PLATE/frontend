@@ -38,8 +38,8 @@ const PreviewShareListBigSizeImage = ({ data }: PreviewShareListBigSizeImageProp
           <ImgContainer
             imgSrc={thumbnailUrl}
             imgTitle={title}
-            imgWrapperWidth='24.4rem'
-            imgWrapperRatio={24.4 / 9.6}
+            imgWrapperWidth='100%'
+            imgWrapperRatio={2.13 / 1}
           />
           <RemainedTime
             targetTime={appointmentDateTime}

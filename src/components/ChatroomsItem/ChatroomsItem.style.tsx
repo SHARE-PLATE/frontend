@@ -123,14 +123,6 @@ export const ImgsWrapper = styled.div<{ count?: number }>`
   `}
 `;
 
-export const ImgWrapper = styled.div`
-  overflow: hidden;
-
-  img {
-    width: 100%;
-  }
-`;
-
 export const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -180,19 +172,8 @@ export const Content = styled.div`
   `}
 `;
 
-export const ShareImgWrapper = styled.div`
-  ${({ theme: { colors } }) => css`
-    border-radius: 0.25rem;
-    background-color: ${colors.grey2};
-    width: 3rem;
-    min-width: 3rem;
-    height: 3rem;
-    overflow: hidden;
-
-    img {
-      width: 130%;
-    }
-  `}
+export const ShareImgStyle = css`
+  border-radius: 0.25rem;
 `;
 
 export const ExitBtn = styled.button`

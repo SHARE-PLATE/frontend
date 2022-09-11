@@ -22,7 +22,6 @@ export const ItemWrapper = styled.div`
 export const ImgWrapper = styled.div`
   position: relative;
   border-radius: 0.5rem;
-  height: 9.6rem;
   overflow: hidden;
 `;
 

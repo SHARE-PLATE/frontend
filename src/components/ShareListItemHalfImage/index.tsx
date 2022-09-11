@@ -19,7 +19,7 @@ const ShareListItemHalfImage = ({ itemInfo }: ShareListItemHalfImagePropsType) =
         imgTitle={title}
         imgWrapperWidth='100%'
         imgWrapperRatio={1.8 / 1}
-        additionalStyle={S.ImgAdditionalStyle}
+        borderRadius='0.5rem'
       />
       <S.InfoWrapper>
         <div>{title}</div>

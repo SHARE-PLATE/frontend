@@ -5,6 +5,12 @@ export const ItemWrapper = styled.div`
   width: 9.5rem;
 `;
 
+export const ImgWrapper = styled.div`
+  border-radius: 0.5rem;
+  position: relative;
+  overflow: hidden;
+`;
+
 export const InfoWrapper = styled.div`
   display: flex;
   flex-direction: column;

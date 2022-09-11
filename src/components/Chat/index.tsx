@@ -2,6 +2,7 @@ import moment from 'moment';
 import 'moment/locale/ko';
 
 import * as S from '@components/Chat/Chat.style';
+import ImgContainer from '@components/ImgContainer';
 
 type ChatPropsType = {
   contents: string;
@@ -22,11 +23,18 @@ const Chat = ({
 
   return (
     <S.Wrapper writtenByMe={writtenByMe}>
-      <S.ImgWrapper>
-        <img src={writerThumbnailImageUrl} />
-      </S.ImgWrapper>
+      {!writtenByMe && (
+        <ImgContainer
+          imgSrc={writerThumbnailImageUrl}
+          imgTitle={writerThumbnailImageUrl}
+          imgWrapperRatio={1 / 1}
+          imgWrapperWidth='2.25rem'
+          borderRadius='5rem'
+          additionalStyle={S.AdditionalImgStyle}
+        />
+      )}
       <S.TextWrapper>
-        <S.Writer writtenByMe={writtenByMe}>{writer}</S.Writer>
+        {!writtenByMe && <S.Writer writtenByMe={writtenByMe}>{writer}</S.Writer>}
         <S.ContentsTimeWrapper writtenByMe={writtenByMe}>
           <S.Contents writtenByMe={writtenByMe}>{contents}</S.Contents>
           <S.DateTime writtenByMe={writtenByMe}>{dateTime}</S.DateTime>
