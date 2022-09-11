@@ -1,42 +1,44 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
+export type SamePartType = 'WIDTH' | 'HEIGHT' | null;
+
 type ImgWrapperPropsType = {
-  isImgRatioBigger: boolean;
+  samePart: SamePartType;
   imgWrapperRatio: number;
   imgWrapperWidth: string;
-  gapBetweenCenter: number;
+  borderRadius?: string;
+  gapBetweenCenter?: number;
   additionalStyle?: FlattenSimpleInterpolation;
 };
 
 export const Wrapper = styled.div<ImgWrapperPropsType>`
-  ${({
-    isImgRatioBigger,
-    imgWrapperRatio,
-    imgWrapperWidth,
-    gapBetweenCenter,
-    additionalStyle,
-  }) => css`
-    border-radius: 0.5rem;
-    width: ${imgWrapperWidth};
+  ${(P) => css`
+    width: ${P.imgWrapperWidth};
+    aspect-ratio: ${P.imgWrapperRatio};
+    border-radius: ${P.borderRadius};
     overflow: hidden;
-    aspect-ratio: ${imgWrapperRatio};
+    opacity: 0;
 
-    ${isImgRatioBigger &&
+    ${P.gapBetweenCenter !== undefined &&
     css`
-      img {
-        height: 100%;
-        margin-left: ${gapBetweenCenter}px;
-      }
+      transition: 0.3s all;
+      opacity: 1;
     `}
 
-    ${!isImgRatioBigger &&
-    css`
-      img {
+    img {
+      ${P.samePart === 'HEIGHT' &&
+      css`
+        height: 100%;
+        margin-left: ${P.gapBetweenCenter}px;
+      `}
+
+      ${P.samePart === 'WIDTH' &&
+      css`
         width: 100%;
-        margin-top: -${gapBetweenCenter}px;
-      }
-    `} 
-    
-    ${additionalStyle};
+        margin-top: -${P.gapBetweenCenter}px;
+      `}
+    }
+
+    ${P.additionalStyle};
   `}
 `;

@@ -9,42 +9,64 @@ type ImgContainerPropsType = {
   imgTitle: string;
   imgWrapperWidth: string;
   imgWrapperRatio: number;
+  borderRadius?: string;
   additionalStyle?: FlattenSimpleInterpolation;
 };
+
+type ImgSizeType = { width: number; height: number };
 
 const ImgContainer = ({
   imgSrc,
   imgTitle,
   imgWrapperWidth,
   imgWrapperRatio,
+  borderRadius,
   additionalStyle,
 }: ImgContainerPropsType) => {
   const imgWrapperRef = useRef<HTMLDivElement>(null);
-  const [gapBetweenCenter, setGapBetweenCenter] = useState(0);
-  const imgSize = new Image();
-  imgSize.src = imgSrc;
+  const [gapBetweenCenter, setGapBetweenCenter] = useState<number | undefined>();
+  const [samePart, setSamePart] = useState<S.SamePartType>(null);
+  const [imgSize, setImgSize] = useState<ImgSizeType>();
+  const imgValue = new Image();
 
-  const { width, height } = imgSize;
-  const imgRatio = width / height;
-  const isImgRatioBigger = imgWrapperRatio <= imgRatio;
+  imgValue.src = imgSrc;
+  imgValue.onload = () => {
+    const { width, height } = imgValue;
+    if (!imgSize) setImgSize({ width, height });
+  };
 
-  useEffect(() => {
+  const alignCenter = () => {
+    if (!imgSize) return;
+
+    const { width, height } = imgSize;
+    if (!width || !height) return;
+
+    const imgRatio = width / height;
+    const isImgRatioBigger = imgWrapperRatio >= imgRatio;
+    const standardLengthName = isImgRatioBigger ? 'WIDTH' : 'HEIGHT';
     const standardLength = isImgRatioBigger
       ? imgWrapperRef.current?.offsetWidth
       : imgWrapperRef.current?.offsetHeight;
     if (!standardLength) return;
 
     const newGapBetweenCenter =
-      ((imgWrapperRatio - imgRatio) * standardLength) / 2 / (imgWrapperRatio * imgRatio);
+      ((imgWrapperRatio - imgRatio) * standardLength) / (imgWrapperRatio * imgRatio) / 2;
+
+    setSamePart(standardLengthName);
     setGapBetweenCenter(newGapBetweenCenter);
-  }, [imgWrapperRef]);
+  };
+
+  useEffect(() => {
+    alignCenter();
+  }, [imgWrapperRef, imgSize]);
 
   return (
     <S.Wrapper
       ref={imgWrapperRef}
-      isImgRatioBigger={isImgRatioBigger}
+      samePart={samePart}
       imgWrapperRatio={imgWrapperRatio}
       imgWrapperWidth={imgWrapperWidth}
+      borderRadius={borderRadius}
       additionalStyle={additionalStyle}
       gapBetweenCenter={gapBetweenCenter}
     >
