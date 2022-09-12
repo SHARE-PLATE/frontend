@@ -6,6 +6,8 @@ export const pathName = {
   notice: '/notice',
   error: '/error',
   shareForm: '/share-registration',
+  shareFormDelivery: '/share-registration/delivery',
+  shareFormIngredient: '/share-registration/ingredient',
   profile: '/profile',
   chatrooms: '/chatrooms',
   chatroomDetail: '/chatroom-detail',
