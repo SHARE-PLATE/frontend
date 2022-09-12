@@ -10,6 +10,8 @@ import { CODE, HOME, LOGIN } from '@constants/words';
 import * as S from '@pages/LoginCallback/LoginCallback.style';
 import { setLocalStorageInfo } from '@utils/localStorage';
 
+const isTest = true;
+
 const LoginCallback = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [searchParams] = useSearchParams();
@@ -29,7 +31,7 @@ const LoginCallback = () => {
   };
 
   useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
+    if (isTest) {
       window.location.href = `http://localhost:3000/login-callback?code=${code}`;
       return;
     }
