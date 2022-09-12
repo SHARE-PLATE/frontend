@@ -17,6 +17,7 @@ export const SEARCH_RECENT = 'searchRecent';
 export const SEARCH_TIP = '검색 TIP';
 export const SHARE_ID = 'shareId';
 export const THUMBNAIL_IMAGE_URL = 'thumbnailImageUrl';
+export const NOTICE_CENTER = '알림 센터';
 export const HOME_KOR = '집';
 export const COMPANY_KOR = '회사';
 export const DELETE_ALL = '모두 지우기';
