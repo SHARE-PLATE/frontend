@@ -1,10 +1,15 @@
+import { useSetRecoilState } from 'recoil';
+
 import Address from '@components/Address';
 import * as S from '@components/MainHeader/MainHeader.style';
 import Icon from '@components/common/Icon';
 import useCheckPathname from '@hooks/useCheckPathname';
+import { portalState } from '@store/portal';
 
 const MainHeader = () => {
   const isShareList = useCheckPathname({ targetPaths: ['shareList'] });
+
+  const setPortal = useSetRecoilState(portalState);
 
   return (
     <S.Wrapper>
@@ -13,7 +18,7 @@ const MainHeader = () => {
       </S.IconsWrapper>
       <Address />
       <S.IconsWrapper position='right'>
-        <Icon iconName='NoticeOn' iconSize='LARGE' />
+        <Icon iconName='NoticeOn' iconSize='LARGE' handleClick={() => setPortal('notice')} />
         {isShareList && <Icon iconName='Map' iconSize='LARGE' />}
       </S.IconsWrapper>
     </S.Wrapper>
