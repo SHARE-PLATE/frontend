@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 
 import { getLoginPage } from '@api/account';
-import * as S from '@components/Login/Login.style';
+import * as S from '@components/LoginPortal/LoginPortal.style';
 import Portal from '@components/Portal';
 import Icon from '@components/common/Icon';
 import { loginMention, kakaoLoginMention } from '@constants/mentions';
@@ -9,7 +9,7 @@ import { PortalNameType } from '@store/portal';
 
 const portalName: PortalNameType = 'login';
 
-const Login = () => {
+const LoginPortal = () => {
   const closeBtn = useRef<HTMLButtonElement>(null);
 
   return (
@@ -37,4 +37,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPortal;
