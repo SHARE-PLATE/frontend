@@ -8,9 +8,10 @@ export interface ModalPropsTypes {
 
 const Modal = ({ type, children, isFull }: ModalPropsTypes) => {
   return (
-    <S.ModalBackground isFull={isFull}>
+    <>
+      <S.ModalBackground isFull={isFull} />
       <S.ModalContainer type={type}>{children}</S.ModalContainer>
-    </S.ModalBackground>
+    </>
   );
 };
 
