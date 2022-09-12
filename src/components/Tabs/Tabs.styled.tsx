@@ -11,32 +11,24 @@ type TabWrapperPropsType = {
 export const tabsHeight = '2.6rem';
 
 export const Wrapper = styled.div`
-  width: 100%;
-`;
-
-export const Container = styled.nav`
-  display: flex;
-  justify-content: flex-start;
-  width: 50%;
-  height: ${tabsHeight};
+  ${({ theme: { defaultPadding } }) => css`
+    ${defaultPadding};
+    display: flex;
+    justify-content: flex-start;
+    height: ${tabsHeight};
+    gap: 1.25rem;
+  `}
 `;
 
 export const TabWrapper = styled.div<TabWrapperPropsType>`
-  ${({ theme: { colors }, active, value }) => css`
+  ${({ theme: { colors, fonts }, active, value }) => css`
     ${flexCenter}
     position: relative;
     cursor: pointer;
-    width: 40%;
     height: 100%;
     transition: 0.3s ease-out;
-    ${active
-      ? css`
-          font-weight: ${({ theme }) => theme.fonts.smallBold};
-        `
-      : css`
-          font-weight: ${({ theme }) => theme.fonts.small};
-          color: ${({ theme }) => theme.colors.grey2};
-        `}
+    font-weight: ${active ? fonts.smallBold : fonts.small};
+    color: ${!active && colors.grey2};
 
     ::after {
       position: absolute;
@@ -48,13 +40,13 @@ export const TabWrapper = styled.div<TabWrapperPropsType>`
 
       ${value === 'delivery' &&
       css`
-        left: 100%;
+        left: calc(100% + 1.25rem);
         pointer-events: none;
       `}
 
       ${value === 'ingredient' &&
       css`
-        left: -100%;
+        left: calc(-100% - 1.25rem);
         pointer-events: none;
       `}
 

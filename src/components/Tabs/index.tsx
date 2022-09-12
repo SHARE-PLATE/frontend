@@ -41,11 +41,7 @@ const Tabs = ({ activeShareListValue, setActiveShareListValue }: TabsPropsType) 
     </S.TabWrapper>
   ));
 
-  return (
-    <S.Wrapper>
-      <S.Container>{tabs}</S.Container>
-    </S.Wrapper>
-  );
+  return <S.Wrapper>{tabs}</S.Wrapper>;
 };
 
 export default Tabs;
