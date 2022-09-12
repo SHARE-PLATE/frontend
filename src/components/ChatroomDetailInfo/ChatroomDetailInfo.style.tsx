@@ -11,17 +11,6 @@ export const Wrapper = styled.div`
   gap: 0.38rem;
 `;
 
-export const ImgWrapper = styled.div`
-  border-radius: 0.25rem;
-  width: 3rem;
-  min-width: 3rem;
-  height: 3rem;
-  overflow: hidden;
-  img {
-    width: 100%;
-  }
-`;
-
 export const TextWrapper = styled.div`
   display: flex;
   width: 100%;

@@ -7,14 +7,8 @@ export const ItemWrapper = styled.div`
 
 export const ImgWrapper = styled.div`
   border-radius: 0.5rem;
-  width: 9.5rem;
+  position: relative;
   overflow: hidden;
-  aspect-ratio: 15 / 24;
-`;
-
-export const StyledImg = styled.img`
-  width: 100%;
-  height: 100%;
 `;
 
 export const InfoWrapper = styled.div`

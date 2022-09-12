@@ -4,11 +4,21 @@ import { API } from '@constants/api';
 import { CHATROOM_ID } from '@constants/words';
 import { getAuthHeaders } from '@utils/getAuthHeaders';
 
-export const getChatroomsData = async (id?: string) => {
+type GetChatroomsDataPramsType = {
+  id?: string;
+  type?: 'entry' | 'question';
+};
+
+export const getChatroomsData = async ({ id, type }: GetChatroomsDataPramsType) => {
   const headers = getAuthHeaders();
 
   try {
-    const response = await axios.get(`${API.CHATROOMS}/${id || ''}`, { headers });
+    const response = await axios.get(`${API.CHATROOMS}/${id || ''}`, {
+      headers,
+      params: {
+        type,
+      },
+    });
 
     return response.data;
   } catch (error) {

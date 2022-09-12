@@ -26,12 +26,10 @@ const NavigationBar = () => {
   );
 
   return (
-    <S.NavigationBarWrapper isNavBarCondition={isNavBarCondition}>
-      <S.ShareFormBtnWrapper>
-        <ShareFormButton />
-      </S.ShareFormBtnWrapper>
+    <S.Wrapper isNavBarCondition={isNavBarCondition}>
+      <ShareFormButton />
       {navigationBarBtns}
-    </S.NavigationBarWrapper>
+    </S.Wrapper>
   );
 };
 

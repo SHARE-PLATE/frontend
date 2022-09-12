@@ -20,11 +20,6 @@ export const ImgWrapper = styled.div`
   width: 7rem;
   overflow: hidden;
   aspect-ratio: 1 / 1;
-
-  img {
-    width: 100%;
-    height: 100%;
-  }
 `;
 
 export const ListInfo = styled.div`

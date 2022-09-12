@@ -14,16 +14,6 @@ export const LeftWrapper = styled.div`
   align-items: center;
 `;
 
-export const ImgWrapper = styled.div`
-  border-radius: 30rem;
-  width: 3rem;
-  height: 3rem;
-  overflow: hidden;
-  img {
-    width: 100%;
-  }
-`;
-
 export const InfoWrapper = styled.div`
   ${({ theme: { fonts } }) => css`
     display: flex;

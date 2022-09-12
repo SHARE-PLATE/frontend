@@ -1,3 +1,4 @@
+import ImgContainer from '@components/ImgContainer';
 import * as S from '@components/UserInfoWithFollow/UserInfoWithFollow.style';
 import Icon from '@components/common/Icon';
 
@@ -10,9 +11,13 @@ const UserInfoWithFollow = ({ writerThumbnailImageUrl, writer }: UserInfoWithFol
   return (
     <S.Wrapper>
       <S.LeftWrapper>
-        <S.ImgWrapper>
-          <img src={writerThumbnailImageUrl} />
-        </S.ImgWrapper>
+        <ImgContainer
+          imgSrc={writerThumbnailImageUrl}
+          imgTitle={writerThumbnailImageUrl}
+          imgWrapperRatio={1 / 1}
+          imgWrapperWidth='3rem'
+          borderRadius='6rem'
+        />
         <S.InfoWrapper>
           <div>{writer}</div>
           <S.InfoDetailWrapper>

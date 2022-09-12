@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { navigationBarHeight } from '@components/NavigationBar/NavigationBar.style';
+
 export const ModalBackground = styled.div<{ isFull: boolean }>`
   display: flex;
   justify-content: center;
@@ -8,12 +10,14 @@ export const ModalBackground = styled.div<{ isFull: boolean }>`
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  transition: 0.3s all;
+  visibility: hidden;
+
   ${({ isFull }) => css`
     ${isFull &&
     css`
+      visibility: visible;
       background-color: rgba(0, 0, 0, 0.2);
-      z-index: 2;
     `};
   `}
 `;
@@ -21,7 +25,7 @@ export const ModalBackground = styled.div<{ isFull: boolean }>`
 export const ModalContainer = styled.div<{ type: string }>`
   ${({ type, theme: { colors } }) => css`
     position: absolute;
-    border-radius: 8px;
+    z-index: 2;
 
     ${type === 'center' &&
     css`
@@ -30,8 +34,8 @@ export const ModalContainer = styled.div<{ type: string }>`
     `};
     ${type === 'underRight' &&
     css`
-      bottom: 60px;
-      right: 10px;
+      right: 1rem;
+      bottom: ${`calc(${navigationBarHeight} + 1rem)`};
     `};
   `}
 `;

@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components';
 
-export const NavigationBarWrapper = styled.ul<{ isNavBarCondition: boolean }>`
+export const navigationBarHeight = '3.5rem';
+
+export const Wrapper = styled.ul<{ isNavBarCondition: boolean }>`
   ${({ theme: { colors, defaultWidth }, isNavBarCondition }) => css`
     ${defaultWidth}
     position: fixed;
@@ -10,7 +12,7 @@ export const NavigationBarWrapper = styled.ul<{ isNavBarCondition: boolean }>`
     width: 100%;
     justify-content: space-around;
     background-color: ${colors.white1};
-    height: 3.5rem;
+    height: ${navigationBarHeight};
     color: ${colors.grey4};
   `}
 `;
@@ -66,10 +68,4 @@ export const IconWrapper = styled.div<{ isSelected: boolean }>`
         }
       }
     `}
-`;
-
-export const ShareFormBtnWrapper = styled.div`
-  position: absolute;
-  top: calc(-3.5rem - 1rem);
-  right: 1rem;
 `;

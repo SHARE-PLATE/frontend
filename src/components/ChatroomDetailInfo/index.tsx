@@ -1,4 +1,5 @@
 import * as S from '@components/ChatroomDetailInfo/ChatroomDetailInfo.style';
+import ImgContainer from '@components/ImgContainer';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import Price from '@components/common/Price';
 
@@ -21,9 +22,13 @@ const ChatroomDetailInfo = ({
 }: ChatroomDetailInfoPropsType) => {
   return (
     <S.Wrapper>
-      <S.ImgWrapper>
-        <img src={thumbnailImageUrl} />
-      </S.ImgWrapper>
+      <ImgContainer
+        imgSrc={thumbnailImageUrl}
+        imgTitle={thumbnailImageUrl}
+        imgWrapperRatio={1 / 1}
+        imgWrapperWidth='3rem'
+        borderRadius='0.25rem'
+      />
       <S.TextWrapper>
         <S.Title>{title}</S.Title>
         <S.Numbers>

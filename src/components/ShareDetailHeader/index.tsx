@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { Settings } from 'react-slick';
+import { v4 as getRandomKey } from 'uuid';
 
 import Carousel from '@components/Carousel';
+import ImgContainer from '@components/ImgContainer';
 import { RemainedTime } from '@components/RemainedTime';
 import * as S from '@components/ShareDetailHeader/ShareDetailHeader.style';
 import Icon from '@components/common/Icon';
@@ -27,7 +29,13 @@ const ShareDetailHeader = ({ imageUrls, appointmentDateTime }: ShareDetailHeader
   const handleClickGoBack = () => navigate(-1);
 
   const imgCarouselContents = imageUrls.map((imgUrl: string) => (
-    <img src={imgUrl} alt='상품 이미지' key={imgUrl} />
+    <ImgContainer
+      key={getRandomKey()}
+      imgSrc={imgUrl}
+      imgTitle={imgUrl}
+      imgWrapperWidth='100%'
+      imgWrapperRatio={S.ImgContainerRatio}
+    />
   ));
 
   return (

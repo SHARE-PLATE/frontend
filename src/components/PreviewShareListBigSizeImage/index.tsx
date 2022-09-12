@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { v4 as createRandomKey } from 'uuid';
 
+import ImgContainer from '@components/ImgContainer';
 import * as S from '@components/PreviewShareListBigSizeImage/PreviewShareListBigSizeImage.style';
 import { RemainedTime } from '@components/RemainedTime';
 import PersonnelStatus from '@components/common/PersonnelStatus';
@@ -34,7 +35,12 @@ const PreviewShareListBigSizeImage = ({ data }: PreviewShareListBigSizeImageProp
         }}
       >
         <S.ImgWrapper>
-          <img src={thumbnailUrl} alt={title} />
+          <ImgContainer
+            imgSrc={thumbnailUrl}
+            imgTitle={title}
+            imgWrapperWidth='100%'
+            imgWrapperRatio={2.13 / 1}
+          />
           <RemainedTime
             targetTime={appointmentDateTime}
             position={{ top: '0.75rem', left: '0.75rem' }}

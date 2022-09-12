@@ -12,7 +12,7 @@ export const getChatroomDetail = (id: string) =>
     key: `GET/chatroomDetailsData/${id}`,
     get: async ({ get }) => {
       get(chatroomDetailTrigger);
-      const chatroomDetailData = await getChatroomsData(id);
+      const chatroomDetailData = await getChatroomsData({ id });
       return chatroomDetailData;
     },
   });

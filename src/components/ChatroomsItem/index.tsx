@@ -4,10 +4,10 @@ import moment from 'moment';
 import 'moment/locale/ko';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
-import { v4 as createRandomKey } from 'uuid';
 
 import { deleteChatroomData } from '@api/chat';
 import * as S from '@components/ChatroomsItem/ChatroomsItem.style';
+import ImgContainer from '@components/ImgContainer';
 import { chatroomsTrigger, chatroomType } from '@store/chatrooms';
 
 const ChatroomsItem = ({
@@ -29,9 +29,7 @@ const ChatroomsItem = ({
   const diffTime = moment(recentMessageDataTime).fromNow();
   const recruitmentMemberNicknamesJoined = recruitmentMemberNicknames.join(', ');
   const recruitmentMemberImages = recruitmentMemberImageUrls.map((img) => (
-    <S.ImgWrapper key={createRandomKey()}>
-      <img src={img} />
-    </S.ImgWrapper>
+    <ImgContainer imgSrc={img} imgTitle={img} imgWrapperRatio={1 / 1} imgWrapperWidth={'100%'} />
   ));
 
   const changeInnerLeft = (distance: number) => {
@@ -104,9 +102,14 @@ const ChatroomsItem = ({
               <S.Content>{recentMessage}</S.Content>
             </S.TextWrapper>
           </S.InfoWrapper>
-          <S.ShareImgWrapper>
-            <img src={shareThumbnailImageUrl} />
-          </S.ShareImgWrapper>
+
+          <ImgContainer
+            imgSrc={shareThumbnailImageUrl}
+            imgTitle={id + shareThumbnailImageUrl}
+            imgWrapperRatio={1 / 1}
+            imgWrapperWidth='3rem'
+            additionalStyle={S.ShareImgStyle}
+          />
         </S.ShowedWrapper>
         <S.ExitBtn onClick={handleClickExitBtn}>나가기</S.ExitBtn>
       </S.InnerWrapper>

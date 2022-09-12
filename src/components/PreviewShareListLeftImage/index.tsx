@@ -2,12 +2,15 @@ import { ReactElement } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import ImageContainer from '@components/PreviewShareListLeftImage/ImageContainer';
+import ImgContainer from '@components/ImgContainer';
 import * as S from '@components/PreviewShareListLeftImage/PreviewShareListLeftImage.style';
+import { RemainedTime } from '@components/RemainedTime';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import Price from '@components/common/Price';
 import { thumbnailUrlListType } from '@type/shareList';
 import { calcTwoTimeDifference } from '@utils/getTimeDiff';
+
+import ExpirationDate from './ExpirationDate';
 
 interface PreviewShareListLeftImagePropsType {
   data: thumbnailUrlListType[];
@@ -42,7 +45,22 @@ const PreviewShareListLeftImage = ({ data, count, isDone }: PreviewShareListLeft
             navigate(`/share-detail/${id}`);
           }}
         >
-          <ImageContainer url={thumbnailUrl} date={appointmentDateTime} isDone={isDone} />
+          <S.ImgWrapper>
+            <ImgContainer
+              imgSrc={thumbnailUrl}
+              imgTitle={title}
+              imgWrapperWidth='7rem'
+              imgWrapperRatio={1 / 1}
+            />
+            {isDone ? (
+              <ExpirationDate />
+            ) : (
+              <RemainedTime
+                targetTime={appointmentDateTime}
+                position={{ top: '0.5rem', left: '0.5rem' }}
+              />
+            )}
+          </S.ImgWrapper>
           <S.ListInfo>
             <S.ListInfoTexts>
               <S.Title>{title}</S.Title>

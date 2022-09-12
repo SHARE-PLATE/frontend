@@ -1,3 +1,4 @@
+import ImgContainer from '@components/ImgContainer';
 import * as S from '@components/ShareDetailInfo/ShareDetailInfo.style';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import { calcTwoTimeDifference } from '@utils/getTimeDiff';
@@ -22,9 +23,13 @@ const ShareDetailInfo = ({
   description,
 }: ShareDetailInfoPropsType) => {
   const ImgContents = recruitmentMemberThumbnailImageUrls.map((member: string) => (
-    <S.ImgContainer key={member}>
-      <img src={member} alt='멤버 이미지' />
-    </S.ImgContainer>
+    <ImgContainer
+      imgSrc={member}
+      imgTitle={member}
+      imgWrapperRatio={1 / 1}
+      imgWrapperWidth='2.9rem'
+      borderRadius='5rem'
+    />
   ));
 
   return (

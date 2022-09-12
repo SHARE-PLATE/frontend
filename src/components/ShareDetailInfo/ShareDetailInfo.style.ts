@@ -63,16 +63,6 @@ export const ImgWrapper = styled.div`
   gap: 12px;
 `;
 
-export const ImgContainer = styled.div`
-  border-radius: 10rem;
-  width: 2.9rem;
-  height: 2.9rem;
-  overflow: hidden;
-  img {
-    width: 100%;
-  }
-`;
-
 export const Description = styled.div`
   ${({ theme: { colors } }) => css`
     display: flex;
