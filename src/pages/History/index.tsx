@@ -12,6 +12,7 @@ import { API } from '@constants/api';
 import { historyListCategoryItem } from '@constants/category';
 import { historyListItem } from '@constants/historyContent';
 import { listExample } from '@data/shareList';
+import useShareListTabsInfo from '@hooks/useShareListTabsInfo';
 import * as S from '@pages/History/History.style';
 import { activeShareList } from '@store/filterShareList';
 import { thumbnailUrlListType } from '@type/shareList';
@@ -19,6 +20,7 @@ import { getRecencySort } from '@utils/ShareListSort';
 import { getHistoryMention } from '@utils/getMention';
 
 const History = ({ historyType }: { historyType: string }) => {
+  const shareListTabsInfo = useShareListTabsInfo();
   const [salesData, setSalesData] = useState<thumbnailUrlListType[]>(listExample);
   const [curShareFilterList, setCurrentFilterShareList] = useState(false);
   const [activeShareListValue, setActiveShareListValue] = useRecoilState(activeShareList);
@@ -49,10 +51,7 @@ const History = ({ historyType }: { historyType: string }) => {
   return (
     <S.Wrapper>
       <BackTitleHeader title={currentType.title} />
-      <Tabs
-        activeShareListValue={activeShareListValue}
-        setActiveShareListValue={setActiveShareListValue}
-      />
+      <Tabs tabsInfo={shareListTabsInfo} setTab={setActiveShareListValue} />
       <CategoryButton
         categoryItem={currentCategoryContent}
         setCurrentFilterList={setCurrentFilterShareList}

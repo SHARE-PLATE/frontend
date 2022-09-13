@@ -1,11 +1,10 @@
 import styled, { css } from 'styled-components';
 
-import { CurrentShareListType } from '@store/filterShareList';
 import { flexCenter } from '@styles/mixin';
 
 type TabWrapperPropsType = {
   active: boolean;
-  value: CurrentShareListType;
+  order: number;
 };
 
 export const tabsHeight = '2.6rem';
@@ -21,7 +20,7 @@ export const Wrapper = styled.div`
 `;
 
 export const TabWrapper = styled.div<TabWrapperPropsType>`
-  ${({ theme: { colors, fonts }, active, value }) => css`
+  ${({ theme: { colors, fonts }, active, order }) => css`
     ${flexCenter}
     position: relative;
     cursor: pointer;
@@ -38,13 +37,13 @@ export const TabWrapper = styled.div<TabWrapperPropsType>`
       height: 2.6rem;
       content: '';
 
-      ${value === 'delivery' &&
+      ${order === 0 &&
       css`
         left: calc(100% + 1.25rem);
         pointer-events: none;
       `}
 
-      ${value === 'ingredient' &&
+      ${order === 1 &&
       css`
         left: calc(-100% - 1.25rem);
         pointer-events: none;
