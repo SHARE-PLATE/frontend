@@ -22,12 +22,12 @@ const ShareList = () => {
       case 'hasValue':
         return (
           <S.ListContent>
-            {activeShareListValue.delivery ? (
+            {activeShareListValue === 'delivery' ? (
               <PreviewShareListBigSizeImage data={getSortData(curShareFilterList, contents)} />
-            ) : activeShareListValue.ingredient ? (
+            ) : activeShareListValue === 'ingredient' ? (
               <PreviewShareListLeftImage data={getSortData(curShareFilterList, contents)} />
             ) : (
-              ''
+              '에러 메시지'
             )}
           </S.ListContent>
         );

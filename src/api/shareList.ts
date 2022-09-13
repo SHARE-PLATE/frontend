@@ -32,11 +32,10 @@ export const getShareListData = async (
   type: activeShareListType,
   location: CurrentLatitudeLongitudeType,
 ) => {
-  const curType = type.delivery ? 'delivery' : type.ingredient ? 'ingredient' : '';
   try {
     const response = await axios.get(`${API.SHARE_LIST}`, {
       params: {
-        type: curType,
+        type,
         latitude: location.lat,
         longitude: location.lng,
       },
