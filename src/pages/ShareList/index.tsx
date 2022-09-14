@@ -8,7 +8,11 @@ import Tabs from '@components/Tabs';
 import { shareListCategoryItem } from '@constants/category';
 import useShareListTabsInfo from '@hooks/useShareListTabsInfo';
 import * as S from '@pages/ShareList/ShareList.style';
-import { activeShareList, currentFilterShareList } from '@store/filterShareList';
+import {
+  activeShareList,
+  currentFilterShareList,
+  activeShareListType,
+} from '@store/filterShareList';
 import { getShareListsData } from '@store/shareList';
 import { getSortData } from '@utils/ShareListSort';
 
@@ -43,7 +47,12 @@ const ShareList = () => {
     <S.Wrapper>
       <S.ListHeader>
         <ShareListHeader />
-        <Tabs tabsInfo={shareListTabsInfo} setTab={setActiveShareListValue} />
+        <S.TabsWrapper>
+          <Tabs<activeShareListType>
+            tabsInfo={shareListTabsInfo}
+            setTab={setActiveShareListValue}
+          />
+        </S.TabsWrapper>
         <CategoryButton
           categoryItem={shareListCategoryItem}
           setCurrentFilterList={setCurrentFilterShareList}
