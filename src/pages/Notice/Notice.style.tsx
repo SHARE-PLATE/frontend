@@ -26,10 +26,14 @@ export const Header = styled.div`
 `;
 
 export const HeaderTitle = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  display: flex;
-  justify-content: center;
+  ${({ theme: { fonts } }) => css`
+    ${fonts.xLarge};
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  `}
 `;
