@@ -1,6 +1,6 @@
-import { Dispatch, SetStateAction, useLayoutEffect, useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 
-import { SetterOrUpdater } from 'recoil';
+import { RecoilState, SetterOrUpdater, useSetRecoilState } from 'recoil';
 
 import * as S from '@components/Tabs/Tabs.styled';
 
@@ -13,7 +13,7 @@ export type TabsInfoType<T> = {
 
 type TabsPropsType<T> = {
   tabsInfo: TabsInfoType<T>;
-  setTab: SetterOrUpdater<T>;
+  targetAtom: RecoilState<T>;
 };
 
 type TabPropsType<T> = {
@@ -21,7 +21,7 @@ type TabPropsType<T> = {
   value: T;
   active: boolean;
   order: number;
-  setTab: SetterOrUpdater<T>;
+  targetAtom: RecoilState<T>;
   setWidthArray: Dispatch<SetStateAction<number[]>>;
   setSelectedTabOrder: Dispatch<SetStateAction<number>>;
 };
@@ -31,18 +31,19 @@ const Tab = <T extends unknown>({
   value,
   active,
   order,
-  setTab,
+  targetAtom,
   setWidthArray,
   setSelectedTabOrder,
 }: TabPropsType<T>) => {
   const widthRef = useRef<HTMLDivElement>(null);
+  const setAtom = useSetRecoilState(targetAtom);
 
   const handleClickTab = () => {
-    setTab(value);
+    setAtom(value);
     setSelectedTabOrder(order);
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const newWidth = widthRef.current?.offsetWidth;
 
     if (!newWidth) return;
@@ -52,7 +53,7 @@ const Tab = <T extends unknown>({
       newWidthArray[order] = newWidth;
       return newWidthArray;
     });
-  }, [widthRef]);
+  }, []);
 
   return (
     <S.TabWrapper ref={widthRef} key={title} onClick={handleClickTab} active={active}>
@@ -62,23 +63,15 @@ const Tab = <T extends unknown>({
 };
 
 /** 두 가지 이상의 카테고리를 보여줄 때 사용합니다. */
-const Tabs = <T extends unknown>({ tabsInfo, setTab }: TabsPropsType<T>) => {
-  let selectedTabLeft = 0;
+const Tabs = <T extends unknown>({ tabsInfo, targetAtom }: TabsPropsType<T>) => {
   const [widthArray, setWidthArray] = useState<number[]>([]);
   const [selectedTabOrder, setSelectedTabOrder] = useState(0);
   const selectedTabWidth = widthArray[selectedTabOrder];
+  const selectedWidthArray = widthArray.slice(0, selectedTabOrder);
+  const selectedTabLeft = selectedWidthArray.reduce((prev, cur) => prev + cur + S.tabsGapPx, 0);
 
-  widthArray.some((number, order) => {
-    const isOrderLess = order < selectedTabOrder;
-    if (isOrderLess) selectedTabLeft = selectedTabLeft + number + S.tabsGapPx;
-    return isOrderLess;
-  });
-
-  const tabs = tabsInfo.map(({ title, value, active, order }) => (
-    <Tab<T>
-      key={title}
-      {...{ title, value, active, order, setTab, setWidthArray, setSelectedTabOrder }}
-    />
+  const tabs = tabsInfo.map((props) => (
+    <Tab<T> key={props.title} {...{ targetAtom, setWidthArray, setSelectedTabOrder }} {...props} />
   ));
 
   return (

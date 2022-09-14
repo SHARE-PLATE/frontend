@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 
 import Tabs, { TabsInfoType } from '@components/Tabs';
 import Icon from '@components/common/Icon';
@@ -19,7 +19,6 @@ const useNoticeTabsInfo = () => {
 
 const Notice = () => {
   const navigate = useNavigate();
-  const [activeNotice, setActiveNotice] = useRecoilState(activeNoticeState);
   const noticeTabsInfo = useNoticeTabsInfo();
 
   return (
@@ -30,7 +29,7 @@ const Notice = () => {
           <Icon iconName='Back' />
         </S.CloseBtn>
       </S.Header>
-      <Tabs tabsInfo={noticeTabsInfo} setTab={setActiveNotice} />
+      <Tabs tabsInfo={noticeTabsInfo} targetAtom={activeNoticeState} />
     </S.Wrapper>
   );
 };

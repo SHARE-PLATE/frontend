@@ -24,7 +24,6 @@ const History = ({ historyType }: { historyType: string }) => {
   const shareListTabsInfo = useShareListTabsInfo();
   const [salesData, setSalesData] = useState<thumbnailUrlListType[]>(listExample);
   const [curShareFilterList, setCurrentFilterShareList] = useState(false);
-  const [activeShareListValue, setActiveShareListValue] = useRecoilState(activeShareList);
   const currentType = historyListItem.filter((item) => item.type === historyType)[0];
   const currentCategoryContent = historyListCategoryItem.filter(
     (item) => item.type === historyType,
@@ -52,7 +51,7 @@ const History = ({ historyType }: { historyType: string }) => {
   return (
     <S.Wrapper>
       <BackTitleHeader title={currentType.title} />
-      <Tabs<activeShareListType> tabsInfo={shareListTabsInfo} setTab={setActiveShareListValue} />
+      <Tabs<activeShareListType> tabsInfo={shareListTabsInfo} targetAtom={activeShareList} />
       <CategoryButton
         categoryItem={currentCategoryContent}
         setCurrentFilterList={setCurrentFilterShareList}

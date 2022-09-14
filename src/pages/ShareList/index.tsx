@@ -48,10 +48,7 @@ const ShareList = () => {
       <S.ListHeader>
         <ShareListHeader />
         <S.TabsWrapper>
-          <Tabs<activeShareListType>
-            tabsInfo={shareListTabsInfo}
-            setTab={setActiveShareListValue}
-          />
+          <Tabs<activeShareListType> tabsInfo={shareListTabsInfo} targetAtom={activeShareList} />
         </S.TabsWrapper>
         <CategoryButton
           categoryItem={shareListCategoryItem}
