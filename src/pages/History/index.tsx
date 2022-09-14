@@ -15,6 +15,7 @@ import { listExample } from '@data/shareList';
 import useShareListTabsInfo from '@hooks/useShareListTabsInfo';
 import * as S from '@pages/History/History.style';
 import { activeShareList } from '@store/filterShareList';
+import { activeShareListType } from '@store/filterShareList';
 import { thumbnailUrlListType } from '@type/shareList';
 import { getRecencySort } from '@utils/ShareListSort';
 import { getHistoryMention } from '@utils/getMention';
@@ -51,7 +52,7 @@ const History = ({ historyType }: { historyType: string }) => {
   return (
     <S.Wrapper>
       <BackTitleHeader title={currentType.title} />
-      <Tabs tabsInfo={shareListTabsInfo} setTab={setActiveShareListValue} />
+      <Tabs<activeShareListType> tabsInfo={shareListTabsInfo} setTab={setActiveShareListValue} />
       <CategoryButton
         categoryItem={currentCategoryContent}
         setCurrentFilterList={setCurrentFilterShareList}

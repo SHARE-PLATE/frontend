@@ -4,7 +4,6 @@ import AddressPortal from '@components/AddressPortal';
 import KeywordAddressPortal from '@components/KeywordAddressPortal';
 import LoginPortal from '@components/LoginPortal';
 import NavigationBar from '@components/NavigationBar';
-import NoticePortal from '@components/NoticePortal';
 import OptionPortal from '@components/OptionPortal';
 import SearchPortal from '@components/SearchPortal';
 import { routes } from '@router';
@@ -18,7 +17,6 @@ const App = () => {
       <Styles>
         {element}
         <LoginPortal />
-        <NoticePortal />
         <SearchPortal />
         <AddressPortal />
         <OptionPortal />
