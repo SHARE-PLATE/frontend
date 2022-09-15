@@ -12,8 +12,8 @@ import Icon from '@components/common/Icon';
 import { searchAroundMention, searchWayMention } from '@constants/mentions';
 import { SEARCH_ADDRESS, SET_ADDRESS } from '@constants/words';
 import useGeolocation from '@hooks/useGeolocation';
+import { selectedAddressState } from '@store/address';
 import { portalState } from '@store/portal';
-import { selectedAddressState } from '@store/selectedAddress';
 
 const AddressPortal = () => {
   const closeBtn = useRef<HTMLButtonElement>(null);
