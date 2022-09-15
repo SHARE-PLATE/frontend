@@ -11,6 +11,10 @@ export const Header = styled.div`
   padding-bottom: 1rem;
 `;
 
+export const Subheader = styled.span`
+  ${({ theme }) => theme.fonts.small}
+`;
+
 export const RegisteredKeywordWrapper = styled.div`
   padding-top: 2rem;
 `;
