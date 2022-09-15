@@ -26,11 +26,13 @@ export const ModalContainer = styled.div<{ type: string }>`
   ${({ type, theme: { colors } }) => css`
     position: absolute;
     z-index: 2;
-
+    border-radius: 8px;
     ${type === 'center' &&
     css`
       background-color: ${colors.white1};
       top: 27%;
+      left: 50%;
+      transform: translate(-50%, -27%);
     `};
     ${type === 'underRight' &&
     css`
