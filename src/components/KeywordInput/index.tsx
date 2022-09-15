@@ -2,9 +2,10 @@ import * as S from '@components/KeywordInput/KeywordInput.style';
 import { UseInputReturnType } from '@hooks/useInput';
 interface KeywordInputPropsType {
   keywordInputBar: UseInputReturnType;
+  handleSubmitClick: () => Promise<false | undefined>;
 }
 
-const KeywordInput = ({ keywordInputBar }: KeywordInputPropsType) => {
+const KeywordInput = ({ keywordInputBar, handleSubmitClick }: KeywordInputPropsType) => {
   return (
     <S.InputFieldWrapper>
       <S.Input
@@ -13,7 +14,7 @@ const KeywordInput = ({ keywordInputBar }: KeywordInputPropsType) => {
         onChange={keywordInputBar.onChange}
         placeholder='키워드를 입력해주세요. (예: 짜장면)'
       />
-      <S.SubmitButton>등록</S.SubmitButton>
+      <S.SubmitButton onClick={handleSubmitClick}>등록</S.SubmitButton>
     </S.InputFieldWrapper>
   );
 };
