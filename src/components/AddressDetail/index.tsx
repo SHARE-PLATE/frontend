@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState, useResetRecoilState, useRecoilValue } from 'recoil';
 
 import * as S from '@components/AddressDetail/AddressDetail.style';
 import AddressMap from '@components/AddressMap';
@@ -16,10 +16,10 @@ import {
   HOME_KOR,
 } from '@constants/words';
 import { useSetHomeCompany } from '@hooks/useSetHomeCompany';
+import { addressOptionState, selectedAddressState } from '@store/address';
 import { addressRecentState } from '@store/localStorage';
-import { currentLatitudeLongitude, currentLocation } from '@store/location';
+import { currentLatitudeLongitude, currentLocation, shareLocationState } from '@store/location';
 import { portalState } from '@store/portal';
-import { selectedAddressState, defaultSelectedAddressState } from '@store/selectedAddress';
 import { setLocalStorageInfo } from '@utils/localStorage';
 
 type FixedAddressType = typeof HOME | typeof COMPANY | '';
@@ -36,7 +36,10 @@ const AddressDetail = ({
   const setPortal = useSetRecoilState(portalState);
   const setLatitudeLongitude = useSetRecoilState(currentLatitudeLongitude);
   const setLocation = useSetRecoilState(currentLocation);
-  const [selectedAddress, setSelectedAddress] = useRecoilState(selectedAddressState);
+  const addressOption = useRecoilValue(addressOptionState);
+  const selectedAddress = useRecoilValue(selectedAddressState);
+  const setShareLocation = useSetRecoilState(shareLocationState);
+  const resetSelectedAddressState = useResetRecoilState(selectedAddressState);
   const { x: lng, y: lat, place_name, road_address_name, address_name, id } = selectedAddress;
 
   const handleClickHomeCompanyBtn = (target: FixedAddressType) => {
@@ -44,26 +47,31 @@ const AddressDetail = ({
   };
 
   const handleClickFinishBtn = () => {
-    if (!lat || !lng || !place_name || !id) return;
+    if (!lat || !lng || !place_name || !id || !road_address_name) return;
 
     // change HOME or COMPANY
-
     const newAddressRecent = new Map(addressRecent);
     newAddressRecent.set(id, { lat, lng, place_name, road_address_name, address_name, id });
 
     // reset and close portal
+    resetSelectedAddressState();
     setPortal(null);
     setIsSearching(false);
 
-    // set atoms
-    setLatitudeLongitude({ lat, lng });
-    setLocation(place_name);
-    setSelectedAddress(defaultSelectedAddressState);
+    // set location atoms or share location atoms
+    if (addressOption === 'LOCATION') {
+      setLatitudeLongitude({ lat, lng });
+      setLocation(place_name);
+    }
+    if (addressOption === 'SHARE') {
+      setShareLocation({ lat, lng, road_address_name });
+    }
 
     // set address recent in atom, local storage
     if (fixedAddress !== '') {
-      if (addressRecent.get(fixedAddress)) console.error(`${fixedAddress} CHANGED!`); // remove this line if alert modal is applied
-      setHomeCompany({ target: fixedAddress, lat, lng, place_name });
+      // remove this line if alert modal is applied
+      if (addressRecent.get(fixedAddress)) console.error(`${fixedAddress} CHANGED!`);
+      setHomeCompany({ target: fixedAddress, lat, lng, place_name, road_address_name });
     } else {
       setAddressRecent(newAddressRecent);
       setLocalStorageInfo({ key: ADDRESS_RECENT, info: [...newAddressRecent] });
@@ -75,7 +83,7 @@ const AddressDetail = ({
       {!isMap && (
         <>
           <S.Header>
-            <S.HeaderBtn onClick={() => setSelectedAddress(defaultSelectedAddressState)}>
+            <S.HeaderBtn onClick={() => resetSelectedAddressState()}>
               <Icon iconName={'Back'} />
             </S.HeaderBtn>
             <S.HeaderTitle>{DETAIL_ADDRESS}</S.HeaderTitle>

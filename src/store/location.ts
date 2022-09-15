@@ -1,6 +1,7 @@
 import { atom, selector } from 'recoil';
 
 import { defaultLat, defaultLng, defaultLocation } from '@constants/defaultLocation';
+import { AddressDetailType } from '@type/address';
 import { getLocation } from '@utils/getLocation';
 
 export interface CurrentLatitudeLongitudeType {
@@ -25,4 +26,9 @@ export const changeLatitudeLongitude = selector({
     const locationData = await getLocation(currentLatLon);
     return locationData;
   },
+});
+
+export const shareLocationState = atom<AddressDetailType>({
+  key: 'shareLocation',
+  default: {},
 });

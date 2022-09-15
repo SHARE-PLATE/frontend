@@ -3,11 +3,11 @@ import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import * as S from '@components/AddressMap/AddressMap.style';
 import Icon from '@components/common/Icon';
 import { SET_ADDRESS } from '@constants/words';
-import { SelectedAddressType } from '@store/selectedAddress';
+import { AddressInfoType } from '@type/address';
 
 import { locationMarker } from './locationMarker';
 
-interface AddressMapPropsType extends SelectedAddressType {
+interface AddressMapPropsType extends AddressInfoType {
   setIsMap: Dispatch<SetStateAction<boolean>>;
   handleClickFinishBtn: () => void;
 }
