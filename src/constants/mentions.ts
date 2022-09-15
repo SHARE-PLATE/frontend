@@ -20,3 +20,6 @@ export const searchWayMention = '건물명, 도로명 또는 지번으로 검색
 export const searchAroundMention = '현재 위치로 주소 찾기';
 export const checkAddressWithMap = '지도에서 위치 확인하기';
 export const noAddressListMention = '검색 결과가 없습니다.\n지번, 도로명, 건물명을 입력해주세요.';
+export const addressKeywordQuestionMention = '주소 키워드를\n삭제하시겠습니까?';
+export const deleteMention = '취소';
+export const addressKeywordDeleteMention = '네, 삭제할래요.';

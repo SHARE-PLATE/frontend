@@ -4,6 +4,7 @@ import { defaultPageStyle } from '@styles/mixin';
 
 export const Wrapper = styled.div`
   ${defaultPageStyle}
+  position: relative;
 `;
 
 export const Header = styled.div`
@@ -12,4 +13,10 @@ export const Header = styled.div`
   `}
   padding-top: 1rem;
   padding-bottom: 1rem;
+`;
+
+export const AddKeyWord = styled.div`
+  position: fixed;
+  bottom: 0;
+  right: 0;
 `;

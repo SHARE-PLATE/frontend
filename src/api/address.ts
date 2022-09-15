@@ -35,14 +35,19 @@ type GetRegionWithGeoDataType = {
     region_1depth_name: string;
     region_2depth_name: string;
     region_3depth_name: string;
+    region_4depth_name: string;
     sub_address_no: string;
     zip_code: string;
   }[];
 };
 
+// 카테고리
 const kakaoAddressCategoryApi = 'https://dapi.kakao.com/v2/local/search/category.json';
+// 일반적인 주소 API
 const kakaoAddressKeywordApi = 'https://dapi.kakao.com/v2/local/search/keyword.json';
+// 위도 + 경도 => 세부정보
 const kakaoAddressGeoApi = 'https://dapi.kakao.com/v2/local/geo/coord2address.json';
+// 위도 + 경도 => 동
 const kakaoRegionGeoApi = 'https://dapi.kakao.com/v2/local/geo/coord2regioncode.json';
 
 export const getRegionWithGeo = async ({ x, y }: GetWithGeoParamsType) => {

@@ -1,6 +1,7 @@
 import { useRoutes } from 'react-router-dom';
 
 import AddressPortal from '@components/AddressPortal';
+import KeywordAddress from '@components/KeywordAddress';
 import Login from '@components/Login';
 import NavigationBar from '@components/NavigationBar';
 import OptionPortal from '@components/OptionPortal';
@@ -20,6 +21,7 @@ const App = () => {
         <SearchPortal />
         <AddressPortal />
         <OptionPortal />
+        <KeywordAddress />
         <Mobile>
           <NavigationBar />
         </Mobile>

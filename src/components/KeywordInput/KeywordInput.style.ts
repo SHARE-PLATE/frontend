@@ -22,8 +22,8 @@ export const Input = styled.input`
 
 export const SubmitButton = styled.button`
   ${({ theme: { fonts, colors } }) => css`
-    ${fonts.largeRegular};
-    color: ${colors.orange2};
+    ${fonts.largeBold};
+    color: ${colors.black};
     position: absolute;
     right: 2rem;
   `}

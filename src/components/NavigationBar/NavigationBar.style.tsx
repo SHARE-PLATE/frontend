@@ -2,18 +2,23 @@ import styled, { css } from 'styled-components';
 
 export const navigationBarHeight = '3.5rem';
 
-export const Wrapper = styled.ul<{ isNavBarCondition: boolean }>`
-  ${({ theme: { colors, defaultWidth }, isNavBarCondition }) => css`
+interface CssPropsType {
+  isNavBarCondition: boolean;
+  isProfile: boolean;
+}
+
+export const Wrapper = styled.ul<CssPropsType>`
+  ${({ theme: { colors, defaultWidth }, isNavBarCondition, isProfile }) => css`
     ${defaultWidth}
-    position: fixed;
     display: ${isNavBarCondition ? 'flex' : 'none'};
+    height: ${isProfile ? 0 : navigationBarHeight};
+    background-color: ${colors.white1};
+    color: ${colors.grey4};
+    position: fixed;
     bottom: 0;
     box-shadow: 0px -10px 40px #67676740;
     width: 100%;
     justify-content: space-around;
-    background-color: ${colors.white1};
-    height: ${navigationBarHeight};
-    color: ${colors.grey4};
   `}
 `;
 
