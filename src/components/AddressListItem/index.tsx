@@ -3,7 +3,7 @@ import { useSetRecoilState } from 'recoil';
 import { AddressListType } from '@api/address';
 import * as S from '@components/AddressListItem/AddressListItem.style';
 import { ROAD_NAME } from '@constants/words';
-import { selectedAddressState } from '@store/selectedAddress';
+import { selectedAddressState } from '@store/address';
 
 const AddressListItem = ({
   id,

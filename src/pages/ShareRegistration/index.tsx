@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import moment from 'moment';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 
 import { registrationShareListData } from '@api/shareList';
 import { FileContainer, TextContainer, ContentDescription } from '@components/ShareForm';
 import ShareFormHeader from '@components/ShareFormHeader';
 import useInput from '@hooks/useInput';
 import * as S from '@pages/ShareRegistration/ShareRegistration.style';
-import { selectedAddressState } from '@store/selectedAddress';
+import { shareLocationState } from '@store/location';
 import { shareListTrigger } from '@store/shareList';
 import { locationPossible, pricePossible, tagList } from '@store/shareRegistration';
 
@@ -19,7 +19,8 @@ const ShareRegistration = () => {
 
   const [fileImage, setFileImage] = useState<FileList>();
   const [descriptionValue, setDescriptionValue] = useState('');
-  const { road_address_name } = useRecoilValue(selectedAddressState);
+  const { road_address_name } = useRecoilValue(shareLocationState);
+  const resetShareLocation = useResetRecoilState(shareLocationState);
   const tagListValue = useRecoilValue(tagList);
   const pricePossibleValue = useRecoilValue(pricePossible);
   const locationPossibleValue = useRecoilValue(locationPossible);
@@ -78,6 +79,11 @@ const ShareRegistration = () => {
       navigate('/share-list');
     }
   };
+
+  useEffect(() => {
+    return () => resetShareLocation();
+  }, []);
+
   return (
     <S.Wrapper>
       <ShareFormHeader />

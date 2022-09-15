@@ -5,6 +5,7 @@ import Button from '@components/common/Button';
 import Icon from '@components/common/Icon';
 import InputForm from '@components/common/InputForm';
 import { UseInputReturnType } from '@hooks/useInput';
+import { addressOptionState } from '@store/address';
 import { portalState } from '@store/portal';
 import { isSelectedOption } from '@store/shareRegistration';
 
@@ -34,7 +35,14 @@ const TextContainer = ({
   setRecruitmentValue,
 }: TextContainerPropsType) => {
   const setPortal = useSetRecoilState(portalState);
+  const setAddressPortalOption = useSetRecoilState(addressOptionState);
   const isSelectedOptionValue = useRecoilValue(isSelectedOption);
+
+  const handleClickLocationSelectBtn = () => {
+    setAddressPortalOption('SHARE');
+    setPortal('address');
+  };
+
   const handelChangeDateTime = ({ target }: React.ChangeEvent<HTMLInputElement>) =>
     setAppointmentDateTime(target.value);
 
@@ -65,7 +73,7 @@ const TextContainer = ({
       </S.TowTextBlock>
 
       <S.LongTextBlock>
-        <S.LocationSelectButton type='button' onClick={() => setPortal('address')}>
+        <S.LocationSelectButton type='button' onClick={handleClickLocationSelectBtn}>
           <span>{roadAddressName ? roadAddressName : '주소선택'}</span>
           <Icon iconName='ChevronRight' />
         </S.LocationSelectButton>
