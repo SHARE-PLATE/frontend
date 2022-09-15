@@ -3,12 +3,14 @@ import axios from 'axios';
 import { API } from '@constants/api';
 import { activeShareListType } from '@store/filterShareList';
 import { CurrentLatitudeLongitudeType } from '@store/location';
+import { getAuthHeaders } from '@utils/getAuthHeaders';
 
 export const getShareListData = async (
   type: activeShareListType,
   location: CurrentLatitudeLongitudeType,
 ) => {
   const curType = type.delivery ? 'delivery' : type.ingredient ? 'ingredient' : '';
+
   try {
     const response = await axios.get(`${API.SHARE_LIST}`, {
       params: {
@@ -26,18 +28,15 @@ export const getShareListData = async (
 };
 
 export const registrationShareListData = async (formData: any) => {
-  const accessToken = localStorage.getItem('accessToken')!;
+  const headers = getAuthHeaders();
   try {
-    const response = await axios.post(
-      `${API.SHARE_REGISTRATION}`,
-      { formData },
-      {
-        headers: {
-          Authorization: `${JSON.parse(accessToken)}`,
-          'Content-Type': 'multipart/form-data',
-        },
-      },
-    );
+    const response = await axios({
+      method: 'post',
+      url: `${API.SHARE_REGISTRATION}`,
+      data: formData,
+      headers: headers,
+    });
+
     if (response.status === 200) return true;
     else throw Error('잘못된 요청입니다.');
   } catch (error) {

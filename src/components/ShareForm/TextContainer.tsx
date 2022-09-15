@@ -13,7 +13,7 @@ interface TextContainerPropsType {
   titleInput: UseInputReturnType;
   priceInput: UseInputReturnType;
   originalPriceInput: UseInputReturnType;
-  roadAddressName: string | undefined;
+  placeName: string | undefined;
   appointmentDateTime: string;
   setAppointmentDateTime: React.Dispatch<React.SetStateAction<string>>;
   appointmentTime: string;
@@ -26,7 +26,7 @@ const TextContainer = ({
   titleInput,
   priceInput,
   originalPriceInput,
-  roadAddressName,
+  placeName,
   appointmentDateTime,
   setAppointmentDateTime,
   appointmentTime,
@@ -74,7 +74,7 @@ const TextContainer = ({
 
       <S.LongTextBlock>
         <S.LocationSelectButton type='button' onClick={handleClickLocationSelectBtn}>
-          <span>{roadAddressName ? roadAddressName : '주소선택'}</span>
+          <span>{placeName ? placeName : '주소선택'}</span>
           <Icon iconName='ChevronRight' />
         </S.LocationSelectButton>
       </S.LongTextBlock>

@@ -19,7 +19,7 @@ const ShareRegistration = () => {
 
   const [fileImage, setFileImage] = useState<FileList>();
   const [descriptionValue, setDescriptionValue] = useState('');
-  const { road_address_name } = useRecoilValue(shareLocationState);
+  const { lat, lng, place_name, road_address_name } = useRecoilValue(shareLocationState);
   const resetShareLocation = useResetRecoilState(shareLocationState);
   const tagListValue = useRecoilValue(tagList);
   const pricePossibleValue = useRecoilValue(pricePossible);
@@ -55,6 +55,12 @@ const ShareRegistration = () => {
     formData.append('originalPrice', JSON.stringify(originalPriceInput.inputValue));
     //쉐어장소
     formData.append('location', JSON.stringify(road_address_name));
+    //쉐어장소 디테일
+    formData.append('locationGuide', JSON.stringify(place_name));
+    //위도
+    formData.append('latitude', JSON.stringify(lat));
+    //경도
+    formData.append('longitude', JSON.stringify(lng));
     //모집인원
     formData.append('recruitment', JSON.stringify(recruitmentValue));
     //쉐어시간
@@ -64,16 +70,15 @@ const ShareRegistration = () => {
     );
     //설명
     formData.append('description', JSON.stringify(descriptionValue));
-    //가격협의
-    formData.append('', JSON.stringify(pricePossibleValue));
-    //장소협의
-    formData.append('', JSON.stringify(locationPossibleValue));
+    //가격협의 가능 여부
+    formData.append('locationNegotiation', JSON.stringify(pricePossibleValue));
+    //장소협의 가능 여부
+    formData.append('priceNegotiation', JSON.stringify(locationPossibleValue));
     //해쉬태그
     formData.append('hashtags', JSON.stringify(tagListValue));
 
     let isSuccessFetch = false;
     isSuccessFetch = await registrationShareListData(formData);
-
     if (isSuccessFetch) {
       setShareListTrigger((prev) => prev + 1);
       navigate('/share-list');
@@ -93,7 +98,7 @@ const ShareRegistration = () => {
           titleInput={titleInput}
           priceInput={priceInput}
           originalPriceInput={originalPriceInput}
-          roadAddressName={road_address_name}
+          placeName={place_name}
           appointmentDateTime={appointmentDateTime}
           setAppointmentDateTime={setAppointmentDateTime}
           appointmentTime={appointmentTime}
