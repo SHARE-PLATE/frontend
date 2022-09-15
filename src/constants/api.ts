@@ -12,4 +12,8 @@ export const API = {
   CHECK_LOGIN: '/api/reissue/access-token',
   WISH_LIST: '/api/wish-list',
   MY_SHARE: '/api/shares/mine',
+  KEYWORD: '/api/keywords',
+  ADD_KEYWORD: '/api/keywords',
+  DELETE_KEYWORD: '/api/keywords',
+  REGISTERED_KEYWORDS: '/api/keywords/location',
 };
