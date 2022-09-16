@@ -20,7 +20,7 @@ export const RemainedTimeWrapper = styled.div<BottomStylesPositionType>`
     border-radius: 0.25rem;
     background-color: #0000007e;
     width: 2.625rem;
-    height: 1.375rem;
+    height: 1.36rem;
     align-items: center;
     justify-content: center;
     color: ${colors.white1};

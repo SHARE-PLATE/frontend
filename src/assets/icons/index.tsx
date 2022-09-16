@@ -35,6 +35,7 @@ import NoticeOff from '@assets/icons/noticeOff.svg';
 import NoticeOn from '@assets/icons/noticeOn.svg';
 import Option from '@assets/icons/option.svg';
 import PaperAirplane from '@assets/icons/paperAirplane.svg';
+import PersonImaging from '@assets/icons/personImaging.svg';
 import PizzaPicture from '@assets/icons/pizzaPicture.svg';
 import Plus from '@assets/icons/plus.svg';
 import PurchaseHistory from '@assets/icons/purchaseHistory.svg';
@@ -54,6 +55,7 @@ import UserNavFill from '@assets/icons/userNavFill.svg';
 import X_Icon from '@assets/icons/x_icon.svg';
 
 export const Icons = {
+  PersonImaging,
   PizzaPicture,
   LogoWithText,
   MeatPicture,
