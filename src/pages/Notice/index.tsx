@@ -1,25 +1,15 @@
 import { useNavigate } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
 
-import Tabs, { TabsInfoType } from '@components/Tabs';
+import NoticeContent from '@components/NoticeContent';
+import Tabs from '@components/Tabs';
 import Icon from '@components/common/Icon';
 import { NOTICE_CENTER } from '@constants/words';
+import useNoticeTabsInfo from '@hooks/useNoticeTabsInfo';
 import * as S from '@pages/Notice/Notice.style';
-import { activeNoticeState, activeNoticeType } from '@store/activeNotice';
-
-const useNoticeTabsInfo = () => {
-  const activeNotice = useRecoilValue(activeNoticeState);
-  const noticeTabsInfo: TabsInfoType<activeNoticeType> = [
-    { order: 0, title: '활동 알림', value: 'activity', active: activeNotice === 'activity' },
-    { order: 1, title: '키워드 알림', value: 'keyword', active: activeNotice === 'keyword' },
-  ];
-
-  return noticeTabsInfo;
-};
 
 const Notice = () => {
   const navigate = useNavigate();
-  const noticeTabsInfo = useNoticeTabsInfo();
+  const { noticeTabsInfo, activeNoticeState } = useNoticeTabsInfo();
 
   return (
     <S.Wrapper>
@@ -30,6 +20,7 @@ const Notice = () => {
         </S.CloseBtn>
       </S.Header>
       <Tabs tabsInfo={noticeTabsInfo} targetAtom={activeNoticeState} />
+      <NoticeContent />
     </S.Wrapper>
   );
 };

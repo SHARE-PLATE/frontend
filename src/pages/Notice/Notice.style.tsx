@@ -4,7 +4,9 @@ export const Wrapper = styled.div`
   ${({ theme: { defaultPadding, colors } }) => css`
     ${defaultPadding};
     background-color: ${colors.white1};
-    height: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
   `}
 `;
 
