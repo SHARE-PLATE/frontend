@@ -43,7 +43,7 @@ const PreviewShareListBigSizeImage = ({ data }: PreviewShareListBigSizeImageProp
           />
           <RemainedTime
             targetTime={appointmentDateTime}
-            position={{ top: '0.75rem', left: '0.75rem' }}
+            position={{ top: '0.375rem', left: '0.375rem' }}
           />
         </S.ImgWrapper>
         <S.Container>
@@ -57,7 +57,9 @@ const PreviewShareListBigSizeImage = ({ data }: PreviewShareListBigSizeImageProp
               <S.OriginPrice>{getPriceType({ price: originalPrice, isUnit: true })}</S.OriginPrice>
             </S.PriceWrapper>
           </S.TextWrapper>
-          <PersonnelStatus curPersonnel={currentRecruitment} totalPersonnel={finalRecruitment} />
+          <S.PersonnelStatusWrapper>
+            <PersonnelStatus curPersonnel={currentRecruitment} totalPersonnel={finalRecruitment} />
+          </S.PersonnelStatusWrapper>
         </S.Container>
       </S.ItemWrapper>
     ),
