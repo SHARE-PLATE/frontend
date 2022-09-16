@@ -16,8 +16,9 @@ export const tabsGap = '1.25rem';
 export const tabsGapPx = 20;
 
 export const Wrapper = styled.div<WrapperPropsType>`
-  ${({ theme: { colors, defaultFontSize }, selectedTabWidth, selectedTabLeft }) => css`
+  ${({ theme: { colors }, selectedTabWidth, selectedTabLeft }) => css`
     display: flex;
+    position: relative;
     justify-content: flex-start;
     height: ${tabsHeight};
     gap: ${tabsGap};
@@ -25,7 +26,7 @@ export const Wrapper = styled.div<WrapperPropsType>`
     ::after {
       position: absolute;
       transition: 0.3s all;
-      left: ${selectedTabLeft + defaultFontSize}px; // defaultFontSize는 좌측 padding값
+      left: ${selectedTabLeft}px;
       border-bottom: solid 0.125rem ${colors.orange2};
       width: ${selectedTabWidth}px;
       height: 2.6rem;

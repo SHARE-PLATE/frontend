@@ -1,6 +1,6 @@
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useLayoutEffect, useRef, useState } from 'react';
 
-import { RecoilState, SetterOrUpdater, useSetRecoilState } from 'recoil';
+import { RecoilState, useSetRecoilState } from 'recoil';
 
 import * as S from '@components/Tabs/Tabs.styled';
 
@@ -43,7 +43,7 @@ const Tab = <T extends unknown>({
     setSelectedTabOrder(order);
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const newWidth = widthRef.current?.offsetWidth;
 
     if (!newWidth) return;
