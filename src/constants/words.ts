@@ -1,3 +1,5 @@
+export const ACTIVITY = 'activity';
+export const KEYWORD = 'keyword';
 export const LOGIN = 'LOGIN';
 export const CHAT = 'chat';
 export const CHATROOM_ID = 'chatRoomId';
