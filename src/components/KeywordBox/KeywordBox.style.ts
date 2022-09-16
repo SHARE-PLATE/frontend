@@ -6,7 +6,7 @@ export const Table = styled.div``;
 export const TableBox = styled.section`
   margin-bottom: 24px;
   border-radius: 8px;
-  box-shadow: 0px 4px 6px 4px ${({ theme }) => theme.colors.grey4};
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   padding: 0 1rem;
 `;
 
@@ -57,25 +57,4 @@ export const ItemText = styled.span`
   background-color: #ff5c21;
   padding: 4px 8px;
   color: #fff;
-`;
-
-export const FailedContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  svg {
-    margin: 0 auto;
-    width: 5%;
-    height: 5%;
-    path {
-      stroke: #999;
-    }
-  }
-`;
-
-export const FailedText = styled.span`
-  display: flex;
-  margin: 0 auto;
-  margin-top: 10px;
-  color: ${({ theme }) => theme.colors.grey7};
 `;

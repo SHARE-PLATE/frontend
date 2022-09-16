@@ -1,5 +1,6 @@
 import AddDelivery from '@assets/icons/addDelivery.svg';
 import AddIngredient from '@assets/icons/addIngredient.svg';
+import AddKeyword from '@assets/icons/addKeyword.svg';
 import ArrowUp from '@assets/icons/arrowUp.svg';
 import Back from '@assets/icons/back.svg';
 import BriefCase from '@assets/icons/briefCase.svg';
@@ -98,6 +99,7 @@ export const Icons = {
   ImgDelete,
   AddDelivery,
   AddIngredient,
+  AddKeyword,
 } as const;
 
 export type IconsType = keyof typeof Icons;
