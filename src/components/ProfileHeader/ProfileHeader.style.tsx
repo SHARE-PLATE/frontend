@@ -11,12 +11,20 @@ export const Wrapper = styled.div`
 `;
 
 export const Title = styled.h2`
-  ${({ theme: { fonts } }) => fonts.xLarge}
-  position: absolute;
-  width: 100%;
-  text-align: center;
+  ${({ theme: { fonts, colors } }) => css`
+    ${fonts.xLarge}
+    color:${colors.white0};
+    position: absolute;
+    width: 100%;
+    text-align: center;
+  `}
 `;
 
 export const Icons = styled.div`
-  display: flex;
+  ${({ theme: { colors } }) => css`
+    display: flex;
+    path {
+      stroke: ${colors.white0};
+    }
+  `}
 `;

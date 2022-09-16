@@ -7,6 +7,7 @@ import { userMenu, userMenuType } from '@constants/userMenu';
 const UserMenu = () => {
   const navigate = useNavigate();
   const userMenuListData: userMenuType[] = userMenu;
+
   return (
     <S.Wrapper>
       {userMenuListData.map((data: userMenuType) => (

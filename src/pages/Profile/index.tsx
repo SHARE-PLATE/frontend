@@ -8,11 +8,11 @@ import * as S from '@pages/Profile/Profile.style';
 const Profile = () => {
   return (
     <S.ProfileWrapper>
-      <div>
+      <S.UpperWrapper>
         <ProfileHeader />
         <UserInfo />
         <MyMenu />
-      </div>
+      </S.UpperWrapper>
       <ReserveShare />
       <UserMenu />
     </S.ProfileWrapper>
