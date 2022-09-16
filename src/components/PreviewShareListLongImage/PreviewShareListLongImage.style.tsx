@@ -9,6 +9,17 @@ export const Wrapper = styled.div`
   `}
 `;
 
+export const TitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  padding-top: 1.5rem;
+  gap: 0.4rem;
+
+  > div {
+    padding-top: 0;
+  }
+`;
+
 export const MentionWrapper = styled.div`
   ${subTitle}
 `;
@@ -19,6 +30,7 @@ export const ListWrapper = styled.div`
   display: flex;
   gap: 0.8rem;
   padding: 1rem 0;
+  padding-bottom: 2rem;
   width: 100%;
   height: fit-content;
   overflow-x: scroll;

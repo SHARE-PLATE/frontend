@@ -9,11 +9,11 @@ interface PersonnelStatusPropsType {
 const PersonnelStatus = ({ curPersonnel, totalPersonnel }: PersonnelStatusPropsType) => {
   return (
     <S.Wrapper>
-      <S.IconWrapper>
-        <Icon iconName='User' />
-      </S.IconWrapper>
+      <Icon iconName='User' iconSize={0.85} />
       <S.Content>
-        {curPersonnel} / {totalPersonnel}
+        <span>{curPersonnel}</span>
+        <span>/</span>
+        <span>{totalPersonnel}</span>
       </S.Content>
     </S.Wrapper>
   );
