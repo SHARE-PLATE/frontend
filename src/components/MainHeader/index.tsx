@@ -6,7 +6,7 @@ const MainHeader = () => {
   return (
     <S.Wrapper>
       <S.IconsWrapper position='left'>
-        <Icon iconName='Logo' iconSize='LARGE' />
+        <Icon iconName='LogoWithText' iconSize={4.2} />
       </S.IconsWrapper>
       <Address />
       <S.IconsWrapper position='right'>

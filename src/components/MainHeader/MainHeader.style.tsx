@@ -7,15 +7,15 @@ type IconsWrappersPropsType = {
   position: 'left' | 'space-between' | 'right';
 };
 
-export const mainHeaderHeight = '3rem';
-
 export const Wrapper = styled.div`
-  ${flexBetween}
-  ${theme.defaultPadding}
-  ${theme.defaultWidth}
+  ${({ theme: { defaultPadding, defaultWidth, defaultHeaderHeight } }) => css`
+    ${flexBetween}
+    ${defaultPadding}
+    ${defaultWidth}
 
-  width: 100%;
-  height: ${mainHeaderHeight};
+    width: 100%;
+    height: ${defaultHeaderHeight}rem;
+  `}
 `;
 
 export const HeaderAddressWrapper = styled.div``;

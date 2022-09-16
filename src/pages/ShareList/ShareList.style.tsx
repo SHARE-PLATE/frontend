@@ -1,7 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { categoryButtonHeight } from '@components/CategoryButton/CategoryButton.style';
-import { mainHeaderHeight } from '@components/MainHeader/MainHeader.style';
 import { tabsHeight } from '@components/Tabs/Tabs.styled';
 import { defaultPageStyle } from '@styles/mixin';
 
@@ -26,7 +25,9 @@ export const ListHeader = styled.header`
 `;
 
 export const EmptyArea = styled.div`
-  height: calc(${mainHeaderHeight} + ${tabsHeight} + ${categoryButtonHeight});
+  ${({ theme: { defaultHeaderHeight } }) => css`
+    height: calc(${defaultHeaderHeight}rem + ${tabsHeight} + ${categoryButtonHeight});
+  `}
 `;
 
 export const ListContent = styled.div`
