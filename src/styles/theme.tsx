@@ -78,7 +78,8 @@ const fonts = {
 };
 
 const colors = {
-  white1: '#ffffff',
+  white0: '#ffffff',
+  white1: '#fafafa',
   white2: '#f9f9f9',
   grey1: '#efefef',
   grey2: '#d9d9d9',
