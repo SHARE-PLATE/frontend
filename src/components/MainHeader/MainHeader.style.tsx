@@ -4,7 +4,7 @@ import { flexBetween } from '@styles/mixin';
 import theme from '@styles/theme';
 
 type IconsWrappersPropsType = {
-  position: 'left' | 'space-between';
+  position: 'left' | 'space-between' | 'right';
 };
 
 export const mainHeaderHeight = '3rem';

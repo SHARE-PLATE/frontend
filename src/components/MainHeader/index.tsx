@@ -9,9 +9,8 @@ const MainHeader = () => {
         <Icon iconName='Logo' iconSize='LARGE' />
       </S.IconsWrapper>
       <Address />
-      <S.IconsWrapper position='space-between'>
+      <S.IconsWrapper position='right'>
         <Icon iconName='NoticeOn' iconSize='LARGE' />
-        <Icon iconName='Map' iconSize='LARGE' />
       </S.IconsWrapper>
     </S.Wrapper>
   );

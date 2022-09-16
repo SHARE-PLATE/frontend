@@ -90,7 +90,7 @@ const colors = {
   black: '#191919',
   orange0: '#ffd6c7',
   orange1: '#ff8e65',
-  orange2: '#ff5c21',
+  orange2: '#FF453A',
   orange3: '#ff453f',
   blue0: '#1980E8',
 };
