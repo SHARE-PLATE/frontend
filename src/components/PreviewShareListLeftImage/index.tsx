@@ -77,6 +77,8 @@ const PreviewShareListLeftImage = ({ data, count, isDone }: PreviewShareListLeft
     },
   );
 
+  if (list.length % 2) list.push(<S.Container></S.Container>);
+
   return <S.Wrapper>{list}</S.Wrapper>;
 };
 

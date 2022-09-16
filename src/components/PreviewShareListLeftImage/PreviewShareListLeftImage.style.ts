@@ -3,23 +3,32 @@ import styled, { css } from 'styled-components';
 export const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 1.5rem;
   justify-content: space-between;
 `;
 
 export const Container = styled.div`
   display: flex;
-  flex-basis: 0;
   gap: 0.75rem;
-  width: 100%;
+  width: calc(50% - 1.5rem);
+
+  @media (max-width: 27rem) {
+    width: 100%;
+    max-width: 24rem;
+  }
 `;
 
 export const ImgWrapper = styled.div`
   position: relative;
   border-radius: 0.5rem;
-  width: 7rem;
+
+  min-width: 5rem;
   overflow: hidden;
   aspect-ratio: 1 / 1;
+
+  @media (max-width: 27rem) {
+    min-width: 6.6rem;
+  }
 `;
 
 export const ListInfo = styled.div`
@@ -27,9 +36,13 @@ export const ListInfo = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: 0.2rem;
-  width: 12.7rem;
   overflow-wrap: break-word;
   gap: 0.4rem;
+  max-width: 55%;
+
+  @media (max-width: 27rem) {
+    max-width: 65%;
+  }
 `;
 
 export const ListInfoTexts = styled.div`
@@ -41,7 +54,6 @@ export const ListInfoTexts = styled.div`
 export const Title = styled.div`
   ${({ theme: { fonts } }) => css`
     ${fonts.mediumRegular}
-    width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

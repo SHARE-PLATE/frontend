@@ -36,7 +36,7 @@ export const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  max-width: 75%;
+  max-width: 70%;
   gap: 0.45rem;
 `;
 
