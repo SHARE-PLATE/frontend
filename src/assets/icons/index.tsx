@@ -12,6 +12,7 @@ import CheckCircleColor from '@assets/icons/checkCircleColor.svg';
 import ChevronDown from '@assets/icons/chevronDown.svg';
 import ChevronRight from '@assets/icons/chevronRight.svg';
 import Clock from '@assets/icons/clock.svg';
+import ClockPicture from '@assets/icons/clockPicture.svg';
 import CountDown from '@assets/icons/countDown.svg';
 import CountUp from '@assets/icons/countUp.svg';
 import DeleteCircle from '@assets/icons/deleteCircle.svg';
@@ -27,11 +28,14 @@ import ImgDelete from '@assets/icons/imgDelete.svg';
 import Kakao from '@assets/icons/kakao.svg';
 import LocationMarker from '@assets/icons/locationMarker.svg';
 import Logo from '@assets/icons/logo.svg';
+import LogoWithText from '@assets/icons/logoWithText.svg';
 import Map from '@assets/icons/map.svg';
+import MeatPicture from '@assets/icons/meatPicture.svg';
 import NoticeOff from '@assets/icons/noticeOff.svg';
 import NoticeOn from '@assets/icons/noticeOn.svg';
 import Option from '@assets/icons/option.svg';
 import PaperAirplane from '@assets/icons/paperAirplane.svg';
+import PizzaPicture from '@assets/icons/pizzaPicture.svg';
 import Plus from '@assets/icons/plus.svg';
 import PurchaseHistory from '@assets/icons/purchaseHistory.svg';
 import RightArrow from '@assets/icons/rightArrow.svg';
@@ -50,6 +54,10 @@ import UserNavFill from '@assets/icons/userNavFill.svg';
 import X_Icon from '@assets/icons/x_icon.svg';
 
 export const Icons = {
+  PizzaPicture,
+  LogoWithText,
+  MeatPicture,
+  ClockPicture,
   CheckCircleColor,
   BriefCase,
   HomeAdd,
