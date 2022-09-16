@@ -39,3 +39,9 @@ export const OptionButton = styled.button`
     font-weight: 500;
   `}
 `;
+
+export const TitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+`;

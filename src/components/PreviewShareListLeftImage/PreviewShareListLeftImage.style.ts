@@ -29,6 +29,7 @@ export const ListInfo = styled.div`
   padding: 0.2rem;
   width: 12.7rem;
   overflow-wrap: break-word;
+  gap: 0.4rem;
 `;
 
 export const ListInfoTexts = styled.div`
@@ -38,15 +39,18 @@ export const ListInfoTexts = styled.div`
 `;
 
 export const Title = styled.div`
-  width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  ${({ theme: { fonts } }) => css`
+    ${fonts.mediumRegular}
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  `}
 `;
 
 export const Location = styled.div`
   ${({ theme: { colors, fonts } }) => css`
-    ${fonts.xSmall}
+    ${fonts.xSmallRegular}
     color: ${colors.grey4};
   `}
 `;

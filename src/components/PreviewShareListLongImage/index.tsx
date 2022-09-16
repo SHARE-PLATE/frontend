@@ -25,10 +25,12 @@ const PreviewShareListLongImage = () => {
 
   return (
     <S.Wrapper>
-      <S.TitleWrapper>
-        <Icon iconName='ClockPicture' iconSize={1.33} />
-        <Title contentTitle={littleDeadlineMention} size='LARGE' />
-      </S.TitleWrapper>
+      <Title
+        contentTitle={littleDeadlineMention}
+        size='LARGE'
+        iconName='ClockPicture'
+        iconSize={1.43}
+      />
       {!!recommendedData?.length ? (
         <S.ListWrapper>
           {recommendedData.map((item) => (

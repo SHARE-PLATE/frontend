@@ -19,7 +19,6 @@ interface PreviewShareListLeftImagePropsType {
 }
 const PreviewShareListLeftImage = ({ data, count, isDone }: PreviewShareListLeftImagePropsType) => {
   const navigate = useNavigate();
-
   const list: ReactElement[] = [];
 
   data.every(
@@ -57,7 +56,7 @@ const PreviewShareListLeftImage = ({ data, count, isDone }: PreviewShareListLeft
             ) : (
               <RemainedTime
                 targetTime={appointmentDateTime}
-                position={{ top: '0.5rem', left: '0.5rem' }}
+                position={{ top: '0.375rem', left: '0.375rem' }}
               />
             )}
           </S.ImgWrapper>
