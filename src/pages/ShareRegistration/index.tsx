@@ -46,36 +46,47 @@ const ShareRegistration = () => {
     }
 
     //타입
-    formData.append('type', JSON.stringify(pathname.split('/')[2]));
+    formData.append('type', pathname.split('/')[2]);
     //제목
-    formData.append('title', JSON.stringify(titleInput.inputValue));
+    formData.append('title', titleInput.inputValue);
     //가격
-    formData.append('price', JSON.stringify(priceInput.inputValue));
+    formData.append('price', priceInput.inputValue);
     //원래가격
-    formData.append('originalPrice', JSON.stringify(originalPriceInput.inputValue));
+    formData.append('originalPrice', originalPriceInput.inputValue);
     //쉐어장소
-    formData.append('location', JSON.stringify(road_address_name));
-    //쉐어장소 디테일
-    formData.append('locationGuide', JSON.stringify(place_name));
-    //위도
-    formData.append('latitude', JSON.stringify(lat));
-    //경도
-    formData.append('longitude', JSON.stringify(lng));
-    //모집인원
+    formData.append('location', String(road_address_name));
+    // //쉐어장소 디테일
+    formData.append('locationGuide', String(place_name));
+    // //위도
+    console.log(typeof lat)
+    console.log(lat)
+    console.log(typeof JSON.stringify(lat));
+    console.log(JSON.stringify(lat));
+    formData.append('latitude', String(lat));
+    // //경도
+    formData.append('longitude', String(lng));
+    // //모집인원
     formData.append('recruitment', JSON.stringify(recruitmentValue));
     //쉐어시간
     formData.append(
-      'appointmentDateTime',
-      JSON.stringify(`${appointmentDateTime} ${appointmentTime}`),
+      'closedDateTime',
+      `${appointmentDateTime} ${appointmentTime}`,
     );
+
+    console.log(JSON.stringify(pricePossibleValue));
+    console.log(typeof JSON.stringify(pricePossibleValue));
     //설명
     formData.append('description', JSON.stringify(descriptionValue));
     //가격협의 가능 여부
     formData.append('locationNegotiation', JSON.stringify(pricePossibleValue));
-    //장소협의 가능 여부
-    formData.append('priceNegotiation', JSON.stringify(locationPossibleValue));
-    //해쉬태그
-    formData.append('hashtags', JSON.stringify(tagListValue));
+    // //장소협의 가능 여부
+    formData.append('priceNegotiation', JSON.stringify(pricePossibleValue));
+    // //해쉬태그
+
+    for (let i = 0; i < tagListValue.length; i++) {
+      //이미지
+      formData.append('hashtags', tagListValue[i]);
+    }
 
     let isSuccessFetch = false;
     isSuccessFetch = await registrationShareListData(formData);
