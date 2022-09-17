@@ -3,6 +3,7 @@ import AddIngredient from '@assets/icons/addIngredient.svg';
 import AddKeyword from '@assets/icons/addKeyword.svg';
 import ArrowUp from '@assets/icons/arrowUp.svg';
 import Back from '@assets/icons/back.svg';
+import Bookmark from '@assets/icons/bookmark.svg';
 import BriefCase from '@assets/icons/briefCase.svg';
 import Camera from '@assets/icons/camera.svg';
 import Chat from '@assets/icons/chat.svg';
@@ -17,6 +18,7 @@ import CountDown from '@assets/icons/countDown.svg';
 import CountUp from '@assets/icons/countUp.svg';
 import DeleteCircle from '@assets/icons/deleteCircle.svg';
 import DotsVertical from '@assets/icons/dotsVertical.svg';
+import Flag from '@assets/icons/flag.svg';
 import Form from '@assets/icons/form.svg';
 import FormClose from '@assets/icons/formClose.svg';
 import Heart from '@assets/icons/heart.svg';
@@ -31,6 +33,7 @@ import Logo from '@assets/icons/logo.svg';
 import LogoWithText from '@assets/icons/logoWithText.svg';
 import Map from '@assets/icons/map.svg';
 import MeatPicture from '@assets/icons/meatPicture.svg';
+import Microphone from '@assets/icons/microphone.svg';
 import NoticeOff from '@assets/icons/noticeOff.svg';
 import NoticeOn from '@assets/icons/noticeOn.svg';
 import Option from '@assets/icons/option.svg';
@@ -55,6 +58,9 @@ import UserNavFill from '@assets/icons/userNavFill.svg';
 import X_Icon from '@assets/icons/x_icon.svg';
 
 export const Icons = {
+  Bookmark,
+  Flag,
+  Microphone,
   PersonImaging,
   PizzaPicture,
   LogoWithText,
