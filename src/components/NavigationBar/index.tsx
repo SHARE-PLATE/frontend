@@ -29,10 +29,8 @@ const NavigationBar = () => {
 
   return (
     <S.Wrapper isNavBarCondition={isNavBarCondition} isProfile={isProfile}>
-      <>
-        {isProfile ? <AddKeyWordButton /> : <ShareFormButton />}
-        {!isProfile && navigationBarButtons}
-      </>
+      {isProfile ? <AddKeyWordButton /> : <ShareFormButton />}
+      {!isProfile && navigationBarButtons}
     </S.Wrapper>
   );
 };

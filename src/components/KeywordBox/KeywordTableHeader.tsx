@@ -10,9 +10,7 @@ const KeywordTableHeader = ({ location, openModal }: KeywordTableHeaderPropsType
   return (
     <S.Header>
       <S.Title>{location}</S.Title>
-      <button onClick={openModal}>
-        <Icon iconName='DeleteCircle' iconSize='LARGE' />
-      </button>
+      <Icon iconName='DeleteCircle' handleClick={openModal} />
     </S.Header>
   );
 };

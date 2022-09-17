@@ -1,8 +1,10 @@
+import { ReactElement } from 'react';
+
 import * as S from '@components/common/Modal/Modal.style';
 
 export interface ModalPropsTypes {
   type: string;
-  children?: JSX.Element;
+  children: ReactElement;
   isFull: boolean;
 }
 
