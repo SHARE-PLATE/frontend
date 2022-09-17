@@ -55,12 +55,15 @@ export const ItemsWrapper = styled.div`
   padding-bottom: 1rem;
 `;
 
-export const ItemText = styled.span`
+export const KeywordItem = styled.span`
   ${({ theme: { fonts, colors } }) => css`
     ${fonts.small}
     font-weight: 500;
     border-radius: 0.25rem;
     letter-spacing: 0.4px;
+    gap: 0.4rem;
+    display: flex;
+    align-items: center;
     background-color: ${colors.orange2};
     padding: 0.35rem 0.5rem;
     color: ${colors.white0};

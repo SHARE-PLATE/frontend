@@ -21,8 +21,6 @@ const KeywordBox = () => {
   const openModal = () => setIsDeleteModal(true);
 
   const deleteHandler = async (curLocation: string) => {
-    //에러
-    console.log(curLocation);
     if (!curLocation) return false;
 
     const isSuccessFetch = await deleteKeywordAddress(curLocation);
