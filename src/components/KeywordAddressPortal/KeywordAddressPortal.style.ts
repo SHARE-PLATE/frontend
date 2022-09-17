@@ -40,17 +40,6 @@ export const HeaderBtn = styled.button<{ isSearching: boolean }>`
     justify-content: center;
     min-width: 30px;
     max-width: 50px;
-
-    ${!isSearching &&
-    css`
-      svg {
-        width: 1.5rem;
-        height: 1.5rem;
-        path {
-          stroke: ${colors.black};
-        }
-      }
-    `}
   `}
 `;
 

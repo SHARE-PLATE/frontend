@@ -4,15 +4,15 @@ import { useSetRecoilState } from 'recoil';
 
 import { getRegionWithGeo } from '@api/address';
 import AddressList from '@components/AddressList';
-import * as S from '@components/KeywordAddress/KeywordAddress.style';
+import * as S from '@components/KeywordAddressPortal/KeywordAddressPortal.style';
 import Portal from '@components/Portal';
 import Icon from '@components/common/Icon';
 import { searchAroundMention, searchWayMention } from '@constants/mentions';
-import { SEARCH_ADDRESS } from '@constants/words';
+import { ADD_ADDRESS_KEYWORD, SEARCH_ADDRESS } from '@constants/words';
 import useGeolocation from '@hooks/useGeolocation';
 import { portalState } from '@store/portal';
 
-const KeywordAddress = () => {
+const KeywordAddressPortal = () => {
   const [addressValue, setAddressValue] = useState('');
   const closeBtn = useRef<HTMLButtonElement>(null);
   const setPortal = useSetRecoilState(portalState);
@@ -39,9 +39,9 @@ const KeywordAddress = () => {
         <S.TopWrapper>
           <S.Header>
             <S.HeaderBtn ref={closeBtn} isSearching={false} onClick={() => setPortal(null)}>
-              <Icon iconName='X_Icon' />
+              <Icon iconName='Back' iconSize={1.125} />
             </S.HeaderBtn>
-            <S.HeaderTitle>{SEARCH_ADDRESS}</S.HeaderTitle>
+            <S.HeaderTitle>{ADD_ADDRESS_KEYWORD}</S.HeaderTitle>
           </S.Header>
 
           <S.AddressInputArea onSubmit={(event) => event.preventDefault()}>
@@ -67,4 +67,4 @@ const KeywordAddress = () => {
   );
 };
 
-export default KeywordAddress;
+export default KeywordAddressPortal;
