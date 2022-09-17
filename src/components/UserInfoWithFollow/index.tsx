@@ -32,10 +32,10 @@ const UserInfoWithFollow = ({ writerThumbnailImageUrl, writer }: UserInfoWithFol
           </S.InfoDetailWrapper>
         </S.InfoWrapper>
       </S.LeftWrapper>
-      <S.FollowBtn>
+      {/* <S.FollowBtn>
         <Icon iconName='Plus' />
         팔로우
-      </S.FollowBtn>
+      </S.FollowBtn> */}
     </S.Wrapper>
   );
 };
