@@ -6,10 +6,9 @@ import { getAuthHeaders } from '@utils/getAuthHeaders';
 
 export const getKeywordListData = async () => {
   const headers = getAuthHeaders();
+
   try {
-    const response = await axios.get(`${API.KEYWORD}`, {
-      headers,
-    });
+    const response = await axios.get(`${API.KEYWORD}`, { headers });
     return response.data;
   } catch (err) {
     console.log(err);

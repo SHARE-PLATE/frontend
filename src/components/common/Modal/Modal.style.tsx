@@ -32,7 +32,7 @@ export const ModalContainer = styled.div<{ type: ModalType }>`
     ${type === 'center' &&
     css`
       background-color: ${colors.white1};
-      top: 27%;
+      top: 45%;
       left: 50%;
       transform: translate(-50%, -27%);
     `};

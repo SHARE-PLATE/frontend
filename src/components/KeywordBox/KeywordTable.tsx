@@ -3,7 +3,7 @@ import { keywordsType } from '@type/keyword';
 
 const KeywordTable = ({ keywords }: { keywords: keywordsType[] }) => {
   const items = keywords.map(({ id, contents }: keywordsType) => (
-    <S.ItemText key={id}>{contents}</S.ItemText>
+    <S.KeywordItem key={id}>{contents}</S.KeywordItem>
   ));
 
   return (
