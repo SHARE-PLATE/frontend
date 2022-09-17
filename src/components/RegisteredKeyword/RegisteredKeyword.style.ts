@@ -1,6 +1,18 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const SubHeader = styled.span``;
+export const Wrapper = styled.div``;
+
+export const SubHeader = styled.div`
+  ${({ theme: { fonts, colors } }) => css`
+    ${fonts.small}
+    color:${colors.grey6};
+    font-weight: 500;
+
+    > :last-child {
+      color: ${colors.grey4};
+    }
+  `}
+`;
 
 export const ContentContainer = styled.div`
   display: flex;
@@ -9,23 +21,26 @@ export const ContentContainer = styled.div`
   padding: 1rem 0;
 `;
 
+export const IconWrapper = styled.div`
+  ${({ theme: { colors } }) => css`
+    display: flex;
+    align-items: center;
+
+    path {
+      stroke: ${colors.white0};
+    }
+  `}
+`;
+
 export const ContentBox = styled.div`
   display: flex;
   gap: 4px;
   border-radius: 0.25rem;
   background-color: ${({ theme }) => theme.colors.orange2};
   padding: 4px 6px;
-
-  path {
-    stroke-width: 2;
-  }
 `;
 
 export const ContentItem = styled.span`
   font-size: 14px;
   color: ${({ theme }) => theme.colors.white1};
-`;
-
-export const MaxKeyword = styled.span`
-  color: ${({ theme }) => theme.colors.grey4};
 `;

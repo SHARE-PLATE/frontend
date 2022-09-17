@@ -5,6 +5,7 @@ import { addKeywords } from '@api/keyword';
 import KeywordInput from '@components/KeywordInput';
 import RegisteredKeyword from '@components/RegisteredKeyword';
 import BackTitleHeader from '@components/common/BackTitleHeader';
+import { ADD_NOTICE_KEYWORD } from '@constants/words';
 import useInput from '@hooks/useInput';
 import * as S from '@pages/AddKeyword/AddKeyword.style';
 import { keywordListTrigger } from '@store/keyword';
@@ -32,8 +33,8 @@ const AddKeyword = () => {
 
     const newKeyword = {
       location: regionName,
-      latitude: x,
-      longitude: y,
+      latitude: y,
+      longitude: x,
       keyword: keywordInputBar.inputValue,
     };
 
@@ -47,15 +48,15 @@ const AddKeyword = () => {
 
   return (
     <S.Wrapper>
-      <BackTitleHeader title='알림 키워드 추가' />
+      <BackTitleHeader title={ADD_NOTICE_KEYWORD} />
       <S.Header>
-        {regionName} <S.Subheader>({place_name})</S.Subheader>
+        <span>{regionName}</span>
+        <span>({place_name})</span>
       </S.Header>
       <KeywordInput {...{ keywordInputBar }} handleSubmitClick={handleSubmitClick} />
       <S.RegisteredKeywordWrapper>
         <RegisteredKeyword regionName={regionName} />
       </S.RegisteredKeywordWrapper>
-      <div></div>
     </S.Wrapper>
   );
 };
