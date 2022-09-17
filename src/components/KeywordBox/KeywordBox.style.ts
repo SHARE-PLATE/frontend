@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { tagStyle } from '@styles/mixin';
+
 //index.tsx
 export const Table = styled.div``;
 
@@ -56,16 +58,5 @@ export const ItemsWrapper = styled.div`
 `;
 
 export const KeywordItem = styled.span`
-  ${({ theme: { fonts, colors } }) => css`
-    ${fonts.small}
-    font-weight: 500;
-    border-radius: 0.25rem;
-    letter-spacing: 0.4px;
-    gap: 0.4rem;
-    display: flex;
-    align-items: center;
-    background-color: ${colors.orange2};
-    padding: 0.35rem 0.5rem;
-    color: ${colors.white0};
-  `}
+  ${tagStyle}
 `;
