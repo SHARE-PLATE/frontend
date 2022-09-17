@@ -13,9 +13,12 @@ export const Wrapper = styled.div`
 
 export const Text = styled.p`
   ${({ theme: { colors, fonts } }) => css`
-    ${fonts.largeBold}
+    ${fonts.smallRegular}
 
-    margin-bottom: 20px;
+    line-height: 1rem;
+    padding-bottom: 1rem;
+    white-space: pre;
+    text-align: center;
     color: ${colors.black};
   `}
 `;

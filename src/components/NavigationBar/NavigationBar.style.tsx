@@ -12,7 +12,7 @@ export const Wrapper = styled.ul<CssPropsType>`
     ${defaultWidth}
     display: ${isNavBarCondition ? 'flex' : 'none'};
     height: ${isProfile ? 0 : navigationBarHeight};
-    background-color: ${colors.white1};
+    background-color: ${colors.white0};
     color: ${colors.grey4};
     position: fixed;
     bottom: 0;

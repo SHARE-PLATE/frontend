@@ -14,16 +14,13 @@ import { keywordDataType } from '@type/keyword';
 const KeywordBox = () => {
   const modalRef = useRef<HTMLDivElement>(null);
   const [isDeleteModal, setIsDeleteModal] = useModal({ modalRef });
-  const setKeywordListTrigger = useSetRecoilState(keywordListTrigger);
-
   const { state, contents } = useRecoilValueLoadable(getKeywordListsData);
+  const setKeywordListTrigger = useSetRecoilState(keywordListTrigger);
 
   const closeModal = () => setIsDeleteModal(false);
   const openModal = () => setIsDeleteModal(true);
 
   const deleteHandler = async (curLocation: string) => {
-    //에러
-    console.log(curLocation);
     if (!curLocation) return false;
 
     const isSuccessFetch = await deleteKeywordAddress(curLocation);

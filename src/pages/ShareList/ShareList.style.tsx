@@ -1,12 +1,11 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { categoryButtonHeight } from '@components/CategoryButton/CategoryButton.style';
-import { mainHeaderHeight } from '@components/MainHeader/MainHeader.style';
 import { tabsHeight } from '@components/Tabs/Tabs.styled';
 import { defaultPageStyle } from '@styles/mixin';
 
 export const Wrapper = styled.div`
-  ${defaultPageStyle}
+  ${defaultPageStyle};
 `;
 
 export const ListHeader = styled.header`
@@ -25,10 +24,8 @@ export const ListHeader = styled.header`
   }
 `;
 
-export const EmptyArea = styled.div`
-  height: calc(${mainHeaderHeight} + ${tabsHeight} + ${categoryButtonHeight});
-`;
-
 export const ListContent = styled.div`
-  margin-top: 170px;
+  ${({ theme: { defaultHeaderHeight } }) => css`
+    padding-top: calc(${defaultHeaderHeight}rem + ${tabsHeight} + ${categoryButtonHeight});
+  `}
 `;

@@ -1,14 +1,26 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-import { defaultPageStyle, subTitle } from '@styles/mixin';
+import { subTitle } from '@styles/mixin';
 
 export const Wrapper = styled.div`
-  ${defaultPageStyle}
+  ${({ theme: { defaultPadding, colors } }) => css`
+    ${defaultPadding};
+    background-color: ${colors.white1};
+    flex-grow: 1;
+  `}
 `;
 
 export const Header = styled.div`
   ${subTitle}
-  padding-bottom: 1rem;
+  padding: 1rem 0;
+  display: flex;
+  gap: 0.25rem;
+  align-items: baseline;
+
+  > :last-child {
+    ${({ theme }) => theme.fonts.small}
+    font-weight: 400;
+  }
 `;
 
 export const Subheader = styled.span`

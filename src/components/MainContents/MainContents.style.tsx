@@ -6,6 +6,18 @@ export const Wrapper = styled.div`
   padding-bottom: 1rem;
 `;
 
+export const TitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding-top: 1rem;
+  width: 100%;
+
+  > div {
+    padding-top: 0;
+  }
+`;
+
 export const SubTitle = styled.div`
   ${subTitle}
   display: flex;

@@ -14,20 +14,25 @@ const Login = () => {
 
   return (
     <Portal portalName={portalName} type='full' closeBtn={closeBtn}>
-      <S.LoginWrapper>
+      <S.Wrapper>
         <S.CloseBtn ref={closeBtn}>
-          <Icon iconName='Back' />
+          <Icon iconName='X_Icon' iconSize={0.75} />
         </S.CloseBtn>
-        <S.LogoWrapper>
-          <Icon iconName='Logo' iconSize={2} />
-          <Icon iconName='SharePlate' iconSize={11.5} />
-        </S.LogoWrapper>
-        {loginMention}
-        <S.KakaoLoginButton onClick={getLoginPage}>
-          <Icon iconName='Kakao' />
-          {kakaoLoginMention}
-        </S.KakaoLoginButton>
-      </S.LoginWrapper>
+        <S.ContentWrapper>
+          <S.LogoWrapper>
+            <Icon iconName='Logo' iconSize={2} />
+            <Icon iconName='SharePlate' iconSize={11.5} />
+          </S.LogoWrapper>
+          {loginMention}
+          <S.KakaoLoginButton onClick={getLoginPage}>
+            <Icon iconName='Kakao' />
+            {kakaoLoginMention}
+          </S.KakaoLoginButton>
+          <S.PersonImagingWrapper>
+            <Icon iconName='PersonImaging' iconSize={28.3} />
+          </S.PersonImagingWrapper>
+        </S.ContentWrapper>
+      </S.Wrapper>
     </Portal>
   );
 };

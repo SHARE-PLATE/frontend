@@ -1,4 +1,4 @@
-import AddKeyWordButton from '@components/AddKeyWordButton';
+import AddKeywordButton from '@components/AddKeyWordButton';
 import * as S from '@components/NavigationBar/NavigationBar.style';
 import useNavigationBarInfo from '@components/NavigationBar/useNavigationBarInfo';
 import ShareFormButton from '@components/ShareFormButton';
@@ -29,10 +29,10 @@ const NavigationBar = () => {
 
   return (
     <S.Wrapper isNavBarCondition={isNavBarCondition} isProfile={isProfile}>
-      <>
-        {isProfile ? <AddKeyWordButton /> : <ShareFormButton />}
-        {!isProfile && navigationBarButtons}
-      </>
+      {/* 버튼 종류 설정 */}
+      {isProfile ? <AddKeywordButton /> : <ShareFormButton />}
+      {/* 네비게이션 바 유무 설정 */}
+      {!isProfile && navigationBarButtons}
     </S.Wrapper>
   );
 };

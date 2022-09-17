@@ -1,9 +1,9 @@
 import { useRecoilState, useRecoilValueLoadable } from 'recoil';
 
 import CategoryButton from '@components/CategoryButton';
+import MainHeader from '@components/MainHeader';
 import PreviewShareListBigSizeImage from '@components/PreviewShareListBigSizeImage';
 import PreviewShareListLeftImage from '@components/PreviewShareListLeftImage';
-import ShareListHeader from '@components/ShareListHeader';
 import Tabs from '@components/Tabs';
 import { shareListCategoryItem } from '@constants/category';
 import * as S from '@pages/ShareList/ShareList.style';
@@ -41,7 +41,7 @@ const ShareList = () => {
   return (
     <S.Wrapper>
       <S.ListHeader>
-        <ShareListHeader />
+        <MainHeader />
         <Tabs
           activeShareListValue={activeShareListValue}
           setActiveShareListValue={setActiveShareListValue}

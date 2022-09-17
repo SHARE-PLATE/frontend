@@ -8,7 +8,6 @@ const Keyword = () => {
       <BackTitleHeader title='키워드 알림' />
       <S.Header>주소 키워드</S.Header>
       <KeywordBox />
-      <div></div>
     </S.Wrapper>
   );
 };

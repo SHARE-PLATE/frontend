@@ -1,26 +1,24 @@
 import styled, { css } from 'styled-components';
 
-import { flexCenter } from '@styles/mixin';
-
-export const Wrapper = styled.button`
-  ${({ theme: { colors } }) => css`
-    ${flexCenter}
-    border-radius: 10rem;
-    box-shadow: 2px 4px 8px rgba(255, 69, 58, 0.2);
-    background-color: ${colors.orange3};
-    height: 3.25rem;
-    aspect-ratio: 1 / 1;
-
-    path {
-      stroke: ${colors.white1};
-    }
-  `}
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.375rem;
+  align-items: flex-end;
 `;
 
-export const SpeechBubbleContainer = styled.div`
-  position: absolute;
-  width: 8.375rem;
-  bottom: 47px;
-  right: 0;
-  z-index: 3;
+export const AddKeywordBtn = styled.button`
+  ${({ theme: { colors } }) => css`
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 35rem;
+    background-color: ${colors.orange2};
+
+    path {
+      stroke: ${colors.white0};
+      width: 1.33rem;
+      height: 1.33rem;
+    }
+  `}
 `;

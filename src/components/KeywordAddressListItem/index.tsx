@@ -5,6 +5,7 @@ import { useSetRecoilState } from 'recoil';
 
 import { AddressListType, getRegionWithGeo } from '@api/address';
 import * as S from '@components/KeywordAddressListItem/KeywordAddressListItem.style';
+import { pathName } from '@constants/pathName';
 import { JIBUN } from '@constants/words';
 import { portalState } from '@store/portal';
 
@@ -25,8 +26,8 @@ const KeywordAddressListItem = ({ place_name, address_name, x, y }: AddressListT
   }, [x, y]);
 
   const addressClickHandler = () => {
-    navigator('/profile/keyword/add-keyword', {
-      state: { place_name: place_name, regionName: regionName, x: x, y: y },
+    navigator(pathName.addKeyword, {
+      state: { place_name, regionName, x, y },
     });
     setPortal(null);
   };

@@ -2,6 +2,8 @@ import styled, { css } from 'styled-components';
 
 import { navigationBarHeight } from '@components/NavigationBar/NavigationBar.style';
 
+export type ModalType = 'center' | 'underRight';
+
 export const ModalBackground = styled.div<{ isFull: boolean }>`
   display: flex;
   justify-content: center;
@@ -22,7 +24,7 @@ export const ModalBackground = styled.div<{ isFull: boolean }>`
   `}
 `;
 
-export const ModalContainer = styled.div<{ type: string }>`
+export const ModalContainer = styled.div<{ type: ModalType }>`
   ${({ type, theme: { colors } }) => css`
     position: absolute;
     z-index: 2;
@@ -30,7 +32,7 @@ export const ModalContainer = styled.div<{ type: string }>`
     ${type === 'center' &&
     css`
       background-color: ${colors.white1};
-      top: 27%;
+      top: 45%;
       left: 50%;
       transform: translate(-50%, -27%);
     `};

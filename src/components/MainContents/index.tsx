@@ -6,6 +6,7 @@ import { getShareListData } from '@api/shareList';
 import LoginArea from '@components/LoginArea';
 import * as S from '@components/MainContents/MainContents.style';
 import PreviewShareListLeftImage from '@components/PreviewShareListLeftImage';
+import Icon from '@components/common/Icon';
 import Title from '@components/common/Title';
 import { shareDeliveryMention, shareIngredientMention } from '@constants/mentions';
 import { currentLatitudeLongitude } from '@store/location';
@@ -41,7 +42,13 @@ const MainContents = () => {
 
   return (
     <S.Wrapper>
-      <Title contentTitle={shareDeliveryMention} handleClick={() => true} size='LARGE' />
+      <Title
+        contentTitle={shareDeliveryMention}
+        handleClick={() => true}
+        size='LARGE'
+        iconName='PizzaPicture'
+        iconSize={1.43}
+      />
       <S.PreviewWrapper>
         {deliveryData && (
           <PreviewShareListLeftImage
@@ -50,7 +57,13 @@ const MainContents = () => {
           />
         )}
       </S.PreviewWrapper>
-      <Title contentTitle={shareIngredientMention} handleClick={() => true} size='LARGE' />
+      <Title
+        contentTitle={shareIngredientMention}
+        handleClick={() => true}
+        size='LARGE'
+        iconName='MeatPicture'
+        iconSize={1.43}
+      />
       <S.PreviewWrapper>
         {ingredient && (
           <PreviewShareListLeftImage

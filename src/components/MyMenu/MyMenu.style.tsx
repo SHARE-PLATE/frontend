@@ -3,8 +3,13 @@ import styled, { css } from 'styled-components';
 import { flexBetween } from '@styles/mixin';
 
 export const Wrapper = styled.ul`
-  padding-top: 1rem;
-  ${flexBetween}
+  ${({ theme: { colors } }) => css`
+    ${flexBetween}
+    margin-top: 1rem;
+    height: 5.6rem;
+    border-radius: 0.75rem;
+    background-color: ${colors.white0};
+  `}
 `;
 
 export const Menu = styled.li`
@@ -15,6 +20,7 @@ export const Menu = styled.li`
     position: relative;
     flex-direction: column;
     padding: 1rem;
+    gap: 0.5rem;
     width: calc(100% / 3);
 
     ::after {
@@ -22,7 +28,7 @@ export const Menu = styled.li`
       position: absolute;
       top: 40%;
       right: 0;
-      color: ${colors.grey4};
+      color: ${colors.red0};
       font-size: 20px;
       font-weight: 700;
       content: '|';
