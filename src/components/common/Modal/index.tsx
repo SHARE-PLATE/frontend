@@ -3,7 +3,7 @@ import { ReactElement } from 'react';
 import * as S from '@components/common/Modal/Modal.style';
 
 export interface ModalPropsTypes {
-  type: string;
+  type: S.ModalType;
   children: ReactElement;
   isFull: boolean;
 }
