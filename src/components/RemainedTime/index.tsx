@@ -19,7 +19,11 @@ export const RemainedTime = ({ targetTime, position }: RemainedTimePropsType) =>
     const timeDiff = getTimeDiffInHour(targetTime);
 
     if (timeDiff === 'done') {
-      setShowedTime('마감');
+      setShowedTime('00:00');
+      return;
+    }
+    if (timeDiff === 'over') {
+      setShowedTime('60:00+');
       return;
     }
     setShowedTime(timeDiff);
