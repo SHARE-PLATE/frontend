@@ -6,7 +6,7 @@ import { getTimeDiffInHour } from '@utils/getTimeDiff';
 
 interface RemainedTimePropsType {
   targetTime: string;
-  position: S.BottomStylesPositionType;
+  position: S.RemainedTimeWrapperPropsType;
 }
 
 const defaultTime = '00:00';
