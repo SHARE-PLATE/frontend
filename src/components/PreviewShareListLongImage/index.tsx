@@ -5,7 +5,6 @@ import { useRecoilValue } from 'recoil';
 import { getShareListRecommendedData } from '@api/shareRecommended';
 import * as S from '@components/PreviewShareListLongImage/PreviewShareListLongImage.style';
 import { ShareListItemLongImage } from '@components/ShareListItemLongImage';
-import Icon from '@components/common/Icon';
 import Title from '@components/common/Title';
 import { littleDeadlineMention, noLittleTimeListMention } from '@constants/mentions';
 import { currentLatitudeLongitude } from '@store/location';

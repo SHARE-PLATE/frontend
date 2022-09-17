@@ -10,7 +10,6 @@ export const ShareListItemLongImage = ({ itemInfo }: { itemInfo: thumbnailUrlLis
     title,
     location,
     price,
-    originalPrice,
     thumbnailUrl,
     appointmentDateTime,
     finalRecruitment,
