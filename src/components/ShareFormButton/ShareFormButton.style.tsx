@@ -27,16 +27,19 @@ export const ButtonContainer = styled.div`
   right: 0px;
   border-radius: 8px;
   z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 `;
 
-export const DeliveryButton = styled.button`
-  display: flex;
-  width: 100%;
-  margin: 11px 12px;
-`;
-
-export const IngredientButton = styled.button`
-  display: flex;
-  width: 100%;
-  margin: 0px 12px;
+export const ButtonWrapper = styled.button`
+  ${({ theme: { fonts } }) => css`
+    ${fonts.small}
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding-left: 0.6rem;
+    gap: 0.4rem;
+    /* height: 50%; */
+  `}
 `;

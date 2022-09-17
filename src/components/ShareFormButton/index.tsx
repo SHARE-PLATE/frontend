@@ -23,18 +23,18 @@ const ShareFormButton = () => {
           <>
             <Icon iconName='FormClose' iconSize={3.5} />
             <S.ButtonContainer ref={modalRef}>
-              <S.DeliveryButton
+              <S.ButtonWrapper
                 onClick={() => {
                   navigate(pathName.shareFormDelivery);
                 }}
               >
-                <Icon iconName='AddDelivery' iconSize='LARGE' />
-                <span>배달쉐어</span>
-              </S.DeliveryButton>
-              <S.IngredientButton onClick={() => navigate(pathName.shareFormIngredient)}>
-                <Icon iconName='AddIngredient' iconSize='LARGE' />
-                <span>재료쉐어</span>
-              </S.IngredientButton>
+                <Icon iconName='AddDelivery' iconSize={1.35} />
+                <span>배달쉐어 모집</span>
+              </S.ButtonWrapper>
+              <S.ButtonWrapper onClick={() => navigate(pathName.shareFormIngredient)}>
+                <Icon iconName='AddIngredient' iconSize={1.35} />
+                <span>재료쉐어 모집</span>
+              </S.ButtonWrapper>
             </S.ButtonContainer>
           </>
         ) : (
