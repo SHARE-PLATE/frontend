@@ -10,7 +10,7 @@ const fonts = {
   main: {
     'font-family': 'Noto Sans KR',
     'letter-spacing': '-0.02rem',
-    'font-weight': '400',
+    'font-weight': '500',
   },
   xSmallLight: {
     'font-size': '10px',
