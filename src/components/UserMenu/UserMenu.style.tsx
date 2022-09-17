@@ -11,8 +11,11 @@ export const ItemWrapper = styled.li`
 `;
 
 export const Title = styled.span`
-  flex-grow: 1;
-  height: 10%;
-  font-weight: bold;
-  text-align: inherit;
+  ${({ theme: { fonts } }) => css`
+    ${fonts.largeBold};
+    gap: 0.5rem;
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+  `}
 `;
