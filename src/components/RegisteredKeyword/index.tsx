@@ -1,6 +1,5 @@
 import { useRecoilValueLoadable } from 'recoil';
 
-import { KeywordItem } from '@components/KeywordBox/KeywordBox.style';
 import * as S from '@components/RegisteredKeyword/RegisteredKeyword.style';
 import Icon from '@components/common/Icon';
 import { keyword } from '@data/keyword';
@@ -22,12 +21,12 @@ const RegisteredKeyword = ({ regionName }: RegisteredKeywordPropsType) => {
       </S.SubHeader>
       <S.ContentContainer>
         {exampleKeyword.map((item) => (
-          <KeywordItem key={item}>
+          <S.KeywordItem key={item}>
             {item}
             <S.IconWrapper>
               <Icon iconName='X_Icon' iconSize={0.5} />
             </S.IconWrapper>
-          </KeywordItem>
+          </S.KeywordItem>
         ))}
       </S.ContentContainer>
     </S.Wrapper>
@@ -43,12 +42,12 @@ const RegisteredKeyword = ({ regionName }: RegisteredKeywordPropsType) => {
           </S.SubHeader>
           <S.ContentContainer>
             {exampleKeyword.map((item) => (
-              <KeywordItem key={item}>
+              <S.KeywordItem key={item}>
                 {item}
                 <S.IconWrapper>
                   <Icon iconName='X_Icon' iconSize={0.5} />
                 </S.IconWrapper>
-              </KeywordItem>
+              </S.KeywordItem>
             ))}
           </S.ContentContainer>
         </S.Wrapper>

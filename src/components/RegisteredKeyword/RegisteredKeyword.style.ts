@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { tagStyle } from '@styles/mixin';
+
 export const Wrapper = styled.div``;
 
 export const SubHeader = styled.div`
@@ -19,6 +21,10 @@ export const ContentContainer = styled.div`
   flex-wrap: wrap;
   gap: 8px;
   padding: 1rem 0;
+`;
+
+export const KeywordItem = styled.span`
+  ${tagStyle};
 `;
 
 export const IconWrapper = styled.div`
