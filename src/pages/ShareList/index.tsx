@@ -46,7 +46,7 @@ const ShareList = () => {
   return (
     <S.Wrapper>
       <S.ListHeader>
-        <ShareListHeader />
+        <MainHeader />
         <S.TabsWrapper>
           <Tabs<activeShareListType> tabsInfo={shareListTabsInfo} targetAtom={activeShareList} />
         </S.TabsWrapper>

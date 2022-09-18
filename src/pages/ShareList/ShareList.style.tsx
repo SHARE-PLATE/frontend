@@ -28,10 +28,6 @@ export const TabsWrapper = styled.div`
   ${({ theme: { defaultPadding } }) => defaultPadding}
 `;
 
-export const EmptyArea = styled.div`
-  height: calc(${mainHeaderHeight} + ${tabsHeight} + ${categoryButtonHeight});
-`;
-
 export const ListContent = styled.div`
   ${({ theme: { defaultHeaderHeight } }) => css`
     padding-top: calc(${defaultHeaderHeight}rem + ${tabsHeight} + ${categoryButtonHeight});
