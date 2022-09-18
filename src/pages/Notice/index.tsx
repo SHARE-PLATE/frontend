@@ -1,16 +1,16 @@
 import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
 
 import NoticeContent from '@components/NoticeContent';
 import Tabs from '@components/Tabs';
 import Icon from '@components/common/Icon';
 import { NOTICE_CENTER } from '@constants/words';
-import useNoticeTabsInfo from '@hooks/useNoticeTabsInfo';
 import * as S from '@pages/Notice/Notice.style';
-import { activeNoticeState } from '@store/notice';
+import { activeNoticeState, noticeInfoState } from '@store/notice';
 
 const Notice = () => {
   const navigate = useNavigate();
-  const { noticeTabsInfo } = useNoticeTabsInfo();
+  const noticeTabsInfo = useRecoilValue(noticeInfoState);
 
   return (
     <S.Wrapper>

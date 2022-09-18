@@ -70,8 +70,8 @@ const Tabs = <T extends unknown>({ tabsInfo, targetAtom }: TabsPropsType<T>) => 
   const selectedWidthArray = widthArray.slice(0, selectedTabOrder);
   const selectedTabLeft = selectedWidthArray.reduce((prev, cur) => prev + cur + S.tabsGapPx, 0);
 
-  const tabs = tabsInfo.map((props) => (
-    <Tab<T> key={props.title} {...{ targetAtom, setWidthArray, setSelectedTabOrder }} {...props} />
+  const tabs = tabsInfo.map((info) => (
+    <Tab<T> key={info.title} {...{ targetAtom, setWidthArray, setSelectedTabOrder }} {...info} />
   ));
 
   return (
