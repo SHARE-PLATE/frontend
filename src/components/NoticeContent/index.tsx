@@ -18,21 +18,24 @@ const noticeContentInfo = {
 };
 
 const NoticeContent = () => {
-  const [content, setContent] = useState(<Loading color='orange2' size={60} border={6} />);
   const activeNotice = useRecoilValue(activeNoticeState);
   const { ContentComponent, selector } = noticeContentInfo[activeNotice];
   const { state, contents } = useRecoilValueLoadable(selector);
 
-  useEffect(() => {
-    if (state === 'hasValue') {
-      setContent(<ContentComponent contents={테스트 ? activityData : contents} />);
+  const getNoticeContents = () => {
+    switch (state) {
+      case 'hasValue':
+        return <ContentComponent contents={테스트 ? activityData : contents} />;
+      case 'hasError':
+        return <S.ErrorWrapper>현재 알림 목록이 없습니다!</S.ErrorWrapper>;
+      case 'loading':
+        return <Loading color='orange2' size={60} border={6} />;
     }
-    if (state === 'hasError') {
-      setContent(<S.ErrorWrapper>현재 알림 목록이 없습니다!</S.ErrorWrapper>);
-    }
-  }, [state]);
+  };
 
-  return <S.Wrapper>{content}</S.Wrapper>;
+  const noticeContents = getNoticeContents();
+
+  return <S.Wrapper>{noticeContents}</S.Wrapper>;
 };
 
 export default NoticeContent;

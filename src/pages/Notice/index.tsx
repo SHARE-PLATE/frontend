@@ -6,10 +6,11 @@ import Icon from '@components/common/Icon';
 import { NOTICE_CENTER } from '@constants/words';
 import useNoticeTabsInfo from '@hooks/useNoticeTabsInfo';
 import * as S from '@pages/Notice/Notice.style';
+import { activeNoticeState } from '@store/notice';
 
 const Notice = () => {
   const navigate = useNavigate();
-  const { noticeTabsInfo, activeNoticeState } = useNoticeTabsInfo();
+  const { noticeTabsInfo } = useNoticeTabsInfo();
 
   return (
     <S.Wrapper>
