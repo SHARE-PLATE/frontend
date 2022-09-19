@@ -5,7 +5,7 @@ import { v4 as createRandomKey } from 'uuid';
 import Chat from '@components/Chat';
 import * as S from '@components/ChatroomDetailContents/ChatroomDetailContents.style';
 import { TestChatroomDetailChatsType } from '@pages/ChatroomDetail/chatroomDetailData';
-import { chatroomConnect, chatroomDisconnect } from '@pages/ChatroomDetail/socket';
+import { chatroomConnect, chatroomDisconnect } from '@socket/chatroomSocket';
 
 type ChatroomDetailContentsPropsType = {
   chats: TestChatroomDetailChatsType;

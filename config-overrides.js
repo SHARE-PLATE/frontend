@@ -13,6 +13,7 @@ module.exports = override(
     '@pages': path.resolve(__dirname, 'src/pages'),
     '@query': path.resolve(__dirname, 'src/query'),
     '@router': path.resolve(__dirname, 'src/router'),
+    '@socket': path.resolve(__dirname, 'src/socket'),
     '@store': path.resolve(__dirname, 'src/store'),
     '@styles': path.resolve(__dirname, 'src/styles'),
     '@type': path.resolve(__dirname, 'src/type'),

@@ -15,6 +15,7 @@
       "@query/*": ["query/*"],
       "@router": ["router"],
       "@router/*": ["router/*"],
+      "@socket/*": ["socket/*"],
       "@store/*": ["store/*"],
       "@styles": ["styles"],
       "@styles/*": ["styles/*"],
