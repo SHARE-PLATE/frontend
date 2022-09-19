@@ -6,7 +6,7 @@ import * as S from '@components/NoticeContent/NoticeContent.style';
 import NoticeKeyword from '@components/NoticeKeyword';
 import { activeNoticeState, noticeActivityState, noticeKeywordState } from '@store/notice';
 
-import { activityData } from './data';
+import { activityData, keywordData } from './data';
 
 const 테스트 = true;
 
@@ -23,11 +23,15 @@ const NoticeContent = () => {
   const getNoticeContents = () => {
     switch (state) {
       case 'hasValue':
-        return <ContentComponent contents={테스트 ? activityData : contents} />;
+        return <ContentComponent contents={테스트 ? keywordData : contents} />;
       case 'hasError':
         return <S.ErrorWrapper>현재 알림 목록이 없습니다!</S.ErrorWrapper>;
       case 'loading':
-        return <Loading color='orange2' size={60} border={6} />;
+        return (
+          <S.LoadingWrapper>
+            <Loading color='orange2' size={60} border={6} />
+          </S.LoadingWrapper>
+        );
     }
   };
 

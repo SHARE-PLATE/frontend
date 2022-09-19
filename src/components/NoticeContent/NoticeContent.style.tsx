@@ -15,3 +15,7 @@ export const ErrorWrapper = styled.div`
     justify-content: center;
   `}
 `;
+
+export const LoadingWrapper = styled.div`
+  padding: 2rem 0;
+`;
