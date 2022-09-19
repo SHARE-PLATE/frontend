@@ -4,10 +4,15 @@ import { API } from '@constants/api';
 import { ACTIVITY, KEYWORD } from '@constants/words';
 import { getAuthHeaders } from '@utils/getAuthHeaders';
 
-export type ActiveNoticetype = typeof ACTIVITY | typeof KEYWORD;
+export type ActiveNoticeType = typeof ACTIVITY | typeof KEYWORD;
 
 export type GetNoticeParamsType = {
-  type: ActiveNoticetype;
+  type: ActiveNoticeType;
+};
+
+export type DeleteNoticeParamsType = {
+  id?: number;
+  idList?: number[];
 };
 
 export type NoticeActivityDataType = {
@@ -27,7 +32,7 @@ export type NoticeKeywordDataType = {
   notificationCreatedDateTime: string;
 }[];
 
-export type GetNoticeDataType<T extends ActiveNoticetype> = T extends typeof ACTIVITY
+export type GetNoticeDataType<T extends ActiveNoticeType> = T extends typeof ACTIVITY
   ? NoticeActivityDataType
   : NoticeKeywordDataType;
 
@@ -36,11 +41,12 @@ export const noticeApiByType = {
   keyword: API.NOTICE_KEYWORD,
 };
 
-export const getNoticeActivity = async () => {
+export const getNotice = async <T extends ActiveNoticeType>({ type }: GetNoticeParamsType) => {
   const headers = getAuthHeaders();
+  const api = noticeApiByType[type];
 
   try {
-    const response = await axios.get(API.NOTICE_ACTIVITY, { headers });
+    const response = await axios.get<GetNoticeDataType<T>>(api, { headers });
     return response.data;
   } catch (error) {
     console.error(error);
@@ -48,14 +54,16 @@ export const getNoticeActivity = async () => {
   }
 };
 
-export const getNoticeKeyword = async () => {
+export const deleteNotice = async ({ id, idList }: DeleteNoticeParamsType) => {
   const headers = getAuthHeaders();
+  const api = API.NOTICE + (id ? `/${id}` : '');
+  const data = idList && JSON.stringify({ idList });
+  console.log({ data });
 
   try {
-    const response = await axios.get(API.NOTICE_KEYWORD, { headers });
-    return response.data;
+    const response = await axios.delete(api, { headers, data });
+    return response;
   } catch (error) {
     console.error(error);
-    throw error;
   }
 };
