@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-
 import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
 
 import Loading from '@components/Loading';

@@ -21,13 +21,14 @@ const NoticeActivity = ({ contents }: NoticeActivityPropsType) => {
       shareTitle,
     }) => {
       const diffTime = moment(notificationCreatedDateTime).fromNow();
+
       return (
         <S.Item key={shareId}>
           <Icon iconName='NoticeActivityFull' iconSize={2.6} />
           <S.TextWrapper>
             <div>{deadlineMention}</div>
             <S.DescText>{`[${shareTitle}] 상품이 30분 남았습니다!`}</S.DescText>
-            <div>{diffTime}</div>
+            <S.DiffTime>{diffTime}</S.DiffTime>
           </S.TextWrapper>
           <ImgContainer
             imgSrc={shareThumbnailImageUrl}
