@@ -1,16 +1,23 @@
-import moment from 'moment';
 import 'moment/locale/ko';
+
+import moment from 'moment';
+import { useRecoilValue } from 'recoil';
 
 import { NoticeActivityDataType } from '@api/notice';
 import ImgContainer from '@components/ImgContainer';
 import * as S from '@components/NoticeActivity/NoticeActivity.style';
+import NoticeDeleteBtn from '@components/NoticeDeleteBtn';
 import Icon from '@components/common/Icon';
+import { deleteModeState } from '@store/notice';
 
-type NoticeActivityPropsType = { contents: NoticeActivityDataType }; // active notice 값에 따라 올바른 contents type 들어오도록 재설정 필요
+type NoticeActivityPropsType = {
+  contents: NoticeActivityDataType;
+};
 
 const deadlineMention = '등록하신 상품의 시간이 끝나가요!';
 
 const NoticeActivity = ({ contents }: NoticeActivityPropsType) => {
+  const deleteMode = useRecoilValue(deleteModeState);
   const Items = contents.map(
     ({
       activityType,
@@ -38,6 +45,7 @@ const NoticeActivity = ({ contents }: NoticeActivityPropsType) => {
               imgWrapperRatio={1 / 1}
             />
           </S.ImgWrapper>
+          <NoticeDeleteBtn id={shareId} isShowed={deleteMode} />
         </S.Item>
       );
     },
