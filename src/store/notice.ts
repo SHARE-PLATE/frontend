@@ -1,15 +1,16 @@
-import { atom, selector } from 'recoil';
+import { atom, selector, selectorFamily } from 'recoil';
+import { v4 as getRandomKey } from 'uuid';
 
-import { ActiveNoticetype, getNoticeActivity, getNoticeKeyword } from '@api/notice';
+import { ActiveNoticeType, getNotice, GetNoticeParamsType } from '@api/notice';
 import { TabsInfoType } from '@components/Tabs';
 import { ACTIVITY } from '@constants/words';
 
-export const activeNoticeState = atom<ActiveNoticetype>({
+export const activeNoticeState = atom<ActiveNoticeType>({
   key: 'activeNoticeState',
   default: ACTIVITY,
 });
 
-export const noticeInfoState = selector<TabsInfoType<ActiveNoticetype>>({
+export const noticeInfoState = selector<TabsInfoType<ActiveNoticeType>>({
   key: 'noticeInfoState',
   get: ({ get }) => {
     const activeNotice = get(activeNoticeState);
@@ -26,20 +27,18 @@ export const noticeStateTrigger = atom<number>({
   default: 0,
 });
 
-export const noticeActivityState = selector({
-  key: `GET/noticeActivityState`,
-  get: async ({ get }) => {
-    get(noticeStateTrigger);
-    const noticeActivityData = await getNoticeActivity();
-    return noticeActivityData;
-  },
+export const noticeState = selectorFamily({
+  key: `GET/noticeState/${getRandomKey()}`,
+  get:
+    <T extends ActiveNoticeType>({ type }: GetNoticeParamsType) =>
+    async ({ get }) => {
+      get(noticeStateTrigger);
+      const noticeActivityData = await getNotice<T>({ type });
+      return noticeActivityData;
+    },
 });
 
-export const noticeKeywordState = selector({
-  key: `GET/noticeKeywordState`,
-  get: async ({ get }) => {
-    get(noticeStateTrigger);
-    const noticeActivityData = await getNoticeKeyword();
-    return noticeActivityData;
-  },
+export const deleteModeState = atom<boolean>({
+  key: 'deleteMode',
+  default: false,
 });
