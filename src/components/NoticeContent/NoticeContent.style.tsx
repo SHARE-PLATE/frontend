@@ -6,6 +6,19 @@ export const Wrapper = styled.div`
   flex-direction: column;
 `;
 
+export const TabsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const DeleteAllBtn = styled.button`
+  ${({ theme: { fonts, colors } }) => css`
+    ${fonts.large};
+    color: ${colors.grey4};
+  `}
+`;
+
 export const ErrorWrapper = styled.div`
   ${({ theme: { colors } }) => css`
     color: ${colors.grey7};

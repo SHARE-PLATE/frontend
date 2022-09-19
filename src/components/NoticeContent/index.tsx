@@ -1,31 +1,51 @@
 import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
 
+import { deleteNotice } from '@api/notice';
 import Loading from '@components/Loading';
 import NoticeActivity from '@components/NoticeActivity';
 import * as S from '@components/NoticeContent/NoticeContent.style';
 import NoticeKeyword from '@components/NoticeKeyword';
-import { activeNoticeState, noticeActivityState, noticeKeywordState } from '@store/notice';
+import Tabs from '@components/Tabs';
+import { noRecentNoticeListMention } from '@constants/mentions';
+import { DELETE_ALL } from '@constants/words';
+import { activeNoticeState, deleteModeState, noticeInfoState, noticeState } from '@store/notice';
 
 import { activityData, keywordData } from './data';
 
-const 테스트 = true;
+const isTest = true;
+const testData = {
+  activity: activityData,
+  keyword: keywordData,
+};
 
-const noticeContentInfo = {
-  activity: { ContentComponent: NoticeActivity, selector: noticeActivityState },
-  keyword: { ContentComponent: NoticeKeyword, selector: noticeKeywordState },
+const ContentComponentInfo = {
+  activity: NoticeActivity,
+  keyword: NoticeKeyword,
 };
 
 const NoticeContent = () => {
   const activeNotice = useRecoilValue(activeNoticeState);
-  const { ContentComponent, selector } = noticeContentInfo[activeNotice];
+  const selector = noticeState<typeof activeNotice>({ type: activeNotice });
   const { state, contents } = useRecoilValueLoadable(selector);
+  const noticeTabsInfo = useRecoilValue(noticeInfoState);
+  const deleteMode = useRecoilValue(deleteModeState);
+
+  const handleDeleteAllBtn = async () => {
+    if (state !== 'hasValue') return;
+
+    const idList = contents.map(({ shareId }) => shareId);
+    const response = await deleteNotice({ idList }); // 응답 후 처리 과정 필요!
+  };
 
   const getNoticeContents = () => {
     switch (state) {
       case 'hasValue':
-        return <ContentComponent contents={테스트 ? keywordData : contents} />;
+        const ContentComponent = ContentComponentInfo[activeNotice];
+        //@ts-ignore ** 추후에 반드시 처리가 필요합니다!
+        return <ContentComponent contents={isTest ? testData[activeNotice] : contents} />; // 테스트용 코드
+      // return <ContentComponent contents={contents} />;
       case 'hasError':
-        return <S.ErrorWrapper>현재 알림 목록이 없습니다!</S.ErrorWrapper>;
+        return <S.ErrorWrapper>{noRecentNoticeListMention}</S.ErrorWrapper>;
       case 'loading':
         return (
           <S.LoadingWrapper>
@@ -37,7 +57,17 @@ const NoticeContent = () => {
 
   const noticeContents = getNoticeContents();
 
-  return <S.Wrapper>{noticeContents}</S.Wrapper>;
+  return (
+    <>
+      <S.TabsWrapper>
+        <Tabs tabsInfo={noticeTabsInfo} targetAtom={activeNoticeState} />
+        {deleteMode && !!contents.length && (
+          <S.DeleteAllBtn onClick={handleDeleteAllBtn}>{DELETE_ALL}</S.DeleteAllBtn>
+        )}
+      </S.TabsWrapper>
+      <S.Wrapper>{noticeContents}</S.Wrapper>
+    </>
+  );
 };
 
 export default NoticeContent;
