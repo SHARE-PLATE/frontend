@@ -14,7 +14,9 @@ const UserInfo = () => {
           <S.Email>{userInfo.email}</S.Email>
         </S.Info>
       </S.InfoContainer>
-      <Icon iconName='RightArrow' iconSize='LARGE' />
+      <S.IconWrapper>
+        <Icon iconName='RightArrow' iconSize='LARGE' />
+      </S.IconWrapper>
     </S.Wrapper>
   );
 };

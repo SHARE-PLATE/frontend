@@ -84,7 +84,11 @@ const AddressPortal = () => {
                 {searchAroundMention}
               </S.AroundSearchButton>
             </S.TopWrapper>
-            {!isSearching ? <AddressSetting /> : <AddressList addressValue={addressValue} />}
+            {!isSearching ? (
+              <AddressSetting />
+            ) : (
+              <AddressList addressValue={addressValue} AddressListItemType='basicAddress' />
+            )}
           </>
         )}
         {isSelectedAddress && <AddressDetail setIsSearching={setIsSearching} />}

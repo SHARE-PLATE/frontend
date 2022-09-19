@@ -1,6 +1,7 @@
 import { ReactElement } from 'react';
 
 import { useNavigate } from 'react-router-dom';
+import { v4 as getRandomKey } from 'uuid';
 
 import * as S from '@components/PreviewShareListLeftImage/PreviewShareListLeftImage.style';
 import { RemainedTime } from '@components/RemainedTime';
@@ -19,7 +20,6 @@ interface PreviewShareListLeftImagePropsType {
 }
 const PreviewShareListLeftImage = ({ data, count, isDone }: PreviewShareListLeftImagePropsType) => {
   const navigate = useNavigate();
-
   const list: ReactElement[] = [];
 
   data.every(
@@ -57,7 +57,7 @@ const PreviewShareListLeftImage = ({ data, count, isDone }: PreviewShareListLeft
             ) : (
               <RemainedTime
                 targetTime={appointmentDateTime}
-                position={{ top: '0.5rem', left: '0.5rem' }}
+                position={{ top: '0.375rem', left: '0.375rem' }}
               />
             )}
           </S.ImgWrapper>
@@ -77,6 +77,8 @@ const PreviewShareListLeftImage = ({ data, count, isDone }: PreviewShareListLeft
       return dataCount + 1 === count ? false : true;
     },
   );
+
+  if (list.length % 2) list.push(<S.Container key={getRandomKey()}></S.Container>);
 
   return <S.Wrapper>{list}</S.Wrapper>;
 };

@@ -47,7 +47,7 @@ const ShareDetail = () => {
               <ShareDetailHeader {...detailData} />
               <ShareDetailInfo {...detailData} />
             </S.UpperWrapper>
-            <div>
+            <S.LowerWrapper>
               <UserInfoWithFollow {...detailData} />
               <PreviewShareListHalfImage
                 title={`${detailData.writer}님의 쉐어상품`}
@@ -63,7 +63,7 @@ const ShareDetail = () => {
                   showMoreOption={() => console.log('더보기')}
                 />
               )}
-            </div>
+            </S.LowerWrapper>
           </>
         )}
       </S.Wrapper>

@@ -11,7 +11,8 @@ export const ItemWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: 0.5rem;
+  box-shadow: 0 2.5px 5px #00000020;
   width: calc(50% - 0.75rem);
   @media (max-width: 27rem) {
     width: 100%;
@@ -28,20 +29,24 @@ export const ImgWrapper = styled.div`
 export const Container = styled.div`
   display: flex;
   justify-content: space-between;
-  padding-top: 0.75rem;
+  padding: 0.75rem 0.5rem;
 `;
 
 export const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  max-width: 75%;
+  max-width: 70%;
+  gap: 0.45rem;
+`;
+
+export const PersonnelStatusWrapper = styled.div`
+  flex-basis: 1;
 `;
 
 export const Title = styled.h2`
-  ${({ theme: { fonts } }) => css`
-    ${fonts.large}
-
+  ${({ theme: { colors } }) => css`
+    color: ${colors.grey6};
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -56,9 +61,7 @@ export const ImagePriceBlock = styled.div`
 
 export const Location = styled.div`
   ${({ theme: { colors, fonts } }) => css`
-    ${fonts.xSmall}
-
-    padding-top: 0.4rem;
+    ${fonts.xSmall};
     color: ${colors.grey7};
   `}
 `;
@@ -67,7 +70,6 @@ export const PriceWrapper = styled.div`
   display: flex;
   gap: 0.5rem;
   align-items: center;
-  padding-top: 0.5rem;
 `;
 
 export const Price = styled.div`

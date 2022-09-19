@@ -32,26 +32,13 @@ export const Header = styled.div`
 `;
 
 export const HeaderBtn = styled.button<{ isSearching: boolean }>`
-  ${({ theme: { colors }, isSearching }) => css`
-    z-index: 2;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 30px;
-    max-width: 50px;
-
-    ${!isSearching &&
-    css`
-      svg {
-        width: 1.5rem;
-        height: 1.5rem;
-        path {
-          stroke: ${colors.black};
-        }
-      }
-    `}
-  `}
+  z-index: 2;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  max-width: 50px;
 `;
 
 export const HeaderTitle = styled.div`

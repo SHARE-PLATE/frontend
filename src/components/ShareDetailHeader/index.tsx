@@ -10,7 +10,7 @@ import ImgContainer from '@components/common/ImgContainer';
 
 interface ShareDetailHeaderPropsType {
   imageUrls: string[];
-  appointmentDateTime: string;
+  closedDateTime: string;
 }
 
 const settings: Settings = {
@@ -24,7 +24,7 @@ const settings: Settings = {
   pauseOnHover: true,
 };
 
-const ShareDetailHeader = ({ imageUrls, appointmentDateTime }: ShareDetailHeaderPropsType) => {
+const ShareDetailHeader = ({ imageUrls, closedDateTime }: ShareDetailHeaderPropsType) => {
   const navigate = useNavigate();
   const handleClickGoBack = () => navigate(-1);
 
@@ -45,12 +45,18 @@ const ShareDetailHeader = ({ imageUrls, appointmentDateTime }: ShareDetailHeader
         <Icon iconName='Upload' />
       </S.IconsWrapper>
       <S.ImageContainer>
-        <Carousel contents={imgCarouselContents} settings={settings} height='100%' />
+        <Carousel
+          contents={imgCarouselContents}
+          settings={settings}
+          height='100%'
+          isCount={false}
+        />
         <RemainedTime
-          targetTime={appointmentDateTime}
+          targetTime={closedDateTime}
           position={{
             left: '1rem',
-            bottom: '1rem',
+            top: '1rem',
+            backgroundColor: '#ff453a',
           }}
         />
       </S.ImageContainer>

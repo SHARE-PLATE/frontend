@@ -1,11 +1,11 @@
 import { useRoutes } from 'react-router-dom';
 
 import AddressPortal from '@components/AddressPortal';
-import Login from '@components/Login';
+import KeywordAddressPortal from '@components/KeywordAddressPortal';
+import LoginPortal from '@components/LoginPortal';
 import NavigationBar from '@components/NavigationBar';
 import OptionPortal from '@components/OptionPortal';
 import SearchPortal from '@components/SearchPortal';
-import { Mobile } from '@query/mediaQuery';
 import { routes } from '@router';
 import Styles from '@styles';
 
@@ -16,13 +16,12 @@ const App = () => {
     <div className='App'>
       <Styles>
         {element}
-        <Login />
+        <LoginPortal />
         <SearchPortal />
         <AddressPortal />
         <OptionPortal />
-        <Mobile>
-          <NavigationBar />
-        </Mobile>
+        <KeywordAddressPortal />
+        <NavigationBar />
       </Styles>
     </div>
   );

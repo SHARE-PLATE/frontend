@@ -14,14 +14,14 @@ interface FileContainerPropsType {
 const FileContainer = ({ fileImage, setFileImage }: FileContainerPropsType) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
-  const [isModalOpen, setIsModalOpen] = useModal({ modalRef });
-  const closeModal = () => setIsModalOpen(false);
+  const [isFailedModal, setFailedModal] = useModal({ modalRef });
+  const closeModal = () => setFailedModal(false);
 
   const changeValues = ({ target: { files } }: React.ChangeEvent<HTMLInputElement>) => {
     if (files) {
       if (files.length <= 5) setFileImage(files);
       else {
-        setIsModalOpen(true);
+        setFailedModal(true);
         setFileImage(undefined);
       }
     }
@@ -58,7 +58,7 @@ const FileContainer = ({ fileImage, setFileImage }: FileContainerPropsType) => {
             <Icon iconName='ImgDelete' handleClick={() => deleteImage(file)} />
           </S.ImagePreviewContainer>
         ))}
-      {isModalOpen && (
+      {isFailedModal && (
         <FailedModal modalRef={modalRef} closeAModal={closeModal} text={fileFailed} />
       )}
     </S.FileWrapper>

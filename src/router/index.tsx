@@ -22,11 +22,11 @@ export const routes = [
   { path: P.shareList, element: <ShareList /> },
   { path: P.shareDetail + '/:id', element: <ShareDetail /> },
   { path: P.searchShare, element: <SearchShare /> },
-  { path: P.notice, element: <Notice /> },
   { path: P.error, element: <Error /> },
   {
     element: <ProtectedRoute />,
     children: [
+      { path: P.notice, element: <Notice /> },
       { path: P.chatrooms, element: <Chatrooms /> },
       { path: P.chatroomDetail + '/:id', element: <ChatroomDetail /> },
       { path: P.shareForm + '/:type', element: <ShareRegistration /> },

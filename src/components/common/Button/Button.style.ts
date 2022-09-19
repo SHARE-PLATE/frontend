@@ -9,9 +9,10 @@ export interface SizeStylesType {
 }
 
 const activeStyles = css<ActiveStylesType>`
-  ${({ active, theme: { colors } }) =>
+  ${({ active, theme: { colors, fonts } }) =>
     active &&
     css`
+      ${fonts.smallBold}
       border-color: ${colors.orange3};
       background-color: ${colors.orange3};
       color: ${colors.white1};

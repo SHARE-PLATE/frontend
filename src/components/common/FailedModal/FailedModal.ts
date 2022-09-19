@@ -24,7 +24,7 @@ export const CloseButton = styled.button`
   ${flexCenter}
 
   border-radius: 4px;
-  background: #ff5c21;
+  background: ${({ theme }) => theme.colors.orange3};
   width: 100%;
   height: 30px;
 `;

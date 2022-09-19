@@ -1,16 +1,15 @@
 import styled from 'styled-components';
 
+import { flexCenter } from '@styles/mixin';
+
 export const AdWrapper = styled.div`
   height: 100%;
+  border-radius: 0.5rem;
 `;
 
-export const AdsWrapper = styled.div`
-  aspect-ratio: 1.8/1;
-`;
+export const AdsWrapper = styled.div``;
 
 export const AdContentWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  ${flexCenter}
   height: calc(100% + 3rem);
 `;

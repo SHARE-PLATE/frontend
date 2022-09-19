@@ -1,30 +1,42 @@
 import styled, { css } from 'styled-components';
 
 export const InputFieldWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  position: relative;
+  ${({ theme: { colors } }) => css`
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-color: ${colors.grey1};
+    border-radius: 0.25rem;
+    height: 50px;
+    padding: 0.75rem;
+  `}
 `;
 
 export const Input = styled.input`
-  width: 100%;
-  height: 50px;
-  padding: 14px 8px;
-  background-color: ${({ theme }) => theme.colors.grey1};
-  border: 1px solid ${({ theme }) => theme.colors.white1};
-  border-radius: 4px;
-  color: ${({ theme }) => theme.colors.grey5};
+  ${({ theme: { colors, fonts } }) => css`
+    ${fonts.large}
+    flex-grow: 1;
+    border: none;
+    background-color: ${colors.grey1};
 
-  &:focus {
-    outline: none;
-  }
+    ::placeholder {
+      color: ${colors.grey5};
+      ${fonts.medium}
+    }
+
+    &:focus {
+      outline: none;
+      ::placeholder {
+        color: transparent;
+      }
+    }
+  `}
 `;
 
 export const SubmitButton = styled.button`
   ${({ theme: { fonts, colors } }) => css`
-    ${fonts.largeRegular};
-    color: ${colors.orange2};
-    position: absolute;
-    right: 2rem;
+    ${fonts.large};
+    font-weight: 500;
+    color: ${colors.black};
   `}
 `;

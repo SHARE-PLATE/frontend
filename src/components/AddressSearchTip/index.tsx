@@ -1,7 +1,7 @@
 import * as S from '@components/AddressSearchTip/AddressSearchTip.style';
 import { SEARCH_TIP } from '@constants/words';
 
-const serachTipInfo = [
+const searchTipInfo = [
   {
     id: 0,
     title: (
@@ -24,7 +24,7 @@ const serachTipInfo = [
 ];
 
 const AddressSearchTip = () => {
-  const SearchTipList = serachTipInfo.map(({ id, title, example }) => (
+  const SearchTipList = searchTipInfo.map(({ id, title, example }) => (
     <S.Item key={id}>
       <S.ItemTitle>
         <S.ItemDot>•</S.ItemDot>

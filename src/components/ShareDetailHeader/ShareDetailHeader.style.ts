@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const ImgContainerRatio = 1.38 / 1;
+export const ImgContainerRatio = 1.125 / 1;
 
 export const Wrapper = styled.div`
   position: relative;
@@ -18,7 +18,6 @@ export const IconsWrapper = styled.div`
   ${({ theme: { defaultPadding, colors } }) => css`
     ${defaultPadding}
     display: flex;
-    position: absolute;
     align-items: center;
     justify-content: space-between;
     z-index: 2;
@@ -26,7 +25,7 @@ export const IconsWrapper = styled.div`
     height: 3.25rem;
 
     path {
-      stroke: ${colors.white1};
+      stroke: ${colors.grey6};
     }
   `}
 `;

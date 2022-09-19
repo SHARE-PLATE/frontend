@@ -1,3 +1,4 @@
+import AddKeywordButton from '@components/AddKeyWordButton';
 import * as S from '@components/NavigationBar/NavigationBar.style';
 import useNavigationBarInfo from '@components/NavigationBar/useNavigationBarInfo';
 import ShareFormButton from '@components/ShareFormButton';
@@ -6,10 +7,11 @@ import useCheckPathname from '@hooks/useCheckPathname';
 
 const NavigationBar = () => {
   const isNavBarCondition = !useCheckPathname({
-    targetPaths: ['shareForm', 'loginCallback', 'shareDetail', 'chatroomDetail'],
+    targetPaths: ['shareForm', 'loginCallback', 'shareDetail', 'chatroomDetail', 'addKeyword'],
   });
+  const isProfile = useCheckPathname({ targetPaths: ['keyword'] });
   const navigationBarInfo = useNavigationBarInfo();
-  const navigationBarBtns = navigationBarInfo.map(
+  const navigationBarButtons = navigationBarInfo.map(
     ({ id, name, link, clickHandler, icon, iconFill }) => {
       const isSelected = useCheckPathname({ targetPaths: [link] });
 
@@ -26,9 +28,11 @@ const NavigationBar = () => {
   );
 
   return (
-    <S.Wrapper isNavBarCondition={isNavBarCondition}>
-      <ShareFormButton />
-      {navigationBarBtns}
+    <S.Wrapper isNavBarCondition={isNavBarCondition} isProfile={isProfile}>
+      {/* 버튼 종류 설정 */}
+      {isProfile ? <AddKeywordButton /> : <ShareFormButton />}
+      {/* 네비게이션 바 유무 설정 */}
+      {!isProfile && navigationBarButtons}
     </S.Wrapper>
   );
 };

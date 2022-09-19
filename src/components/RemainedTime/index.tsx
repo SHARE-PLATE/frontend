@@ -6,7 +6,7 @@ import { getTimeDiffInHour } from '@utils/getTimeDiff';
 
 interface RemainedTimePropsType {
   targetTime: string;
-  position: S.BottomStylesPositionType;
+  position: S.RemainedTimeWrapperPropsType;
 }
 
 const defaultTime = '00:00';
@@ -19,7 +19,11 @@ export const RemainedTime = ({ targetTime, position }: RemainedTimePropsType) =>
     const timeDiff = getTimeDiffInHour(targetTime);
 
     if (timeDiff === 'done') {
-      setShowedTime('마감');
+      setShowedTime('00:00');
+      return;
+    }
+    if (timeDiff === 'over') {
+      setShowedTime('60:00+');
       return;
     }
     setShowedTime(timeDiff);

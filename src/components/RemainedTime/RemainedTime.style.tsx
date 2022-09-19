@@ -1,27 +1,29 @@
 import styled, { css } from 'styled-components';
 
-export interface BottomStylesPositionType {
+export interface RemainedTimeWrapperPropsType {
   left?: string;
   right?: string;
   top?: string;
   bottom?: string;
+  backgroundColor?: string;
 }
 
-export const RemainedTimeWrapper = styled.div<BottomStylesPositionType>`
-  ${({ theme: { colors, fonts }, left, right, top, bottom }) => css`
+export const RemainedTimeWrapper = styled.div<RemainedTimeWrapperPropsType>`
+  ${({ theme: { colors, fonts }, left, right, top, bottom, backgroundColor = '#0000007e' }) => css`
     ${fonts.xSmallBold}
 
-    display: inline-block;
+    display: flex;
     position: absolute;
     top: ${top};
     right: ${right};
     bottom: ${bottom};
     left: ${left};
-    border-radius: 0.4rem;
-    background-color: ${colors.orange2};
-    padding: 0.2rem 0.4rem;
-    width: 2.5rem;
-    text-align: center;
+    border-radius: 0.25rem;
+    background-color: ${backgroundColor};
+    width: 2.625rem;
+    height: 1.36rem;
+    align-items: center;
+    justify-content: center;
     color: ${colors.white1};
   `}
 `;
