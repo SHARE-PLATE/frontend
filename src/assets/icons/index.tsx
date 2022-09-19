@@ -34,6 +34,8 @@ import LogoWithText from '@assets/icons/logoWithText.svg';
 import Map from '@assets/icons/map.svg';
 import MeatPicture from '@assets/icons/meatPicture.svg';
 import Microphone from '@assets/icons/microphone.svg';
+import NoticeActivityEmpty from '@assets/icons/noticeActivityEmpty.svg';
+import NoticeActivityFull from '@assets/icons/noticeActivityFull.svg';
 import NoticeOff from '@assets/icons/noticeOff.svg';
 import NoticeOn from '@assets/icons/noticeOn.svg';
 import Option from '@assets/icons/option.svg';
@@ -58,6 +60,8 @@ import UserNavFill from '@assets/icons/userNavFill.svg';
 import X_Icon from '@assets/icons/x_icon.svg';
 
 export const Icons = {
+  NoticeActivityEmpty,
+  NoticeActivityFull,
   Bookmark,
   Flag,
   Microphone,

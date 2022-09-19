@@ -1,67 +1,44 @@
 import styled, { css } from 'styled-components';
 
-import { CurrentShareListType } from '@store/filterShareList';
 import { flexCenter } from '@styles/mixin';
+
+type WrapperPropsType = {};
 
 type TabWrapperPropsType = {
   active: boolean;
-  value: CurrentShareListType;
 };
 
 export const tabsHeight = '2.6rem';
+export const tabsGap = '1.25rem';
+export const tabsGapPx = 20;
 
-export const Wrapper = styled.div`
-  width: 100%;
-`;
-
-export const Container = styled.nav`
+export const Wrapper = styled.div<WrapperPropsType>`
   display: flex;
+  position: relative;
   justify-content: flex-start;
-  width: 50%;
   height: ${tabsHeight};
+  gap: ${tabsGap};
 `;
 
 export const TabWrapper = styled.div<TabWrapperPropsType>`
-  ${({ theme: { colors }, active, value }) => css`
+  ${({ theme: { colors, fonts }, active }) => css`
     ${flexCenter}
+    ${active ? fonts.largeBold : fonts.large};
+
     position: relative;
     cursor: pointer;
-    width: 40%;
     height: 100%;
     transition: 0.3s ease-out;
-    ${active
-      ? css`
-          font-weight: ${({ theme }) => theme.fonts.smallBold};
-        `
-      : css`
-          font-weight: ${({ theme }) => theme.fonts.small};
-          color: ${({ theme }) => theme.colors.grey2};
-        `}
+    color: ${!active && colors.grey2};
 
     ::after {
       position: absolute;
-      transition: 0.3s ease-out;
-      border-bottom: solid 0.125rem ${colors.orange2};
+      transition: 0.3s all;
       width: 100%;
+      border-bottom: solid 0.125rem ${active ? colors.orange2 : 'transparent'};
       height: 2.6rem;
       content: '';
-
-      ${value === 'delivery' &&
-      css`
-        left: 100%;
-        pointer-events: none;
-      `}
-
-      ${value === 'ingredient' &&
-      css`
-        left: -100%;
-        pointer-events: none;
-      `}
-
-      ${active &&
-      css`
-        left: 0;
-      `}
+      pointer-events: none;
     }
   `}
 `;

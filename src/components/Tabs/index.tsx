@@ -1,51 +1,28 @@
-import { SetterOrUpdater } from 'recoil';
+import { RecoilState, useSetRecoilState } from 'recoil';
 
 import * as S from '@components/Tabs/Tabs.styled';
-import { activeShareListType } from '@store/filterShareList';
 
-interface TabsPropsType {
-  activeShareListValue: activeShareListType;
-  setActiveShareListValue: SetterOrUpdater<activeShareListType>;
-}
+export type TabsInfoType<T> = {
+  title: string;
+  value: T;
+  active: boolean;
+}[];
 
-const Tabs = ({ activeShareListValue, setActiveShareListValue }: TabsPropsType) => {
-  const shareListTabs = [
-    {
-      title: '배달쉐어',
-      value: 'delivery' as const,
-      active: activeShareListValue.delivery,
-    },
-    {
-      title: '재료쉐어',
-      value: 'ingredient' as const,
-      active: activeShareListValue.ingredient,
-    },
-  ];
+type TabsPropsType<T> = {
+  tabsInfo: TabsInfoType<T>;
+  targetAtom: RecoilState<T>;
+};
 
-  const changeTab = (value: string) => {
-    if (
-      (value === 'delivery' && activeShareListValue.delivery) ||
-      (value === 'ingredient' && activeShareListValue.ingredient)
-    )
-      return;
-
-    setActiveShareListValue({
-      delivery: !activeShareListValue.delivery,
-      ingredient: !activeShareListValue.ingredient,
-    });
-  };
-
-  const tabs = shareListTabs.map(({ title, value, active }) => (
-    <S.TabWrapper key={value} onClick={() => changeTab(value)} active={active} value={value}>
-      <span> {title}</span>
+/** 두 가지 이상의 카테고리를 보여줄 때 사용합니다. */
+const Tabs = <T extends unknown>({ tabsInfo, targetAtom }: TabsPropsType<T>) => {
+  const setAtom = useSetRecoilState(targetAtom);
+  const tabs = tabsInfo.map(({ title, value, active }) => (
+    <S.TabWrapper key={title} onClick={() => setAtom(value)} active={active}>
+      <span>{title}</span>
     </S.TabWrapper>
   ));
 
-  return (
-    <S.Wrapper>
-      <S.Container>{tabs}</S.Container>
-    </S.Wrapper>
-  );
+  return <S.Wrapper>{tabs}</S.Wrapper>;
 };
 
 export default Tabs;

@@ -23,3 +23,5 @@ export const noAddressListMention = '검색 결과가 없습니다.\n지번, 도
 export const addressKeywordQuestionMention = '주소 키워드를\n삭제하시겠습니까?';
 export const deleteMention = '취소';
 export const addressKeywordDeleteMention = '네, 삭제할래요.';
+export const newShareEnrolledMention = '새로운 쉐어가 등록되었습니다.';
+export const noRecentNoticeListMention = '현재 알림 목록이 없습니다!';

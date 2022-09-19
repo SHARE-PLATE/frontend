@@ -6,29 +6,34 @@ import PreviewShareListBigSizeImage from '@components/PreviewShareListBigSizeIma
 import PreviewShareListLeftImage from '@components/PreviewShareListLeftImage';
 import Tabs from '@components/Tabs';
 import { shareListCategoryItem } from '@constants/category';
+import useShareListTabsInfo from '@hooks/useShareListTabsInfo';
 import * as S from '@pages/ShareList/ShareList.style';
-import { activeShareList, currentFilterShareList } from '@store/filterShareList';
+import {
+  activeShareList,
+  currentFilterShareList,
+  activeShareListType,
+} from '@store/filterShareList';
 import { getShareListsData } from '@store/shareList';
 import { getSortData } from '@utils/ShareListSort';
+
+const ListContentComponentInfo = {
+  delivery: PreviewShareListBigSizeImage,
+  ingredient: PreviewShareListLeftImage,
+};
 
 const ShareList = () => {
   const [activeShareListValue, setActiveShareListValue] = useRecoilState(activeShareList);
   const [curShareFilterList, setCurrentFilterShareList] = useRecoilState(currentFilterShareList);
-
+  const shareListTabsInfo = useShareListTabsInfo();
   const { state, contents } = useRecoilValueLoadable(getShareListsData);
+  const ListContentComponent = ListContentComponentInfo[activeShareListValue];
 
-  const getListContents = (state: string) => {
+  const getListContents = (state: 'hasValue' | 'loading' | 'hasError') => {
     switch (state) {
       case 'hasValue':
         return (
           <S.ListContent>
-            {activeShareListValue.delivery ? (
-              <PreviewShareListBigSizeImage data={getSortData(curShareFilterList, contents)} />
-            ) : activeShareListValue.ingredient ? (
-              <PreviewShareListLeftImage data={getSortData(curShareFilterList, contents)} />
-            ) : (
-              ''
-            )}
+            <ListContentComponent data={getSortData(curShareFilterList, contents)} />
           </S.ListContent>
         );
       case 'loading':
@@ -42,10 +47,9 @@ const ShareList = () => {
     <S.Wrapper>
       <S.ListHeader>
         <MainHeader />
-        <Tabs
-          activeShareListValue={activeShareListValue}
-          setActiveShareListValue={setActiveShareListValue}
-        />
+        <S.TabsWrapper>
+          <Tabs<activeShareListType> tabsInfo={shareListTabsInfo} targetAtom={activeShareList} />
+        </S.TabsWrapper>
         <CategoryButton
           categoryItem={shareListCategoryItem}
           setCurrentFilterList={setCurrentFilterShareList}

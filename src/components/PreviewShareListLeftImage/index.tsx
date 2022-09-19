@@ -1,6 +1,7 @@
 import { ReactElement } from 'react';
 
 import { useNavigate } from 'react-router-dom';
+import { v4 as getRandomKey } from 'uuid';
 
 import ImgContainer from '@components/ImgContainer';
 import * as S from '@components/PreviewShareListLeftImage/PreviewShareListLeftImage.style';
@@ -77,7 +78,7 @@ const PreviewShareListLeftImage = ({ data, count, isDone }: PreviewShareListLeft
     },
   );
 
-  if (list.length % 2) list.push(<S.Container></S.Container>);
+  if (list.length % 2) list.push(<S.Container key={getRandomKey()}></S.Container>);
 
   return <S.Wrapper>{list}</S.Wrapper>;
 };

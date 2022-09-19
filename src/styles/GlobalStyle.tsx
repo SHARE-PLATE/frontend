@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
 
     html {
       color: ${colors.black};
-      font-size: ${defaultFontSize};
+      font-size: ${defaultFontSize}px;
     }
 
     body {

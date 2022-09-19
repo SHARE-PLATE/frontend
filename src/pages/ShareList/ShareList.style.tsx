@@ -24,6 +24,10 @@ export const ListHeader = styled.header`
   }
 `;
 
+export const TabsWrapper = styled.div`
+  ${({ theme: { defaultPadding } }) => defaultPadding}
+`;
+
 export const ListContent = styled.div`
   ${({ theme: { defaultHeaderHeight } }) => css`
     padding-top: calc(${defaultHeaderHeight}rem + ${tabsHeight} + ${categoryButtonHeight});

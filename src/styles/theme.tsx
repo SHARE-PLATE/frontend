@@ -1,9 +1,6 @@
-const defaultFontSize = '16px';
-
+const defaultFontSize = 16;
 const defaultWidth = { 'max-width': '755px', 'min-width': '355px' };
-
 const defaultHeaderHeight = 3.25; // rem
-
 const defaultPadding = { padding: '0 1rem' };
 
 const fonts = {

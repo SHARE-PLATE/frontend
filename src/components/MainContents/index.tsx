@@ -23,19 +23,13 @@ const MainContents = () => {
 
   useEffect(() => {
     (async () => {
-      const deliveryFetchData = await getShareListData(
-        { delivery: true, ingredient: false },
-        location,
-      );
+      const deliveryFetchData = await getShareListData('delivery', location);
 
       setDeliveryData(deliveryFetchData);
     })();
 
     (async () => {
-      const ingredientFetchData = await getShareListData(
-        { delivery: false, ingredient: true },
-        location,
-      );
+      const ingredientFetchData = await getShareListData('ingredient', location);
       setIngredientData(ingredientFetchData);
     })();
   }, [location]);
