@@ -1,7 +1,7 @@
 import moment from 'moment';
+import 'moment/locale/ko';
 
 import { NoticeActivityDataType } from '@api/notice';
-import 'moment/locale/ko';
 import ImgContainer from '@components/ImgContainer';
 import * as S from '@components/NoticeActivity/NoticeActivity.style';
 import Icon from '@components/common/Icon';
@@ -30,12 +30,14 @@ const NoticeActivity = ({ contents }: NoticeActivityPropsType) => {
             <S.DescText>{`[${shareTitle}] 상품이 30분 남았습니다!`}</S.DescText>
             <S.DiffTime>{diffTime}</S.DiffTime>
           </S.TextWrapper>
-          <ImgContainer
-            imgSrc={shareThumbnailImageUrl}
-            imgTitle={shareTitle}
-            imgWrapperWidth='3rem'
-            imgWrapperRatio={1 / 1}
-          />
+          <S.ImgWrapper>
+            <ImgContainer
+              imgSrc={shareThumbnailImageUrl}
+              imgTitle={shareTitle}
+              imgWrapperWidth={S.imgWidth}
+              imgWrapperRatio={1 / 1}
+            />
+          </S.ImgWrapper>
         </S.Item>
       );
     },

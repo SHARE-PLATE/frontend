@@ -1,11 +1,12 @@
 import styled, { css } from 'styled-components';
 
+export const imgWidth = '3rem';
+
 export const Wrapper = styled.div``;
 
 export const Item = styled.div`
   display: flex;
-  padding-top: 1.2rem;
-  padding-bottom: 1rem;
+  padding: 1rem 0;
   justify-content: space-between;
   gap: 0.75rem;
 
@@ -15,11 +16,16 @@ export const Item = styled.div`
 `;
 
 export const TextWrapper = styled.div`
+  line-height: 1rem;
   flex-grow: 1;
   font-weight: 400;
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
+`;
+
+export const ImgWrapper = styled.div`
+  min-width: ${imgWidth};
 `;
 
 export const DescText = styled.div`
