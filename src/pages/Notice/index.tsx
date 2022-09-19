@@ -1,26 +1,29 @@
+import { useState } from 'react';
+
 import { useNavigate } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 
 import NoticeContent from '@components/NoticeContent';
-import Tabs from '@components/Tabs';
 import Icon from '@components/common/Icon';
 import { NOTICE_CENTER } from '@constants/words';
 import * as S from '@pages/Notice/Notice.style';
-import { activeNoticeState, noticeInfoState } from '@store/notice';
+import { deleteModeState } from '@store/notice';
 
 const Notice = () => {
   const navigate = useNavigate();
-  const noticeTabsInfo = useRecoilValue(noticeInfoState);
+  const [deleteMode, setDeleteMode] = useRecoilState(deleteModeState);
 
   return (
     <S.Wrapper>
       <S.Header>
+        <S.HeaderBtn onClick={() => navigate(-1)}>
+          <Icon iconName='Back' iconSize={1.125} />
+        </S.HeaderBtn>
         <S.HeaderTitle>{NOTICE_CENTER}</S.HeaderTitle>
-        <S.CloseBtn onClick={() => navigate(-1)}>
-          <Icon iconName='Back' />
-        </S.CloseBtn>
+        <S.HeaderBtn onClick={() => setDeleteMode(!deleteMode)}>
+          <Icon iconName={!deleteMode ? 'DeleteCircle' : 'CheckCircleColor'} iconSize={1.125} />
+        </S.HeaderBtn>
       </S.Header>
-      <Tabs tabsInfo={noticeTabsInfo} targetAtom={activeNoticeState} />
       <NoticeContent />
     </S.Wrapper>
   );

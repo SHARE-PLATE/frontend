@@ -10,9 +10,8 @@ export const Wrapper = styled.div`
   `}
 `;
 
-export const CloseBtn = styled.button`
+export const HeaderBtn = styled.button`
   height: 100%;
-  z-index: 2;
   align-items: center;
   display: flex;
 `;
@@ -31,8 +30,7 @@ export const HeaderTitle = styled.div`
   ${({ theme: { fonts } }) => css`
     ${fonts.xLarge};
 
-    position: absolute;
-    width: 100%;
+    flex-grow: 1;
     height: 100%;
     align-items: center;
     display: flex;
