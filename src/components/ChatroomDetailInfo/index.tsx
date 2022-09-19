@@ -1,5 +1,5 @@
 import * as S from '@components/ChatroomDetailInfo/ChatroomDetailInfo.style';
-import ImgContainer from '@components/ImgContainer';
+import ImgContainer from '@components/common/ImgContainer';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import Price from '@components/common/Price';
 

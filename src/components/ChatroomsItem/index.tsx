@@ -7,7 +7,7 @@ import { useSetRecoilState } from 'recoil';
 
 import { deleteChatroomData } from '@api/chat';
 import * as S from '@components/ChatroomsItem/ChatroomsItem.style';
-import ImgContainer from '@components/ImgContainer';
+import ImgContainer from '@components/common/ImgContainer';
 import { chatroomsTrigger, chatroomType } from '@store/chatrooms';
 
 const ChatroomsItem = ({

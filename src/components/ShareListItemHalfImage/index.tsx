@@ -1,5 +1,5 @@
-import ImgContainer from '@components/ImgContainer';
 import * as S from '@components/ShareListItemHalfImage/ShareListItemHalfImage.style';
+import ImgContainer from '@components/common/ImgContainer';
 import { thumbnailUrlListType } from '@type/shareList';
 import { getPriceType } from '@utils/getPriceType';
 

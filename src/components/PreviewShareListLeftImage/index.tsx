@@ -2,9 +2,9 @@ import { ReactElement } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import ImgContainer from '@components/ImgContainer';
 import * as S from '@components/PreviewShareListLeftImage/PreviewShareListLeftImage.style';
 import { RemainedTime } from '@components/RemainedTime';
+import ImgContainer from '@components/common/ImgContainer';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import Price from '@components/common/Price';
 import { thumbnailUrlListType } from '@type/shareList';

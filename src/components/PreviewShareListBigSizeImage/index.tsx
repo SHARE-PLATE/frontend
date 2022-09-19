@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { v4 as createRandomKey } from 'uuid';
 
-import ImgContainer from '@components/ImgContainer';
 import * as S from '@components/PreviewShareListBigSizeImage/PreviewShareListBigSizeImage.style';
 import { RemainedTime } from '@components/RemainedTime';
+import ImgContainer from '@components/common/ImgContainer';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import { thumbnailUrlListType } from '@type/shareList';
 import { getPriceType } from '@utils/getPriceType';

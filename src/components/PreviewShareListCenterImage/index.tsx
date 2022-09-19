@@ -1,5 +1,5 @@
-import ImgContainer from '@components/ImgContainer';
 import * as S from '@components/PreviewShareListCenterImage/PreviewShareListCenterImage.style';
+import ImgContainer from '@components/common/ImgContainer';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import { sharingExampleType } from '@data/sharing';
 
