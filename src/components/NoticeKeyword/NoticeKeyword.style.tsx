@@ -15,9 +15,13 @@ export const Item = styled.div`
   }
 `;
 
+export const ImgWrapper = styled.div`
+  min-width: ${itemHeight};
+`;
+
 export const TextWrapper = styled.div`
   display: flex;
-  width: 75%;
+  width: 60%;
   flex-grow: 1;
   flex-direction: column;
   justify-content: space-between;

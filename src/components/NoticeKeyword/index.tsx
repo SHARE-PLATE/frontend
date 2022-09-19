@@ -1,14 +1,21 @@
-import moment from 'moment';
 import 'moment/locale/ko';
+
+import moment from 'moment';
+import { useRecoilValue } from 'recoil';
 
 import { NoticeKeywordDataType } from '@api/notice';
 import ImgContainer from '@components/ImgContainer';
+import NoticeDeleteBtn from '@components/NoticeDeleteBtn';
 import * as S from '@components/NoticeKeyword/NoticeKeyword.style';
 import { newShareEnrolledMention } from '@constants/mentions';
+import { deleteModeState } from '@store/notice';
 
-type NoticeKeywordPropsType = { contents: NoticeKeywordDataType }; // active notice 값에 따라 올바른 contents type 들어오도록 재설정 필요
+type NoticeKeywordPropsType = {
+  contents: NoticeKeywordDataType;
+};
 
 const NoticeKeyword = ({ contents }: NoticeKeywordPropsType) => {
+  const deleteMode = useRecoilValue(deleteModeState);
   const Items = contents.map(
     ({
       shareLocation,
@@ -21,13 +28,15 @@ const NoticeKeyword = ({ contents }: NoticeKeywordPropsType) => {
 
       return (
         <S.Item key={shareId}>
-          <ImgContainer
-            imgSrc={shareThumbnailImageUrl}
-            imgTitle={shareTitle}
-            imgWrapperRatio={1 / 1}
-            imgWrapperWidth={S.itemHeight}
-            borderRadius='0.25rem'
-          />
+          <S.ImgWrapper>
+            <ImgContainer
+              imgSrc={shareThumbnailImageUrl}
+              imgTitle={shareTitle}
+              imgWrapperRatio={1 / 1}
+              imgWrapperWidth={S.itemHeight}
+              borderRadius='0.25rem'
+            />
+          </S.ImgWrapper>
           <S.TextWrapper>
             <S.TextUpper>
               <S.LocationBox>{shareLocation}</S.LocationBox>
@@ -36,6 +45,7 @@ const NoticeKeyword = ({ contents }: NoticeKeywordPropsType) => {
             <S.TitleWrapper>{shareTitle}</S.TitleWrapper>
             <S.DiffTime>{diffTime}</S.DiffTime>
           </S.TextWrapper>
+          <NoticeDeleteBtn id={shareId} isShowed={deleteMode} />
         </S.Item>
       );
     },
