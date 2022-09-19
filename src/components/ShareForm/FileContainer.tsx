@@ -1,8 +1,9 @@
 import { useRef } from 'react';
 
-import FileRegistrationFailedModal from '@components/FileRegistrationFailedModal';
 import * as S from '@components/ShareForm/ShareForm.style';
+import FailedModal from '@components/common/FailedModal';
 import Icon from '@components/common/Icon';
+import { fileFailed } from '@constants/mentions';
 import useModal from '@hooks/useModal';
 
 interface FileContainerPropsType {
@@ -57,7 +58,9 @@ const FileContainer = ({ fileImage, setFileImage }: FileContainerPropsType) => {
             <Icon iconName='ImgDelete' handleClick={() => deleteImage(file)} />
           </S.ImagePreviewContainer>
         ))}
-      {isModalOpen && <FileRegistrationFailedModal modalRef={modalRef} closeAModal={closeModal} />}
+      {isModalOpen && (
+        <FailedModal modalRef={modalRef} closeAModal={closeModal} text={fileFailed} />
+      )}
     </S.FileWrapper>
   );
 };
