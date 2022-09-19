@@ -1,13 +1,12 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const AdWrapper = styled.div`
   height: 100%;
-  ${({ theme: { colors } }) => css`
-    background-color: ${colors.orange1};
-  `}
 `;
 
-export const AdsWrapper = styled.div``;
+export const AdsWrapper = styled.div`
+  aspect-ratio: 1.8/1;
+`;
 
 export const AdContentWrapper = styled.div`
   display: flex;

@@ -1,7 +1,9 @@
 import { Settings } from 'react-slick';
 
+import { Image } from '@assets/img/index';
 import * as S from '@components/Advertisement/Advertisement.style';
 import Carousel from '@components/Carousel';
+import ImgContainer from '@components/common/ImgContainer';
 
 const settings: Settings = {
   infinite: true,
@@ -15,24 +17,28 @@ const settings: Settings = {
 };
 
 const adsInfo = [
-  { id: 0, name: '0번입니다' },
-  { id: 1, name: '1번입니다' },
-  { id: 2, name: '2번입니다' },
-  { id: 3, name: '3번입니다' },
-  { id: 4, name: '4번입니다' },
-  { id: 5, name: '5번입니다' },
+  { id: 0, name: Image.Advert },
+  { id: 1, name: Image.AdvertDelivery },
+  { id: 2, name: Image.AdvertIngredient },
 ];
 
 const Advertisement = () => {
   const adsContents = adsInfo.map(({ id, name }) => (
     <S.AdWrapper key={id}>
-      <S.AdContentWrapper>{name}</S.AdContentWrapper>
+      <S.AdContentWrapper>
+        <ImgContainer
+          imgSrc={name}
+          imgTitle={id + name}
+          imgWrapperRatio={2.1 / 1}
+          imgWrapperWidth='100%'
+        />
+      </S.AdContentWrapper>
     </S.AdWrapper>
   ));
 
   return (
     <S.AdsWrapper>
-      <Carousel contents={adsContents} settings={settings} height='14rem' />
+      <Carousel contents={adsContents} settings={settings} height='100%' />
     </S.AdsWrapper>
   );
 };

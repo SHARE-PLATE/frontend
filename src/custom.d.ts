@@ -10,3 +10,5 @@ declare global {
     kakao: any;
   }
 }
+
+declare module '*.png';

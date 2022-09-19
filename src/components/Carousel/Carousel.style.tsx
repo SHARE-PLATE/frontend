@@ -70,7 +70,7 @@ export const CarouselCount = styled.div`
     ${fonts.small}
     display: flex;
     position: absolute;
-    right: 1rem;
+    right: 2rem;
     bottom: 1rem;
     align-items: center;
     justify-content: center;
