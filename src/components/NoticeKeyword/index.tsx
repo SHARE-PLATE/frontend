@@ -11,7 +11,7 @@ import { newShareEnrolledMention } from '@constants/mentions';
 import { deleteModeState } from '@store/notice';
 
 type NoticeKeywordPropsType = {
-  contents: NoticeKeywordDataType;
+  contents: NoticeKeywordDataType[];
 };
 
 const NoticeKeyword = ({ contents }: NoticeKeywordPropsType) => {

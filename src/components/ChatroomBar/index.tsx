@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 
 import * as S from '@components/ChatroomBar/ChatroomBar.style';
 import Icon from '@components/common/Icon';
-import { connectChat } from '@socket/chatroomSocket';
+import { sendChat } from '@socket/chatroomSocket';
 
 type ChatroomBarPropsType = { chatroomId: string; scrollToBottom: () => void };
 
@@ -17,7 +17,6 @@ const ChatroomBar = ({ chatroomId, scrollToBottom }: ChatroomBarPropsType) => {
     event.preventDefault();
     if (!chatValue.length) return;
 
-    const { sendChat } = connectChat();
     setChatValue('');
     sendChat({ contents: chatValue, chatroomId });
     scrollToBottom();

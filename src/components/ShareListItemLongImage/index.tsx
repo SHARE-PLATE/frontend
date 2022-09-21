@@ -35,7 +35,6 @@ export const ShareListItemLongImage = ({ itemInfo }: { itemInfo: thumbnailUrlLis
         <S.ItemLocation>{`${location} ∙ 몇 시간 전`}</S.ItemLocation>
         <S.ItemPrice>
           <div>{getPriceType({ price, isUnit: true })}</div>
-          {/* <div>{getPriceType({ price: originalPrice, isUnit: true })}</div> */}
         </S.ItemPrice>
         <PersonnelStatus curPersonnel={currentRecruitment} totalPersonnel={finalRecruitment} />
       </S.InfoWrapper>
