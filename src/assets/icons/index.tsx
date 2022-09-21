@@ -21,6 +21,7 @@ import DotsVertical from '@assets/icons/dotsVertical.svg';
 import Flag from '@assets/icons/flag.svg';
 import Form from '@assets/icons/form.svg';
 import FormClose from '@assets/icons/formClose.svg';
+import Hamburger from '@assets/icons/hamburger.svg';
 import Heart from '@assets/icons/heart.svg';
 import HeartEmpty from '@assets/icons/heartEmpty.svg';
 import Home from '@assets/icons/home.svg';
@@ -38,6 +39,8 @@ import NoticeActivityEmpty from '@assets/icons/noticeActivityEmpty.svg';
 import NoticeActivityFull from '@assets/icons/noticeActivityFull.svg';
 import NoticeOff from '@assets/icons/noticeOff.svg';
 import NoticeOn from '@assets/icons/noticeOn.svg';
+import OffClickBar from '@assets/icons/offClickBar.svg';
+import OnClickBar from '@assets/icons/onClickBar.svg';
 import Option from '@assets/icons/option.svg';
 import PaperAirplane from '@assets/icons/paperAirplane.svg';
 import PersonImaging from '@assets/icons/personImaging.svg';
@@ -120,6 +123,9 @@ export const Icons = {
   AddDelivery,
   AddIngredient,
   AddKeyword,
+  Hamburger,
+  OffClickBar,
+  OnClickBar,
 } as const;
 
 export type IconsType = keyof typeof Icons;
