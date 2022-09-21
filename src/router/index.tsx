@@ -13,6 +13,7 @@ import Profile from '@pages/Profile';
 import SearchShare from '@pages/SearchShare';
 import ShareDetail from '@pages/ShareDetail';
 import ShareList from '@pages/ShareList';
+import ShareMap from '@pages/ShareMap';
 import ShareRegistration from '@pages/ShareRegistration';
 import ProtectedRoute from '@router/ProtectedRoute';
 
@@ -22,6 +23,7 @@ export const routes = [
   { path: P.shareList, element: <ShareList /> },
   { path: P.shareDetail + '/:id', element: <ShareDetail /> },
   { path: P.searchShare, element: <SearchShare /> },
+  { path: P.shareMap, element: <ShareMap /> },
   { path: P.error, element: <Error /> },
   {
     element: <ProtectedRoute />,

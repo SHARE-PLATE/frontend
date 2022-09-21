@@ -4,7 +4,6 @@ import Address from '@components/Address';
 import * as S from '@components/MainHeader/MainHeader.style';
 import Icon from '@components/common/Icon';
 import useCheckPathname from '@hooks/useCheckPathname';
-import { portalState } from '@store/portal';
 
 const MainHeader = () => {
   const isShareList = useCheckPathname({ targetPaths: ['shareList'] });
@@ -14,12 +13,14 @@ const MainHeader = () => {
   return (
     <S.Wrapper>
       <S.IconsWrapper position='left'>
-        <Icon iconName='LogoWithText' iconSize={4.2} />
+        <Icon iconName='LogoWithText' iconSize={4.2} handleClick={() => navigate('/')} />
       </S.IconsWrapper>
       <Address />
-      <S.IconsWrapper position='space-between'>
+      <S.IconsWrapper position='flex-end'>
         <Icon iconName='NoticeOn' iconSize='LARGE' handleClick={() => navigate('/notice')} />
-        <Icon iconName='Map' iconSize='LARGE' />
+        {isShareList && (
+          <Icon iconName='Map' iconSize='LARGE' handleClick={() => navigate('/shareMap')} />
+        )}
       </S.IconsWrapper>
     </S.Wrapper>
   );

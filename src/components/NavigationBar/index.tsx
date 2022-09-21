@@ -7,7 +7,14 @@ import useCheckPathname from '@hooks/useCheckPathname';
 
 const NavigationBar = () => {
   const isNavBarCondition = !useCheckPathname({
-    targetPaths: ['shareForm', 'loginCallback', 'shareDetail', 'chatroomDetail', 'addKeyword'],
+    targetPaths: [
+      'shareForm',
+      'loginCallback',
+      'shareDetail',
+      'chatroomDetail',
+      'addKeyword',
+      'shareMap',
+    ],
   });
   const isProfile = useCheckPathname({ targetPaths: ['keyword'] });
   const navigationBarInfo = useNavigationBarInfo();
