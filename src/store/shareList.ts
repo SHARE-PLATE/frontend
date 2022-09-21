@@ -7,12 +7,12 @@ import { activeShareList } from '@store/filterShareList';
 import { currentLatitudeLongitude } from '@store/location';
 
 export const shareListTrigger = atom<number>({
-  key: 'shareListTrigger',
+  key: `shareListTrigger/${getRandomKey()}`,
   default: 0,
 });
 
 export const getShareListsData = selector({
-  key: 'GET/ShareListsData',
+  key: `GET/ShareListsData/${getRandomKey()}`,
   get: async ({ get }) => {
     get(shareListTrigger);
     const type = get(activeShareList);
@@ -23,7 +23,7 @@ export const getShareListsData = selector({
 });
 
 export const shareMineListTrigger = atom<number>({
-  key: 'shareMineListTrigger',
+  key: `shareMineListTrigger/${getRandomKey()}`,
   default: 0,
 });
 

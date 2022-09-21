@@ -1,4 +1,4 @@
-import { useRecoilState, useRecoilValueLoadable } from 'recoil';
+import { useRecoilState, useRecoilValue, useRecoilValueLoadable } from 'recoil';
 
 import CategoryButton from '@components/CategoryButton';
 import MainHeader from '@components/MainHeader';
@@ -22,8 +22,8 @@ const ListContentComponentInfo = {
 };
 
 const ShareList = () => {
-  const [activeShareListValue, setActiveShareListValue] = useRecoilState(activeShareList);
   const [curShareFilterList, setCurrentFilterShareList] = useRecoilState(currentFilterShareList);
+  const activeShareListValue = useRecoilValue(activeShareList);
   const shareListTabsInfo = useShareListTabsInfo();
   const { state, contents } = useRecoilValueLoadable(getShareListsData);
   const ListContentComponent = ListContentComponentInfo[activeShareListValue];

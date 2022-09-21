@@ -16,11 +16,6 @@ export const Header = styled.div`
   display: flex;
   gap: 0.25rem;
   align-items: baseline;
-
-  > :last-child {
-    ${({ theme }) => theme.fonts.small}
-    font-weight: 400;
-  }
 `;
 
 export const Subheader = styled.span`

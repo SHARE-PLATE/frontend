@@ -1,10 +1,9 @@
 import styled, { css } from 'styled-components';
 
-import { flexBetween } from '@styles/mixin';
-import theme from '@styles/theme';
+import { flexBetween, flexCenter } from '@styles/mixin';
 
 type IconsWrappersPropsType = {
-  position: 'left' | 'space-between' | 'right';
+  position: 'left' | 'flex-end';
 };
 
 export const Wrapper = styled.div`
@@ -26,5 +25,14 @@ export const IconsWrapper = styled.div<IconsWrappersPropsType>`
     align-items: center;
     justify-content: ${position};
     width: 3.625rem;
+  `}
+`;
+
+export const Header = styled.div`
+  ${({ theme: { fonts } }) => css`
+    ${fonts.xLarge};
+    ${flexCenter}
+    flex-grow: 1;
+    height: 100%;
   `}
 `;

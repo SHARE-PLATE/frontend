@@ -16,6 +16,7 @@ export const pathName = {
   purchaseHistory: '/profile/purchase-history',
   keyword: '/profile/keyword',
   addKeyword: '/profile/keyword/add-keyword',
+  shareMap: '/shareMap',
   other: '/*',
 };
 

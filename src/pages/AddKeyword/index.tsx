@@ -11,7 +11,6 @@ import * as S from '@pages/AddKeyword/AddKeyword.style';
 import { keywordListTrigger } from '@store/keyword';
 
 interface StateType {
-  place_name: string;
   regionName: string;
   x: string;
   y: string;
@@ -19,7 +18,7 @@ interface StateType {
 
 const AddKeyword = () => {
   const {
-    state: { place_name, regionName, x, y },
+    state: { regionName, x, y },
   } = useLocation() as {
     state: StateType;
   };
@@ -51,7 +50,6 @@ const AddKeyword = () => {
       <BackTitleHeader title={ADD_NOTICE_KEYWORD} />
       <S.Header>
         <span>{regionName}</span>
-        <span>({place_name})</span>
       </S.Header>
       <KeywordInput {...{ keywordInputBar }} handleSubmitClick={handleSubmitClick} />
       <S.RegisteredKeywordWrapper>
