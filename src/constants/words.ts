@@ -1,11 +1,15 @@
+export const ENTRIES = 'entries';
+export const QUEUE = 'queue';
 export const ACTIVITY = 'activity';
 export const KEYWORD = 'keyword';
+export const KEYWORDS = 'keywords';
 export const LOGIN = 'LOGIN';
 export const CHAT = 'chat';
 export const CHATROOM_ID = 'chatRoomId';
 export const CHATROOMS = 'chatrooms';
 export const DELIVERY = 'delivery';
 export const INGREDIENTS = 'ingredients';
+export const NOTIFICATIONS = 'notifications';
 export const TOPIC = 'topic';
 export const APP = 'app';
 export const CODE = 'code';

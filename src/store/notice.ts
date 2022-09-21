@@ -1,7 +1,13 @@
 import { atom, selector, selectorFamily } from 'recoil';
 import { v4 as getRandomKey } from 'uuid';
 
-import { ActiveNoticeType, getNotice, GetNoticeParamsType } from '@api/notice';
+import {
+  ActiveNoticeType,
+  getNotice,
+  GetNoticeParamsType,
+  NoticeActivityDataType,
+  NoticeKeywordDataType,
+} from '@api/notice';
 import { TabsInfoType } from '@components/Tabs';
 import { ACTIVITY } from '@constants/words';
 
@@ -41,4 +47,9 @@ export const noticeState = selectorFamily({
 export const deleteModeState = atom<boolean>({
   key: 'deleteMode',
   default: false,
+});
+
+export const newNoticeState = atom<NoticeActivityDataType | NoticeKeywordDataType | {}>({
+  key: 'newNotice',
+  default: {},
 });
