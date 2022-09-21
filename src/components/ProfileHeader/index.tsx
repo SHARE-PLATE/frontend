@@ -1,3 +1,4 @@
+import NoticeIcon from '@components/NoticeIcon';
 import * as S from '@components/ProfileHeader/ProfileHeader.style';
 import Icon from '@components/common/Icon';
 
@@ -6,8 +7,8 @@ const ProfileHeader = () => {
     <S.Wrapper>
       <S.Title>마이메뉴</S.Title>
       <S.Icons>
-        <Icon iconName='NoticeOff' iconSize='LARGE' />
-        <Icon iconName='Option' iconSize='LARGE' />
+        <NoticeIcon noticeOnIcon='NoticeOn' noticeOffIcon='NoticeOff' iconSize={1.5} />
+        <Icon iconName='Option' iconSize={1.5} />
       </S.Icons>
     </S.Wrapper>
   );

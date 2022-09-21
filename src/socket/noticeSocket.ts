@@ -2,8 +2,8 @@ import { SetterOrUpdater } from 'recoil';
 import SockJs from 'sockjs-client';
 import StompJs from 'stompjs';
 
-import { NoticeActivityDataType, NoticeKeywordDataType } from '@api/notice';
 import { ENTRIES, KEYWORDS, NOTIFICATIONS, QUEUE, WEBSOCKET } from '@constants/words';
+import { newNoticeStateType } from '@store/notice';
 import { getAuthHeaders } from '@utils/getAuthHeaders';
 
 type subscribeParamsType = {
@@ -12,7 +12,7 @@ type subscribeParamsType = {
 };
 
 type connectNoticeParamsType = {
-  setter: SetterOrUpdater<NoticeActivityDataType | NoticeKeywordDataType | {}>;
+  setter: SetterOrUpdater<newNoticeStateType>;
 };
 
 export const noticeSocket = ({ setter }: connectNoticeParamsType) => {

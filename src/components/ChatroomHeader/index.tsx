@@ -1,5 +1,5 @@
 import * as S from '@components/ChatroomHeader/ChatroomHeader.style';
-import Icon from '@components/common/Icon';
+import NoticeIcon from '@components/NoticeIcon';
 
 const CHATTING = '채팅';
 
@@ -7,7 +7,7 @@ const ChatroomHeader = () => {
   return (
     <S.Wrapper>
       <S.Title>{CHATTING}</S.Title>
-      <Icon iconName='NoticeOn' iconSize='LARGE' />
+      <NoticeIcon noticeOnIcon='NoticeOn' noticeOffIcon='NoticeOff' iconSize={1.5} />
     </S.Wrapper>
   );
 };
