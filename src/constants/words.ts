@@ -9,6 +9,7 @@ export const INGREDIENTS = 'ingredients';
 export const TOPIC = 'topic';
 export const APP = 'app';
 export const CODE = 'code';
+export const WEBSOCKET = 'websocket';
 export const HOME = 'HOME';
 export const COMPANY = 'COMPANY';
 export const AUTHORIZATION = 'Authorization';
