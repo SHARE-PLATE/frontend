@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
 
 export const Text = styled.p`
   ${({ theme: { colors, fonts } }) => css`
-    ${fonts.largeBold}
+    ${fonts.mediumRegular}
 
     margin-bottom: 20px;
     color: ${colors.black};
@@ -25,6 +25,6 @@ export const CloseButton = styled.button`
 
   border-radius: 4px;
   background: ${({ theme }) => theme.colors.orange3};
-  width: 100%;
+  width: 60%;
   height: 30px;
 `;

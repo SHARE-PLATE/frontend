@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { tagStyle } from '@styles/mixin';
+import { flexBetween, tagStyle } from '@styles/mixin';
 
 //index.tsx
 export const Table = styled.div``;
@@ -10,19 +10,15 @@ export const TableBox = styled.section`
     background-color: ${colors.white0};
     margin-bottom: 24px;
     border-radius: 8px;
-    box-shadow: 4px 4px 8px #00000010;
-    padding: 0 1rem;
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.08);
+    padding: 0 0.75rem;
   `}
 `;
 
 //KeywordTableHeader.tsx
 export const Header = styled.header`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 1rem;
-  padding-bottom: 0.7rem;
+  ${flexBetween}
+  padding: 0.75rem 0;
   border-bottom: 1px solid ${({ theme }) => theme.colors.grey1};
 `;
 

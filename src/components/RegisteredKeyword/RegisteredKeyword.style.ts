@@ -2,7 +2,9 @@ import styled, { css } from 'styled-components';
 
 import { tagStyle } from '@styles/mixin';
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  padding-top: 2rem;
+`;
 
 export const SubHeader = styled.div`
   ${({ theme: { fonts, colors } }) => css`
