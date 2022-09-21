@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-
 import { useRecoilValueLoadable } from 'recoil';
 
 import ChatroomHeader from '@components/ChatroomHeader';
@@ -9,26 +7,27 @@ import * as S from '@pages/Chatrooms/Chatrooms.style';
 import { chatroomsState } from '@store/chatrooms';
 
 const Chatrooms = () => {
-  const { contents: chatroomsData, state } = useRecoilValueLoadable(chatroomsState);
-  const [content, setContent] = useState(<Loading color='orange2' size={60} border={6} />);
+  const { contents: chatroomsData, state } = useRecoilValueLoadable(chatroomsState('entry'));
 
-  useEffect(() => {
-    if (state === 'hasValue') {
-      const chatrooms = chatroomsData.map((info) => <ChatroomsItem key={info.id} {...info} />);
-      setContent(<>{chatrooms}</>);
+  const getContents = () => {
+    switch (state) {
+      case 'hasValue':
+        return chatroomsData.map((info) => <ChatroomsItem key={info.id} {...info} />);
+      case 'hasError':
+        return <div>ERROR OCCURS!</div>;
+      case 'loading':
+        return (
+          <S.LoadingWrapper>
+            <Loading color='orange2' size={60} border={6} />
+          </S.LoadingWrapper>
+        );
     }
-
-    if (state === 'hasError') {
-      setContent(<div>ERROR OCCURS!</div>);
-    }
-  }, [state]);
+  };
 
   return (
     <S.Wrapper>
-      <div>
-        <ChatroomHeader />
-      </div>
-      <S.ContentWrapper state={state}>{content}</S.ContentWrapper>
+      <ChatroomHeader />
+      <S.ContentWrapper>{getContents()}</S.ContentWrapper>
     </S.Wrapper>
   );
 };

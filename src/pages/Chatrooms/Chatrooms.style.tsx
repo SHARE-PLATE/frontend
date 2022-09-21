@@ -1,18 +1,15 @@
 import styled, { css } from 'styled-components';
 
-import { defaultPageStyle } from '@styles/mixin';
-
 export const Wrapper = styled.div`
-  ${defaultPageStyle}
+  ${({ theme: { defaultPadding, colors } }) => css`
+    ${defaultPadding};
+    background-color: ${colors.white1};
+    flex-grow: 1;
+  `}
 `;
 
-export const ContentWrapper = styled.div<{ state: 'hasValue' | 'loading' | 'hasError' }>`
-  ${({ state }) =>
-    state === 'loading' &&
-    css`
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    `}
+export const ContentWrapper = styled.div``;
+
+export const LoadingWrapper = styled.div`
+  padding: 5rem 0;
 `;
