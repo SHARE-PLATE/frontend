@@ -1,6 +1,12 @@
 import { atom, selector } from 'recoil';
+import { v4 as getRandomKey } from 'uuid';
 
-import { defaultLat, defaultLng, defaultLocation } from '@constants/defaultLocation';
+import {
+  defaultAddressName,
+  defaultLat,
+  defaultLng,
+  defaultLocation,
+} from '@constants/defaultLocation';
 import { AddressDetailType } from '@type/address';
 import { getLocation } from '@utils/getLocation';
 
@@ -10,17 +16,22 @@ export interface CurrentLatitudeLongitudeType {
 }
 
 export const currentLatitudeLongitude = atom<CurrentLatitudeLongitudeType>({
-  key: 'currentLatitudeLongitude',
-  default: { lat: defaultLat, lng: defaultLng }, // 강남역
+  key: `currentLatitudeLongitude/${getRandomKey()}`,
+  default: { lat: defaultLat, lng: defaultLng },
 });
 
 export const currentLocation = atom({
-  key: 'currentLocation',
+  key: `currentLocation/${getRandomKey()}`,
   default: defaultLocation,
 });
 
+export const currentAddressName = atom({
+  key: `currentAddressName/${getRandomKey()}`,
+  default: defaultAddressName,
+});
+
 export const changeLatitudeLongitude = selector({
-  key: 'changeLatitudeLongitude',
+  key: `changeLatitudeLongitude/${getRandomKey()}`,
   get: async ({ get }) => {
     const currentLatLon = get(currentLatitudeLongitude);
     const locationData = await getLocation(currentLatLon);
@@ -29,6 +40,6 @@ export const changeLatitudeLongitude = selector({
 });
 
 export const shareLocationState = atom<AddressDetailType>({
-  key: 'shareLocation',
+  key: `shareLocation/${getRandomKey()}`,
   default: {},
 });
