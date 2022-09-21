@@ -34,13 +34,13 @@ export const UpperInfo = styled.div`
   `}
 `;
 
-export const BedgeWrapper = styled.div`
+export const BadgeWrapper = styled.div`
   display: flex;
   gap: 0.75rem;
   text-align: center;
 `;
 
-export const Bedge = styled.div`
+export const Badge = styled.div`
   ${tagStyle}
 `;
 

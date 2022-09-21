@@ -2,7 +2,7 @@ import moment from 'moment';
 import 'moment/locale/ko';
 
 import * as S from '@components/Chat/Chat.style';
-import ImgContainer from '@components/ImgContainer';
+import ImgContainer from '@components/common/ImgContainer';
 
 type ChatPropsType = {
   contents: string;

@@ -25,3 +25,6 @@ export const deleteMention = '취소';
 export const addressKeywordDeleteMention = '네, 삭제할래요.';
 export const newShareEnrolledMention = '새로운 쉐어가 등록되었습니다.';
 export const noRecentNoticeListMention = '현재 알림 목록이 없습니다!';
+export const dataFailed = '데이터를 넣어주세요';
+export const fileFailed = '이미지는 최대 5장까지 첨부할 수 있어요';
+export const close = '닫기';

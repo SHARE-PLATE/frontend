@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { getRegionWithGeo } from '@api/address';
-import ImgContainer from '@components/ImgContainer';
 import * as S from '@components/ShareDetailInfo/ShareDetailInfo.style';
 import { locationMarker } from '@components/ShareDetailInfo/locationMarker';
 import Icon from '@components/common/Icon';
+import ImgContainer from '@components/common/ImgContainer';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import { imageUrlsArrayListType } from '@type/shareList';
 import { calcTwoTimeDifference } from '@utils/getTimeDiff';
@@ -84,11 +84,11 @@ const ShareDetailInfo = ({
     <S.ContentsContainer>
       <S.Title>{title}</S.Title>
       <S.UpperInfo>
-        <S.BedgeWrapper>
-          <S.Bedge>{locationGuide}</S.Bedge>
-          {priceNegotiation && <S.Bedge>가격 협의가능</S.Bedge>}
-          {locationNegotiation && <S.Bedge>장소 협의가능</S.Bedge>}
-        </S.BedgeWrapper>
+        <S.BadgeWrapper>
+          <S.Badge>{locationGuide}</S.Badge>
+          {priceNegotiation && <S.Badge>가격 협의가능</S.Badge>}
+          {locationNegotiation && <S.Badge>장소 협의가능</S.Badge>}
+        </S.BadgeWrapper>
         <S.CreateTime>{calcTwoTimeDifference(createdDateTime)}</S.CreateTime>
       </S.UpperInfo>
       <S.LowerInfo>

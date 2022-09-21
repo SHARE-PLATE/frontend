@@ -1,7 +1,7 @@
 import { GetShareMineListDataType } from '@api/shareList';
-import ImgContainer from '@components/ImgContainer';
 import { RemainedTime } from '@components/RemainedTime';
 import * as S from '@components/ShareListItemCenterImage/ShareListItemCenterImage.style';
+import ImgContainer from '@components/common/ImgContainer';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 
 const ShareListItemCenterImage = ({

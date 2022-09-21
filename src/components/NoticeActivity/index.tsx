@@ -4,10 +4,10 @@ import moment from 'moment';
 import { useRecoilValue } from 'recoil';
 
 import { NoticeActivityDataType } from '@api/notice';
-import ImgContainer from '@components/ImgContainer';
 import * as S from '@components/NoticeActivity/NoticeActivity.style';
 import NoticeDeleteBtn from '@components/NoticeDeleteBtn';
 import Icon from '@components/common/Icon';
+import ImgContainer from '@components/common/ImgContainer';
 import { deleteModeState } from '@store/notice';
 
 type NoticeActivityPropsType = {

@@ -3,10 +3,10 @@ import { Settings } from 'react-slick';
 import { v4 as getRandomKey } from 'uuid';
 
 import Carousel from '@components/Carousel';
-import ImgContainer from '@components/ImgContainer';
 import { RemainedTime } from '@components/RemainedTime';
 import * as S from '@components/ShareDetailHeader/ShareDetailHeader.style';
 import Icon from '@components/common/Icon';
+import ImgContainer from '@components/common/ImgContainer';
 
 interface ShareDetailHeaderPropsType {
   imageUrls: string[];

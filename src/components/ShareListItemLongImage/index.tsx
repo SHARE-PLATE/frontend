@@ -1,6 +1,6 @@
-import ImgContainer from '@components/ImgContainer';
 import { RemainedTime } from '@components/RemainedTime';
 import * as S from '@components/ShareListItemLongImage/ShareListItemLongImage.style';
+import ImgContainer from '@components/common/ImgContainer';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import { thumbnailUrlListType } from '@type/shareList';
 import { getPriceType } from '@utils/getPriceType';

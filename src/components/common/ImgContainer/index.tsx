@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import { FlattenSimpleInterpolation } from 'styled-components';
 
-import * as S from '@components/ImgContainer/ImgContainer.style';
+import * as S from '@components/common/ImgContainer/ImgContainer.style';
 
 type ImgContainerPropsType = {
   imgSrc: string;

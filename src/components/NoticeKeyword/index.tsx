@@ -4,9 +4,9 @@ import moment from 'moment';
 import { useRecoilValue } from 'recoil';
 
 import { NoticeKeywordDataType } from '@api/notice';
-import ImgContainer from '@components/ImgContainer';
 import NoticeDeleteBtn from '@components/NoticeDeleteBtn';
 import * as S from '@components/NoticeKeyword/NoticeKeyword.style';
+import ImgContainer from '@components/common/ImgContainer';
 import { newShareEnrolledMention } from '@constants/mentions';
 import { deleteModeState } from '@store/notice';
 
