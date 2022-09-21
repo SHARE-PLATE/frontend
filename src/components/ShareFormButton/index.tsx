@@ -38,7 +38,9 @@ const ShareFormButton = () => {
             </S.ButtonContainer>
           </>
         ) : (
-          <Icon iconName='Form' iconSize={3.5} />
+          <S.FormBtnWrapper>
+            <Icon iconName='Form' iconSize={3.5} />
+          </S.FormBtnWrapper>
         )}
       </S.Wrapper>
     </Modal>

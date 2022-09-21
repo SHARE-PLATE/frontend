@@ -107,7 +107,7 @@ const AddressDetail = ({
               isSelected={fixedAddress === HOME}
               onClick={() => handleClickHomeCompanyBtn(HOME)}
             >
-              <Icon iconName='Home' />
+              <Icon iconName='AddressHome' />
               {HOME_KOR}
             </S.HomeCompanyBtn>
             <S.HomeCompanyBtn

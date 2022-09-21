@@ -28,7 +28,7 @@ export const ListWrapper = styled.div`
   ${noScrollBar}
 
   display: flex;
-  gap: 0.8rem;
+  gap: 1rem;
   padding: 1rem 0;
   padding-bottom: 2rem;
   width: 100%;

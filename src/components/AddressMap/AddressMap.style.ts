@@ -58,7 +58,7 @@ export const FinishBtn = styled.button`
   ${({ theme: { colors, fonts } }) => css`
     ${fonts.largeBold};
 
-    margin-top: 1.8rem;
+    margin-top: 1.5rem;
     color: ${colors.white1} !important;
     border-radius: 0.25rem;
     background-color: ${colors.orange2};

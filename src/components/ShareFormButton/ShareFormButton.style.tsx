@@ -43,3 +43,12 @@ export const ButtonWrapper = styled.button`
     /* height: 50%; */
   `}
 `;
+
+export const FormBtnWrapper = styled.div`
+  border-radius: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1.5px solid #ff4a40;
+  box-shadow: 2px 4px 8px #ff453a50;
+`;

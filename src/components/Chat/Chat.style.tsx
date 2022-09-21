@@ -48,6 +48,7 @@ export const Contents = styled.div<{ writtenByMe: boolean }>`
   ${({ theme: { colors, fonts }, writtenByMe }) => css`
     ${fonts.smallRegular}
 
+    word-break: break-all;
     border-radius: 0.5rem;
     border-top-left-radius: 0;
     background-color: ${colors.grey2};

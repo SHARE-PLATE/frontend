@@ -15,6 +15,7 @@ export const ShareListItemLongImage = ({ itemInfo }: { itemInfo: thumbnailUrlLis
     finalRecruitment,
     currentRecruitment,
   } = itemInfo;
+  console.log({ currentRecruitment, finalRecruitment });
 
   return (
     <S.ItemWrapper>
@@ -22,8 +23,8 @@ export const ShareListItemLongImage = ({ itemInfo }: { itemInfo: thumbnailUrlLis
         <ImgContainer
           imgSrc={thumbnailUrl}
           imgTitle={title}
-          imgWrapperWidth='9.5rem'
-          imgWrapperRatio={15 / 24}
+          imgWrapperWidth='9.62rem'
+          imgWrapperRatio={0.686 / 1}
         />
         <RemainedTime
           targetTime={appointmentDateTime}

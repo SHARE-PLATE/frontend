@@ -13,13 +13,14 @@ export const Header = styled.div`
     flex-direction: column;
     gap: 0.5rem;
     background-color: ${colors.white1};
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0;
   `}
 `;
 
 export const FormWrapper = styled.div`
   display: flex;
   gap: 0.5rem;
+  padding: 0 1rem;
   justify-content: space-between;
 `;
 
@@ -38,7 +39,7 @@ export const Form = styled.form`
     flex-grow: 1;
     justify-content: space-between;
     border-radius: 0.5rem;
-    background-color: ${colors.grey2};
+    background-color: ${colors.grey1};
     padding: 0.5rem;
     height: 3rem;
   `}
@@ -49,7 +50,7 @@ export const Input = styled.input`
     ${fonts.large}
     margin-right: 0.5rem;
     border: none;
-    background-color: ${colors.grey2};
+    background-color: ${colors.grey1};
     width: 100%;
 
     :focus::placeholder {

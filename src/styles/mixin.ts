@@ -34,7 +34,7 @@ export const defaultPageStyle = css`
 
   > :last-child {
     flex-grow: 1;
-    padding-bottom: 6.5rem;
+    padding-bottom: 5.75rem;
   }
 `;
 

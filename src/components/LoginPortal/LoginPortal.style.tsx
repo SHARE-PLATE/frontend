@@ -45,7 +45,7 @@ export const KakaoLoginButton = styled.button`
     justify-content: center;
     margin-top: 2.62rem;
     border-radius: 0.5rem;
-    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.08);
     background-color: #fee502;
     width: 60%;
     height: 3rem;
@@ -57,8 +57,9 @@ export const KakaoLoginButton = styled.button`
 `;
 
 export const PersonImagingWrapper = styled.div`
-  padding-left: 5rem;
-  padding-top: 8rem;
+  position: absolute;
+  right: -80px;
+  bottom: -40px;
 `;
 
 export const LogoWrapper = styled.div`

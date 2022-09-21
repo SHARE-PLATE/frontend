@@ -11,7 +11,7 @@ export const TableBox = styled.section`
     margin-bottom: 24px;
     border-radius: 8px;
     box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.08);
-    padding: 0 0.75rem;
+    padding: 0 1rem;
   `}
 `;
 

@@ -7,13 +7,18 @@ import { portalState } from '@store/portal';
 
 const AddKeywordButton = () => {
   const setPortal = useSetRecoilState(portalState);
+  const isKeyword = true;
 
   const handleClickAddKeywordBtn = () => setPortal('keywordAddress');
 
   return (
-    <Modal isFull={false} type='underRight'>
+    <Modal isFull={false} type='underRight' customedStyle={S.ModalCustomStyle}>
       <S.Wrapper>
-        <Icon iconName='AddKeyword' iconSize={7.62} />
+        {isKeyword && (
+          <S.AddKeywordWrapper>
+            <Icon iconName='AddKeyword' iconSize={7.62} />
+          </S.AddKeywordWrapper>
+        )}
         <S.AddKeywordBtn onClick={handleClickAddKeywordBtn}>
           <Icon iconName='Plus' iconSize={1.33} />
         </S.AddKeywordBtn>

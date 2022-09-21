@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
+  padding: 1rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 12rem;
 `;
 
 export const MentionWrapper = styled.div`
@@ -26,6 +26,6 @@ export const LoginButton = styled.button`
     width: 10rem;
     height: 3rem;
     color: ${colors.white1};
-    box-shadow: 2px 2px 4px #00000020;
+    box-shadow: 2px 4px 6px #00000020;
   `}
 `;

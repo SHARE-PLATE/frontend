@@ -1,6 +1,8 @@
 import AddDelivery from '@assets/icons/addDelivery.svg';
 import AddIngredient from '@assets/icons/addIngredient.svg';
 import AddKeyword from '@assets/icons/addKeyword.svg';
+import AddressHome from '@assets/icons/addressHome.svg';
+import AddressHomeFill from '@assets/icons/addressHomeFill.svg';
 import ArrowUp from '@assets/icons/arrowUp.svg';
 import Back from '@assets/icons/back.svg';
 import Bookmark from '@assets/icons/bookmark.svg';
@@ -46,6 +48,7 @@ import PaperAirplane from '@assets/icons/paperAirplane.svg';
 import PersonImaging from '@assets/icons/personImaging.svg';
 import PizzaPicture from '@assets/icons/pizzaPicture.svg';
 import Plus from '@assets/icons/plus.svg';
+import PlusBold from '@assets/icons/plusBold.svg';
 import PurchaseHistory from '@assets/icons/purchaseHistory.svg';
 import RightArrow from '@assets/icons/rightArrow.svg';
 import SalesHistory from '@assets/icons/salesHistory.svg';
@@ -63,6 +66,9 @@ import UserNavFill from '@assets/icons/userNavFill.svg';
 import X_Icon from '@assets/icons/x_icon.svg';
 
 export const Icons = {
+  AddressHomeFill,
+  AddressHome,
+  PlusBold,
   NoticeActivityEmpty,
   NoticeActivityFull,
   Bookmark,
