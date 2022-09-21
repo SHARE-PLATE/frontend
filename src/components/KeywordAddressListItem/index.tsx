@@ -14,7 +14,7 @@ const KeywordAddressListItem = ({ place_name, address_name, x, y }: AddressListT
 
   const [regionName, setRegionName] = useState('');
   const setPortal = useSetRecoilState(portalState);
-  const navigator = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
@@ -26,8 +26,8 @@ const KeywordAddressListItem = ({ place_name, address_name, x, y }: AddressListT
   }, [x, y]);
 
   const addressClickHandler = () => {
-    navigator(pathName.addKeyword, {
-      state: { place_name, regionName, x, y },
+    navigate(pathName.addKeyword, {
+      state: { regionName },
     });
     setPortal(null);
   };
