@@ -18,7 +18,7 @@ const sockServer = `${process.env.REACT_APP_BASE_URL}/${WEBSOCKET}`; // 들어�
 const sock = new SockJs(sockServer);
 const stompClient = StompJs.over(sock);
 
-const sendChat = ({ contents, chatroomId }: SendChatParamsType) => {
+export const sendChat = ({ contents, chatroomId }: SendChatParamsType) => {
   const headers = getAuthHeaders();
   const sendingURL = `/${APP}/${CHATROOMS}/${chatroomId}/${CHAT}`;
 
@@ -73,5 +73,5 @@ export const connectChat = () => {
     }
   };
 
-  return { chatroomConnect, chatroomDisconnect, sendChat };
+  return { chatroomConnect, chatroomDisconnect };
 };
