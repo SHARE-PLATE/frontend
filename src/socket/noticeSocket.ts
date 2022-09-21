@@ -1,23 +1,26 @@
-import { useSetRecoilState } from 'recoil';
+import { SetterOrUpdater } from 'recoil';
 import SockJs from 'sockjs-client';
 import StompJs from 'stompjs';
 
-import { ENTRIES, NOTIFICATIONS, QUEUE, WEBSOCKET } from '@constants/words';
-import { newNoticeState } from '@store/notice';
+import { NoticeActivityDataType, NoticeKeywordDataType } from '@api/notice';
+import { ENTRIES, KEYWORDS, NOTIFICATIONS, QUEUE, WEBSOCKET } from '@constants/words';
 import { getAuthHeaders } from '@utils/getAuthHeaders';
 
 type subscribeParamsType = {
-  entryIds: number[];
-  keywordIds: number[];
+  entryIds?: number[];
+  keywordIds?: number[];
 };
 
-export const useConnectNoticeSocket = () => {
+type connectNoticeParamsType = {
+  setter: SetterOrUpdater<NoticeActivityDataType | NoticeKeywordDataType | {}>;
+};
+
+export const noticeSocket = ({ setter }: connectNoticeParamsType) => {
   const sockServer = `${process.env.REACT_APP_BASE_URL}/${WEBSOCKET}`; // 들어갈 주소 설정
   const sock = new SockJs(sockServer);
   const stompClient = StompJs.over(sock);
-  const setNewNotice = useSetRecoilState(newNoticeState);
 
-  const subscribeNotice = ({ entryIds, keywordIds }: subscribeParamsType) => {
+  const subscribeNotice = ({ entryIds = [], keywordIds = [] }: subscribeParamsType) => {
     const subscribeURL = `/${QUEUE}/${NOTIFICATIONS}`;
     const headers = getAuthHeaders();
 
@@ -26,7 +29,7 @@ export const useConnectNoticeSocket = () => {
         subscribeURL + `/${ENTRIES}/${id}`,
         (entryData) => {
           const newEntryData = JSON.parse(entryData.body);
-          setNewNotice(newEntryData);
+          setter(newEntryData);
         },
         headers,
       );
@@ -34,10 +37,10 @@ export const useConnectNoticeSocket = () => {
 
     keywordIds.forEach((id) => {
       stompClient.subscribe(
-        subscribeURL + `/${ENTRIES}/${id}`,
+        subscribeURL + `/${KEYWORDS}/${id}`,
         (keywordData) => {
           const newKeywordData = JSON.parse(keywordData.body);
-          setNewNotice(newKeywordData);
+          setter(newKeywordData);
         },
         headers,
       );

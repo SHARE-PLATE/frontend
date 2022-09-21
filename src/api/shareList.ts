@@ -28,6 +28,10 @@ export type GetShareMineListDataType = {
   closedDateTime: string;
 };
 
+export type GetShareListEntriesDataType = {
+  idList: number[];
+};
+
 export const getShareListData = async (
   type: activeShareListType,
   location: CurrentLatitudeLongitudeType,
@@ -77,7 +81,7 @@ export const getShareMineListData = async ({
 }: GetShareMineListDataParamsType) => {
   try {
     const headers = getAuthHeaders();
-    const response = await axios.get<GetShareMineListDataType[]>(`${API.SHARE_MINE}`, {
+    const response = await axios.get<GetShareMineListDataType[]>(API.SHARE_MINE, {
       params: {
         mineType,
         shareType,
@@ -85,6 +89,17 @@ export const getShareMineListData = async ({
       },
       headers,
     });
+
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getShareListEntries = async () => {
+  try {
+    const headers = getAuthHeaders();
+    const response = await axios.get<GetShareListEntriesDataType>(API.ENTRIES, { headers });
 
     return response.data;
   } catch (error) {

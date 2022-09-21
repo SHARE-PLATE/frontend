@@ -1,7 +1,7 @@
 import { atom, selector, selectorFamily } from 'recoil';
 import { v4 as getRandomKey } from 'uuid';
 
-import { getShareListData, getShareMineListData } from '@api/shareList';
+import { getShareListData, getShareListEntries, getShareMineListData } from '@api/shareList';
 import { GetShareMineListDataParamsType } from '@api/shareList';
 import { activeShareList } from '@store/filterShareList';
 import { currentLatitudeLongitude } from '@store/location';
@@ -36,4 +36,18 @@ export const shareMineListState = selectorFamily({
       const shareMineListData = await getShareMineListData({ isExpired, shareType, mineType });
       return shareMineListData;
     },
+});
+
+export const shareListEntriesStateTrigger = atom<number>({
+  key: 'shareListEntriesStateTrigger',
+  default: 0,
+});
+
+export const shareListEntriesState = selector({
+  key: 'shareListEntries',
+  get: async ({ get }) => {
+    get(shareListEntriesStateTrigger);
+    const shareListEntriesData = await getShareListEntries();
+    return shareListEntriesData;
+  },
 });

@@ -6,11 +6,15 @@ import LoginPortal from '@components/LoginPortal';
 import NavigationBar from '@components/NavigationBar';
 import OptionPortal from '@components/OptionPortal';
 import SearchPortal from '@components/SearchPortal';
+import useNoticeAlarm from '@hooks/useNoticeAlarm';
 import { routes } from '@router';
 import Styles from '@styles';
 
 const App = () => {
   const element = useRoutes(routes);
+  const noticeAlarm = useNoticeAlarm();
+
+  noticeAlarm();
 
   return (
     <div className='App'>
