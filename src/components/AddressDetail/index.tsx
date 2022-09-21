@@ -18,7 +18,12 @@ import {
 import { useSetHomeCompany } from '@hooks/useSetHomeCompany';
 import { addressOptionState, selectedAddressState } from '@store/address';
 import { addressRecentState } from '@store/localStorage';
-import { currentLatitudeLongitude, currentLocation, shareLocationState } from '@store/location';
+import {
+  currentAddressName,
+  currentLatitudeLongitude,
+  currentLocation,
+  shareLocationState,
+} from '@store/location';
 import { portalState } from '@store/portal';
 import { setLocalStorageInfo } from '@utils/localStorage';
 
@@ -35,6 +40,7 @@ const AddressDetail = ({
   const [addressRecent, setAddressRecent] = useRecoilState(addressRecentState);
   const setPortal = useSetRecoilState(portalState);
   const setLatitudeLongitude = useSetRecoilState(currentLatitudeLongitude);
+  const setAddressName = useSetRecoilState(currentAddressName);
   const setLocation = useSetRecoilState(currentLocation);
   const addressOption = useRecoilValue(addressOptionState);
   const selectedAddress = useRecoilValue(selectedAddressState);
@@ -47,7 +53,7 @@ const AddressDetail = ({
   };
 
   const handleClickFinishBtn = () => {
-    if (!lat || !lng || !place_name || !id || !road_address_name) return;
+    if (!lat || !lng || !place_name || !id || !road_address_name || !address_name) return;
 
     // change HOME or COMPANY
     const newAddressRecent = new Map(addressRecent);
@@ -62,6 +68,7 @@ const AddressDetail = ({
     if (addressOption === 'LOCATION') {
       setLatitudeLongitude({ lat, lng });
       setLocation(place_name);
+      setAddressName(address_name);
     }
     if (addressOption === 'SHARE') {
       setShareLocation({ lat, lng, road_address_name });
