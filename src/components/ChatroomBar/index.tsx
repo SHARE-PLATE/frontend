@@ -2,9 +2,11 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 
 import * as S from '@components/ChatroomBar/ChatroomBar.style';
 import Icon from '@components/common/Icon';
-import { sendChat } from '@socket/chatroomSocket';
+import { connectChat } from '@socket/chatroomSocket';
 
-const ChatroomBar = ({ chatroomId }: { chatroomId: string }) => {
+type ChatroomBarPropsType = { chatroomId: string; scrollToBottom: () => void };
+
+const ChatroomBar = ({ chatroomId, scrollToBottom }: ChatroomBarPropsType) => {
   const [chatValue, setChatValue] = useState('');
 
   const handleChangechatValue = (event: ChangeEvent<HTMLInputElement>) => {
@@ -15,25 +17,25 @@ const ChatroomBar = ({ chatroomId }: { chatroomId: string }) => {
     event.preventDefault();
     if (!chatValue.length) return;
 
+    const { sendChat } = connectChat();
     setChatValue('');
     sendChat({ contents: chatValue, chatroomId });
-    window.scrollTo(0, document.body.offsetHeight);
+    scrollToBottom();
   };
 
   return (
     <S.Wrapper onSubmit={handleSubmit}>
       <S.PlusBtn>
-        <Icon iconName='Plus' iconSize='LARGE' />
+        <Icon iconName='PlusBold' iconSize={0.75} />
       </S.PlusBtn>
       <S.ChatInput
         value={chatValue}
-        onFocus={() => window.scrollTo(0, document.body.offsetHeight)}
         onChange={handleChangechatValue}
         placeholder='메시지를 입력하세요.'
       />
-      <button>
+      <S.Button>
         <Icon iconName='PaperAirplane' iconSize='LARGE' />
-      </button>
+      </S.Button>
     </S.Wrapper>
   );
 };
