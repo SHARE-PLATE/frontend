@@ -11,12 +11,14 @@ interface KeywordDeleteModalPropsType {
   modalRef: RefObject<HTMLDivElement>;
   deleteHandler: (curLocation: string) => void;
   closeAModal: () => void;
+  clickedLocation: string;
 }
 
 const KeywordDeleteModal = ({
   modalRef,
   deleteHandler,
   closeAModal,
+  clickedLocation,
 }: KeywordDeleteModalPropsType) => {
   return (
     <Modal type='center' isFull={true}>
@@ -24,7 +26,7 @@ const KeywordDeleteModal = ({
         <S.Text>{addressKeywordQuestionMention}</S.Text>
         <S.ButtonContainer>
           <S.CloseButton onClick={closeAModal}>{deleteMention}</S.CloseButton>
-          <S.OkButton onClick={() => deleteHandler('목동')}>
+          <S.OkButton onClick={() => deleteHandler(clickedLocation)}>
             {addressKeywordDeleteMention}
           </S.OkButton>
         </S.ButtonContainer>
