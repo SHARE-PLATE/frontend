@@ -15,6 +15,7 @@ export const Wrapper = styled.form`
     bottom: 0;
     box-shadow: 0px -10px 40px #67676740;
     width: 100%;
+    z-index: 100;
   `}
 `;
 
@@ -24,7 +25,7 @@ export const PlusBtn = styled.button`
     align-items: center;
     justify-content: center;
     border-radius: 0.375rem;
-    background-color: ${colors.orange1};
+    background-color: ${colors.orange4};
     width: 1.88rem;
     height: 1.88rem;
     path {
@@ -55,4 +56,10 @@ export const ChatInput = styled.input`
       }
     }
   `}
+`;
+
+export const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

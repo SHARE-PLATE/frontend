@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
   display: flex;
-  gap: 0.5rem;
+  gap: 0.4rem;
   max-width: 50%;
   cursor: pointer;
 `;

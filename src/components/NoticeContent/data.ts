@@ -1,6 +1,6 @@
 import { NoticeActivityDataType, NoticeKeywordDataType } from '@api/notice';
 
-export const activityData: NoticeActivityDataType = [
+export const activityData: NoticeActivityDataType[] = [
   {
     recruitmentMemberNickname: '루이123', //신청할경우
     notificationCreatedDateTime: '2022-10-28 14:00',
@@ -19,7 +19,7 @@ export const activityData: NoticeActivityDataType = [
   },
 ];
 
-export const keywordData: NoticeKeywordDataType = [
+export const keywordData: NoticeKeywordDataType[] = [
   {
     shareLocation: '강남역',
     shareId: 1,

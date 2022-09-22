@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+export const profileImgWidth = '2.25rem';
+
 export const Wrapper = styled.div<{ writtenByMe: boolean }>`
   display: flex;
   gap: 0.75rem;
@@ -9,6 +11,10 @@ export const Wrapper = styled.div<{ writtenByMe: boolean }>`
     css`
       flex-direction: row-reverse;
     `}
+`;
+
+export const ProfileImgWrapper = styled.div`
+  width: ${profileImgWidth};
 `;
 
 export const AdditionalImgStyle = css`
@@ -48,6 +54,7 @@ export const Contents = styled.div<{ writtenByMe: boolean }>`
   ${({ theme: { colors, fonts }, writtenByMe }) => css`
     ${fonts.smallRegular}
 
+    word-break: break-all;
     border-radius: 0.5rem;
     border-top-left-radius: 0;
     background-color: ${colors.grey2};

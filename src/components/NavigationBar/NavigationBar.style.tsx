@@ -16,7 +16,8 @@ export const Wrapper = styled.ul<CssPropsType>`
     color: ${colors.grey4};
     position: fixed;
     bottom: 0;
-    box-shadow: 0px -10px 40px #67676740;
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0px -8px 16px rgba(0, 0, 0, 0.08);
     width: 100%;
     justify-content: space-around;
   `}

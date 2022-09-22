@@ -8,12 +8,22 @@ export const Wrapper = styled.div`
   align-items: flex-end;
 `;
 
+export const AddKeywordWrapper = styled.div`
+  svg {
+    filter: drop-shadow(2px 2px 4px #00000015);
+  }
+`;
+
 export const AddKeywordBtn = styled.button`
   ${({ theme: { colors } }) => css`
     width: 3.5rem;
     height: 3.5rem;
     border-radius: 35rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: ${colors.orange2};
+    box-shadow: 2px 4px 8px rgba(255, 69, 58, 0.2);
 
     path {
       stroke: ${colors.white0};
@@ -21,4 +31,8 @@ export const AddKeywordBtn = styled.button`
       height: 1.33rem;
     }
   `}
+`;
+
+export const ModalCustomStyle = css`
+  bottom: 2rem;
 `;

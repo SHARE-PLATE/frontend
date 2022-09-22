@@ -9,6 +9,7 @@ export const Wrapper = styled.ul`
     height: 5.6rem;
     border-radius: 0.75rem;
     background-color: ${colors.white0};
+    box-shadow: 2px 4px 8px rgba(125, 15, 0, 0.25);
   `}
 `;
 

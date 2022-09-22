@@ -14,6 +14,7 @@ const NavigationBar = () => {
       'chatroomDetail',
       'addKeyword',
       'shareMap',
+      'notice',
     ],
   });
   const isProfile = useCheckPathname({ targetPaths: ['keyword'] });

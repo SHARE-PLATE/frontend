@@ -11,7 +11,7 @@ import ImgContainer from '@components/common/ImgContainer';
 import { deleteModeState } from '@store/notice';
 
 type NoticeActivityPropsType = {
-  contents: NoticeActivityDataType;
+  contents: NoticeActivityDataType[];
 };
 
 const deadlineMention = '등록하신 상품의 시간이 끝나가요!';

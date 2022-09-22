@@ -10,6 +10,7 @@ export const API = {
   LOGIN_FORM: '/login/form',
   LOGIN: '/api/login',
   LOGOUT: '/api/logout',
+  ENTRIES: '/api/entries',
   CHECK_LOGIN: '/api/reissue/access-token',
   WISH_LIST: '/api/wish-list',
   MY_SHARE: '/api/shares/mine',

@@ -1,4 +1,5 @@
-import { atom, selector } from 'recoil';
+import { atom, selectorFamily } from 'recoil';
+import { v4 as getRandomKey } from 'uuid';
 
 import { getChatroomsData } from '@api/chat';
 
@@ -13,18 +14,22 @@ export type chatroomType = {
   unreadCount: number;
 };
 
+export type ChatroomsStateType = 'entry' | 'question';
+
 export const chatroomsTrigger = atom({
   key: 'chatroomsTrigger',
   default: 0,
 });
 
-export const chatroomsState = selector<chatroomType[]>({
-  key: 'GET/chatroomsState',
-  get: async ({ get }) => {
-    get(chatroomsTrigger);
+export const chatroomsState = selectorFamily<chatroomType[], ChatroomsStateType>({
+  key: `GET/chatroomsState/${getRandomKey()}`,
+  get:
+    (type: ChatroomsStateType) =>
+    async ({ get }) => {
+      get(chatroomsTrigger);
 
-    const chatroomDetailData = await getChatroomsData({ type: 'entry' });
+      const chatroomDetailData = await getChatroomsData({ type });
 
-    return chatroomDetailData;
-  },
+      return chatroomDetailData;
+    },
 });

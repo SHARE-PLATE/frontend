@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 
 export const Image = styled.img`
   float: left;
-  margin-right: 20px;
+  margin-right: 12px;
   border-radius: 50px;
   width: 60px;
   height: 60px;

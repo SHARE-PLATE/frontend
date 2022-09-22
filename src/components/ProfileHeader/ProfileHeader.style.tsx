@@ -22,9 +22,16 @@ export const Title = styled.h2`
 
 export const Icons = styled.div`
   ${({ theme: { colors } }) => css`
+    z-index: 2;
     display: flex;
+    gap: 0.625rem;
+    align-items: center;
+
     path {
       stroke: ${colors.white0};
+    }
+    circle {
+      fill: ${colors.white0};
     }
   `}
 `;
