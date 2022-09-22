@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { flexCenter, noScrollBar } from '@styles/mixin';
+import { flexBetween, flexCenter, noScrollBar } from '@styles/mixin';
 
 //FileContainer.tsx
 export const FileWrapper = styled.div`
@@ -55,13 +55,7 @@ export const ImagePreview = styled.img`
   height: 59px;
 `;
 
-//TextContainer.tsx
-export const TextContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-`;
-
+//default style
 export const TowTextBlock = styled.div`
   display: flex;
   gap: 12px;
@@ -74,30 +68,49 @@ export const LongTextBlock = styled.div`
   gap: 12px;
 `;
 
+//TextContainer.tsx
+export const TextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;
+
+//AddressContainer.tsx
+export const LocationSelectButton = styled.button`
+  ${flexBetween}
+  flex-direction: row;
+  padding: 0.625rem 0.75rem;
+  width: 100%;
+  height: 2.625rem;
+  line-height: 20px;
+  letter-spacing: 1px;
+  background: ${({ theme }) => theme.colors.white2};
+  border: 1px solid ${({ theme }) => theme.colors.grey3};
+  border-radius: 4px;
+`;
+
+export const NoneLocation = styled.span`
+  ${({ theme }) => theme.fonts.mediumRegular}
+  color: ${({ theme }) => theme.colors.grey4};
+`;
+
+//DateContainer.tsx
 export const DateInputForm = styled.input`
   ${flexCenter}
 
-  padding: 11px 16px;
+  padding: 0.625rem 0.75rem;
   width: 100%;
-  height: 41px;
+  height: 2.625rem;
   line-height: 20px;
   letter-spacing: 1px;
+  ${({ theme }) => theme.fonts.mediumBold};
+  color: ${({ theme }) => theme.colors.black};
+  background: ${({ theme }) => theme.colors.white2};
   border: 1px solid ${({ theme }) => theme.colors.grey3};
+  border-radius: 4px;
 `;
 
-export const LocationSelectButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: row;
-  padding: 11px 16px;
-  width: 100%;
-  height: 41px;
-  line-height: 20px;
-  letter-spacing: 1px;
-  border: 1px solid ${({ theme }) => theme.colors.grey3};
-`;
-
+//RecruitmentContainer.tsx
 export const CountContainer = styled.div`
   display: flex;
   align-items: center;
@@ -117,10 +130,6 @@ export const CountButton = styled.button`
   margin-top: 5px;
 `;
 
-export const OptionContainer = styled.div`
-  height: 41px;
-`;
-
 //ContentDescription.tsx
 export const DescriptionWrapper = styled.div`
   min-height: 236px;
@@ -129,5 +138,12 @@ export const DescriptionWrapper = styled.div`
 export const ContentDescriptionInput = styled.textarea`
   width: 100%;
   min-height: 236px;
+  padding: 0.75rem;
+  border: 1px solid ${({ theme }) => theme.colors.grey3};
+  background: ${({ theme }) => theme.colors.white2};
+  border-radius: 4px;
   resize: none;
+  :focus-visible {
+    outline: none;
+  }
 `;
