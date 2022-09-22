@@ -1,11 +1,20 @@
 import styled, { css } from 'styled-components';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{ isLogin: boolean }>`
   padding: 1rem 0;
   display: flex;
+  height: 8.44rem;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  ${({ isLogin }) =>
+    isLogin &&
+    css`
+      > * {
+        display: none;
+      }
+    `}
 `;
 
 export const MentionWrapper = styled.div`
@@ -28,4 +37,12 @@ export const LoginButton = styled.button`
     color: ${colors.white1};
     box-shadow: 2px 4px 6px #00000020;
   `}
+`;
+
+export const EmptyArea = styled.div<{ isLogin: boolean }>`
+  ${({ isLogin }) =>
+    isLogin &&
+    css`
+      width: 100%;
+    `}
 `;

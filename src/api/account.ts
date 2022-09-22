@@ -5,12 +5,18 @@ import { API } from '@constants/api';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '@constants/words';
 import { thumbnailImageUrl } from '@store/thumbnailImageUrl';
 import { getAuthHeaders } from '@utils/getAuthHeaders';
+import getTokenHeaders from '@utils/getTokenHeaders';
 import {
   setLocalStorageInfo,
-  getLocalStorageInfo,
   LocalStorageKeyType,
   removeLocalStorageInfo,
 } from '@utils/localStorage';
+
+export type UserInfoDataType = {
+  profileImageUrl?: string;
+  nickname?: string;
+  email?: string;
+};
 
 export const getLoginPage = async () => {
   window.location.href = process.env.REACT_APP_BASE_URL + API.LOGIN_FORM;
@@ -48,10 +54,7 @@ export const useLogin = (code: string | null) => {
 
 export const useLogout = () => {
   const resetThumbnailImageUrl = useResetRecoilState(thumbnailImageUrl);
-  const headers: any = {}; // headers 초기 설정 재정리 필요
-
-  headers[ACCESS_TOKEN] = getLocalStorageInfo(ACCESS_TOKEN);
-  headers[REFRESH_TOKEN] = getLocalStorageInfo(REFRESH_TOKEN);
+  const headers = getTokenHeaders();
 
   const removeUserInfo = () => {
     resetThumbnailImageUrl();
@@ -66,10 +69,7 @@ export const useLogout = () => {
 };
 
 export const useCheckLogin = () => {
-  const headers: any = {};
-
-  headers[ACCESS_TOKEN] = getLocalStorageInfo(ACCESS_TOKEN);
-  headers[REFRESH_TOKEN] = getLocalStorageInfo(REFRESH_TOKEN);
+  const headers = getTokenHeaders();
 
   return async () => {
     const response = await axios.get(API.CHECK_LOGIN, { headers }).catch((err) => err.message);
@@ -85,19 +85,23 @@ export const useCheckLogin = () => {
   };
 };
 
-export type UserInfoDataType = {
-  profileImageUrl?: string;
-  nickname?: string;
-  email?: string;
-};
-
 export const getUserInfoData = async () => {
   const headers = getAuthHeaders();
 
   try {
     const response = await axios.get<UserInfoDataType>(API.MEMBERS, { headers });
-    console.log(response);
     return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const checkVerification = async () => {
+  const headers = getTokenHeaders();
+
+  try {
+    const response = await axios.get(API.LOGIN_VERIFICATION, { headers });
+    return response.status;
   } catch (error) {
     console.error(error);
   }
