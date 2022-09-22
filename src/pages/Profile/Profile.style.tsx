@@ -15,6 +15,7 @@ export const UpperWrapper = styled.div`
 export const SharesWrapper = styled.div`
   margin-top: -1.5rem;
   border-radius: 1rem 1rem 0 0;
+  box-shadow: 0px -8px 16px rgba(0, 0, 0, 0.08);
 
   > :first-child {
     padding-top: 1.5rem;

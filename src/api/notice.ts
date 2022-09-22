@@ -22,7 +22,7 @@ export type NoticeActivityDataType = {
   shareThumbnailImageUrl: string;
   shareId: number;
   activityType: 'ENTRY' | 'DEADLINE';
-}[];
+};
 
 export type NoticeKeywordDataType = {
   shareLocation: string;
@@ -30,11 +30,11 @@ export type NoticeKeywordDataType = {
   shareTitle: string;
   shareThumbnailImageUrl: string;
   notificationCreatedDateTime: string;
-}[];
+};
 
 export type GetNoticeDataType<T extends ActiveNoticeType> = T extends typeof ACTIVITY
-  ? NoticeActivityDataType
-  : NoticeKeywordDataType;
+  ? NoticeActivityDataType[]
+  : NoticeKeywordDataType[];
 
 export const noticeApiByType = {
   activity: API.NOTICE_ACTIVITY,

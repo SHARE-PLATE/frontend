@@ -1,8 +1,13 @@
-import styled, { css } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
 import { navigationBarHeight } from '@components/NavigationBar/NavigationBar.style';
 
 export type ModalType = 'center' | 'underRight';
+
+export type ModalContainerPropsType = {
+  type: ModalType;
+  customedStyle?: FlattenSimpleInterpolation;
+};
 
 export const ModalBackground = styled.div<{ isFull: boolean }>`
   display: flex;
@@ -24,8 +29,8 @@ export const ModalBackground = styled.div<{ isFull: boolean }>`
   `}
 `;
 
-export const ModalContainer = styled.div<{ type: ModalType }>`
-  ${({ type, theme: { colors } }) => css`
+export const ModalContainer = styled.div<ModalContainerPropsType>`
+  ${({ type, customedStyle, theme: { colors } }) => css`
     position: absolute;
     z-index: 2;
     border-radius: 8px;
@@ -41,5 +46,7 @@ export const ModalContainer = styled.div<{ type: ModalType }>`
       right: 1rem;
       bottom: ${`calc(${navigationBarHeight} + 1rem)`};
     `};
+
+    ${customedStyle};
   `}
 `;

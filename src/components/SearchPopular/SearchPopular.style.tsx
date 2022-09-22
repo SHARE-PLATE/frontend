@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
-  margin-top: 2rem;
+  padding-top: 1.5rem;
+  padding-left: 1rem;
 `;
 
 export const Header = styled.div`
@@ -32,7 +33,6 @@ export const Content = styled.div`
     padding: 0.5rem 0.7rem;
     width: fit-content;
   `}
-
 
   ${({ theme: { fonts, colors } }) => css`
     > :first-child {

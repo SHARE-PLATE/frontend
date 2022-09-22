@@ -24,14 +24,18 @@ const Chat = ({
   return (
     <S.Wrapper writtenByMe={writtenByMe}>
       {!writtenByMe && (
-        <ImgContainer
-          imgSrc={writerThumbnailImageUrl}
-          imgTitle={writerThumbnailImageUrl}
-          imgWrapperRatio={1 / 1}
-          imgWrapperWidth='2.25rem'
-          borderRadius='5rem'
-          additionalStyle={S.AdditionalImgStyle}
-        />
+        <S.ProfileImgWrapper>
+          <ImgContainer
+            imgSrc={writerThumbnailImageUrl}
+            imgTitle={writerThumbnailImageUrl}
+            imgWrapperRatio={1 / 1}
+            imgWrapperWidth={S.profileImgWidth}
+            borderRadius='5rem'
+            additionalStyle={S.AdditionalImgStyle}
+            // profile image is always 1:1 ratio
+            noAlign={true}
+          />
+        </S.ProfileImgWrapper>
       )}
       <S.TextWrapper>
         {!writtenByMe && <S.Writer writtenByMe={writtenByMe}>{writer}</S.Writer>}

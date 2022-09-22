@@ -85,11 +85,12 @@ const colors = {
   grey5: '#666666',
   grey6: '#343434',
   grey7: '#a8a8a8',
-  black: '#191919',
+  black: '#343434',
   orange0: '#ffd6c7',
   orange1: '#ff8e65',
   orange2: '#FF453A',
   orange3: '#ff453f',
+  orange4: '#ff6057',
   red0: '#FFEAE9',
   blue0: '#1980E8',
 };

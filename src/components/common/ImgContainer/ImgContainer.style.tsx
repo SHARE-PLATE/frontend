@@ -6,6 +6,7 @@ type ImgWrapperPropsType = {
   samePart: SamePartType;
   imgWrapperRatio: number;
   imgWrapperWidth: string;
+  noAlign?: boolean;
   borderRadius?: string;
   gapBetweenCenter?: number;
   additionalStyle?: FlattenSimpleInterpolation;
@@ -18,6 +19,11 @@ export const Wrapper = styled.div<ImgWrapperPropsType>`
     border-radius: ${P.borderRadius};
     overflow: hidden;
     opacity: 0;
+
+    ${P.noAlign &&
+    css`
+      opacity: 1;
+    `}
 
     ${P.gapBetweenCenter !== undefined &&
     css`

@@ -9,6 +9,7 @@ type ImgContainerPropsType = {
   imgTitle: string;
   imgWrapperWidth: string;
   imgWrapperRatio: number;
+  noAlign?: boolean;
   borderRadius?: string;
   additionalStyle?: FlattenSimpleInterpolation;
 };
@@ -20,6 +21,7 @@ const ImgContainer = ({
   imgTitle,
   imgWrapperWidth,
   imgWrapperRatio,
+  noAlign,
   borderRadius,
   additionalStyle,
 }: ImgContainerPropsType) => {
@@ -57,8 +59,8 @@ const ImgContainer = ({
   };
 
   useEffect(() => {
-    alignCenter();
-  }, [imgWrapperRef, imgSize]);
+    if (!noAlign) alignCenter();
+  }, [imgSize]);
 
   return (
     <S.Wrapper
@@ -67,6 +69,7 @@ const ImgContainer = ({
       imgWrapperRatio={imgWrapperRatio}
       imgWrapperWidth={imgWrapperWidth}
       borderRadius={borderRadius}
+      noAlign={noAlign}
       additionalStyle={additionalStyle}
       gapBetweenCenter={gapBetweenCenter}
     >

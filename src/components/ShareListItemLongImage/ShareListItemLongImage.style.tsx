@@ -2,9 +2,10 @@ import styled, { css } from 'styled-components';
 
 export const ItemWrapper = styled.div`
   position: relative;
-  width: 9.5rem;
+  width: 9.62rem;
+  height: 20.5rem;
   border-radius: 0.5rem;
-  box-shadow: 4px 5px 5px #00000011;
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.08);
 `;
 
 export const ImgWrapper = styled.div`
@@ -34,7 +35,7 @@ export const ItemLocation = styled.div`
   ${({ theme: { fonts, colors } }) => css`
     ${fonts.xSmallRegular}
     color: ${colors.grey4};
-    font-weight: 500;
+    /* font-weight: 400; */
   `}
 `;
 

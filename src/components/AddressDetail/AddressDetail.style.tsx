@@ -111,10 +111,10 @@ export const HomeCompanyBtn = styled.button<{ isSelected: boolean }>`
 
     ${isSelected &&
     css`
-      border: 1px solid ${colors.orange2};
-      background-color: ${colors.orange2};
+      border: 1px solid ${colors.orange4};
+      background-color: ${colors.orange4};
       color: ${colors.white1};
-      box-shadow: 3px 3px 6px ${colors.orange0};
+      box-shadow: 2px 4px 8px rgba(255, 97, 76, 0.25);
       path {
         stroke: ${colors.white1};
       }

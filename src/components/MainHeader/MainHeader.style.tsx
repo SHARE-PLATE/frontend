@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { flexBetween, flexCenter } from '@styles/mixin';
 
 type IconsWrappersPropsType = {
-  position: 'left' | 'flex-end';
+  position: 'left' | 'flex-end' | 'space-between' | 'right';
 };
 
 export const Wrapper = styled.div`

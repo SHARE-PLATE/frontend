@@ -30,3 +30,4 @@ export const fileFailed = '이미지는 최대 5장까지 첨부할 수 있어�
 export const close = '닫기';
 export const inputValueFailed = '키워드를 입력해주세요';
 export const keywordLengthFailed = '키워드는 최대 10개까지 첨부할 수 있어요';
+export const failLoadingChatroomsMention = '채팅을 불러오는 데에 실패했습니다!';

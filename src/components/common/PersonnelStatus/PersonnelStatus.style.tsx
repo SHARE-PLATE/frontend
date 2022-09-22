@@ -28,6 +28,7 @@ export const Content = styled.div`
 
     > :first-child {
       ${fonts.xSmallBold}
+      font-weight: 400;
     }
   `}
 `;
