@@ -8,6 +8,7 @@ export interface IconPropsType {
   iconName: IconsType;
   iconSize?: S.IconSizeType;
   color?: ColorsType;
+  opacity?: number;
   borderRadius?: string;
   noSkeleton?: boolean;
   handleClick?: (params: any) => void;
@@ -17,6 +18,7 @@ const Icon = ({
   iconName,
   iconSize = 'SMALL',
   color = 'white1',
+  opacity = 0.25,
   borderRadius = '0.25rem',
   noSkeleton = false,
   handleClick,
@@ -27,6 +29,7 @@ const Icon = ({
   return (
     <S.IconButton
       color={color}
+      opacity={opacity}
       borderRadius={borderRadius}
       size={iconSize}
       isSet={isSet}

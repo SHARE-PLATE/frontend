@@ -12,6 +12,7 @@ interface IconProps {
 interface IconButtonPropsType extends IconProps {
   isSet: boolean;
   color: ColorsType;
+  opacity: number;
   borderRadius: string;
   noSkeleton: boolean;
 }
@@ -43,7 +44,7 @@ const sizeStyles = css<IconProps>`
 `;
 
 export const IconButton = styled.button<IconButtonPropsType>`
-  ${({ isSet, color, borderRadius, size, noSkeleton, theme: { colors } }) =>
+  ${({ isSet, color, opacity, borderRadius, size, noSkeleton, theme: { colors } }) =>
     css`
       display: flex;
       align-items: center;
@@ -52,7 +53,7 @@ export const IconButton = styled.button<IconButtonPropsType>`
       ${!isSet &&
       !noSkeleton &&
       css`
-        opacity: 0.25;
+        opacity: ${opacity};
         height: ${getSize(size)};
         width: ${getSize(size)};
         border-radius: ${borderRadius};

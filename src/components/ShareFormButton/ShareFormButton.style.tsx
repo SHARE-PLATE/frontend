@@ -45,10 +45,13 @@ export const ButtonWrapper = styled.button`
 `;
 
 export const FormBtnWrapper = styled.div`
-  border-radius: 10rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1.5px solid #ff4a40;
-  box-shadow: 2px 4px 8px #ff453a50;
+  ${({ theme: { colors } }) => css`
+    border-radius: 10rem;
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    border: 1.5px solid ${colors.orange5};
+    box-shadow: 2px 4px 8px #ff453a50;
+  `}
 `;

@@ -39,7 +39,7 @@ const ShareFormButton = () => {
           </>
         ) : (
           <S.FormBtnWrapper>
-            <Icon iconName='Form' iconSize={3.5} />
+            <Icon iconName='Form' iconSize={3.5} color='orange5' opacity={1} />
           </S.FormBtnWrapper>
         )}
       </S.Wrapper>
