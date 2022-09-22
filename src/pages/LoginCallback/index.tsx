@@ -17,7 +17,7 @@ const LoginCallback = () => {
   const checkCode = async () => {
     const isLogin = await login();
 
-    if (isLogin) {
+    if (!isLogin) {
       setIsLoading(false);
     } else {
       navigate('/');
