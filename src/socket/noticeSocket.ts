@@ -23,28 +23,34 @@ export const noticeSocket = ({ setter }: connectNoticeParamsType) => {
   const subscribeNotice = ({ entryIds = [], keywordIds = [] }: subscribeParamsType) => {
     const subscribeURL = `/${QUEUE}/${NOTIFICATIONS}`;
     const headers = getAuthHeaders();
+    console.log(entryIds);
 
-    entryIds.forEach((id) => {
-      stompClient.subscribe(
-        subscribeURL + `/${ENTRIES}/${id}`,
-        (entryData) => {
-          const newEntryData = JSON.parse(entryData.body);
-          setter(newEntryData);
-        },
-        headers,
-      );
-    });
+    if (!!entryIds.length) {
+      entryIds.forEach((id) => {
+        stompClient.subscribe(
+          subscribeURL + `/${ENTRIES}/${id}`,
+          (entryData) => {
+            const newEntryData = JSON.parse(entryData.body);
+            console.log(newEntryData + '새로운 알림!');
+            setter(newEntryData);
+          },
+          headers,
+        );
+      });
+    }
 
-    keywordIds.forEach((id) => {
-      stompClient.subscribe(
-        subscribeURL + `/${KEYWORDS}/${id}`,
-        (keywordData) => {
-          const newKeywordData = JSON.parse(keywordData.body);
-          setter(newKeywordData);
-        },
-        headers,
-      );
-    });
+    if (!!keywordIds.length) {
+      keywordIds.forEach((id) => {
+        stompClient.subscribe(
+          subscribeURL + `/${KEYWORDS}/${id}`,
+          (keywordData) => {
+            const newKeywordData = JSON.parse(keywordData.body);
+            setter(newKeywordData);
+          },
+          headers,
+        );
+      });
+    }
   };
 
   const unsubscribe = () => {
