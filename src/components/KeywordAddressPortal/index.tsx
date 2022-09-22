@@ -8,7 +8,7 @@ import * as S from '@components/KeywordAddressPortal/KeywordAddressPortal.style'
 import Portal from '@components/Portal';
 import Icon from '@components/common/Icon';
 import { searchAroundMention, searchWayMention } from '@constants/mentions';
-import { ADD_ADDRESS_KEYWORD, SEARCH_ADDRESS } from '@constants/words';
+import { ADD_ADDRESS_KEYWORD } from '@constants/words';
 import useGeolocation from '@hooks/useGeolocation';
 import { portalState } from '@store/portal';
 
