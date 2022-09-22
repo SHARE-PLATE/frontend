@@ -40,18 +40,11 @@ export const ButtonWrapper = styled.button`
     align-items: center;
     padding-left: 0.6rem;
     gap: 0.4rem;
-    /* height: 50%; */
   `}
 `;
 
-export const FormBtnWrapper = styled.div`
-  ${({ theme: { colors } }) => css`
-    border-radius: 10rem;
-    display: flex;
-    overflow: hidden;
-    justify-content: center;
-    align-items: center;
-    border: 1.5px solid ${colors.orange5};
-    box-shadow: 2px 4px 8px #ff453a50;
-  `}
+export const FormButtonAdditionalStyle = css`
+  svg {
+    filter: drop-shadow(2px 4px 8px #ff453a50);
+  }
 `;
