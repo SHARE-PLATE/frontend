@@ -1,9 +1,5 @@
-import { useState } from 'react';
-import { useEffect } from 'react';
-
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 
-import { checkVerification } from '@api/account';
 import * as S from '@components/LoginArea/LoginArea.style';
 import { loginForServiceMention } from '@constants/mentions';
 import { LOGIN_SIGNUP } from '@constants/words';

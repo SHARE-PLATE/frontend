@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div<{ isLogin: boolean }>`
-  padding: 1rem 0;
+  margin-top: 1rem;
   display: flex;
   height: 8.44rem;
   flex-direction: column;
