@@ -1,5 +1,5 @@
 import SVG from 'react-inlinesvg';
-import styled, { css } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
 import { ColorsType } from '@styles/theme';
 
@@ -15,6 +15,7 @@ interface IconButtonPropsType extends IconProps {
   opacity: number;
   borderRadius: string;
   noSkeleton: boolean;
+  additionalStyle?: FlattenSimpleInterpolation;
 }
 
 const getSize = (size: IconSizeType) => {
@@ -44,12 +45,17 @@ const sizeStyles = css<IconProps>`
 `;
 
 export const IconButton = styled.button<IconButtonPropsType>`
-  ${({ isSet, color, opacity, borderRadius, size, noSkeleton, theme: { colors } }) =>
+  ${({
+    isSet,
+    color,
+    opacity,
+    borderRadius,
+    size,
+    noSkeleton,
+    additionalStyle,
+    theme: { colors },
+  }) =>
     css`
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
       ${!isSet &&
       !noSkeleton &&
       css`
@@ -59,6 +65,11 @@ export const IconButton = styled.button<IconButtonPropsType>`
         border-radius: ${borderRadius};
         background-color: ${colors[color]};
       `}
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      ${additionalStyle}
     `}
 `;
 

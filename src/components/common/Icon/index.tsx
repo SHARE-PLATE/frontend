@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { FlattenSimpleInterpolation } from 'styled-components';
+
 import { Icons, IconsType } from '@assets/icons';
 import * as S from '@components/common/Icon/Icon.style';
 import { ColorsType } from '@styles/theme';
@@ -11,6 +13,7 @@ export interface IconPropsType {
   opacity?: number;
   borderRadius?: string;
   noSkeleton?: boolean;
+  additionalStyle?: FlattenSimpleInterpolation;
   handleClick?: (params: any) => void;
 }
 
@@ -21,6 +24,7 @@ const Icon = ({
   opacity = 0.25,
   borderRadius = '0.25rem',
   noSkeleton = false,
+  additionalStyle,
   handleClick,
 }: IconPropsType) => {
   const [isSet, setIsSet] = useState<boolean>(false);
@@ -33,6 +37,7 @@ const Icon = ({
       borderRadius={borderRadius}
       size={iconSize}
       isSet={isSet}
+      additionalStyle={additionalStyle}
       noSkeleton={noSkeleton}
     >
       <S.Icon src={Icons[iconName]} size={iconSize} onClick={handleClick} onLoad={handleOnLoad} />
