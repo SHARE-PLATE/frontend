@@ -17,6 +17,7 @@ export const API = {
   ADD_KEYWORD: '/api/keywords',
   DELETE_KEYWORD: '/api/keywords',
   REGISTERED_KEYWORDS: '/api/keywords/location',
+  DELETE_REGISTERED_KEYWORDS: (id: number) => `/api/keywords/${id}`,
   NOTICE: '/api/notifications',
   NOTICE_ACTIVITY: '/api/notifications/activity',
   NOTICE_KEYWORD: '/api/notifications/keyword',
