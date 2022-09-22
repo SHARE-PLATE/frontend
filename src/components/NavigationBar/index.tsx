@@ -1,22 +1,27 @@
+import { useRecoilValue } from 'recoil';
+
 import AddKeywordButton from '@components/AddKeyWordButton';
 import * as S from '@components/NavigationBar/NavigationBar.style';
 import useNavigationBarInfo from '@components/NavigationBar/useNavigationBarInfo';
 import ShareFormButton from '@components/ShareFormButton';
 import Icon from '@components/common/Icon';
 import useCheckPathname from '@hooks/useCheckPathname';
+import { isNavigationState } from '@store/navigation';
 
 const NavigationBar = () => {
-  const isNavBarCondition = !useCheckPathname({
-    targetPaths: [
-      'shareForm',
-      'loginCallback',
-      'shareDetail',
-      'chatroomDetail',
-      'addKeyword',
-      'shareMap',
-      'notice',
-    ],
-  });
+  const isNavigation = useRecoilValue(isNavigationState);
+  const isNavBarCondition =
+    !useCheckPathname({
+      targetPaths: [
+        'shareForm',
+        'loginCallback',
+        'shareDetail',
+        'chatroomDetail',
+        'addKeyword',
+        'shareMap',
+        'notice',
+      ],
+    }) && isNavigation;
   const isProfile = useCheckPathname({ targetPaths: ['keyword'] });
   const navigationBarInfo = useNavigationBarInfo();
   const navigationBarButtons = navigationBarInfo.map(
