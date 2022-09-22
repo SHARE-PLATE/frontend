@@ -4,6 +4,7 @@ import { useSetRecoilState, useResetRecoilState } from 'recoil';
 import { API } from '@constants/api';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '@constants/words';
 import { thumbnailImageUrl } from '@store/thumbnailImageUrl';
+import { getAuthHeaders } from '@utils/getAuthHeaders';
 import {
   setLocalStorageInfo,
   getLocalStorageInfo,
@@ -82,4 +83,22 @@ export const useCheckLogin = () => {
       return true;
     }
   };
+};
+
+export type UserInfoDataType = {
+  profileImageUrl?: string;
+  nickname?: string;
+  email?: string;
+};
+
+export const getUserInfoData = async () => {
+  const headers = getAuthHeaders();
+
+  try {
+    const response = await axios.get<UserInfoDataType>(API.MEMBERS, { headers });
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
 };
