@@ -9,7 +9,13 @@ export const Wrapper = styled.div`
 export const InputFormWrapper = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 0.75rem;
+`;
+
+export const TowContents = styled.div`
+  display: flex;
+  gap: 12px;
+  justify-content: flex-start;
 `;
 
 export const SubmitBtn = styled.button`
