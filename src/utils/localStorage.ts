@@ -8,9 +8,12 @@ export type LocalStorageKeyType =
 
 export const getLocalStorageInfo = (key: LocalStorageKeyType) => {
   const data = window.localStorage.getItem(key);
-  const info = data && JSON.parse(data);
-
-  return info;
+  try {
+    const info = data && JSON.parse(data);
+    return info;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const setLocalStorageInfo = ({ key, info }: { key: LocalStorageKeyType; info: any }) => {
