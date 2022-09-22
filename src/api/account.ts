@@ -3,7 +3,7 @@ import { useSetRecoilState, useResetRecoilState } from 'recoil';
 
 import { API } from '@constants/api';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '@constants/words';
-import { thumbnailImageUrl } from '@store/thumbnailImageUrl';
+import { thumbnailImageUrl } from '@store/user';
 import { getAuthHeaders } from '@utils/getAuthHeaders';
 import getTokenHeaders from '@utils/getTokenHeaders';
 import {
@@ -68,21 +68,17 @@ export const useLogout = () => {
   };
 };
 
-export const useCheckLogin = () => {
+export const getBackAccessToken = async () => {
   const headers = getTokenHeaders();
 
-  return async () => {
-    const response = await axios.get(API.CHECK_LOGIN, { headers }).catch((err) => err.message);
-
-    if (typeof response === 'string') {
-      // when error occurs
-      return false;
-    } else {
-      const { headers } = response;
-      setLocalStorageInfo({ key: ACCESS_TOKEN, info: headers[ACCESS_TOKEN] });
-      return true;
-    }
-  };
+  try {
+    const response = await axios.get(API.CHECK_LOGIN, { headers });
+    const { headers: responseHeaders } = response;
+    setLocalStorageInfo({ key: ACCESS_TOKEN, info: responseHeaders[ACCESS_TOKEN] });
+    return true;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const getUserInfoData = async () => {
@@ -101,7 +97,7 @@ export const checkVerification = async () => {
 
   try {
     const response = await axios.get(API.LOGIN_VERIFICATION, { headers });
-    return response.status;
+    return response.status === 200;
   } catch (error) {
     console.error(error);
   }
