@@ -21,7 +21,3 @@ export const Header = styled.div`
 export const Subheader = styled.span`
   ${({ theme }) => theme.fonts.small}
 `;
-
-export const RegisteredKeywordWrapper = styled.div`
-  padding-top: 2rem;
-`;

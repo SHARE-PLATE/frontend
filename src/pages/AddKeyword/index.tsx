@@ -1,3 +1,5 @@
+import { useRef, useState } from 'react';
+
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 
@@ -5,35 +7,54 @@ import { addKeywords } from '@api/keyword';
 import KeywordInput from '@components/KeywordInput';
 import RegisteredKeyword from '@components/RegisteredKeyword';
 import BackTitleHeader from '@components/common/BackTitleHeader';
+import FailedModal from '@components/common/FailedModal';
+import { inputValueFailed, keywordLengthFailed } from '@constants/mentions';
 import { ADD_NOTICE_KEYWORD } from '@constants/words';
 import useInput from '@hooks/useInput';
+import useModal from '@hooks/useModal';
 import * as S from '@pages/AddKeyword/AddKeyword.style';
-import { keywordListTrigger } from '@store/keyword';
-
-interface StateType {
-  regionName: string;
-  x: string;
-  y: string;
-}
+import { keywordListTrigger, registeredKeywordTrigger } from '@store/keyword';
 
 const AddKeyword = () => {
   const {
-    state: { regionName, x, y },
+    state: { regionName },
   } = useLocation() as {
-    state: StateType;
+    state: { regionName: string };
   };
 
-  const setKeywordListTrigger = useSetRecoilState(keywordListTrigger);
   const navigate = useNavigate();
+  const [keywordLength, setKeywordLength] = useState<number>(0);
+  const [curLatitudeLongitude, setCurLatitudeLongitude] = useState<{ lat: string; lng: string }>({
+    lat: '',
+    lng: '',
+  });
+
+  const setKeywordListTrigger = useSetRecoilState(keywordListTrigger);
+  const setRegisteredKeywordTrigger = useSetRecoilState(registeredKeywordTrigger);
+
+  const modalRef = useRef<HTMLDivElement>(null);
+  const [isInputValueModalOpen, setIsInputValueModalOpen] = useModal({ modalRef });
+  const [isKeywordLengthModalOpen, setIsKeywordLengthModalOpen] = useModal({ modalRef });
+
+  const closeInputValueModal = () => setIsInputValueModalOpen(false);
+  const closeKeywordLengthModal = () => setIsKeywordLengthModalOpen(false);
+
   const keywordInputBar = useInput('');
 
   const handleSubmitClick = async () => {
-    if (!keywordInputBar.inputValue) return false;
+    if (!keywordInputBar.inputValue) {
+      setIsInputValueModalOpen(true);
+      return false;
+    }
+    if (keywordLength >= 10) {
+      setIsKeywordLengthModalOpen(true);
+      return false;
+    }
 
     const newKeyword = {
       location: regionName,
-      latitude: y,
-      longitude: x,
+      latitude: curLatitudeLongitude.lat,
+      longitude: curLatitudeLongitude.lng,
       keyword: keywordInputBar.inputValue,
     };
 
@@ -41,6 +62,7 @@ const AddKeyword = () => {
 
     if (isSuccessFetch) {
       setKeywordListTrigger((prev) => prev + 1);
+      setRegisteredKeywordTrigger((prev) => prev + 1);
       navigate('/profile/keyword');
     }
   };
@@ -52,9 +74,25 @@ const AddKeyword = () => {
         <span>{regionName}</span>
       </S.Header>
       <KeywordInput {...{ keywordInputBar }} handleSubmitClick={handleSubmitClick} />
-      <S.RegisteredKeywordWrapper>
-        <RegisteredKeyword regionName={regionName} />
-      </S.RegisteredKeywordWrapper>
+      <RegisteredKeyword
+        regionName={regionName}
+        setKeywordLength={setKeywordLength}
+        setCurLatitudeLongitude={setCurLatitudeLongitude}
+      />
+      {isInputValueModalOpen && (
+        <FailedModal
+          modalRef={modalRef}
+          closeAModal={closeInputValueModal}
+          text={inputValueFailed}
+        />
+      )}
+      {isKeywordLengthModalOpen && (
+        <FailedModal
+          modalRef={modalRef}
+          closeAModal={closeKeywordLengthModal}
+          text={keywordLengthFailed}
+        />
+      )}
     </S.Wrapper>
   );
 };

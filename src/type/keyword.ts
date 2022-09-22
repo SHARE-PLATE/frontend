@@ -7,14 +7,16 @@ export interface keywordsType {
   id: number;
   contents: string;
 }
-export interface keywordDataType {
-  location: string;
-  keywords: keywordsType[];
-}
 
-export interface newKeywordType {
+interface basicKeywordType {
   location: string;
   latitude: string;
   longitude: string;
+}
+export interface keywordDataType extends basicKeywordType {
+  keywords: keywordsType[];
+}
+
+export interface newKeywordType extends basicKeywordType {
   keyword: string;
 }
