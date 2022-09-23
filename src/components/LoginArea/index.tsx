@@ -1,4 +1,4 @@
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValueLoadable, useSetRecoilState } from 'recoil';
 
 import * as S from '@components/LoginArea/LoginArea.style';
 import { loginForServiceMention } from '@constants/mentions';
@@ -8,7 +8,8 @@ import { isLoginState } from '@store/user';
 
 const LoginArea = () => {
   const setPortalState = useSetRecoilState(portalState);
-  const isLogin = useRecoilValue(isLoginState);
+  const { state, contents } = useRecoilValueLoadable(isLoginState);
+  const isLogin = state === 'hasValue' && contents;
 
   return (
     <S.Wrapper isLogin={isLogin}>
