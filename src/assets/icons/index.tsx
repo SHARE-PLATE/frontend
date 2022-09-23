@@ -8,6 +8,7 @@ import Back from '@assets/icons/back.svg';
 import Bookmark from '@assets/icons/bookmark.svg';
 import BriefCase from '@assets/icons/briefCase.svg';
 import Camera from '@assets/icons/camera.svg';
+import CameraActive from '@assets/icons/cameraActive.svg';
 import Chat from '@assets/icons/chat.svg';
 import ChatFill from '@assets/icons/chatFill.svg';
 import CheckCircle from '@assets/icons/checkCircle.svg';
@@ -112,6 +113,7 @@ export const Icons = {
   PurchaseHistory,
   Heart,
   HeartEmpty,
+  CameraActive,
   Back,
   Clock,
   DeleteCircle,
