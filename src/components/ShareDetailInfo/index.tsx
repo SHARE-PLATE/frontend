@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
+import { v4 as getRandomKey } from 'uuid';
+
 import { getRegionWithGeo } from '@api/address';
 import * as S from '@components/ShareDetailInfo/ShareDetailInfo.style';
 import { locationMarker } from '@components/ShareDetailInfo/locationMarker';
@@ -9,7 +11,6 @@ import PersonnelStatus from '@components/common/PersonnelStatus';
 import { imageUrlsArrayListType } from '@type/shareList';
 import { calcTwoTimeDifference } from '@utils/getTimeDiff';
 
-const testHashTags = ['영수증 지참', '확인'];
 const { kakao } = window as any;
 
 const ShareDetailInfo = ({
@@ -30,6 +31,7 @@ const ShareDetailInfo = ({
 }: imageUrlsArrayListType) => {
   const ImgContents = recruitmentMemberThumbnailImageUrls.map((member: string) => (
     <ImgContainer
+      key={getRandomKey()}
       imgSrc={member}
       imgTitle={member}
       imgWrapperRatio={1 / 1}
@@ -38,8 +40,8 @@ const ShareDetailInfo = ({
     />
   ));
 
-  const hashtagContents = testHashTags.map((tag) => (
-    <S.Hashtag>
+  const hashtagContents = hashtags.map((tag) => (
+    <S.Hashtag key={getRandomKey()}>
       <span>#</span>
       <span>{tag}</span>
     </S.Hashtag>
@@ -93,7 +95,7 @@ const ShareDetailInfo = ({
       </S.UpperInfo>
       <S.LowerInfo>
         <S.PersonnelStatusWrapper>
-          현재 쉐어 참여인
+          현재 쉐어 참여인원
           <PersonnelStatus curPersonnel={currentRecruitment} totalPersonnel={finalRecruitment} />
         </S.PersonnelStatusWrapper>
         <S.ImgContentsWrapper>{ImgContents}</S.ImgContentsWrapper>

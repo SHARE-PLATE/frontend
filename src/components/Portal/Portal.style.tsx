@@ -84,13 +84,15 @@ export const PortalContent = styled.div<PortalStylePropsType>`
     css`
       ${defaultWidth}
       width: 100%;
-      height: 78%;
+      height: 80%;
       position: absolute;
-      top: 59%;
+      top: 60%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background-color: #fff;
       animation: 'slideout-bottom' 0.3s;
+      background-color: ${({ theme }) => theme.colors.white0};
+      box-shadow: 0px -6px 12px rgba(0, 0, 0, 0.08);
+      border-radius: 8px 8px 0 0;
     `}
   `}
 `;

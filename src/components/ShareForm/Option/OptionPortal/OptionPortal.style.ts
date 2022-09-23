@@ -6,7 +6,7 @@ export const PortalWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  margin: 32px 24px;
+  margin: 2rem 1.5rem;
 `;
 
 export const OptionTitle = styled.header`
@@ -77,7 +77,7 @@ export const TagInput = styled.input`
   cursor: text;
 `;
 
-export const Button = styled.button`
+export const SelectButton = styled.button`
   width: 100%;
   height: 44px;
   border-radius: 4px;

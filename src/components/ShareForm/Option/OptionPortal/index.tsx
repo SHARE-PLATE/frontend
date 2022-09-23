@@ -2,10 +2,10 @@ import { useRef } from 'react';
 
 import { useSetRecoilState } from 'recoil';
 
-import HashTag from '@components/OptionPortal/HashTag';
-import * as S from '@components/OptionPortal/OptionPortal.style';
-import useOptionInfo from '@components/OptionPortal/useOptionInfo';
 import Portal from '@components/Portal';
+import HashTag from '@components/ShareForm/Option/OptionPortal/HashTag';
+import * as S from '@components/ShareForm/Option/OptionPortal/OptionPortal.style';
+import useOptionInfo from '@components/ShareForm/Option/OptionPortal/useOptionInfo';
 import Button from '@components/common/Button';
 import { portalState } from '@store/portal';
 import { isSelectedOption } from '@store/shareRegistration';
@@ -40,9 +40,9 @@ const OptionPortal = () => {
 
         <HashTag />
 
-        <S.Button type='button' onClick={buttonClickHandler}>
+        <S.SelectButton type='button' onClick={buttonClickHandler}>
           <span>선택완료</span>
-        </S.Button>
+        </S.SelectButton>
       </S.PortalWrapper>
     </Portal>
   );

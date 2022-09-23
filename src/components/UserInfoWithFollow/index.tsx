@@ -1,5 +1,4 @@
 import * as S from '@components/UserInfoWithFollow/UserInfoWithFollow.style';
-import Icon from '@components/common/Icon';
 import ImgContainer from '@components/common/ImgContainer';
 
 interface UserInfoWithFollowPropsType {

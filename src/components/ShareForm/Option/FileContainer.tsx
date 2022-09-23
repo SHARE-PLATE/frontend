@@ -1,6 +1,8 @@
 import { useRef } from 'react';
 
-import * as S from '@components/ShareForm/ShareForm.style';
+import { v4 as getRandomKey } from 'uuid';
+
+import * as S from '@components/ShareForm/Option/ShareForm.style';
 import FailedModal from '@components/common/FailedModal';
 import Icon from '@components/common/Icon';
 import { fileFailed } from '@constants/mentions';
@@ -42,18 +44,22 @@ const FileContainer = ({ fileImage, setFileImage }: FileContainerPropsType) => {
 
   return (
     <S.FileWrapper>
-      <S.FileLabel htmlFor='input-file' isFile={fileImage?.length}>
-        <Icon iconName='Camera' />
-        <div>
+      <S.FileLabel htmlFor='input-file'>
+        {fileImage?.length ? (
+          <Icon iconName='CameraActive' iconSize={2} />
+        ) : (
+          <Icon iconName='Camera' iconSize={2} />
+        )}
+        <S.FileCount>
           <S.FileLength isFile={fileImage?.length}>{fileImage ? fileImage.length : 0}</S.FileLength>
           <span>/5</span>
-        </div>
+        </S.FileCount>
       </S.FileLabel>
       <S.FileForm type='file' id='input-file' accept='image/*' onChange={changeValues} multiple />
 
       {fileImage &&
-        [...fileImage].map((file, idx) => (
-          <S.ImagePreviewContainer key={idx}>
+        [...fileImage].map((file) => (
+          <S.ImagePreviewContainer key={getRandomKey()}>
             <S.ImagePreview src={URL.createObjectURL(file)} />
             <Icon iconName='ImgDelete' handleClick={() => deleteImage(file)} />
           </S.ImagePreviewContainer>

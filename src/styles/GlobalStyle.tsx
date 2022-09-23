@@ -49,6 +49,9 @@ const GlobalStyle = createGlobalStyle`
         cursor: pointer;
       }
     }
+    input {
+      font-family: 'Noto Sans KR';
+    }
   `}
 `;
 
