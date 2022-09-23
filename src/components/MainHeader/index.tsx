@@ -19,7 +19,12 @@ const MainHeader = () => {
       <S.IconsWrapper position={isShareList ? 'space-between' : 'right'}>
         <NoticeIcon noticeOnIcon='NoticeOn' noticeOffIcon='NoticeOff' iconSize={1.5} />
         {isShareList && (
-          <Icon iconName='Map' iconSize='LARGE' handleClick={() => navigate('/shareMap')} />
+          <Icon
+            iconName='Map'
+            iconSize='LARGE'
+            handleClick={() => navigate('/shareMap')}
+            noSkeleton={true}
+          />
         )}
       </S.IconsWrapper>
     </S.Wrapper>

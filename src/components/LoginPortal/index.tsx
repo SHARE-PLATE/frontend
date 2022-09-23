@@ -29,7 +29,7 @@ const LoginPortal = () => {
             {kakaoLoginMention}
           </S.KakaoLoginButton>
           <S.PersonImagingWrapper>
-            <Icon iconName='PersonImaging' iconSize={28.3} />
+            <Icon iconName='PersonImaging' iconSize={28.3} noSkeleton={true} />
           </S.PersonImagingWrapper>
         </S.ContentWrapper>
       </S.Wrapper>

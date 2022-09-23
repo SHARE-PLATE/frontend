@@ -13,24 +13,22 @@ import { thumbnailUrlListType } from '@type/shareList';
 import { getDeadlineSort } from '@utils/ShareListSort';
 
 const mainPageShareListCount = 4;
-const isLogin = false;
 
 const MainContents = () => {
   const [deliveryData, setDeliveryData] = useState<thumbnailUrlListType[]>();
   const [ingredient, setIngredientData] = useState<thumbnailUrlListType[]>();
   const location = useRecoilValue(currentLatitudeLongitude);
 
+  const getData = async () => {
+    const deliveryFetchData = await getShareListData('delivery', location);
+    const ingredientFetchData = await getShareListData('ingredient', location);
+
+    setDeliveryData(deliveryFetchData);
+    setIngredientData(ingredientFetchData);
+  };
+
   useEffect(() => {
-    (async () => {
-      const deliveryFetchData = await getShareListData('delivery', location);
-
-      setDeliveryData(deliveryFetchData);
-    })();
-
-    (async () => {
-      const ingredientFetchData = await getShareListData('ingredient', location);
-      setIngredientData(ingredientFetchData);
-    })();
+    getData();
   }, [location]);
 
   return (
@@ -65,7 +63,7 @@ const MainContents = () => {
           />
         )}
       </S.PreviewWrapper>
-      {!isLogin && <LoginArea />}
+      <LoginArea />
     </S.Wrapper>
   );
 };

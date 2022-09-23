@@ -2,13 +2,13 @@ import styled, { css } from 'styled-components';
 
 import { ColorsType } from '@styles/theme';
 
-export type AnimationPropsType = {
+export interface AnimationPropsType {
   color: ColorsType;
   size: number;
   border: number;
-};
+}
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{ height: string }>`
   display: flex;
   align-items: center;
   justify-content: center;

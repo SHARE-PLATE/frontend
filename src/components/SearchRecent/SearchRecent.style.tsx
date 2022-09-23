@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 export const RecentWrapper = styled.div`
   ${({ theme: { colors } }) => css`
     flex-grow: 1;
+    overflow-y: scroll;
     background-color: ${colors.white1};
   `}
 `;

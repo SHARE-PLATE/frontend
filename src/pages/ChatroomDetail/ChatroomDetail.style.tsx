@@ -13,10 +13,6 @@ export const Wrapper = styled.div`
   gap: 0;
 `;
 
-export const LoadingWrapper = styled.div`
-  padding: 5rem 0;
-`;
-
 export const TopFixedWrapper = styled.div`
   ${({ theme: { defaultHeaderHeight, defaultWidth } }) => css`
     ${defaultWidth}

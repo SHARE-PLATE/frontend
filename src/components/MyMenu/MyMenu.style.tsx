@@ -20,6 +20,7 @@ export const Menu = styled.li`
     display: flex;
     position: relative;
     flex-direction: column;
+    align-items: center;
     padding: 1rem;
     gap: 0.5rem;
     width: calc(100% / 3);

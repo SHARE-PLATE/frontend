@@ -23,6 +23,12 @@ const Portal = ({ portalName, children, type, closeBtn }: PortalPropsType) => {
   const isPortal = portal === portalName;
   const backgroundRef = useRef<HTMLDivElement>(null);
 
+  if (isPortal) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = 'unset';
+  }
+
   const closePortal = (event: React.MouseEvent | MouseEvent) => {
     event.stopPropagation();
     setPortal(null);
