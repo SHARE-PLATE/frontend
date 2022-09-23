@@ -9,7 +9,7 @@ export const ContentsContainer = styled.div`
     padding-top: 1.7rem;
     margin-top: -1rem;
     background-color: ${colors.white1};
-    box-shadow: 0 -4px 8px #00000015;
+    box-shadow: 0px -8px 16px rgba(0, 0, 0, 0.08);
     z-index: 0;
   `}
 `;

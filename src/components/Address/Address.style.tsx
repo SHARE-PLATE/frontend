@@ -21,7 +21,6 @@ export const LocationWrapper = styled.div`
 `;
 
 export const IconWrapper = styled.div`
-  svg {
-    padding-top: 0.1rem;
-  }
+  display: flex;
+  align-items: center;
 `;
