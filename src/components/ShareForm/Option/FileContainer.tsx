@@ -44,12 +44,16 @@ const FileContainer = ({ fileImage, setFileImage }: FileContainerPropsType) => {
 
   return (
     <S.FileWrapper>
-      <S.FileLabel htmlFor='input-file' isFile={fileImage?.length}>
-        <Icon iconName='Camera' />
-        <div>
+      <S.FileLabel htmlFor='input-file'>
+        {fileImage?.length ? (
+          <Icon iconName='CameraActive' iconSize={2} />
+        ) : (
+          <Icon iconName='Camera' iconSize={2} />
+        )}
+        <S.FileCount>
           <S.FileLength isFile={fileImage?.length}>{fileImage ? fileImage.length : 0}</S.FileLength>
           <span>/5</span>
-        </div>
+        </S.FileCount>
       </S.FileLabel>
       <S.FileForm type='file' id='input-file' accept='image/*' onChange={changeValues} multiple />
 
