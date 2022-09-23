@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    padding-bottom: 5rem;
   `}
 `;
 
