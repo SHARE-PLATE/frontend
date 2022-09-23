@@ -12,21 +12,19 @@ export const FileWrapper = styled.div`
   ${noScrollBar}
 `;
 
-export const FileLabel = styled.label<{ isFile?: number }>`
-  border-radius: 4px;
-  background-color: ${({ theme }) => theme.colors.grey1};
-  cursor: pointer;
-  padding: 6px 25px;
+export const FileLabel = styled.label`
   text-align: center;
-  ${({ isFile }) => css`
-    ${isFile &&
-    css`
-      path {
-        fill: ${({ theme }) => theme.colors.orange3};
-      }
-    `}
-  `}
+  cursor: pointer;
+  padding: 0.75rem 1.25rem;
+  background-color: ${({ theme }) => theme.colors.white2};
+  border: 1px solid ${({ theme }) => theme.colors.grey2};
+  border-radius: 4px;
 `;
+
+export const FileCount = styled.div`
+  color: ${({ theme }) => theme.colors.grey4};
+`;
+
 export const FileLength = styled.span<{ isFile?: number }>`
   ${({ isFile }) => css`
     ${isFile &&
@@ -51,8 +49,9 @@ export const ImagePreviewContainer = styled.div`
 `;
 
 export const ImagePreview = styled.img`
-  width: 76px;
-  height: 59px;
+  width: 5rem;
+  height: 4.5rem;
+  border-radius: 4px;
 `;
 
 //default style
@@ -97,17 +96,25 @@ export const NoneLocation = styled.span`
 //DateContainer.tsx
 export const DateInputForm = styled.input`
   ${flexCenter}
-
+  text-align: center;
   padding: 0.625rem 0.75rem;
   width: 100%;
   height: 2.625rem;
   line-height: 20px;
   letter-spacing: 1px;
-  ${({ theme }) => theme.fonts.mediumBold};
+  ${({ theme }) => theme.fonts.small};
+  font-weight: 500;
   color: ${({ theme }) => theme.colors.black};
   background: ${({ theme }) => theme.colors.white2};
   border: 1px solid ${({ theme }) => theme.colors.grey3};
   border-radius: 4px;
+
+  //아이콘 숨기기
+  &&[type='time']::-webkit-calendar-picker-indicator,
+  &&[type='date']::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+  }
 `;
 
 //RecruitmentContainer.tsx
