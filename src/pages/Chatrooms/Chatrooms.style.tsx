@@ -5,11 +5,35 @@ export const Wrapper = styled.div`
     ${defaultPadding};
     background-color: ${colors.white1};
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
   `}
 `;
 
-export const ContentWrapper = styled.div``;
+export const CenterWrapper = styled.div`
+  ${({ theme: { colors, fonts } }) => css`
+    ${fonts.largeBold};
+    color: ${colors.grey4};
+    flex-grow: 1;
+    margin-top: -5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+  `}
+`;
 
-export const LoadingWrapper = styled.div`
-  padding: 5rem 0;
+export const ReloadButton = styled.div`
+  ${({ theme: { colors, fonts } }) => css`
+    ${fonts.largeBold};
+    color: ${colors.white0};
+    background-color: ${colors.grey4};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    width: 7.5rem;
+    height: 3rem;
+  `}
 `;
