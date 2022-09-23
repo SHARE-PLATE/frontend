@@ -6,7 +6,6 @@ import { getShareListData } from '@api/shareList';
 import LoginArea from '@components/LoginArea';
 import * as S from '@components/MainContents/MainContents.style';
 import PreviewShareListLeftImage from '@components/PreviewShareListLeftImage';
-import Icon from '@components/common/Icon';
 import Title from '@components/common/Title';
 import { shareDeliveryMention, shareIngredientMention } from '@constants/mentions';
 import { currentLatitudeLongitude } from '@store/location';

@@ -1,4 +1,4 @@
-import { Dispatch, RefObject } from 'react';
+import { Dispatch } from 'react';
 
 import * as S from '@components/KeywordBox/KeywordBox.style';
 import Icon from '@components/common/Icon';

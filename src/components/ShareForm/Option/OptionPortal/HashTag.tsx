@@ -1,8 +1,9 @@
 import { useState } from 'react';
 
 import { useRecoilState } from 'recoil';
+import { v4 as getRandomKey } from 'uuid';
 
-import * as S from '@components/OptionPortal/OptionPortal.style';
+import * as S from '@components/ShareForm/Option/OptionPortal/OptionPortal.style';
 import Icon from '@components/common/Icon';
 import { tagList } from '@store/shareRegistration';
 
@@ -35,9 +36,9 @@ const HashTag = () => {
     <S.HashTagContainer>
       <S.CategoryTitle>태그</S.CategoryTitle>
       <S.TagBox>
-        {tagListValue.map((tagItem, idx) => {
+        {tagListValue.map((tagItem) => {
           return (
-            <S.TagItem key={idx}>
+            <S.TagItem key={getRandomKey()}>
               <span>{tagItem}</span>
               <Icon iconName='X_Icon' handleClick={() => deleteTagItem(tagItem)} />
             </S.TagItem>

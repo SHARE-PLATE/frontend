@@ -5,7 +5,15 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 
 import { registrationShareListData } from '@api/shareList';
-import { FileContainer, TextContainer, ContentDescription } from '@components/ShareForm';
+import {
+  FileContainer,
+  TextContainer,
+  ContentDescription,
+  AddressContainer,
+  DateContainer,
+  RecruitmentContainer,
+  OptionPortalButton,
+} from '@components/ShareForm';
 import ShareFormHeader from '@components/ShareFormHeader';
 import FailedModal from '@components/common/FailedModal';
 import { dataFailed } from '@constants/mentions';
@@ -103,22 +111,35 @@ const ShareRegistration = () => {
       <ShareFormHeader />
       <S.InputFormWrapper onSubmit={handelSubmit} encType='multipart/form-data'>
         <FileContainer fileImage={fileImage} setFileImage={setFileImage} />
+
         <TextContainer
           titleInput={titleInput}
           priceInput={priceInput}
           originalPriceInput={originalPriceInput}
-          placeName={place_name}
+        />
+
+        <AddressContainer placeName={place_name} />
+
+        <DateContainer
           appointmentDateTime={appointmentDateTime}
           setAppointmentDateTime={setAppointmentDateTime}
           appointmentTime={appointmentTime}
           setAppointmentTime={setAppointmentTime}
-          recruitmentValue={recruitmentValue}
-          setRecruitmentValue={setRecruitmentValue}
         />
+
+        <S.TowContents>
+          <RecruitmentContainer
+            recruitmentValue={recruitmentValue}
+            setRecruitmentValue={setRecruitmentValue}
+          />
+          <OptionPortalButton />
+        </S.TowContents>
+
         <ContentDescription
           descriptionValue={descriptionValue}
           setDescriptionValue={setDescriptionValue}
         />
+
         <S.SubmitBtn type='submit'>등록완료</S.SubmitBtn>
         {isModalOpen && (
           <FailedModal modalRef={modalRef} closeAModal={closeModal} text={dataFailed} />

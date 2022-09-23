@@ -8,10 +8,16 @@ export const Wrapper = styled.div`
 
 export const InputBox = styled.input`
   ${flexCenter}
-  padding: 11px 16px;
+  padding: 0.625rem 0.75rem;
   width: 100%;
-  height: 41px;
+  height: 2.625rem;
   line-height: 20px;
   letter-spacing: 1px;
   border: 1px solid ${({ theme }) => theme.colors.grey3};
+  background: ${({ theme }) => theme.colors.white2};
+  border-radius: 4px;
+
+  :focus-visible {
+    outline: none;
+  }
 `;
