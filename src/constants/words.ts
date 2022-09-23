@@ -8,6 +8,7 @@ export const CHAT = 'chat';
 export const CHATROOM_ID = 'chatRoomId';
 export const CHATROOMS = 'chatrooms';
 export const DELIVERY = 'delivery';
+export const CHATROOM_MEMBERS = 'chatroom-members';
 export const INGREDIENTS = 'ingredients';
 export const NOTIFICATIONS = 'notifications';
 export const TOPIC = 'topic';

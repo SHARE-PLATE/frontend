@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction } from 'react';
 import SockJs from 'sockjs-client';
 import StompJs from 'stompjs';
 
-import { APP, CHAT, CHATROOMS, TOPIC, WEBSOCKET } from '@constants/words';
+import { APP, CHAT, CHATROOMS, CHATROOM_MEMBERS, TOPIC, WEBSOCKET } from '@constants/words';
 import { TestChatroomDetailChatsType } from '@pages/ChatroomDetail/chatroomDetailData';
 import { getAuthHeaders } from '@utils/getAuthHeaders';
 
@@ -31,7 +31,7 @@ export const connectChat = () => {
   const stompClient = StompJs.over(sock);
 
   const subscribeChat = ({ setter, chatroomId }: subscribeParamsType) => {
-    const subscribeURL = `/${TOPIC}/${CHATROOMS}/${chatroomId}`;
+    const subscribeURL = `/${TOPIC}/${CHATROOM_MEMBERS}/${chatroomId}`;
     const headers = getAuthHeaders();
 
     stompClient.subscribe(
