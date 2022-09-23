@@ -6,7 +6,7 @@ import LoginPortal from '@components/LoginPortal';
 import NavigationBar from '@components/NavigationBar';
 import SearchPortal from '@components/SearchPortal';
 import OptionPortal from '@components/ShareForm/Option/OptionPortal';
-import useCheckLoginState from '@hooks/useCheckLoginState';
+import useCheckIsLogin from '@hooks/useCheckIsLogin';
 import useNoticeAlarm from '@hooks/useNoticeAlarm';
 import { routes } from '@router';
 import Styles from '@styles';
@@ -15,7 +15,7 @@ const App = () => {
   const element = useRoutes(routes);
   const noticeAlarm = useNoticeAlarm();
 
-  useCheckLoginState();
+  useCheckIsLogin();
   noticeAlarm();
 
   return (
