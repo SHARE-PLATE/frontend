@@ -6,15 +6,13 @@ import Loading from '@components/Loading';
 import { getChatDdataFailedMention } from '@constants/mentions';
 import { RELOAD } from '@constants/words';
 import * as S from '@pages/Chatrooms/Chatrooms.style';
-import { chatroomDetailTrigger } from '@store/chatroomDetail';
-import { chatroomsState } from '@store/chatrooms';
+import { chatroomsState, chatroomsTrigger } from '@store/chatrooms';
 
 const Chatrooms = () => {
   const { contents: chatroomsData, state } = useRecoilValueLoadable(chatroomsState('entry'));
-  const setChatroomsTrigger = useSetRecoilState(chatroomDetailTrigger);
+  const setChatroomsTrigger = useSetRecoilState(chatroomsTrigger);
 
   const reloadChatroomsData = () => {
-    console.log('hi');
     setChatroomsTrigger((prev) => prev + 1);
   };
 

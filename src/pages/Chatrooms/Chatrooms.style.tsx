@@ -24,7 +24,7 @@ export const CenterWrapper = styled.div`
   `}
 `;
 
-export const ReloadButton = styled.div`
+export const ReloadButton = styled.button`
   ${({ theme: { colors, fonts } }) => css`
     ${fonts.largeBold};
     color: ${colors.white0};
