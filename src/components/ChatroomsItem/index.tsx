@@ -40,6 +40,12 @@ const ChatroomsItem = ({
     if (distance <= -20) setMoving('right');
   };
 
+  const handleClickItem = () => {
+    if (!wrapperRef.current) return;
+    const { left } = wrapperRef.current.style;
+    if (left === '0px') navigate(`/chatroom-detail/${id}`);
+  };
+
   const handleClickExitBtn = async (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
 
@@ -86,7 +92,7 @@ const ChatroomsItem = ({
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseLeaveOrUp}
         onMouseLeave={handleMouseLeaveOrUp}
-        onClick={() => navigate(`/chatroom-detail/${id}`)}
+        onClick={handleClickItem}
       >
         <S.ShowedWrapper>
           <S.InfoWrapper>
