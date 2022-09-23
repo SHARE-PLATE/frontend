@@ -44,7 +44,7 @@ const sizeStyles = css<IconProps>`
     `}
 `;
 
-export const IconButton = styled.button<IconButtonPropsType>`
+export const IconButton = styled.div<IconButtonPropsType>`
   ${({
     isSet,
     color,
