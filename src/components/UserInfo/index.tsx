@@ -1,17 +1,41 @@
+import { useState } from 'react';
+import { useEffect } from 'react';
+
+import { getUserInfoData, UserInfoDataType } from '@api/account';
 import * as S from '@components/UserInfo/UserInfo.style';
 import Icon from '@components/common/Icon';
-import { userInfoExample } from '@data/userInfo';
+import ImgContainer from '@components/common/ImgContainer';
 
 const UserInfo = () => {
-  const userInfo = userInfoExample;
+  const [userInfo, setUserInfo] = useState<UserInfoDataType>({});
+  const { profileImageUrl, nickname, email } = userInfo;
+
+  const getUserInfo = async () => {
+    const userInfoData = await getUserInfoData();
+    if (userInfoData) setUserInfo(userInfoData);
+  };
+
+  useEffect(() => {
+    getUserInfo();
+  }, []);
 
   return (
     <S.Wrapper>
       <S.InfoContainer>
-        <S.Image src={userInfo.profileImageUrl} alt='유저 이미지' />
+        <S.ImgWrapper isSet={!!profileImageUrl}>
+          {profileImageUrl && (
+            <ImgContainer
+              imgSrc={profileImageUrl}
+              imgTitle={'userImage'}
+              imgWrapperRatio={1 / 1}
+              imgWrapperWidth='3.5rem'
+              borderRadius='10rem'
+            />
+          )}
+        </S.ImgWrapper>
         <S.Info>
-          <S.Nickname>{userInfo.nickname}</S.Nickname>
-          <S.Email>{userInfo.email}</S.Email>
+          <S.Nickname isSet={!!nickname}>{nickname}</S.Nickname>
+          <S.Email isSet={!!email}>{email}</S.Email>
         </S.Info>
       </S.InfoContainer>
       <S.IconWrapper>

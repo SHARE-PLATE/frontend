@@ -33,6 +33,7 @@ export const LOGIN_SIGNUP = '로그인 / 회원가입';
 export const SHOW_MORE = '더보기';
 export const CHATTING = '채팅하기';
 export const FINISH = '완료';
+export const RELOAD = '다시 시도';
 export const PARTICIPATING = '참여하기';
 export const ADD_HOME = '집 추가';
 export const ADD_COMPANY = '회사 추가';

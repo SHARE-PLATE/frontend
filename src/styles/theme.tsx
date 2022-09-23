@@ -91,6 +91,7 @@ const colors = {
   orange2: '#FF453A',
   orange3: '#ff453f',
   orange4: '#ff6057',
+  orange5: '#ff4a40',
   red0: '#FFEAE9',
   blue0: '#1980E8',
 };

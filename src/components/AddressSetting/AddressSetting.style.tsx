@@ -31,4 +31,6 @@ export const HomeCompanyText = styled.div`
   `}
 `;
 
-export const AddressRegisteredList = styled.div``;
+export const AddressRegisteredList = styled.div`
+  overflow-y: scroll;
+`;

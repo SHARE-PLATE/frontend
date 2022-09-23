@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
     display: flex;
     gap: 0.75rem;
     flex-direction: column;
+    position: relative;
   `}
 `;
 
@@ -39,6 +40,8 @@ export const CloseBtn = styled.button`
 export const KakaoLoginButton = styled.button`
   ${({ theme: { fonts } }) => css`
     ${fonts.large}
+
+    z-index: 3;
     display: flex;
     gap: 0.2rem;
     align-items: center;
@@ -59,7 +62,7 @@ export const KakaoLoginButton = styled.button`
 export const PersonImagingWrapper = styled.div`
   position: absolute;
   right: -80px;
-  bottom: -40px;
+  bottom: -80px;
 `;
 
 export const LogoWrapper = styled.div`

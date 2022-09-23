@@ -63,11 +63,7 @@ const ChatroomDetail = () => {
         );
 
       case 'loading':
-        return (
-          <S.LoadingWrapper>
-            <Loading color='grey2' size={30} border={5} />
-          </S.LoadingWrapper>
-        );
+        return <Loading color='orange2' size={42} border={6} height='100vh' />;
     }
   };
 

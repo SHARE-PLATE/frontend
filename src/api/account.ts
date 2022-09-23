@@ -3,13 +3,20 @@ import { useSetRecoilState, useResetRecoilState } from 'recoil';
 
 import { API } from '@constants/api';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '@constants/words';
-import { thumbnailImageUrl } from '@store/thumbnailImageUrl';
+import { thumbnailImageUrl } from '@store/user';
+import { getAuthHeaders } from '@utils/getAuthHeaders';
+import getTokenHeaders from '@utils/getTokenHeaders';
 import {
   setLocalStorageInfo,
-  getLocalStorageInfo,
   LocalStorageKeyType,
   removeLocalStorageInfo,
 } from '@utils/localStorage';
+
+export type UserInfoDataType = {
+  profileImageUrl?: string;
+  nickname?: string;
+  email?: string;
+};
 
 export const getLoginPage = async () => {
   window.location.href = process.env.REACT_APP_BASE_URL + API.LOGIN_FORM;
@@ -47,10 +54,7 @@ export const useLogin = (code: string | null) => {
 
 export const useLogout = () => {
   const resetThumbnailImageUrl = useResetRecoilState(thumbnailImageUrl);
-  const headers: any = {}; // headers 초기 설정 재정리 필요
-
-  headers[ACCESS_TOKEN] = getLocalStorageInfo(ACCESS_TOKEN);
-  headers[REFRESH_TOKEN] = getLocalStorageInfo(REFRESH_TOKEN);
+  const headers = getTokenHeaders();
 
   const removeUserInfo = () => {
     resetThumbnailImageUrl();
@@ -64,22 +68,37 @@ export const useLogout = () => {
   };
 };
 
-export const useCheckLogin = () => {
-  const headers: any = {};
+export const getBackAccessToken = async () => {
+  const headers = getTokenHeaders();
 
-  headers[ACCESS_TOKEN] = getLocalStorageInfo(ACCESS_TOKEN);
-  headers[REFRESH_TOKEN] = getLocalStorageInfo(REFRESH_TOKEN);
+  try {
+    const response = await axios.get(API.CHECK_LOGIN, { headers });
+    const { headers: responseHeaders } = response;
+    setLocalStorageInfo({ key: ACCESS_TOKEN, info: responseHeaders[ACCESS_TOKEN] });
+    return true;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-  return async () => {
-    const response = await axios.get(API.CHECK_LOGIN, { headers }).catch((err) => err.message);
+export const getUserInfoData = async () => {
+  const headers = getAuthHeaders();
 
-    if (typeof response === 'string') {
-      // when error occurs
-      return false;
-    } else {
-      const { headers } = response;
-      setLocalStorageInfo({ key: ACCESS_TOKEN, info: headers[ACCESS_TOKEN] });
-      return true;
-    }
-  };
+  try {
+    const response = await axios.get<UserInfoDataType>(API.MEMBERS, { headers });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const checkVerification = async () => {
+  const headers = getTokenHeaders();
+
+  try {
+    const response = await axios.get(API.LOGIN_VERIFICATION, { headers });
+    return response.status === 200;
+  } catch (error) {
+    console.error(error);
+  }
 };
