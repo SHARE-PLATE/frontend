@@ -6,7 +6,7 @@ const defaultPadding = { padding: '0 1rem' };
 const fonts = {
   main: {
     'font-family': 'Noto Sans KR',
-    'letter-spacing': '-0.02rem',
+    'letter-spacing': '-0.3px',
     'font-weight': '500',
   },
   xSmallLight: {

@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import { GetShareMineListDataType } from '@api/shareList';
 import { RemainedTime } from '@components/RemainedTime';
 import * as S from '@components/ShareListItemCenterImage/ShareListItemCenterImage.style';
@@ -12,8 +14,14 @@ const ShareListItemCenterImage = ({
   finalRecruitment,
   closedDateTime,
 }: GetShareMineListDataType) => {
+  const navigate = useNavigate();
+
   return (
-    <S.Container key={id}>
+    <S.Container
+      onClick={() => {
+        navigate(`/share-detail/${id}`);
+      }}
+    >
       <S.ImgWrapper>
         <ImgContainer
           imgSrc={thumbnailUrl}

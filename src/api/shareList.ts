@@ -37,7 +37,7 @@ export const getShareListData = async (
   location: CurrentLatitudeLongitudeType,
 ) => {
   try {
-    const response = await axios.get(`${API.SHARE_LIST}`, {
+    const response = await axios.get(API.SHARE_LIST, {
       params: {
         type,
         latitude: location.lat,

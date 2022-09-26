@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import { RemainedTime } from '@components/RemainedTime';
 import * as S from '@components/ShareListItemLongImage/ShareListItemLongImage.style';
 import ImgContainer from '@components/common/ImgContainer';
@@ -7,6 +9,7 @@ import { getPriceType } from '@utils/getPriceType';
 
 export const ShareListItemLongImage = ({ itemInfo }: { itemInfo: thumbnailUrlListType }) => {
   const {
+    id,
     title,
     location,
     price,
@@ -15,8 +18,14 @@ export const ShareListItemLongImage = ({ itemInfo }: { itemInfo: thumbnailUrlLis
     finalRecruitment,
     currentRecruitment,
   } = itemInfo;
+  const navigate = useNavigate();
+
   return (
-    <S.ItemWrapper>
+    <S.ItemWrapper
+      onClick={() => {
+        navigate(`/share-detail/${id}`);
+      }}
+    >
       <S.ImgWrapper>
         <ImgContainer
           imgSrc={thumbnailUrl}
