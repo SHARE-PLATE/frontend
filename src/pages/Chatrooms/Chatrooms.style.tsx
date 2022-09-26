@@ -58,6 +58,7 @@ export const HeaderWrapper = styled.div`
     top: 0;
     width: 100%;
     z-index: 2;
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.08);
   `}
 `;
 
