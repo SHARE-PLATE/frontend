@@ -7,7 +7,8 @@ import { deleteKeywordAddress } from '@api/keyword';
 import * as S from '@components/KeywordBox/KeywordBox.style';
 import KeywordTable from '@components/KeywordBox/KeywordTable';
 import KeywordTableHeader from '@components/KeywordBox/KeywordTableHeader';
-import KeywordDeleteModal from '@components/KeywordDeleteModal';
+import SelectModal from '@components/common/SelectModal';
+import { addressKeywordQuestionMention, deleteYesMention } from '@constants/mentions';
 import { pathName } from '@constants/pathName';
 import useModal from '@hooks/useModal';
 import { getKeywordListsData, keywordListTrigger } from '@store/keyword';
@@ -24,9 +25,9 @@ const KeywordBox = () => {
   const closeModal = () => setIsDeleteModal(false);
   const openModal = () => setIsDeleteModal(true);
 
-  const deleteHandler = async (curLocation: string) => {
-    if (!curLocation) return false;
-    const isSuccessFetch = await deleteKeywordAddress(curLocation);
+  const deleteHandler = async (parameter: string) => {
+    if (!parameter) return false;
+    const isSuccessFetch = await deleteKeywordAddress(parameter);
 
     if (isSuccessFetch) {
       closeModal();
@@ -62,11 +63,13 @@ const KeywordBox = () => {
             </S.TableBox>
           ))}
           {isDeleteModal && (
-            <KeywordDeleteModal
+            <SelectModal
               modalRef={modalRef}
-              deleteHandler={deleteHandler}
               closeAModal={closeModal}
-              clickedLocation={clickedLocation}
+              deleteHandler={deleteHandler}
+              clickHandlerParams={clickedLocation}
+              title={addressKeywordQuestionMention}
+              okMention={deleteYesMention}
             />
           )}
         </S.Table>
