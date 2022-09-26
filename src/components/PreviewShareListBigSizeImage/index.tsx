@@ -1,20 +1,51 @@
+import React, { useRef } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 import { v4 as createRandomKey } from 'uuid';
 
+import { deleteWishListContent } from '@api/myMenu';
 import * as S from '@components/PreviewShareListBigSizeImage/PreviewShareListBigSizeImage.style';
-import { RemainedTime } from '@components/RemainedTime';
+import ImageContents from '@components/common/ImageContents';
 import ImgContainer from '@components/common/ImgContainer';
 import PersonnelStatus from '@components/common/PersonnelStatus';
+import SelectModal from '@components/common/SelectModal';
+import { deleteYesMention, wishListDeleteMention } from '@constants/mentions';
+import useModal from '@hooks/useModal';
 import { thumbnailUrlListType } from '@type/shareList';
 import { getPriceType } from '@utils/getPriceType';
 import { calcTwoTimeDifference } from '@utils/getTimeDiff';
 
 interface PreviewShareListBigSizeImagePropsType {
   data: thumbnailUrlListType[];
+  isDone?: boolean;
+  isWish?: boolean;
 }
 
-const PreviewShareListBigSizeImage = ({ data }: PreviewShareListBigSizeImagePropsType) => {
+const PreviewShareListBigSizeImage = ({
+  data,
+  isDone,
+  isWish,
+}: PreviewShareListBigSizeImagePropsType) => {
   const navigate = useNavigate();
+  const modalRef = useRef<HTMLDivElement>(null);
+  const [isDeleteModal, setIsDeleteModal] = useModal({ modalRef });
+
+  const closeModal = () => setIsDeleteModal(false);
+  const openModal = () => setIsDeleteModal(true);
+
+  const deleteHandler = async (parameter: number) => {
+    if (!parameter) return;
+    const isSuccessFetch = await deleteWishListContent(parameter);
+    if (isSuccessFetch) {
+      closeModal();
+    }
+  };
+
+  const handelClickShareList = ({ target: { tagName } }: any, id: number) => {
+    if (tagName === 'svg' || tagName === 'path') return;
+    navigate(`/share-detail/${id}`);
+  };
+
   const showedList = data.map(
     ({
       id,
@@ -28,40 +59,58 @@ const PreviewShareListBigSizeImage = ({ data }: PreviewShareListBigSizeImageProp
       createdDateTime,
       appointmentDateTime,
     }) => (
-      <S.ItemWrapper
-        key={id}
-        onClick={() => {
-          navigate(`/share-detail/${id}`);
-        }}
-      >
-        <S.ImgWrapper>
-          <ImgContainer
-            imgSrc={thumbnailUrl}
-            imgTitle={title}
-            imgWrapperWidth='100%'
-            imgWrapperRatio={2.13 / 1}
+      <React.Fragment key={id}>
+        <S.ItemWrapper
+          onClick={(e) => {
+            handelClickShareList(e, id);
+          }}
+        >
+          <S.ImgWrapper>
+            <ImgContainer
+              imgSrc={thumbnailUrl}
+              imgTitle={title}
+              imgWrapperWidth='100%'
+              imgWrapperRatio={2.13 / 1}
+            />
+            <ImageContents
+              dateTime={appointmentDateTime}
+              isDone={isDone}
+              isWish={isWish}
+              wishListClickHandler={openModal}
+            />
+          </S.ImgWrapper>
+          <S.Container>
+            <S.TextWrapper>
+              <S.Title>{title}</S.Title>
+              <S.Location>
+                {location} / {calcTwoTimeDifference(createdDateTime)}
+              </S.Location>
+              <S.PriceWrapper>
+                <S.Price>{getPriceType({ price, isUnit: true })}</S.Price>
+                <S.OriginPrice>
+                  {getPriceType({ price: originalPrice, isUnit: true })}
+                </S.OriginPrice>
+              </S.PriceWrapper>
+            </S.TextWrapper>
+            <S.PersonnelStatusWrapper>
+              <PersonnelStatus
+                curPersonnel={currentRecruitment}
+                totalPersonnel={finalRecruitment}
+              />
+            </S.PersonnelStatusWrapper>
+          </S.Container>
+        </S.ItemWrapper>
+        {isDeleteModal && (
+          <SelectModal
+            modalRef={modalRef}
+            closeAModal={closeModal}
+            deleteHandler={deleteHandler}
+            clickHandlerParams={id}
+            title={wishListDeleteMention}
+            okMention={deleteYesMention}
           />
-          <RemainedTime
-            targetTime={appointmentDateTime}
-            position={{ top: '0.375rem', left: '0.375rem' }}
-          />
-        </S.ImgWrapper>
-        <S.Container>
-          <S.TextWrapper>
-            <S.Title>{title}</S.Title>
-            <S.Location>
-              {location} / {calcTwoTimeDifference(createdDateTime)}
-            </S.Location>
-            <S.PriceWrapper>
-              <S.Price>{getPriceType({ price, isUnit: true })}</S.Price>
-              <S.OriginPrice>{getPriceType({ price: originalPrice, isUnit: true })}</S.OriginPrice>
-            </S.PriceWrapper>
-          </S.TextWrapper>
-          <S.PersonnelStatusWrapper>
-            <PersonnelStatus curPersonnel={currentRecruitment} totalPersonnel={finalRecruitment} />
-          </S.PersonnelStatusWrapper>
-        </S.Container>
-      </S.ItemWrapper>
+        )}
+      </React.Fragment>
     ),
   );
 
