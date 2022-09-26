@@ -15,6 +15,7 @@ import ShareDetail from '@pages/ShareDetail';
 import ShareList from '@pages/ShareList';
 import ShareMap from '@pages/ShareMap';
 import ShareRegistration from '@pages/ShareRegistration';
+import WishList from '@pages/WishList';
 import ProtectedRoute from '@router/ProtectedRoute';
 
 export const routes = [
@@ -33,8 +34,9 @@ export const routes = [
       { path: P.chatroomDetail + '/:id', element: <ChatroomDetail /> },
       { path: P.shareForm + '/:type', element: <ShareRegistration /> },
       { path: P.profile, element: <Profile /> },
-      { path: P.salesHistory, element: <History historyType='sales' /> },
-      { path: P.purchaseHistory, element: <History historyType='purchase' /> },
+      { path: P.salesHistory, element: <History menuType='sales' /> },
+      { path: P.purchaseHistory, element: <History menuType='purchase' /> },
+      { path: P.wishList, element: <WishList /> },
       { path: P.keyword, element: <Keyword /> },
       { path: P.addKeyword, element: <AddKeyword /> },
     ],

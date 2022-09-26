@@ -14,6 +14,7 @@ export const pathName = {
   searchShare: '/search-share',
   salesHistory: '/profile/sales-history',
   purchaseHistory: '/profile/purchase-history',
+  wishList: '/profile/wish-list',
   keyword: '/profile/keyword',
   addKeyword: '/profile/keyword/add-keyword',
   shareMap: '/shareMap',
