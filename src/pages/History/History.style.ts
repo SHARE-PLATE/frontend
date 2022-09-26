@@ -1,9 +1,11 @@
-import styled from 'styled-components';
-
-import { defaultPageStyle } from '@styles/mixin';
+import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
-  ${defaultPageStyle}
+  ${({ theme: { defaultPadding, colors } }) => css`
+    ${defaultPadding};
+    background-color: ${colors.white1};
+    flex-grow: 1;
+  `}
 `;
 
 export const ListContent = styled.div``;
