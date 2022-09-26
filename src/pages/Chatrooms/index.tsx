@@ -19,6 +19,7 @@ const Chatrooms = () => {
   const chatroomsInfo = useChatroomsInfo();
   const { contents: chatroomsData, state } = useRecoilValueLoadable(chatroomsState);
   const setChatroomsTrigger = useSetRecoilState(chatroomsTrigger);
+  console.log(chatroomsData);
 
   const reloadChatroomsData = () => {
     setChatroomsTrigger((prev) => prev + 1);
@@ -27,7 +28,11 @@ const Chatrooms = () => {
   const getContents = () => {
     switch (state) {
       case 'hasValue':
-        const chatrooms = chatroomsData.map((info) => <ChatroomsItem key={info.id} {...info} />);
+        const chatrooms = chatroomsData.map((info) => {
+          if (!info.recruitmentMemberNicknames.length) return <></>;
+          // 참여 멤버가 없을 시 채팅이 보이지 않음
+          return <ChatroomsItem key={info.id} {...info} />;
+        });
         return <S.ContentsWrapper>{chatrooms}</S.ContentsWrapper>;
       case 'hasError':
         return (
