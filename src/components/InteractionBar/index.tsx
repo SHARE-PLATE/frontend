@@ -7,7 +7,7 @@ import { changeWish, ChangeWishOptionType } from '@api/wish';
 import * as S from '@components/InteractionBar/InteractionBar.style';
 import ScrollToTopBtn from '@components/ScrollToTopBtn';
 import Icon from '@components/common/Icon';
-import { CHATTING, PARTICIPATING } from '@constants/words';
+import { PARTICIPATING, START_CHATTING } from '@constants/words';
 import { portalState } from '@store/portal';
 import { getPriceType } from '@utils/getPriceType';
 
@@ -49,7 +49,7 @@ const InteractionBar = ({ isWished }: InteractionBarPropsType) => {
         </S.PriceWrapper>
       </S.LeftWrapper>
       <S.RightWrapper>
-        <S.Button>{CHATTING}</S.Button>
+        <S.Button>{START_CHATTING}</S.Button>
         <S.Button>{PARTICIPATING}</S.Button>
       </S.RightWrapper>
     </S.Wrapper>
