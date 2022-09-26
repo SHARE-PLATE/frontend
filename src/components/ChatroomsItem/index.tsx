@@ -8,6 +8,7 @@ import { useSetRecoilState } from 'recoil';
 import { deleteChatroomData } from '@api/chat';
 import * as S from '@components/ChatroomsItem/ChatroomsItem.style';
 import ImgContainer from '@components/common/ImgContainer';
+import { noRecentChatMention } from '@constants/mentions';
 import { chatroomsTrigger, chatroomType } from '@store/chatrooms';
 
 const ChatroomsItem = ({
@@ -108,10 +109,11 @@ const ChatroomsItem = ({
                 <S.WritersCount>{currentRecruitment}</S.WritersCount>
                 <S.Time>{diffTime}</S.Time>
               </S.TextUpper>
-              <S.Content>{recentMessage}</S.Content>
+              <S.Content isRecent={!!recentMessage}>
+                {recentMessage || noRecentChatMention}
+              </S.Content>
             </S.TextWrapper>
           </S.InfoWrapper>
-
           <ImgContainer
             imgSrc={shareThumbnailImageUrl}
             imgTitle={id + shareThumbnailImageUrl}
