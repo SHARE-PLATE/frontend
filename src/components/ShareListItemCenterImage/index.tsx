@@ -5,6 +5,7 @@ import { RemainedTime } from '@components/RemainedTime';
 import * as S from '@components/ShareListItemCenterImage/ShareListItemCenterImage.style';
 import ImgContainer from '@components/common/ImgContainer';
 import PersonnelStatus from '@components/common/PersonnelStatus';
+import { pathName } from '@constants/pathName';
 
 const ShareListItemCenterImage = ({
   id,
@@ -19,7 +20,7 @@ const ShareListItemCenterImage = ({
   return (
     <S.Container
       onClick={() => {
-        navigate(`/share-detail/${id}`);
+        navigate(`${pathName.shareDetail}/${id}`);
       }}
     >
       <S.ImgWrapper>

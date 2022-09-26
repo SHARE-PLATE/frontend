@@ -4,6 +4,7 @@ import { RemainedTime } from '@components/RemainedTime';
 import * as S from '@components/ShareListItemLongImage/ShareListItemLongImage.style';
 import ImgContainer from '@components/common/ImgContainer';
 import PersonnelStatus from '@components/common/PersonnelStatus';
+import { pathName } from '@constants/pathName';
 import { thumbnailUrlListType } from '@type/shareList';
 import { getPriceType } from '@utils/getPriceType';
 
@@ -23,7 +24,7 @@ export const ShareListItemLongImage = ({ itemInfo }: { itemInfo: thumbnailUrlLis
   return (
     <S.ItemWrapper
       onClick={() => {
-        navigate(`/share-detail/${id}`);
+        navigate(`${pathName.shareDetail}/${id}`);
       }}
     >
       <S.ImgWrapper>

@@ -1,7 +1,6 @@
 import React, { useRef, MouseEvent } from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
 import { v4 as createRandomKey } from 'uuid';
 
 import { deleteWishListContent } from '@api/myMenu';

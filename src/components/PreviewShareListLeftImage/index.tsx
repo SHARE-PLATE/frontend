@@ -15,6 +15,7 @@ import PersonnelStatus from '@components/common/PersonnelStatus';
 import Price from '@components/common/Price';
 import SelectModal from '@components/common/SelectModal';
 import { deleteYesMention, historyDeleteMention } from '@constants/mentions';
+import { pathName } from '@constants/pathName';
 import useModal from '@hooks/useModal';
 import { clickedHeartId, historyTrigger } from '@store/meyMenu';
 import { CloseModal, OpenModal } from '@type/modalFunction';
