@@ -1,15 +1,23 @@
 import { useRecoilValueLoadable, useSetRecoilState } from 'recoil';
 
-import ChatroomHeader from '@components/ChatroomHeader';
 import ChatroomsItem from '@components/ChatroomsItem';
 import Loading from '@components/Loading';
+import NoticeIcon from '@components/NoticeIcon';
+import Tabs from '@components/Tabs';
 import { getChatDdataFailedMention } from '@constants/mentions';
-import { RELOAD } from '@constants/words';
+import { CHATTING, RELOAD } from '@constants/words';
+import useChatroomsInfo from '@hooks/useChatroomsInfo';
 import * as S from '@pages/Chatrooms/Chatrooms.style';
-import { chatroomsState, chatroomsTrigger } from '@store/chatrooms';
+import {
+  activeChatroomsState,
+  chatroomsState,
+  ChatroomsStateType,
+  chatroomsTrigger,
+} from '@store/chatrooms';
 
 const Chatrooms = () => {
-  const { contents: chatroomsData, state } = useRecoilValueLoadable(chatroomsState('entry'));
+  const chatroomsInfo = useChatroomsInfo();
+  const { contents: chatroomsData, state } = useRecoilValueLoadable(chatroomsState);
   const setChatroomsTrigger = useSetRecoilState(chatroomsTrigger);
 
   const reloadChatroomsData = () => {
@@ -20,7 +28,7 @@ const Chatrooms = () => {
     switch (state) {
       case 'hasValue':
         const chatrooms = chatroomsData.map((info) => <ChatroomsItem key={info.id} {...info} />);
-        return <>{chatrooms}</>;
+        return <S.ContentsWrapper>{chatrooms}</S.ContentsWrapper>;
       case 'hasError':
         return (
           <S.CenterWrapper>
@@ -39,7 +47,13 @@ const Chatrooms = () => {
 
   return (
     <S.Wrapper>
-      <ChatroomHeader />
+      <S.HeaderWrapper>
+        <S.Header>
+          <S.HeaderTitle>{CHATTING}</S.HeaderTitle>
+          <NoticeIcon noticeOnIcon='NoticeOn' noticeOffIcon='NoticeOff' iconSize={1.5} />
+        </S.Header>
+        <Tabs<ChatroomsStateType> tabsInfo={chatroomsInfo} targetAtom={activeChatroomsState} />
+      </S.HeaderWrapper>
       {getContents()}
     </S.Wrapper>
   );

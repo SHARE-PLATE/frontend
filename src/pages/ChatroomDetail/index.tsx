@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useCallback } from 'react';
 
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useRecoilValueLoadable } from 'recoil';
 
 import ChatroomBar from '@components/ChatroomBar';
@@ -15,9 +15,14 @@ import * as S from '@pages/ChatroomDetail/ChatroomDetail.style';
 import { chatroomDetailState } from '@store/chatroomDetail';
 
 const ChatroomDetail = () => {
+  const {
+    state: { chatRoomMemberId },
+  } = useLocation() as {
+    state: { chatRoomMemberId: string };
+  };
   const { id } = useParams();
   const [lastChat, setLastChat] = useState<HTMLDivElement>();
-  const chatroomDetail = chatroomDetailState(id || '');
+  const chatroomDetail = chatroomDetailState({ id });
   const {
     state,
     contents: { share, chats },
@@ -56,7 +61,7 @@ const ChatroomDetail = () => {
             </S.TopFixedWrapper>
             <ChatroomDetailContents
               chats={chats}
-              chatroomId={id || ''}
+              chatroomId={chatRoomMemberId || ''}
               scrollToBottomRef={scrollToBottomRef}
             />
           </>

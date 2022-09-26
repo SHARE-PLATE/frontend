@@ -12,6 +12,7 @@ import { chatroomsTrigger, chatroomType } from '@store/chatrooms';
 
 const ChatroomsItem = ({
   id,
+  chatRoomMemberId,
   shareThumbnailImageUrl,
   currentRecruitment,
   recentMessage,
@@ -43,7 +44,9 @@ const ChatroomsItem = ({
   const handleClickItem = () => {
     if (!wrapperRef.current) return;
     const { left } = wrapperRef.current.style;
-    if (left === '0px') navigate(`/chatroom-detail/${id}`);
+
+    if (left !== '0px') return;
+    navigate(`/chatroom-detail/${id}`, { state: { chatRoomMemberId } });
   };
 
   const handleClickExitBtn = async (event: MouseEvent<HTMLButtonElement>) => {
