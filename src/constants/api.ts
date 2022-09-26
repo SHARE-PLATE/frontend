@@ -24,4 +24,5 @@ export const API = {
   NOTICE: '/api/notifications',
   NOTICE_ACTIVITY: '/api/notifications/activity',
   NOTICE_KEYWORD: '/api/notifications/keyword',
+  DELETE_WISH_LIST: '/api/wish-list',
 };
