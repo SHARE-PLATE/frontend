@@ -15,8 +15,6 @@ export const ShareListItemLongImage = ({ itemInfo }: { itemInfo: thumbnailUrlLis
     finalRecruitment,
     currentRecruitment,
   } = itemInfo;
-  console.log({ currentRecruitment, finalRecruitment });
-
   return (
     <S.ItemWrapper>
       <S.ImgWrapper>
