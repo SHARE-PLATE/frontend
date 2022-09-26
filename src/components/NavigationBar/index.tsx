@@ -20,6 +20,9 @@ const NavigationBar = () => {
         'addKeyword',
         'shareMap',
         'notice',
+        'purchaseHistory',
+        'salesHistory',
+        'wishList',
       ],
     }) && isNavigation;
   const isProfile = useCheckPathname({ targetPaths: ['keyword'] });
