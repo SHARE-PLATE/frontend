@@ -23,7 +23,6 @@ export const noticeSocket = ({ setter }: connectNoticeParamsType) => {
   const subscribeNotice = ({ entryIds = [], keywordIds = [] }: subscribeParamsType) => {
     const subscribeURL = `/${QUEUE}/${NOTIFICATIONS}`;
     const headers = getAuthHeaders();
-    console.log(entryIds);
 
     if (!!entryIds.length) {
       entryIds.forEach((id) => {
@@ -31,7 +30,6 @@ export const noticeSocket = ({ setter }: connectNoticeParamsType) => {
           subscribeURL + `/${ENTRIES}/${id}`,
           (entryData) => {
             const newEntryData = JSON.parse(entryData.body);
-            console.log(newEntryData + '새로운 알림!');
             setter(newEntryData);
           },
           headers,

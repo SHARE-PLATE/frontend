@@ -4,12 +4,12 @@ import { API } from '@constants/api';
 import { CHATROOM_ID } from '@constants/words';
 import { getAuthHeaders } from '@utils/getAuthHeaders';
 
-type GetChatroomsDataPramsType = {
+export type GetChatroomsDataParamsType = {
   id?: string;
   type?: 'entry' | 'question';
 };
 
-export const getChatroomsData = async ({ id, type }: GetChatroomsDataPramsType) => {
+export const getChatroomsData = async ({ id, type }: GetChatroomsDataParamsType) => {
   const headers = getAuthHeaders();
 
   try {
