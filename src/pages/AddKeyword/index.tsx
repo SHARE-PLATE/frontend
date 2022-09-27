@@ -82,14 +82,14 @@ const AddKeyword = () => {
       {isInputValueModalOpen && (
         <FailedModal
           modalRef={modalRef}
-          closeAModal={closeInputValueModal}
+          closeModal={closeInputValueModal}
           text={inputValueFailed}
         />
       )}
       {isKeywordLengthModalOpen && (
         <FailedModal
           modalRef={modalRef}
-          closeAModal={closeKeywordLengthModal}
+          closeModal={closeKeywordLengthModal}
           text={keywordLengthFailed}
         />
       )}
