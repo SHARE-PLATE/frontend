@@ -1,41 +1,43 @@
 import { useEffect, useState } from 'react';
 
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
+import { getShareDetailData } from '@api/shareList';
 import { getShareListRecommendedData } from '@api/shareRecommended';
 import InteractionBar from '@components/InteractionBar';
 import PreviewShareListHalfImage from '@components/PreviewShareListHalfImage';
 import ShareDetailHeader from '@components/ShareDetailHeader';
 import ShareDetailInfo from '@components/ShareDetailInfo';
 import UserInfoWithFollow from '@components/UserInfoWithFollow';
-import { API } from '@constants/api';
 import { noRelatedShareList, offerShare } from '@constants/mentions';
 import * as S from '@pages/ShareDetail/ShareDetail.style';
 import { currentLatitudeLongitude } from '@store/location';
-import { imageUrlsArrayListType, thumbnailUrlListType } from '@type/shareList';
+import { ShareDetailType, ShareListType } from '@type/shareList';
 
 const ShareDetail = () => {
   const { id } = useParams();
-  const [detailData, setDetailData] = useState<imageUrlsArrayListType>();
-  const [recommendedData, setRecommendedData] = useState<thumbnailUrlListType[]>();
+  const [detailData, setDetailData] = useState<ShareDetailType>();
+  const [recommendedData, setRecommendedData] = useState<ShareListType[]>();
   const { lat, lng } = useRecoilValue(currentLatitudeLongitude);
 
-  useEffect(() => {
-    (async () => {
-      const { data } = await axios.get(`${API.SHARE_DETAIL(id)}`);
+  const getShareDetail = async () => {
+    if (!id) return;
+    const shareDetailData = await getShareDetailData({ id });
+    setDetailData(shareDetailData);
+  };
 
-      setDetailData(data);
-    })();
+  const getShareRecommend = async () => {
+    const recommendedFetchData = await getShareListRecommendedData(lat, lng);
+    setRecommendedData(recommendedFetchData);
+  };
+
+  useEffect(() => {
+    getShareDetail();
   }, [id]);
 
   useEffect(() => {
-    (async () => {
-      const recommendedFetchData = await getShareListRecommendedData(lat, lng);
-
-      setRecommendedData(recommendedFetchData);
-    })();
+    getShareRecommend();
   }, [lat, lng]);
 
   return (
