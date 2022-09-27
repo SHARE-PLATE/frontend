@@ -8,7 +8,7 @@ import { locationMarker } from '@components/ShareDetailInfo/locationMarker';
 import Icon from '@components/common/Icon';
 import ImgContainer from '@components/common/ImgContainer';
 import PersonnelStatus from '@components/common/PersonnelStatus';
-import { imageUrlsArrayListType } from '@type/shareList';
+import { ShareDetailType } from '@type/shareList';
 import { calcTwoTimeDifference } from '@utils/getTimeDiff';
 
 const { kakao } = window as any;
@@ -28,7 +28,7 @@ const ShareDetailInfo = ({
   hashtags,
   latitude,
   longitude,
-}: imageUrlsArrayListType) => {
+}: ShareDetailType) => {
   const ImgContents = recruitmentMemberThumbnailImageUrls.map((member: string) => (
     <ImgContainer
       key={getRandomKey()}

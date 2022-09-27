@@ -19,11 +19,11 @@ import { pathName } from '@constants/pathName';
 import useModal from '@hooks/useModal';
 import { clickedHeartId, historyTrigger } from '@store/meyMenu';
 import { CloseModal, OpenModal } from '@type/modalFunction';
-import { thumbnailUrlListType } from '@type/shareList';
+import { ShareListType } from '@type/shareList';
 import { calcTwoTimeDifference } from '@utils/getTimeDiff';
 
 interface PreviewShareListLeftImagePropsType {
-  data: thumbnailUrlListType[];
+  data: ShareListType[];
   count?: number;
   currentMyMenuType?: string;
   isHistory?: boolean;
@@ -79,7 +79,7 @@ const PreviewShareListLeftImage = ({
   };
 
   const handelClickShareList = (id: number) => {
-    navigate(`/share-detail/${id}`);
+    navigate(`${pathName.shareDetail}/${id}`);
   };
 
   data.every(
@@ -94,7 +94,7 @@ const PreviewShareListLeftImage = ({
         currentRecruitment,
         finalRecruitment,
         createdDateTime,
-        appointmentDateTime,
+        closedDateTime,
       },
       dataCount,
     ) => {
@@ -112,7 +112,7 @@ const PreviewShareListLeftImage = ({
                 imgWrapperWidth='7rem'
                 imgWrapperRatio={1 / 1}
               />
-              <ImageContents dateTime={appointmentDateTime} isDone={isDone} />
+              <ImageContents dateTime={closedDateTime} isDone={isDone} />
             </S.ImgWrapper>
             <S.ListInfo>
               <S.ListInfoTexts>

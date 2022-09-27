@@ -1,10 +1,10 @@
 import * as S from '@components/ShareListItemHalfImage/ShareListItemHalfImage.style';
 import ImgContainer from '@components/common/ImgContainer';
-import { thumbnailUrlListType } from '@type/shareList';
+import { ShareListType } from '@type/shareList';
 import { getPriceType } from '@utils/getPriceType';
 
 type ShareListItemHalfImagePropsType = {
-  itemInfo?: thumbnailUrlListType;
+  itemInfo?: ShareListType;
 };
 
 const ShareListItemHalfImage = ({ itemInfo }: ShareListItemHalfImagePropsType) => {

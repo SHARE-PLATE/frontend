@@ -5,17 +5,17 @@ import * as S from '@components/ShareListItemLongImage/ShareListItemLongImage.st
 import ImgContainer from '@components/common/ImgContainer';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import { pathName } from '@constants/pathName';
-import { thumbnailUrlListType } from '@type/shareList';
+import { ShareListType } from '@type/shareList';
 import { getPriceType } from '@utils/getPriceType';
 
-export const ShareListItemLongImage = ({ itemInfo }: { itemInfo: thumbnailUrlListType }) => {
+export const ShareListItemLongImage = ({ itemInfo }: { itemInfo: ShareListType }) => {
   const {
     id,
     title,
     location,
     price,
     thumbnailUrl,
-    appointmentDateTime,
+    closedDateTime,
     finalRecruitment,
     currentRecruitment,
   } = itemInfo;
@@ -35,7 +35,7 @@ export const ShareListItemLongImage = ({ itemInfo }: { itemInfo: thumbnailUrlLis
           imgWrapperRatio={0.686 / 1}
         />
         <RemainedTime
-          targetTime={appointmentDateTime}
+          targetTime={closedDateTime}
           position={{ top: '0.375rem', left: '0.375rem' }}
         />
       </S.ImgWrapper>

@@ -11,15 +11,15 @@ import PersonnelStatus from '@components/common/PersonnelStatus';
 import SelectModal from '@components/common/SelectModal';
 import { deleteYesMention, historyDeleteMention } from '@constants/mentions';
 import useModal from '@hooks/useModal';
-import { thumbnailUrlListType } from '@type/shareList';
+import { ShareListType } from '@type/shareList';
 import { getPriceType } from '@utils/getPriceType';
 import { calcTwoTimeDifference } from '@utils/getTimeDiff';
 
 interface PreviewShareListBigSizeImagePropsType {
-  data: thumbnailUrlListType[];
   isHistory?: boolean;
   isDone?: boolean;
   isWish?: boolean;
+  data: ShareListType[];
 }
 
 const PreviewShareListBigSizeImage = ({
@@ -59,7 +59,7 @@ const PreviewShareListBigSizeImage = ({
       currentRecruitment,
       finalRecruitment,
       createdDateTime,
-      appointmentDateTime,
+      closedDateTime,
     }) => (
       <React.Fragment key={id}>
         <S.ItemWrapper
@@ -75,7 +75,7 @@ const PreviewShareListBigSizeImage = ({
               imgWrapperRatio={2.13 / 1}
             />
             <ImageContents
-              dateTime={appointmentDateTime}
+              dateTime={closedDateTime}
               isDone={isDone}
               isWish={isWish}
               wishListClickHandler={() => {}}

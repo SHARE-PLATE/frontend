@@ -9,19 +9,19 @@ import PreviewShareListLeftImage from '@components/PreviewShareListLeftImage';
 import Title from '@components/common/Title';
 import { shareDeliveryMention, shareIngredientMention } from '@constants/mentions';
 import { currentLatitudeLongitude } from '@store/location';
-import { thumbnailUrlListType } from '@type/shareList';
+import { ShareListType } from '@type/shareList';
 import { getDeadlineSort } from '@utils/ShareListSort';
 
 const mainPageShareListCount = 4;
 
 const MainContents = () => {
-  const [deliveryData, setDeliveryData] = useState<thumbnailUrlListType[]>();
-  const [ingredient, setIngredientData] = useState<thumbnailUrlListType[]>();
+  const [deliveryData, setDeliveryData] = useState<ShareListType[]>();
+  const [ingredientData, setIngredientData] = useState<ShareListType[]>();
   const location = useRecoilValue(currentLatitudeLongitude);
 
   const getData = async () => {
-    const deliveryFetchData = await getShareListData('delivery', location);
-    const ingredientFetchData = await getShareListData('ingredient', location);
+    const deliveryFetchData = await getShareListData({ type: 'delivery', location });
+    const ingredientFetchData = await getShareListData({ type: 'ingredient', location });
 
     setDeliveryData(deliveryFetchData);
     setIngredientData(ingredientFetchData);
@@ -56,9 +56,9 @@ const MainContents = () => {
         iconSize={1.43}
       />
       <S.PreviewWrapper>
-        {ingredient && (
+        {ingredientData && (
           <PreviewShareListLeftImage
-            data={getDeadlineSort(ingredient)}
+            data={getDeadlineSort(ingredientData)}
             count={mainPageShareListCount}
           />
         )}

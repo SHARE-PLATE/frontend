@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 
-import { GetShareMineListDataType } from '@api/shareList';
 import { RemainedTime } from '@components/RemainedTime';
 import * as S from '@components/ShareListItemCenterImage/ShareListItemCenterImage.style';
 import ImgContainer from '@components/common/ImgContainer';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import { pathName } from '@constants/pathName';
+import { ShareListType } from '@type/shareList';
 
 const ShareListItemCenterImage = ({
   id,
@@ -14,7 +14,7 @@ const ShareListItemCenterImage = ({
   currentRecruitment,
   finalRecruitment,
   closedDateTime,
-}: GetShareMineListDataType) => {
+}: ShareListType) => {
   const navigate = useNavigate();
 
   return (

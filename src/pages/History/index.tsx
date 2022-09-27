@@ -15,7 +15,7 @@ import * as S from '@pages/History/History.style';
 import { activeShareList } from '@store/filterShareList';
 import { activeShareListType } from '@store/filterShareList';
 import { historyTrigger } from '@store/meyMenu';
-import { thumbnailUrlListType } from '@type/shareList';
+import { ShareListType } from '@type/shareList';
 import { getRecencySort } from '@utils/ShareListSort';
 import { getHistoryMention } from '@utils/getMention';
 
@@ -25,7 +25,8 @@ const ShareListContentComponentInfo = {
 };
 
 const History = ({ menuType }: { menuType: string }) => {
-  const [salesData, setSalesData] = useState<thumbnailUrlListType[]>();
+  const [salesData, setSalesData] = useState<ShareListType[]>();
+
   const shareListTabsInfo = useShareListTabsInfo();
   const historyListTrigger = useRecoilValue(historyTrigger);
 
@@ -33,7 +34,6 @@ const History = ({ menuType }: { menuType: string }) => {
   const currentShareType = useRecoilValue(activeShareList);
   const currentMyMenuType = historyListItem.filter((item) => item.type === menuType)[0];
   const currentCategoryContent = historyListCategoryItem.filter((item) => item.type === menuType);
-
   const ListContentComponent = ShareListContentComponentInfo[currentShareType];
 
   useEffect(() => {
