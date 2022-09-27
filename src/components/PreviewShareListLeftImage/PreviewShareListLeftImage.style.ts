@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
 export const Container = styled.div`
   display: flex;
   gap: 0.75rem;
-  width: calc(50% - 1rem);
+  width: 50%;
 
   @media (max-width: 27rem) {
     width: 100%;
@@ -50,6 +50,7 @@ export const ListInfoTexts = styled.div`
   flex-direction: column;
   position: relative;
   gap: 0.4rem;
+  width: 12.5rem;
 `;
 
 export const Title = styled.h3`
@@ -64,7 +65,7 @@ export const Title = styled.h3`
     word-break: keep-all;
 
     display: -webkit-box;
-    -webkit-line-clamp: 2; // 원하는 라인수
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
   `}
 `;

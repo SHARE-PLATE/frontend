@@ -13,7 +13,7 @@ export const HeartWrapper = styled.div<{ type: HeartWrapperType }>`
   ${({ type }) =>
     type === 'ingredient' &&
     css`
-      top: 0;
-      right: 0.375rem;
+      top: 0.3rem;
+      right: 0;
     `}
 `;
