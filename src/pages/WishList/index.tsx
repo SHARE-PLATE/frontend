@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useLayoutEffect } from 'react';
 
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
-import { getProfileMyMenuData } from '@api/myMenu';
+import { deleteWishListContent, getProfileMyMenuData } from '@api/myMenu';
 import CategoryButton from '@components/CategoryButton';
 import PreviewShareListBigSizeImage from '@components/PreviewShareListBigSizeImage';
 import PreviewShareListLeftImage from '@components/PreviewShareListLeftImage';
@@ -14,6 +14,7 @@ import useShareListTabsInfo from '@hooks/useShareListTabsInfo';
 import * as S from '@pages/WishList/WishList.style';
 import { activeShareList } from '@store/filterShareList';
 import { activeShareListType } from '@store/filterShareList';
+import { clickedHeartId } from '@store/meyMenu';
 import { thumbnailUrlListType } from '@type/shareList';
 import { getRecencySort } from '@utils/ShareListSort';
 import { getHistoryMention } from '@utils/getMention';
@@ -31,17 +32,24 @@ const WishList = () => {
   const curShareType = useRecoilValue(activeShareList);
   const currentCategoryContent = historyListCategoryItem.filter((item) => item.type === 'wishList');
 
+  const [heartIdArr, setHeartIdArr] = useRecoilState<number[]>(clickedHeartId);
+
   const ListContentComponent = ShareListContentComponentInfo[curShareType];
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     (async () => {
+      if (!!heartIdArr.length) {
+        heartIdArr.map(async (id: number) => await deleteWishListContent(id));
+      }
       const response = await getProfileMyMenuData(
         wishListItem.mineType,
         curShareType,
         curShareFilterList,
       );
+      setHeartIdArr([]);
       setWishListData(response);
     })();
+    return () => setWishListData([]);
   }, [curShareType, curShareFilterList]);
 
   return (
