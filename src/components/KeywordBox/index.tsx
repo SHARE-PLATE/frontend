@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, MouseEvent } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValueLoadable, useSetRecoilState } from 'recoil';
@@ -7,7 +7,8 @@ import { deleteKeywordAddress } from '@api/keyword';
 import * as S from '@components/KeywordBox/KeywordBox.style';
 import KeywordTable from '@components/KeywordBox/KeywordTable';
 import KeywordTableHeader from '@components/KeywordBox/KeywordTableHeader';
-import KeywordDeleteModal from '@components/KeywordDeleteModal';
+import SelectModal from '@components/common/SelectModal';
+import { addressKeywordQuestionMention, deleteYesMention } from '@constants/mentions';
 import { pathName } from '@constants/pathName';
 import useModal from '@hooks/useModal';
 import { getKeywordListsData, keywordListTrigger } from '@store/keyword';
@@ -22,11 +23,14 @@ const KeywordBox = () => {
   const setKeywordListTrigger = useSetRecoilState(keywordListTrigger);
 
   const closeModal = () => setIsDeleteModal(false);
-  const openModal = () => setIsDeleteModal(true);
+  const openModal = (e: MouseEvent) => {
+    e.stopPropagation();
+    setIsDeleteModal(true);
+  };
 
-  const deleteHandler = async (curLocation: string) => {
-    if (!curLocation) return false;
-    const isSuccessFetch = await deleteKeywordAddress(curLocation);
+  const deleteHandler = async (parameter: string) => {
+    if (!parameter) return false;
+    const isSuccessFetch = await deleteKeywordAddress(parameter);
 
     if (isSuccessFetch) {
       closeModal();
@@ -34,13 +38,10 @@ const KeywordBox = () => {
     }
   };
 
-  const keywordTableClickHandler = ({ target: { tagName } }: any, location: string) => {
-    if (tagName === 'svg' || tagName === 'path') return;
-
+  const keywordTableClickHandler = (location: string) =>
     navigate(pathName.addKeyword, {
       state: { regionName: location },
     });
-  };
 
   switch (state) {
     case 'hasValue':
@@ -49,8 +50,8 @@ const KeywordBox = () => {
           {contents.map(({ location, keywords }: keywordDataType) => (
             <S.TableBox
               key={location}
-              onClick={(e) => {
-                keywordTableClickHandler(e, location);
+              onClick={() => {
+                keywordTableClickHandler(location);
               }}
             >
               <KeywordTableHeader
@@ -62,11 +63,13 @@ const KeywordBox = () => {
             </S.TableBox>
           ))}
           {isDeleteModal && (
-            <KeywordDeleteModal
+            <SelectModal
               modalRef={modalRef}
+              closeModal={closeModal}
               deleteHandler={deleteHandler}
-              closeAModal={closeModal}
-              clickedLocation={clickedLocation}
+              clickHandlerParams={clickedLocation}
+              title={addressKeywordQuestionMention}
+              okMention={deleteYesMention}
             />
           )}
         </S.Table>

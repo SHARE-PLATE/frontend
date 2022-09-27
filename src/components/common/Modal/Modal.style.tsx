@@ -2,7 +2,7 @@ import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
 import { navigationBarHeight } from '@components/NavigationBar/NavigationBar.style';
 
-export type ModalType = 'center' | 'underRight';
+export type ModalType = 'center' | 'underRight' | 'bottom';
 
 export type ModalContainerPropsType = {
   type: ModalType;
@@ -46,7 +46,10 @@ export const ModalContainer = styled.div<ModalContainerPropsType>`
       right: 1rem;
       bottom: ${`calc(${navigationBarHeight} + 1rem)`};
     `};
-
+    ${type === 'bottom' &&
+    css`
+      bottom: 1.5rem;
+    `};
     ${customedStyle};
   `}
 `;

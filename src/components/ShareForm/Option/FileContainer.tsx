@@ -65,7 +65,7 @@ const FileContainer = ({ fileImage, setFileImage }: FileContainerPropsType) => {
           </S.ImagePreviewContainer>
         ))}
       {isFailedModal && (
-        <FailedModal modalRef={modalRef} closeAModal={closeModal} text={fileFailed} />
+        <FailedModal modalRef={modalRef} closeModal={closeModal} text={fileFailed} />
       )}
     </S.FileWrapper>
   );

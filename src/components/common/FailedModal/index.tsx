@@ -5,16 +5,16 @@ import Modal from '@components/common/Modal';
 import { close } from '@constants/mentions';
 interface FailedModalPropsType {
   modalRef: RefObject<HTMLDivElement>;
-  closeAModal: () => void;
+  closeModal: () => void;
   text: string;
 }
 
-const FailedModal = ({ modalRef, closeAModal, text }: FailedModalPropsType) => {
+const FailedModal = ({ modalRef, closeModal, text }: FailedModalPropsType) => {
   return (
     <Modal type='center' isFull={true}>
       <S.Wrapper ref={modalRef}>
         <S.Text>{text}</S.Text>
-        <S.CloseButton onClick={closeAModal}>{close}</S.CloseButton>
+        <S.CloseButton onClick={closeModal}>{close}</S.CloseButton>
       </S.Wrapper>
     </Modal>
   );

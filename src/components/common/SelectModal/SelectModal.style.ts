@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { flexBetween, flexCenter } from '@styles/mixin';
 
-export const Wrapper = styled.div`
+export const ModalWrapper = styled.div`
   ${flexCenter}
 
   flex-direction: column;

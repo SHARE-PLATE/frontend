@@ -1,4 +1,4 @@
-import { notExpiry, notReservation, notShare } from '@constants/mentions';
+import { notExpiry, notReservation, notShare, notWishList } from '@constants/mentions';
 
 export const getHistoryMention = (historyType: string, curShareFilterList: boolean) => {
   if (curShareFilterList) return notExpiry;
@@ -7,5 +7,7 @@ export const getHistoryMention = (historyType: string, curShareFilterList: boole
       return notShare;
     case 'purchase':
       return notReservation;
+    case 'wishList':
+      return notWishList;
   }
 };

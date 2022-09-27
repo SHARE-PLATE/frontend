@@ -23,4 +23,6 @@ export const historyListCategoryItem: HistoryListCategoryItemType[] = [
   { id: 2, name: '기간만료', filter: true, type: 'sales' },
   { id: 3, name: '예약중', filter: false, type: 'purchase' },
   { id: 4, name: '기간만료', filter: true, type: 'purchase' },
+  { id: 5, name: '판매중', filter: false, type: 'wishList' },
+  { id: 6, name: '기간만료', filter: true, type: 'wishList' },
 ];

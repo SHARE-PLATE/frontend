@@ -25,13 +25,16 @@ import Flag from '@assets/icons/flag.svg';
 import Form from '@assets/icons/form.svg';
 import FormClose from '@assets/icons/formClose.svg';
 import Hamburger from '@assets/icons/hamburger.svg';
+import HashDelete from '@assets/icons/hashDelete.svg';
 import Heart from '@assets/icons/heart.svg';
 import HeartEmpty from '@assets/icons/heartEmpty.svg';
+import HeartNoFill from '@assets/icons/heartNoFill.svg';
 import Home from '@assets/icons/home.svg';
 import HomeAdd from '@assets/icons/homeAdd.svg';
 import HomeFill from '@assets/icons/homeFill.svg';
 import ImgDelete from '@assets/icons/imgDelete.svg';
 import Kakao from '@assets/icons/kakao.svg';
+import KebabMenu from '@assets/icons/kebabMenu.svg';
 import LocationMarker from '@assets/icons/locationMarker.svg';
 import Logo from '@assets/icons/logo.svg';
 import LogoWithText from '@assets/icons/logoWithText.svg';
@@ -68,6 +71,8 @@ import X_Icon from '@assets/icons/x_icon.svg';
 
 export const Icons = {
   AddressHomeFill,
+  HeartNoFill,
+  KebabMenu,
   AddressHome,
   PlusBold,
   NoticeActivityEmpty,
@@ -134,6 +139,7 @@ export const Icons = {
   Hamburger,
   OffClickBar,
   OnClickBar,
+  HashDelete,
 } as const;
 
 export type IconsType = keyof typeof Icons;

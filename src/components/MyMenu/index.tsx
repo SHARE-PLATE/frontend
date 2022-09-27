@@ -16,7 +16,7 @@ const MyMenu = () => {
         <Icon iconName='PurchaseHistory' iconSize='LARGE' />
         <p>구매내역</p>
       </S.Menu>
-      <S.Menu>
+      <S.Menu onClick={() => navigate('./wish-list')}>
         <Icon iconName='Heart' iconSize='LARGE' />
         <p>찜한 리스트</p>
       </S.Menu>
