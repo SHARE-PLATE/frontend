@@ -6,15 +6,15 @@ import { useSetRecoilState } from 'recoil';
 import { getPersonalChatroom } from '@api/chat';
 import { deleteShareEntry, postShareEntry } from '@api/shareList';
 import { changeWish, ChangeWishOptionType } from '@api/wish';
-import * as S from '@components/InteractionBar/InteractionBar.style';
 import ScrollToTopBtn from '@components/ScrollToTopBtn';
+import * as S from '@components/ShareDetailBottomBar/ShareDetailBottomBar.style';
 import Icon from '@components/common/Icon';
 import { pathName } from '@constants/pathName';
 import { CANCEL_PARTICIPATING, PARTICIPATING, START_CHATTING } from '@constants/words';
 import { portalState } from '@store/portal';
 import { getPriceType } from '@utils/getPriceType';
 
-type InteractionBarPropsType = {
+type ShareDetailBottomBarPropsType = {
   isWished?: boolean;
   isEntry?: boolean;
 };
@@ -22,7 +22,7 @@ type InteractionBarPropsType = {
 const price = 10000;
 const originalPrice = 20000;
 
-const InteractionBar = ({ isWished }: InteractionBarPropsType) => {
+const ShareDetailBottomBar = ({ isWished }: ShareDetailBottomBarPropsType) => {
   const navigate = useNavigate();
   const setPortalState = useSetRecoilState(portalState);
   const [isWishedNow, setIsWishedNow] = useState(isWished);
@@ -82,4 +82,4 @@ const InteractionBar = ({ isWished }: InteractionBarPropsType) => {
   );
 };
 
-export default InteractionBar;
+export default ShareDetailBottomBar;
