@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
-import { getShareDetailData } from '@api/shareList';
+import { getShareDetailData, getShareListWriterData } from '@api/shareList';
 import { getShareListRecommendedData } from '@api/shareRecommended';
 import InteractionBar from '@components/InteractionBar';
 import PreviewShareListHalfImage from '@components/PreviewShareListHalfImage';
@@ -13,12 +13,18 @@ import UserInfoWithFollow from '@components/UserInfoWithFollow';
 import { noRelatedShareList, offerShare } from '@constants/mentions';
 import * as S from '@pages/ShareDetail/ShareDetail.style';
 import { currentLatitudeLongitude } from '@store/location';
-import { ShareDetailType, ShareListType } from '@type/shareList';
+import { ShareDetailType, ShareListType, ShareWriterSharesType } from '@type/shareList';
 
 const ShareDetail = () => {
+  const {
+    state: { writerId },
+  } = useLocation() as {
+    state: { writerId: string };
+  };
   const { id } = useParams();
   const [detailData, setDetailData] = useState<ShareDetailType>();
   const [recommendedData, setRecommendedData] = useState<ShareListType[]>();
+  const [writerSharesData, setWriterSharesData] = useState<ShareWriterSharesType[]>();
   const { lat, lng } = useRecoilValue(currentLatitudeLongitude);
 
   const getShareDetail = async () => {
@@ -32,9 +38,18 @@ const ShareDetail = () => {
     setRecommendedData(recommendedFetchData);
   };
 
+  const getWriterShares = async () => {
+    const sharListWriterData = await getShareListWriterData({ writerId });
+    if (!sharListWriterData) return;
+    const { shares } = sharListWriterData;
+    setWriterSharesData(shares);
+    console.log(shares);
+  };
+
   useEffect(() => {
     getShareDetail();
-  }, [id]);
+    getWriterShares();
+  }, []);
 
   useEffect(() => {
     getShareRecommend();

@@ -126,9 +126,9 @@ export const deleteShareEntry = async ({ id }: { id: string }) => {
   }
 };
 
-export const getShareListWriter = async ({ writerId }: { writerId: string }) => {
+export const getShareListWriterData = async ({ writerId }: { writerId: string }) => {
   try {
-    const response = await axios.get<ShareWriterType>(`${API.SHARES_WRITER}/${writerId}`);
+    const response = await axios.get<ShareWriterType>(API.SHARES_WRITER, { params: { writerId } });
     return response.data;
   } catch (error) {
     console.error(error);

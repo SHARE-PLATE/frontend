@@ -10,6 +10,7 @@ import ImgContainer from '@components/common/ImgContainer';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import SelectModal from '@components/common/SelectModal';
 import { deleteYesMention, historyDeleteMention } from '@constants/mentions';
+import { pathName } from '@constants/pathName';
 import useModal from '@hooks/useModal';
 import { ShareListType } from '@type/shareList';
 import { getPriceType } from '@utils/getPriceType';
@@ -46,7 +47,8 @@ const PreviewShareListBigSizeImage = ({
     }
   };
 
-  const handelClickShareList = (id: number) => navigate(`/share-detail/${id}`);
+  const handleClickShareList = ({ id, writerId }: { id: number; writerId: string }) =>
+    navigate(`${pathName.shareDetail}/${id}`, { state: { writerId } });
 
   const showedList = data.map(
     ({
@@ -60,11 +62,12 @@ const PreviewShareListBigSizeImage = ({
       finalRecruitment,
       createdDateTime,
       closedDateTime,
+      writerId,
     }) => (
       <React.Fragment key={id}>
         <S.ItemWrapper
           onClick={() => {
-            handelClickShareList(id);
+            handleClickShareList({ id, writerId });
           }}
         >
           <S.ImgWrapper>
