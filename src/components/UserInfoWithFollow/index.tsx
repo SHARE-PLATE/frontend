@@ -24,10 +24,6 @@ const UserInfoWithFollow = ({ writerThumbnailImageUrl, writer }: UserInfoWithFol
               전체상품 <span className='number'>10</span>
               {/* 전체상품 데이터 필요 */}
             </span>
-            <span>
-              팔로워 <span className='number'>9</span>
-              {/* 팔로워 데이터 필요 */}
-            </span>
           </S.InfoDetailWrapper>
         </S.InfoWrapper>
       </S.LeftWrapper>
