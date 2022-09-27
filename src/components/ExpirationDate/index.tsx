@@ -1,4 +1,4 @@
-import * as S from '@components/PreviewShareListLeftImage/PreviewShareListLeftImage.style';
+import * as S from '@components/ExpirationDate/ExpirationDate.style';
 import Icon from '@components/common/Icon';
 
 const ExpirationDate = () => {

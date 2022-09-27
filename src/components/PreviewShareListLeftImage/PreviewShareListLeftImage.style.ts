@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
 export const Container = styled.div`
   display: flex;
   gap: 0.75rem;
-  width: calc(50% - 1.5rem);
+  width: 50%;
 
   @media (max-width: 27rem) {
     width: 100%;
@@ -48,26 +48,36 @@ export const ListInfo = styled.div`
 export const ListInfoTexts = styled.div`
   display: flex;
   flex-direction: column;
+  position: relative;
   gap: 0.4rem;
+  width: 12.5rem;
 `;
 
-export const Title = styled.div`
+export const Title = styled.h3`
   ${({ theme: { fonts } }) => css`
     ${fonts.mediumRegular}
-    overflow: hidden;
+    width: 88%;
+    height: 42px;
+    line-height: 20px;
+    letter-spacing: -0.3px;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    overflow: hidden;
+    word-break: keep-all;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   `}
 `;
 
-export const Location = styled.div`
+export const Location = styled.span`
   ${({ theme: { colors, fonts } }) => css`
     ${fonts.xSmallRegular}
     color: ${colors.grey4};
   `}
 `;
 
-export const Cost = styled.div`
+export const Cost = styled.span`
   ${({ theme: { fonts, colors } }) => css`
     ${fonts.smallBold}
     display: flex;
@@ -79,32 +89,5 @@ export const Cost = styled.div`
       text-decoration: line-through;
       color: ${colors.grey4};
     }
-  `}
-`;
-
-//ExpirationDate.tsx
-export const ExpirationDateWrapper = styled.div`
-  ${({ theme: { colors, fonts } }) => css`
-    ${fonts.xSmallBold}
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    gap: 4px;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    border-radius: 0.4rem;
-    background-color: ${colors.black};
-    opacity: 0.6;
-    width: 100%;
-    height: 100%;
-    color: ${colors.white1};
-  `}
-`;
-
-export const Text = styled.span`
-  ${({ theme: { fonts } }) => css`
-    ${fonts.smallBold}
   `}
 `;

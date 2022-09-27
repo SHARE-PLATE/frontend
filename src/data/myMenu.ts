@@ -1,10 +1,10 @@
-interface HistoryContentType {
+interface MyMenuContentType {
   type: string;
   title: string;
   mineType: string;
 }
 
-export const historyListItem: HistoryContentType[] = [
+export const historyListItem: MyMenuContentType[] = [
   {
     type: 'sales',
     title: '판매내역',
@@ -16,3 +16,9 @@ export const historyListItem: HistoryContentType[] = [
     mineType: 'entry',
   },
 ];
+
+export const wishListItem: MyMenuContentType = {
+  type: 'wishList',
+  title: '찜한 리스트',
+  mineType: 'wish',
+};

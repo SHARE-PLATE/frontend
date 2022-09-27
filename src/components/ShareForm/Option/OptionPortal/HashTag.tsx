@@ -40,7 +40,7 @@ const HashTag = () => {
           return (
             <S.TagItem key={getRandomKey()}>
               <span>{tagItem}</span>
-              <Icon iconName='X_Icon' handleClick={() => deleteTagItem(tagItem)} />
+              <Icon iconName='HashDelete' handleClick={() => deleteTagItem(tagItem)} />
             </S.TagItem>
           );
         })}

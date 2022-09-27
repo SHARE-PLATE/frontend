@@ -142,7 +142,7 @@ const ShareRegistration = () => {
 
         <S.SubmitBtn type='submit'>등록완료</S.SubmitBtn>
         {isModalOpen && (
-          <FailedModal modalRef={modalRef} closeAModal={closeModal} text={dataFailed} />
+          <FailedModal modalRef={modalRef} closeModal={closeModal} text={dataFailed} />
         )}
       </S.InputFormWrapper>
     </S.Wrapper>

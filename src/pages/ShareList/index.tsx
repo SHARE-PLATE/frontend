@@ -16,7 +16,7 @@ import {
 import { getShareListsData } from '@store/shareList';
 import { getSortData } from '@utils/ShareListSort';
 
-const ListContentComponentInfo = {
+const ShareListContentComponentInfo = {
   delivery: PreviewShareListBigSizeImage,
   ingredient: PreviewShareListLeftImage,
 };
@@ -25,8 +25,10 @@ const ShareList = () => {
   const [curShareFilterList, setCurrentFilterShareList] = useRecoilState(currentFilterShareList);
   const activeShareListValue = useRecoilValue(activeShareList);
   const shareListTabsInfo = useShareListTabsInfo();
+
+  const ListContentComponent = ShareListContentComponentInfo[activeShareListValue];
+
   const { state, contents } = useRecoilValueLoadable(getShareListsData);
-  const ListContentComponent = ListContentComponentInfo[activeShareListValue];
 
   const getListContents = (state: 'hasValue' | 'loading' | 'hasError') => {
     switch (state) {
