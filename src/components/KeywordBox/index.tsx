@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, MouseEvent } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValueLoadable, useSetRecoilState } from 'recoil';
@@ -23,7 +23,10 @@ const KeywordBox = () => {
   const setKeywordListTrigger = useSetRecoilState(keywordListTrigger);
 
   const closeModal = () => setIsDeleteModal(false);
-  const openModal = () => setIsDeleteModal(true);
+  const openModal = (e: MouseEvent) => {
+    e.stopPropagation();
+    setIsDeleteModal(true);
+  };
 
   const deleteHandler = async (parameter: string) => {
     if (!parameter) return false;
@@ -35,13 +38,10 @@ const KeywordBox = () => {
     }
   };
 
-  const keywordTableClickHandler = ({ target: { tagName } }: any, location: string) => {
-    if (tagName === 'svg' || tagName === 'path') return;
-
+  const keywordTableClickHandler = (location: string) =>
     navigate(pathName.addKeyword, {
       state: { regionName: location },
     });
-  };
 
   switch (state) {
     case 'hasValue':
@@ -50,8 +50,8 @@ const KeywordBox = () => {
           {contents.map(({ location, keywords }: keywordDataType) => (
             <S.TableBox
               key={location}
-              onClick={(e) => {
-                keywordTableClickHandler(e, location);
+              onClick={() => {
+                keywordTableClickHandler(location);
               }}
             >
               <KeywordTableHeader
@@ -65,7 +65,7 @@ const KeywordBox = () => {
           {isDeleteModal && (
             <SelectModal
               modalRef={modalRef}
-              closeAModal={closeModal}
+              closeModal={closeModal}
               deleteHandler={deleteHandler}
               clickHandlerParams={clickedLocation}
               title={addressKeywordQuestionMention}
