@@ -25,14 +25,12 @@ const adsInfo = [
 const Advertisement = () => {
   const adsContents = adsInfo.map(({ id, name }) => (
     <S.AdWrapper key={id}>
-      <S.AdContentWrapper>
-        <ImgContainer
-          imgSrc={name}
-          imgTitle={id + name}
-          imgWrapperRatio={2.1 / 1}
-          imgWrapperWidth='100%'
-        />
-      </S.AdContentWrapper>
+      <ImgContainer
+        imgSrc={name}
+        imgTitle={id + name}
+        imgWrapperRatio={1.82 / 1}
+        imgWrapperWidth='100%'
+      />
     </S.AdWrapper>
   ));
 
