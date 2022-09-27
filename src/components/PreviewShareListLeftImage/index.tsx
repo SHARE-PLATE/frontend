@@ -1,9 +1,12 @@
-import React, { ReactElement, useRef } from 'react';
+import React, { ReactElement, useRef, MouseEvent } from 'react';
 
 import { useNavigate } from 'react-router-dom';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { v4 as getRandomKey } from 'uuid';
 
-import { deleteWishListContent } from '@api/myMenu';
+import { deletePurchaseList, deleteMySalesList } from '@api/myMenu';
+import KebabMenu from '@components/KebabMenu';
+import KebabMenuModal from '@components/KebabMenuModal';
 import * as S from '@components/PreviewShareListLeftImage/PreviewShareListLeftImage.style';
 import WishHeart from '@components/WishHeart';
 import ImageContents from '@components/common/ImageContents';
@@ -11,43 +14,70 @@ import ImgContainer from '@components/common/ImgContainer';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import Price from '@components/common/Price';
 import SelectModal from '@components/common/SelectModal';
-import { deleteYesMention, wishListDeleteMention } from '@constants/mentions';
+import { deleteYesMention, historyDeleteMention } from '@constants/mentions';
 import useModal from '@hooks/useModal';
+import { clickedHeartId, historyTrigger } from '@store/meyMenu';
+import { CloseModal, OpenModal } from '@type/modalFunction';
 import { thumbnailUrlListType } from '@type/shareList';
 import { calcTwoTimeDifference } from '@utils/getTimeDiff';
 
 interface PreviewShareListLeftImagePropsType {
   data: thumbnailUrlListType[];
   count?: number;
+  currentMyMenuType?: string;
+  isHistory?: boolean;
   isDone?: boolean;
   isWish?: boolean;
 }
 const PreviewShareListLeftImage = ({
   data,
   count,
+  currentMyMenuType,
+  isHistory,
   isDone,
   isWish,
 }: PreviewShareListLeftImagePropsType) => {
   const navigate = useNavigate();
   const modalRef = useRef<HTMLDivElement>(null);
+  const setHistoryTrigger = useSetRecoilState(historyTrigger);
+
+  const [isKebabMenuModal, setKebabMenuModal] = useModal({ modalRef });
   const [isDeleteModal, setIsDeleteModal] = useModal({ modalRef });
+  const [heartIdArr, setHeartIdArr] = useRecoilState<number[]>(clickedHeartId);
 
   const list: ReactElement[] = [];
 
-  const closeModal = () => setIsDeleteModal(false);
-  const openModal = () => setIsDeleteModal(true);
+  const closeModal: CloseModal = ({ isDeleteModal }) => {
+    isDeleteModal ? setIsDeleteModal(false) : setKebabMenuModal(false);
+  };
+  const openModal: OpenModal = (e, { isDeleteModal }) => {
+    e.stopPropagation();
+    isDeleteModal ? setIsDeleteModal(true) : setKebabMenuModal(true);
+  };
+
+  const clickHeartHandler = (e: MouseEvent, id: number) => {
+    e.stopPropagation();
+    if (!heartIdArr.length) return setHeartIdArr([id]);
+    if (!heartIdArr.includes(id)) return setHeartIdArr([...heartIdArr, id]);
+
+    const filterArr = heartIdArr.filter((el: number) => el !== id);
+    return setHeartIdArr(filterArr);
+  };
 
   const deleteHandler = async (parameter: number) => {
     if (!parameter) return;
 
-    const isSuccessFetch = await deleteWishListContent(parameter);
+    let isSuccessFetch;
+    if (currentMyMenuType === 'sales') isSuccessFetch = await deleteMySalesList(parameter);
+    if (currentMyMenuType === 'purchase') isSuccessFetch = await deletePurchaseList(parameter);
+
     if (isSuccessFetch) {
-      closeModal();
+      setHistoryTrigger((prev) => prev + 1);
+      closeModal({ isDeleteModal: true });
     }
   };
 
-  const handelClickShareList = ({ target: { tagName } }: any, id: number) => {
-    if (tagName === 'svg' || tagName === 'path') return;
+  const handelClickShareList = (id: number) => {
     navigate(`/share-detail/${id}`);
   };
 
@@ -70,8 +100,8 @@ const PreviewShareListLeftImage = ({
       list.push(
         <React.Fragment key={id}>
           <S.Container
-            onClick={(e) => {
-              handelClickShareList(e, id);
+            onClick={() => {
+              handelClickShareList(id);
             }}
           >
             <S.ImgWrapper>
@@ -90,7 +120,15 @@ const PreviewShareListLeftImage = ({
                   {location} / {calcTwoTimeDifference(createdDateTime)}
                 </S.Location>
                 <Price price={price} originalPrice={originalPrice} />
-                {isWish && <WishHeart type='ingredient' clickHandler={openModal} />}
+                {isWish && (
+                  <WishHeart
+                    type='ingredient'
+                    id={id}
+                    isEmptyHeart={heartIdArr.includes(id)}
+                    clickHandler={clickHeartHandler}
+                  />
+                )}
+                {isHistory && <KebabMenu clickHandler={openModal} />}
               </S.ListInfoTexts>
               <PersonnelStatus
                 curPersonnel={currentRecruitment}
@@ -98,13 +136,16 @@ const PreviewShareListLeftImage = ({
               />
             </S.ListInfo>
           </S.Container>
+          {isKebabMenuModal && (
+            <KebabMenuModal modalRef={modalRef} closeModal={closeModal} openModal={openModal} />
+          )}
           {isDeleteModal && (
             <SelectModal
               modalRef={modalRef}
-              closeAModal={closeModal}
+              closeParameterModal={closeModal}
               deleteHandler={deleteHandler}
               clickHandlerParams={id}
-              title={wishListDeleteMention}
+              title={historyDeleteMention}
               okMention={deleteYesMention}
             />
           )}
