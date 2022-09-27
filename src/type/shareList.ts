@@ -51,19 +51,9 @@ export type ShareDetailType = {
   hashtags: string[];
 };
 
-export type ShareWriterSharesType = {
-  id: number;
-  thumbnailUrl: string;
-  title: string;
-  location: string;
-  price: number;
-  createdDateTime: string;
-  closedDateTime: string;
-};
-
 export type ShareWriterType = {
   writer: string;
   thumbnailUrl: string;
   shareCount: number;
-  shares: ShareWriterSharesType[];
+  shares: ShareRecommendationType[];
 };
