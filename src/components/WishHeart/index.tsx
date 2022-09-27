@@ -1,15 +1,22 @@
+import { MouseEvent } from 'react';
+
 import * as S from '@components/WishHeart/WishHeart.style';
 import Icon from '@components/common/Icon';
-
 interface WishHeartPropsType {
   type: S.HeartWrapperType;
-  clickHandler?: () => void;
+  id: number;
+  isEmptyHeart: boolean;
+  clickHandler: (e: MouseEvent, id: number) => void;
 }
 
-const WishHeart = ({ type, clickHandler }: WishHeartPropsType) => {
+const WishHeart = ({ type, id, isEmptyHeart, clickHandler }: WishHeartPropsType) => {
   return (
     <S.HeartWrapper type={type}>
-      <Icon iconName='Heart' handleClick={clickHandler} />
+      {isEmptyHeart ? (
+        <Icon iconName='HeartNoFill' handleClick={(e) => clickHandler(e, id)} />
+      ) : (
+        <Icon iconName='Heart' handleClick={(e) => clickHandler(e, id)} />
+      )}
     </S.HeartWrapper>
   );
 };
