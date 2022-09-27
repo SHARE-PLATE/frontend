@@ -1,9 +1,11 @@
 import Slider from 'react-slick';
 import styled, { css } from 'styled-components';
 
+import { flexCenter } from '@styles/mixin';
 export const CarouselSlider = styled(Slider)`
   width: 100%;
   height: 100%;
+  overflow: visible !important;
 
   .slick-dots {
     bottom: 0.5rem;
@@ -54,6 +56,19 @@ export const CarouselSlider = styled(Slider)`
   .slick-next {
     right: 0.5rem;
   }
+
+  .slick-list {
+    overflow: visible !important;
+    margin-right: -10px;
+  }
+
+  .slick-slide {
+    margin-right: 10px;
+  }
+
+  .slick-track {
+    display: flex;
+  }
 `;
 
 export const CarouselWrapper = styled.div<{ width: string; height: string }>`
@@ -61,31 +76,29 @@ export const CarouselWrapper = styled.div<{ width: string; height: string }>`
     position: relative;
     width: ${width};
     height: ${height};
-    overflow: hidden;
+    border-radius: 8px;
   `}
 `;
 
 export const CarouselCount = styled.div`
   ${({ theme: { fonts, colors } }) => css`
-    ${fonts.small}
-    display: flex;
+    ${fonts.smallLight}
+    ${flexCenter}
     position: absolute;
-    right: 2rem;
+    right: 0.75rem;
     bottom: 1rem;
-    align-items: center;
-    justify-content: center;
     z-index: 1;
     border-radius: 1rem;
-    background-color: #00000059;
+    background: #353535b2;
     padding: 0.4rem;
     padding-top: 0.3rem;
-    width: 3.3rem;
-    height: 1.5rem;
+    width: 3.375rem;
+    height: 1.375rem;
     white-space: pre;
     color: ${colors.white2};
   `}
 `;
 
 export const ShowedIndexWrapper = styled.span`
-  font-weight: 600;
+  font-weight: 500;
 `;
