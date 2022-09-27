@@ -42,3 +42,32 @@ export const deleteWishListContent = async (id: number) => {
     throw err;
   }
 };
+
+export const deletePurchaseList = async (id: number) => {
+  const headers = getAuthHeaders();
+
+  try {
+    const response = await axios.delete(`${API.DELETE_HISTORY_LIST(id)}`, {
+      headers,
+    });
+
+    if (response.status === 200) return true;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+};
+
+export const deleteMySalesList = async (id: number) => {
+  const headers = getAuthHeaders();
+
+  try {
+    const response = await axios.delete(`${API.DELETE_SALES(id)}`, {
+      headers,
+    });
+    if (response.status === 200) return true;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+};
