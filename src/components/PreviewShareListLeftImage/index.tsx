@@ -120,21 +120,23 @@ const PreviewShareListLeftImage = ({
                   {location} / {calcTwoTimeDifference(createdDateTime)}
                 </S.Location>
                 <Price price={price} originalPrice={originalPrice} />
-                {isWish && (
-                  <WishHeart
-                    type='ingredient'
-                    id={id}
-                    isEmptyHeart={heartIdArr.includes(id)}
-                    clickHandler={clickHeartHandler}
-                  />
-                )}
-                {isHistory && <KebabMenu clickHandler={openModal} />}
               </S.ListInfoTexts>
               <PersonnelStatus
                 curPersonnel={currentRecruitment}
                 totalPersonnel={finalRecruitment}
               />
             </S.ListInfo>
+            <S.IconContainer>
+              {isWish && (
+                <WishHeart
+                  type='ingredient'
+                  id={id}
+                  isEmptyHeart={heartIdArr.includes(id)}
+                  clickHandler={clickHeartHandler}
+                />
+              )}
+              {isHistory && <KebabMenu clickHandler={openModal} />}
+            </S.IconContainer>
           </S.Container>
           {isKebabMenuModal && (
             <KebabMenuModal modalRef={modalRef} closeModal={closeModal} openModal={openModal} />

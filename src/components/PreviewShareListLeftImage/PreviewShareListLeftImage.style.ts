@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
   display: flex;
-  gap: 0.75rem;
+  justify-content: flex-start;
   width: 50%;
 
   @media (max-width: 27rem) {
@@ -35,10 +35,11 @@ export const ListInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 0.2rem;
   overflow-wrap: break-word;
+  padding: 0.2rem;
   gap: 0.4rem;
   max-width: 55%;
+  margin: 0 0.37rem 0 0.7rem;
 
   @media (max-width: 27rem) {
     max-width: 65%;
@@ -50,14 +51,13 @@ export const ListInfoTexts = styled.div`
   flex-direction: column;
   position: relative;
   gap: 0.4rem;
-  width: 12.5rem;
+  width: 10.375rem;
 `;
 
 export const Title = styled.h3`
   ${({ theme: { fonts } }) => css`
     ${fonts.mediumRegular}
-    width: 88%;
-    height: 42px;
+    width: 100%;
     line-height: 20px;
     letter-spacing: -0.3px;
     text-overflow: ellipsis;
@@ -91,3 +91,5 @@ export const Cost = styled.span`
     }
   `}
 `;
+
+export const IconContainer = styled.div``;

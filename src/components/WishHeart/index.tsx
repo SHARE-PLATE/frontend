@@ -11,12 +11,8 @@ interface WishHeartPropsType {
 
 const WishHeart = ({ type, id, isEmptyHeart, clickHandler }: WishHeartPropsType) => {
   return (
-    <S.HeartWrapper type={type}>
-      {isEmptyHeart ? (
-        <Icon iconName='HeartNoFill' handleClick={(e) => clickHandler(e, id)} />
-      ) : (
-        <Icon iconName='Heart' handleClick={(e) => clickHandler(e, id)} />
-      )}
+    <S.HeartWrapper type={type} isEmptyHeart={isEmptyHeart}>
+      <Icon iconName='HeartEmpty' handleClick={(e) => clickHandler(e, id)} />
     </S.HeartWrapper>
   );
 };
