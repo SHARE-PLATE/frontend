@@ -67,12 +67,12 @@ export const RightWrapper = styled.div`
   align-items: center;
 `;
 
-export const Button = styled.button`
-  ${({ theme: { colors, fonts } }) => css`
+export const Button = styled.button<{ blur?: boolean }>`
+  ${({ theme: { colors, fonts }, blur }) => css`
     ${fonts.largeBold}
 
     border-radius: 0.5rem;
-    background-color: ${colors.orange2};
+    background-color: ${blur ? colors.orange4 : colors.orange2};
     width: 6.25rem;
     height: 2.5rem;
     color: ${colors.white1};

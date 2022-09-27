@@ -19,7 +19,6 @@ export const getChatroomsData = async ({ id, type }: GetChatroomsDataParamsType)
         type,
       },
     });
-
     return response.data;
   } catch (error) {
     throw error;
@@ -34,9 +33,19 @@ export const deleteChatroomData = async (id: string) => {
 
   try {
     const response = axios.delete(API.CHATROOM_MEMBERS, { headers, data });
-
     return response;
   } catch (error) {
     throw error;
+  }
+};
+
+export const getPersonalChatroom = async ({ shareId }: { shareId: string }) => {
+  const headers = getAuthHeaders();
+
+  try {
+    const response = await axios.post<{ id: string }>(API.CHATROOMS, { shareId }, { headers });
+    return response.data;
+  } catch (error) {
+    console.error(error);
   }
 };

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { API } from '@constants/api';
-import { DELIVERY, INGREDIENTS } from '@constants/words';
+import { DELIVERY, ENTRY, INGREDIENTS } from '@constants/words';
 import { activeShareListType } from '@store/filterShareList';
 import { CurrentLatitudeLongitudeType } from '@store/location';
 import { getAuthHeaders } from '@utils/getAuthHeaders';
@@ -102,6 +102,32 @@ export const getShareListEntries = async () => {
     const response = await axios.get<GetShareListEntriesDataType>(API.ENTRIES, { headers });
 
     return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const postShareEntry = async ({ id }: { id: string }) => {
+  const headers = getAuthHeaders();
+
+  try {
+    const response = await axios.post(`${API.SHARE_LIST}/${id}/${ENTRY}`, {}, { headers });
+    const { status } = response;
+    const isSuccess = status === 200;
+    return isSuccess;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const deleteShareEntry = async ({ id }: { id: string }) => {
+  const headers = getAuthHeaders();
+
+  try {
+    const response = await axios.delete(`${API.SHARE_LIST}/${id}/${ENTRY}`, { headers });
+    const { status } = response;
+    const isSuccess = status === 200;
+    return isSuccess;
   } catch (error) {
     console.error(error);
   }
