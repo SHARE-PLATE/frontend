@@ -1,6 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useRef, MouseEvent } from 'react';
 
 import { useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 import { v4 as createRandomKey } from 'uuid';
 
 import { deleteWishListContent } from '@api/myMenu';
@@ -9,7 +10,7 @@ import ImageContents from '@components/common/ImageContents';
 import ImgContainer from '@components/common/ImgContainer';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import SelectModal from '@components/common/SelectModal';
-import { deleteYesMention, wishListDeleteMention } from '@constants/mentions';
+import { deleteYesMention, historyDeleteMention } from '@constants/mentions';
 import useModal from '@hooks/useModal';
 import { thumbnailUrlListType } from '@type/shareList';
 import { getPriceType } from '@utils/getPriceType';
@@ -17,12 +18,14 @@ import { calcTwoTimeDifference } from '@utils/getTimeDiff';
 
 interface PreviewShareListBigSizeImagePropsType {
   data: thumbnailUrlListType[];
+  isHistory?: boolean;
   isDone?: boolean;
   isWish?: boolean;
 }
 
 const PreviewShareListBigSizeImage = ({
   data,
+  isHistory,
   isDone,
   isWish,
 }: PreviewShareListBigSizeImagePropsType) => {
@@ -31,7 +34,10 @@ const PreviewShareListBigSizeImage = ({
   const [isDeleteModal, setIsDeleteModal] = useModal({ modalRef });
 
   const closeModal = () => setIsDeleteModal(false);
-  const openModal = () => setIsDeleteModal(true);
+  const openModal = (e: MouseEvent) => {
+    e.stopPropagation();
+    setIsDeleteModal(true);
+  };
 
   const deleteHandler = async (parameter: number) => {
     if (!parameter) return;
@@ -41,10 +47,7 @@ const PreviewShareListBigSizeImage = ({
     }
   };
 
-  const handelClickShareList = ({ target: { tagName } }: any, id: number) => {
-    if (tagName === 'svg' || tagName === 'path') return;
-    navigate(`/share-detail/${id}`);
-  };
+  const handelClickShareList = (id: number) => navigate(`/share-detail/${id}`);
 
   const showedList = data.map(
     ({
@@ -61,8 +64,8 @@ const PreviewShareListBigSizeImage = ({
     }) => (
       <React.Fragment key={id}>
         <S.ItemWrapper
-          onClick={(e) => {
-            handelClickShareList(e, id);
+          onClick={() => {
+            handelClickShareList(id);
           }}
         >
           <S.ImgWrapper>
@@ -76,7 +79,7 @@ const PreviewShareListBigSizeImage = ({
               dateTime={appointmentDateTime}
               isDone={isDone}
               isWish={isWish}
-              wishListClickHandler={openModal}
+              wishListClickHandler={() => {}}
             />
           </S.ImgWrapper>
           <S.Container>
@@ -103,10 +106,10 @@ const PreviewShareListBigSizeImage = ({
         {isDeleteModal && (
           <SelectModal
             modalRef={modalRef}
-            closeAModal={closeModal}
+            closeModal={closeModal}
             deleteHandler={deleteHandler}
             clickHandlerParams={id}
-            title={wishListDeleteMention}
+            title={historyDeleteMention}
             okMention={deleteYesMention}
           />
         )}

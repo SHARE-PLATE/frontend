@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, MouseEvent } from 'react';
 
 import ExpirationDate from '@components/ExpirationDate';
 import { RemainedTime } from '@components/RemainedTime';
@@ -30,7 +30,7 @@ const ImageContents = ({
     case 'done_wish':
       return (
         <>
-          <WishHeart type='delivery' clickHandler={wishListClickHandler} />
+          {/* <WishHeart type='delivery' clickHandler={wishListClickHandler} /> */}
           <ExpirationDate />
         </>
       );
@@ -41,7 +41,7 @@ const ImageContents = ({
     case 'wish':
       return (
         <>
-          <WishHeart type='delivery' clickHandler={wishListClickHandler} />
+          {/* <WishHeart type='delivery' clickHandler={wishListClickHandler} /> */}
           <RemainedTime targetTime={dateTime} position={{ top: '0.375rem', left: '0.375rem' }} />
         </>
       );
