@@ -1,47 +1,42 @@
 import { useEffect, useState } from 'react';
 
-import axios from 'axios';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
+import { getShareListData } from '@api/shareList';
 import CategoryButton from '@components/CategoryButton';
 import FailedContents from '@components/FailedContents';
 import PreviewShareListLeftImage from '@components/PreviewShareListLeftImage';
-import SearchShareHeader from '@components/SearchShareHeader';
-import { API } from '@constants/api';
+import ShareSearchHeader from '@components/ShareSearchHeader';
 import { shareListCategoryItem } from '@constants/category';
-import * as S from '@pages/SearchShare/SearchShare.style';
+import * as S from '@pages/ShareSearch/ShareSearch.style';
 import { currentFilterShareList } from '@store/filterShareList';
 import { currentMapKey, searchRecent } from '@store/localStorage';
 import { currentLatitudeLongitude } from '@store/location';
-import { thumbnailUrlListType } from '@type/shareList';
+import { ShareListType } from '@type/shareList';
 import { getSortData } from '@utils/ShareListSort';
 
-const SearchShare = () => {
+const ShareSearch = () => {
   const curMapKey = useRecoilValue(currentMapKey);
   const [curShareFilterList, setCurrentFilterShareList] = useRecoilState(currentFilterShareList);
   const searchRecentMapList = useRecoilValue(searchRecent);
   const searchRecentValue = searchRecentMapList.get(curMapKey)?.name;
   const { lat, lng } = useRecoilValue(currentLatitudeLongitude);
-  const [searchData, setSearchData] = useState<thumbnailUrlListType[]>();
+  const [searchData, setSearchData] = useState<ShareListType[]>();
+
+  const getShareList = async () => {
+    const location = { lat, lng };
+    const shareListData = await getShareListData({ location, keyword: searchRecentValue });
+    setSearchData(shareListData);
+  };
 
   useEffect(() => {
-    (async () => {
-      const { data } = await axios.get(`${API.SHARE_LIST}`, {
-        params: {
-          latitude: lat,
-          longitude: lng,
-          keyword: searchRecentValue,
-        },
-      });
-
-      setSearchData(data);
-    })();
+    getShareList();
   }, [searchRecentValue]);
 
   return (
     <S.Wrapper>
       <S.ListHeader>
-        <SearchShareHeader keyWord={searchRecentValue || ''} />
+        <ShareSearchHeader keyWord={searchRecentValue || ''} />
         <CategoryButton
           categoryItem={shareListCategoryItem}
           setCurrentFilterList={setCurrentFilterShareList}
@@ -58,4 +53,4 @@ const SearchShare = () => {
   );
 };
 
-export default SearchShare;
+export default ShareSearch;
