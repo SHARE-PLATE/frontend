@@ -5,6 +5,7 @@ import { useRecoilValue } from 'recoil';
 
 import { getShareDetailData, getShareListWriterData } from '@api/shareList';
 import { getShareListRecommendedData } from '@api/shareRecommended';
+import HomeLogin from '@components/HomeLogin';
 import PreviewShareListHalfImage from '@components/PreviewShareListHalfImage';
 import ShareDetailBottomBar from '@components/ShareDetailBottomBar';
 import ShareDetailHeader from '@components/ShareDetailHeader';
@@ -16,17 +17,18 @@ import { currentLatitudeLongitude } from '@store/location';
 import { ShareDetailType, ShareRecommendationType } from '@type/shareList';
 
 const ShareDetail = () => {
+  const { id } = useParams();
+  if (!id) return <HomeLogin />;
+
   const { state } = useLocation() as {
     state: { writerId: string };
   };
-  const { id } = useParams();
   const [detailData, setDetailData] = useState<ShareDetailType>();
   const [recommendedData, setRecommendedData] = useState<ShareRecommendationType[]>([]);
   const [writerSharesData, setWriterSharesData] = useState<ShareRecommendationType[]>([]);
   const { lat, lng } = useRecoilValue(currentLatitudeLongitude);
 
   const getShareDetail = async () => {
-    if (!id) return;
     const shareDetailData = await getShareDetailData({ id });
     setDetailData(shareDetailData);
   };
