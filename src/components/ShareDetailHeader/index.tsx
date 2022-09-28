@@ -22,6 +22,7 @@ const settings: Settings = {
   autoplay: true,
   autoplaySpeed: 5000,
   pauseOnHover: true,
+  dots: true,
 };
 
 const ShareDetailHeader = ({ imageUrls, closedDateTime }: ShareDetailHeaderPropsType) => {
