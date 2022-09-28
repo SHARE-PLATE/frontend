@@ -3,18 +3,6 @@ import { v4 as getRandomKey } from 'uuid';
 
 import { getChatroomsData } from '@api/chat';
 
-export type chatroomType = {
-  id: string;
-  chatRoomMemberId: number;
-  shareThumbnailImageUrl: string;
-  currentRecruitment: number;
-  recentMessage: string;
-  recentMessageDataTime: string;
-  recruitmentMemberNicknames: string[];
-  recruitmentMemberImageUrls: string[];
-  unreadCount: number;
-};
-
 export type ChatroomsStateType = 'entry' | 'question';
 
 export const chatroomsTrigger = atom({
@@ -27,7 +15,7 @@ export const activeChatroomsState = atom<ChatroomsStateType>({
   default: 'entry',
 });
 
-export const chatroomsState = selector<chatroomType[]>({
+export const chatroomsState = selector({
   key: `GET/chatroomsState/${getRandomKey()}`,
   get: async ({ get }) => {
     get(chatroomsTrigger);

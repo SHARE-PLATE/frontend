@@ -5,11 +5,11 @@ import 'moment/locale/ko';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 
-import { deleteChatroomData } from '@api/chat';
+import { ChatroomsDataType, deleteChatroomData } from '@api/chat';
 import * as S from '@components/ChatroomsItem/ChatroomsItem.style';
 import ImgContainer from '@components/common/ImgContainer';
 import { noRecentChatMention } from '@constants/mentions';
-import { chatroomsTrigger, chatroomType } from '@store/chatrooms';
+import { chatroomsTrigger } from '@store/chatrooms';
 
 const ChatroomsItem = ({
   id,
@@ -21,7 +21,7 @@ const ChatroomsItem = ({
   recruitmentMemberNicknames,
   recruitmentMemberImageUrls,
   unreadCount,
-}: chatroomType) => {
+}: ChatroomsDataType) => {
   const navigate = useNavigate();
   const setChatroomsTrigger = useSetRecoilState(chatroomsTrigger);
   const [startPoint, setStartPoint] = useState(0);

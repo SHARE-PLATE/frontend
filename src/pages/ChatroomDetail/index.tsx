@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { useCallback } from 'react';
 
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useRecoilValueLoadable } from 'recoil';
 
 import ChatroomBar from '@components/ChatroomBar';
 import ChatroomDetailContents from '@components/ChatroomDetailContents';
 import ChatroomDatailHeader from '@components/ChatroomDetailHeader';
 import ChatroomDetailInfo from '@components/ChatroomDetailInfo';
+import HomeLogin from '@components/HomeLogin';
 import Loading from '@components/Loading';
 import Icon from '@components/common/Icon';
 import { failLoadingChatroomsMention } from '@constants/mentions';
@@ -15,18 +16,12 @@ import * as S from '@pages/ChatroomDetail/ChatroomDetail.style';
 import { chatroomDetailState } from '@store/chatroomDetail';
 
 const ChatroomDetail = () => {
-  const {
-    state: { chatRoomMemberId },
-  } = useLocation() as {
-    state: { chatRoomMemberId: string };
-  };
   const { id } = useParams();
+  if (!id) return <HomeLogin />;
+
   const [lastChat, setLastChat] = useState<HTMLDivElement>();
   const chatroomDetail = chatroomDetailState({ id });
-  const {
-    state,
-    contents: { share, chats },
-  } = useRecoilValueLoadable(chatroomDetail);
+  const { state, contents } = useRecoilValueLoadable(chatroomDetail);
 
   //**callback ref for scroll to bottom */
   const scrollToBottomRef = useCallback((lastChatDiv: HTMLDivElement) => {
@@ -52,6 +47,7 @@ const ChatroomDetail = () => {
         );
 
       case 'hasValue':
+        const { share, chats, chatRoomMemberId } = contents;
         return (
           <>
             <ChatroomBar chatroomId={id || ''} scrollToBottom={scrollToBottom} />
