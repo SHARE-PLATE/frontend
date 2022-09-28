@@ -1,35 +1,29 @@
 import Slider from 'react-slick';
 import styled, { css } from 'styled-components';
 
+export type SlideType = 'side' | 'vertical' | undefined;
+
 import { flexCenter } from '@styles/mixin';
-export const CarouselSlider = styled(Slider)`
+export const CarouselSlider = styled(Slider)<{ type: SlideType }>`
   width: 100%;
   height: 100%;
-  overflow: visible !important;
 
   .slick-dots {
-    bottom: 0.5rem;
+    bottom: 1rem;
 
     button {
       ::before {
-        opacity: 0.5;
-        color: black;
+        color: ${({ theme }) => theme.colors.white0};
       }
     }
 
     .slick-active {
       button {
         ::before {
-          color: black;
+          color: ${({ theme }) => theme.colors.orange4};
         }
       }
     }
-  }
-
-  .slick-list,
-  .slick-track,
-  .slick-slide {
-    height: 100%;
   }
 
   .slick-slide {
@@ -57,18 +51,32 @@ export const CarouselSlider = styled(Slider)`
     right: 0.5rem;
   }
 
-  .slick-list {
-    overflow: visible !important;
-    margin-right: -10px;
-  }
+  ${({ type }) =>
+    type === 'side' &&
+    css`
+      overflow: visible !important;
+      .slick-list {
+        overflow: visible !important;
+        margin-right: -10px;
+      }
 
-  .slick-slide {
-    margin-right: 10px;
-  }
+      .slick-slide {
+        margin-right: 10px;
+      }
 
-  .slick-track {
-    display: flex;
-  }
+      .slick-track {
+        display: flex;
+      }
+    `}
+
+  ${({ type }) =>
+    type === 'vertical' &&
+    css`
+      .slick-list {
+        position: relative;
+        overflow: hidden;
+      }
+    `}
 `;
 
 export const CarouselWrapper = styled.div<{ width: string; height: string }>`
