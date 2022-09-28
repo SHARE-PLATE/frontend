@@ -36,7 +36,7 @@ const Advertisement = () => {
 
   return (
     <S.AdsWrapper>
-      <Carousel contents={adsContents} settings={settings} height='100%' />
+      <Carousel contents={adsContents} settings={settings} height='100%' type='side' />
     </S.AdsWrapper>
   );
 };
