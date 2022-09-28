@@ -28,10 +28,10 @@ export const IconWrapper = styled.div<{ isWished?: boolean }>`
     ${isWished &&
     css`
       svg {
-        fill: ${colors.orange2};
+        fill: ${colors.pink0};
       }
       path {
-        stroke: ${colors.orange2};
+        stroke: ${colors.pink0};
       }
     `}
   `}
