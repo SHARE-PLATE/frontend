@@ -57,7 +57,7 @@ const ShareDetail = () => {
   return (
     <>
       <S.Wrapper>
-        {detailData?.id && (
+        {detailData && (
           <>
             <S.UpperWrapper>
               <ShareDetailHeader {...detailData} />
@@ -81,7 +81,7 @@ const ShareDetail = () => {
           </>
         )}
       </S.Wrapper>
-      <ShareDetailBottomBar isWished={detailData?.wish} isEntry={detailData?.entry} />
+      {detailData && <ShareDetailBottomBar isWished={detailData.wish} entry={detailData.entry} />}
     </>
   );
 };

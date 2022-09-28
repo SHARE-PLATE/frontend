@@ -17,29 +17,31 @@ import { getPriceType } from '@utils/getPriceType';
 
 type ShareDetailBottomBarPropsType = {
   isWished?: boolean;
-  isEntry?: boolean;
+  entry?: boolean;
 };
 
 const price = 10000;
 const originalPrice = 20000;
 
-const ShareDetailBottomBar = ({ isWished, isEntry }: ShareDetailBottomBarPropsType) => {
+const ShareDetailBottomBar = ({ isWished, entry }: ShareDetailBottomBarPropsType) => {
   const navigate = useNavigate();
+  const { id } = useParams();
+  const [isWishedNow, setIsWishedNow] = useState(isWished);
+  const [isEntry, setIsEntry] = useState(entry);
+  const setPortalState = useSetRecoilState(portalState);
   const { state, contents } = useRecoilValueLoadable(isLoginState);
   const isLogin = state === 'hasValue' && contents;
-  const setPortalState = useSetRecoilState(portalState);
-  const [isWishedNow, setIsWishedNow] = useState(isWished);
-  const { id } = useParams();
+
+  if (!id) return <></>;
 
   const handleClickWishIcon = async () => {
+    if (!isLogin) {
+      setPortalState('login');
+      return;
+    }
     const wishControlOption: ChangeWishOptionType = !isWishedNow ? 'enroll' : 'cancel';
     const response = await changeWish({ option: wishControlOption, id });
-
-    if (response?.status === 200) {
-      setIsWishedNow(!isWishedNow);
-    } else {
-      setPortalState('login');
-    }
+    if (response?.status === 200) setIsWishedNow(!isWishedNow);
   };
 
   const handleClickStartChattingBtn = async () => {
@@ -47,12 +49,11 @@ const ShareDetailBottomBar = ({ isWished, isEntry }: ShareDetailBottomBarPropsTy
       setPortalState('login');
       return;
     }
-    if (!id) return;
     const chattingData = await getPersonalChatroom({ shareId: id });
-    if (!chattingData) return; // 채팅하기 실패 시 보여줄 내용 처리 필요
-    const { id: chatroomId } = chattingData;
-    const 테스트 = null;
-    navigate(`${pathName.chatroomDetail}/${chatroomId}`, { state: { chatRoomMemberId: 테스트 } });
+    if (chattingData) {
+      const { id: chatroomId } = chattingData;
+      navigate(`${pathName.chatroomDetail}/${chatroomId}`);
+    }
   };
 
   const handleClickParticipatingBtn = async () => {
@@ -60,10 +61,9 @@ const ShareDetailBottomBar = ({ isWished, isEntry }: ShareDetailBottomBarPropsTy
       setPortalState('login');
       return;
     }
-    if (!id) return;
     const request = isEntry ? deleteShareEntry : postShareEntry;
     const isRequestSuccess = await request({ id });
-    if (!isRequestSuccess) return; // 요청 실패 시 보여줄 내용 처리 필요
+    if (isRequestSuccess) setIsEntry(!isEntry);
   };
 
   return (
