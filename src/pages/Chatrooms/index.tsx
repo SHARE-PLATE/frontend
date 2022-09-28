@@ -8,12 +8,8 @@ import { getChatDdataFailedMention } from '@constants/mentions';
 import { CHATTING, RELOAD } from '@constants/words';
 import useChatroomsInfo from '@hooks/useChatroomsInfo';
 import * as S from '@pages/Chatrooms/Chatrooms.style';
-import {
-  activeChatroomsState,
-  chatroomsState,
-  ChatroomsStateType,
-  chatroomsTrigger,
-} from '@store/chatrooms';
+import { activeChatroomsState, chatroomsState, chatroomsTrigger } from '@store/chatrooms';
+import { ChatroomsStateType } from '@type/chat';
 
 const Chatrooms = () => {
   const chatroomsInfo = useChatroomsInfo();

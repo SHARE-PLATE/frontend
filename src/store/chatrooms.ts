@@ -2,8 +2,7 @@ import { atom, selector } from 'recoil';
 import { v4 as getRandomKey } from 'uuid';
 
 import { getChatroomsData } from '@api/chat';
-
-export type ChatroomsStateType = 'entry' | 'question';
+import { ChatroomsStateType } from '@type/chat';
 
 export const chatroomsTrigger = atom({
   key: 'chatroomsTrigger',

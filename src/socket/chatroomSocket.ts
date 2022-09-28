@@ -4,11 +4,12 @@ import SockJs from 'sockjs-client';
 import StompJs from 'stompjs';
 
 import { APP, CHAT, CHATROOMS, CHATROOM_MEMBERS, TOPIC, WEBSOCKET } from '@constants/words';
-import { TestChatroomDetailChatsType } from '@pages/ChatroomDetail/chatroomDetailData';
 import { getAuthHeaders } from '@utils/getAuthHeaders';
 
+import { ChatroomDetailChatsType } from './../type/chat';
+
 type subscribeParamsType = {
-  setter: Dispatch<SetStateAction<TestChatroomDetailChatsType>>;
+  setter: Dispatch<SetStateAction<ChatroomDetailChatsType>>;
   chatroomId: string;
 };
 

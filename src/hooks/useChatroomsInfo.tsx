@@ -1,7 +1,8 @@
 import { useRecoilValue } from 'recoil';
 
 import { TabsInfoType } from '@components/Tabs';
-import { activeChatroomsState, ChatroomsStateType } from '@store/chatrooms';
+import { activeChatroomsState } from '@store/chatrooms';
+import { ChatroomsStateType } from '@type/chat';
 
 const useChatroomsInfo = () => {
   const activeChatrooms = useRecoilValue(activeChatroomsState);

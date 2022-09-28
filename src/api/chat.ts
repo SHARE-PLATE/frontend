@@ -2,54 +2,22 @@ import axios from 'axios';
 
 import { API } from '@constants/api';
 import { CHATROOM_ID } from '@constants/words';
+import * as T from '@type/chat';
 import { getAuthHeaders } from '@utils/getAuthHeaders';
 
 export type GetChatroomsDataParamsType = {
-  type: 'entry' | 'question';
+  type: T.ChatroomsStateType;
 };
 
 export type GetChatroomDetailDataParamsType = {
   id: string;
 };
 
-export type ChatroomsDataType = {
-  id: string;
-  chatRoomMemberId: number;
-  shareThumbnailImageUrl: string;
-  currentRecruitment: number;
-  recentMessage: string;
-  recentMessageDataTime: string;
-  recruitmentMemberNicknames: string[];
-  recruitmentMemberImageUrls: string[];
-  unreadCount: number;
-};
-
-export type ChatroomDetailDataType = {
-  chatRoomMemberId: string;
-  share: {
-    id: number;
-    thumbnailImageUrl: string;
-    title: string;
-    price: number;
-    originalPrice: number;
-    currentRecruitment: number;
-    finalRecruitment: number;
-    cancel: boolean;
-  };
-  chats: {
-    contents: string;
-    writer: string;
-    writerThumbnailImageUrl: string;
-    writtenDateTime: string;
-    writtenByMe: boolean;
-  }[];
-};
-
 export const getChatroomsData = async ({ type }: GetChatroomsDataParamsType) => {
   const headers = getAuthHeaders();
 
   try {
-    const response = await axios.get<ChatroomsDataType[]>(API.CHATROOMS, {
+    const response = await axios.get<T.ChatroomsDataType[]>(API.CHATROOMS, {
       headers,
       params: {
         type,
@@ -65,7 +33,7 @@ export const getChatroomDetailData = async ({ id }: GetChatroomDetailDataParamsT
   const headers = getAuthHeaders();
 
   try {
-    const response = await axios.get<ChatroomDetailDataType>(`${API.CHATROOMS}/${id}`, {
+    const response = await axios.get<T.ChatroomDetailDataType>(`${API.CHATROOMS}/${id}`, {
       headers,
     });
     return response.data;
