@@ -11,7 +11,10 @@ export const Wrapper = styled.div<{ isLogin: boolean }>`
   ${({ isLogin }) =>
     isLogin &&
     css`
+      height: 2.11rem;
+
       > * {
+        // not hiding wrapper for space
         display: none;
       }
     `}
