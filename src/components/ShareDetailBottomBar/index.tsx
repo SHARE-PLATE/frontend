@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilValueLoadable, useSetRecoilState } from 'recoil';
 
 import { getPersonalChatroom } from '@api/chat';
 import { deleteShareEntry, postShareEntry } from '@api/shareList';
@@ -12,6 +12,7 @@ import Icon from '@components/common/Icon';
 import { pathName } from '@constants/pathName';
 import { CANCEL_PARTICIPATING, PARTICIPATING, START_CHATTING } from '@constants/words';
 import { portalState } from '@store/portal';
+import { isLoginState } from '@store/user';
 import { getPriceType } from '@utils/getPriceType';
 
 type ShareDetailBottomBarPropsType = {
@@ -22,12 +23,13 @@ type ShareDetailBottomBarPropsType = {
 const price = 10000;
 const originalPrice = 20000;
 
-const ShareDetailBottomBar = ({ isWished }: ShareDetailBottomBarPropsType) => {
+const ShareDetailBottomBar = ({ isWished, isEntry }: ShareDetailBottomBarPropsType) => {
   const navigate = useNavigate();
+  const { state, contents } = useRecoilValueLoadable(isLoginState);
+  const isLogin = state === 'hasValue' && contents;
   const setPortalState = useSetRecoilState(portalState);
   const [isWishedNow, setIsWishedNow] = useState(isWished);
   const { id } = useParams();
-  const isEntry = true;
 
   const handleClickWishIcon = async () => {
     const wishControlOption: ChangeWishOptionType = !isWishedNow ? 'enroll' : 'cancel';
@@ -41,6 +43,10 @@ const ShareDetailBottomBar = ({ isWished }: ShareDetailBottomBarPropsType) => {
   };
 
   const handleClickStartChattingBtn = async () => {
+    if (!isLogin) {
+      setPortalState('login');
+      return;
+    }
     if (!id) return;
     const chattingData = await getPersonalChatroom({ shareId: id });
     if (!chattingData) return; // 채팅하기 실패 시 보여줄 내용 처리 필요
@@ -50,6 +56,10 @@ const ShareDetailBottomBar = ({ isWished }: ShareDetailBottomBarPropsType) => {
   };
 
   const handleClickParticipatingBtn = async () => {
+    if (!isLogin) {
+      setPortalState('login');
+      return;
+    }
     if (!id) return;
     const request = isEntry ? deleteShareEntry : postShareEntry;
     const isRequestSuccess = await request({ id });

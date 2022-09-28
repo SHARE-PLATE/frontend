@@ -37,8 +37,10 @@ export const getShareListData = async ({ type, location, keyword }: GetShareList
 };
 
 export const getShareDetailData = async ({ id }: { id: string }) => {
+  const headers = getAuthHeaders();
+
   try {
-    const response = await axios.get<ShareDetailType>(API.SHARE_LIST + `/${id}`);
+    const response = await axios.get<ShareDetailType>(API.SHARE_LIST + `/${id}`, { headers });
     return response.data;
   } catch (error) {
     console.log(error);
