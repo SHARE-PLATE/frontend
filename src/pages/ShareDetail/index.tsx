@@ -5,26 +5,24 @@ import { useRecoilValue } from 'recoil';
 
 import { getShareDetailData, getShareListWriterData } from '@api/shareList';
 import { getShareListRecommendedData } from '@api/shareRecommended';
-import InteractionBar from '@components/InteractionBar';
 import PreviewShareListHalfImage from '@components/PreviewShareListHalfImage';
+import ShareDetailBottomBar from '@components/ShareDetailBottomBar';
 import ShareDetailHeader from '@components/ShareDetailHeader';
 import ShareDetailInfo from '@components/ShareDetailInfo';
 import UserInfoWithFollow from '@components/UserInfoWithFollow';
 import { noRelatedShareList, offerShare } from '@constants/mentions';
 import * as S from '@pages/ShareDetail/ShareDetail.style';
 import { currentLatitudeLongitude } from '@store/location';
-import { ShareDetailType, ShareListType, ShareWriterSharesType } from '@type/shareList';
+import { ShareDetailType, ShareRecommendationType } from '@type/shareList';
 
 const ShareDetail = () => {
-  const {
-    state: { writerId },
-  } = useLocation() as {
+  const { state } = useLocation() as {
     state: { writerId: string };
   };
   const { id } = useParams();
   const [detailData, setDetailData] = useState<ShareDetailType>();
-  const [recommendedData, setRecommendedData] = useState<ShareListType[]>();
-  const [writerSharesData, setWriterSharesData] = useState<ShareWriterSharesType[]>();
+  const [recommendedData, setRecommendedData] = useState<ShareRecommendationType[]>([]);
+  const [writerSharesData, setWriterSharesData] = useState<ShareRecommendationType[]>([]);
   const { lat, lng } = useRecoilValue(currentLatitudeLongitude);
 
   const getShareDetail = async () => {
@@ -34,26 +32,27 @@ const ShareDetail = () => {
   };
 
   const getShareRecommend = async () => {
-    const recommendedFetchData = await getShareListRecommendedData(lat, lng);
-    setRecommendedData(recommendedFetchData);
+    const recommendData = await getShareListRecommendedData(lat, lng);
+    setRecommendedData(recommendData);
   };
 
   const getWriterShares = async () => {
-    const sharListWriterData = await getShareListWriterData({ writerId });
+    if (!state?.writerId) return;
+    const sharListWriterData = await getShareListWriterData({ writerId: state.writerId });
     if (!sharListWriterData) return;
     const { shares } = sharListWriterData;
     setWriterSharesData(shares);
-    console.log(shares);
   };
 
   useEffect(() => {
     getShareDetail();
     getWriterShares();
-  }, []);
+    window.scrollTo(0, 0);
+  }, [id]);
 
   useEffect(() => {
     getShareRecommend();
-  }, [lat, lng]);
+  }, [lat, lng, id]);
 
   return (
     <>
@@ -68,23 +67,21 @@ const ShareDetail = () => {
               <UserInfoWithFollow {...detailData} />
               <PreviewShareListHalfImage
                 title={`${detailData.writer}님의 쉐어상품`}
-                data={[]}
+                data={writerSharesData}
                 emptyMention={noRelatedShareList}
                 showMoreOption={() => console.log('더보기')}
               />
-              {recommendedData && (
-                <PreviewShareListHalfImage
-                  title={offerShare}
-                  data={recommendedData}
-                  emptyMention={noRelatedShareList}
-                  showMoreOption={() => console.log('더보기')}
-                />
-              )}
+              <PreviewShareListHalfImage
+                title={offerShare}
+                data={recommendedData}
+                emptyMention={noRelatedShareList}
+                showMoreOption={() => console.log('더보기')}
+              />
             </S.LowerWrapper>
           </>
         )}
       </S.Wrapper>
-      <InteractionBar isWished={detailData?.wish} isEntry={detailData?.entry} />
+      <ShareDetailBottomBar isWished={detailData?.wish} isEntry={detailData?.entry} />
     </>
   );
 };
