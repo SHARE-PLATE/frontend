@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components';
 export type KebabMenuWrapperType = 'delivery' | 'ingredient';
 
 export const KebabMenuWrapper = styled.div<{ type: KebabMenuWrapperType }>`
-  position: absolute;
   ${({ type }) =>
     type === 'delivery' &&
     css`
@@ -13,7 +12,6 @@ export const KebabMenuWrapper = styled.div<{ type: KebabMenuWrapperType }>`
   ${({ type }) =>
     type === 'ingredient' &&
     css`
-      top: 0;
-      right: 0;
+      margin-top: 0.2rem;
     `}
 `;

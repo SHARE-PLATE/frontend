@@ -7,6 +7,7 @@ import * as S from '@components/Carousel/Carousel.style';
 interface CarouselPropsType {
   settings: Settings;
   contents: ReactElement[];
+  type?: S.SlideType;
   isCount?: boolean;
   width?: string;
   height?: string;
@@ -15,12 +16,13 @@ interface CarouselPropsType {
 const Carousel = ({
   settings,
   contents,
+  type,
   isCount = true,
   width = '100%',
   height = '6rem',
 }: CarouselPropsType) => {
   const [current, setCurrent] = useState(0);
-
+  console.log(width);
   const showCurIndex = (curIndex: number) => setCurrent(curIndex);
 
   return (
@@ -31,7 +33,7 @@ const Carousel = ({
           {` / ${contents.length}`}
         </S.CarouselCount>
       )}
-      <S.CarouselSlider {...settings} afterChange={showCurIndex}>
+      <S.CarouselSlider {...settings} type={type} afterChange={showCurIndex}>
         {contents}
       </S.CarouselSlider>
     </S.CarouselWrapper>
