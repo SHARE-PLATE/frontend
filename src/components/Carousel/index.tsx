@@ -22,7 +22,6 @@ const Carousel = ({
   height = '6rem',
 }: CarouselPropsType) => {
   const [current, setCurrent] = useState(0);
-  console.log(width);
   const showCurIndex = (curIndex: number) => setCurrent(curIndex);
 
   return (

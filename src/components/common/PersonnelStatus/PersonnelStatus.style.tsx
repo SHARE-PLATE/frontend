@@ -4,12 +4,10 @@ export const Wrapper = styled.div`
   display: flex;
   gap: 0.3rem;
   align-items: center;
-`;
 
-export const IconWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  height: 1.25rem;
+  > svg {
+    height: 13.5px;
+  }
 `;
 
 export const Content = styled.div`

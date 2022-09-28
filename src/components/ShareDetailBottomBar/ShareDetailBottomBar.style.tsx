@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
     bottom: 0;
     gap: 0.5rem;
     justify-content: space-between;
-    box-shadow: 0px -10px 40px #67676740;
+    box-shadow: 0px -8px 16px rgba(0, 0, 0, 0.08);
     background-color: ${colors.white1};
     width: 100%;
     height: 4.5rem;
@@ -28,10 +28,10 @@ export const IconWrapper = styled.div<{ isWished?: boolean }>`
     ${isWished &&
     css`
       svg {
-        fill: ${colors.orange2};
+        fill: ${colors.pink0};
       }
       path {
-        stroke: ${colors.orange2};
+        stroke: ${colors.pink0};
       }
     `}
   `}
@@ -67,12 +67,12 @@ export const RightWrapper = styled.div`
   align-items: center;
 `;
 
-export const Button = styled.button`
-  ${({ theme: { colors, fonts } }) => css`
+export const Button = styled.button<{ blur?: boolean }>`
+  ${({ theme: { colors, fonts }, blur }) => css`
     ${fonts.largeBold}
 
     border-radius: 0.5rem;
-    background-color: ${colors.orange2};
+    background-color: ${blur ? colors.orange4 : colors.orange2};
     width: 6.25rem;
     height: 2.5rem;
     color: ${colors.white1};

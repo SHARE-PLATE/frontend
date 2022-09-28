@@ -8,10 +8,10 @@ import { ShareListItemLongImage } from '@components/ShareListItemLongImage';
 import Title from '@components/common/Title';
 import { littleDeadlineMention, noLittleTimeListMention } from '@constants/mentions';
 import { currentLatitudeLongitude } from '@store/location';
-import { thumbnailUrlListType } from '@type/shareList';
+import { ShareListType } from '@type/shareList';
 
 const PreviewShareListLongImage = () => {
-  const [recommendedData, setRecommendedData] = useState<thumbnailUrlListType[]>();
+  const [recommendedData, setRecommendedData] = useState<ShareListType[]>();
   const { lat, lng } = useRecoilValue(currentLatitudeLongitude);
 
   useEffect(() => {

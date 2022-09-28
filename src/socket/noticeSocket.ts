@@ -2,7 +2,7 @@ import { SetterOrUpdater } from 'recoil';
 import SockJs from 'sockjs-client';
 import StompJs from 'stompjs';
 
-import { ENTRIES, KEYWORDS, NOTIFICATIONS, QUEUE, WEBSOCKET } from '@constants/words';
+import { ENTRIES, KEYWORD, NOTIFICATIONS, QUEUE, WEBSOCKET } from '@constants/words';
 import { newNoticeStateType } from '@store/notice';
 import { getAuthHeaders } from '@utils/getAuthHeaders';
 
@@ -23,7 +23,6 @@ export const noticeSocket = ({ setter }: connectNoticeParamsType) => {
   const subscribeNotice = ({ entryIds = [], keywordIds = [] }: subscribeParamsType) => {
     const subscribeURL = `/${QUEUE}/${NOTIFICATIONS}`;
     const headers = getAuthHeaders();
-    console.log(entryIds);
 
     if (!!entryIds.length) {
       entryIds.forEach((id) => {
@@ -31,7 +30,6 @@ export const noticeSocket = ({ setter }: connectNoticeParamsType) => {
           subscribeURL + `/${ENTRIES}/${id}`,
           (entryData) => {
             const newEntryData = JSON.parse(entryData.body);
-            console.log(newEntryData + '새로운 알림!');
             setter(newEntryData);
           },
           headers,
@@ -42,7 +40,7 @@ export const noticeSocket = ({ setter }: connectNoticeParamsType) => {
     if (!!keywordIds.length) {
       keywordIds.forEach((id) => {
         stompClient.subscribe(
-          subscribeURL + `/${KEYWORDS}/${id}`,
+          subscribeURL + `/${KEYWORD}/${id}`,
           (keywordData) => {
             const newKeywordData = JSON.parse(keywordData.body);
             setter(newKeywordData);

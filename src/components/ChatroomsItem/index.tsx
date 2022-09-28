@@ -8,10 +8,13 @@ import { useSetRecoilState } from 'recoil';
 import { deleteChatroomData } from '@api/chat';
 import * as S from '@components/ChatroomsItem/ChatroomsItem.style';
 import ImgContainer from '@components/common/ImgContainer';
-import { chatroomsTrigger, chatroomType } from '@store/chatrooms';
+import { noRecentChatMention } from '@constants/mentions';
+import { chatroomsTrigger } from '@store/chatrooms';
+import { ChatroomsDataType } from '@type/chat';
 
 const ChatroomsItem = ({
   id,
+  chatRoomMemberId,
   shareThumbnailImageUrl,
   currentRecruitment,
   recentMessage,
@@ -19,7 +22,7 @@ const ChatroomsItem = ({
   recruitmentMemberNicknames,
   recruitmentMemberImageUrls,
   unreadCount,
-}: chatroomType) => {
+}: ChatroomsDataType) => {
   const navigate = useNavigate();
   const setChatroomsTrigger = useSetRecoilState(chatroomsTrigger);
   const [startPoint, setStartPoint] = useState(0);
@@ -38,6 +41,14 @@ const ChatroomsItem = ({
     if (distance > 0 && distance < 20) wrapperRef.current.style.left = `-${distance / 10}px`;
     if (distance < 0 && distance > -20) wrapperRef.current.style.left = `${distance / 10}px`;
     if (distance <= -20) setMoving('right');
+  };
+
+  const handleClickItem = () => {
+    if (!wrapperRef.current) return;
+    const { left } = wrapperRef.current.style;
+
+    if (left !== '0px') return;
+    navigate(`/chatroom-detail/${id}`, { state: { chatRoomMemberId } });
   };
 
   const handleClickExitBtn = async (event: MouseEvent<HTMLButtonElement>) => {
@@ -86,7 +97,7 @@ const ChatroomsItem = ({
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseLeaveOrUp}
         onMouseLeave={handleMouseLeaveOrUp}
-        onClick={() => navigate(`/chatroom-detail/${id}`)}
+        onClick={handleClickItem}
       >
         <S.ShowedWrapper>
           <S.InfoWrapper>
@@ -99,10 +110,11 @@ const ChatroomsItem = ({
                 <S.WritersCount>{currentRecruitment}</S.WritersCount>
                 <S.Time>{diffTime}</S.Time>
               </S.TextUpper>
-              <S.Content>{recentMessage}</S.Content>
+              <S.Content isRecent={!!recentMessage}>
+                {recentMessage || noRecentChatMention}
+              </S.Content>
             </S.TextWrapper>
           </S.InfoWrapper>
-
           <ImgContainer
             imgSrc={shareThumbnailImageUrl}
             imgTitle={id + shareThumbnailImageUrl}

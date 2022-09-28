@@ -4,11 +4,11 @@ import { v4 as createRandomKey } from 'uuid';
 
 import Chat from '@components/Chat';
 import * as S from '@components/ChatroomDetailContents/ChatroomDetailContents.style';
-import { TestChatroomDetailChatsType } from '@pages/ChatroomDetail/chatroomDetailData';
 import { connectChat } from '@socket/chatroomSocket';
+import { ChatroomDetailChatsType } from '@type/chat';
 
 type ChatroomDetailContentsPropsType = {
-  chats: TestChatroomDetailChatsType;
+  chats: ChatroomDetailChatsType;
   chatroomId: string;
   scrollToBottomRef: (lastChat: HTMLDivElement) => void;
 };

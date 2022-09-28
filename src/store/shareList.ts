@@ -17,7 +17,7 @@ export const getShareListsData = selector({
     get(shareListTrigger);
     const type = get(activeShareList);
     const location = get(currentLatitudeLongitude);
-    const shareListData = await getShareListData(type, location);
+    const shareListData = await getShareListData({ type, location });
     return shareListData;
   },
 });

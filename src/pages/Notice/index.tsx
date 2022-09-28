@@ -1,15 +1,18 @@
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 
 import NoticeContent from '@components/NoticeContent';
 import Icon from '@components/common/Icon';
 import { NOTICE_CENTER } from '@constants/words';
 import * as S from '@pages/Notice/Notice.style';
-import { deleteModeState } from '@store/notice';
+import { deleteModeState, newNoticeState } from '@store/notice';
 
 const Notice = () => {
   const navigate = useNavigate();
   const [deleteMode, setDeleteMode] = useRecoilState(deleteModeState);
+  const setNewNotice = useSetRecoilState(newNoticeState);
+
+  setNewNotice(null);
 
   return (
     <S.Wrapper>

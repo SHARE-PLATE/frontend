@@ -161,10 +161,11 @@ export const Time = styled.div`
   `}
 `;
 
-export const Content = styled.div`
-  ${({ theme: { fonts } }) => css`
+export const Content = styled.div<{ isRecent: boolean }>`
+  ${({ theme: { fonts, colors }, isRecent }) => css`
     ${fonts.smallRegular}
 
+    color:${isRecent ? colors.black : colors.grey4};
     width: 70%;
     overflow: hidden;
     text-overflow: ellipsis;
