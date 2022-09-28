@@ -6,7 +6,7 @@ const defaultPadding = { padding: '0 1rem' };
 const fonts = {
   main: {
     'font-family': 'Noto Sans KR',
-    'letter-spacing': '-0.02rem',
+    'letter-spacing': '-0.3px',
     'font-weight': '500',
   },
   xSmallLight: {
@@ -92,6 +92,7 @@ const colors = {
   orange3: '#ff453f',
   orange4: '#ff6057',
   orange5: '#ff4a40',
+  pink0: '#f42f4d',
   red0: '#FFEAE9',
   blue0: '#1980E8',
 };

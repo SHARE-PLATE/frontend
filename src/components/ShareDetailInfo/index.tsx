@@ -8,7 +8,12 @@ import { locationMarker } from '@components/ShareDetailInfo/locationMarker';
 import Icon from '@components/common/Icon';
 import ImgContainer from '@components/common/ImgContainer';
 import PersonnelStatus from '@components/common/PersonnelStatus';
-import { imageUrlsArrayListType } from '@type/shareList';
+import {
+  CURRENT_SHARE_PARTICIPANTS,
+  LOCATION_NEGOTIATION,
+  PRICE_NEGOTIATION,
+} from '@constants/words';
+import { ShareDetailType } from '@type/shareList';
 import { calcTwoTimeDifference } from '@utils/getTimeDiff';
 
 const { kakao } = window as any;
@@ -28,7 +33,7 @@ const ShareDetailInfo = ({
   hashtags,
   latitude,
   longitude,
-}: imageUrlsArrayListType) => {
+}: ShareDetailType) => {
   const ImgContents = recruitmentMemberThumbnailImageUrls.map((member: string) => (
     <ImgContainer
       key={getRandomKey()}
@@ -88,14 +93,14 @@ const ShareDetailInfo = ({
       <S.UpperInfo>
         <S.BadgeWrapper>
           <S.Badge>{locationGuide}</S.Badge>
-          {priceNegotiation && <S.Badge>가격 협의가능</S.Badge>}
-          {locationNegotiation && <S.Badge>장소 협의가능</S.Badge>}
+          {priceNegotiation && <S.Badge>{PRICE_NEGOTIATION}</S.Badge>}
+          {locationNegotiation && <S.Badge>{LOCATION_NEGOTIATION}</S.Badge>}
         </S.BadgeWrapper>
         <S.CreateTime>{calcTwoTimeDifference(createdDateTime)}</S.CreateTime>
       </S.UpperInfo>
       <S.LowerInfo>
         <S.PersonnelStatusWrapper>
-          현재 쉐어 참여인원
+          {CURRENT_SHARE_PARTICIPANTS}
           <PersonnelStatus curPersonnel={currentRecruitment} totalPersonnel={finalRecruitment} />
         </S.PersonnelStatusWrapper>
         <S.ImgContentsWrapper>{ImgContents}</S.ImgContentsWrapper>

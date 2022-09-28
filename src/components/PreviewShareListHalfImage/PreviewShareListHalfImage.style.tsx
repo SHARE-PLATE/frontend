@@ -2,9 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { subTitle } from '@styles/mixin';
 
-export const Wrapper = styled.div`
-  padding-bottom: 2.5rem;
-`;
+export const Wrapper = styled.div``;
 
 export const TitleWrapper = styled.div`
   ${subTitle}

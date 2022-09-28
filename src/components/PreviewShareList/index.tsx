@@ -1,13 +1,13 @@
 import * as S from '@components/PreviewShareList/PreviewShareList.style';
 import PersonnelStatus from '@components/common/PersonnelStatus';
-import { thumbnailUrlListType } from '@type/shareList';
+import { ShareListType } from '@type/shareList';
 interface PreviewShareListPropsType {
-  data: thumbnailUrlListType[];
+  data: ShareListType[];
 }
 const PreviewShareList = ({ data }: PreviewShareListPropsType) => {
   return (
     <S.Wrapper>
-      {data.map((listItem: thumbnailUrlListType) => (
+      {data.map((listItem: ShareListType) => (
         <S.Container key={listItem.id}>
           <img src={listItem.thumbnailUrl} alt={listItem.title} width='100' height='100'></img>
           <S.ListInfo>

@@ -11,7 +11,7 @@ import {
 import { TabsInfoType } from '@components/Tabs';
 import { ACTIVITY } from '@constants/words';
 
-export type newNoticeStateType = NoticeActivityDataType | NoticeKeywordDataType | undefined;
+export type newNoticeStateType = NoticeActivityDataType | NoticeKeywordDataType | null;
 
 export const activeNoticeState = atom<ActiveNoticeType>({
   key: 'activeNoticeState',
@@ -53,5 +53,5 @@ export const deleteModeState = atom<boolean>({
 
 export const newNoticeState = atom<newNoticeStateType>({
   key: 'newNotice',
-  default: undefined,
+  default: null,
 });

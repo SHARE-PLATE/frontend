@@ -8,6 +8,7 @@ import ChatroomBar from '@components/ChatroomBar';
 import ChatroomDetailContents from '@components/ChatroomDetailContents';
 import ChatroomDatailHeader from '@components/ChatroomDetailHeader';
 import ChatroomDetailInfo from '@components/ChatroomDetailInfo';
+import HomeLogin from '@components/HomeLogin';
 import Loading from '@components/Loading';
 import Icon from '@components/common/Icon';
 import { failLoadingChatroomsMention } from '@constants/mentions';
@@ -16,12 +17,11 @@ import { chatroomDetailState } from '@store/chatroomDetail';
 
 const ChatroomDetail = () => {
   const { id } = useParams();
+  if (!id) return <HomeLogin />;
+
   const [lastChat, setLastChat] = useState<HTMLDivElement>();
-  const chatroomDetail = chatroomDetailState(id || '');
-  const {
-    state,
-    contents: { share, chats },
-  } = useRecoilValueLoadable(chatroomDetail);
+  const chatroomDetail = chatroomDetailState({ id });
+  const { state, contents } = useRecoilValueLoadable(chatroomDetail);
 
   //**callback ref for scroll to bottom */
   const scrollToBottomRef = useCallback((lastChatDiv: HTMLDivElement) => {
@@ -47,6 +47,7 @@ const ChatroomDetail = () => {
         );
 
       case 'hasValue':
+        const { share, chats, chatRoomMemberId } = contents;
         return (
           <>
             <ChatroomBar chatroomId={id || ''} scrollToBottom={scrollToBottom} />
@@ -56,7 +57,7 @@ const ChatroomDetail = () => {
             </S.TopFixedWrapper>
             <ChatroomDetailContents
               chats={chats}
-              chatroomId={id || ''}
+              chatroomId={chatRoomMemberId || ''}
               scrollToBottomRef={scrollToBottomRef}
             />
           </>

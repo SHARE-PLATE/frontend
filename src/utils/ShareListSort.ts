@@ -1,9 +1,6 @@
-import { thumbnailUrlListType } from '@type/shareList';
+import { ShareListType } from '@type/shareList';
 
-export const getSortData = (
-  curShareFilterList: string,
-  data: thumbnailUrlListType[],
-): thumbnailUrlListType[] => {
+export const getSortData = (curShareFilterList: string, data: ShareListType[]): ShareListType[] => {
   switch (curShareFilterList) {
     case 'price':
       return getPriceSort(data);
@@ -17,37 +14,35 @@ export const getSortData = (
   return getPriceSort(data);
 };
 
-const getPriceSort = (data: thumbnailUrlListType[]): thumbnailUrlListType[] => {
+const getPriceSort = (data: ShareListType[]): ShareListType[] => {
   const newArray = [...data];
 
-  const sortData = newArray.sort(
-    (a: thumbnailUrlListType, b: thumbnailUrlListType) => a.price - b.price,
-  );
+  const sortData = newArray.sort((a: ShareListType, b: ShareListType) => a.price - b.price);
 
   return sortData;
 };
 
-const getDistanceSort = (data: thumbnailUrlListType[]) => {
+const getDistanceSort = (data: ShareListType[]) => {
   return data;
 };
 
-export const getRecencySort = (data: thumbnailUrlListType[]) => {
+export const getRecencySort = (data: ShareListType[]) => {
   const newArray = [...data];
 
   const earlyDate = newArray.sort(
-    (a: thumbnailUrlListType, b: thumbnailUrlListType) =>
+    (a: ShareListType, b: ShareListType) =>
       Number(new Date(b.createdDateTime)) - Number(new Date(a.createdDateTime)),
   );
 
   return earlyDate;
 };
 
-export const getDeadlineSort = (data: thumbnailUrlListType[]): thumbnailUrlListType[] => {
+export const getDeadlineSort = (data: ShareListType[]): ShareListType[] => {
   const newArray = [...data];
 
   const lateDate = newArray.sort(
-    (a: thumbnailUrlListType, b: thumbnailUrlListType) =>
-      Number(new Date(a.appointmentDateTime)) - Number(new Date(b.appointmentDateTime)),
+    (a: ShareListType, b: ShareListType) =>
+      Number(new Date(a.closedDateTime)) - Number(new Date(b.closedDateTime)),
   );
 
   return lateDate;

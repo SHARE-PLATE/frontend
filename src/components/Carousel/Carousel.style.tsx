@@ -1,33 +1,29 @@
 import Slider from 'react-slick';
 import styled, { css } from 'styled-components';
 
-export const CarouselSlider = styled(Slider)`
+export type SlideType = 'side' | 'vertical' | undefined;
+
+import { flexCenter } from '@styles/mixin';
+export const CarouselSlider = styled(Slider)<{ type: SlideType }>`
   width: 100%;
   height: 100%;
 
   .slick-dots {
-    bottom: 0.5rem;
+    bottom: 1rem;
 
     button {
       ::before {
-        opacity: 0.5;
-        color: black;
+        color: ${({ theme }) => theme.colors.white0};
       }
     }
 
     .slick-active {
       button {
         ::before {
-          color: black;
+          color: ${({ theme }) => theme.colors.orange4};
         }
       }
     }
-  }
-
-  .slick-list,
-  .slick-track,
-  .slick-slide {
-    height: 100%;
   }
 
   .slick-slide {
@@ -54,6 +50,33 @@ export const CarouselSlider = styled(Slider)`
   .slick-next {
     right: 0.5rem;
   }
+
+  ${({ type }) =>
+    type === 'side' &&
+    css`
+      overflow: visible !important;
+      .slick-list {
+        overflow: visible !important;
+        margin-right: -10px;
+      }
+
+      .slick-slide {
+        margin-right: 10px;
+      }
+
+      .slick-track {
+        display: flex;
+      }
+    `}
+
+  ${({ type }) =>
+    type === 'vertical' &&
+    css`
+      .slick-list {
+        position: relative;
+        overflow: hidden;
+      }
+    `}
 `;
 
 export const CarouselWrapper = styled.div<{ width: string; height: string }>`
@@ -61,31 +84,29 @@ export const CarouselWrapper = styled.div<{ width: string; height: string }>`
     position: relative;
     width: ${width};
     height: ${height};
-    overflow: hidden;
+    border-radius: 8px;
   `}
 `;
 
 export const CarouselCount = styled.div`
   ${({ theme: { fonts, colors } }) => css`
-    ${fonts.small}
-    display: flex;
+    ${fonts.smallLight}
+    ${flexCenter}
     position: absolute;
-    right: 2rem;
+    right: 0.75rem;
     bottom: 1rem;
-    align-items: center;
-    justify-content: center;
     z-index: 1;
     border-radius: 1rem;
-    background-color: #00000059;
+    background: #353535b2;
     padding: 0.4rem;
     padding-top: 0.3rem;
-    width: 3.3rem;
-    height: 1.5rem;
+    width: 3.375rem;
+    height: 1.375rem;
     white-space: pre;
     color: ${colors.white2};
   `}
 `;
 
 export const ShowedIndexWrapper = styled.span`
-  font-weight: 600;
+  font-weight: 500;
 `;

@@ -2,24 +2,40 @@ import axios from 'axios';
 
 import { API } from '@constants/api';
 import { CHATROOM_ID } from '@constants/words';
+import * as T from '@type/chat';
 import { getAuthHeaders } from '@utils/getAuthHeaders';
 
-type GetChatroomsDataPramsType = {
-  id?: string;
-  type?: 'entry' | 'question';
+export type GetChatroomsDataParamsType = {
+  type: T.ChatroomsStateType;
 };
 
-export const getChatroomsData = async ({ id, type }: GetChatroomsDataPramsType) => {
+export type GetChatroomDetailDataParamsType = {
+  id: string;
+};
+
+export const getChatroomsData = async ({ type }: GetChatroomsDataParamsType) => {
   const headers = getAuthHeaders();
 
   try {
-    const response = await axios.get(`${API.CHATROOMS}/${id || ''}`, {
+    const response = await axios.get<T.ChatroomsDataType[]>(API.CHATROOMS, {
       headers,
       params: {
         type,
       },
     });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
 
+export const getChatroomDetailData = async ({ id }: GetChatroomDetailDataParamsType) => {
+  const headers = getAuthHeaders();
+
+  try {
+    const response = await axios.get<T.ChatroomDetailDataType>(`${API.CHATROOMS}/${id}`, {
+      headers,
+    });
     return response.data;
   } catch (error) {
     throw error;
@@ -34,9 +50,19 @@ export const deleteChatroomData = async (id: string) => {
 
   try {
     const response = axios.delete(API.CHATROOM_MEMBERS, { headers, data });
-
     return response;
   } catch (error) {
     throw error;
+  }
+};
+
+export const getPersonalChatroom = async ({ shareId }: { shareId: string }) => {
+  const headers = getAuthHeaders();
+
+  try {
+    const response = await axios.post<{ id: string }>(API.CHATROOMS, { shareId }, { headers });
+    return response.data;
+  } catch (error) {
+    console.error(error);
   }
 };

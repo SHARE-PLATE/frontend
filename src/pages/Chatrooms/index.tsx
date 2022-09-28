@@ -1,28 +1,35 @@
 import { useRecoilValueLoadable, useSetRecoilState } from 'recoil';
 
-import ChatroomHeader from '@components/ChatroomHeader';
 import ChatroomsItem from '@components/ChatroomsItem';
 import Loading from '@components/Loading';
+import NoticeIcon from '@components/NoticeIcon';
+import Tabs from '@components/Tabs';
 import { getChatDdataFailedMention } from '@constants/mentions';
-import { RELOAD } from '@constants/words';
+import { CHATTING, RELOAD } from '@constants/words';
+import useChatroomsInfo from '@hooks/useChatroomsInfo';
 import * as S from '@pages/Chatrooms/Chatrooms.style';
-import { chatroomDetailTrigger } from '@store/chatroomDetail';
-import { chatroomsState } from '@store/chatrooms';
+import { activeChatroomsState, chatroomsState, chatroomsTrigger } from '@store/chatrooms';
+import { ChatroomsStateType } from '@type/chat';
 
 const Chatrooms = () => {
-  const { contents: chatroomsData, state } = useRecoilValueLoadable(chatroomsState('entry'));
-  const setChatroomsTrigger = useSetRecoilState(chatroomDetailTrigger);
+  const chatroomsInfo = useChatroomsInfo();
+  const { contents: chatroomsData, state } = useRecoilValueLoadable(chatroomsState);
+  const setChatroomsTrigger = useSetRecoilState(chatroomsTrigger);
+  console.log(chatroomsData);
 
   const reloadChatroomsData = () => {
-    console.log('hi');
     setChatroomsTrigger((prev) => prev + 1);
   };
 
   const getContents = () => {
     switch (state) {
       case 'hasValue':
-        const chatrooms = chatroomsData.map((info) => <ChatroomsItem key={info.id} {...info} />);
-        return <>{chatrooms}</>;
+        const chatrooms = chatroomsData.map((info) => {
+          if (!info.recruitmentMemberNicknames.length) return <></>;
+          // 참여 멤버가 없을 시 채팅이 보이지 않음
+          return <ChatroomsItem key={info.id} {...info} />;
+        });
+        return <S.ContentsWrapper>{chatrooms}</S.ContentsWrapper>;
       case 'hasError':
         return (
           <S.CenterWrapper>
@@ -41,7 +48,13 @@ const Chatrooms = () => {
 
   return (
     <S.Wrapper>
-      <ChatroomHeader />
+      <S.HeaderWrapper>
+        <S.Header>
+          <S.HeaderTitle>{CHATTING}</S.HeaderTitle>
+          <NoticeIcon noticeOnIcon='NoticeOn' noticeOffIcon='NoticeOff' iconSize={1.5} />
+        </S.Header>
+        <Tabs<ChatroomsStateType> tabsInfo={chatroomsInfo} targetAtom={activeChatroomsState} />
+      </S.HeaderWrapper>
       {getContents()}
     </S.Wrapper>
   );

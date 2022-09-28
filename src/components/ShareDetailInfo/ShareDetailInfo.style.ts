@@ -27,8 +27,8 @@ export const UpperInfo = styled.div`
   ${({ theme: { colors } }) => css`
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    padding-top: 0.75rem;
+    gap: 0.5rem;
+    padding-top: 0.5rem;
     padding-bottom: 1rem;
     border-bottom: solid 1px ${colors.grey1};
   `}
@@ -47,8 +47,8 @@ export const Badge = styled.div`
 export const LowerInfo = styled.div`
   display: flex;
   flex-direction: column;
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
+  padding-top: 0.8rem;
+  padding-bottom: 0.75rem;
 `;
 
 export const PersonnelStatusWrapper = styled.div`
@@ -118,7 +118,7 @@ export const Hashtag = styled.div`
     display: flex;
     align-items: center;
     gap: 0.1rem;
-    padding: 0.3rem 0.5rem;
+    padding: 0.375rem 0.5rem;
     letter-spacing: 0.4px;
     border-radius: 0.25rem;
     background-color: ${colors.grey1};

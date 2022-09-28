@@ -1,12 +1,19 @@
 import axios from 'axios';
 
 import { API } from '@constants/api';
-import { DELIVERY, INGREDIENTS } from '@constants/words';
+import { DELIVERY, ENTRY, INGREDIENTS } from '@constants/words';
 import { activeShareListType } from '@store/filterShareList';
 import { CurrentLatitudeLongitudeType } from '@store/location';
+import { ShareDetailType, ShareListType, ShareWriterType } from '@type/shareList';
 import { getAuthHeaders } from '@utils/getAuthHeaders';
 
 type MineType = 'entry' | 'writer' | 'wish';
+
+export type GetShareListDataParamsType = {
+  type?: activeShareListType;
+  location: CurrentLatitudeLongitudeType;
+  keyword?: string;
+};
 
 export type GetShareMineListDataParamsType = {
   mineType: MineType;
@@ -14,41 +21,29 @@ export type GetShareMineListDataParamsType = {
   isExpired?: boolean;
 };
 
-export type GetShareMineListDataType = {
-  id: number;
-  thumbnailUrl: string;
-  title: string;
-  location: string;
-  price: number;
-  originalPrice: number;
-  currentRecruitment: number;
-  finalRecruitment: number;
-  recruitmentLimit: boolean;
-  createdDateTime: string;
-  closedDateTime: string;
-};
-
 export type GetShareListEntriesDataType = {
   idList: number[];
 };
 
-export const getShareListData = async (
-  type: activeShareListType,
-  location: CurrentLatitudeLongitudeType,
-) => {
-  try {
-    const response = await axios.get(`${API.SHARE_LIST}`, {
-      params: {
-        type,
-        latitude: location.lat,
-        longitude: location.lng,
-      },
-    });
+export const getShareListData = async ({ type, location, keyword }: GetShareListDataParamsType) => {
+  const params = { type, latitude: location.lat, longitude: location.lng, keyword };
 
+  try {
+    const response = await axios.get<ShareListType[]>(API.SHARE_LIST, { params });
     return response.data;
   } catch (err) {
     console.log(err);
-    throw err;
+  }
+};
+
+export const getShareDetailData = async ({ id }: { id: string }) => {
+  const headers = getAuthHeaders();
+
+  try {
+    const response = await axios.get<ShareDetailType>(API.SHARE_LIST + `/${id}`, { headers });
+    return response.data;
+  } catch (error) {
+    console.log(error);
   }
 };
 
@@ -62,7 +57,7 @@ export const registrationShareListData = async (formData: any) => {
   try {
     const response = await axios({
       method: 'post',
-      url: `${API.SHARE_REGISTRATION}`,
+      url: `${API.SHARE_LIST}`,
       data: formData,
       headers: headers,
     });
@@ -81,7 +76,7 @@ export const getShareMineListData = async ({
 }: GetShareMineListDataParamsType) => {
   try {
     const headers = getAuthHeaders();
-    const response = await axios.get<GetShareMineListDataType[]>(API.SHARE_MINE, {
+    const response = await axios.get<ShareListType[]>(API.SHARE_MINE, {
       params: {
         mineType,
         shareType,
@@ -101,6 +96,41 @@ export const getShareListEntries = async () => {
     const headers = getAuthHeaders();
     const response = await axios.get<GetShareListEntriesDataType>(API.ENTRIES, { headers });
 
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const postShareEntry = async ({ id }: { id: string }) => {
+  const headers = getAuthHeaders();
+
+  try {
+    const response = await axios.post(`${API.SHARE_LIST}/${id}/${ENTRY}`, {}, { headers });
+    const { status } = response;
+    const isSuccess = status === 200;
+    return isSuccess;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const deleteShareEntry = async ({ id }: { id: string }) => {
+  const headers = getAuthHeaders();
+
+  try {
+    const response = await axios.delete(`${API.SHARE_LIST}/${id}/${ENTRY}`, { headers });
+    const { status } = response;
+    const isSuccess = status === 200;
+    return isSuccess;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getShareListWriterData = async ({ writerId }: { writerId: string }) => {
+  try {
+    const response = await axios.get<ShareWriterType>(API.SHARES_WRITER, { params: { writerId } });
     return response.data;
   } catch (error) {
     console.error(error);

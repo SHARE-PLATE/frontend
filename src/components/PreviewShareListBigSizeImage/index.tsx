@@ -1,7 +1,6 @@
 import React, { useRef, MouseEvent } from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
 import { v4 as createRandomKey } from 'uuid';
 
 import { deleteWishListContent } from '@api/myMenu';
@@ -11,16 +10,17 @@ import ImgContainer from '@components/common/ImgContainer';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import SelectModal from '@components/common/SelectModal';
 import { deleteYesMention, historyDeleteMention } from '@constants/mentions';
+import { pathName } from '@constants/pathName';
 import useModal from '@hooks/useModal';
-import { thumbnailUrlListType } from '@type/shareList';
+import { ShareListType } from '@type/shareList';
 import { getPriceType } from '@utils/getPriceType';
 import { calcTwoTimeDifference } from '@utils/getTimeDiff';
 
 interface PreviewShareListBigSizeImagePropsType {
-  data: thumbnailUrlListType[];
   isHistory?: boolean;
   isDone?: boolean;
   isWish?: boolean;
+  data: ShareListType[];
 }
 
 const PreviewShareListBigSizeImage = ({
@@ -47,7 +47,8 @@ const PreviewShareListBigSizeImage = ({
     }
   };
 
-  const handelClickShareList = (id: number) => navigate(`/share-detail/${id}`);
+  const handleClickShareList = ({ id, writerId }: { id: number; writerId: string }) =>
+    navigate(`${pathName.shareDetail}/${id}`, { state: { writerId } });
 
   const showedList = data.map(
     ({
@@ -60,12 +61,13 @@ const PreviewShareListBigSizeImage = ({
       currentRecruitment,
       finalRecruitment,
       createdDateTime,
-      appointmentDateTime,
+      closedDateTime,
+      writerId,
     }) => (
       <React.Fragment key={id}>
         <S.ItemWrapper
           onClick={() => {
-            handelClickShareList(id);
+            handleClickShareList({ id, writerId });
           }}
         >
           <S.ImgWrapper>
@@ -76,7 +78,7 @@ const PreviewShareListBigSizeImage = ({
               imgWrapperRatio={2.13 / 1}
             />
             <ImageContents
-              dateTime={appointmentDateTime}
+              dateTime={closedDateTime}
               isDone={isDone}
               isWish={isWish}
               wishListClickHandler={() => {}}

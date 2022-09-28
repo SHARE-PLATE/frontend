@@ -1,13 +1,13 @@
-import { RecoilValueReadOnly, useRecoilValueLoadable } from 'recoil';
-
-import { GetShareMineListDataType } from '@api/shareList';
-import * as S from '@components/PreviewShareListCenterImage/PreviewShareListCenterImage.style';
-import ShareListItemCenterImage from '@components/ShareListItemCenterImage';
-
 import 'moment/locale/ko';
 
+import { RecoilValueReadOnly, useRecoilValueLoadable } from 'recoil';
+
+import * as S from '@components/PreviewShareListCenterImage/PreviewShareListCenterImage.style';
+import ShareListItemCenterImage from '@components/ShareListItemCenterImage';
+import { ShareListType } from '@type/shareList';
+
 interface PreviewShareListCenterImagePropsType {
-  valueState: RecoilValueReadOnly<GetShareMineListDataType[] | undefined>;
+  valueState: RecoilValueReadOnly<ShareListType[] | undefined>;
 }
 
 const PreviewShareListCenterImage = ({ valueState }: PreviewShareListCenterImagePropsType) => {

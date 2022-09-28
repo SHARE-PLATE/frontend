@@ -1,22 +1,32 @@
+import { useNavigate } from 'react-router-dom';
+
 import { RemainedTime } from '@components/RemainedTime';
 import * as S from '@components/ShareListItemLongImage/ShareListItemLongImage.style';
 import ImgContainer from '@components/common/ImgContainer';
 import PersonnelStatus from '@components/common/PersonnelStatus';
-import { thumbnailUrlListType } from '@type/shareList';
+import { pathName } from '@constants/pathName';
+import { ShareListType } from '@type/shareList';
 import { getPriceType } from '@utils/getPriceType';
 
-export const ShareListItemLongImage = ({ itemInfo }: { itemInfo: thumbnailUrlListType }) => {
+export const ShareListItemLongImage = ({ itemInfo }: { itemInfo: ShareListType }) => {
   const {
+    id,
     title,
     location,
     price,
     thumbnailUrl,
-    appointmentDateTime,
+    closedDateTime,
     finalRecruitment,
     currentRecruitment,
   } = itemInfo;
+  const navigate = useNavigate();
+
   return (
-    <S.ItemWrapper>
+    <S.ItemWrapper
+      onClick={() => {
+        navigate(`${pathName.shareDetail}/${id}`);
+      }}
+    >
       <S.ImgWrapper>
         <ImgContainer
           imgSrc={thumbnailUrl}
@@ -25,7 +35,7 @@ export const ShareListItemLongImage = ({ itemInfo }: { itemInfo: thumbnailUrlLis
           imgWrapperRatio={0.686 / 1}
         />
         <RemainedTime
-          targetTime={appointmentDateTime}
+          targetTime={closedDateTime}
           position={{ top: '0.375rem', left: '0.375rem' }}
         />
       </S.ImgWrapper>

@@ -6,13 +6,13 @@ import PreviewShareListLeftImage from '@components/PreviewShareListLeftImage';
 import Icon from '@components/common/Icon';
 import { activeShareList } from '@store/filterShareList';
 import { curHightAtom } from '@store/shareMap';
-import { thumbnailUrlListType } from '@type/shareList';
+import { ShareListType } from '@type/shareList';
 import { getSortData } from '@utils/ShareListSort';
 
 interface ShareListSlidePropsType {
   isClicked: boolean;
   maxHeight: number;
-  contents: thumbnailUrlListType[];
+  contents: ShareListType[];
   changeClickTrue: () => void;
   changeClickFalse: () => void;
 }

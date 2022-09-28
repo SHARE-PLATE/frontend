@@ -1,27 +1,13 @@
 import styled, { css } from 'styled-components';
 
-import { noScrollBar, subTitle } from '@styles/mixin';
+import { flexCenter, noScrollBar } from '@styles/mixin';
 
 export const Wrapper = styled.div`
   ${({ theme: { defaultWidth } }) => css`
     ${defaultWidth}
     padding-left: 1rem;
+    padding-top: 0.25rem;
   `}
-`;
-
-export const TitleWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  padding-top: 1.5rem;
-  gap: 0.4rem;
-
-  > div {
-    padding-top: 0;
-  }
-`;
-
-export const MentionWrapper = styled.div`
-  ${subTitle}
 `;
 
 export const ListWrapper = styled.div`
@@ -42,11 +28,9 @@ export const ListWrapper = styled.div`
 
 export const noListWrapper = styled.div`
   ${({ theme: { colors } }) => css`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 10rem;
+    ${flexCenter}
     text-align: center;
+    height: 10rem;
     line-height: 1.5rem;
     white-space: pre;
     color: ${colors.grey4};

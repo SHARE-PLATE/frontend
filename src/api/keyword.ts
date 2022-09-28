@@ -20,7 +20,7 @@ export const addKeywords = async (newKeyword: newKeywordType) => {
   const headers = getAuthHeaders();
   try {
     const response = await axios.post(
-      `${API.ADD_KEYWORD}`,
+      `${API.KEYWORD}`,
       { ...newKeyword },
       {
         headers,
@@ -38,7 +38,7 @@ export const deleteKeywordAddress = async (curLocation: string) => {
   const data = { location: curLocation };
 
   try {
-    const response = await axios.delete(`${API.DELETE_KEYWORD}`, {
+    const response = await axios.delete(`${API.KEYWORD}`, {
       headers,
       data,
     });
@@ -54,7 +54,7 @@ export const getRegisteredKeywords = async (regionName: string) => {
   const headers = getAuthHeaders();
 
   try {
-    const response = await axios.get(`${API.REGISTERED_KEYWORDS}`, {
+    const response = await axios.get(`${API.REGISTERED_KEYWORD}`, {
       headers,
       params: { location: regionName },
     });
@@ -68,7 +68,7 @@ export const getRegisteredKeywords = async (regionName: string) => {
 export const deleteRegisteredKeywords = async (id: number) => {
   const headers = getAuthHeaders();
   try {
-    const response = await axios.delete(`${API.DELETE_REGISTERED_KEYWORDS(id)}`, {
+    const response = await axios.delete(`${API.DELETE_REGISTERED_KEYWORD(id)}`, {
       headers,
     });
     if (response.status === 200) return true;

@@ -1,16 +1,14 @@
-import { ReactElement, useEffect, useState } from 'react';
-
 import { v4 as createRandomKey } from 'uuid';
 
 import * as S from '@components/PreviewShareListHalfImage/PreviewShareListHalfImage.style';
 import ShareListItemHalfImage from '@components/ShareListItemHalfImage';
 import Title from '@components/common/Title';
-import { thumbnailUrlListType } from '@type/shareList';
+import { ShareRecommendationType } from '@type/shareList';
 
 type PreviewShareListHalfImagePropsType = {
   title: string;
   emptyMention: string;
-  data: thumbnailUrlListType[];
+  data: ShareRecommendationType[];
   showMoreOption?: () => void;
 };
 
@@ -20,32 +18,24 @@ const PreviewShareListHalfImage = ({
   emptyMention,
   showMoreOption,
 }: PreviewShareListHalfImagePropsType) => {
-  const [showedList, setShowedList] = useState<ReactElement>();
+  const showList = () => {
+    if (!data.length) return <S.noListWrapper>{emptyMention}</S.noListWrapper>;
 
-  const setNewListWithData = () => {
     const itemListArray = data.map((item) => (
       <ShareListItemHalfImage key={item.id} itemInfo={item} />
     ));
     if (itemListArray.length % 2)
       itemListArray.push(<ShareListItemHalfImage key={createRandomKey()} />);
 
-    const itemList = !itemListArray.length ? (
-      <S.noListWrapper>{emptyMention}</S.noListWrapper>
-    ) : (
-      <S.ListWrapper>{itemListArray}</S.ListWrapper>
-    );
-
-    setShowedList(itemList);
+    return <S.ListWrapper>{itemListArray}</S.ListWrapper>;
   };
 
-  useEffect(() => {
-    setNewListWithData();
-  }, []);
+  const list = showList();
 
   return (
     <S.Wrapper>
       <Title contentTitle={title} handleClick={() => showMoreOption && showMoreOption()} />
-      {showedList}
+      {list}
     </S.Wrapper>
   );
 };

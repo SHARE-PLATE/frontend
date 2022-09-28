@@ -8,10 +8,10 @@ import PreviewShareListHalfImage from '@components/PreviewShareListHalfImage';
 import Icon from '@components/common/Icon';
 import { noRelatedShareList, offerShare, searchFailed } from '@constants/mentions';
 import { currentLatitudeLongitude } from '@store/location';
-import { thumbnailUrlListType } from '@type/shareList';
+import { ShareListType } from '@type/shareList';
 
 const FailedContents = () => {
-  const [recommendedData, setRecommendedData] = useState<thumbnailUrlListType[]>();
+  const [recommendedData, setRecommendedData] = useState<ShareListType[]>();
   const { lat, lng } = useRecoilValue(currentLatitudeLongitude);
 
   useEffect(() => {
