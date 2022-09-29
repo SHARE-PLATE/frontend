@@ -1,6 +1,6 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
-export type SamePartType = 'WIDTH' | 'HEIGHT' | null;
+export type SamePartType = 'WIDTH' | 'HEIGHT' | null | undefined;
 
 type ImgWrapperPropsType = {
   samePart: SamePartType;

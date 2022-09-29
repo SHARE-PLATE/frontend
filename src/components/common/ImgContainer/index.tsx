@@ -9,6 +9,7 @@ type ImgContainerPropsType = {
   imgTitle: string;
   imgWrapperWidth: string;
   imgWrapperRatio: number;
+  standard?: S.SamePartType;
   noAlign?: boolean;
   borderRadius?: string;
   additionalStyle?: FlattenSimpleInterpolation;
@@ -21,6 +22,7 @@ const ImgContainer = ({
   imgTitle,
   imgWrapperWidth,
   imgWrapperRatio,
+  standard,
   noAlign,
   borderRadius,
   additionalStyle,
@@ -55,7 +57,7 @@ const ImgContainer = ({
     const newGapBetweenCenter =
       ((imgWrapperRatio - imgRatio) * standardLength) / (imgWrapperRatio * imgRatio) / 2;
 
-    setSamePart(standardLengthName);
+    setSamePart(standard || standardLengthName);
     setGapBetweenCenter(newGapBetweenCenter);
   };
 
