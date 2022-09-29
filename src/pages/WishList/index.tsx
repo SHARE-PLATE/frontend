@@ -15,7 +15,7 @@ import * as S from '@pages/WishList/WishList.style';
 import { activeShareList } from '@store/filterShareList';
 import { activeShareListType } from '@store/filterShareList';
 import { clickedHeartId } from '@store/meyMenu';
-import { thumbnailUrlListType } from '@type/shareList';
+import { ShareListType } from '@type/shareList';
 import { getRecencySort } from '@utils/ShareListSort';
 import { getHistoryMention } from '@utils/getMention';
 
@@ -25,7 +25,7 @@ const ShareListContentComponentInfo = {
 };
 
 const WishList = () => {
-  const [wishListData, setWishListData] = useState<thumbnailUrlListType[]>();
+  const [wishListData, setWishListData] = useState<ShareListType[]>();
 
   const [curShareFilterList, setCurrentFilterShareList] = useState(false);
   const shareListTabsInfo = useShareListTabsInfo();

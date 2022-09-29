@@ -34,7 +34,8 @@ const ImgContainer = ({
   imgValue.src = imgSrc;
   imgValue.onload = () => {
     const { width, height } = imgValue;
-    if (!imgSize) setImgSize({ width, height });
+    const isSameValue = imgSize?.width === width && imgSize?.height === height;
+    if (!isSameValue) setImgSize({ width, height });
   };
 
   const alignCenter = () => {

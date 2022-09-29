@@ -1,47 +1,65 @@
 import { useEffect, useState } from 'react';
 
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
+import { getShareDetailData, getShareListWriterData } from '@api/shareList';
 import { getShareListRecommendedData } from '@api/shareRecommended';
-import InteractionBar from '@components/InteractionBar';
+import HomeLogin from '@components/HomeLogin';
 import PreviewShareListHalfImage from '@components/PreviewShareListHalfImage';
+import ShareDetailBottomBar from '@components/ShareDetailBottomBar';
 import ShareDetailHeader from '@components/ShareDetailHeader';
 import ShareDetailInfo from '@components/ShareDetailInfo';
 import UserInfoWithFollow from '@components/UserInfoWithFollow';
-import { API } from '@constants/api';
 import { noRelatedShareList, offerShare } from '@constants/mentions';
 import * as S from '@pages/ShareDetail/ShareDetail.style';
 import { currentLatitudeLongitude } from '@store/location';
-import { imageUrlsArrayListType, thumbnailUrlListType } from '@type/shareList';
+import { ShareDetailType, ShareRecommendationType } from '@type/shareList';
 
 const ShareDetail = () => {
   const { id } = useParams();
-  const [detailData, setDetailData] = useState<imageUrlsArrayListType>();
-  const [recommendedData, setRecommendedData] = useState<thumbnailUrlListType[]>();
+  if (!id) return <HomeLogin />;
+
+  const { state } = useLocation() as {
+    state: { writerId: string };
+  };
+  const [detailData, setDetailData] = useState<ShareDetailType>();
+  const [recommendedData, setRecommendedData] = useState<ShareRecommendationType[]>([]);
+  const [writerSharesData, setWriterSharesData] = useState<ShareRecommendationType[]>([]);
   const { lat, lng } = useRecoilValue(currentLatitudeLongitude);
 
-  useEffect(() => {
-    (async () => {
-      const { data } = await axios.get(`${API.SHARE_DETAIL(id)}`);
+  const getShareDetail = async () => {
+    const shareDetailData = await getShareDetailData({ id });
+    setDetailData(shareDetailData);
+  };
 
-      setDetailData(data);
-    })();
+  const getShareRecommend = async () => {
+    const recommendData = await getShareListRecommendedData(lat, lng);
+    setRecommendedData(recommendData);
+  };
+
+  const getWriterShares = async () => {
+    if (!state?.writerId) return;
+    const sharListWriterData = await getShareListWriterData({ writerId: state.writerId });
+    if (!sharListWriterData) return;
+    const { shares } = sharListWriterData;
+    setWriterSharesData(shares);
+  };
+
+  useEffect(() => {
+    getShareDetail();
+    getWriterShares();
+    window.scrollTo(0, 0);
   }, [id]);
 
   useEffect(() => {
-    (async () => {
-      const recommendedFetchData = await getShareListRecommendedData(lat, lng);
-
-      setRecommendedData(recommendedFetchData);
-    })();
-  }, [lat, lng]);
+    getShareRecommend();
+  }, [lat, lng, id]);
 
   return (
     <>
       <S.Wrapper>
-        {detailData?.id && (
+        {detailData && (
           <>
             <S.UpperWrapper>
               <ShareDetailHeader {...detailData} />
@@ -51,23 +69,21 @@ const ShareDetail = () => {
               <UserInfoWithFollow {...detailData} />
               <PreviewShareListHalfImage
                 title={`${detailData.writer}님의 쉐어상품`}
-                data={[]}
+                data={writerSharesData}
                 emptyMention={noRelatedShareList}
                 showMoreOption={() => console.log('더보기')}
               />
-              {recommendedData && (
-                <PreviewShareListHalfImage
-                  title={offerShare}
-                  data={recommendedData}
-                  emptyMention={noRelatedShareList}
-                  showMoreOption={() => console.log('더보기')}
-                />
-              )}
+              <PreviewShareListHalfImage
+                title={offerShare}
+                data={recommendedData}
+                emptyMention={noRelatedShareList}
+                showMoreOption={() => console.log('더보기')}
+              />
             </S.LowerWrapper>
           </>
         )}
       </S.Wrapper>
-      <InteractionBar isWished={detailData?.wish} />
+      {detailData && <ShareDetailBottomBar isWished={detailData.wish} entry={detailData.entry} />}
     </>
   );
 };

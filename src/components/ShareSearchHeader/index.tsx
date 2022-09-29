@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 
-import * as S from '@components/SearchShareHeader/SearchShareHeader.style';
+import * as S from '@components/ShareSearchHeader/ShareSearchHeader.style';
 import Icon from '@components/common/Icon';
 import { portalState } from '@store/portal';
 
-const SearchShareHeader = ({ keyWord }: { keyWord: string }) => {
+const ShareSearchHeader = ({ keyWord }: { keyWord: string }) => {
   const setPortal = useSetRecoilState(portalState);
   const navigate = useNavigate();
   const handleClickBackBtn = () => navigate(-1);
@@ -24,4 +24,4 @@ const SearchShareHeader = ({ keyWord }: { keyWord: string }) => {
   );
 };
 
-export default SearchShareHeader;
+export default ShareSearchHeader;

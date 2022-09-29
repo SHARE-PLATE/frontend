@@ -6,13 +6,13 @@ import { CurrentLocationMarker } from '@components/MapArea/CurrentLocationMarker
 import * as S from '@components/MapArea/MapArea.style';
 import ShareListSlide from '@components/MapArea/ShareListSlide';
 import { curHightAtom, maxHeightAtom } from '@store/shareMap';
-import { thumbnailUrlListType } from '@type/shareList';
+import { ShareListType } from '@type/shareList';
 
 interface MapAreaPropsType {
   lat: number;
   lng: number;
 
-  data: thumbnailUrlListType[];
+  data: ShareListType[];
 }
 
 const { kakao } = window as any;

@@ -1,33 +1,59 @@
-interface listExampleType {
+export type ShareRecommendationType = {
   id: number;
+  thumbnailUrl: string;
+  title: string;
+  location: string;
+  price: number;
+  currentRecruitment: number;
+  finalRecruitment: number;
+  createdDateTime: string;
+  closedDateTime: string;
+};
+
+export type ShareListType = {
+  id: number;
+  thumbnailUrl: string;
   title: string;
   location: string;
   price: number;
   originalPrice: number;
   currentRecruitment: number;
   finalRecruitment: number;
+  recruitmentLimit: boolean;
   createdDateTime: string;
-  appointmentDateTime: string;
-}
+  closedDateTime: string;
+  writerId: string;
+};
 
-export interface thumbnailUrlListType extends listExampleType {
-  thumbnailUrl: string;
-}
-
-export interface imageUrlsArrayListType extends listExampleType {
+export type ShareDetailType = {
+  id: number;
   imageUrls: string[];
   writer: string;
-  locationNegotiation: boolean;
-  priceNegotiation: boolean;
   writerThumbnailImageUrl: string;
+  title: string;
+  location: string;
+  locationGuide: string;
   latitude: number;
   longitude: number;
   description: string;
-  closedDateTime: string;
+  price: number;
+  originalPrice: number;
+  currentRecruitment: number;
+  finalRecruitment: number;
   recruitmentMemberThumbnailImageUrls: string[];
+  createdDateTime: string;
+  closedDateTime: string;
   wish: boolean;
-  wishCount: number;
   entry: boolean;
-  locationGuide: string;
+  wishCount: number;
+  locationNegotiation: boolean;
+  priceNegotiation: boolean;
   hashtags: string[];
-}
+};
+
+export type ShareWriterType = {
+  writer: string;
+  thumbnailUrl: string;
+  shareCount: number;
+  shares: ShareRecommendationType[];
+};
