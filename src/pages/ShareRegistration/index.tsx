@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 
 import moment from 'moment';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 
 import { registrationShareListData } from '@api/shareList';
+import HomeLogin from '@components/HomeLogin';
 import {
   FileContainer,
   TextContainer,
@@ -14,9 +15,10 @@ import {
   RecruitmentContainer,
   OptionPortalButton,
 } from '@components/ShareForm';
-import ShareFormHeader from '@components/ShareFormHeader';
+import BackTitleHeader from '@components/common/BackTitleHeader';
 import FailedModal from '@components/common/FailedModal';
 import { dataFailed } from '@constants/mentions';
+import { DELIVERY_KOR, INGREDIENTS_KOR, SHARE_RESISTRATION } from '@constants/words';
 import useInput from '@hooks/useInput';
 import useModal from '@hooks/useModal';
 import * as S from '@pages/ShareRegistration/ShareRegistration.style';
@@ -24,10 +26,19 @@ import { shareLocationState } from '@store/location';
 import { shareListTrigger } from '@store/shareList';
 import { locationPossible, pricePossible, tagList } from '@store/shareRegistration';
 
-const ShareRegistration = () => {
-  const { pathname } = useLocation();
-  const navigate = useNavigate();
+type TitleType = { type: 'delivery' | 'ingredient' };
 
+const titleMatch = {
+  delivery: DELIVERY_KOR,
+  ingredient: INGREDIENTS_KOR,
+};
+
+const ShareRegistration = () => {
+  const { type } = useParams<TitleType>();
+  if (!type) return <HomeLogin />;
+
+  const title = `${titleMatch[type]} ${SHARE_RESISTRATION}`;
+  const navigate = useNavigate();
   const [fileImage, setFileImage] = useState<FileList>();
   const [descriptionValue, setDescriptionValue] = useState('');
   const { lat, lng, place_name, road_address_name } = useRecoilValue(shareLocationState);
@@ -38,26 +49,25 @@ const ShareRegistration = () => {
   const [recruitmentValue, setRecruitmentValue] = useState(1);
   const [appointmentDateTime, setAppointmentDateTime] = useState(moment().format('YYYY-MM-DD'));
   const [appointmentTime, setAppointmentTime] = useState(moment().format('HH:mm'));
-
   const modalRef = useRef<HTMLDivElement>(null);
   const [isModalOpen, setIsModalOpen] = useModal({ modalRef });
-  const closeModal = () => setIsModalOpen(false);
-
   const titleInput = useInput('');
   const priceInput = useInput('');
   const originalPriceInput = useInput('');
-
   const setShareListTrigger = useSetRecoilState(shareListTrigger);
+
+  const closeModal = () => setIsModalOpen(false);
 
   const handelSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
+    if (!fileImage || !type) return;
+
     const formData = new FormData();
 
     //이미지
-    if (fileImage) {
-      for (let i = 0; i < fileImage.length; i++) {
-        formData.append('images', fileImage[i]);
-      }
+
+    for (let i = 0; i < fileImage.length; i++) {
+      formData.append('images', fileImage[i]);
     }
 
     //해쉬태그
@@ -66,7 +76,7 @@ const ShareRegistration = () => {
     }
 
     //타입
-    formData.append('type', pathname.split('/')[2]);
+    formData.append('type', type);
     //제목
     formData.append('title', titleInput.inputValue);
     //가격
@@ -108,7 +118,7 @@ const ShareRegistration = () => {
 
   return (
     <S.Wrapper>
-      <ShareFormHeader />
+      <BackTitleHeader title={title} />
       <S.InputFormWrapper onSubmit={handelSubmit} encType='multipart/form-data'>
         <FileContainer fileImage={fileImage} setFileImage={setFileImage} />
 
