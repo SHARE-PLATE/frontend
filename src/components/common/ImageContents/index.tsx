@@ -8,7 +8,9 @@ interface ImageContentsPropsType {
   dateTime: string;
   isDone?: boolean;
   isWish?: boolean;
-  wishListClickHandler?: () => void;
+  id?: number;
+  isEmptyHeart?: boolean;
+  wishListClickHandler?: (e: MouseEvent, id: number) => void;
 }
 
 const ImageContents = ({
@@ -16,6 +18,8 @@ const ImageContents = ({
   isWish,
   dateTime,
   wishListClickHandler,
+  id,
+  isEmptyHeart,
 }: ImageContentsPropsType) => {
   const [currentKey, setCurrentKey] = useState<string>('');
 
@@ -30,7 +34,12 @@ const ImageContents = ({
     case 'done_wish':
       return (
         <>
-          {/* <WishHeart type='delivery' clickHandler={wishListClickHandler} /> */}
+          <WishHeart
+            type='delivery'
+            id={id}
+            isEmptyHeart={isEmptyHeart}
+            clickHandler={wishListClickHandler}
+          />
           <ExpirationDate />
         </>
       );
@@ -41,7 +50,12 @@ const ImageContents = ({
     case 'wish':
       return (
         <>
-          {/* <WishHeart type='delivery' clickHandler={wishListClickHandler} /> */}
+          <WishHeart
+            type='delivery'
+            id={id}
+            isEmptyHeart={isEmptyHeart}
+            clickHandler={wishListClickHandler}
+          />
           <RemainedTime targetTime={dateTime} position={{ top: '0.375rem', left: '0.375rem' }} />
         </>
       );

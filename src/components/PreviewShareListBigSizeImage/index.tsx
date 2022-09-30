@@ -1,23 +1,20 @@
-import React, { useRef, MouseEvent } from 'react';
+import React, { MouseEvent } from 'react';
 
 import { useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import { v4 as createRandomKey } from 'uuid';
 
-import { deleteWishListContent } from '@api/myMenu';
 import * as S from '@components/PreviewShareListBigSizeImage/PreviewShareListBigSizeImage.style';
 import ImageContents from '@components/common/ImageContents';
 import ImgContainer from '@components/common/ImgContainer';
 import PersonnelStatus from '@components/common/PersonnelStatus';
-import SelectModal from '@components/common/SelectModal';
-import { deleteYesMention, historyDeleteMention } from '@constants/mentions';
 import { pathName } from '@constants/pathName';
-import useModal from '@hooks/useModal';
+import { clickedHeartId } from '@store/meyMenu';
 import { ShareListType } from '@type/shareList';
 import { getPriceType } from '@utils/getPriceType';
 import { calcTwoTimeDifference } from '@utils/getTimeDiff';
 
 interface PreviewShareListBigSizeImagePropsType {
-  isHistory?: boolean;
   isDone?: boolean;
   isWish?: boolean;
   data: ShareListType[];
@@ -25,26 +22,19 @@ interface PreviewShareListBigSizeImagePropsType {
 
 const PreviewShareListBigSizeImage = ({
   data,
-  isHistory,
   isDone,
   isWish,
 }: PreviewShareListBigSizeImagePropsType) => {
   const navigate = useNavigate();
-  const modalRef = useRef<HTMLDivElement>(null);
-  const [isDeleteModal, setIsDeleteModal] = useModal({ modalRef });
+  const [heartIdArr, setHeartIdArr] = useRecoilState<number[]>(clickedHeartId);
 
-  const closeModal = () => setIsDeleteModal(false);
-  const openModal = (e: MouseEvent) => {
+  const clickHeartHandler = (e: MouseEvent, id: number) => {
     e.stopPropagation();
-    setIsDeleteModal(true);
-  };
+    if (!heartIdArr.length) return setHeartIdArr([id]);
+    if (!heartIdArr.includes(id)) return setHeartIdArr([...heartIdArr, id]);
 
-  const deleteHandler = async (parameter: number) => {
-    if (!parameter) return;
-    const isSuccessFetch = await deleteWishListContent(parameter);
-    if (isSuccessFetch) {
-      closeModal();
-    }
+    const filterArr = heartIdArr.filter((el: number) => el !== id);
+    return setHeartIdArr(filterArr);
   };
 
   const handleClickShareList = ({ id, writerId }: { id: number; writerId: string }) =>
@@ -64,58 +54,44 @@ const PreviewShareListBigSizeImage = ({
       closedDateTime,
       writerId,
     }) => (
-      <React.Fragment key={id}>
-        <S.ItemWrapper
-          onClick={() => {
-            handleClickShareList({ id, writerId });
-          }}
-        >
-          <S.ImgWrapper>
-            <ImgContainer
-              imgSrc={thumbnailUrl}
-              imgTitle={title}
-              imgWrapperWidth='100%'
-              imgWrapperRatio={2.13 / 1}
-            />
-            <ImageContents
-              dateTime={closedDateTime}
-              isDone={isDone}
-              isWish={isWish}
-              wishListClickHandler={() => {}}
-            />
-          </S.ImgWrapper>
-          <S.Container>
-            <S.TextWrapper>
-              <S.Title>{title}</S.Title>
-              <S.Location>
-                {location} / {calcTwoTimeDifference(createdDateTime)}
-              </S.Location>
-              <S.PriceWrapper>
-                <S.Price>{getPriceType({ price, isUnit: true })}</S.Price>
-                <S.OriginPrice>
-                  {getPriceType({ price: originalPrice, isUnit: true })}
-                </S.OriginPrice>
-              </S.PriceWrapper>
-            </S.TextWrapper>
-            <S.PersonnelStatusWrapper>
-              <PersonnelStatus
-                curPersonnel={currentRecruitment}
-                totalPersonnel={finalRecruitment}
-              />
-            </S.PersonnelStatusWrapper>
-          </S.Container>
-        </S.ItemWrapper>
-        {isDeleteModal && (
-          <SelectModal
-            modalRef={modalRef}
-            closeModal={closeModal}
-            deleteHandler={deleteHandler}
-            clickHandlerParams={id}
-            title={historyDeleteMention}
-            okMention={deleteYesMention}
+      <S.ItemWrapper
+        key={id}
+        onClick={() => {
+          handleClickShareList({ id, writerId });
+        }}
+      >
+        <S.ImgWrapper>
+          <ImgContainer
+            imgSrc={thumbnailUrl}
+            imgTitle={title}
+            imgWrapperWidth='100%'
+            imgWrapperRatio={2.13 / 1}
           />
-        )}
-      </React.Fragment>
+          <ImageContents
+            dateTime={closedDateTime}
+            isDone={isDone}
+            isWish={isWish}
+            wishListClickHandler={clickHeartHandler}
+            id={id}
+            isEmptyHeart={heartIdArr.includes(id)}
+          />
+        </S.ImgWrapper>
+        <S.Container>
+          <S.TextWrapper>
+            <S.Title>{title}</S.Title>
+            <S.Location>
+              {location} / {calcTwoTimeDifference(createdDateTime)}
+            </S.Location>
+            <S.PriceWrapper>
+              <S.Price>{getPriceType({ price, isUnit: true })}</S.Price>
+              <S.OriginPrice>{getPriceType({ price: originalPrice, isUnit: true })}</S.OriginPrice>
+            </S.PriceWrapper>
+          </S.TextWrapper>
+          <S.PersonnelStatusWrapper>
+            <PersonnelStatus curPersonnel={currentRecruitment} totalPersonnel={finalRecruitment} />
+          </S.PersonnelStatusWrapper>
+        </S.Container>
+      </S.ItemWrapper>
     ),
   );
 
