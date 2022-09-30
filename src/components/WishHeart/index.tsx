@@ -4,15 +4,15 @@ import * as S from '@components/WishHeart/WishHeart.style';
 import Icon from '@components/common/Icon';
 interface WishHeartPropsType {
   type: S.HeartWrapperType;
-  id: number;
-  isEmptyHeart: boolean;
-  clickHandler: (e: MouseEvent, id: number) => void;
+  id?: number;
+  isEmptyHeart?: boolean | undefined;
+  clickHandler?: (e: MouseEvent, id: number) => void;
 }
 
 const WishHeart = ({ type, id, isEmptyHeart, clickHandler }: WishHeartPropsType) => {
   return (
     <S.HeartWrapper type={type} isEmptyHeart={isEmptyHeart}>
-      <Icon iconName='HeartEmpty' handleClick={(e) => clickHandler(e, id)} />
+      <Icon iconName='HeartEmpty' handleClick={(e) => clickHandler && id && clickHandler(e, id)} />
     </S.HeartWrapper>
   );
 };

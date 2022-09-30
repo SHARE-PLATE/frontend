@@ -2,12 +2,16 @@ import styled, { css } from 'styled-components';
 
 export type HeartWrapperType = 'delivery' | 'ingredient';
 
-export const HeartWrapper = styled.div<{ type: HeartWrapperType; isEmptyHeart: boolean }>`
+export const HeartWrapper = styled.div<{
+  type: HeartWrapperType;
+  isEmptyHeart: boolean | undefined;
+}>`
   ${({ type }) =>
     type === 'delivery' &&
     css`
-      top: 0.375rem;
-      right: 0.375rem;
+      position: absolute;
+      top: 0.563rem;
+      right: 0.438rem;
     `}
   ${({ type }) =>
     type === 'ingredient' &&
@@ -15,7 +19,7 @@ export const HeartWrapper = styled.div<{ type: HeartWrapperType; isEmptyHeart: b
       margin-top: 0.4rem;
     `}
     ${({ isEmptyHeart }) =>
-    isEmptyHeart &&
+    !isEmptyHeart &&
     css`
       svg {
         fill: ${({ theme }) => theme.colors.pink0};
