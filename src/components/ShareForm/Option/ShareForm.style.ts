@@ -88,12 +88,11 @@ export const LocationSelectButton = styled.button`
   flex-direction: row;
   padding: 0.625rem 0.75rem;
   width: 100%;
-  height: 2.625rem;
-  line-height: 20px;
-  letter-spacing: 1px;
-  background: ${({ theme }) => theme.colors.white2};
   border: 1px solid ${({ theme }) => theme.colors.grey3};
   border-radius: 4px;
+  svg {
+    padding-right: 0.2rem;
+  }
 `;
 
 export const NoneLocation = styled.span`

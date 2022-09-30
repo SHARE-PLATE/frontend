@@ -13,13 +13,12 @@ const AddressContainer = ({ placeName }: { placeName: string | undefined }) => {
     setAddressPortalOption('SHARE');
     setPortal('address');
   };
+
   return (
-    <S.LongTextBlock>
-      <S.LocationSelectButton type='button' onClick={handleClickLocationSelectBtn}>
-        {placeName ? <span>{placeName}</span> : <S.NoneLocation>주소선택</S.NoneLocation>}
-        <Icon iconName='ChevronRight' />
-      </S.LocationSelectButton>
-    </S.LongTextBlock>
+    <S.LocationSelectButton type='button' onClick={handleClickLocationSelectBtn}>
+      {placeName ? <span>{placeName}</span> : <S.NoneLocation>장소선택</S.NoneLocation>}
+      <Icon iconName='ChevronRight' />
+    </S.LocationSelectButton>
   );
 };
 
