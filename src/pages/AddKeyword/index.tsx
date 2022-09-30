@@ -17,16 +17,16 @@ import { keywordListTrigger, registeredKeywordTrigger } from '@store/keyword';
 
 const AddKeyword = () => {
   const {
-    state: { regionName },
+    state: { regionName, x, y },
   } = useLocation() as {
-    state: { regionName: string };
+    state: { regionName: string; x?: string; y?: string };
   };
 
   const navigate = useNavigate();
   const [keywordLength, setKeywordLength] = useState<number>(0);
   const [curLatitudeLongitude, setCurLatitudeLongitude] = useState<{ lat: string; lng: string }>({
-    lat: '',
-    lng: '',
+    lat: y || '',
+    lng: x || '',
   });
 
   const setKeywordListTrigger = useSetRecoilState(keywordListTrigger);
@@ -55,7 +55,7 @@ const AddKeyword = () => {
       location: regionName,
       latitude: curLatitudeLongitude.lat,
       longitude: curLatitudeLongitude.lng,
-      keyword: keywordInputBar.inputValue,
+      contents: keywordInputBar.inputValue,
     };
 
     const isSuccessFetch = await addKeywords(newKeyword);
