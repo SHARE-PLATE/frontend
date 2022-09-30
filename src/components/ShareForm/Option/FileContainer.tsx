@@ -5,6 +5,7 @@ import { v4 as getRandomKey } from 'uuid';
 import * as S from '@components/ShareForm/Option/ShareForm.style';
 import FailedModal from '@components/common/FailedModal';
 import Icon from '@components/common/Icon';
+import ImgContainer from '@components/common/ImgContainer';
 import { fileFailed } from '@constants/mentions';
 import useModal from '@hooks/useModal';
 
@@ -44,14 +45,10 @@ const FileContainer = ({ fileImage, setFileImage }: FileContainerPropsType) => {
 
   return (
     <S.FileWrapper>
-      <S.FileLabel htmlFor='input-file'>
-        {fileImage?.length ? (
-          <Icon iconName='CameraActive' iconSize={2} />
-        ) : (
-          <Icon iconName='Camera' iconSize={2} />
-        )}
+      <S.FileLabel htmlFor='input-file' isImage={!!fileImage?.length}>
+        <Icon iconName='Camera' iconSize={1.6} />
         <S.FileCount>
-          <S.FileLength isFile={fileImage?.length}>{fileImage ? fileImage.length : 0}</S.FileLength>
+          <S.FileLength isFile={fileImage?.length}>{fileImage?.length || 0}</S.FileLength>
           <span>/5</span>
         </S.FileCount>
       </S.FileLabel>
@@ -60,7 +57,13 @@ const FileContainer = ({ fileImage, setFileImage }: FileContainerPropsType) => {
       {fileImage &&
         [...fileImage].map((file) => (
           <S.ImagePreviewContainer key={getRandomKey()}>
-            <S.ImagePreview src={URL.createObjectURL(file)} />
+            <ImgContainer
+              imgSrc={URL.createObjectURL(file)}
+              imgTitle={URL.createObjectURL(file)}
+              imgWrapperRatio={80 / 72}
+              imgWrapperWidth='80px'
+              borderRadius='4px'
+            />
             <Icon iconName='ImgDelete' handleClick={() => deleteImage(file)} />
           </S.ImagePreviewContainer>
         ))}

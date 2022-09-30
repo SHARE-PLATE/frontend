@@ -6,7 +6,7 @@ import { flexBetween, flexCenter, noScrollBar } from '@styles/mixin';
 export const FileWrapper = styled.div`
   display: flex;
   gap: 12px;
-  margin-top: 15px;
+  padding-top: 15px;
   overflow: scroll;
   scroll-behavior: smooth;
   ${noScrollBar}
@@ -55,15 +55,9 @@ export const ImagePreviewContainer = styled.div`
 
   svg {
     position: absolute;
-    top: -3px;
-    right: -7px;
+    top: -4px;
+    right: -4px;
   }
-`;
-
-export const ImagePreview = styled.img`
-  width: 5rem;
-  height: 4.5rem;
-  border-radius: 4px;
 `;
 
 //default style
