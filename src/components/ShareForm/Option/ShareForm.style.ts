@@ -12,13 +12,25 @@ export const FileWrapper = styled.div`
   ${noScrollBar}
 `;
 
-export const FileLabel = styled.label`
-  text-align: center;
-  cursor: pointer;
-  padding: 0.75rem 1.25rem;
-  background-color: ${({ theme }) => theme.colors.white2};
-  border: 1px solid ${({ theme }) => theme.colors.grey2};
-  border-radius: 4px;
+export const FileLabel = styled.label<{ isImage: boolean }>`
+  ${({ theme: { colors, fonts }, isImage }) => css`
+    ${fonts.smallRegular};
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    cursor: pointer;
+    width: 4.5rem;
+    min-width: 4.5rem;
+    height: 4.5rem;
+    background-color: ${colors.white2};
+    border: 1px solid ${colors.grey2};
+    border-radius: 4px;
+    path {
+      fill: ${isImage && colors.orange2};
+    }
+  `}
 `;
 
 export const FileCount = styled.div`
