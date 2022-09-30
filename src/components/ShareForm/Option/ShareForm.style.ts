@@ -6,8 +6,10 @@ import { flexBetween, flexCenter, noScrollBar } from '@styles/mixin';
 export const FileWrapper = styled.div`
   display: flex;
   gap: 12px;
+  width: calc(100% + 1rem);
   padding-top: 15px;
-  overflow: scroll;
+  padding-right: 1rem;
+  overflow-x: scroll;
   scroll-behavior: smooth;
   ${noScrollBar}
 `;
