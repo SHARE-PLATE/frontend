@@ -6,6 +6,7 @@ export const KEYWORD = 'keyword';
 export const KEYWORDS = 'keywords';
 export const LOGIN = 'LOGIN';
 export const CHAT = 'chat';
+export const SELECT_LOCATION = '장소선택';
 export const CHATROOM_ID = 'chatRoomId';
 export const CHATROOMS = 'chatrooms';
 export const DELIVERY = 'delivery';

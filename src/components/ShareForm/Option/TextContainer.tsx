@@ -20,14 +20,12 @@ const TextContainer = ({ titleInput, priceInput, originalPriceInput }: TextConta
 
   return (
     <S.TextContainer>
-      <S.LongTextBlock>
-        <InputForm type='text' placeholder='제목' {...titleInput} />
-      </S.LongTextBlock>
+      <InputForm type='text' placeholder='제목' {...titleInput} />
 
-      <S.TowTextBlock>
+      <S.TwoTextBlock>
         <InputForm placeholder='가격' unit='₩' isValue={isPrice} {...priceInput} />
         <InputForm placeholder='원가' unit='₩' isValue={isOriginalPrice} {...originalPriceInput} />
-      </S.TowTextBlock>
+      </S.TwoTextBlock>
     </S.TextContainer>
   );
 };

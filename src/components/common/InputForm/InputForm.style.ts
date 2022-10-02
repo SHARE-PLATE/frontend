@@ -2,21 +2,23 @@ import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
   width: 100%;
+  height: 48px;
   align-items: center;
   justify-content: left;
   display: flex;
   border: 1px solid ${({ theme }) => theme.colors.grey3};
   border-radius: 4px;
   overflow: hidden;
-  padding: 10px 12px;
+  padding: 0 12px;
 `;
 
 export const InputBox = styled.input`
   ${({ theme: { colors, fonts } }) => css`
-    ${fonts.mediumRegular};
+    ${fonts.largeRegular};
 
     width: 100%;
     border: none;
+    padding: 0;
     background-color: transparent;
     ::placeholder {
       color: ${colors.grey4};

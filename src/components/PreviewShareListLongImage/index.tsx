@@ -26,7 +26,7 @@ const PreviewShareListLongImage = () => {
     <S.Wrapper>
       <Title
         contentTitle={littleDeadlineMention}
-        size='MEDIUM'
+        size='LARGE'
         iconName='ClockPicture'
         iconSize={1.43}
       />

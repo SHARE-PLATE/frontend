@@ -7,6 +7,9 @@ export const Wrapper = styled.div`
     ${defaultWidth}
     padding-left: 1rem;
     padding-top: 0.25rem;
+    > :nth-child(1) {
+      padding-top: 1.25rem;
+    }
   `}
 `;
 
