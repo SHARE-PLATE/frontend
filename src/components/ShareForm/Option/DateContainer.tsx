@@ -1,4 +1,7 @@
+import { useState } from 'react';
+
 import * as S from '@components/ShareForm/Option/ShareForm.style';
+import Icon from '@components/common/Icon';
 
 interface DateContainerPropsType {
   appointmentDateTime: string;
@@ -13,17 +16,49 @@ const DateContainer = ({
   appointmentTime,
   setAppointmentTime,
 }: DateContainerPropsType) => {
-  const handelChangeDateTime = ({ target }: React.ChangeEvent<HTMLInputElement>) =>
-    setAppointmentDateTime(target.value);
+  const [isDateFocused, setIsDateFocused] = useState(false);
+  const [isTimeFocused, setIsTimeFocused] = useState(false);
+
+  const handelChangeDateTime = (date: Date | null) => setAppointmentDateTime(String(date));
 
   const handelChangeTime = ({ target }: React.ChangeEvent<HTMLInputElement>) =>
     setAppointmentTime(target.value);
 
   return (
-    <S.TowTextBlock>
-      <S.DateInputForm type='date' value={appointmentDateTime} onChange={handelChangeDateTime} />
-      <S.DateInputForm type='time' value={appointmentTime} onChange={handelChangeTime} />
-    </S.TowTextBlock>
+    <S.TwoTextBlock ratio={0.7}>
+      <S.DateInputWrapper htmlFor='date' isDateFocused={isDateFocused}>
+        <S.DateInputLeftWrapper>
+          <Icon iconName='Calendar' iconSize={1} />
+          <S.DateInputFormWrapper>
+            <S.DateInputTextWrapper>Select a day</S.DateInputTextWrapper>
+            <S.StyledDatePicker
+              id='date'
+              wrapperClassName='datepicker'
+              selected={new Date(appointmentDateTime)}
+              onFocus={() => setIsDateFocused(true)}
+              onBlur={() => setIsDateFocused(false)}
+              onChange={handelChangeDateTime}
+              dateFormat='yyyy.MM.dd'
+              minDate={new Date()}
+              showPopperArrow={false}
+              formatWeekDay={(nameOfDay) => nameOfDay.substr(0, 1)}
+            />
+          </S.DateInputFormWrapper>
+        </S.DateInputLeftWrapper>
+        <Icon iconName='ChevronDown' iconSize={0.75} />
+      </S.DateInputWrapper>
+      <S.TimeInputWrapper htmlFor='time' isTimeFocused={isTimeFocused}>
+        <S.TimeInputForm
+          id='time'
+          type='time'
+          onFocus={() => setIsTimeFocused(true)}
+          onBlur={() => setIsTimeFocused(false)}
+          value={appointmentTime}
+          onChange={handelChangeTime}
+        />
+        <Icon iconName='ChevronDown' iconSize={0.75} />
+      </S.TimeInputWrapper>
+    </S.TwoTextBlock>
   );
 };
 
