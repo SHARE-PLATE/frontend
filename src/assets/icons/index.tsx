@@ -7,6 +7,7 @@ import ArrowUp from '@assets/icons/arrowUp.svg';
 import Back from '@assets/icons/back.svg';
 import Bookmark from '@assets/icons/bookmark.svg';
 import BriefCase from '@assets/icons/briefCase.svg';
+import Calendar from '@assets/icons/calendar.svg';
 import Camera from '@assets/icons/camera.svg';
 import CameraActive from '@assets/icons/cameraActive.svg';
 import Chat from '@assets/icons/chat.svg';
@@ -71,6 +72,7 @@ import UserNavFill from '@assets/icons/userNavFill.svg';
 import X_Icon from '@assets/icons/x_icon.svg';
 
 export const Icons = {
+  Calendar,
   NoticeActivityLogo,
   AddressHomeFill,
   HeartNoFill,
