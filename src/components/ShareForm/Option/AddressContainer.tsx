@@ -18,7 +18,7 @@ const AddressContainer = ({ placeName }: { placeName: string | undefined }) => {
   return (
     <S.LocationSelectButton type='button' onClick={handleClickLocationSelectBtn}>
       {placeName ? <span>{placeName}</span> : <S.NoneLocation>{SELECT_LOCATION}</S.NoneLocation>}
-      <Icon iconName='ChevronRight' />
+      <Icon iconName='ChevronRight' iconSize={0.73} />
     </S.LocationSelectButton>
   );
 };
