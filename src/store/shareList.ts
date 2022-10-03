@@ -30,10 +30,10 @@ export const shareMineListTrigger = atom<number>({
 export const shareMineListState = selectorFamily({
   key: `GET/shareMineList/${getRandomKey()}`,
   get:
-    ({ isExpired = false, shareType, mineType }: GetShareMineListDataParamsType) =>
+    ({ isExpired = false, mineType }: GetShareMineListDataParamsType) =>
     async ({ get }) => {
       get(shareMineListTrigger);
-      const shareMineListData = await getShareMineListData({ isExpired, shareType, mineType });
+      const shareMineListData = await getShareMineListData({ isExpired, mineType });
       return shareMineListData;
     },
 });
