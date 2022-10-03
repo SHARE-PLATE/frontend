@@ -137,13 +137,13 @@ const ShareRegistration = () => {
           setAppointmentTime={setAppointmentTime}
         />
 
-        <S.TowContents>
+        <S.TwoContents>
           <RecruitmentContainer
             recruitmentValue={recruitmentValue}
             setRecruitmentValue={setRecruitmentValue}
           />
           <OptionPortalButton />
-        </S.TowContents>
+        </S.TwoContents>
 
         <ContentDescription
           descriptionValue={descriptionValue}

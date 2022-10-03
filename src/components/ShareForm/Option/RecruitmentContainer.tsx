@@ -6,18 +6,19 @@ interface RecruitmentContainerPropsType {
   setRecruitmentValue: React.Dispatch<React.SetStateAction<number>>;
 }
 
+const maxCount = 99;
+const minCount = 1;
+
 const RecruitmentContainer = ({
   recruitmentValue,
   setRecruitmentValue,
 }: RecruitmentContainerPropsType) => {
   const plusCount = () => {
-    const maxCount = 99;
     if (recruitmentValue >= maxCount) return;
     setRecruitmentValue((prev) => prev + 1);
   };
 
   const minusCount = () => {
-    const minCount = 1;
     if (recruitmentValue <= minCount) return;
     setRecruitmentValue((prev) => prev - 1);
   };
@@ -25,15 +26,22 @@ const RecruitmentContainer = ({
   return (
     <S.CountContainer>
       <S.ButtonContainer>
-        <S.CountButton type='button' onClick={minusCount}>
+        <S.CountButton
+          type='button'
+          onClick={minusCount}
+          isClickable={recruitmentValue >= minCount}
+        >
           <Icon iconName='CountDown' />
         </S.CountButton>
-        <span>{recruitmentValue}</span>
-        <S.CountButton type='button' onClick={plusCount}>
+        <span>
+          {recruitmentValue < 10 && 0}
+          {recruitmentValue}
+        </span>
+        <S.CountButton type='button' onClick={plusCount} isClickable={recruitmentValue <= maxCount}>
           <Icon iconName='CountUp' />
         </S.CountButton>
       </S.ButtonContainer>
-      <span>명 모집</span>
+      <S.RecruitmentText>명 모집</S.RecruitmentText>
     </S.CountContainer>
   );
 };
