@@ -2,17 +2,17 @@ import { useRecoilState } from 'recoil';
 
 import { pricePossible, locationPossible } from '@store/shareRegistration';
 
-export interface OptionInfoType {
-  id: number;
-  title: string;
-  child: ChildType[];
-}
-
 export interface ChildType {
   id: number;
   text: string;
   onClick: () => void;
   active: boolean;
+}
+
+export interface OptionInfoType {
+  id: number;
+  title: string;
+  child: ChildType[];
 }
 
 const useOptionInfo = () => {
