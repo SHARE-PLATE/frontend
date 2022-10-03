@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { flexCenter } from '@styles/mixin';
+
 export const Wrapper = styled.div`
   ${({ theme: { defaultPadding, colors } }) => css`
     ${defaultPadding};
@@ -29,11 +31,8 @@ export const Header = styled.div`
 export const HeaderTitle = styled.div`
   ${({ theme: { fonts } }) => css`
     ${fonts.xLarge};
-
+    ${flexCenter}
     flex-grow: 1;
     height: 100%;
-    align-items: center;
-    display: flex;
-    justify-content: center;
   `}
 `;

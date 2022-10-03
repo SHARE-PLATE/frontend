@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { tagStyle } from '@styles/mixin';
+import { flexCenter, tagStyle } from '@styles/mixin';
 
 export const ContentsContainer = styled.div`
   ${({ theme: { defaultPadding, colors } }) => css`
@@ -165,9 +165,7 @@ export const MapContainer = styled.div`
 export const BackBtn = styled.button`
   ${({ theme: { defaultHeaderHeight } }) => css`
     height: ${defaultHeaderHeight}rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    ${flexCenter}
     min-width: 30px;
     max-width: 50px;
     position: absolute;

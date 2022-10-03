@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { flexCenter } from '@styles/mixin';
+
 export const navigationBarHeight = '3.5rem';
 
 interface CssPropsType {
@@ -25,13 +27,11 @@ export const Wrapper = styled.ul<CssPropsType>`
 
 export const NavigationBarBtn = styled.button<{ isSelected: boolean }>`
   ${({ theme: { colors, fonts }, isSelected }) => css`
-    transition: all 0.3s;
     color: ${colors.grey4};
-    display: flex;
+    ${flexCenter}
     flex-basis: 100%;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    transition: all 0.3s;
 
     ${fonts.small};
     ${isSelected &&

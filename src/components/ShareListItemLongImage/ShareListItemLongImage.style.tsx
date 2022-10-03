@@ -35,7 +35,6 @@ export const ItemLocation = styled.div`
   ${({ theme: { fonts, colors } }) => css`
     ${fonts.xSmallRegular}
     color: ${colors.grey4};
-    /* font-weight: 400; */
   `}
 `;
 

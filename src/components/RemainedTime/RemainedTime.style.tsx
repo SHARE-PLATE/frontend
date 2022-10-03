@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { flexCenter } from '@styles/mixin';
+
 export interface RemainedTimeWrapperPropsType {
   left?: string;
   right?: string;
@@ -10,9 +12,10 @@ export interface RemainedTimeWrapperPropsType {
 
 export const RemainedTimeWrapper = styled.div<RemainedTimeWrapperPropsType>`
   ${({ theme: { colors, fonts }, left, right, top, bottom, backgroundColor = '#0000007e' }) => css`
-    ${fonts.xSmallBold}
+    ${fonts.xSmall}
+    font-weight: 500;
+    ${flexCenter}
 
-    display: flex;
     position: absolute;
     top: ${top};
     right: ${right};
@@ -22,8 +25,8 @@ export const RemainedTimeWrapper = styled.div<RemainedTimeWrapperPropsType>`
     background-color: ${backgroundColor};
     width: 2.625rem;
     height: 1.36rem;
-    align-items: center;
-    justify-content: center;
     color: ${colors.white1};
+    line-height: 15px;
+    letter-spacing: -0.3px;
   `}
 `;

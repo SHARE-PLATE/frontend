@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { flexCenter } from '@styles/mixin';
+
 export const Wrapper = styled.div`
   ${({ theme: { colors } }) => css`
     width: 100%;
@@ -15,11 +17,9 @@ export const Wrapper = styled.div`
 export const ContentWrapper = styled.div`
   ${({ theme: { colors, fonts } }) => css`
     ${fonts.medium}
-    display: flex;
+    ${flexCenter}
     flex-direction: column;
     gap: 0.375rem;
-    align-items: center;
-    justify-content: center;
     text-align: center;
     line-height: 1.5rem;
     white-space: pre-wrap;
@@ -40,12 +40,9 @@ export const CloseBtn = styled.button`
 export const KakaoLoginButton = styled.button`
   ${({ theme: { fonts } }) => css`
     ${fonts.large}
-
+    ${flexCenter}
     z-index: 3;
-    display: flex;
     gap: 0.2rem;
-    align-items: center;
-    justify-content: center;
     margin-top: 2.62rem;
     border-radius: 0.5rem;
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.08);

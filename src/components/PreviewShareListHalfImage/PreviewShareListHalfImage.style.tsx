@@ -1,8 +1,10 @@
 import styled, { css } from 'styled-components';
 
-import { subTitle } from '@styles/mixin';
+import { flexCenter, subTitle } from '@styles/mixin';
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  padding-top: 0.5rem;
+`;
 
 export const TitleWrapper = styled.div`
   ${subTitle}
@@ -22,9 +24,7 @@ export const ListWrapper = styled.div`
 
 export const noListWrapper = styled.div`
   ${({ theme: { colors } }) => css`
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    ${flexCenter}
     height: 10rem;
     text-align: center;
     line-height: 1.5rem;

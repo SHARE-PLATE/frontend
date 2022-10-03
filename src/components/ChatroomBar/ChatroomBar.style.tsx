@@ -1,13 +1,12 @@
 import styled, { css } from 'styled-components';
 
+import { flexBetween, flexCenter } from '@styles/mixin';
+
 export const Wrapper = styled.form`
   ${({ theme: { colors, defaultWidth } }) => css`
     ${defaultWidth}
-
-    display: flex;
+    ${flexBetween}
     gap: 0.6rem;
-    align-items: center;
-    justify-content: space-between;
     background-color: ${colors.white1};
     padding: 0 0.9rem;
     height: 3.5rem;
@@ -21,9 +20,7 @@ export const Wrapper = styled.form`
 
 export const PlusBtn = styled.button`
   ${({ theme: { colors } }) => css`
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    ${flexCenter}
     border-radius: 0.375rem;
     background-color: ${colors.orange4};
     width: 1.88rem;

@@ -12,7 +12,7 @@ export const ItemWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   border-radius: 0.5rem;
-  box-shadow: 0 2.5px 5px #00000020;
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.08);
   width: calc(50% - 0.75rem);
   @media (max-width: 27rem) {
     width: 100%;
@@ -45,8 +45,9 @@ export const PersonnelStatusWrapper = styled.div`
 `;
 
 export const Title = styled.h2`
-  ${({ theme: { colors } }) => css`
+  ${({ theme: { colors, fonts } }) => css`
     color: ${colors.grey6};
+    ${fonts.mediumRegular}
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;

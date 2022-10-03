@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { flexBetween } from '@styles/mixin';
+
 export type TitleHeaderSizeType = 'MEDIUM' | 'LARGE';
 
 type TitleHeaderPropsType = { size: TitleHeaderSizeType };
@@ -24,10 +26,7 @@ export const TitleHeader = styled.span<TitleHeaderPropsType>`
   ${({ theme: { fonts }, size }) => css`
     ${size === 'MEDIUM' && fonts.largeBold}
     ${size === 'LARGE' && fonts.xLargeBold}
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    ${flexBetween}
     width: 100%;
   `}
 `;

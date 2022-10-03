@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { flexBetween } from '@styles/mixin';
+
 export const Wrapper = styled.div`
   display: flex;
   gap: 0.3rem;
@@ -13,10 +15,7 @@ export const Wrapper = styled.div`
 export const Content = styled.div`
   ${({ theme: { colors, fonts } }) => css`
     ${fonts.xSmallLight};
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    ${flexBetween}
     border-radius: 0.25rem;
     background-color: ${colors.orange2};
     height: 1.125rem;

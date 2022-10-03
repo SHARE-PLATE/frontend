@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { flexCenter } from '@styles/mixin';
+
 export const Wrapper = styled.div<{ isMap: boolean }>`
   position: relative;
   ${({ isMap }) =>
@@ -92,13 +94,11 @@ export const HomeCompanyBtnWrapper = styled.div`
 export const HomeCompanyBtn = styled.button<{ isSelected: boolean }>`
   ${({ theme: { colors, fonts }, isSelected }) => css`
     ${fonts.mediumRegular};
-
+    ${flexCenter}
     transition: 0.3s all;
-    display: flex;
     flex-grow: 1;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
     gap: 0.4rem;
     height: 4.5rem;
     color: ${colors.grey4};
@@ -125,13 +125,10 @@ export const HomeCompanyBtn = styled.button<{ isSelected: boolean }>`
 export const MapCheckBtn = styled.button`
   ${({ theme: { colors, fonts } }) => css`
     ${fonts.medium};
-
+    ${flexCenter}
     border: solid 1px ${colors.grey3};
     height: 2.7rem;
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     gap: 0.5rem;
     border-radius: 0.25rem;
   `}

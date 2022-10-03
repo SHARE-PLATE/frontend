@@ -51,7 +51,7 @@ export const ListInfoTexts = styled.div`
   flex-direction: column;
   position: relative;
   gap: 0.4rem;
-  width: 10.375rem;
+  width: 11.375rem;
 `;
 
 export const Title = styled.h3`

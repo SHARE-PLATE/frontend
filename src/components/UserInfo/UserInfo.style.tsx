@@ -34,12 +34,12 @@ export const Info = styled.div`
 `;
 
 export const Nickname = styled.h2<SetCheckType>`
-  ${({ isSet, theme: { colors } }) => css`
+  ${({ isSet, theme: { colors, fonts } }) => css`
     display: flex;
     align-items: center;
     height: 1rem;
     color: ${colors.white0};
-
+    ${fonts.mediumRegular}
     ${!isSet &&
     css`
       width: 5rem;

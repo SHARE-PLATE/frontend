@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { flexCenter } from '@styles/mixin';
+
 export const Wrapper = styled.div`
   ${({ theme: { colors, defaultPadding } }) => css`
     display: flex;
@@ -84,10 +86,8 @@ export const AddressInput = styled.input`
 export const AroundSearchButton = styled.button`
   ${({ theme: { fonts } }) => css`
     ${fonts.mediumRegular};
+    ${flexCenter}
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     height: 3.37rem;
     z-index: 5;
     gap: 0.58rem;

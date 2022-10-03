@@ -25,12 +25,13 @@ export const IconsWrapper = styled.div<IconsWrappersPropsType>`
     align-items: center;
     justify-content: ${position};
     width: 3.625rem;
+    gap: 0.625rem;
   `}
 `;
 
 export const Header = styled.div`
   ${({ theme: { fonts } }) => css`
-    ${fonts.xLarge};
+    ${fonts.large};
     ${flexCenter}
     flex-grow: 1;
     height: 100%;

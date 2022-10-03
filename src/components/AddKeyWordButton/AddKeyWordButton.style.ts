@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { flexCenter } from '@styles/mixin';
+
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -16,12 +18,10 @@ export const AddKeywordWrapper = styled.div`
 
 export const AddKeywordBtn = styled.button`
   ${({ theme: { colors } }) => css`
+    ${flexCenter}
     width: 3.5rem;
     height: 3.5rem;
     border-radius: 35rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-color: ${colors.orange2};
     box-shadow: 2px 4px 8px rgba(255, 69, 58, 0.2);
 
