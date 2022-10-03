@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { flexBetween } from '@styles/mixin';
+
 export const ImgContainerRatio = 1.125 / 1;
 
 export const Wrapper = styled.div`
@@ -17,9 +19,7 @@ export const ImageContainer = styled.div`
 export const IconsWrapper = styled.div`
   ${({ theme: { defaultPadding, colors } }) => css`
     ${defaultPadding}
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    ${flexBetween}
     z-index: 2;
     width: 100%;
     height: 3.25rem;

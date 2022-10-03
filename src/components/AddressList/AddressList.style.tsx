@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { flexCenter } from '@styles/mixin';
+
 export const AddressListWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -9,14 +11,11 @@ export const AddressListWrapper = styled.div`
 export const noAddressList = styled.div`
   ${({ theme: { colors, fonts } }) => css`
     ${fonts.medium};
-
+    ${flexCenter}
     height: 100%;
-    display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 1.5rem;
     text-align: center;
-    justify-content: center;
     max-height: 30rem;
     white-space: pre;
     line-height: 1.2rem;

@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components';
 
+import { flexBetween } from '@styles/mixin';
+
 export const Wrapper = styled.div`
   ${({ theme: { defaultHeaderHeight } }) => css`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    ${flexBetween}
     height: ${defaultHeaderHeight}rem;
   `}
 `;

@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import { useRecoilState, useRecoilValue } from 'recoil';
 
@@ -36,22 +36,24 @@ const WishList = () => {
 
   const ListContentComponent = ShareListContentComponentInfo[curShareType];
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     (async () => {
       if (!!heartIdArr.length) {
         heartIdArr.map(async (id: number) => await deleteWishListContent(id));
       }
+
       const response = await getProfileMyMenuData(
         wishListItem.mineType,
         curShareType,
         curShareFilterList,
       );
-      setHeartIdArr([]);
       setWishListData(response);
+      setHeartIdArr([]);
     })();
-    return () => setWishListData([]);
+    return () => {
+      setWishListData([]);
+    };
   }, [curShareType, curShareFilterList]);
-
   return (
     <S.Wrapper>
       <BackTitleHeader title={wishListItem.title} />

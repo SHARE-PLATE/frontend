@@ -24,9 +24,11 @@ const RegisteredKeyword = ({
   setKeywordLength,
   setCurLatitudeLongitude,
 }: RegisteredKeywordPropsType) => {
-  const { state, contents } = useRecoilValueLoadable(getRegisteredKeywordData(regionName));
+  const {
+    state,
+    contents: { keywords, longitude, latitude },
+  } = useRecoilValueLoadable(getRegisteredKeywordData(regionName));
   const setRegisteredKeywordTrigger = useSetRecoilState(registeredKeywordTrigger);
-
   const buttonClickHandler = async (id: number) => {
     if (!id) return false;
     const isSuccessFetch = await deleteRegisteredKeywords(id);
@@ -35,16 +37,16 @@ const RegisteredKeyword = ({
   };
 
   useEffect(() => {
-    if (contents.keywords) setKeywordLength(contents.keywords.length);
-    setCurLatitudeLongitude({ lat: contents.longitude, lng: contents.latitude });
-  }, [contents]);
+    if (keywords) setKeywordLength(keywords.length);
+    if (longitude && latitude) setCurLatitudeLongitude({ lat: latitude, lng: longitude });
+  }, [regionName]);
 
   const getRegisterData = (state: 'hasValue' | 'loading' | 'hasError') => {
     switch (state) {
       case 'hasValue':
         return (
           <S.ContentContainer>
-            {contents.keywords.map(({ id, contents }: keywordsType) => (
+            {keywords.map(({ id, contents }: keywordsType) => (
               <RegisteredKeywordItem
                 key={id}
                 id={id}
@@ -64,11 +66,7 @@ const RegisteredKeyword = ({
   return (
     <S.Wrapper>
       <S.SubHeader>
-        {!!contents.keywords ? (
-          <span>등록된 키워드 {contents.keywords.length}</span>
-        ) : (
-          <span>등록된 키워드 0</span>
-        )}
+        {!!keywords ? <span>등록된 키워드 {keywords.length}</span> : <span>등록된 키워드 0</span>}
         <span>/10</span>
       </S.SubHeader>
       {getRegisterData(state)}

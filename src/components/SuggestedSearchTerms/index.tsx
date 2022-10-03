@@ -1,3 +1,4 @@
+import { isMobile } from 'react-device-detect';
 import { Settings } from 'react-slick';
 
 import Carousel from '@components/Carousel';
@@ -32,7 +33,7 @@ const SuggestedSearchTerms = () => {
           contents={popularKeywordsContents}
           settings={settings}
           height='100%'
-          width='63%'
+          width={isMobile ? '63%' : '80%'}
           isCount={false}
           type='vertical'
         />

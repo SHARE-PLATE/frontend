@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { flexCenter } from '@styles/mixin';
+
 export const Wrapper = styled.div`
   ${({ theme: { colors, defaultPadding } }) => css`
     display: flex;
@@ -31,25 +33,19 @@ export const Header = styled.div`
   `}
 `;
 
-export const HeaderBtn = styled.button<{ isSearching: boolean }>`
-  ${({ theme: { colors }, isSearching }) => css`
-    z-index: 2;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 30px;
-    max-width: 50px;
-  `}
+export const HeaderBtn = styled.button`
+  ${flexCenter}
+  min-width: 30px;
+  max-width: 50px;
+  z-index: 2;
+  left: 0;
 `;
 
 export const HeaderTitle = styled.div`
+  ${flexCenter}
   position: absolute;
   width: 100%;
   height: 100%;
-  align-items: center;
-  display: flex;
-  justify-content: center;
 `;
 
 export const AddressInputArea = styled.form`
@@ -87,9 +83,7 @@ export const AroundSearchButton = styled.button`
   ${({ theme: { fonts } }) => css`
     ${fonts.mediumRegular};
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    ${flexCenter}
     height: 3.37rem;
     z-index: 5;
     gap: 0.58rem;
@@ -106,14 +100,11 @@ export const AddressListWrapper = styled.div`
 export const noAddressList = styled.div`
   ${({ theme: { colors, fonts } }) => css`
     ${fonts.medium};
-
-    height: 100%;
-    display: flex;
+    ${flexCenter}
     flex-direction: column;
-    align-items: center;
     gap: 1.5rem;
     text-align: center;
-    justify-content: center;
+    height: 100%;
     max-height: 30rem;
     white-space: pre;
     line-height: 1.2rem;

@@ -27,7 +27,7 @@ const KeywordAddressListItem = ({ place_name, address_name, x, y }: AddressListT
 
   const addressClickHandler = () => {
     navigate(pathName.addKeyword, {
-      state: { regionName },
+      state: { regionName, x, y },
     });
     setPortal(null);
   };

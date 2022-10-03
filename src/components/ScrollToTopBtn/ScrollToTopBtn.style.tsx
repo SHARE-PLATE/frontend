@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { flexCenter } from '@styles/mixin';
+
 type WrapperPropsType = { isShareDetail: boolean };
 
 export const Wrapper = styled.button<WrapperPropsType>`
@@ -15,9 +17,7 @@ export const Wrapper = styled.button<WrapperPropsType>`
       animation: fadein 0.2s forwards;
     `}
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    ${flexCenter}
     border-radius: 10rem;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.12);
     background-color: ${colors.white1};

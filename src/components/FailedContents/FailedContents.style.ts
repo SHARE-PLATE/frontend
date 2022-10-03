@@ -6,10 +6,9 @@ export const FailedContent = styled.div`
   justify-content: center;
   margin-top: 120px;
   height: 200px;
+  border-bottom: 0.375rem solid ${({ theme }) => theme.colors.grey1};
   svg {
     margin: 0 auto;
-    width: 30%;
-    height: 30%;
   }
 `;
 

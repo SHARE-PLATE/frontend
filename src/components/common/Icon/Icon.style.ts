@@ -1,6 +1,7 @@
 import SVG from 'react-inlinesvg';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
+import { flexCenter } from '@styles/mixin';
 import { ColorsType } from '@styles/theme';
 
 export type IconSizeType = 'SMALL' | 'LARGE' | number;
@@ -66,9 +67,7 @@ export const IconButton = styled.div<IconButtonPropsType>`
         background-color: ${colors[color]};
       `}
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      ${flexCenter}
       ${additionalStyle}
     `}
 `;

@@ -65,16 +65,13 @@ export const ShareListContainer = styled.div<ShareListContainerPropsType>`
 `;
 
 export const IconContainer = styled.div`
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translate(0%, -50%);
+  padding-top: 0.75rem;
 `;
 
 export const Title = styled.h1`
   ${({ theme }) => theme.fonts.largeBold}
   line-height: 1.5rem;
-  padding: 1.5rem 0 1.375rem 0;
+  padding: 0.5rem 0 1.375rem 0;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;

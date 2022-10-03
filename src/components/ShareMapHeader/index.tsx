@@ -34,7 +34,7 @@ const ShareMapHeader = () => {
       <S.Header>내주변</S.Header>
       <S.IconsWrapper position='flex-end'>
         <NoticeIcon noticeOnIcon='NoticeOn' noticeOffIcon='NoticeOff' iconSize={1.5} />
-        <Icon iconName='Hamburger' iconSize='LARGE' handleClick={changeBottomList} />
+        <Icon iconName='Hamburger' iconSize={1.25} handleClick={changeBottomList} />
       </S.IconsWrapper>
     </S.Wrapper>
   );

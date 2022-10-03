@@ -1,12 +1,12 @@
 import styled, { css } from 'styled-components';
 
+import { flexCenter } from '@styles/mixin';
+
 export const Wrapper = styled.div`
   ${({ theme: { colors } }) => css`
-    display: flex;
+    ${flexCenter}
     flex-direction: column;
     flex-grow: 1;
-    align-items: center;
-    justify-content: center;
     background-color: ${colors.white1};
     height: 100%;
     gap: 1rem;
@@ -24,14 +24,11 @@ export const IconsWrapper = styled.div`
 export const Mention = styled.div`
   ${({ theme: { colors, fonts } }) => css`
     ${fonts.mediumBold}
-
+    ${flexCenter}
     width: 14rem;
     border: solid 2px ${colors.orange2};
     border-radius: 0.5rem;
     height: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     color: ${colors.orange2};
   `}
 `;

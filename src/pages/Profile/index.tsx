@@ -17,13 +17,9 @@ const Profile = () => {
       </S.UpperWrapper>
       <S.SharesWrapper>
         <Title contentTitle='쉐어중' />
-        <PreviewShareListCenterImage
-          valueState={shareMineListState({ shareType: 'delivery', mineType: 'entry' })}
-        />
+        <PreviewShareListCenterImage valueState={shareMineListState({ mineType: 'writer' })} />
         <Title contentTitle='예약중' />
-        <PreviewShareListCenterImage
-          valueState={shareMineListState({ shareType: 'delivery', mineType: 'writer' })}
-        />
+        <PreviewShareListCenterImage valueState={shareMineListState({ mineType: 'entry' })} />
       </S.SharesWrapper>
       <UserMenu />
     </S.ProfileWrapper>

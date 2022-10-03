@@ -20,7 +20,7 @@ const Address = () => {
     <S.Wrapper onClick={handleClickAddress}>
       <S.LocationWrapper>{location}</S.LocationWrapper>
       <S.IconWrapper>
-        <Icon iconName='ChevronDown' iconSize={0.85} />
+        <Icon iconName='ChevronDown' iconSize={0.625} />
       </S.IconWrapper>
     </S.Wrapper>
   );

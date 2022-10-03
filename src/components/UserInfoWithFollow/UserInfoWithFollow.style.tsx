@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { flexCenter } from '@styles/mixin';
+
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
@@ -42,11 +44,8 @@ export const InfoDetailWrapper = styled.span`
 export const FollowBtn = styled.button`
   ${({ theme: { colors, fonts } }) => css`
     ${fonts.xSmallBold}
-
-    display: flex;
+    ${flexCenter}
     gap: 0.25rem;
-    align-items: center;
-    justify-content: center;
     border-radius: 0.25rem;
     background-color: ${colors.orange0};
     width: 3.5rem;

@@ -14,7 +14,7 @@ const ShareSearchHeader = ({ keyWord }: { keyWord: string }) => {
     <S.Wrapper>
       <S.FormWrapper>
         <S.CloseBtn onClick={handleClickBackBtn}>
-          <Icon iconName='Back' />
+          <Icon iconName='Back' iconSize={1.25} />
         </S.CloseBtn>
         <S.Form onClick={handelClickOpenSearchForm}>
           <S.Input value={keyWord} readOnly />

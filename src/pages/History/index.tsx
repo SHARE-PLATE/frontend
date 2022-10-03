@@ -4,7 +4,6 @@ import { useRecoilValue } from 'recoil';
 
 import { getProfileMyMenuData } from '@api/myMenu';
 import CategoryButton from '@components/CategoryButton';
-import PreviewShareListBigSizeImage from '@components/PreviewShareListBigSizeImage';
 import PreviewShareListLeftImage from '@components/PreviewShareListLeftImage';
 import Tabs from '@components/Tabs';
 import BackTitleHeader from '@components/common/BackTitleHeader';
@@ -19,11 +18,6 @@ import { ShareListType } from '@type/shareList';
 import { getRecencySort } from '@utils/ShareListSort';
 import { getHistoryMention } from '@utils/getMention';
 
-const ShareListContentComponentInfo = {
-  delivery: PreviewShareListBigSizeImage,
-  ingredient: PreviewShareListLeftImage,
-};
-
 const History = ({ menuType }: { menuType: string }) => {
   const [salesData, setSalesData] = useState<ShareListType[]>();
 
@@ -34,7 +28,6 @@ const History = ({ menuType }: { menuType: string }) => {
   const currentShareType = useRecoilValue(activeShareList);
   const currentMyMenuType = historyListItem.filter((item) => item.type === menuType)[0];
   const currentCategoryContent = historyListCategoryItem.filter((item) => item.type === menuType);
-  const ListContentComponent = ShareListContentComponentInfo[currentShareType];
 
   useEffect(() => {
     (async () => {
@@ -55,7 +48,7 @@ const History = ({ menuType }: { menuType: string }) => {
       <CategoryButton categoryItem={currentCategoryContent} setCurrentFilterList={setIsDone} />
       {!!salesData?.length ? (
         <S.ListContent>
-          <ListContentComponent
+          <PreviewShareListLeftImage
             data={getRecencySort(salesData)}
             currentMyMenuType={currentMyMenuType.type}
             isDone={isDone}

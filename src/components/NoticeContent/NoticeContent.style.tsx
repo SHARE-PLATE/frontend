@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { flexCenter } from '@styles/mixin';
+
 export const Wrapper = styled.div`
   flex-grow: 1;
   display: flex;
@@ -22,10 +24,8 @@ export const DeleteAllBtn = styled.button`
 export const ErrorWrapper = styled.div`
   ${({ theme: { colors } }) => css`
     color: ${colors.grey7};
+    ${flexCenter}
     flex-grow: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   `}
 `;
 

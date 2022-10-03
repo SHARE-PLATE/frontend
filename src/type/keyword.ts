@@ -18,5 +18,5 @@ export interface keywordDataType extends basicKeywordType {
 }
 
 export interface newKeywordType extends basicKeywordType {
-  keyword: string;
+  contents: string;
 }

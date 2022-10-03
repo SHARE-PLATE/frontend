@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { flexCenter } from '@styles/mixin';
+
 export const Wrapper = styled.div`
   padding: 0;
   display: flex;
@@ -16,9 +18,7 @@ export const MapContainer = styled.div`
 export const BackBtn = styled.button`
   ${({ theme: { defaultHeaderHeight } }) => css`
     height: ${defaultHeaderHeight}rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    ${flexCenter}
     min-width: 30px;
     max-width: 50px;
     position: absolute;

@@ -38,7 +38,7 @@ const KeywordAddressPortal = () => {
       <S.Wrapper>
         <S.TopWrapper>
           <S.Header>
-            <S.HeaderBtn ref={closeBtn} isSearching={false} onClick={() => setPortal(null)}>
+            <S.HeaderBtn ref={closeBtn} onClick={() => setPortal(null)}>
               <Icon iconName='Back' iconSize={1.125} />
             </S.HeaderBtn>
             <S.HeaderTitle>{ADD_ADDRESS_KEYWORD}</S.HeaderTitle>
