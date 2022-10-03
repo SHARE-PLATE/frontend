@@ -26,18 +26,14 @@ const RecruitmentContainer = ({
   return (
     <S.CountContainer>
       <S.ButtonContainer>
-        <S.CountButton
-          type='button'
-          onClick={minusCount}
-          isClickable={recruitmentValue >= minCount}
-        >
+        <S.CountButton type='button' onClick={minusCount} isClickable={recruitmentValue > minCount}>
           <Icon iconName='CountDown' />
         </S.CountButton>
         <span>
           {recruitmentValue < 10 && 0}
           {recruitmentValue}
         </span>
-        <S.CountButton type='button' onClick={plusCount} isClickable={recruitmentValue <= maxCount}>
+        <S.CountButton type='button' onClick={plusCount} isClickable={recruitmentValue < maxCount}>
           <Icon iconName='CountUp' />
         </S.CountButton>
       </S.ButtonContainer>
