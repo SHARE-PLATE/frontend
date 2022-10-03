@@ -25,7 +25,7 @@ const FailedContents = () => {
   return (
     <>
       <S.FailedContent>
-        <Icon iconName='Search' />
+        <Icon iconName='Search' iconSize={4.2} />
         <S.FailedText>{searchFailed}</S.FailedText>
       </S.FailedContent>
       {recommendedData && (
@@ -33,7 +33,6 @@ const FailedContents = () => {
           title={offerShare}
           data={recommendedData}
           emptyMention={noRelatedShareList}
-          showMoreOption={() => console.log('더보기')}
         />
       )}
     </>

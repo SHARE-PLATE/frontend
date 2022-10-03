@@ -16,12 +16,12 @@ const MainHeader = () => {
         <Icon iconName='LogoWithText' iconSize={4.2} handleClick={() => navigate('/')} />
       </S.IconsWrapper>
       <Address />
-      <S.IconsWrapper position={isShareList ? 'space-between' : 'right'}>
+      <S.IconsWrapper position={isShareList ? 'flex-end' : 'right'}>
         <NoticeIcon noticeOnIcon='NoticeOn' noticeOffIcon='NoticeOff' iconSize={1.5} />
         {isShareList && (
           <Icon
             iconName='Map'
-            iconSize='LARGE'
+            iconSize={1.25}
             handleClick={() => navigate('/shareMap')}
             noSkeleton={true}
           />
