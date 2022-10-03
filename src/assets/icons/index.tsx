@@ -15,6 +15,7 @@ import ChatFill from '@assets/icons/chatFill.svg';
 import CheckCircle from '@assets/icons/checkCircle.svg';
 import CheckCircleColor from '@assets/icons/checkCircleColor.svg';
 import ChevronDown from '@assets/icons/chevronDown.svg';
+import ChevronLeft from '@assets/icons/chevronLeft.svg';
 import ChevronRight from '@assets/icons/chevronRight.svg';
 import Clock from '@assets/icons/clock.svg';
 import ClockPicture from '@assets/icons/clockPicture.svg';
@@ -72,6 +73,7 @@ import UserNavFill from '@assets/icons/userNavFill.svg';
 import X_Icon from '@assets/icons/x_icon.svg';
 
 export const Icons = {
+  ChevronLeft,
   Calendar,
   NoticeActivityLogo,
   AddressHomeFill,
