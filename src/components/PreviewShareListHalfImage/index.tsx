@@ -34,7 +34,7 @@ const PreviewShareListHalfImage = ({
 
   return (
     <S.Wrapper>
-      <Title contentTitle={title} handleClick={() => showMoreOption && showMoreOption()} />
+      <Title contentTitle={title} handleClick={showMoreOption && (() => showMoreOption)} />
       {list}
     </S.Wrapper>
   );
