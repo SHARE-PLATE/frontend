@@ -33,7 +33,7 @@ export const PortalBackground = styled.div<PortalStylePropsType>`
 `;
 
 export const PortalContent = styled.div<PortalStylePropsType>`
-  ${({ theme: { defaultWidth }, portalType, isPortal }) => css`
+  ${({ theme: { defaultWidth, colors }, portalType, isPortal }) => css`
     ${portalType === 'modal' &&
     css`
       position: relative;
@@ -84,15 +84,19 @@ export const PortalContent = styled.div<PortalStylePropsType>`
     css`
       ${defaultWidth}
       width: 100%;
-      height: 80%;
-      position: absolute;
-      top: 60%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      height: 75%;
+      position: fixed;
+      bottom: 0;
       animation: 'slideout-bottom' 0.3s;
-      background-color: ${({ theme }) => theme.colors.white0};
+      background-color: ${colors.white0};
       box-shadow: 0px -6px 12px rgba(0, 0, 0, 0.08);
       border-radius: 8px 8px 0 0;
+      animation: 'slideout-bottom' 0.3s;
+
+      ${!isPortal &&
+      css`
+        animation: 'slidein-bottom' 0.3s;
+      `}
     `}
   `}
 `;
