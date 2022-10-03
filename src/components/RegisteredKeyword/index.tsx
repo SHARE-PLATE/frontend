@@ -29,7 +29,6 @@ const RegisteredKeyword = ({
     contents: { keywords, longitude, latitude },
   } = useRecoilValueLoadable(getRegisteredKeywordData(regionName));
   const setRegisteredKeywordTrigger = useSetRecoilState(registeredKeywordTrigger);
-
   const buttonClickHandler = async (id: number) => {
     if (!id) return false;
     const isSuccessFetch = await deleteRegisteredKeywords(id);
@@ -39,7 +38,7 @@ const RegisteredKeyword = ({
 
   useEffect(() => {
     if (keywords) setKeywordLength(keywords.length);
-    if (longitude && latitude) setCurLatitudeLongitude({ lat: longitude, lng: latitude });
+    if (longitude && latitude) setCurLatitudeLongitude({ lat: latitude, lng: longitude });
   }, [regionName]);
 
   const getRegisterData = (state: 'hasValue' | 'loading' | 'hasError') => {
