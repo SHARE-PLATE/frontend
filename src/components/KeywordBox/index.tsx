@@ -8,8 +8,9 @@ import * as S from '@components/KeywordBox/KeywordBox.style';
 import KeywordTable from '@components/KeywordBox/KeywordTable';
 import KeywordTableHeader from '@components/KeywordBox/KeywordTableHeader';
 import SelectModal from '@components/common/SelectModal';
-import { addressKeywordQuestionMention, deleteYesMention } from '@constants/mentions';
+import { addressKeywordQuestionMention } from '@constants/mentions';
 import { pathName } from '@constants/pathName';
+import { DELETE } from '@constants/words';
 import useModal from '@hooks/useModal';
 import { getKeywordListsData, keywordListTrigger } from '@store/keyword';
 import { keywordDataType } from '@type/keyword';
@@ -69,7 +70,7 @@ const KeywordBox = () => {
               deleteHandler={deleteHandler}
               clickHandlerParams={clickedLocation}
               title={addressKeywordQuestionMention}
-              okMention={deleteYesMention}
+              okMention={DELETE}
             />
           )}
         </S.Table>

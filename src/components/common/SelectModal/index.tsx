@@ -2,7 +2,7 @@ import { RefObject } from 'react';
 
 import Modal from '@components/common/Modal';
 import * as S from '@components/common/SelectModal/SelectModal.style';
-import { deleteNoMention } from '@constants/mentions';
+import { CANCEL } from '@constants/words';
 import { CloseModal } from '@type/modalFunction';
 
 interface KeywordDeleteModalPropsType<T> {
@@ -34,7 +34,7 @@ const SelectModal = <T extends unknown>({
       <S.ModalWrapper ref={modalRef}>
         <S.Text>{title}</S.Text>
         <S.ButtonContainer>
-          <S.CloseButton onClick={curCloseModal}>{deleteNoMention}</S.CloseButton>
+          <S.CloseButton onClick={curCloseModal}>{CANCEL}</S.CloseButton>
           <S.OkButton onClick={() => deleteHandler(clickHandlerParams)}>{okMention}</S.OkButton>
         </S.ButtonContainer>
       </S.ModalWrapper>

@@ -2,7 +2,8 @@ import { RefObject } from 'react';
 
 import * as S from '@components/common/FailedModal/FailedModal';
 import Modal from '@components/common/Modal';
-import { close } from '@constants/mentions';
+import { CLOSE } from '@constants/words';
+
 interface FailedModalPropsType {
   modalRef: RefObject<HTMLDivElement>;
   closeModal: () => void;
@@ -14,7 +15,7 @@ const FailedModal = ({ modalRef, closeModal, text }: FailedModalPropsType) => {
     <Modal type='center' isFull={true}>
       <S.Wrapper ref={modalRef}>
         <S.Text>{text}</S.Text>
-        <S.CloseButton onClick={closeModal}>{close}</S.CloseButton>
+        <S.CloseButton onClick={closeModal}>{CLOSE}</S.CloseButton>
       </S.Wrapper>
     </Modal>
   );

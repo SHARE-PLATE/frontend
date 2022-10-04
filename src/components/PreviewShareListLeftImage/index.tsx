@@ -14,8 +14,9 @@ import ImgContainer from '@components/common/ImgContainer';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import Price from '@components/common/Price';
 import SelectModal from '@components/common/SelectModal';
-import { deleteYesMention, historyDeleteMention } from '@constants/mentions';
+import { historyDeleteMention } from '@constants/mentions';
 import { pathName } from '@constants/pathName';
+import { DELETE } from '@constants/words';
 import useModal from '@hooks/useModal';
 import { clickedHeartId, historyTrigger } from '@store/meyMenu';
 import { CloseModal, OpenModal } from '@type/modalFunction';
@@ -149,7 +150,7 @@ const PreviewShareListLeftImage = ({
               deleteHandler={deleteHandler}
               clickHandlerParams={id}
               title={historyDeleteMention}
-              okMention={deleteYesMention}
+              okMention={DELETE}
             />
           )}
         </React.Fragment>,

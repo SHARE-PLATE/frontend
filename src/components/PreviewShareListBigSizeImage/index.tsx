@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react';
+import { MouseEvent } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
@@ -8,7 +8,11 @@ import * as S from '@components/PreviewShareListBigSizeImage/PreviewShareListBig
 import ImageContents from '@components/common/ImageContents';
 import ImgContainer from '@components/common/ImgContainer';
 import PersonnelStatus from '@components/common/PersonnelStatus';
+import SelectModal from '@components/common/SelectModal';
+import { historyDeleteMention } from '@constants/mentions';
 import { pathName } from '@constants/pathName';
+import { DELETE } from '@constants/words';
+import useModal from '@hooks/useModal';
 import { clickedHeartId } from '@store/meyMenu';
 import { ShareListType } from '@type/shareList';
 import { getPriceType } from '@utils/getPriceType';
