@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { v4 as getRandomKey } from 'uuid';
 
-import * as S from '@components/OptionPortal/OptionPortal.style';
+import * as S from '@components/OptionPortal/HashTag/HashTag.style';
 import Icon from '@components/common/Icon';
 import { tagInputPlaceholderMention } from '@constants/mentions';
 import { TAG } from '@constants/words';
@@ -43,7 +43,7 @@ const HashTag = () => {
 
   return (
     <S.HashTagContainer>
-      <S.CategoryTitle>{TAG}</S.CategoryTitle>
+      <S.Title>{TAG}</S.Title>
       <S.TagBox>
         {tagsList.length < 5 && (
           <S.TagInput

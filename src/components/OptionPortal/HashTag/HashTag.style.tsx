@@ -2,63 +2,17 @@ import styled, { css } from 'styled-components';
 
 import { flexBetween } from '@styles/mixin';
 
-export const PortalWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  margin: 2rem 1.5rem;
-`;
-
-export const OptionTitle = styled.header`
-  ${({ theme: { fonts } }) => css`
-    ${fonts.xLargeBold}
-    line-height: 27px;
-    margin-bottom: 1rem;
-  `}
-`;
-
-export const ConferenceContainer = styled.div`
-  ${flexBetween}
-  flex-direction: row;
-`;
-
-export const CategoryTitle = styled.div`
-  ${({ theme: { fonts, colors } }) => css`
-    ${fonts.medium}
-    color: ${colors.grey4};
-  `}
-`;
-
-export const ButtonBox = styled.div`
-  display: flex;
-  gap: 0.75rem;
-`;
-
-export const OptionButton = styled.button<{ isSelected: boolean }>`
-  ${({ theme: { colors, fonts }, isSelected }) => css`
-    ${fonts.mediumBold}
-
-    width: 118px;
-    height: 42px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 4px;
-    transition: all 0.3s;
-    border: solid 1px ${isSelected ? colors.orange4 : colors.grey3};
-    color: ${isSelected ? colors.white0 : colors.grey4};
-    background-color: ${isSelected ? colors.orange4 : colors.white2};
-  `}
-`;
-
-//HashTag.tsx
 export const HashTagContainer = styled.div`
   ${flexBetween}
   align-items: flex-start;
+`;
 
-  > :first-child {
+export const Title = styled.div`
+  ${({ theme: { fonts, colors } }) => css`
+    ${fonts.medium}
+    color: ${colors.grey4};
     padding-top: 11px;
-  }
+  `}
 `;
 
 export const TagBox = styled.div`

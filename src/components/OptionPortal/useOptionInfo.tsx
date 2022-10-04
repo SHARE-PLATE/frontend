@@ -19,7 +19,6 @@ const useOptionInfo = () => {
   const [pricePossibleValue, setPricePossibleValue] = useRecoilState(pricePossible);
   const [locationPossibleValue, setLocationPossibleValue] = useRecoilState(locationPossible);
   const isPossibleValue = pricePossibleValue || locationPossibleValue;
-
   const optionInfo: OptionInfoType[] = [
     {
       id: 1,
