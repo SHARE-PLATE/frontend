@@ -19,44 +19,49 @@ const DateContainer = ({
   const [isDateFocused, setIsDateFocused] = useState(false);
   const [isTimeFocused, setIsTimeFocused] = useState(false);
 
-  const handelChangeDateTime = (date: Date | null) => setAppointmentDateTime(String(date));
+  const handelChangeDate = (date: Date | null) => setAppointmentDateTime(String(date));
 
   const handelChangeTime = ({ target }: React.ChangeEvent<HTMLInputElement>) =>
     setAppointmentTime(target.value);
 
+  const handleChangeTimeTest = (target: any) => console.log(target);
+
   return (
-    <S.TwoTextBlock ratio={0.7}>
-      <S.DateInputWrapper htmlFor='date' isDateFocused={isDateFocused}>
+    <S.TwoTextBlock>
+      <S.DateInputWrapper isDateFocused={isDateFocused}>
         <S.DateInputLeftWrapper>
           <Icon iconName='Calendar' iconSize={1} />
           <S.DateInputFormWrapper>
-            <S.DateInputTextWrapper>Select a day</S.DateInputTextWrapper>
             <S.StyledDatePicker
-              id='date'
-              wrapperClassName='datepicker'
               selected={new Date(appointmentDateTime)}
               onFocus={() => setIsDateFocused(true)}
               onBlur={() => setIsDateFocused(false)}
-              onChange={handelChangeDateTime}
+              onChange={handelChangeDate}
               dateFormat='yyyy.MM.dd'
               minDate={new Date()}
               showPopperArrow={false}
-              formatWeekDay={(nameOfDay) => nameOfDay.substr(0, 1)}
+              formatWeekDay={(nameOfDay) => nameOfDay.substring(0, 1)}
+              nextMonthButtonLabel={<Icon iconName='ChevronRight' iconSize={0.75} />}
+              previousMonthButtonLabel={<Icon iconName='ChevronLeft' iconSize={0.75} />}
             />
           </S.DateInputFormWrapper>
         </S.DateInputLeftWrapper>
-        <Icon iconName='ChevronDown' iconSize={0.75} />
+        <Icon iconName='ChevronDown' iconSize={0.9} />
       </S.DateInputWrapper>
       <S.TimeInputWrapper htmlFor='time' isTimeFocused={isTimeFocused}>
-        <S.TimeInputForm
+        <S.StyledTimePicker
           id='time'
-          type='time'
+          onChange={handleChangeTimeTest}
+          timeIntervals={5}
+          showTimeSelect
+          showTimeSelectOnly
+          showPopperArrow={false}
+          timeFormat='HH mm aa'
+          value={appointmentTime}
           onFocus={() => setIsTimeFocused(true)}
           onBlur={() => setIsTimeFocused(false)}
-          value={appointmentTime}
-          onChange={handelChangeTime}
         />
-        <Icon iconName='ChevronDown' iconSize={0.75} />
+        <Icon iconName='ChevronDown' iconSize={0.9} />
       </S.TimeInputWrapper>
     </S.TwoTextBlock>
   );

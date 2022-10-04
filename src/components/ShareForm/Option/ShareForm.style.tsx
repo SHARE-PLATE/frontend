@@ -14,12 +14,20 @@ const DatePickerStyle = css`
       width: 100%;
       border: none;
 
+      &__input-container {
+        input {
+          margin: 0;
+          width: 100%;
+          ${fonts.largeRegular}
+        }
+      }
+
       &-popper {
         transform: none !important;
         inset: 0 !important;
         padding-top: calc(48px + 4px);
         width: 100%;
-        margin-left: -1px; // hide line
+        /* margin-left: -1px; // hide line */
       }
 
       &__header {
@@ -100,19 +108,73 @@ const DatePickerStyle = css`
 
       &__navigation {
         &--previous {
-          top: 6.5px;
+          top: 5px;
           left: unset;
-          right: calc(2px + 32px);
+          right: calc(32px);
         }
         &--next {
-          top: 6.5px;
-          right: 2px;
+          top: 5px;
+          right: 0px;
+        }
+        &-icon {
+          ::before {
+            border: none;
+          }
         }
       }
     }
 
     [class$='outside-month'] {
       color: ${colors.grey3};
+    }
+  `}
+`;
+
+const TimePickerStyle = css`
+  ${({ theme: { fonts, colors } }) => css`
+    position: relative;
+
+    .react-datepicker {
+      box-shadow: 2px 4px 8px rgba(255, 69, 58, 0.2);
+      width: 7rem;
+      border: none;
+      /* margin-left: -1px; */
+
+      &__input-container {
+        input {
+          margin: 0;
+          ${fonts.large}
+        }
+      }
+
+      &-popper {
+        transform: none !important;
+        inset: 0 !important;
+        padding-top: calc(48px + 4px);
+        width: 100%;
+        margin-left: -1px; // hide line
+      }
+
+      &__header--time {
+        background-color: transparent;
+        border-bottom: none;
+      }
+
+      &__time {
+        &-container {
+          width: 100%;
+        }
+
+        &-box {
+          margin: 0 !important;
+          width: 100%;
+        }
+        &-list {
+          &-item {
+            padding: 0 !important;
+          }
+        }
+      }
     }
   `}
 `;
@@ -178,23 +240,11 @@ export const ImagePreviewContainer = styled.div`
 `;
 
 //default style
-export const TwoTextBlock = styled.div<{ ratio?: number }>`
-  ${({ ratio }) => css`
-    display: flex;
-    gap: 12px;
-
-    justify-content: flex-start;
-
-    ${ratio &&
-    css`
-      > :nth-child(1) {
-        flex-grow: ${ratio};
-      }
-      > :nth-child(2) {
-        flex-grow: 1;
-      }
-    `}
-  `}
+export const TwoTextBlock = styled.div`
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  justify-content: flex-start;
 `;
 
 export const LongTextBlock = styled.div`
@@ -242,6 +292,8 @@ export const DateInputWrapper = styled.label<{ isDateFocused: boolean }>`
     padding: 0 12px;
     border: 1px solid ${colors.grey3};
     border-radius: 4px;
+    width: 60%;
+    min-width: 60%;
 
     :focus-within {
       border: solid 2px ${colors.orange2};
@@ -265,19 +317,14 @@ export const DateInputLeftWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 0.4rem;
+  max-width: 100%;
 `;
 
 export const DateInputFormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.1rem;
-`;
-
-export const DateInputTextWrapper = styled.div`
-  ${({ theme: { colors } }) => css`
-    font-size: 9px;
-    color: ${colors.orange2};
-  `}
+  width: 100%;
 `;
 
 export const StyledDatePicker = styled(ReactDatePicker)`
@@ -314,6 +361,7 @@ export const TimeInputWrapper = styled.label<{ isTimeFocused: boolean }>`
   ${({ theme: { colors }, isTimeFocused }) => css`
     color: ${colors.black};
     display: flex;
+    flex-grow: 1;
     justify-content: space-between;
     align-items: center;
     padding: 0 12px;
@@ -334,7 +382,20 @@ export const TimeInputWrapper = styled.label<{ isTimeFocused: boolean }>`
         transform: rotate(0.5turn);
       `}
     }
+
+    ${TimePickerStyle}
   `}
+`;
+
+export const StyledTimePicker = styled(ReactDatePicker)`
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+
+  :focus {
+    outline: none;
+  }
 `;
 
 export const TimeInputForm = styled.input`
@@ -359,20 +420,40 @@ export const TimeInputForm = styled.input`
 export const CountContainer = styled.div`
   display: flex;
   align-items: center;
-  width: calc(50% - 6px);
+  width: 60%;
   gap: 10px;
 `;
 
 export const ButtonContainer = styled.div`
-  ${flexCenter}
+  ${({ theme: { colors, fonts } }) => css`
+    ${flexCenter}
+    ${fonts.large}
 
-  border: 1px solid ${({ theme }) => theme.colors.grey3};
-  border-radius: 4px;
+    height: 48px;
+    width: 96px;
+    padding: 2px 4px;
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid ${colors.grey3};
+    border-radius: 4px;
+  `}
 `;
 
-export const CountButton = styled.button`
-  padding: 3px 10px;
-  margin-top: 5px;
+export const CountButton = styled.button<{ isClickable: boolean }>`
+  ${({ theme: { colors }, isClickable }) => css`
+    width: 24px;
+    height: 24px;
+    path {
+      stroke: ${isClickable ? colors.black : colors.grey4};
+    }
+  `}
+`;
+
+export const RecruitmentText = styled.span`
+  ${({ theme: { colors, fonts } }) => css`
+    ${fonts.largeRegular};
+    color: ${colors.grey4};
+  `}
 `;
 
 //ContentDescription.tsx
@@ -381,14 +462,29 @@ export const DescriptionWrapper = styled.div`
 `;
 
 export const ContentDescriptionInput = styled.textarea`
-  width: 100%;
-  min-height: 236px;
-  padding: 0.75rem;
-  border: 1px solid ${({ theme }) => theme.colors.grey3};
-  background: ${({ theme }) => theme.colors.white2};
-  border-radius: 4px;
-  resize: none;
-  :focus-visible {
-    outline: none;
-  }
+  ${({ theme: { colors, fonts } }) => css`
+    ${fonts.main};
+    ${fonts.largeRegular};
+    width: 100%;
+    min-height: 236px;
+    padding: 0.75rem;
+    border: 1px solid ${colors.grey3};
+    background: ${colors.white2};
+    border-radius: 4px;
+    resize: none;
+
+    :focus-visible {
+      outline: none;
+    }
+
+    :focus {
+      ::placeholder {
+        color: transparent;
+      }
+    }
+
+    ::placeholder {
+      color: ${colors.grey4};
+    }
+  `}
 `;
