@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 
 import { useSetRecoilState } from 'recoil';
 
-import HashTag from '@components/OptionPortal/HashTag';
-import * as S from '@components/OptionPortal/OptionPortal.style';
-import useOptionInfo from '@components/OptionPortal/useOptionInfo';
-import Portal from '@components/Portal';
+import HashTag from '@portals/OptionPortal/HashTag';
+import * as S from '@portals/OptionPortal/OptionPortal.style';
+import useOptionInfo from '@portals/OptionPortal/useOptionInfo';
+import Portal from '@portals/Portal';
 import { portalState } from '@store/portal';
 import { isSelectedOptionState } from '@store/shareRegistration';
 

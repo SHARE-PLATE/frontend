@@ -1,10 +1,10 @@
 import { useRef } from 'react';
 
 import { getLoginPage } from '@api/account';
-import * as S from '@components/LoginPortal/LoginPortal.style';
-import Portal from '@components/Portal';
 import Icon from '@components/common/Icon';
 import { loginMention, kakaoLoginMention } from '@constants/mentions';
+import * as S from '@portals/LoginPortal/LoginPortal.style';
+import Portal from '@portals/Portal';
 import { PortalNameType } from '@store/portal';
 
 const portalName: PortalNameType = 'login';

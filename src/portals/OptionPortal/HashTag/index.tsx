@@ -3,10 +3,10 @@ import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { v4 as getRandomKey } from 'uuid';
 
-import * as S from '@components/OptionPortal/HashTag/HashTag.style';
 import Icon from '@components/common/Icon';
 import { tagInputPlaceholderMention } from '@constants/mentions';
 import { TAG } from '@constants/words';
+import * as S from '@portals/OptionPortal/HashTag/HashTag.style';
 import { tagsState } from '@store/shareRegistration';
 
 const HashTag = () => {

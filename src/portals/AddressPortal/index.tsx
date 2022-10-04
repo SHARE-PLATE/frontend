@@ -5,13 +5,13 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { getRegionWithGeo } from '@api/address';
 import AddressDetail from '@components/AddressDetail';
 import AddressList from '@components/AddressList';
-import * as S from '@components/AddressPortal/AddressPortal.style';
 import AddressSetting from '@components/AddressSetting';
-import Portal from '@components/Portal';
 import Icon from '@components/common/Icon';
 import { searchAroundMention, searchWayMention } from '@constants/mentions';
 import { SEARCH_ADDRESS, SET_ADDRESS } from '@constants/words';
 import useGeolocation from '@hooks/useGeolocation';
+import * as S from '@portals/AddressPortal/AddressPortal.style';
+import Portal from '@portals/Portal';
 import { selectedAddressState } from '@store/address';
 import { portalState } from '@store/portal';
 

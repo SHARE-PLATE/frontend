@@ -4,12 +4,12 @@ import { useSetRecoilState } from 'recoil';
 
 import { getRegionWithGeo } from '@api/address';
 import AddressList from '@components/AddressList';
-import * as S from '@components/KeywordAddressPortal/KeywordAddressPortal.style';
-import Portal from '@components/Portal';
 import Icon from '@components/common/Icon';
 import { searchAroundMention, searchWayMention } from '@constants/mentions';
 import { ADD_ADDRESS_KEYWORD } from '@constants/words';
 import useGeolocation from '@hooks/useGeolocation';
+import * as S from '@portals/KeywordAddressPortal/KeywordAddressPortal.style';
+import Portal from '@portals/Portal';
 import { portalState } from '@store/portal';
 
 const KeywordAddressPortal = () => {

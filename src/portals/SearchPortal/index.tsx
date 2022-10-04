@@ -3,13 +3,13 @@ import { useRef, FormEvent, useState, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 
-import Portal from '@components/Portal';
 import SearchPopular from '@components/SearchPopular';
-import * as S from '@components/SearchPortal/Search.style';
 import SearchRecent from '@components/SearchRecent';
 import Icon from '@components/common/Icon';
 import { inputKeyword } from '@constants/mentions';
 import { SEARCH_RECENT } from '@constants/words';
+import Portal from '@portals/Portal';
+import * as S from '@portals/SearchPortal/Search.style';
 import { currentMapKey, searchRecent } from '@store/localStorage';
 import { PortalNameType, portalState } from '@store/portal';
 import { getMonthDate } from '@utils/getTime';

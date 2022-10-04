@@ -3,7 +3,7 @@ import React, { ReactNode, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useRecoilState } from 'recoil';
 
-import * as S from '@components/Portal/Portal.style';
+import * as S from '@portals/Portal/Portal.style';
 import { PortalNameType, PortalType, portalState } from '@store/portal';
 
 type PortalPropsType = {
