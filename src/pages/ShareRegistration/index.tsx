@@ -83,9 +83,9 @@ const ShareRegistration = () => {
     //제목
     formData.append('title', titleInput.inputValue);
     //가격
-    formData.append('price', priceInput.inputValue);
+    formData.append('price', priceInput.inputValue.replaceAll(',', ''));
     //원래가격
-    formData.append('originalPrice', originalPriceInput.inputValue);
+    formData.append('originalPrice', originalPriceInput.inputValue.replaceAll(',', ''));
     //쉐어장소
     formData.append('location', String(road_address_name));
     //쉐어장소 디테일
