@@ -15,6 +15,7 @@ import {
   RecruitmentContainer,
   OptionPortalButton,
 } from '@components/ShareForm';
+import { getCurrentTime, timeFormat } from '@components/ShareForm/DateContainer/timeSettings';
 import BackTitleHeader from '@components/common/BackTitleHeader';
 import FailedModal from '@components/common/FailedModal';
 import { dataFailed } from '@constants/mentions';
@@ -32,6 +33,8 @@ const titleMatch = {
   delivery: DELIVERY_KOR,
   ingredient: INGREDIENTS_KOR,
 };
+const currentTime = getCurrentTime().format(timeFormat);
+const currentDate = moment().format('YYYY-MM-DD');
 
 const ShareRegistration = () => {
   const { type } = useParams<TitleType>();
@@ -47,8 +50,8 @@ const ShareRegistration = () => {
   const pricePossibleValue = useRecoilValue(pricePossible);
   const locationPossibleValue = useRecoilValue(locationPossible);
   const [recruitmentValue, setRecruitmentValue] = useState(1);
-  const [appointmentDateTime, setAppointmentDateTime] = useState(moment().format('YYYY-MM-DD'));
-  const [appointmentTime, setAppointmentTime] = useState(moment().format('HH:mm'));
+  const [appointmentDateTime, setAppointmentDateTime] = useState(currentDate);
+  const [appointmentTime, setAppointmentTime] = useState(currentTime);
   const modalRef = useRef<HTMLDivElement>(null);
   const [isModalOpen, setIsModalOpen] = useModal({ modalRef });
   const titleInput = useInput('');
@@ -94,7 +97,10 @@ const ShareRegistration = () => {
     //모집인원
     formData.append('recruitment', JSON.stringify(recruitmentValue));
     //쉐어시간
-    formData.append('closedDateTime', `${appointmentDateTime} ${appointmentTime}`);
+    formData.append(
+      'closedDateTime',
+      `${appointmentDateTime} ${appointmentTime.substring(0, appointmentTime.length - 3)}`,
+    );
     //설명
     formData.append('description', JSON.stringify(descriptionValue));
     //가격협의 가능 여부

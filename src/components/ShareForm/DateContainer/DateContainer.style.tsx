@@ -3,6 +3,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 import ReactDatePicker from 'react-datepicker';
 import styled, { css } from 'styled-components';
 
+import { flexCenter, noScrollBar } from '@styles/mixin';
+
 const DatePickerStyle = css`
   ${({ theme: { fonts, colors } }) => css`
     position: relative;
@@ -25,7 +27,7 @@ const DatePickerStyle = css`
         inset: 0 !important;
         padding-top: calc(48px + 4px);
         width: 100%;
-        /* margin-left: -1px; // hide line */
+        max-width: 300px;
       }
 
       &__header {
@@ -134,9 +136,8 @@ const TimePickerStyle = css`
 
     .react-datepicker {
       box-shadow: 2px 4px 8px rgba(255, 69, 58, 0.2);
-      width: 7rem;
+      width: 100%;
       border: none;
-      /* margin-left: -1px; */
 
       &__input-container {
         input {
@@ -150,12 +151,29 @@ const TimePickerStyle = css`
         inset: 0 !important;
         padding-top: calc(48px + 4px);
         width: 100%;
-        margin-left: -1px; // hide line
+        max-width: 130px;
       }
 
-      &__header--time {
-        background-color: transparent;
-        border-bottom: none;
+      &__header {
+        padding: 0;
+        &--time {
+          background-color: transparent;
+          border-bottom: none;
+        }
+      }
+
+      &-time__header {
+        ${flexCenter};
+
+        justify-content: left;
+        width: 100px;
+        word-spacing: 10px;
+        margin: 0 auto;
+        white-space: pre;
+        font-size: 8px;
+        font-weight: 400;
+        height: 25px;
+        color: ${colors.grey4};
       }
 
       &__time {
@@ -165,11 +183,26 @@ const TimePickerStyle = css`
 
         &-box {
           margin: 0 !important;
-          width: 100%;
+          width: 100% !important;
         }
+
         &-list {
+          height: 100px !important;
+          ${noScrollBar}
+
           &-item {
+            color: ${colors.grey4};
+            font-size: 12px;
             padding: 0 !important;
+            height: 25px !important;
+            word-spacing: 20px;
+            ${flexCenter};
+
+            &--selected {
+              background-color: transparent !important;
+              color: ${colors.orange2} !important;
+              font-weight: 500 !important;
+            }
           }
         }
       }

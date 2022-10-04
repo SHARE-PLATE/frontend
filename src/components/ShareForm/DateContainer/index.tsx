@@ -1,6 +1,13 @@
 import { useState } from 'react';
 
+import moment from 'moment';
+
 import * as S from '@components/ShareForm/DateContainer/DateContainer.style';
+import {
+  getCurrentTime,
+  timeFormat,
+  timeIntervals,
+} from '@components/ShareForm/DateContainer/timeSettings';
 import { TwoTextBlock } from '@components/ShareForm/ShareForm.style';
 import Icon from '@components/common/Icon';
 
@@ -11,6 +18,8 @@ interface DateContainerPropsType {
   setAppointmentTime: React.Dispatch<React.SetStateAction<string>>;
 }
 
+const currentTime = getCurrentTime();
+
 const DateContainer = ({
   appointmentDateTime,
   setAppointmentDateTime,
@@ -19,13 +28,15 @@ const DateContainer = ({
 }: DateContainerPropsType) => {
   const [isDateFocused, setIsDateFocused] = useState(false);
   const [isTimeFocused, setIsTimeFocused] = useState(false);
+  const [currentTimeDateType, setCurrentTimeDateType] = useState(currentTime.toDate());
 
-  const handelChangeDate = (date: Date | null) => setAppointmentDateTime(String(date));
+  const handelChangeDate = (date: Date) => setAppointmentDateTime(String(date));
 
-  const handelChangeTime = ({ target }: React.ChangeEvent<HTMLInputElement>) =>
-    setAppointmentTime(target.value);
-
-  const handleChangeTimeTest = (target: any) => console.log(target);
+  const handleChangeTimeTest = (newDate: Date) => {
+    const newTime = moment(newDate).locale('en').format(timeFormat);
+    setAppointmentTime(newTime);
+    setCurrentTimeDateType(newDate);
+  };
 
   return (
     <TwoTextBlock>
@@ -49,16 +60,17 @@ const DateContainer = ({
         </S.DateInputLeftWrapper>
         <Icon iconName='ChevronDown' iconSize={0.9} />
       </S.DateInputWrapper>
-      <S.TimeInputWrapper htmlFor='time' isTimeFocused={isTimeFocused}>
+      <S.TimeInputWrapper isTimeFocused={isTimeFocused}>
         <S.StyledTimePicker
-          id='time'
           onChange={handleChangeTimeTest}
-          timeIntervals={5}
+          timeIntervals={timeIntervals}
           showTimeSelect
           showTimeSelectOnly
+          selected={currentTimeDateType}
           showPopperArrow={false}
           timeFormat='HH mm aa'
           value={appointmentTime}
+          timeCaption='HOUR MINUTE'
           onFocus={() => setIsTimeFocused(true)}
           onBlur={() => setIsTimeFocused(false)}
         />
