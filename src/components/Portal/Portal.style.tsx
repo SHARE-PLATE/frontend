@@ -29,6 +29,11 @@ export const PortalBackground = styled.div<PortalStylePropsType>`
       align-items: center;
       justify-content: center;
     `}
+      
+    ${portalType === 'toast' &&
+    css`
+      justify-content: center;
+    `}
   `}
 `;
 
@@ -80,11 +85,11 @@ export const PortalContent = styled.div<PortalStylePropsType>`
       animation: slidein 0.5s;
     `}
 
-    ${portalType === 'half' &&
+    ${portalType === 'toast' &&
     css`
       ${defaultWidth}
       width: 100%;
-      height: 75%;
+      height: 500px;
       position: fixed;
       bottom: 0;
       animation: 'slideout-bottom' 0.3s;

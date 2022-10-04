@@ -34,18 +34,38 @@ export const ButtonBox = styled.div`
   gap: 0.75rem;
 `;
 
+export const OptionButton = styled.button<{ isSelected: boolean }>`
+  ${({ theme: { colors, fonts }, isSelected }) => css`
+    ${fonts.mediumBold}
+
+    width: 118px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.3s;
+    border: solid 1px ${isSelected ? colors.orange4 : colors.grey3};
+    color: ${isSelected ? colors.white0 : colors.grey4};
+    background-color: ${isSelected ? colors.orange4 : colors.white2};
+  `}
+`;
+
 //HashTag.tsx
 export const HashTagContainer = styled.div`
   ${flexBetween}
+  align-items: flex-start;
+  > :first-child {
+    padding-top: 0.4rem;
+  }
 `;
 
 export const TagBox = styled.div`
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  max-width: 250px;
-  min-height: 100px;
-  padding: 0 10px;
+  flex-direction: column;
+  width: 250px;
+  min-height: 104px;
+  padding: 10px 12px;
   border: 1px solid ${({ theme }) => theme.colors.grey2};
   border-radius: 4px;
 
@@ -54,12 +74,27 @@ export const TagBox = styled.div`
   }
 `;
 
+export const TagInput = styled.input`
+  display: flex;
+  width: 100%;
+  min-height: 100%;
+  border: none;
+  outline: none;
+  padding-bottom: 12px;
+  cursor: text;
+`;
+
+export const TagsListWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+`;
+
 export const TagItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 2px;
-  margin: 5px;
   padding: 2px 8px;
   color: ${({ theme }) => theme.colors.white1};
   background-color: ${({ theme }) => theme.colors.orange3};
@@ -69,15 +104,7 @@ export const TagItem = styled.div`
   font-size: 12px;
 `;
 
-export const TagInput = styled.input`
-  display: inline-flex;
-  min-width: 235px;
-  border: none;
-  outline: none;
-  cursor: text;
-`;
-
-export const SelectButton = styled.button`
+export const FinishButton = styled.button`
   width: 100%;
   height: 44px;
   border-radius: 4px;

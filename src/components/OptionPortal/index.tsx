@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect } from 'react';
 
 import { useSetRecoilState } from 'recoil';
 
@@ -6,43 +6,41 @@ import HashTag from '@components/OptionPortal/HashTag';
 import * as S from '@components/OptionPortal/OptionPortal.style';
 import useOptionInfo from '@components/OptionPortal/useOptionInfo';
 import Portal from '@components/Portal';
-import Button from '@components/common/Button';
 import { portalState } from '@store/portal';
-import { isSelectedOption } from '@store/shareRegistration';
+import { isSelectedOptionState } from '@store/shareRegistration';
 
 const OptionPortal = () => {
   const setPortal = useSetRecoilState(portalState);
-  const isSetSelectedOption = useSetRecoilState(isSelectedOption);
-  const closeBtn = useRef<HTMLButtonElement>(null);
-  const optionInfo = useOptionInfo();
+  const setIsSelectedOption = useSetRecoilState(isSelectedOptionState);
+  const { optionInfo, isPossibleValue } = useOptionInfo();
+  const negotiationBtns = optionInfo.map(({ id, title, child }) => (
+    <S.ConferenceContainer key={id}>
+      <S.CategoryTitle>{title}</S.CategoryTitle>
+      <S.ButtonBox>
+        {child.map(({ id, text, onClick, active }) => (
+          <S.OptionButton key={id} onClick={onClick} isSelected={active}>
+            <span>{text}</span>
+          </S.OptionButton>
+        ))}
+      </S.ButtonBox>
+    </S.ConferenceContainer>
+  ));
 
-  const buttonClickHandler = () => {
-    setPortal(null);
-    isSetSelectedOption(true);
-  };
+  const handleFinishBtn = () => setPortal(null);
+
+  useEffect(() => {
+    setIsSelectedOption(isPossibleValue);
+  }, [isPossibleValue]);
 
   return (
-    <Portal type='half' portalName='option' closeBtn={closeBtn}>
+    <Portal type='toast' portalName='option'>
       <S.PortalWrapper>
         <S.OptionTitle>옵션선택</S.OptionTitle>
-        {optionInfo.map(({ id, title, child }) => (
-          <S.ConferenceContainer key={id}>
-            <S.CategoryTitle>{title}</S.CategoryTitle>
-            <S.ButtonBox>
-              {child.map(({ id, text, onClick, active }) => (
-                <Button key={id} size='bigSize' onClick={onClick} active={active}>
-                  <span>{text}</span>
-                </Button>
-              ))}
-            </S.ButtonBox>
-          </S.ConferenceContainer>
-        ))}
-
+        {negotiationBtns}
         <HashTag />
-
-        <S.SelectButton type='button' onClick={buttonClickHandler}>
+        <S.FinishButton type='button' onClick={handleFinishBtn}>
           <span>선택완료</span>
-        </S.SelectButton>
+        </S.FinishButton>
       </S.PortalWrapper>
     </Portal>
   );

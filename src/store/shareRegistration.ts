@@ -10,12 +10,12 @@ export const locationPossible = atom<boolean>({
   default: false,
 });
 
-export const tagList = atom<string[]>({
+export const tagsState = atom<string[]>({
   key: 'tagList',
   default: [],
 });
 
-export const isSelectedOption = atom<boolean>({
-  key: 'isSelectedOption',
+export const isSelectedOptionState = atom<boolean>({
+  key: 'isSelectedOptionState',
   default: false,
 });
