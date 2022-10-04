@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { MouseEvent, useEffect } from 'react';
 
 import { useSetRecoilState } from 'recoil';
 
@@ -26,7 +26,10 @@ const OptionPortal = () => {
     </S.ConferenceContainer>
   ));
 
-  const handleFinishBtn = () => setPortal(null);
+  const handleFinishBtn = (event: MouseEvent) => {
+    event.stopPropagation();
+    setPortal(null);
+  };
 
   useEffect(() => {
     setIsSelectedOption(isPossibleValue);

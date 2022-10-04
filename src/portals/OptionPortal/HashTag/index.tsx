@@ -1,17 +1,18 @@
 import { useState } from 'react';
 
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { v4 as getRandomKey } from 'uuid';
 
 import Icon from '@components/common/Icon';
 import { tagInputPlaceholderMention } from '@constants/mentions';
 import { TAG } from '@constants/words';
 import * as S from '@portals/OptionPortal/HashTag/HashTag.style';
-import { tagsState } from '@store/shareRegistration';
+import { isSelectedOptionState, tagsState } from '@store/shareRegistration';
 
 const HashTag = () => {
   const [tags, setTags] = useRecoilState(tagsState);
-  const [tagItem, setTagItem] = useState<string>('');
+  const [tagInputValue, setTagInputValue] = useState<string>('');
+  const setIsSelectedOption = useSetRecoilState(isSelectedOptionState);
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.target.value.length !== 0 && e.key === 'Enter') {
@@ -20,17 +21,20 @@ const HashTag = () => {
   };
 
   const submitTagItem = () => {
-    if (tags.length >= 5) return setTagItem('');
+    if (tags.length >= 5) return setTagInputValue('');
     const updatedTagList = [...tags];
-    updatedTagList.push(tagItem);
+    updatedTagList.push(tagInputValue);
 
     const setArr = new Set(updatedTagList);
+
+    if (!tags.length) setIsSelectedOption(true);
     setTags([...setArr]);
-    setTagItem('');
+    setTagInputValue('');
   };
 
   const deleteTagItem = (deleteTagItem: string) => {
     const filteredTagList = tags.filter((tagItem) => tagItem !== deleteTagItem);
+    if (tags.length === 1) setIsSelectedOption(false);
     setTags(filteredTagList);
   };
 
@@ -50,8 +54,8 @@ const HashTag = () => {
             type='text'
             maxLength={10}
             placeholder={tagInputPlaceholderMention}
-            onChange={(e) => setTagItem(e.target.value)}
-            value={tagItem}
+            onChange={(e) => setTagInputValue(e.target.value)}
+            value={tagInputValue}
             onKeyPress={handleKeyPress}
           />
         )}
