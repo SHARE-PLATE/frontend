@@ -2,7 +2,7 @@ import { RefObject } from 'react';
 
 import * as S from '@components/KebabMenuModal/KebabMenuModal.style';
 import Modal from '@components/common/Modal';
-import { close, deleteYesMention } from '@constants/mentions';
+import { CLOSE, DELETE } from '@constants/words';
 import { CloseModal, OpenModal } from '@type/modalFunction';
 
 interface KebabMenuModalPropsType {
@@ -17,7 +17,7 @@ const KebabMenuModal = ({ modalRef, closeModal, openModal }: KebabMenuModalProps
       <S.ModalWrapper ref={modalRef}>
         <S.ButtonContainer>
           <S.BasicButton onClick={() => closeModal({ isDeleteModal: false })}>
-            {close}
+            {CLOSE}
           </S.BasicButton>
         </S.ButtonContainer>
         <S.ButtonContainer>
@@ -27,7 +27,7 @@ const KebabMenuModal = ({ modalRef, closeModal, openModal }: KebabMenuModalProps
               openModal(e, { isDeleteModal: true });
             }}
           >
-            {deleteYesMention}
+            {DELETE}
           </S.ConfirmButton>
         </S.ButtonContainer>
       </S.ModalWrapper>

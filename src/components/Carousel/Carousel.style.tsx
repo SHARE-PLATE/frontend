@@ -7,22 +7,30 @@ import { flexCenter } from '@styles/mixin';
 export const CarouselSlider = styled(Slider)<{ type: SlideType }>`
   width: 100%;
   height: 100%;
+  overflow: visible !important;
 
   .slick-dots {
-    bottom: 1rem;
+    bottom: calc(2rem - 5px);
 
     button {
       ::before {
         color: ${({ theme }) => theme.colors.white0};
+        font-size: 10px;
+        opacity: 1;
       }
     }
 
     .slick-active {
       button {
         ::before {
-          color: ${({ theme }) => theme.colors.orange4};
+          opacity: 1;
+          color: ${({ theme }) => theme.colors.orange6};
         }
       }
+    }
+
+    > li {
+      margin: 0;
     }
   }
 
@@ -54,18 +62,17 @@ export const CarouselSlider = styled(Slider)<{ type: SlideType }>`
   ${({ type }) =>
     type === 'side' &&
     css`
-      overflow: visible !important;
       .slick-list {
         overflow: visible !important;
         margin-right: -10px;
       }
 
-      .slick-slide {
-        margin-right: 10px;
-      }
-
       .slick-track {
         display: flex;
+      }
+
+      .slick-slide {
+        margin-right: 10px;
       }
     `}
 

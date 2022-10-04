@@ -4,11 +4,11 @@ export const HomeCompanyWrapper = styled.div`
   ${({ theme: { defaultPadding } }) => css`
     ${defaultPadding};
 
-    padding-top: 1rem;
-    padding-bottom: 1rem;
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
   `}
 `;
 

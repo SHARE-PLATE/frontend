@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 
 import moment from 'moment';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 
 import { registrationShareListData } from '@api/shareList';
+import HomeLogin from '@components/HomeLogin';
 import {
   FileContainer,
   TextContainer,
@@ -14,65 +15,86 @@ import {
   RecruitmentContainer,
   OptionPortalButton,
 } from '@components/ShareForm';
-import ShareFormHeader from '@components/ShareFormHeader';
+import {
+  dateFormat,
+  getCurrentTime,
+  timeFormat,
+} from '@components/ShareForm/DateContainer/timeSettings';
+import BackTitleHeader from '@components/common/BackTitleHeader';
 import FailedModal from '@components/common/FailedModal';
 import { dataFailed } from '@constants/mentions';
+import {
+  DELIVERY_KOR,
+  FINISH_REGISTRATION,
+  INGREDIENTS_KOR,
+  SHARE_RESISTRATION,
+} from '@constants/words';
 import useInput from '@hooks/useInput';
 import useModal from '@hooks/useModal';
 import * as S from '@pages/ShareRegistration/ShareRegistration.style';
 import { shareLocationState } from '@store/location';
 import { shareListTrigger } from '@store/shareList';
-import { locationPossible, pricePossible, tagList } from '@store/shareRegistration';
+import { locationPossible, pricePossible, tagsState } from '@store/shareRegistration';
+
+type TitleType = { type: 'delivery' | 'ingredient' };
+
+const titleMatch = {
+  delivery: DELIVERY_KOR,
+  ingredient: INGREDIENTS_KOR,
+};
+const currentTime = getCurrentTime().format(timeFormat);
+const currentDate = moment().format(dateFormat);
 
 const ShareRegistration = () => {
-  const { pathname } = useLocation();
-  const navigate = useNavigate();
+  const { type } = useParams<TitleType>();
+  if (!type) return <HomeLogin />;
 
+  const title = `${titleMatch[type]} ${SHARE_RESISTRATION}`;
+  const navigate = useNavigate();
   const [fileImage, setFileImage] = useState<FileList>();
   const [descriptionValue, setDescriptionValue] = useState('');
   const { lat, lng, place_name, road_address_name } = useRecoilValue(shareLocationState);
   const resetShareLocation = useResetRecoilState(shareLocationState);
-  const tagListValue = useRecoilValue(tagList);
+  const tags = useRecoilValue(tagsState);
   const pricePossibleValue = useRecoilValue(pricePossible);
   const locationPossibleValue = useRecoilValue(locationPossible);
   const [recruitmentValue, setRecruitmentValue] = useState(1);
-  const [appointmentDateTime, setAppointmentDateTime] = useState(moment().format('YYYY-MM-DD'));
-  const [appointmentTime, setAppointmentTime] = useState(moment().format('HH:mm'));
-
+  const [appointmentDateTime, setAppointmentDateTime] = useState(currentDate);
+  const [appointmentTime, setAppointmentTime] = useState(currentTime);
   const modalRef = useRef<HTMLDivElement>(null);
   const [isModalOpen, setIsModalOpen] = useModal({ modalRef });
-  const closeModal = () => setIsModalOpen(false);
-
   const titleInput = useInput('');
   const priceInput = useInput('');
   const originalPriceInput = useInput('');
-
   const setShareListTrigger = useSetRecoilState(shareListTrigger);
+
+  const closeModal = () => setIsModalOpen(false);
 
   const handelSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
+    if (!fileImage || !type) return;
+
     const formData = new FormData();
 
     //이미지
-    if (fileImage) {
-      for (let i = 0; i < fileImage.length; i++) {
-        formData.append('images', fileImage[i]);
-      }
+
+    for (let i = 0; i < fileImage.length; i++) {
+      formData.append('images', fileImage[i]);
     }
 
     //해쉬태그
-    for (let i = 0; i < tagListValue.length; i++) {
-      formData.append('hashtags', tagListValue[i]);
+    for (let i = 0; i < tags.length; i++) {
+      formData.append('hashtags', tags[i]);
     }
 
     //타입
-    formData.append('type', pathname.split('/')[2]);
+    formData.append('type', type);
     //제목
     formData.append('title', titleInput.inputValue);
     //가격
-    formData.append('price', priceInput.inputValue);
+    formData.append('price', priceInput.inputValue.replaceAll(',', ''));
     //원래가격
-    formData.append('originalPrice', originalPriceInput.inputValue);
+    formData.append('originalPrice', originalPriceInput.inputValue.replaceAll(',', ''));
     //쉐어장소
     formData.append('location', String(road_address_name));
     //쉐어장소 디테일
@@ -84,7 +106,10 @@ const ShareRegistration = () => {
     //모집인원
     formData.append('recruitment', JSON.stringify(recruitmentValue));
     //쉐어시간
-    formData.append('closedDateTime', `${appointmentDateTime} ${appointmentTime}`);
+    formData.append(
+      'closedDateTime',
+      `${appointmentDateTime} ${appointmentTime.substring(0, appointmentTime.length - 3)}`,
+    );
     //설명
     formData.append('description', JSON.stringify(descriptionValue));
     //가격협의 가능 여부
@@ -108,7 +133,7 @@ const ShareRegistration = () => {
 
   return (
     <S.Wrapper>
-      <ShareFormHeader />
+      <BackTitleHeader title={title} />
       <S.InputFormWrapper onSubmit={handelSubmit} encType='multipart/form-data'>
         <FileContainer fileImage={fileImage} setFileImage={setFileImage} />
 
@@ -127,20 +152,20 @@ const ShareRegistration = () => {
           setAppointmentTime={setAppointmentTime}
         />
 
-        <S.TowContents>
+        <S.TwoContents>
           <RecruitmentContainer
             recruitmentValue={recruitmentValue}
             setRecruitmentValue={setRecruitmentValue}
           />
           <OptionPortalButton />
-        </S.TowContents>
+        </S.TwoContents>
 
         <ContentDescription
           descriptionValue={descriptionValue}
           setDescriptionValue={setDescriptionValue}
         />
 
-        <S.SubmitBtn type='submit'>등록완료</S.SubmitBtn>
+        <S.SubmitBtn type='submit'>{FINISH_REGISTRATION}</S.SubmitBtn>
         {isModalOpen && (
           <FailedModal modalRef={modalRef} closeModal={closeModal} text={dataFailed} />
         )}

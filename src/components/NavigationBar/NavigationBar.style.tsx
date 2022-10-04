@@ -21,6 +21,7 @@ export const Wrapper = styled.ul<CssPropsType>`
     border-radius: 8px 8px 0 0;
     box-shadow: 0px -8px 16px rgba(0, 0, 0, 0.08);
     width: 100%;
+    z-index: 100;
     justify-content: space-around;
   `}
 `;

@@ -30,6 +30,7 @@ const Advertisement = () => {
         imgTitle={id + name}
         imgWrapperRatio={1.82 / 1}
         imgWrapperWidth='100%'
+        standard='WIDTH'
       />
     </S.AdWrapper>
   ));
