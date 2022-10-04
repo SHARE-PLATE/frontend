@@ -25,7 +25,6 @@ export const searchAroundMention = '현재 위치로 주소 찾기';
 export const checkAddressWithMap = '지도에서 위치 확인하기';
 export const noAddressListMention = '검색 결과가 없습니다.\n지번, 도로명, 건물명을 입력해주세요.';
 export const addressKeywordQuestionMention = '주소 키워드를\n삭제하시겠습니까?';
-
 export const newShareEnrolledMention = '새로운 쉐어가 등록되었습니다.';
 export const noRecentNoticeListMention = '현재 알림 목록이 없습니다!';
 export const dataFailed = '데이터를 넣어주세요';
