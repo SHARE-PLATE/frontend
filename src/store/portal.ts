@@ -9,7 +9,7 @@ export type PortalNameType =
   | 'keywordAddress'
   | null;
 
-export type PortalType = 'modal' | 'sidebar' | 'full' | 'half' | null;
+export type PortalType = 'modal' | 'sidebar' | 'full' | 'toast' | null;
 
 export const portalState = atom<PortalNameType>({
   key: 'modal',

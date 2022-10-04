@@ -24,7 +24,7 @@ import useModal from '@hooks/useModal';
 import * as S from '@pages/ShareRegistration/ShareRegistration.style';
 import { shareLocationState } from '@store/location';
 import { shareListTrigger } from '@store/shareList';
-import { locationPossible, pricePossible, tagList } from '@store/shareRegistration';
+import { locationPossible, pricePossible, tagsState } from '@store/shareRegistration';
 
 type TitleType = { type: 'delivery' | 'ingredient' };
 
@@ -43,7 +43,7 @@ const ShareRegistration = () => {
   const [descriptionValue, setDescriptionValue] = useState('');
   const { lat, lng, place_name, road_address_name } = useRecoilValue(shareLocationState);
   const resetShareLocation = useResetRecoilState(shareLocationState);
-  const tagListValue = useRecoilValue(tagList);
+  const tags = useRecoilValue(tagsState);
   const pricePossibleValue = useRecoilValue(pricePossible);
   const locationPossibleValue = useRecoilValue(locationPossible);
   const [recruitmentValue, setRecruitmentValue] = useState(1);
@@ -71,8 +71,8 @@ const ShareRegistration = () => {
     }
 
     //해쉬태그
-    for (let i = 0; i < tagListValue.length; i++) {
-      formData.append('hashtags', tagListValue[i]);
+    for (let i = 0; i < tags.length; i++) {
+      formData.append('hashtags', tags[i]);
     }
 
     //타입
