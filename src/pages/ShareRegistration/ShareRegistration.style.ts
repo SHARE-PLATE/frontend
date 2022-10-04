@@ -47,6 +47,6 @@ export const SubmitBtn = styled.button`
     color: ${colors.white1};
     border-radius: 4px;
     width: 100%;
-    height: 40px;
+    height: 48px;
   `}
 `;
