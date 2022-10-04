@@ -11,7 +11,7 @@ export const Title = styled.div`
   ${({ theme: { fonts, colors } }) => css`
     ${fonts.medium}
     color: ${colors.grey4};
-    padding-top: 11px;
+    padding-top: 15px;
   `}
 `;
 
@@ -30,13 +30,28 @@ export const TagBox = styled.div`
 `;
 
 export const TagInput = styled.input`
-  display: flex;
-  width: 100%;
-  min-height: 100%;
-  border: none;
-  outline: none;
-  padding-bottom: 12px;
-  cursor: text;
+  ${({ theme: { fonts, colors } }) => css`
+    ${fonts.large};
+    display: flex;
+    width: 100%;
+    margin: 0;
+    min-height: 100%;
+    border: none;
+    outline: none;
+    padding: 0;
+    padding-bottom: 12px;
+    cursor: text;
+
+    ::placeholder {
+      color: ${colors.grey4};
+      ${fonts.medium};
+    }
+    :focus {
+      ::placeholder {
+        color: transparent;
+      }
+    }
+  `}
 `;
 
 export const TagsListWrapper = styled.div`
