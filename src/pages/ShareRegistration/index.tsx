@@ -15,7 +15,11 @@ import {
   RecruitmentContainer,
   OptionPortalButton,
 } from '@components/ShareForm';
-import { getCurrentTime, timeFormat } from '@components/ShareForm/DateContainer/timeSettings';
+import {
+  dateFormat,
+  getCurrentTime,
+  timeFormat,
+} from '@components/ShareForm/DateContainer/timeSettings';
 import BackTitleHeader from '@components/common/BackTitleHeader';
 import FailedModal from '@components/common/FailedModal';
 import { dataFailed } from '@constants/mentions';
@@ -39,7 +43,7 @@ const titleMatch = {
   ingredient: INGREDIENTS_KOR,
 };
 const currentTime = getCurrentTime().format(timeFormat);
-const currentDate = moment().format('YYYY-MM-DD');
+const currentDate = moment().format(dateFormat);
 
 const ShareRegistration = () => {
   const { type } = useParams<TitleType>();

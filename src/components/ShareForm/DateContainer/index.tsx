@@ -4,6 +4,7 @@ import moment from 'moment';
 
 import * as S from '@components/ShareForm/DateContainer/DateContainer.style';
 import {
+  dateFormat,
   getCurrentTime,
   timeFormat,
   timeIntervals,
@@ -30,7 +31,10 @@ const DateContainer = ({
   const [isTimeFocused, setIsTimeFocused] = useState(false);
   const [currentTimeDateType, setCurrentTimeDateType] = useState(currentTime.toDate());
 
-  const handelChangeDate = (date: Date) => setAppointmentDateTime(String(date));
+  const handelChangeDate = (date: Date) => {
+    const newDate = moment(date).format(dateFormat);
+    setAppointmentDateTime(newDate);
+  };
 
   const handleChangeTimeTest = (newDate: Date) => {
     const newTime = moment(newDate).locale('en').format(timeFormat);
