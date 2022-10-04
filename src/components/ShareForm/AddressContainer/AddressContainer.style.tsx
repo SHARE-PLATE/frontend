@@ -14,10 +14,14 @@ export const LocationSelectButton = styled.button`
   }
 `;
 
-export const NoneLocation = styled.span`
-  ${({ theme: { fonts, colors } }) => css`
+export const PlaceNameWrapper = styled.span<{ isPlaceName: boolean }>`
+  ${({ theme: { fonts, colors }, isPlaceName }) => css`
     ${fonts.largeRegular};
-
-    color: ${colors.grey4};
+    width: 100%;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: ${isPlaceName ? colors.black : colors.grey4};
   `}
 `;
