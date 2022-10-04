@@ -2,6 +2,7 @@ import { MouseEvent } from 'react';
 
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 
+import { SELECT_OPTION } from '@constants/words';
 import { OptionBtn } from '@pages/ShareRegistration/ShareRegistration.style';
 import { portalState } from '@store/portal';
 import { isSelectedOptionState } from '@store/shareRegistration';
@@ -17,7 +18,7 @@ const OptionPortalButton = () => {
 
   return (
     <OptionBtn onClick={handleClickButton} isOption={isSelectedOptionStateValue}>
-      <span>옵션선택</span>
+      <span>{SELECT_OPTION}</span>
     </OptionBtn>
   );
 };

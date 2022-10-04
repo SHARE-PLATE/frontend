@@ -62,3 +62,5 @@ export const ADDRESS_GUIDE = '길안내 (예: 강남역 2번출구)';
 export const CANCEL = '취소';
 export const DELETE = '삭제';
 export const CLOSE = '닫기';
+export const SELECT_OPTION = '옵션선택';
+export const FINISH_REGISTRATION = '등록완료';

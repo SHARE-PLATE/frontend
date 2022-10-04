@@ -19,7 +19,12 @@ import { getCurrentTime, timeFormat } from '@components/ShareForm/DateContainer/
 import BackTitleHeader from '@components/common/BackTitleHeader';
 import FailedModal from '@components/common/FailedModal';
 import { dataFailed } from '@constants/mentions';
-import { DELIVERY_KOR, INGREDIENTS_KOR, SHARE_RESISTRATION } from '@constants/words';
+import {
+  DELIVERY_KOR,
+  FINISH_REGISTRATION,
+  INGREDIENTS_KOR,
+  SHARE_RESISTRATION,
+} from '@constants/words';
 import useInput from '@hooks/useInput';
 import useModal from '@hooks/useModal';
 import * as S from '@pages/ShareRegistration/ShareRegistration.style';
@@ -156,7 +161,7 @@ const ShareRegistration = () => {
           setDescriptionValue={setDescriptionValue}
         />
 
-        <S.SubmitBtn type='submit'>등록완료</S.SubmitBtn>
+        <S.SubmitBtn type='submit'>{FINISH_REGISTRATION}</S.SubmitBtn>
         {isModalOpen && (
           <FailedModal modalRef={modalRef} closeModal={closeModal} text={dataFailed} />
         )}
