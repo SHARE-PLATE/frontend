@@ -11,6 +11,7 @@ type PortalPropsType = {
   children: ReactNode;
   type: PortalType;
   closeBtn?: React.RefObject<HTMLButtonElement>;
+  onClose?: () => void;
 };
 
 const PortalRoot = ({ children }: { children: ReactNode }) => {
@@ -18,7 +19,7 @@ const PortalRoot = ({ children }: { children: ReactNode }) => {
   return element && createPortal(children, element);
 };
 
-const Portal = ({ portalName, children, type, closeBtn }: PortalPropsType) => {
+const Portal = ({ portalName, children, type, closeBtn, onClose }: PortalPropsType) => {
   const [portal, setPortal] = useRecoilState(portalState);
   const isPortal = portal === portalName;
   const backgroundRef = useRef<HTMLDivElement>(null);
@@ -40,7 +41,9 @@ const Portal = ({ portalName, children, type, closeBtn }: PortalPropsType) => {
   };
 
   const handleAnimationEnd = () => {
-    if (!isPortal) changeBackgroundDisplay({ isShowed: false });
+    if (isPortal) return;
+    if (onClose) onClose();
+    changeBackgroundDisplay({ isShowed: false });
   };
 
   useEffect(() => {
