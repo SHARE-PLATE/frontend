@@ -2,7 +2,7 @@ import { useRef } from 'react';
 
 import { v4 as getRandomKey } from 'uuid';
 
-import * as S from '@components/ShareForm/Option/ShareForm.style';
+import * as S from '@components/ShareForm/FileContainer/FileContainer.style';
 import FailedModal from '@components/common/FailedModal';
 import Icon from '@components/common/Icon';
 import ImgContainer from '@components/common/ImgContainer';

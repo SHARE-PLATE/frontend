@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
-import * as S from '@components/ShareForm/Option/ShareForm.style';
+import * as S from '@components/ShareForm/DateContainer/DateContainer.style';
+import { TwoTextBlock } from '@components/ShareForm/ShareForm.style';
 import Icon from '@components/common/Icon';
 
 interface DateContainerPropsType {
@@ -27,7 +28,7 @@ const DateContainer = ({
   const handleChangeTimeTest = (target: any) => console.log(target);
 
   return (
-    <S.TwoTextBlock>
+    <TwoTextBlock>
       <S.DateInputWrapper isDateFocused={isDateFocused}>
         <S.DateInputLeftWrapper>
           <Icon iconName='Calendar' iconSize={1} />
@@ -63,7 +64,7 @@ const DateContainer = ({
         />
         <Icon iconName='ChevronDown' iconSize={0.9} />
       </S.TimeInputWrapper>
-    </S.TwoTextBlock>
+    </TwoTextBlock>
   );
 };
 

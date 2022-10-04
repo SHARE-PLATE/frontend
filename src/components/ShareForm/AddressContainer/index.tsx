@@ -1,6 +1,6 @@
 import { useSetRecoilState } from 'recoil';
 
-import * as S from '@components/ShareForm/Option/ShareForm.style';
+import * as S from '@components/ShareForm/AddressContainer/AddressContainer.style';
 import Icon from '@components/common/Icon';
 import { SELECT_LOCATION } from '@constants/words';
 import { addressOptionState } from '@store/address';

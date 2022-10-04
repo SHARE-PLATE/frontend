@@ -1,4 +1,4 @@
-import * as S from '@components/ShareForm/Option/ShareForm.style';
+import * as S from '@components/ShareForm/RecruitmentContainer/RecruitmentContainer.style';
 import Icon from '@components/common/Icon';
 
 interface RecruitmentContainerPropsType {

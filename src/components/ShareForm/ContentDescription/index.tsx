@@ -1,4 +1,4 @@
-import * as S from '@components/ShareForm/Option/ShareForm.style';
+import * as S from '@components/ShareForm/ContentDescription/ContentDescription.style';
 
 interface ContentDescriptionPropsType {
   descriptionValue: string;

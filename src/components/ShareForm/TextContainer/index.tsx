@@ -1,4 +1,5 @@
-import * as S from '@components/ShareForm/Option/ShareForm.style';
+import { TwoTextBlock } from '@components/ShareForm/ShareForm.style';
+import * as S from '@components/ShareForm/TextContainer/TextContainer.style';
 import InputForm from '@components/common/InputForm';
 import { UseInputReturnType } from '@hooks/useInput';
 import { getPriceType } from '@utils/getPriceType';
@@ -22,10 +23,10 @@ const TextContainer = ({ titleInput, priceInput, originalPriceInput }: TextConta
     <S.TextContainer>
       <InputForm type='text' placeholder='제목' {...titleInput} />
 
-      <S.TwoTextBlock>
+      <TwoTextBlock>
         <InputForm placeholder='가격' unit='₩' isValue={isPrice} {...priceInput} />
         <InputForm placeholder='원가' unit='₩' isValue={isOriginalPrice} {...originalPriceInput} />
-      </S.TwoTextBlock>
+      </TwoTextBlock>
     </S.TextContainer>
   );
 };
