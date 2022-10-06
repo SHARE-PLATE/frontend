@@ -8,6 +8,8 @@ export const Wrapper = styled.div`
   display: flex;
   height: 100%;
   flex-direction: column;
+  position: relative;
+  overflow: hidden;
 `;
 export const BackGround = styled.div<{ isClicked: boolean }>`
   position: relative;
@@ -20,17 +22,19 @@ export const BackGround = styled.div<{ isClicked: boolean }>`
     isClicked &&
     css`
       visibility: visible;
-      background-color: rgba(0, 0, 0, 0.2);
     `}
 `;
 
-export const MapContainer = styled.div`
-  position: relative;
-  width: 100%;
-  height: 537px;
-  margin-top: 133px;
-  flex-grow: 10;
-  overflow: hidden;
+export const MapContainer = styled.div<{ mapHeight: number }>`
+  ${({ mapHeight }) => css`
+    position: relative;
+    width: 100%;
+    height: ${mapHeight}rem;
+    margin-top: 133px;
+    flex-grow: 10;
+    overflow: hidden;
+    visibility: visible;
+  `}
 `;
 
 export const Map = styled.div`
@@ -40,25 +44,21 @@ export const Map = styled.div`
 `;
 
 //ShareListSlide.tsx
-interface ShareListContainerPropsType {
-  curHeight: number;
-  maxHeight: number;
-}
-export const ShareListContainer = styled.div<ShareListContainerPropsType>`
-  ${({ theme: { defaultPadding, colors }, curHeight, maxHeight }) => css`
+export const ShareListContainer = styled.div<{ curTop: number }>`
+  ${({ theme: { defaultPadding, colors }, curTop }) => css`
     ${defaultPadding};
     padding-bottom: 1.5rem;
     background-color: ${colors.white1};
     display: flex;
     flex-direction: column;
-    position: relative;
-    height: ${curHeight}px;
+    position: absolute;
+    top: ${curTop}%;
+    z-index: 100;
+    height: 100%;
     min-height: 4.375rem;
-    max-height: ${maxHeight}px;
     overflow-y: scroll;
     scroll-behavior: smooth;
     ${noScrollBar}
-    transition: all 0.3s;
     box-shadow: 0px -6px 12px rgba(0, 0, 0, 0.08);
     border-radius: 8px 8px 0px 0px;
   `}

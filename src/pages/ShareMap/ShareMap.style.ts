@@ -4,6 +4,7 @@ import { defaultPageStyle } from '@styles/mixin';
 
 export const Wrapper = styled.div`
   ${defaultPageStyle};
+
   > :last-child {
     padding: 0;
   }
@@ -17,7 +18,7 @@ export const ListHeader = styled.header`
   background-color: ${({ theme }) => theme.colors.white1};
   padding: 0;
   width: 100%;
-
+  z-index: 1;
   > :first-child,
   > :last-child {
     padding: 0 1rem;
