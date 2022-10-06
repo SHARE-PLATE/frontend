@@ -23,6 +23,8 @@ export type ShareListType = {
   createdDateTime: string;
   closedDateTime: string;
   writerId: string;
+  latitude: number;
+  longitude: number;
 };
 
 export type ShareDetailType = {
