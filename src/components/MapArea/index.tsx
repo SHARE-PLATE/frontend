@@ -1,17 +1,18 @@
 import { useEffect, useRef, useState, useLayoutEffect, MouseEvent, TouchEvent } from 'react';
 
+import { isMobile } from 'react-device-detect';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 
 import { CurrentLocationMarker } from '@components/MapArea/CurrentLocationMarker';
 import * as S from '@components/MapArea/MapArea.style';
+import { ShareListMarker } from '@components/MapArea/ShareListMarker';
 import ShareListSlide from '@components/MapArea/ShareListSlide';
-import { curHightAtom, maxHeightAtom } from '@store/shareMap';
+import { curTopAtom, maxTopAtom, minTopAtom } from '@store/shareMap';
 import { ShareListType } from '@type/shareList';
 
 interface MapAreaPropsType {
   lat: number;
   lng: number;
-
   data: ShareListType[];
 }
 
@@ -20,11 +21,18 @@ const { kakao } = window as any;
 const MapArea = ({ lat, lng, data }: MapAreaPropsType) => {
   const [mapState, setMapState] = useState(null);
   const mapRef = useRef(null);
-  const position = new kakao.maps.LatLng(37.49808633653005, 127.02800140627488);
+  const curLocationPosition = new kakao.maps.LatLng(lat, lng);
+  const shareListPosition = data.map(({ latitude, longitude }) => {
+    return {
+      content: ShareListMarker,
+      position: new kakao.maps.LatLng(latitude, longitude),
+    };
+  });
 
+  const setCurTop = useSetRecoilState(curTopAtom);
+  const minTop = useRecoilValue(minTopAtom);
   const [totalHeight, setTotalHeight] = useState<number>(0);
-  const setCurHeight = useSetRecoilState(curHightAtom);
-  const maxHeight = useRecoilValue(maxHeightAtom);
+  const maxTop = useRecoilValue(maxTopAtom);
   const [isClicked, setIsClicked] = useState<boolean>(false);
 
   const changeClickTrue = () => setIsClicked(true);
@@ -38,30 +46,43 @@ const MapArea = ({ lat, lng, data }: MapAreaPropsType) => {
   const checkedMousePoint = (e: MouseEvent<HTMLDivElement>) => {
     if (!isClicked) return;
     const y = e.clientY;
-    const divMousePoint = totalHeight - y;
+    const tempTop = (y / totalHeight) * 100;
+    const divMousePoint = tempTop > minTop ? minTop : tempTop;
+    if (maxTop > divMousePoint) return changeClickFalse();
 
-    if (maxHeight < divMousePoint) return changeClickFalse();
-    setCurHeight(divMousePoint);
+    setCurTop(divMousePoint);
   };
 
   const checkedTouchPoint = (e: TouchEvent<HTMLDivElement>) => {
     if (!isClicked) return;
     const y = e.touches[0].clientY;
-    const divMousePoint = totalHeight - y;
+    const tempTop = (y / totalHeight) * 100;
+    const divMousePoint = tempTop > minTop ? minTop : tempTop;
 
-    if (maxHeight < divMousePoint) return changeClickFalse();
-    setCurHeight(divMousePoint);
+    if (maxTop > divMousePoint) return changeClickFalse();
+
+    setCurTop(divMousePoint);
   };
 
   const initMap = () => {
-    const options = { center: position, level: 3 };
+    const options = { center: curLocationPosition, level: 4 };
     const newMap = new kakao.maps.Map(mapRef.current, options);
     setMapState(newMap);
   };
 
-  const drawOverlay = () => {
-    const overlay = new kakao.maps.CustomOverlay({ position, content: CurrentLocationMarker });
+  const drawCurLocation = () => {
+    const overlay = new kakao.maps.CustomOverlay({
+      curLocationPosition,
+      content: CurrentLocationMarker,
+    });
     overlay.setMap(mapState);
+  };
+
+  const drawShareList = () => {
+    shareListPosition.forEach((position) => {
+      const overlay = new kakao.maps.CustomOverlay(position);
+      overlay.setMap(mapState);
+    });
   };
 
   useEffect(() => {
@@ -69,20 +90,20 @@ const MapArea = ({ lat, lng, data }: MapAreaPropsType) => {
   }, [mapRef]);
 
   useEffect(() => {
-    drawOverlay();
+    drawCurLocation();
+    drawShareList();
   }, [mapState]);
 
   return (
     <S.Wrapper onMouseMove={checkedMousePoint} onTouchMove={checkedTouchPoint}>
       <S.BackGround isClicked={isClicked}>
-        <S.MapContainer>
+        <S.MapContainer mapHeight={isMobile ? 36 : 47}>
           <S.Map ref={mapRef} />
         </S.MapContainer>
       </S.BackGround>
 
       <ShareListSlide
         isClicked={isClicked}
-        maxHeight={maxHeight}
         contents={data}
         changeClickTrue={changeClickTrue}
         changeClickFalse={changeClickFalse}

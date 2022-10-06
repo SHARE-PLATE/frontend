@@ -6,24 +6,23 @@ import { useRecoilValue, useRecoilState } from 'recoil';
 import * as S from '@components/MainHeader/MainHeader.style';
 import NoticeIcon from '@components/NoticeIcon';
 import Icon from '@components/common/Icon';
-import { curHightAtom, maxHeightAtom } from '@store/shareMap';
-
-const minHeight = 70;
+import { curTopAtom, maxTopAtom, minTopAtom } from '@store/shareMap';
 
 const ShareMapHeader = () => {
   const navigate = useNavigate();
   const [isOpenToggle, setIsOpenToggle] = useState<boolean>(false);
-  const [curHeight, setCurHeight] = useRecoilState(curHightAtom);
-  const maxHeight = useRecoilValue(maxHeightAtom);
+  const [curTop, setCurTop] = useRecoilState(curTopAtom);
+  const maxTop = useRecoilValue(maxTopAtom);
+  const minTop = useRecoilValue(minTopAtom);
 
   const changeBottomList = () => {
-    if (maxHeight === curHeight) setIsOpenToggle(false);
-    else if (minHeight === curHeight) setIsOpenToggle(true);
+    if (maxTop === curTop) setIsOpenToggle(false);
+    else if (minTop === curTop) setIsOpenToggle(true);
     else setIsOpenToggle((prev) => !prev);
   };
 
   useEffect(() => {
-    isOpenToggle ? setCurHeight(maxHeight) : setCurHeight(minHeight);
+    isOpenToggle ? setCurTop(maxTop) : setCurTop(minTop);
   }, [isOpenToggle]);
 
   return (
