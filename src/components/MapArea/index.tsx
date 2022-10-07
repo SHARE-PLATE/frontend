@@ -72,7 +72,7 @@ const MapArea = ({ lat, lng, data }: MapAreaPropsType) => {
 
   const drawCurLocation = () => {
     const overlay = new kakao.maps.CustomOverlay({
-      curLocationPosition,
+      position: curLocationPosition,
       content: CurrentLocationMarker,
     });
     overlay.setMap(mapState);
