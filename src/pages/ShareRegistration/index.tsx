@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 
 import moment from 'moment';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -27,7 +27,7 @@ import {
   DELIVERY_KOR,
   FINISH_REGISTRATION,
   INGREDIENTS_KOR,
-  SHARE_RESISTRATION,
+  SHARE_REGISTRATION,
 } from '@constants/words';
 import useInput from '@hooks/useInput';
 import useModal from '@hooks/useModal';
@@ -49,7 +49,7 @@ const ShareRegistration = () => {
   const { type } = useParams<TitleType>();
   if (!type) return <HomeLogin />;
 
-  const title = `${titleMatch[type]} ${SHARE_RESISTRATION}`;
+  const title = `${titleMatch[type]} ${SHARE_REGISTRATION}`;
   const navigate = useNavigate();
   const [fileImage, setFileImage] = useState<FileList>();
   const [descriptionValue, setDescriptionValue] = useState('');
@@ -69,7 +69,6 @@ const ShareRegistration = () => {
   const setShareListTrigger = useSetRecoilState(shareListTrigger);
 
   const closeModal = () => setIsModalOpen(false);
-
   const handelSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     if (!fileImage || !type) return;
@@ -77,7 +76,6 @@ const ShareRegistration = () => {
     const formData = new FormData();
 
     //이미지
-
     for (let i = 0; i < fileImage.length; i++) {
       formData.append('images', fileImage[i]);
     }
@@ -111,7 +109,7 @@ const ShareRegistration = () => {
       `${appointmentDateTime} ${appointmentTime.substring(0, appointmentTime.length - 3)}`,
     );
     //설명
-    formData.append('description', JSON.stringify(descriptionValue));
+    formData.append('description', descriptionValue);
     //가격협의 가능 여부
     formData.append('locationNegotiation', JSON.stringify(pricePossibleValue));
     //장소협의 가능 여부
@@ -135,7 +133,10 @@ const ShareRegistration = () => {
     <S.Wrapper>
       <BackTitleHeader title={title} />
       <S.InputFormWrapper onSubmit={handelSubmit} encType='multipart/form-data'>
-        <FileContainer fileImage={fileImage} setFileImage={setFileImage} />
+        <FileContainer
+          fileImage={fileImage}
+          setFileImage={useCallback((file) => setFileImage(file), [])}
+        />
 
         <TextContainer
           titleInput={titleInput}

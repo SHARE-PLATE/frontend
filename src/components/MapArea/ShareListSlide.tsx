@@ -5,13 +5,12 @@ import PreviewShareListBigSizeImage from '@components/PreviewShareListBigSizeIma
 import PreviewShareListLeftImage from '@components/PreviewShareListLeftImage';
 import Icon from '@components/common/Icon';
 import { activeShareList } from '@store/filterShareList';
-import { curHightAtom } from '@store/shareMap';
+import { curTopAtom } from '@store/shareMap';
 import { ShareListType } from '@type/shareList';
 import { getSortData } from '@utils/ShareListSort';
 
 interface ShareListSlidePropsType {
   isClicked: boolean;
-  maxHeight: number;
   contents: ShareListType[];
   changeClickTrue: () => void;
   changeClickFalse: () => void;
@@ -24,22 +23,20 @@ const ListContentComponentInfo = {
 
 const ShareListSlide = ({
   isClicked,
-  maxHeight,
   contents,
   changeClickTrue,
   changeClickFalse,
 }: ShareListSlidePropsType) => {
-  const curHeight = useRecoilValue(curHightAtom);
   const activeShareListValue = useRecoilValue(activeShareList);
   const ListContentComponent = ListContentComponentInfo[activeShareListValue];
+  const curTop = useRecoilValue(curTopAtom);
   return (
     <S.ShareListContainer
       onMouseDown={changeClickTrue}
       onMouseUp={changeClickFalse}
       onTouchStart={changeClickTrue}
       onTouchEnd={changeClickFalse}
-      curHeight={curHeight}
-      maxHeight={maxHeight}
+      curTop={curTop}
     >
       <S.IconContainer>
         {isClicked ? (

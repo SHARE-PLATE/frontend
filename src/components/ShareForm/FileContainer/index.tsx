@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 
 import { v4 as getRandomKey } from 'uuid';
 
@@ -11,12 +11,11 @@ import useModal from '@hooks/useModal';
 
 interface FileContainerPropsType {
   fileImage: FileList | undefined;
-  setFileImage: React.Dispatch<React.SetStateAction<FileList | undefined>>;
+  setFileImage: (file: FileList | undefined) => void;
 }
 
 const FileContainer = ({ fileImage, setFileImage }: FileContainerPropsType) => {
   const modalRef = useRef<HTMLDivElement>(null);
-
   const [isFailedModal, setFailedModal] = useModal({ modalRef });
   const closeModal = () => setFailedModal(false);
 
@@ -42,7 +41,6 @@ const FileContainer = ({ fileImage, setFileImage }: FileContainerPropsType) => {
       setFileImage(dataTransfer.files);
     }
   };
-
   return (
     <S.FileWrapper>
       <S.FileLabel htmlFor='input-file' isImage={!!fileImage?.length}>
@@ -74,4 +72,4 @@ const FileContainer = ({ fileImage, setFileImage }: FileContainerPropsType) => {
   );
 };
 
-export default FileContainer;
+export default React.memo(FileContainer);
