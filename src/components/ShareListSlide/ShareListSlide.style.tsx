@@ -2,31 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { noScrollBar } from '@styles/mixin';
 
-//index.tsx
-export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  overflow: hidden;
-  height: 100%;
-`;
-
-export const MapContainer = styled.div`
-  position: relative;
-  width: 100%;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-`;
-
-export const Map = styled.div`
-  width: 100%;
-  flex-grow: 1;
-  z-index: 1;
-`;
-
-//ShareListSlide.tsx
-export const ShareListContainer = styled.div<{ curTop: number }>`
+export const Wrapper = styled.div<{ curTop: number }>`
   ${({ theme: { defaultPadding, colors }, curTop }) => css`
     ${defaultPadding};
     padding-bottom: 1.5rem;
@@ -46,7 +22,7 @@ export const ShareListContainer = styled.div<{ curTop: number }>`
   `}
 `;
 
-export const IconContainer = styled.div`
+export const IconWrapper = styled.div`
   padding-top: 0.75rem;
 `;
 

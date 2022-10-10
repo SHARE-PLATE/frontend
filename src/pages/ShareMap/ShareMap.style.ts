@@ -4,10 +4,7 @@ import { defaultPageStyle } from '@styles/mixin';
 
 export const Wrapper = styled.div`
   ${defaultPageStyle};
-
-  > :last-child {
-    padding: 0;
-  }
+  overflow: hidden;
 `;
 
 export const ListHeader = styled.header`

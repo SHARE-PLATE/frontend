@@ -1,6 +1,9 @@
+import { useState } from 'react';
+
 import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
 
 import MapArea from '@components/MapArea';
+import ShareListSlide from '@components/ShareListSlide';
 import ShareMapHeader from '@components/ShareMapHeader';
 import Tabs from '@components/Tabs';
 import Icon from '@components/common/Icon';
@@ -16,11 +19,18 @@ const ShareMap = () => {
   const curAddressName = useRecoilValue(currentAddressName);
   const { lat, lng } = useRecoilValue(currentLatitudeLongitude);
   const { state, contents } = useRecoilValueLoadable(getShareListsData);
+  const [isActive, setIsActive] = useState(false);
 
-  const getListContents = (state: 'hasValue' | 'loading' | 'hasError') => {
+  const getContents = (state: 'hasValue' | 'loading' | 'hasError') => {
     switch (state) {
       case 'hasValue':
-        return <MapArea lat={+lat} lng={+lng} data={getSortData('recency', contents)} />;
+        const data = getSortData('recency', contents);
+        return (
+          <>
+            <MapArea lat={+lat} lng={+lng} data={data} />
+            <ShareListSlide contents={data} />
+          </>
+        );
       case 'loading':
         return <div>로딩 페이지</div>;
       case 'hasError':
@@ -40,7 +50,7 @@ const ShareMap = () => {
           <S.AddressText>{curAddressName}</S.AddressText>
         </S.CurrentAddress>
       </S.ListHeader>
-      {getListContents(state)}
+      {getContents(state)}
     </S.Wrapper>
   );
 };

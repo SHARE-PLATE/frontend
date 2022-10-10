@@ -1,12 +1,10 @@
 import { useEffect, useRef, useState, useLayoutEffect, MouseEvent, TouchEvent } from 'react';
 
-import { isMobile } from 'react-device-detect';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 
 import { CurrentLocationMarker } from '@components/MapArea/CurrentLocationMarker';
 import * as S from '@components/MapArea/MapArea.style';
 import { ShareListMarker } from '@components/MapArea/ShareListMarker';
-import ShareListSlide from '@components/MapArea/ShareListSlide';
 import { curTopAtom, maxTopAtom, minTopAtom } from '@store/shareMap';
 import { ShareListType } from '@type/shareList';
 
@@ -101,12 +99,6 @@ const MapArea = ({ lat, lng, data }: MapAreaPropsType) => {
       <S.MapContainer>
         <S.Map ref={mapRef} />
       </S.MapContainer>
-      <ShareListSlide
-        isClicked={isClicked}
-        contents={data}
-        changeClickTrue={changeClickTrue}
-        changeClickFalse={changeClickFalse}
-      />
     </S.Wrapper>
   );
 };
