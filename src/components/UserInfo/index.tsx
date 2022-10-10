@@ -1,13 +1,23 @@
-import { useState } from 'react';
 import { useEffect } from 'react';
 
-import { getUserInfoData, UserInfoDataType } from '@api/account';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+
+import { getUserInfoData } from '@api/account';
 import * as S from '@components/UserInfo/UserInfo.style';
 import Icon from '@components/common/Icon';
 import ImgContainer from '@components/common/ImgContainer';
+import { userInfoAtom } from '@store/userInfo';
 
-const UserInfo = () => {
-  const [userInfo, setUserInfo] = useState<UserInfoDataType>({});
+interface UserInfoPropsType {
+  textColor: string;
+  arrowIcon?: boolean;
+}
+
+const UserInfo = ({ textColor, arrowIcon = true }: UserInfoPropsType) => {
+  const navigate = useNavigate();
+  const [userInfo, setUserInfo] = useRecoilState(userInfoAtom);
+
   const { profileImageUrl, nickname, email } = userInfo;
 
   const getUserInfo = async () => {
@@ -34,13 +44,19 @@ const UserInfo = () => {
           )}
         </S.ImgWrapper>
         <S.Info>
-          <S.Nickname isSet={!!nickname}>{nickname}</S.Nickname>
-          <S.Email isSet={!!email}>{email}</S.Email>
+          <S.Nickname isSet={!!nickname} textColor={textColor}>
+            {nickname}
+          </S.Nickname>
+          <S.Email isSet={!!email} textColor={textColor}>
+            {email}
+          </S.Email>
         </S.Info>
       </S.InfoContainer>
-      <S.IconWrapper>
-        <Icon iconName='RightArrow' iconSize='LARGE' />
-      </S.IconWrapper>
+      {arrowIcon && (
+        <S.IconWrapper>
+          <Icon iconName='RightArrow' iconSize='LARGE' handleClick={() => navigate('./setting')} />
+        </S.IconWrapper>
+      )}
     </S.Wrapper>
   );
 };
