@@ -30,6 +30,7 @@ const ShareListSlide = ({
   const activeShareListValue = useRecoilValue(activeShareList);
   const ListContentComponent = ListContentComponentInfo[activeShareListValue];
   const curTop = useRecoilValue(curTopAtom);
+
   return (
     <S.ShareListContainer
       onMouseDown={changeClickTrue}

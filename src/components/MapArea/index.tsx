@@ -43,8 +43,9 @@ const MapArea = ({ lat, lng, data }: MapAreaPropsType) => {
     setTotalHeight(height);
   }, []);
 
-  const checkedMousePoint = (e: MouseEvent<HTMLDivElement>) => {
+  const checkMousePoint = (e: MouseEvent<HTMLDivElement>) => {
     if (!isClicked) return;
+
     const y = e.clientY;
     const tempTop = (y / totalHeight) * 100;
     const divMousePoint = tempTop > minTop ? minTop : tempTop;
@@ -53,8 +54,9 @@ const MapArea = ({ lat, lng, data }: MapAreaPropsType) => {
     setCurTop(divMousePoint);
   };
 
-  const checkedTouchPoint = (e: TouchEvent<HTMLDivElement>) => {
+  const checkTouchPoint = (e: TouchEvent<HTMLDivElement>) => {
     if (!isClicked) return;
+
     const y = e.touches[0].clientY;
     const tempTop = (y / totalHeight) * 100;
     const divMousePoint = tempTop > minTop ? minTop : tempTop;
@@ -95,13 +97,10 @@ const MapArea = ({ lat, lng, data }: MapAreaPropsType) => {
   }, [mapState]);
 
   return (
-    <S.Wrapper onMouseMove={checkedMousePoint} onTouchMove={checkedTouchPoint}>
-      <S.BackGround isClicked={isClicked}>
-        <S.MapContainer mapHeight={isMobile ? 36 : 47}>
-          <S.Map ref={mapRef} />
-        </S.MapContainer>
-      </S.BackGround>
-
+    <S.Wrapper onMouseMove={checkMousePoint} onTouchMove={checkTouchPoint}>
+      <S.MapContainer>
+        <S.Map ref={mapRef} />
+      </S.MapContainer>
       <ShareListSlide
         isClicked={isClicked}
         contents={data}

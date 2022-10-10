@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { defaultPageStyle } from '@styles/mixin';
 
@@ -11,18 +11,17 @@ export const Wrapper = styled.div`
 `;
 
 export const ListHeader = styled.header`
-  ${({ theme }) => theme.defaultWidth}
+  ${({ theme: { colors, defaultWidth } }) => css`
+    ${defaultWidth}
 
-  position: fixed;
-  top: 0;
-  background-color: ${({ theme }) => theme.colors.white1};
-  padding: 0;
-  width: 100%;
-  z-index: 1;
-  > :first-child,
-  > :last-child {
-    padding: 0 1rem;
-  }
+    background-color: ${colors.white1};
+    padding: 0;
+
+    > :first-child,
+    > :last-child {
+      padding: 0 1rem;
+    }
+  `}
 `;
 
 export const TabsWrapper = styled.div`
@@ -39,4 +38,8 @@ export const CurrentAddress = styled.div`
   }
 `;
 
-export const AddressText = styled.span``;
+export const AddressText = styled.span`
+  ${({ theme: { fonts } }) => css`
+    ${fonts.smallRegular}
+  `}
+`;

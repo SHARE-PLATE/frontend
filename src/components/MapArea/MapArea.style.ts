@@ -4,42 +4,24 @@ import { noScrollBar } from '@styles/mixin';
 
 //index.tsx
 export const Wrapper = styled.div`
-  padding: 0;
   display: flex;
-  height: 100%;
   flex-direction: column;
   position: relative;
   overflow: hidden;
+  height: 100%;
 `;
-export const BackGround = styled.div<{ isClicked: boolean }>`
+
+export const MapContainer = styled.div`
   position: relative;
   width: 100%;
-  flex-grow: 10;
-  z-index: 2;
-  visibility: hidden;
-
-  ${({ isClicked }) =>
-    isClicked &&
-    css`
-      visibility: visible;
-    `}
-`;
-
-export const MapContainer = styled.div<{ mapHeight: number }>`
-  ${({ mapHeight }) => css`
-    position: relative;
-    width: 100%;
-    height: ${mapHeight}rem;
-    margin-top: 133px;
-    flex-grow: 10;
-    overflow: hidden;
-    visibility: visible;
-  `}
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Map = styled.div`
   width: 100%;
-  height: 100%;
+  flex-grow: 1;
   z-index: 1;
 `;
 
