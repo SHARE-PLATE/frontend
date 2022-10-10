@@ -40,6 +40,7 @@ import KebabMenu from '@assets/icons/kebabMenu.svg';
 import LocationMarker from '@assets/icons/locationMarker.svg';
 import Logo from '@assets/icons/logo.svg';
 import LogoWithText from '@assets/icons/logoWithText.svg';
+import Logout from '@assets/icons/logout.svg';
 import Map from '@assets/icons/map.svg';
 import MeatPicture from '@assets/icons/meatPicture.svg';
 import Microphone from '@assets/icons/microphone.svg';
@@ -57,9 +58,11 @@ import PizzaPicture from '@assets/icons/pizzaPicture.svg';
 import Plus from '@assets/icons/plus.svg';
 import PlusBold from '@assets/icons/plusBold.svg';
 import PurchaseHistory from '@assets/icons/purchaseHistory.svg';
+import PurchaseHistoryBlack from '@assets/icons/purchaseHistoryBlack.svg';
 import Refresh from '@assets/icons/refresh.svg';
 import RightArrow from '@assets/icons/rightArrow.svg';
 import SalesHistory from '@assets/icons/salesHistory.svg';
+import SalesHistoryBlack from '@assets/icons/salesHistoryBlack.svg';
 import Search from '@assets/icons/search.svg';
 import SearchNav from '@assets/icons/searchNav.svg';
 import SearchNavFill from '@assets/icons/searchNavFill.svg';
@@ -78,7 +81,10 @@ export const Icons = {
   Target,
   Refresh,
   ChevronLeft,
+  SalesHistoryBlack,
+  PurchaseHistoryBlack,
   Calendar,
+  Logout,
   NoticeActivityLogo,
   AddressHomeFill,
   HeartNoFill,
