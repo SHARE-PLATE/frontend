@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { useEffect } from 'react';
 
 import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
 
@@ -20,16 +21,31 @@ const ShareMap = () => {
   const { lat, lng } = useRecoilValue(currentLatitudeLongitude);
   const { state, contents } = useRecoilValueLoadable(getShareListsData);
   const [isActive, setIsActive] = useState(false);
+  const backgroundRef = useRef<HTMLDivElement>(null);
 
-  const getContents = (state: 'hasValue' | 'loading' | 'hasError') => {
+  const changeBackgroundDisplay = ({ isShowed }: { isShowed: boolean }) => {
+    const background = backgroundRef.current;
+    if (background) background.style.display = isShowed ? 'block' : 'none';
+  };
+
+  const handleBackgroundAnimationEnd = () => {
+    if (!isActive) changeBackgroundDisplay({ isShowed: false });
+  };
+
+  const handleBackgroundClick = () => {
+    setIsActive(false);
+  };
+
+  const getMapContents = () => {
     switch (state) {
       case 'hasValue':
+        if (!contents) return <div>에러 페이지</div>;
         const data = getSortData('recency', contents);
         return (
-          <>
+          <S.MapListWrapper>
             <MapArea lat={+lat} lng={+lng} data={data} />
-            <ShareListSlide contents={data} />
-          </>
+            <ShareListSlide data={data} setIsActive={setIsActive} isActive={isActive} />
+          </S.MapListWrapper>
         );
       case 'loading':
         return <div>로딩 페이지</div>;
@@ -38,10 +54,22 @@ const ShareMap = () => {
     }
   };
 
+  const mapContents = getMapContents();
+
+  useEffect(() => {
+    if (isActive) changeBackgroundDisplay({ isShowed: true });
+  }, [isActive]);
+
   return (
     <S.Wrapper>
+      <S.InactiveBackground
+        ref={backgroundRef}
+        isActive={isActive}
+        onAnimationEnd={handleBackgroundAnimationEnd}
+        onClick={handleBackgroundClick}
+      />
       <S.ListHeader>
-        <ShareMapHeader />
+        <ShareMapHeader setIsActive={setIsActive} isActive={isActive} />
         <S.TabsWrapper>
           <Tabs<activeShareListType> tabsInfo={shareListTabsInfo} targetAtom={activeShareList} />
         </S.TabsWrapper>
@@ -50,7 +78,7 @@ const ShareMap = () => {
           <S.AddressText>{curAddressName}</S.AddressText>
         </S.CurrentAddress>
       </S.ListHeader>
-      {getContents(state)}
+      {mapContents}
     </S.Wrapper>
   );
 };

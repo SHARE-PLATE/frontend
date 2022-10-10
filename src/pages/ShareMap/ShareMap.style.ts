@@ -4,6 +4,34 @@ import { defaultPageStyle } from '@styles/mixin';
 
 export const Wrapper = styled.div`
   ${defaultPageStyle};
+  position: relative;
+`;
+
+export const InactiveBackground = styled.div<{ isActive: boolean }>`
+  ${({ isActive }) =>
+    css`
+      animation: fadeout 0.3s;
+      position: absolute;
+      background-color: #00000040;
+      width: 100%;
+      height: 100%;
+      z-index: 99;
+      display: none;
+      // share list slide's z-index is 100
+
+      ${isActive &&
+      css`
+        animation: fadein 0.3s;
+      `}
+    `}
+`;
+
+export const MapListWrapper = styled.div`
+  padding: 0 !important;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  flex-grow: 1;
   overflow: hidden;
 `;
 
