@@ -31,6 +31,7 @@ const ShareListSlide = ({ isActive, data, setIsActive }: ShareListSlidePropsType
   const [slidePosition, setSlidePosition] = useState<S.SlidePositionType>('bottom');
   const mouseMovingRef = useRef(false);
   const targetRef = useRef(0);
+  const startRef = useRef(false);
   const titleRef = useRef<HTMLDivElement>(null);
 
   const handleTouchStart = (event: TouchEvent<HTMLDivElement>) => {
@@ -80,7 +81,11 @@ const ShareListSlide = ({ isActive, data, setIsActive }: ShareListSlidePropsType
   useEffect(() => {
     if (slidePosition === 'bottom') {
       setIsActive(false);
-      titleRef.current?.scrollIntoView({ block: 'end' });
+      if (!startRef.current) {
+        startRef.current = true;
+      } else {
+        titleRef.current?.scrollIntoView({ block: 'end' });
+      }
     }
     if (slidePosition === 'middle' || slidePosition === 'top') setIsActive(true);
   }, [slidePosition]);
