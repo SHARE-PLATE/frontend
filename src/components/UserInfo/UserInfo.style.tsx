@@ -3,6 +3,9 @@ import styled, { css } from 'styled-components';
 import { flexBetween } from '@styles/mixin';
 
 type SetCheckType = { isSet: boolean };
+type TextType = SetCheckType & {
+  textColor: string;
+};
 
 export const Wrapper = styled.div`
   ${flexBetween}
@@ -33,12 +36,12 @@ export const Info = styled.div`
   justify-content: center;
 `;
 
-export const Nickname = styled.h2<SetCheckType>`
-  ${({ isSet, theme: { colors, fonts } }) => css`
+export const Nickname = styled.h2<TextType>`
+  ${({ isSet, textColor, theme: { colors, fonts } }) => css`
     display: flex;
     align-items: center;
     height: 1rem;
-    color: ${colors.white0};
+    color: ${textColor};
     ${fonts.mediumRegular}
     ${!isSet &&
     css`
@@ -50,13 +53,13 @@ export const Nickname = styled.h2<SetCheckType>`
   `}
 `;
 
-export const Email = styled.span<SetCheckType>`
-  ${({ isSet, theme: { fonts, colors } }) => css`
+export const Email = styled.span<TextType>`
+  ${({ isSet, textColor, theme: { fonts, colors } }) => css`
     display: flex;
     height: 1rem;
     align-items: center;
     ${fonts.smallRegular}
-    color:${colors.white0};
+    color:${textColor};
 
     ${!isSet &&
     css`

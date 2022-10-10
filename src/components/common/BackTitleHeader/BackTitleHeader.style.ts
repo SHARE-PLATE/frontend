@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
 
     svg {
       position: absolute;
-      left: 4px;
+      left: 0;
     }
   `}
 `;
