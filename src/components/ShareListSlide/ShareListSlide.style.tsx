@@ -24,9 +24,10 @@ export const Wrapper = styled.div<{ slidePositionType: SlidePositionType }>`
     flex-direction: column;
     position: absolute;
     top: calc(100% - ${slidePositionHeight[slidePositionType]});
-    box-shadow: 0px -6px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0px -8px 16px rgba(0, 0, 0, 0.08);
     border-radius: 8px 8px 0px 0px;
     overflow-y: scroll;
+    width: 100%;
     scroll-behavior: smooth;
     height: ${slidePositionHeight[slidePositionType]};
   `}
@@ -49,12 +50,27 @@ export const IconWrapper = styled.div<{ isActive: boolean }>`
 `;
 
 // set height 38px
-export const Title = styled.h1`
-  ${({ theme: { fonts, defaultPadding } }) => css`
+export const Title = styled.h1<{ isRotated: boolean }>`
+  ${({ theme: { colors, fonts, defaultPadding }, isRotated }) => css`
     ${fonts.largeBold}
     ${defaultPadding}
 
     padding-bottom: 22px;
+    display: flex;
+    justify-content: left;
+
+    svg {
+      ${!isRotated &&
+      css`
+        display: none;
+      `}
+
+      animation: rotate 0.5s infinite;
+      margin-left: 0.5rem;
+      path {
+        stroke: ${colors.black};
+      }
+    }
   `}
 `;
 

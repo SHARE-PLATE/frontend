@@ -1,9 +1,14 @@
-import { MouseEvent, SetStateAction, TouchEvent, useRef } from 'react';
-import { useState } from 'react';
-import { Dispatch } from 'react';
-import { useEffect } from 'react';
+import {
+  MouseEvent,
+  SetStateAction,
+  TouchEvent,
+  useRef,
+  useState,
+  Dispatch,
+  useEffect,
+} from 'react';
 
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
 
 import PreviewShareListBigSizeImage from '@components/PreviewShareListBigSizeImage';
 import PreviewShareListLeftImage from '@components/PreviewShareListLeftImage';
@@ -11,11 +16,12 @@ import * as S from '@components/ShareListSlide/ShareListSlide.style';
 import Icon from '@components/common/Icon';
 import { AROUND_SHARE_LIST } from '@constants/words';
 import { activeShareList } from '@store/filterShareList';
-import { ShareListType } from '@type/shareList';
+import { currentLatitudeLongitude } from '@store/location';
+import { getShareListsData } from '@store/shareList';
+import { mapLatitudeLongitudeState } from '@store/shareMap';
 import { getSortData } from '@utils/ShareListSort';
 
 interface ShareListSlidePropsType {
-  data: ShareListType[];
   setIsActive: Dispatch<SetStateAction<boolean>>;
   isActive: boolean;
 }
@@ -25,14 +31,21 @@ const ListContentComponentInfo = {
   ingredient: PreviewShareListLeftImage,
 };
 
-const ShareListSlide = ({ isActive, data, setIsActive }: ShareListSlidePropsType) => {
+const ShareListSlide = ({ isActive, setIsActive }: ShareListSlidePropsType) => {
   const activeShareListValue = useRecoilValue(activeShareList);
+  const curLatitudeLongitude = useRecoilValue(currentLatitudeLongitude);
+  const mapLatitudeLongitude = useRecoilValue(mapLatitudeLongitudeState);
+  const { lat, lng } = mapLatitudeLongitude || curLatitudeLongitude;
+  const { state, contents } = useRecoilValueLoadable(
+    getShareListsData({ newLatitudeLongitude: { lat, lng } }),
+  );
   const ListContentComponent = ListContentComponentInfo[activeShareListValue];
   const [slidePosition, setSlidePosition] = useState<S.SlidePositionType>('bottom');
   const mouseMovingRef = useRef(false);
   const targetRef = useRef(0);
   const startRef = useRef(false);
   const titleRef = useRef<HTMLDivElement>(null);
+  const [isRotated, setIsRotated] = useState(true);
 
   const handleTouchStart = (event: TouchEvent<HTMLDivElement>) => {
     const { clientY } = event.touches[0];
@@ -78,6 +91,18 @@ const ShareListSlide = ({ isActive, data, setIsActive }: ShareListSlidePropsType
     if (slidePosition === 'top') setSlidePosition('bottom');
   };
 
+  const getListContent = () => {
+    switch (state) {
+      case 'hasValue':
+        if (!contents) return;
+        return <ListContentComponent data={getSortData('recency', contents)} />;
+      case 'loading':
+        return <div>로딩 페이지</div>;
+      case 'hasError':
+        return <div>에러 페이지</div>;
+    }
+  };
+
   useEffect(() => {
     if (slidePosition === 'bottom') {
       setIsActive(false);
@@ -95,6 +120,14 @@ const ShareListSlide = ({ isActive, data, setIsActive }: ShareListSlidePropsType
     if (!isActive) setSlidePosition('bottom');
   }, [isActive]);
 
+  useEffect(() => {
+    if (state !== 'loading') {
+      setTimeout(() => setIsRotated(false), 900);
+    } else {
+      setIsRotated(true);
+    }
+  }, [state]);
+
   return (
     <S.Wrapper slidePositionType={slidePosition}>
       <S.IconWrapper
@@ -109,10 +142,11 @@ const ShareListSlide = ({ isActive, data, setIsActive }: ShareListSlidePropsType
       >
         <Icon iconName={'OnClickBar'} iconSize={2.5} />
       </S.IconWrapper>
-      <S.Title ref={titleRef}>{AROUND_SHARE_LIST}</S.Title>
-      <S.ListContent>
-        <ListContentComponent data={getSortData('recency', data)} />
-      </S.ListContent>
+      <S.Title ref={titleRef} isRotated={isRotated}>
+        {AROUND_SHARE_LIST}
+        <Icon iconName='Refresh' iconSize={1} />
+      </S.Title>
+      <S.ListContent>{getListContent()}</S.ListContent>
     </S.Wrapper>
   );
 };
