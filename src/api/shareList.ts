@@ -3,7 +3,7 @@ import axios from 'axios';
 import { API } from '@constants/api';
 import { DELIVERY, ENTRY, INGREDIENTS } from '@constants/words';
 import { activeShareListType } from '@store/filterShareList';
-import { CurrentLatitudeLongitudeType } from '@store/location';
+import { LatitudeLongitudeType } from '@store/location';
 import { ShareDetailType, ShareListType, ShareWriterType } from '@type/shareList';
 import { getAuthHeaders } from '@utils/getAuthHeaders';
 
@@ -11,7 +11,7 @@ type MineType = 'entry' | 'writer' | 'wish';
 
 export type GetShareListDataParamsType = {
   type?: activeShareListType;
-  location: CurrentLatitudeLongitudeType;
+  location: LatitudeLongitudeType;
   keyword?: string;
 };
 

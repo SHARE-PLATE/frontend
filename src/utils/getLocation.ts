@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-import { CurrentLatitudeLongitudeType } from '@store/location';
+import { LatitudeLongitudeType } from '@store/location';
 
-export const getLocation = async (currentLatLon: CurrentLatitudeLongitudeType) => {
+export const getLocation = async (currentLatLon: LatitudeLongitudeType) => {
   //kakao REST API에 get 요청을 보낸다.
   //파라미터 x,y에 lon,lat을 넣어주고 API_KEY를 Authorization헤더에 넣어준다.
   axios
