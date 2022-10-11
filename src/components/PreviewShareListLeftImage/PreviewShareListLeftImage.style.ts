@@ -7,43 +7,49 @@ export const Wrapper = styled.div`
   justify-content: space-between;
 `;
 
-export const Container = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  width: 50%;
+export const Container = styled.div<{ isSingle?: boolean }>`
+  ${({ isSingle = false }) => css`
+    display: flex;
+    justify-content: flex-start;
+    width: ${isSingle ? '100%' : '50%'};
 
-  @media (max-width: 27rem) {
-    width: 100%;
-    max-width: 24rem;
-  }
+    @media (max-width: 27rem) {
+      width: 100%;
+      max-width: 24rem;
+    }
+  `}
 `;
 
-export const ImgWrapper = styled.div`
-  position: relative;
-  border-radius: 0.5rem;
+export const ImgWrapper = styled.div<{ isSingle?: boolean }>`
+  ${({ isSingle }) => css`
+    position: relative;
+    border-radius: 0.5rem;
 
-  min-width: 5rem;
-  overflow: hidden;
-  aspect-ratio: 1 / 1;
+    min-width: ${isSingle ? '6.6rem' : '5rem'};
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
 
-  @media (max-width: 27rem) {
-    min-width: 6.6rem;
-  }
+    @media (max-width: 27rem) {
+      min-width: 6.6rem;
+    }
+  `}
 `;
 
-export const ListInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow-wrap: break-word;
-  padding: 0.2rem;
-  gap: 0.4rem;
-  max-width: 55%;
-  margin: 0 0.37rem 0 0.7rem;
+export const ListInfo = styled.div<{ isSingle?: boolean }>`
+  ${({ isSingle }) => css`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-wrap: break-word;
+    padding: 0.2rem;
+    gap: 0.4rem;
+    margin: 0 0.37rem 0 0.7rem;
+    max-width: ${isSingle ? '65%' : '55%'};
 
-  @media (max-width: 27rem) {
-    max-width: 65%;
-  }
+    @media (max-width: 27rem) {
+      max-width: 65%;
+    }
+  `}
 `;
 
 export const ListInfoTexts = styled.div`

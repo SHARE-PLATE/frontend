@@ -17,6 +17,7 @@ import { calcTwoTimeDifference } from '@utils/getTimeDiff';
 interface PreviewShareListBigSizeImagePropsType {
   isDone?: boolean;
   isWish?: boolean;
+  isSingle?: boolean;
   data: ShareListType[];
 }
 
@@ -24,6 +25,7 @@ const PreviewShareListBigSizeImage = ({
   data,
   isDone,
   isWish,
+  isSingle = false,
 }: PreviewShareListBigSizeImagePropsType) => {
   const navigate = useNavigate();
   const [heartIdArr, setHeartIdArr] = useRecoilState<number[]>(clickedHeartId);
@@ -59,6 +61,7 @@ const PreviewShareListBigSizeImage = ({
         onClick={() => {
           handleClickShareList({ id, writerId });
         }}
+        isSingle={isSingle}
       >
         <S.ImgWrapper>
           <ImgContainer
@@ -95,7 +98,8 @@ const PreviewShareListBigSizeImage = ({
     ),
   );
 
-  if (showedList.length % 2) showedList.push(<S.ItemWrapper key={createRandomKey()} />);
+  if (showedList.length % 2)
+    showedList.push(<S.ItemWrapper key={createRandomKey()} isEmpty={true} />);
 
   return <S.ListWrapper>{showedList}</S.ListWrapper>;
 };

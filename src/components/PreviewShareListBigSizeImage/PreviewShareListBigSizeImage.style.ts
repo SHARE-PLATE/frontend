@@ -7,17 +7,20 @@ export const ListWrapper = styled.div`
   justify-content: center;
 `;
 
-export const ItemWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: 0.5rem;
-  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.08);
-  width: calc(50% - 0.75rem);
-  @media (max-width: 27rem) {
-    width: 100%;
-    max-width: 24.4rem;
-  }
+export const ItemWrapper = styled.div<{ isSingle?: boolean; isEmpty?: boolean }>`
+  ${({ isSingle = false, isEmpty }) => css`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0.5rem;
+    box-shadow: ${!isEmpty && '2px 4px 6px rgba(0, 0, 0, 0.08)'};
+    width: calc(${!isSingle ? '50% - 0.75rem' : '100%'});
+
+    @media (max-width: 27rem) {
+      width: 100%;
+      max-width: 24.4rem;
+    }
+  `}
 `;
 
 export const ImgWrapper = styled.div`
