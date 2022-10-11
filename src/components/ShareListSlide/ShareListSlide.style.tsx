@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 
+import { activeShareListType } from '@store/filterShareList';
 import { flexCenter, noScrollBar } from '@styles/mixin';
 
 const slidePositionHeight = {
@@ -7,14 +8,22 @@ const slidePositionHeight = {
   bottom: '68px',
   middle: '50%',
   top: '100%',
-  clicked: '280px',
+  clicked: { delivery: '280px', ingredient: '160px' },
 };
 
 export type SlidePositionType = keyof typeof slidePositionHeight;
 
-export const Wrapper = styled.div<{ slidePositionType: SlidePositionType }>`
-  ${({ theme: { colors }, slidePositionType }) => css`
+type WrapperPropsType = {
+  slidePositionType: SlidePositionType;
+  activeShareList: activeShareListType;
+};
+
+export const Wrapper = styled.div<WrapperPropsType>`
+  ${({ theme: { colors }, slidePositionType, activeShareList }) => css`
     ${noScrollBar};
+    --height: ${slidePositionType !== 'clicked'
+      ? slidePositionHeight[slidePositionType]
+      : slidePositionHeight[slidePositionType][activeShareList]};
 
     touch-action: none;
     z-index: 100;
@@ -24,7 +33,7 @@ export const Wrapper = styled.div<{ slidePositionType: SlidePositionType }>`
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: calc(100% - ${slidePositionHeight[slidePositionType]});
+    top: calc(100% - var(--height));
     left: 50%;
     transform: translate(-50%);
     box-shadow: 0px -8px 16px rgba(0, 0, 0, 0.08);
@@ -33,7 +42,7 @@ export const Wrapper = styled.div<{ slidePositionType: SlidePositionType }>`
     width: 100%;
     max-width: ${slidePositionType !== 'clicked' ? '' : '400px'};
     scroll-behavior: smooth;
-    height: ${slidePositionHeight[slidePositionType]};
+    height: var(--height);
   `}
 `;
 

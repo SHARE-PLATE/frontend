@@ -180,7 +180,7 @@ const ShareListSlide = ({ isActive, setIsActive }: ShareListSlidePropsType) => {
 
   return (
     <>
-      <S.Wrapper slidePositionType={slidePosition}>
+      <S.Wrapper slidePositionType={slidePosition} activeShareList={activeShareListValue}>
         <S.IconWrapper
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
