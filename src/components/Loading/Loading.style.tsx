@@ -13,7 +13,7 @@ export const Wrapper = styled.div<{ height: string }>`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100%;
+  height: ${({ height }) => height || '100%'};
 `;
 
 export const Animation = styled.div<AnimationPropsType>`
