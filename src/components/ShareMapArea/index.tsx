@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { useRecoilState, useRecoilValue, useRecoilValueLoadable } from 'recoil';
+import { useRecoilState, useRecoilValue, useRecoilValueLoadable, useSetRecoilState } from 'recoil';
 
 import { CurrentLocationMarker } from '@components/ShareMapArea/CurrentLocationMarker';
-import * as S from '@components/ShareMapArea/ShareMapArea.style';
 import { ShareListMarker } from '@components/ShareMapArea/ShareListMarker';
+import * as S from '@components/ShareMapArea/ShareMapArea.style';
 import Icon from '@components/common/Icon';
 import { currentLatitudeLongitude } from '@store/location';
 import { getShareListsData } from '@store/shareList';
-import { mapLatitudeLongitudeState } from '@store/shareMap';
+import { clickedShareIdState, mapLatitudeLongitudeState } from '@store/shareMap';
 
 const { kakao } = window as any;
 
@@ -18,6 +18,7 @@ const ShareMapArea = () => {
   const mapRef = useRef(null);
   const [mapLatitudeLogitude, setMapLatitudeLongitude] = useRecoilState(mapLatitudeLongitudeState);
   const curLatitudeLongitude = useRecoilValue(currentLatitudeLongitude);
+  const setClickedShareId = useSetRecoilState(clickedShareIdState);
   const centerLatitudeLogitude = mapLatitudeLogitude || curLatitudeLongitude;
   const { lat: curLat, lng: curLng } = curLatitudeLongitude;
   const { lat: centerLat, lng: centerLng } = centerLatitudeLogitude;
@@ -26,6 +27,11 @@ const ShareMapArea = () => {
   const { state: dataState, contents } = useRecoilValueLoadable(
     getShareListsData({ newLatitudeLongitude: { lat: centerLat, lng: centerLng } }),
   );
+
+  const getClickedShare = (targetId: number) => {
+    if (dataState !== 'hasValue') return;
+    setClickedShareId(targetId);
+  };
 
   const initMap = () => {
     const options = { center: centerPosition, level: 4 };
@@ -43,9 +49,12 @@ const ShareMapArea = () => {
 
   const drawShareList = () => {
     if (dataState !== 'hasValue' || !contents) return;
-    contents.forEach(({ latitude, longitude }) => {
+    contents.forEach(({ latitude, longitude, id }) => {
+      const content = document.createElement('div');
+      content.onclick = () => getClickedShare(id);
+      content.innerHTML = ShareListMarker;
       const markerInfo = {
-        content: ShareListMarker,
+        content,
         position: new kakao.maps.LatLng(latitude, longitude),
       };
       const marker = new kakao.maps.CustomOverlay(markerInfo);
