@@ -28,7 +28,7 @@ const ShareList = () => {
 
   const ListContentComponent = ShareListContentComponentInfo[activeShareListValue];
 
-  const { state, contents } = useRecoilValueLoadable(getShareListsData);
+  const { state, contents } = useRecoilValueLoadable(getShareListsData({}));
 
   const getListContents = (state: 'hasValue' | 'loading' | 'hasError') => {
     switch (state) {
