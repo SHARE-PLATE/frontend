@@ -23,8 +23,8 @@ export const ButtonsWrapper = styled.div`
   z-index: 2;
 `;
 
-export const RescanButton = styled.button`
-  ${({ theme: { colors, fonts } }) => css`
+export const RescanButton = styled.button<{ isRotated: boolean }>`
+  ${({ theme: { colors, fonts }, isRotated }) => css`
     ${fonts.smallRegular};
     ${flexCenter};
 
@@ -35,6 +35,10 @@ export const RescanButton = styled.button`
     height: 2.25rem;
     border-radius: 100px;
     background-color: ${colors.orange2};
+
+    svg {
+      animation: rotate 0.5s ${isRotated ? 'infinite' : 'forwards'};
+    }
   `}
 `;
 
