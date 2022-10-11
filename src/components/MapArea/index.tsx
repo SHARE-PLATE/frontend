@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { CurrentLocationMarker } from '@components/MapArea/CurrentLocationMarker';
 import * as S from '@components/MapArea/MapArea.style';
 import { ShareListMarker } from '@components/MapArea/ShareListMarker';
+import Icon from '@components/common/Icon';
 import { ShareListType } from '@type/shareList';
 
 interface MapAreaPropsType {
@@ -56,6 +57,14 @@ const MapArea = ({ lat, lng, data }: MapAreaPropsType) => {
 
   return (
     <S.Wrapper>
+      <S.ButtonsWrapper>
+        <S.RescanButton>
+          <Icon iconName='Refresh' iconSize={0.84} /> 이 지역 재검색
+        </S.RescanButton>
+        <S.TargetButton>
+          <Icon iconName='Target' iconSize={1.125} />
+        </S.TargetButton>
+      </S.ButtonsWrapper>
       <S.Map ref={mapRef} />
     </S.Wrapper>
   );

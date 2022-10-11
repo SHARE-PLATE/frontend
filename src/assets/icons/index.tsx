@@ -57,6 +57,7 @@ import PizzaPicture from '@assets/icons/pizzaPicture.svg';
 import Plus from '@assets/icons/plus.svg';
 import PlusBold from '@assets/icons/plusBold.svg';
 import PurchaseHistory from '@assets/icons/purchaseHistory.svg';
+import Refresh from '@assets/icons/refresh.svg';
 import RightArrow from '@assets/icons/rightArrow.svg';
 import SalesHistory from '@assets/icons/salesHistory.svg';
 import Search from '@assets/icons/search.svg';
@@ -66,6 +67,7 @@ import SearchSmall from '@assets/icons/searchSmall.svg';
 import Share from '@assets/icons/share.svg';
 import ShareFill from '@assets/icons/shareFill.svg';
 import SharePlate from '@assets/icons/sharePlate.svg';
+import Target from '@assets/icons/target.svg';
 import Upload from '@assets/icons/upload.svg';
 import User from '@assets/icons/user.svg';
 import UserNav from '@assets/icons/userNav.svg';
@@ -73,6 +75,8 @@ import UserNavFill from '@assets/icons/userNavFill.svg';
 import X_Icon from '@assets/icons/x_icon.svg';
 
 export const Icons = {
+  Target,
+  Refresh,
   ChevronLeft,
   Calendar,
   NoticeActivityLogo,
