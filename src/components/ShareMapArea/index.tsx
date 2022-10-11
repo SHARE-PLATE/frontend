@@ -50,7 +50,7 @@ const ShareMapArea = () => {
   const drawShareList = () => {
     if (dataState !== 'hasValue' || !contents) return;
     contents.forEach(({ latitude, longitude, id }) => {
-      const content = document.createElement('div');
+      const content = document.createElement('button');
       content.onclick = () => getClickedShare(id);
       content.innerHTML = ShareListMarker;
       const markerInfo = {
