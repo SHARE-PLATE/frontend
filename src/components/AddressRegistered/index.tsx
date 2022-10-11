@@ -4,7 +4,12 @@ import * as S from '@components/AddressRegistered/AddressRegistered.style';
 import Icon from '@components/common/Icon';
 import { addressOptionState } from '@store/address';
 import { AddressRecentType } from '@store/localStorage';
-import { currentLatitudeLongitude, currentLocation, shareLocationState } from '@store/location';
+import {
+  currentAddressName,
+  currentLatitudeLongitude,
+  currentLocation,
+  shareLocationState,
+} from '@store/location';
 import { portalState } from '@store/portal';
 
 const AddressRegistered = ({ id, road_address_name, place_name, lat, lng }: AddressRecentType) => {
@@ -14,6 +19,7 @@ const AddressRegistered = ({ id, road_address_name, place_name, lat, lng }: Addr
   const setPortal = useSetRecoilState(portalState);
   const setShareLocation = useSetRecoilState(shareLocationState);
   const setCurLocation = useSetRecoilState(currentLocation);
+  const setCurAddressName = useSetRecoilState(currentAddressName);
   const addressOption = useRecoilValue(addressOptionState);
   const isCurLocation = lat === curLat && lng === curLng;
 
@@ -25,6 +31,7 @@ const AddressRegistered = ({ id, road_address_name, place_name, lat, lng }: Addr
     if (addressOption === 'LOCATION') {
       setCurLatLng({ lat, lng });
       setCurLocation(place_name);
+      setCurAddressName(road_address_name);
     }
   };
 
