@@ -25,14 +25,5 @@ export const Animation = styled.div<AnimationPropsType>`
     width: ${size}px;
     height: ${size}px;
     animation: spinning 1s infinite;
-
-    @keyframes spinning {
-      from {
-        transform: rotate(0);
-      }
-      to {
-        transform: rotate(360deg);
-      }
-    }
   `}
 `;
