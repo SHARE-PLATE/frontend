@@ -10,14 +10,18 @@ import ChatroomDatailHeader from '@components/ChatroomDetailHeader';
 import ChatroomDetailInfo from '@components/ChatroomDetailInfo';
 import HomeLogin from '@components/HomeLogin';
 import Loading from '@components/Loading';
-import Icon from '@components/common/Icon';
 import { failLoadingChatroomsMention } from '@constants/mentions';
 import * as S from '@pages/ChatroomDetail/ChatroomDetail.style';
 import { chatroomDetailState } from '@store/chatroomDetail';
 
 const ChatroomDetail = () => {
   const { id } = useParams();
-  if (!id) return <HomeLogin />;
+  const ErrorPage = (
+    <S.ErrorWrapper>
+      <HomeLogin mention={failLoadingChatroomsMention} />
+    </S.ErrorWrapper>
+  );
+  if (!id) return ErrorPage;
 
   const [lastChat, setLastChat] = useState<HTMLDivElement>();
   const chatroomDetail = chatroomDetailState({ id });
@@ -39,19 +43,17 @@ const ChatroomDetail = () => {
   const getContents = () => {
     switch (state) {
       case 'hasError':
-        return (
-          <S.ErrorWrapper>
-            <HomeLogin mention={failLoadingChatroomsMention} />
-          </S.ErrorWrapper>
-        );
+        return ErrorPage;
 
       case 'hasValue':
         const { share, chats, chatRoomMemberId } = contents;
+        const { type, writer } = share;
+
         return (
           <S.Wrapper>
             <ChatroomBar chatroomId={id || ''} scrollToBottom={scrollToBottom} />
             <S.TopFixedWrapper>
-              <ChatroomDatailHeader />
+              <ChatroomDatailHeader type={type} writer={writer} />
               <ChatroomDetailInfo {...share} />
             </S.TopFixedWrapper>
             <ChatroomDetailContents
