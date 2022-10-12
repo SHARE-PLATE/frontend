@@ -16,20 +16,27 @@ export type ChatroomDetailChatsType = {
   writerThumbnailImageUrl: string;
   writtenDateTime: string;
   writtenByMe: boolean;
+  shareWrittenByMe: boolean;
 }[];
+
+export type ChatroomDetailShareType = {
+  id: number;
+  thumbnailImageUrl: string;
+  title: string;
+  price: number;
+  originalPrice: number;
+  currentRecruitment: number;
+  finalRecruitment: number;
+  cancel: boolean;
+  location: string;
+  closedDateTime: string;
+  type: 'QUESTION' | 'SHARE';
+  writer: string;
+};
 
 export type ChatroomDetailDataType = {
   chatRoomMemberId: string;
-  share: {
-    id: number;
-    thumbnailImageUrl: string;
-    title: string;
-    price: number;
-    originalPrice: number;
-    currentRecruitment: number;
-    finalRecruitment: number;
-    cancel: boolean;
-  };
+  share: ChatroomDetailShareType;
   chats: ChatroomDetailChatsType;
 };
 
