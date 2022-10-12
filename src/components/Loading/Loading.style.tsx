@@ -13,7 +13,7 @@ export const Wrapper = styled.div<{ height: string }>`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100%;
+  height: ${({ height }) => height || '100%'};
 `;
 
 export const Animation = styled.div<AnimationPropsType>`
@@ -25,14 +25,5 @@ export const Animation = styled.div<AnimationPropsType>`
     width: ${size}px;
     height: ${size}px;
     animation: spinning 1s infinite;
-
-    @keyframes spinning {
-      from {
-        transform: rotate(0);
-      }
-      to {
-        transform: rotate(360deg);
-      }
-    }
   `}
 `;

@@ -1,29 +1,22 @@
-import { useState, useEffect } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import { useRecoilValue, useRecoilState } from 'recoil';
 
 import * as S from '@components/MainHeader/MainHeader.style';
 import NoticeIcon from '@components/NoticeIcon';
 import Icon from '@components/common/Icon';
-import { curTopAtom, maxTopAtom, minTopAtom } from '@store/shareMap';
 
-const ShareMapHeader = () => {
+type ShareMapHeaderPropsType = {
+  isActive: boolean;
+  setIsActive: Dispatch<SetStateAction<boolean>>;
+};
+
+const ShareMapHeader = ({ setIsActive, isActive }: ShareMapHeaderPropsType) => {
   const navigate = useNavigate();
-  const [isOpenToggle, setIsOpenToggle] = useState<boolean>(false);
-  const [curTop, setCurTop] = useRecoilState(curTopAtom);
-  const maxTop = useRecoilValue(maxTopAtom);
-  const minTop = useRecoilValue(minTopAtom);
 
-  const changeBottomList = () => {
-    if (maxTop === curTop) setIsOpenToggle(false);
-    else if (minTop === curTop) setIsOpenToggle(true);
-    else setIsOpenToggle((prev) => !prev);
+  const showShareListSlide = () => {
+    setIsActive((prev) => !prev);
   };
-
-  useEffect(() => {
-    isOpenToggle ? setCurTop(maxTop) : setCurTop(minTop);
-  }, [isOpenToggle]);
 
   return (
     <S.Wrapper>
@@ -31,9 +24,9 @@ const ShareMapHeader = () => {
         <Icon iconName='LogoWithText' iconSize={4.2} handleClick={() => navigate('/')} />
       </S.IconsWrapper>
       <S.Header>내주변</S.Header>
-      <S.IconsWrapper position='flex-end'>
+      <S.IconsWrapper position='flex-end' isRightAngle={isActive} rightAngleTarget={2}>
         <NoticeIcon noticeOnIcon='NoticeOn' noticeOffIcon='NoticeOff' iconSize={1.5} />
-        <Icon iconName='Hamburger' iconSize={1.25} handleClick={changeBottomList} />
+        <Icon iconName='Hamburger' iconSize={1.25} handleClick={showShareListSlide} />
       </S.IconsWrapper>
     </S.Wrapper>
   );

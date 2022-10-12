@@ -10,12 +10,12 @@ import {
 import { AddressDetailType } from '@type/address';
 import { getLocation } from '@utils/getLocation';
 
-export interface CurrentLatitudeLongitudeType {
+export type LatitudeLongitudeType = {
   lat: string | number;
   lng: string | number;
-}
+};
 
-export const currentLatitudeLongitude = atom<CurrentLatitudeLongitudeType>({
+export const currentLatitudeLongitude = atom<LatitudeLongitudeType>({
   key: `currentLatitudeLongitude/${getRandomKey()}`,
   default: { lat: defaultLat, lng: defaultLng },
 });

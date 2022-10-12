@@ -1,6 +1,8 @@
 import { atom } from 'recoil';
 
-export const currentFilterShareList = atom({
+export type FilterType = 'price' | 'distance' | 'recency' | 'deadline';
+
+export const currentFilterShareList = atom<FilterType>({
   key: 'currentFilterShareList',
   default: 'price',
 });

@@ -4,6 +4,8 @@ import { flexBetween, flexCenter } from '@styles/mixin';
 
 type IconsWrappersPropsType = {
   position: 'left' | 'flex-end' | 'space-between' | 'right';
+  isRightAngle?: boolean;
+  rightAngleTarget?: number;
 };
 
 export const Wrapper = styled.div`
@@ -20,12 +22,21 @@ export const Wrapper = styled.div`
 export const HeaderAddressWrapper = styled.div``;
 
 export const IconsWrapper = styled.div<IconsWrappersPropsType>`
-  ${({ position }) => css`
+  ${({ position, isRightAngle, rightAngleTarget }) => css`
     display: flex;
     align-items: center;
     justify-content: ${position};
     width: 3.625rem;
     gap: 0.625rem;
+
+    > :nth-child(${rightAngleTarget}) {
+      transition: all 0.3s;
+
+      ${isRightAngle &&
+      css`
+        transform: rotate(0.25turn);
+      `}
+    }
   `}
 `;
 

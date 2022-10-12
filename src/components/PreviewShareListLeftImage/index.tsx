@@ -30,6 +30,7 @@ interface PreviewShareListLeftImagePropsType {
   isHistory?: boolean;
   isDone?: boolean;
   isWish?: boolean;
+  isSingle?: boolean;
 }
 const PreviewShareListLeftImage = ({
   data,
@@ -38,6 +39,7 @@ const PreviewShareListLeftImage = ({
   isHistory,
   isDone,
   isWish,
+  isSingle = false,
 }: PreviewShareListLeftImagePropsType) => {
   const navigate = useNavigate();
   const modalRef = useRef<HTMLDivElement>(null);
@@ -105,8 +107,9 @@ const PreviewShareListLeftImage = ({
             onClick={() => {
               handelClickShareList(id);
             }}
+            isSingle={isSingle}
           >
-            <S.ImgWrapper>
+            <S.ImgWrapper isSingle={isSingle}>
               <ImgContainer
                 imgSrc={thumbnailUrl}
                 imgTitle={title}
@@ -115,7 +118,7 @@ const PreviewShareListLeftImage = ({
               />
               <ImageContents dateTime={closedDateTime} isDone={isDone} />
             </S.ImgWrapper>
-            <S.ListInfo>
+            <S.ListInfo isSingle={isSingle}>
               <S.ListInfoTexts>
                 <S.Title>{title}</S.Title>
                 <S.Location>

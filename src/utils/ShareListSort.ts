@@ -1,6 +1,10 @@
+import { FilterType } from '@store/filterShareList';
 import { ShareListType } from '@type/shareList';
 
-export const getSortData = (curShareFilterList: string, data: ShareListType[]): ShareListType[] => {
+export const getSortData = (
+  curShareFilterList: FilterType,
+  data: ShareListType[],
+): ShareListType[] => {
   switch (curShareFilterList) {
     case 'price':
       return getPriceSort(data);
@@ -11,6 +15,7 @@ export const getSortData = (curShareFilterList: string, data: ShareListType[]): 
     case 'deadline':
       return getDeadlineSort(data);
   }
+
   return getPriceSort(data);
 };
 

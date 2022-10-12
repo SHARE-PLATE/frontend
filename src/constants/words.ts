@@ -64,3 +64,4 @@ export const DELETE = '삭제';
 export const CLOSE = '닫기';
 export const SELECT_OPTION = '옵션선택';
 export const FINISH_REGISTRATION = '등록완료';
+export const AROUND_SHARE_LIST = '주변 쉐어목록';

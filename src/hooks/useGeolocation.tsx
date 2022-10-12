@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 
 import { getRegionWithGeo } from '@api/address';
 import { defaultLat, defaultLng, defaultLocation } from '@constants/defaultLocation';
-import { currentLocation, currentLatitudeLongitude } from '@store/location';
+import { currentLocation, currentLatitudeLongitude, currentAddressName } from '@store/location';
 
 interface locationType {
   loaded: boolean;
@@ -20,6 +20,7 @@ const useGeolocation = () => {
     coordinates: { lat: 0, lng: 0 },
   });
   const [curLocation, setCurLocation] = useRecoilState(currentLocation);
+  const setCurAddressName = useSetRecoilState(currentAddressName);
   const [{ lat: curLat, lng: curLng }, setCurLatLng] = useRecoilState(currentLatitudeLongitude);
 
   // 성공에 대한 로직
@@ -37,6 +38,7 @@ const useGeolocation = () => {
 
     if (curLat === defaultLat && curLng === defaultLng && curLocation === defaultLocation) {
       setCurLocation(address_name);
+      setCurAddressName(address_name);
       setCurLatLng({ lat, lng });
     }
   };
