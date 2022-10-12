@@ -2,17 +2,17 @@ import { useState } from 'react';
 
 import * as S from '@components/RemainedTime/RemainedTime.style';
 import { useInterval } from '@hooks/useInterval';
-import { defaultTime, getTimeDiff } from '@utils/getTimeDiff';
+import { getTimeDiff } from '@utils/getTimeDiff';
 
 interface RemainedTimePropsType {
   targetTime: string;
   position: S.RemainedTimeWrapperPropsType;
 }
 
-const changeInterval = 1000 * 60; // a minute
+const changeInterval = 1000 * 30; // 30 seconds
 
 export const RemainedTime = ({ targetTime, position }: RemainedTimePropsType) => {
-  const [showedTime, setShowedTime] = useState(defaultTime);
+  const [showedTime, setShowedTime] = useState(getTimeDiff(targetTime));
 
   useInterval(() => {
     const timeDiff = getTimeDiff(targetTime);
