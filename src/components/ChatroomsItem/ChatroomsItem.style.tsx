@@ -5,6 +5,7 @@ export const OuterWrapper = styled.div`
   width: 100%;
   height: 5.5rem;
   overflow: hidden;
+  border-radius: 0.25rem;
 `;
 
 export type MovingType = 'left' | 'right' | null;
@@ -25,6 +26,7 @@ export const InnerWrapper = styled.div<{ moving: MovingType }>`
   position: absolute;
   left: 0;
   gap: 1rem;
+  border-radius: 0.25rem;
   width: 100%;
   height: 100%;
 `;
@@ -180,6 +182,7 @@ export const ShareImgStyle = css`
 export const ExitBtn = styled.button`
   ${({ theme: { colors } }) => css`
     background-color: ${colors.orange2};
+    border-radius: 0.25rem;
     width: 5rem;
     min-width: 5rem;
     height: 100%;
