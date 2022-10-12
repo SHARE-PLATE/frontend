@@ -10,14 +10,16 @@ export type ChatroomsDataType = {
   unreadCount: number;
 };
 
-export type ChatroomDetailChatsType = {
+export type ChatroomDetailChatType = {
   contents: string;
   writer: string;
   writerThumbnailImageUrl: string;
   writtenDateTime: string;
   writtenByMe: boolean;
   shareWrittenByMe: boolean;
-}[];
+};
+
+export type ChatroomDetailChatsType = ChatroomDetailChatType[];
 
 export type ChatroomDetailShareType = {
   id: number;

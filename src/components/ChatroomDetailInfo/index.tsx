@@ -2,15 +2,17 @@ import * as S from '@components/ChatroomDetailInfo/ChatroomDetailInfo.style';
 import ImgContainer from '@components/common/ImgContainer';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import Price from '@components/common/Price';
+import { ChatroomDetailShareType } from '@type/chat';
 
-type ChatroomDetailInfoPropsType = {
-  thumbnailImageUrl: string;
-  title: string;
-  price: number;
-  originalPrice: number;
-  currentRecruitment: number;
-  finalRecruitment: number;
-};
+type ChatroomDetailInfoPropsType = Pick<
+  ChatroomDetailShareType,
+  | 'thumbnailImageUrl'
+  | 'title'
+  | 'price'
+  | 'originalPrice'
+  | 'currentRecruitment'
+  | 'finalRecruitment'
+>;
 
 const ChatroomDetailInfo = ({
   thumbnailImageUrl,
