@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 
 import { useLogin } from '@api/account';
-import HomeLogin from '@components/HomeLogin';
+import ErrorWithButtons from '@components/ErrorWithButtons';
 import { loginFailedMention } from '@constants/mentions';
 import { CODE } from '@constants/words';
 
@@ -28,7 +28,7 @@ const LoginCallback = () => {
     checkCode();
   }, []);
 
-  return <HomeLogin isLoading={isLoading} mention={loginFailedMention} />;
+  return <ErrorWithButtons isLoading={isLoading} mention={loginFailedMention} />;
 };
 
 export default LoginCallback;

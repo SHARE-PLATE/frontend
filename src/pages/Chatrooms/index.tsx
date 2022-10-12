@@ -15,7 +15,6 @@ const Chatrooms = () => {
   const chatroomsInfo = useChatroomsInfo();
   const { contents: chatroomsData, state } = useRecoilValueLoadable(chatroomsState);
   const setChatroomsTrigger = useSetRecoilState(chatroomsTrigger);
-  console.log(chatroomsData);
 
   const reloadChatroomsData = () => {
     setChatroomsTrigger((prev) => prev + 1);

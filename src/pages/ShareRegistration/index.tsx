@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 
 import { registrationShareListData } from '@api/shareList';
-import HomeLogin from '@components/HomeLogin';
+import ErrorWithButtons from '@components/ErrorWithButtons';
 import {
   FileContainer,
   TextContainer,
@@ -47,7 +47,7 @@ const currentDate = moment().format(dateFormat);
 
 const ShareRegistration = () => {
   const { type } = useParams<TitleType>();
-  if (!type) return <HomeLogin />;
+  if (!type) return <ErrorWithButtons />;
 
   const title = `${titleMatch[type]} ${SHARE_REGISTRATION}`;
   const navigate = useNavigate();

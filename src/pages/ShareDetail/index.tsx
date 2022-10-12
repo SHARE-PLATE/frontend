@@ -5,7 +5,7 @@ import { useRecoilValue } from 'recoil';
 
 import { getShareDetailData, getShareListWriterData } from '@api/shareList';
 import { getShareListRecommendedData } from '@api/shareRecommended';
-import HomeLogin from '@components/HomeLogin';
+import ErrorWithButtons from '@components/ErrorWithButtons';
 import PreviewShareListHalfImage from '@components/PreviewShareListHalfImage';
 import ShareDetailBottomBar from '@components/ShareDetailBottomBar';
 import ShareDetailHeader from '@components/ShareDetailHeader';
@@ -18,7 +18,7 @@ import { ShareDetailType, ShareRecommendationType } from '@type/shareList';
 
 const ShareDetail = () => {
   const { id } = useParams();
-  if (!id) return <HomeLogin />;
+  if (!id) return <ErrorWithButtons />;
 
   const { state } = useLocation() as {
     state: { writerId: string };

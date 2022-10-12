@@ -3,22 +3,24 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 
-import * as S from '@components/HomeLogin/HomeLogin.style';
+import * as S from '@components/ErrorWithButtons/ErrorWithButtons.style';
 import Loading from '@components/Loading';
 import Icon from '@components/common/Icon';
-import { HOME, LOGIN } from '@constants/words';
+import { BACK, HOME, LOGIN } from '@constants/words';
 import { isNavigationState } from '@store/navigation';
 import { portalState } from '@store/portal';
 
-type HomeLoginPropsType = {
+type ErrorWithButtonsPropsType = {
   isLoading?: boolean;
   mention?: string;
+  buttonType?: 'login' | 'back';
 };
 
-const HomeLogin = ({ isLoading, mention }: HomeLoginPropsType) => {
+const ErrorWithButtons = ({ isLoading, mention, buttonType }: ErrorWithButtonsPropsType) => {
   const navigate = useNavigate();
   const setPortal = useSetRecoilState(portalState);
   const setIsNavigation = useSetRecoilState(isNavigationState);
+  const isLoginButton = buttonType === 'login';
 
   setIsNavigation(false);
 
@@ -38,7 +40,11 @@ const HomeLogin = ({ isLoading, mention }: HomeLoginPropsType) => {
           {mention && <S.Mention>{mention}</S.Mention>}
           <S.ButtonsWrapper>
             <S.Button onClick={() => navigate('/')}>{HOME}</S.Button>
-            <S.Button onClick={() => setPortal('login')}>{LOGIN}</S.Button>
+            {isLoginButton ? (
+              <S.Button onClick={() => setPortal('login')}>{LOGIN}</S.Button>
+            ) : (
+              <S.Button onClick={() => navigate(-1)}>{BACK}</S.Button>
+            )}
           </S.ButtonsWrapper>
         </>
       )}
@@ -46,4 +52,4 @@ const HomeLogin = ({ isLoading, mention }: HomeLoginPropsType) => {
   );
 };
 
-export default HomeLogin;
+export default ErrorWithButtons;

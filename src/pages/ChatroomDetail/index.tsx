@@ -8,7 +8,7 @@ import ChatroomBar from '@components/ChatroomBar';
 import ChatroomDetailContents from '@components/ChatroomDetailContents';
 import ChatroomDatailHeader from '@components/ChatroomDetailHeader';
 import ChatroomDetailInfo from '@components/ChatroomDetailInfo';
-import HomeLogin from '@components/HomeLogin';
+import ErrorWithButtons from '@components/ErrorWithButtons';
 import Loading from '@components/Loading';
 import { failLoadingChatroomsMention } from '@constants/mentions';
 import * as S from '@pages/ChatroomDetail/ChatroomDetail.style';
@@ -19,7 +19,7 @@ const ChatroomDetail = () => {
   const { id } = useParams();
   const ErrorPage = (
     <S.ErrorWrapper>
-      <HomeLogin mention={failLoadingChatroomsMention} />
+      <ErrorWithButtons mention={failLoadingChatroomsMention} buttonType='back' />
     </S.ErrorWrapper>
   );
   if (!id) return ErrorPage;

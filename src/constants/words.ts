@@ -34,6 +34,7 @@ export const REFRESH_TOKEN = 'refresh-token';
 export const SEARCH_RECENT = 'searchRecent';
 export const SEARCH_TIP = '검색 TIP';
 export const SHARE_ID = 'shareId';
+export const BACK = 'BACK';
 export const THUMBNAIL_IMAGE_URL = 'thumbnailImageUrl';
 export const NOTICE_CENTER = '알림 센터';
 export const HOME_KOR = '집';
