@@ -15,7 +15,7 @@ const ShareMapHeader = ({ setIsActive, isActive }: ShareMapHeaderPropsType) => {
   const navigate = useNavigate();
 
   const showShareListSlide = () => {
-    setIsActive(true);
+    setIsActive((prev) => !prev);
   };
 
   return (
