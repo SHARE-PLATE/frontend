@@ -1,7 +1,9 @@
 import styled, { css } from 'styled-components';
 
 import { ChatroomDetailInfoHeight } from '@components/ChatroomDetailInfo/ChatroomDetailInfo.style';
-import { defaultPageStyle } from '@styles/mixin';
+import { defaultPageStyle, flexCenter } from '@styles/mixin';
+
+const remainingTimeHeight = 2.5;
 
 export const Wrapper = styled.div`
   ${defaultPageStyle}
@@ -24,8 +26,30 @@ export const TopFixedWrapper = styled.div`
     z-index: 100;
 
     + * {
-      padding-top: ${defaultHeaderHeight + ChatroomDetailInfoHeight}rem;
+      padding-top: ${defaultHeaderHeight + ChatroomDetailInfoHeight + 1 + remainingTimeHeight}rem;
     }
+  `}
+`;
+
+export const RemainingTime = styled.div`
+  ${({ theme: { defaultHeaderHeight, colors, fonts } }) => css`
+    ${flexCenter};
+    ${fonts.mediumBold};
+
+    color: ${colors.white1};
+    padding: 0;
+    background-color: ${colors.grey7};
+    z-index: 101;
+    margin: ;
+    position: fixed;
+    width: 10.25rem;
+    height: ${remainingTimeHeight}rem;
+    border-radius: 6.25rem;
+    overflow: hidden;
+    left: 50%;
+    transform: translate(-50%);
+    top: ${defaultHeaderHeight + ChatroomDetailInfoHeight + 1}rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.12);
   `}
 `;
 

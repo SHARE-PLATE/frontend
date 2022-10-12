@@ -13,6 +13,7 @@ import Loading from '@components/Loading';
 import { failLoadingChatroomsMention } from '@constants/mentions';
 import * as S from '@pages/ChatroomDetail/ChatroomDetail.style';
 import { chatroomDetailState } from '@store/chatroomDetail';
+import { getTimeDiff } from '@utils/getTimeDiff';
 
 const ChatroomDetail = () => {
   const { id } = useParams();
@@ -47,11 +48,13 @@ const ChatroomDetail = () => {
 
       case 'hasValue':
         const { share, chats, chatRoomMemberId } = contents;
-        const { type, writer } = share;
+        const { type, writer, closedDateTime } = share;
+        const remainingTime = getTimeDiff(closedDateTime);
 
         return (
           <S.Wrapper>
             <ChatroomBar chatroomId={id || ''} scrollToBottom={scrollToBottom} />
+            <S.RemainingTime>남은 시간 : {remainingTime}</S.RemainingTime>
             <S.TopFixedWrapper>
               <ChatroomDatailHeader type={type} writer={writer} />
               <ChatroomDetailInfo {...share} />
