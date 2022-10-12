@@ -3,9 +3,11 @@ import styled, { css } from 'styled-components';
 import { activeShareListType } from '@store/filterShareList';
 import { flexCenter, noScrollBar } from '@styles/mixin';
 
+export const bottomHeight = '68px';
+
 const slidePositionHeight = {
   // icon wrapper height + title height = 68px
-  bottom: '68px',
+  bottom: bottomHeight,
   middle: '50%',
   top: '100%',
   clicked: { delivery: '280px', ingredient: '160px' },

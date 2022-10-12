@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 
 import { useRecoilValue, useResetRecoilState } from 'recoil';
 
+import ShareFormButton from '@components/ShareFormButton';
 import ShareListSlide from '@components/ShareListSlide';
 import ShareMapArea from '@components/ShareMapArea';
 import ShareMapHeader from '@components/ShareMapHeader';
@@ -61,6 +62,7 @@ const ShareMap = () => {
         </S.CurrentAddress>
       </S.ListHeader>
       <S.MapListWrapper>
+        <ShareFormButton />
         <ShareMapArea />
         <ShareListSlide setIsActive={setIsActive} isActive={isActive} />
       </S.MapListWrapper>

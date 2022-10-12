@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 
+import { bottomHeight } from '@components/ShareListSlide/ShareListSlide.style';
 import { defaultPageStyle } from '@styles/mixin';
 
 export const Wrapper = styled.div`
@@ -33,6 +34,17 @@ export const MapListWrapper = styled.div`
   flex-direction: column;
   flex-grow: 1;
   overflow: hidden;
+
+  // slide z-index is 100
+  // share form button background
+  > :nth-child(1) {
+    z-index: 98;
+  }
+  // share form button
+  > :nth-child(2) {
+    z-index: 99;
+    bottom: calc(${bottomHeight} + 1rem);
+  }
 `;
 
 export const ListHeader = styled.header`
