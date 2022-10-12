@@ -30,8 +30,12 @@ export const TopFixedWrapper = styled.div`
 `;
 
 export const ErrorWrapper = styled.div`
-  margin: 5rem 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  ${({ theme: { colors } }) => css`
+    background-color: ${colors.white1};
+
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  `}
 `;

@@ -48,7 +48,9 @@ export const ReloadButton = styled.button`
 `;
 
 export const HeaderWrapper = styled.div`
-  ${({ theme: { colors } }) => css`
+  ${({ theme: { colors, defaultWidth } }) => css`
+    ${defaultWidth};
+
     background-color: ${colors.white1};
     position: fixed;
     top: 0;

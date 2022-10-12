@@ -41,15 +41,14 @@ const ChatroomDetail = () => {
       case 'hasError':
         return (
           <S.ErrorWrapper>
-            <Icon iconName='Search' iconSize={30} />
-            {failLoadingChatroomsMention}
+            <HomeLogin mention={failLoadingChatroomsMention} />
           </S.ErrorWrapper>
         );
 
       case 'hasValue':
         const { share, chats, chatRoomMemberId } = contents;
         return (
-          <>
+          <S.Wrapper>
             <ChatroomBar chatroomId={id || ''} scrollToBottom={scrollToBottom} />
             <S.TopFixedWrapper>
               <ChatroomDatailHeader />
@@ -60,15 +59,15 @@ const ChatroomDetail = () => {
               chatroomId={chatRoomMemberId || ''}
               scrollToBottomRef={scrollToBottomRef}
             />
-          </>
+          </S.Wrapper>
         );
 
       case 'loading':
-        return <Loading color='orange2' size={42} border={6} height='100vh' />;
+        return <Loading color='grey4' size={42} border={6} height='100vh' />;
     }
   };
 
-  return <S.Wrapper>{getContents()}</S.Wrapper>;
+  return getContents();
 };
 
 export default ChatroomDetail;
