@@ -13,8 +13,15 @@ export const Wrapper = styled.div<{ writtenByMe: boolean }>`
     `}
 `;
 
-export const ProfileImgWrapper = styled.div`
-  width: ${profileImgWidth};
+export const ProfileImgWrapper = styled.div<{ shareWrittenByMe: boolean }>`
+  ${({ theme: { colors }, shareWrittenByMe }) => css`
+    width: ${profileImgWidth};
+
+    // img container option
+    > :nth-child(1) {
+      border: solid 1px ${shareWrittenByMe ? colors.orange4 : 'transparent'};
+    }
+  `}
 `;
 
 export const AdditionalImgStyle = css`
