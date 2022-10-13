@@ -8,14 +8,14 @@ import { chatroomIdsState, chatsUnreadTrigger } from '@store/chatrooms';
 const useChatAlarm = () => {
   const { state, contents } = useRecoilValueLoadable(chatroomIdsState);
   const { connectChatroom } = chatroomSocket();
-  const getNewChatsUnread = useSetRecoilState(chatsUnreadTrigger);
+  const setChatsUnreadTrigger = useSetRecoilState(chatsUnreadTrigger);
 
   return () => {
     useEffect(() => {
       if (state !== 'hasValue' || !contents) return;
       const chatroomIds = contents.map(({ id }) => id);
-      const onSet = () => getNewChatsUnread((prev) => prev + 1);
-      connectChatroom({ chatroomIds, onSet });
+      const onReceive = () => setChatsUnreadTrigger((prev) => prev + 1);
+      connectChatroom({ chatroomIds, onReceive });
     }, [state]);
   };
 };

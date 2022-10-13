@@ -5,7 +5,7 @@ import { APP, CHAT, CHATROOMS, CHATROOM_MEMBERS, TOPIC, WEBSOCKET } from '@const
 import { getAuthHeaders } from '@utils/getAuthHeaders';
 
 type subscribeParamsType = {
-  onSet: (chatData: StompJs.Message) => void;
+  onReceive: (chatData: StompJs.Message) => void;
   chatroomId?: string | number;
   chatroomIds?: string[] | number[];
 };
@@ -28,11 +28,11 @@ export const chatroomSocket = () => {
   const sock = new SockJs(sockServer);
   const stompClient = StompJs.over(sock);
 
-  const subscribeChat = ({ onSet, chatroomId, chatroomIds }: subscribeParamsType) => {
+  const subscribeChat = ({ onReceive, chatroomId, chatroomIds }: subscribeParamsType) => {
     const subscribeToStomp = (id: string | number) => {
       const headers = getAuthHeaders();
       const subscribeURL = `/${TOPIC}/${CHATROOM_MEMBERS}/${id}`;
-      stompClient.subscribe(subscribeURL, onSet, headers);
+      stompClient.subscribe(subscribeURL, onReceive, headers);
     };
 
     if (chatroomId) subscribeToStomp(chatroomId);

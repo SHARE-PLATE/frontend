@@ -57,7 +57,7 @@ const ChatroomDetailContents = ({
 
   useEffect(() => {
     const { disconnectChatroom, connectChatroom } = chatroomSocket();
-    connectChatroom({ onSet: getNewChatMessage, chatroomId });
+    connectChatroom({ onReceive: getNewChatMessage, chatroomId });
     return () => disconnectChatroom();
   }, []);
 
