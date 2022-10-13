@@ -115,13 +115,16 @@ const ChatroomsItem = ({
               </S.Content>
             </S.TextWrapper>
           </S.InfoWrapper>
-          <ImgContainer
-            imgSrc={shareThumbnailImageUrl}
-            imgTitle={id + shareThumbnailImageUrl}
-            imgWrapperRatio={1 / 1}
-            imgWrapperWidth='3rem'
-            additionalStyle={S.ShareImgStyle}
-          />
+          <S.UnreadCountWrapper>
+            {!!unreadCount && <S.UnreadCount>{unreadCount}</S.UnreadCount>}
+            <ImgContainer
+              imgSrc={shareThumbnailImageUrl}
+              imgTitle={id + shareThumbnailImageUrl}
+              imgWrapperRatio={1 / 1}
+              imgWrapperWidth='3rem'
+              additionalStyle={S.ShareImgStyle}
+            />
+          </S.UnreadCountWrapper>
         </S.ShowedWrapper>
         <S.ExitBtn onClick={handleClickExitBtn}>나가기</S.ExitBtn>
       </S.InnerWrapper>

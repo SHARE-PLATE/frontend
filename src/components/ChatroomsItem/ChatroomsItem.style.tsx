@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { flexCenter } from '@styles/mixin';
+
 export const OuterWrapper = styled.div`
   position: relative;
   width: 100%;
@@ -42,9 +44,9 @@ export const ShowedWrapper = styled.div`
 
 export const InfoWrapper = styled.div`
   display: flex;
-  gap: 1rem;
   align-items: center;
-  width: 75%;
+  width: 100%;
+  overflow: hidden;
 `;
 
 export const ImgsWrapper = styled.div<{ count?: number }>`
@@ -131,6 +133,8 @@ export const TextWrapper = styled.div`
   justify-content: space-between;
   width: 100%;
   height: 2.2rem;
+  padding-left: 1rem;
+  overflow: hidden;
 `;
 
 export const TextUpper = styled.div`
@@ -139,7 +143,6 @@ export const TextUpper = styled.div`
 `;
 
 export const WritersNames = styled.div`
-  max-width: 10rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -168,15 +171,32 @@ export const Content = styled.div<{ isRecent: boolean }>`
     ${fonts.smallRegular}
 
     color:${isRecent ? colors.black : colors.grey4};
-    width: 70%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   `}
 `;
 
+export const UnreadCountWrapper = styled.div`
+  ${flexCenter}
+`;
+
+export const UnreadCount = styled.div`
+  ${({ theme: { colors, fonts } }) => css`
+    ${fonts.xSmallBold};
+    ${flexCenter};
+    width: 1.25rem;
+    height: 1.25rem;
+    background-color: ${colors.orange2};
+    color: ${colors.white0};
+    border-radius: 10rem;
+    margin-right: 0.5rem;
+  `}
+`;
+
 export const ShareImgStyle = css`
   border-radius: 0.25rem;
+  min-width: 3rem;
 `;
 
 export const ExitBtn = styled.button`
