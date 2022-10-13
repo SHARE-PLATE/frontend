@@ -1,11 +1,12 @@
 import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
 
 import moment from 'moment';
+import StompJs from 'stompjs';
 import { v4 as createRandomKey } from 'uuid';
 
 import Chat from '@components/Chat';
 import * as S from '@components/ChatroomDetailContents/ChatroomDetailContents.style';
-import { connectChat } from '@socket/chatroomSocket';
+import { chatroomSocket } from '@socket/chatroomSocket';
 import { ChatroomDetailChatsType, ChatroomDetailChatType } from '@type/chat';
 
 type ChatroomDetailContentsPropsType = {
@@ -45,10 +46,19 @@ const ChatroomDetailContents = ({
     return curChats.map(getSingleChat);
   }, [curChats]);
 
+  const getNewChatMessage = (chatData: StompJs.Message) => {
+    const newChat = JSON.parse(chatData.body);
+    setCurChats((chats) => {
+      const newChats = [...chats, newChat];
+
+      return newChats;
+    });
+  };
+
   useEffect(() => {
-    const { chatroomDisconnect, chatroomConnect } = connectChat();
-    chatroomConnect({ setter: setCurChats, chatroomId });
-    return () => chatroomDisconnect();
+    const { disconnectChatroom, connectChatroom } = chatroomSocket();
+    connectChatroom({ onSet: getNewChatMessage, chatroomId });
+    return () => disconnectChatroom();
   }, []);
 
   return (
