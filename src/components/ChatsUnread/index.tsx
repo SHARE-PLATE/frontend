@@ -11,7 +11,7 @@ const ChatsUnread = ({ state, newCount }: ChatsUnreadPropsType) => {
   const [count, setCount] = useState<number | null>(0);
   if (newCount !== count && state === 'hasValue') setCount(newCount);
 
-  return <S.Wrapper>{count}</S.Wrapper>;
+  return <S.Wrapper isShowed={!!count}>{count}</S.Wrapper>;
 };
 
 export default ChatsUnread;
