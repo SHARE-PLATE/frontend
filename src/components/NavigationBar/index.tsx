@@ -1,6 +1,7 @@
 import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
 
 import AddKeywordButton from '@components/AddKeyWordButton';
+import ChatsUnread from '@components/ChatsUnread';
 import * as S from '@components/NavigationBar/NavigationBar.style';
 import useNavigationBarInfo from '@components/NavigationBar/useNavigationBarInfo';
 import ShareFormButton from '@components/ShareFormButton';
@@ -41,9 +42,7 @@ const NavigationBar = () => {
             <Icon iconName={icon} iconSize={1.25} />
             <Icon iconName={iconFill} iconSize={1.25} />
             {link === 'chatrooms' && (
-              <S.ChatsUnread>
-                {chatsUnreadApiState === 'hasValue' ? chatsUnread : null}
-              </S.ChatsUnread>
+              <ChatsUnread newCount={chatsUnread} state={chatsUnreadApiState} />
             )}
           </S.IconWrapper>
           {name}
