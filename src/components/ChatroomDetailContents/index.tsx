@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
 
 import moment from 'moment';
 import { v4 as createRandomKey } from 'uuid';
@@ -32,15 +32,19 @@ const ChatroomDetailContents = ({
       dateRef.current = curDate;
       const showedDate = moment(curDate).format('YYYY년 MM월 DD일');
       return (
-        <>
-          {!isSameDate && <S.Date>{showedDate}</S.Date>}
-          <Chat {...info} key={createRandomKey()} />
-        </>
+        <Fragment key={createRandomKey()}>
+          <S.Date>{showedDate}</S.Date>
+          <Chat {...info} />
+        </Fragment>
       );
     }
   };
 
-  const chatroomLogs = curChats.map(getSingleChat);
+  const chatroomLogs = useMemo(() => {
+    return curChats.map(getSingleChat);
+  }, [curChats]);
+
+  console.log(chatroomLogs);
 
   useEffect(() => {
     const { chatroomDisconnect, chatroomConnect } = connectChat();
