@@ -5,6 +5,8 @@ export const API = {
   SHARE_MINE: '/api/shares/mine',
   CHATROOMS: '/api/chatrooms',
   CHATROOM_MEMBERS: '/api/chatroom-members',
+  CHATS_UNREAD: '/api/chats/unread',
+  CHATROOM_IDS: '/api/chatroom-members',
   SOCKET: '/api/socket',
   LOGIN_FORM: '/login/form',
   LOGIN_VERIFICATION: '/api/login/verification',

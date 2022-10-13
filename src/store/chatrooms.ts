@@ -1,17 +1,19 @@
 import { atom, selector } from 'recoil';
 import { v4 as getRandomKey } from 'uuid';
 
-import { getChatroomsData } from '@api/chat';
-import { ChatroomsStateType } from '@type/chat';
+import { getChatroomIds, getChatroomsData, getChatsUnread } from '@api/chat';
+import { ChatroomIdsType, ChatroomsStateType } from '@type/chat';
 
-export const chatroomsTrigger = atom({
-  key: 'chatroomsTrigger',
-  default: 0,
-});
+const maximalChatCount = 999;
 
 export const activeChatroomsState = atom<ChatroomsStateType>({
   key: 'activeChatrooms',
   default: 'entry',
+});
+
+export const chatroomsTrigger = atom({
+  key: 'chatroomsTrigger',
+  default: 0,
 });
 
 export const chatroomsState = selector({
@@ -22,5 +24,37 @@ export const chatroomsState = selector({
     const chatroomDetailData = await getChatroomsData({ type });
 
     return chatroomDetailData;
+  },
+});
+
+export const chatsUnreadTrigger = atom({
+  key: 'chatsUnreadTrigger',
+  default: 0,
+});
+
+export const chatsUnreadState = selector<number | null>({
+  key: 'GET/chats/unread',
+  get: async ({ get }) => {
+    get(chatsUnreadTrigger);
+    const response = await getChatsUnread();
+
+    if (!response) return null;
+    if (response.count > maximalChatCount) return maximalChatCount;
+
+    return response.count;
+  },
+});
+
+export const chatroomIdsTrigger = atom({
+  key: 'chatroomIdsTrigger',
+  default: 0,
+});
+
+export const chatroomIdsState = selector<ChatroomIdsType | undefined>({
+  key: 'GET/chatroomIds',
+  get: async ({ get }) => {
+    get(chatroomIdsTrigger);
+    const data = await getChatroomIds();
+    return data;
   },
 });

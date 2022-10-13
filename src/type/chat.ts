@@ -43,3 +43,9 @@ export type ChatroomDetailDataType = {
 };
 
 export type ChatroomsStateType = 'entry' | 'question';
+
+export type ChatsUnreadType = {
+  count: number;
+};
+
+export type ChatroomIdsType = { id: number; chatRoomId: number }[];
