@@ -2,9 +2,10 @@ import { useNavigate } from 'react-router-dom';
 
 import * as S from '@components/ChatroomDetailHeader/ChatroomDetailHeader.style';
 import Icon from '@components/common/Icon';
-import { ChatroomDetailShareType } from '@type/chat';
+import { ChatroomDetailDataType, ChatroomDetailShareType } from '@type/chat';
 
-type ChatroomDetailHeaderPropsType = Pick<ChatroomDetailShareType, 'type' | 'writer'>;
+type ChatroomDetailHeaderPropsType = Pick<ChatroomDetailDataType, 'type'> &
+  Pick<ChatroomDetailShareType, 'writer'>;
 
 const GROUP_CHATROOM = '그룹채팅';
 const QUESTION_CHATROOM = '문의채팅';

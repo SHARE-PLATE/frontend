@@ -32,12 +32,12 @@ export type ChatroomDetailShareType = {
   cancel: boolean;
   location: string;
   closedDateTime: string;
-  type: 'QUESTION' | 'SHARE';
   writer: string;
 };
 
 export type ChatroomDetailDataType = {
   chatRoomMemberId: string;
+  type: 'QUESTION' | 'SHARE';
   share: ChatroomDetailShareType;
   chats: ChatroomDetailChatsType;
 };

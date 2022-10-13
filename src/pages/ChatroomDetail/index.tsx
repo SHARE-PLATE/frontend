@@ -47,8 +47,8 @@ const ChatroomDetail = () => {
         return ErrorPage;
 
       case 'hasValue':
-        const { share, chats, chatRoomMemberId } = contents;
-        const { type, writer, closedDateTime } = share;
+        const { share, chats, chatRoomMemberId, type } = contents;
+        const { writer, closedDateTime } = share;
         const remainingTime = getTimeDiff(closedDateTime);
 
         return (
