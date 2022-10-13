@@ -6,6 +6,7 @@ export const Wrapper = styled.form`
   ${({ theme: { colors, defaultWidth } }) => css`
     ${defaultWidth}
     ${flexBetween}
+    width: 100%;
     gap: 0.6rem;
     background-color: ${colors.white1};
     padding: 0 0.9rem;
@@ -13,7 +14,6 @@ export const Wrapper = styled.form`
     position: fixed;
     bottom: 0;
     box-shadow: 0px -10px 40px #67676740;
-    width: 100%;
     z-index: 100;
   `}
 `;
@@ -24,6 +24,7 @@ export const PlusBtn = styled.button`
     border-radius: 0.375rem;
     background-color: ${colors.orange4};
     width: 1.88rem;
+    min-width: 1.88rem;
     height: 1.88rem;
     path {
       stroke: ${colors.white1};
@@ -35,7 +36,7 @@ export const ChatInput = styled.input`
   ${({ theme: { colors, fonts } }) => css`
     ${fonts.largeRegular}
 
-    flex-grow: 1;
+    width: 100%;
     border: none;
     border-radius: 0.5rem;
     background-color: ${colors.grey2};
