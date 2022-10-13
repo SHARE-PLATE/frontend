@@ -8,12 +8,18 @@ import { getChatDdataFailedMention } from '@constants/mentions';
 import { CHATTING, RELOAD } from '@constants/words';
 import useChatroomsInfo from '@hooks/useChatroomsInfo';
 import * as S from '@pages/Chatrooms/Chatrooms.style';
-import { activeChatroomsState, chatroomsState, chatroomsTrigger } from '@store/chatrooms';
+import {
+  activeChatroomsState,
+  chatroomsState,
+  chatroomsTrigger,
+  chatsUnreadTrigger,
+} from '@store/chatrooms';
 import { ChatroomsStateType } from '@type/chat';
 
 const Chatrooms = () => {
   const chatroomsInfo = useChatroomsInfo();
   const { contents: chatroomsData, state } = useRecoilValueLoadable(chatroomsState);
+  const setChatsUnreadTrigger = useSetRecoilState(chatsUnreadTrigger);
   const setChatroomsTrigger = useSetRecoilState(chatroomsTrigger);
 
   const reloadChatroomsData = () => {
@@ -39,11 +45,13 @@ const Chatrooms = () => {
       case 'loading':
         return (
           <S.CenterWrapper>
-            <Loading color='orange2' size={42} border={6} />
+            <Loading color='grey3' size={42} border={6} height='100%' />
           </S.CenterWrapper>
         );
     }
   };
+
+  setChatsUnreadTrigger((prev) => prev + 1);
 
   return (
     <S.Wrapper>
