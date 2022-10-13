@@ -41,10 +41,9 @@ const ChatroomDetailContents = ({
   };
 
   const chatroomLogs = useMemo(() => {
+    dateRef.current = '';
     return curChats.map(getSingleChat);
   }, [curChats]);
-
-  console.log(chatroomLogs);
 
   useEffect(() => {
     const { chatroomDisconnect, chatroomConnect } = connectChat();
