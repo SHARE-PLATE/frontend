@@ -6,14 +6,14 @@ export const navigationBarHeight = '3.5rem';
 
 interface CssPropsType {
   isNavBarCondition: boolean;
-  isProfile: boolean;
+  isHeight: boolean;
 }
 
 export const Wrapper = styled.ul<CssPropsType>`
-  ${({ theme: { colors, defaultWidth }, isNavBarCondition, isProfile }) => css`
+  ${({ theme: { colors, defaultWidth }, isNavBarCondition, isHeight }) => css`
     ${defaultWidth}
     display: ${isNavBarCondition ? 'flex' : 'none'};
-    height: ${isProfile ? 0 : navigationBarHeight};
+    height: ${isHeight ? navigationBarHeight : 0};
     background-color: ${colors.white0};
     color: ${colors.grey4};
     position: fixed;

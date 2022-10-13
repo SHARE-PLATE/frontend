@@ -28,7 +28,7 @@ const NavigationBar = () => {
         'editUserInfo',
       ],
     }) && isNavigation;
-  const isProfile = useCheckPathname({ targetPaths: ['keyword'] });
+  const isKeyword = useCheckPathname({ targetPaths: ['keyword'] });
   const navigationBarInfo = useNavigationBarInfo();
   const navigationBarButtons = navigationBarInfo.map(
     ({ id, name, link, clickHandler, icon, iconFill }) => {
@@ -47,11 +47,11 @@ const NavigationBar = () => {
   );
 
   return (
-    <S.Wrapper isNavBarCondition={isNavBarCondition} isProfile={isProfile}>
+    <S.Wrapper isNavBarCondition={isNavBarCondition} isHeight={!isKeyword}>
       {/* 버튼 종류 설정 */}
-      {isProfile ? <AddKeywordButton /> : <ShareFormButton />}
+      {isKeyword ? <AddKeywordButton /> : <ShareFormButton />}
       {/* 네비게이션 바 유무 설정 */}
-      {!isProfile && navigationBarButtons}
+      {!isKeyword && navigationBarButtons}
     </S.Wrapper>
   );
 };
