@@ -2,7 +2,7 @@ import { atom, selector } from 'recoil';
 import { v4 as getRandomKey } from 'uuid';
 
 import { getChatroomIds, getChatroomsData, getChatsUnread } from '@api/chat';
-import { ChatroomIdsType, ChatroomsStateType } from '@type/chat';
+import { ChatroomIdsType, ChatroomsStateType, ChatroomsUpdate } from '@type/chat';
 
 const maximalChatCount = 999;
 
@@ -57,4 +57,9 @@ export const chatroomIdsState = selector<ChatroomIdsType | undefined>({
     const data = await getChatroomIds();
     return data;
   },
+});
+
+export const chatroomsUpdateState = atom<ChatroomsUpdate>({
+  key: 'chatroomsUpdate',
+  default: {},
 });

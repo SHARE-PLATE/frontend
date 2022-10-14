@@ -29,8 +29,8 @@ export const chatroomSocket = () => {
   const stompClient = StompJs.over(sock);
 
   const subscribeChat = ({ onReceive, chatroomId, chatroomIds }: subscribeParamsType) => {
+    const headers = getAuthHeaders();
     const subscribeToStomp = (id: string | number) => {
-      const headers = getAuthHeaders();
       const subscribeURL = `/${TOPIC}/${CHATROOM_MEMBERS}/${id}`;
       stompClient.subscribe(subscribeURL, onReceive, headers);
     };

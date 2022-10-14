@@ -49,3 +49,8 @@ export type ChatsUnreadType = {
 };
 
 export type ChatroomIdsType = { id: number; chatRoomId: number }[];
+
+export type ChatroomsUpdate = {
+  id?: number;
+  contents?: string;
+};

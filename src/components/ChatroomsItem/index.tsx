@@ -1,15 +1,15 @@
-import { MouseEvent, TouchEvent, useRef, useState } from 'react';
+import { MouseEvent, TouchEvent, useEffect, useRef, useState } from 'react';
 
 import moment from 'moment';
 import 'moment/locale/ko';
 import { useNavigate } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 import { deleteChatroomData } from '@api/chat';
 import * as S from '@components/ChatroomsItem/ChatroomsItem.style';
 import ImgContainer from '@components/common/ImgContainer';
 import { noRecentChatMention } from '@constants/mentions';
-import { chatroomsTrigger } from '@store/chatrooms';
+import { chatroomsTrigger, chatroomsUpdateState } from '@store/chatrooms';
 import { ChatroomsDataType } from '@type/chat';
 
 const ChatroomsItem = ({
@@ -25,6 +25,9 @@ const ChatroomsItem = ({
 }: ChatroomsDataType) => {
   const navigate = useNavigate();
   const setChatroomsTrigger = useSetRecoilState(chatroomsTrigger);
+  const { id: updateId, contents: updateContents } = useRecoilValue(chatroomsUpdateState);
+  const [curUnreadCount, setCurUnreadCount] = useState(unreadCount);
+  const [curRecentMessage, setCurRecentMessage] = useState<string | undefined>(recentMessage);
   const [startPoint, setStartPoint] = useState(0);
   const [moving, setMoving] = useState<S.MovingType>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -85,6 +88,14 @@ const ChatroomsItem = ({
   const handleTouchEnd = (event: TouchEvent<HTMLDivElement>) =>
     handleMoveEnd(startPoint - event.changedTouches[0].screenX);
 
+  useEffect(() => {
+    if (chatRoomMemberId !== updateId) return;
+
+    console.log(updateContents);
+    setCurRecentMessage(updateContents);
+    setCurUnreadCount((prev) => prev + 1);
+  }, [updateContents]);
+
   return (
     <S.OuterWrapper>
       <S.InnerWrapper
@@ -110,13 +121,13 @@ const ChatroomsItem = ({
                 <S.WritersCount>{currentRecruitment}</S.WritersCount>
                 <S.Time>{diffTime}</S.Time>
               </S.TextUpper>
-              <S.Content isRecent={!!recentMessage}>
-                {recentMessage || noRecentChatMention}
+              <S.Content isRecent={!!curRecentMessage}>
+                {curRecentMessage || noRecentChatMention}
               </S.Content>
             </S.TextWrapper>
           </S.InfoWrapper>
           <S.UnreadCountWrapper>
-            {!!unreadCount && <S.UnreadCount>{unreadCount}</S.UnreadCount>}
+            {!!curUnreadCount && <S.UnreadCount>{curUnreadCount}</S.UnreadCount>}
             <ImgContainer
               imgSrc={shareThumbnailImageUrl}
               imgTitle={id + shareThumbnailImageUrl}
