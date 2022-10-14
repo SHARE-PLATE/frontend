@@ -35,7 +35,13 @@ const ChatroomsItem = ({
   const diffTime = moment(recentMessageDataTime).fromNow();
   const recruitmentMemberNicknamesJoined = recruitmentMemberNicknames.join(', ');
   const recruitmentMemberImages = recruitmentMemberImageUrls.map((img) => (
-    <ImgContainer imgSrc={img} imgTitle={img} imgWrapperRatio={1 / 1} imgWrapperWidth={'100%'} />
+    <ImgContainer
+      key={`key-${img}`}
+      imgSrc={img}
+      imgTitle={img}
+      imgWrapperRatio={1 / 1}
+      imgWrapperWidth={'100%'}
+    />
   ));
 
   const changeInnerLeft = (distance: number) => {
