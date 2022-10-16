@@ -7,6 +7,7 @@ export const API = {
   CHATROOM_MEMBERS: '/api/chatroom-members',
   CHATS_UNREAD: '/api/chats/unread',
   CHATROOM_IDS: '/api/chatroom-members',
+  CHAT_UPDATE_READ_TIME: '/api/chat-logs/update-read-time',
   SOCKET: '/api/socket',
   LOGIN_FORM: '/login/form',
   LOGIN_VERIFICATION: '/api/login/verification',

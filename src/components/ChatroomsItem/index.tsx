@@ -31,7 +31,6 @@ const ChatroomsItem = ({
   const [startPoint, setStartPoint] = useState(0);
   const [moving, setMoving] = useState<S.MovingType>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
-
   const diffTime = moment(recentMessageDataTime).fromNow();
   const recruitmentMemberNicknamesJoined = recruitmentMemberNicknames.join(', ');
   const recruitmentMemberImages = recruitmentMemberImageUrls.map((img) => (
@@ -97,7 +96,6 @@ const ChatroomsItem = ({
   useEffect(() => {
     if (chatRoomMemberId !== updateId) return;
 
-    console.log(updateContents);
     setCurRecentMessage(updateContents);
     setCurUnreadCount((prev) => prev + 1);
   }, [updateContents]);

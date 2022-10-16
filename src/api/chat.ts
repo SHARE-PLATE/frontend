@@ -88,3 +88,14 @@ export const getChatroomIds = async () => {
     console.error(error);
   }
 };
+
+export const putChatUpdateReadTime = async ({ chatRoomId }: { chatRoomId: string }) => {
+  const headers = getAuthHeaders();
+
+  try {
+    const response = await axios.put(API.CHAT_UPDATE_READ_TIME, { chatRoomId }, { headers });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};

@@ -1,3 +1,5 @@
+import { Fragment, useEffect } from 'react';
+
 import { useRecoilValueLoadable, useSetRecoilState } from 'recoil';
 
 import ChatroomsItem from '@components/ChatroomsItem';
@@ -12,6 +14,7 @@ import {
   activeChatroomsState,
   chatroomsState,
   chatroomsTrigger,
+  chatroomsUpdateState,
   chatsUnreadTrigger,
 } from '@store/chatrooms';
 import { ChatroomsStateType } from '@type/chat';
@@ -21,6 +24,7 @@ const Chatrooms = () => {
   const { contents: chatroomsData, state } = useRecoilValueLoadable(chatroomsState);
   const setChatsUnreadTrigger = useSetRecoilState(chatsUnreadTrigger);
   const setChatroomsTrigger = useSetRecoilState(chatroomsTrigger);
+  const setChatroomsUpdate = useSetRecoilState(chatroomsUpdateState);
 
   const reloadChatroomsData = () => {
     setChatroomsTrigger((prev) => prev + 1);
@@ -30,7 +34,7 @@ const Chatrooms = () => {
     switch (state) {
       case 'hasValue':
         const chatrooms = chatroomsData.map((info) => {
-          if (!info.recruitmentMemberNicknames.length) return <></>;
+          if (!info.recruitmentMemberNicknames.length) return <Fragment key={info.id}></Fragment>;
           // 참여 멤버가 없을 시 채팅이 보이지 않음
           return <ChatroomsItem key={info.id} {...info} />;
         });
@@ -51,7 +55,11 @@ const Chatrooms = () => {
     }
   };
 
-  setChatsUnreadTrigger((prev) => prev + 1);
+  // show remained chat count when go back to chatrooms from chatroom detail
+  useEffect(() => {
+    setChatsUnreadTrigger((prev) => prev + 1);
+    return () => setChatroomsUpdate({});
+  }, []);
 
   return (
     <S.Wrapper>
