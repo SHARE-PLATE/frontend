@@ -1,16 +1,18 @@
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 
 import { useRecoilValueLoadable, useSetRecoilState } from 'recoil';
 
 import { deleteChatroomData } from '@api/chat';
-import ChatroomsItem, { IdType } from '@components/ChatroomsItem';
+import ChatroomsItem, { IdType, LongPressOption } from '@components/ChatroomsItem';
 import Loading from '@components/Loading';
 import NoticeIcon from '@components/NoticeIcon';
 import Tabs from '@components/Tabs';
-import Modal from '@components/common/Modal';
+import ToastModal from '@components/ToastModal';
+import SelectModal from '@components/common/SelectModal';
 import { deleteChatMention, exitMention, getChatDdataFailedMention } from '@constants/mentions';
-import { CANCEL, CHATTING, RELOAD } from '@constants/words';
+import { CHATTING, EXIT_CHATROOM, RELOAD } from '@constants/words';
 import useChatroomsInfo from '@hooks/useChatroomsInfo';
+import useModal from '@hooks/useModal';
 import * as S from '@pages/Chatrooms/Chatrooms.style';
 import {
   activeChatroomsState,
@@ -27,17 +29,26 @@ const Chatrooms = () => {
   const setChatsUnreadTrigger = useSetRecoilState(chatsUnreadTrigger);
   const setChatroomsTrigger = useSetRecoilState(chatroomsTrigger);
   const setChatroomsUpdate = useSetRecoilState(chatroomsUpdateState);
+  const modalRef = useRef<HTMLDivElement>(null);
   const [deletedId, setDeletedId] = useState<IdType>(null);
+  const [isToastModal, setIsToastModal] = useState(false);
+  const [isSelectModal, setIsSelectModal] = useModal({ modalRef });
 
   const reloadChatroomsData = () => {
     setChatroomsTrigger((prev) => prev + 1);
   };
 
-  const handleClickCancelDelete = () => {
+  const hideToast = () => {
     setDeletedId(null);
+    setIsToastModal(false);
   };
 
-  const handleClickDelete = async () => {
+  const hideToastAndShowSelect = () => {
+    setIsToastModal(false);
+    setIsSelectModal(true);
+  };
+
+  const handleClickSelectOkBtn = async () => {
     if (!deletedId) return;
     const response = await deleteChatroomData(deletedId);
     if (response.status === 200) {
@@ -46,13 +57,28 @@ const Chatrooms = () => {
     }
   };
 
+  const hideSelect = () => {
+    setIsSelectModal(false);
+    setDeletedId(null);
+  };
+
+  const showToastWithId = ({ id }: { id?: string }) => {
+    if (!id) return;
+    setDeletedId(id);
+    setIsToastModal(true);
+  };
+
+  const longPressOption: LongPressOption = {
+    onLongPress: showToastWithId,
+  };
+
   const getContents = () => {
     switch (state) {
       case 'hasValue':
         const chatrooms = chatroomsData.map((info) => {
           if (!info.recruitmentMemberNicknames.length) return <Fragment key={info.id}></Fragment>;
           // 참여 멤버가 없을 시 채팅이 보이지 않음
-          return <ChatroomsItem key={info.id} {...info} setDeletedId={setDeletedId} />;
+          return <ChatroomsItem key={info.id} {...info} longPressOption={longPressOption} />;
         });
         return <S.ContentsWrapper>{chatrooms}</S.ContentsWrapper>;
       case 'hasError':
@@ -87,20 +113,23 @@ const Chatrooms = () => {
         <Tabs<ChatroomsStateType> tabsInfo={chatroomsInfo} targetAtom={activeChatroomsState} />
       </S.HeaderWrapper>
       {getContents()}
-      {deletedId && (
-        <Modal isFull={true} type='center' customedStyle={S.AdditionalModalStyle}>
-          <S.DeleteChatModal>
-            <S.DeleteChatMention>{deleteChatMention}</S.DeleteChatMention>
-            <S.DeleteChatModalButtonsWrapper>
-              <S.DeleteChatModalButton isCancel={true} onClick={handleClickCancelDelete}>
-                {CANCEL}
-              </S.DeleteChatModalButton>
-              <S.DeleteChatModalButton isCancel={false} onClick={handleClickDelete}>
-                {exitMention}
-              </S.DeleteChatModalButton>
-            </S.DeleteChatModalButtonsWrapper>
-          </S.DeleteChatModal>
-        </Modal>
+      {isToastModal && (
+        <ToastModal
+          modalRef={modalRef}
+          onClickCloseButton={hideToast}
+          mainButtonTitle={EXIT_CHATROOM}
+          mainButtonHandler={hideToastAndShowSelect}
+          onClickBackground={hideToast}
+        />
+      )}
+      {isSelectModal && (
+        <SelectModal
+          modalRef={modalRef}
+          onClickOkButton={handleClickSelectOkBtn}
+          onClickCancelButton={hideSelect}
+          okMention={exitMention}
+          answeringMention={deleteChatMention}
+        />
       )}
     </S.Wrapper>
   );

@@ -4,21 +4,18 @@ import { tabsHeight } from '@components/Tabs/Tabs.styled';
 import { flexCenter } from '@styles/mixin';
 
 export const Wrapper = styled.div`
-  ${({ theme: { defaultPadding, colors } }) => css`
+  ${({ theme: { colors } }) => css`
     background-color: ${colors.white1};
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     padding-bottom: 5rem;
-
-    > * {
-      ${defaultPadding}
-    }
   `}
 `;
 
 export const ContentsWrapper = styled.div`
-  ${({ theme: { defaultHeaderHeight } }) => css`
+  ${({ theme: { defaultHeaderHeight, defaultPadding } }) => css`
+    ${defaultPadding};
     padding-top: calc(${defaultHeaderHeight}rem + ${tabsHeight});
   `}
 `;
@@ -48,8 +45,9 @@ export const ReloadButton = styled.button`
 `;
 
 export const HeaderWrapper = styled.div`
-  ${({ theme: { colors, defaultWidth } }) => css`
+  ${({ theme: { colors, defaultWidth, defaultPadding } }) => css`
     ${defaultWidth};
+    ${defaultPadding};
 
     background-color: ${colors.white1};
     position: fixed;

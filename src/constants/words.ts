@@ -70,3 +70,4 @@ export const FINISH_REGISTRATION = '등록완료';
 export const AROUND_SHARE_LIST = '주변 쉐어목록';
 export const OPTION_PROFILE = '회원정보 설정';
 export const EDIT_PROFILE = '프로필 수정';
+export const EXIT_CHATROOM = '채팅방 나가기';
