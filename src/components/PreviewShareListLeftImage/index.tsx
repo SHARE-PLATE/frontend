@@ -1,4 +1,4 @@
-import React, { ReactElement, MouseEvent } from 'react';
+import { ReactElement, MouseEvent } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
