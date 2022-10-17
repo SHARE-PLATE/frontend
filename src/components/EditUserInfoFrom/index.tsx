@@ -30,7 +30,7 @@ const EditUserInfoFrom = () => {
       </S.ImgWrapper>
       <S.NickNameWrapper>
         <S.NickNameTitle>닉네임</S.NickNameTitle>
-        <InputForm type='text' {...nicknameInput} pla />
+        <InputForm type='text' {...nicknameInput} />
       </S.NickNameWrapper>
     </S.FormWrapper>
   );
