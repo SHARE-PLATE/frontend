@@ -79,3 +79,47 @@ export const HeaderTitle = styled.div`
     text-align: center;
   `}
 `;
+
+export const AdditionalModalStyle = css`
+  padding: 0 !important;
+`;
+
+export const DeleteChatModal = styled.div`
+  ${({ theme: { colors } }) => css`
+    width: 272px;
+    height: 128px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: ${colors.white0};
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.08);
+    padding: 16px 12px;
+    border-radius: 8px;
+  `}
+`;
+
+export const DeleteChatMention = styled.div`
+  ${({ theme: { fonts } }) => css`
+    ${fonts.smallRegular};
+    text-align: center;
+    white-space: pre;
+    line-height: 19px;
+  `}
+`;
+
+export const DeleteChatModalButtonsWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const DeleteChatModalButton = styled.button<{ isCancel: boolean }>`
+  ${({ theme: { colors, fonts }, isCancel }) => css`
+    ${fonts.mediumRegular};
+    border: 1px solid ${isCancel ? colors.grey4 : colors.orange2};
+    background-color: ${isCancel ? 'transparent' : colors.orange2};
+    color: ${isCancel ? colors.grey4 : colors.white0};
+    width: 118px;
+    height: 42px;
+    border-radius: 6px;
+  `}
+`;
