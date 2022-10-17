@@ -1,4 +1,4 @@
-import { RefObject } from 'react';
+import { MouseEvent, RefObject } from 'react';
 
 import Modal from '@components/common/Modal';
 import * as S from '@components/common/SelectModal/SelectModal.style';
@@ -7,7 +7,8 @@ import { CloseModal } from '@type/modalFunction';
 
 interface KeywordDeleteModalPropsType {
   modalRef: RefObject<HTMLDivElement>;
-  onClickOkButton: () => void;
+  onClickOkButton: (event?: MouseEvent<HTMLButtonElement>) => void;
+  onClickCancelButton?: (event?: MouseEvent<HTMLButtonElement>) => void;
   closeModal?: () => void;
   closeParameterModal?: CloseModal;
   answeringMention: string;
@@ -19,10 +20,12 @@ const SelectModal = ({
   closeModal,
   closeParameterModal,
   onClickOkButton,
+  onClickCancelButton,
   answeringMention,
   okMention,
 }: KeywordDeleteModalPropsType) => {
-  const handleClickCancel = () => {
+  const handleClickCancel = (event?: MouseEvent<HTMLButtonElement>) => {
+    onClickCancelButton && onClickCancelButton(event);
     if (closeModal) closeModal();
     if (closeParameterModal) closeParameterModal({ isDeleteModal: true });
   };
