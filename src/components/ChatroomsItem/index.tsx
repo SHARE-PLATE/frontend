@@ -1,18 +1,10 @@
-import {
-  Dispatch,
-  MouseEvent,
-  SetStateAction,
-  TouchEvent,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { MouseEvent, TouchEvent, useEffect, useRef, useState } from 'react';
 
 import moment from 'moment';
 import 'moment/locale/ko';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { useLongPress } from 'use-long-press';
+import { useLongPress, LongPressEvent } from 'use-long-press';
 
 import { deleteChatroomData } from '@api/chat';
 import * as S from '@components/ChatroomsItem/ChatroomsItem.style';
@@ -23,8 +15,16 @@ import { ChatroomsDataType } from '@type/chat';
 
 export type IdType = string | null;
 
+type OnLongPressParamsType = { id?: string; event?: LongPressEvent<any> };
+
+export type LongPressOption = {
+  onLongPress?: ({ id, event }: OnLongPressParamsType) => void;
+  onLongPressStart?: ({ id, event }: OnLongPressParamsType) => void;
+  onLongPressFinish?: ({ id, event }: OnLongPressParamsType) => void;
+};
+
 type ChatroomsItemPropsType = ChatroomsDataType & {
-  setDeletedId: Dispatch<SetStateAction<IdType>>;
+  longPressOption: LongPressOption;
 };
 
 const ChatroomsItem = ({
@@ -37,7 +37,7 @@ const ChatroomsItem = ({
   recruitmentMemberNicknames,
   recruitmentMemberImageUrls,
   unreadCount,
-  setDeletedId,
+  longPressOption,
 }: ChatroomsItemPropsType) => {
   const navigate = useNavigate();
   const setChatroomsTrigger = useSetRecoilState(chatroomsTrigger);
@@ -47,6 +47,7 @@ const ChatroomsItem = ({
   const [startPoint, setStartPoint] = useState(0);
   const [moving, setMoving] = useState<S.MovingType>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const { onLongPress, onLongPressFinish, onLongPressStart } = longPressOption;
   const diffTime = moment(recentMessageDataTime).fromNow();
   const recruitmentMemberNicknamesJoined = recruitmentMemberNicknames.join(', ');
   const recruitmentMemberImages = recruitmentMemberImageUrls.map((img) => (
@@ -62,15 +63,18 @@ const ChatroomsItem = ({
   const handleLongPress = useLongPress(
     (event) => {
       event.stopPropagation();
-      setDeletedId(id);
+      onLongPress && onLongPress({ id, event });
     },
     {
       threshold: 500,
       captureEvent: true,
       cancelOnMovement: true,
+      onStart: (event) => {
+        onLongPressStart && onLongPressStart({ event, id });
+      },
       onFinish: (event) => {
-        event.stopPropagation();
         setStartPoint(0);
+        onLongPressFinish && onLongPressFinish({ event, id });
       },
     },
   );
@@ -87,7 +91,6 @@ const ChatroomsItem = ({
     if (!wrapperRef.current) return;
     const { left } = wrapperRef.current.style;
 
-    console.log(left);
     if (left !== '0px') return;
     navigate(`/chatroom-detail/${id}`, { state: { chatRoomMemberId } });
   };
