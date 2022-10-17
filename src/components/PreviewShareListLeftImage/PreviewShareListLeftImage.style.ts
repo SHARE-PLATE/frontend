@@ -99,3 +99,7 @@ export const Cost = styled.span`
 `;
 
 export const IconContainer = styled.div``;
+
+export const KebabMenuWrapper = styled.div`
+  margin-top: 0.2rem;
+`;
