@@ -1,9 +1,18 @@
-import { MouseEvent, TouchEvent, useEffect, useRef, useState } from 'react';
+import {
+  Dispatch,
+  MouseEvent,
+  SetStateAction,
+  TouchEvent,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 import moment from 'moment';
 import 'moment/locale/ko';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useLongPress } from 'use-long-press';
 
 import { deleteChatroomData } from '@api/chat';
 import * as S from '@components/ChatroomsItem/ChatroomsItem.style';
@@ -11,6 +20,12 @@ import ImgContainer from '@components/common/ImgContainer';
 import { noRecentChatMention } from '@constants/mentions';
 import { chatroomsTrigger, chatroomsUpdateState } from '@store/chatrooms';
 import { ChatroomsDataType } from '@type/chat';
+
+export type IdType = string | null;
+
+type ChatroomsItemPropsType = ChatroomsDataType & {
+  setDeletedId: Dispatch<SetStateAction<IdType>>;
+};
 
 const ChatroomsItem = ({
   id,
@@ -22,7 +37,8 @@ const ChatroomsItem = ({
   recruitmentMemberNicknames,
   recruitmentMemberImageUrls,
   unreadCount,
-}: ChatroomsDataType) => {
+  setDeletedId,
+}: ChatroomsItemPropsType) => {
   const navigate = useNavigate();
   const setChatroomsTrigger = useSetRecoilState(chatroomsTrigger);
   const { id: updateId, contents: updateContents } = useRecoilValue(chatroomsUpdateState);
@@ -43,6 +59,22 @@ const ChatroomsItem = ({
     />
   ));
 
+  const handleLongPress = useLongPress(
+    (event) => {
+      event.stopPropagation();
+      setDeletedId(id);
+    },
+    {
+      threshold: 500,
+      captureEvent: true,
+      cancelOnMovement: true,
+      onFinish: (event) => {
+        event.stopPropagation();
+        setStartPoint(0);
+      },
+    },
+  );
+
   const changeInnerLeft = (distance: number) => {
     if (!startPoint || !wrapperRef.current) return;
     if (distance >= 20) setMoving('left');
@@ -55,6 +87,7 @@ const ChatroomsItem = ({
     if (!wrapperRef.current) return;
     const { left } = wrapperRef.current.style;
 
+    console.log(left);
     if (left !== '0px') return;
     navigate(`/chatroom-detail/${id}`, { state: { chatRoomMemberId } });
   };
@@ -114,7 +147,7 @@ const ChatroomsItem = ({
         onMouseLeave={handleMouseLeaveOrUp}
         onClick={handleClickItem}
       >
-        <S.ShowedWrapper>
+        <S.ShowedWrapper {...handleLongPress()}>
           <S.InfoWrapper>
             <S.ImgsWrapper count={recruitmentMemberImages.length}>
               {recruitmentMemberImages}
