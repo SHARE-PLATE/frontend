@@ -24,6 +24,8 @@ const NavigationBar = () => {
         'salesHistory',
         'wishList',
         'searchShare',
+        'settingsProfile',
+        'editUserInfo',
       ],
     }) && isNavigation;
   const isProfile = useCheckPathname({ targetPaths: ['keyword'] });

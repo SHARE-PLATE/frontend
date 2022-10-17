@@ -5,26 +5,24 @@ import * as S from '@components/common/SelectModal/SelectModal.style';
 import { CANCEL } from '@constants/words';
 import { CloseModal } from '@type/modalFunction';
 
-interface KeywordDeleteModalPropsType<T> {
+interface KeywordDeleteModalPropsType {
   modalRef: RefObject<HTMLDivElement>;
-  deleteHandler: (parameter: T) => void;
+  onClickOkButton: () => void;
   closeModal?: () => void;
   closeParameterModal?: CloseModal;
-  clickHandlerParams: T;
-  title: string;
+  answeringMention: string;
   okMention: string;
 }
 
-const SelectModal = <T extends unknown>({
+const SelectModal = ({
   modalRef,
   closeModal,
   closeParameterModal,
-  deleteHandler,
-  clickHandlerParams,
-  title,
+  onClickOkButton,
+  answeringMention,
   okMention,
-}: KeywordDeleteModalPropsType<T>) => {
-  const curCloseModal = () => {
+}: KeywordDeleteModalPropsType) => {
+  const handleClickCancel = () => {
     if (closeModal) closeModal();
     if (closeParameterModal) closeParameterModal({ isDeleteModal: true });
   };
@@ -32,10 +30,10 @@ const SelectModal = <T extends unknown>({
   return (
     <Modal type='center' isFull={true}>
       <S.ModalWrapper ref={modalRef}>
-        <S.Text>{title}</S.Text>
+        <S.Text>{answeringMention}</S.Text>
         <S.ButtonContainer>
-          <S.CloseButton onClick={curCloseModal}>{CANCEL}</S.CloseButton>
-          <S.OkButton onClick={() => deleteHandler(clickHandlerParams)}>{okMention}</S.OkButton>
+          <S.CloseButton onClick={handleClickCancel}>{CANCEL}</S.CloseButton>
+          <S.OkButton onClick={onClickOkButton}>{okMention}</S.OkButton>
         </S.ButtonContainer>
       </S.ModalWrapper>
     </Modal>

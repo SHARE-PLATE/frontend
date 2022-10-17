@@ -15,14 +15,18 @@ export const ModalWrapper = styled.div`
 
 export const ButtonContainer = styled.div`
   width: 100%;
+  border-radius: 0.375rem;
+  background: ${({ theme }) => theme.colors.white0};
+
+  > :nth-child(2) {
+    border-top: 1px solid ${({ theme }) => theme.colors.grey2};
+  }
 `;
 
 export const BasicButton = styled.button`
   text-align: center;
   width: 100%;
   height: 2.75rem;
-  background: ${({ theme }) => theme.colors.white0};
-  border-radius: 0.375rem;
 `;
 
 export const ConfirmButton = styled(BasicButton)`

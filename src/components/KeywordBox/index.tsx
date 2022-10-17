@@ -67,9 +67,8 @@ const KeywordBox = () => {
             <SelectModal
               modalRef={modalRef}
               closeModal={closeModal}
-              deleteHandler={deleteHandler}
-              clickHandlerParams={clickedLocation}
-              title={addressKeywordQuestionMention}
+              onClickOkButton={() => deleteHandler(clickedLocation)}
+              answeringMention={addressKeywordQuestionMention}
               okMention={DELETE}
             />
           )}

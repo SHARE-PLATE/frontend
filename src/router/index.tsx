@@ -2,6 +2,7 @@ import { pathName as P } from '@constants/pathName';
 import AddKeyword from '@pages/AddKeyword';
 import ChatroomDetail from '@pages/ChatroomDetail';
 import Chatrooms from '@pages/Chatrooms';
+import EditUserInfo from '@pages/EditUserInfo';
 import Error from '@pages/Error';
 import History from '@pages/History';
 import Keyword from '@pages/Keyword';
@@ -10,6 +11,7 @@ import Main from '@pages/Main';
 import NotFound from '@pages/NotFound';
 import Notice from '@pages/Notice';
 import Profile from '@pages/Profile';
+import SettingProfile from '@pages/SettingProfile';
 import ShareDetail from '@pages/ShareDetail';
 import ShareList from '@pages/ShareList';
 import ShareMap from '@pages/ShareMap';
@@ -34,6 +36,8 @@ export const routes = [
       { path: P.chatroomDetail + '/:id', element: <ChatroomDetail /> },
       { path: P.shareForm + '/:type', element: <ShareRegistration /> },
       { path: P.profile, element: <Profile /> },
+      { path: P.settingsProfile, element: <SettingProfile /> },
+      { path: P.editUserInfo, element: <EditUserInfo /> },
       { path: P.salesHistory, element: <History menuType='sales' /> },
       { path: P.purchaseHistory, element: <History menuType='purchase' /> },
       { path: P.wishList, element: <WishList /> },
