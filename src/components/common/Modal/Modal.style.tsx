@@ -49,6 +49,8 @@ export const ModalContainer = styled.div<ModalContainerPropsType>`
     `};
     ${type === 'bottom' &&
     css`
+      width: 100%;
+      left: 0;
       bottom: 1.5rem;
     `};
     ${customedStyle};
