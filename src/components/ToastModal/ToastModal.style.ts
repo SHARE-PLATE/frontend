@@ -1,16 +1,12 @@
-import styled from 'styled-components';
-
-import { flexBetween } from '@styles/mixin';
+import styled, { css } from 'styled-components';
 
 export const ModalWrapper = styled.div`
+  ${({ theme: { defaultPadding } }) => defaultPadding};
   display: flex;
   flex-direction: column-reverse;
-  gap: 1rem;
-  width: 45rem;
+  gap: 14px;
   height: 2.75rem;
-  @media (max-width: 27rem) {
-    width: 20.5rem;
-  }
+  width: 100%;
 `;
 
 export const ButtonContainer = styled.div`
@@ -24,9 +20,12 @@ export const ButtonContainer = styled.div`
 `;
 
 export const BasicButton = styled.button`
-  text-align: center;
-  width: 100%;
-  height: 2.75rem;
+  ${({ theme: { fonts } }) => css`
+    ${fonts.largeRegular};
+    text-align: center;
+    width: 100%;
+    height: 2.75rem;
+  `}
 `;
 
 export const ConfirmButton = styled(BasicButton)`
