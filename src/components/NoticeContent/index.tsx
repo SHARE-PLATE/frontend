@@ -60,9 +60,9 @@ const NoticeContent = () => {
   return (
     <>
       <Tabs tabsInfo={noticeTabsInfo} targetAtom={activeNoticeState} />
-      {deleteMode && !!contents.length && (
-        <S.DeleteAllBtn onClick={handleDeleteAllBtn}>{DELETE_ALL}</S.DeleteAllBtn>
-      )}
+      <S.DeleteAllBtn onClick={handleDeleteAllBtn} isDeleteMode={deleteMode && !!contents.length}>
+        {DELETE_ALL}
+      </S.DeleteAllBtn>
       <S.Wrapper>{noticeContents}</S.Wrapper>
     </>
   );

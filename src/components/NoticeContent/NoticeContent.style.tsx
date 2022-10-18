@@ -14,14 +14,17 @@ export const TabsWrapper = styled.div`
   justify-content: space-between;
 `;
 
-export const DeleteAllBtn = styled.button`
-  ${({ theme: { fonts, colors } }) => css`
+export const DeleteAllBtn = styled.button<{ isDeleteMode: boolean }>`
+  ${({ theme: { fonts, colors }, isDeleteMode }) => css`
     ${fonts.large};
-    height: 44px;
+
+    transition: height 0.3s;
+    height: ${isDeleteMode ? '44px' : '0px'};
     background-color: ${colors.grey2};
     color: ${colors.black};
     margin-left: -1rem;
     width: calc(100% + 2rem);
+    overflow: hidden;
   `}
 `;
 

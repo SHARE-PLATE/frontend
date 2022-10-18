@@ -1,14 +1,25 @@
 import styled, { css } from 'styled-components';
 
+import { flexCenter } from '@styles/mixin';
+
 export const imgWidth = '3rem';
 
 export const Wrapper = styled.div``;
+
+export const NoRecentNoticeWrapper = styled.div`
+  ${({ theme: { colors } }) => css`
+    ${flexCenter};
+    color: ${colors.grey4};
+    height: 10rem;
+  `}
+`;
 
 export const Item = styled.div`
   display: flex;
   padding: 1rem 0;
   justify-content: space-between;
   gap: 0.75rem;
+  min-height: 3rem;
 
   > * {
     align-items: baseline;

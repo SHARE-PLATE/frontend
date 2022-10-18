@@ -14,6 +14,7 @@ import {
   entryCancelMention,
   entryJoinedMention,
   entryMention,
+  noRecentNoticeMention,
   shareCanceledMention,
   shareCancelMention,
   thirtyMinuitesLeftMention,
@@ -62,7 +63,8 @@ const getTextsByActivity = (type: ActivityType, option?: string): TextsByActivit
 
 const NoticeActivity = ({ contents }: NoticeActivityPropsType) => {
   const deleteMode = useRecoilValue(deleteModeState);
-  const Items = contents.map(
+  const NoRecentNotice = <S.NoRecentNoticeWrapper>{noRecentNoticeMention}</S.NoRecentNoticeWrapper>;
+  const items = contents.map(
     ({
       activityType,
       notificationCreatedDateTime,
@@ -100,7 +102,9 @@ const NoticeActivity = ({ contents }: NoticeActivityPropsType) => {
     },
   );
 
-  return <S.Wrapper>{Items}</S.Wrapper>;
+  const innerContents = !!items.length ? items.reverse() : NoRecentNotice;
+
+  return <S.Wrapper>{innerContents}</S.Wrapper>;
 };
 
 export default NoticeActivity;

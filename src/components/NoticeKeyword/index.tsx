@@ -6,7 +6,7 @@ import { useRecoilValue } from 'recoil';
 import NoticeDeleteBtn from '@components/NoticeDeleteBtn';
 import * as S from '@components/NoticeKeyword/NoticeKeyword.style';
 import ImgContainer from '@components/common/ImgContainer';
-import { newShareEnrolledMention } from '@constants/mentions';
+import { newShareEnrolledMention, noRecentNoticeMention } from '@constants/mentions';
 import { deleteModeState } from '@store/notice';
 import { NoticeKeywordDataType } from '@type/notice';
 
@@ -16,7 +16,8 @@ type NoticeKeywordPropsType = {
 
 const NoticeKeyword = ({ contents }: NoticeKeywordPropsType) => {
   const deleteMode = useRecoilValue(deleteModeState);
-  const Items = contents.map(
+  const NoRecentNotice = <S.NoRecentNoticeWrapper>{noRecentNoticeMention}</S.NoRecentNoticeWrapper>;
+  const items = contents.map(
     ({
       shareLocation,
       shareId,
@@ -51,7 +52,9 @@ const NoticeKeyword = ({ contents }: NoticeKeywordPropsType) => {
     },
   );
 
-  return <S.Wrapper>{Items}</S.Wrapper>;
+  const innerContents = !!items.length ? items.reverse() : NoRecentNotice;
+
+  return <S.Wrapper>{innerContents}</S.Wrapper>;
 };
 
 export default NoticeKeyword;
