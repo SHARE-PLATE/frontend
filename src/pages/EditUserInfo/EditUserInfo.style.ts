@@ -7,3 +7,7 @@ export const Wrapper = styled.div`
     flex-grow: 1;
   `}
 `;
+
+export const FileForm = styled.input`
+  display: none;
+`;

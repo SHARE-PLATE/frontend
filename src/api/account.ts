@@ -1,9 +1,9 @@
 import axios, { AxiosError } from 'axios';
-import { useSetRecoilState, useResetRecoilState } from 'recoil';
+import { useResetRecoilState, useSetRecoilState } from 'recoil';
 
 import { API } from '@constants/api';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '@constants/words';
-import { thumbnailImageUrl } from '@store/user';
+import { isLoginTriggerState, thumbnailImageUrl } from '@store/user';
 import { getAuthHeaders } from '@utils/getAuthHeaders';
 import getTokenHeaders from '@utils/getTokenHeaders';
 import {
@@ -54,12 +54,15 @@ export const useLogin = (code: string | null) => {
 
 export const useLogout = () => {
   const resetThumbnailImageUrl = useResetRecoilState(thumbnailImageUrl);
+  const setIsLoginTrigger = useSetRecoilState(isLoginTriggerState);
+
   const headers = getTokenHeaders();
 
   const removeUserInfo = () => {
-    resetThumbnailImageUrl();
     removeLocalStorageInfo({ key: ACCESS_TOKEN });
     removeLocalStorageInfo({ key: REFRESH_TOKEN });
+    resetThumbnailImageUrl();
+    setIsLoginTrigger((prev) => prev + 1);
   };
 
   return async () => {
@@ -89,6 +92,29 @@ export const getUserInfoData = async () => {
     return response.data;
   } catch (error) {
     console.error(error);
+  }
+};
+
+export const editUserInfoData = async (formData: any) => {
+  //에러있음
+  for (let key of formData.keys()) {
+    // console.log(key);
+    // console.log(formData.get(key));
+  }
+  const headers = getAuthHeaders();
+
+  try {
+    const response = await axios({
+      method: 'put',
+      url: `${API.MEMBERS}`,
+      data: formData,
+      headers: headers,
+    });
+
+    if (response.status === 200) return true;
+    else throw Error('잘못된 요청입니다.');
+  } catch (error) {
+    throw error;
   }
 };
 

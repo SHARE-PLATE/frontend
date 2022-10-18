@@ -19,8 +19,8 @@ const ToastModal = ({
   onClickCloseButton,
   mainButtonHandler,
   mainButtonTitle,
-  optionButtonHandler,
   optionButtonTitle,
+  optionButtonHandler,
   onClickBackground,
 }: ToastModalPropsType) => {
   const isOptionButton = optionButtonTitle && optionButtonHandler;
