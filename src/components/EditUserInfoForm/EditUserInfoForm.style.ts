@@ -29,8 +29,8 @@ export const IconBackground = styled.div`
   position: absolute;
   top: 3.5rem;
   left: 60%;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 39px;
+  height: 39px;
   border-radius: 10rem;
   background: ${({ theme }) => theme.colors.grey2};
 `;
