@@ -66,3 +66,36 @@ export const getPersonalChatroom = async ({ shareId }: { shareId: string }) => {
     console.error(error);
   }
 };
+
+export const getChatsUnread = async () => {
+  const headers = getAuthHeaders();
+
+  try {
+    const response = await axios.get<T.ChatsUnreadType>(API.CHATS_UNREAD, { headers });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getChatroomIds = async () => {
+  const headers = getAuthHeaders();
+
+  try {
+    const response = await axios.get<T.ChatroomIdsType>(API.CHATROOM_IDS, { headers });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const putChatUpdateReadTime = async ({ chatRoomId }: { chatRoomId: string }) => {
+  const headers = getAuthHeaders();
+
+  try {
+    const response = await axios.put(API.CHAT_UPDATE_READ_TIME, { chatRoomId }, { headers });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};

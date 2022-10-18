@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
 
+import moment from 'moment';
+import StompJs from 'stompjs';
 import { v4 as createRandomKey } from 'uuid';
 
 import Chat from '@components/Chat';
 import * as S from '@components/ChatroomDetailContents/ChatroomDetailContents.style';
-import { connectChat } from '@socket/chatroomSocket';
-import { ChatroomDetailChatsType } from '@type/chat';
+import { chatroomSocket } from '@socket/chatroomSocket';
+import { ChatroomDetailChatsType, ChatroomDetailChatType } from '@type/chat';
 
 type ChatroomDetailContentsPropsType = {
   chats: ChatroomDetailChatsType;
@@ -18,23 +20,51 @@ const ChatroomDetailContents = ({
   chatroomId,
   scrollToBottomRef,
 }: ChatroomDetailContentsPropsType) => {
-  // const [date, setDate] = useState('');
   const [curChats, setCurChats] = useState(chats);
-  const chatroomLogs = curChats.map((info) => <Chat {...info} key={createRandomKey()} />);
+  const dateRef = useRef('');
+
+  const getSingleChat = (info: ChatroomDetailChatType) => {
+    const { writtenDateTime } = info;
+    const curDate = writtenDateTime.split(' ')[0];
+    const isSameDate = curDate === dateRef.current;
+    if (isSameDate) {
+      return <Chat {...info} key={createRandomKey()} />;
+    } else {
+      dateRef.current = curDate;
+      const showedDate = moment(curDate).format('YYYY년 MM월 DD일');
+      return (
+        <Fragment key={createRandomKey()}>
+          <S.Date>{showedDate}</S.Date>
+          <Chat {...info} />
+        </Fragment>
+      );
+    }
+  };
+
+  const chatroomLogs = useMemo(() => {
+    dateRef.current = '';
+    return curChats.map(getSingleChat);
+  }, [curChats]);
+
+  const getNewChatMessage = (chatData: StompJs.Message) => {
+    const newChat = JSON.parse(chatData.body);
+    setCurChats((chats) => {
+      const newChats = [...chats, newChat];
+
+      return newChats;
+    });
+  };
 
   useEffect(() => {
-    const { chatroomDisconnect, chatroomConnect } = connectChat();
-    chatroomConnect({ setter: setCurChats, chatroomId });
-    return () => chatroomDisconnect();
+    const { disconnectChatroom, connectChatroom } = chatroomSocket();
+    connectChatroom({ onReceive: getNewChatMessage, chatroomId });
+    return () => disconnectChatroom();
   }, []);
 
   return (
     <S.Wrapper>
-      <S.Date>2021년 5월 29일</S.Date>
-      <S.Chats>
-        {chatroomLogs}
-        <S.EmptyBlock ref={scrollToBottomRef} />
-      </S.Chats>
+      {chatroomLogs}
+      <S.EmptyBlock ref={scrollToBottomRef} />
     </S.Wrapper>
   );
 };

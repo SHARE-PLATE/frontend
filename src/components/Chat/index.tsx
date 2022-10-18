@@ -3,14 +3,7 @@ import 'moment/locale/ko';
 
 import * as S from '@components/Chat/Chat.style';
 import ImgContainer from '@components/common/ImgContainer';
-
-type ChatPropsType = {
-  contents: string;
-  writer: string;
-  writerThumbnailImageUrl: string;
-  writtenDateTime: string;
-  writtenByMe: boolean;
-};
+import { ChatroomDetailChatType } from '@type/chat';
 
 const Chat = ({
   contents,
@@ -18,13 +11,14 @@ const Chat = ({
   writerThumbnailImageUrl,
   writtenDateTime,
   writtenByMe,
-}: ChatPropsType) => {
+  shareWrittenByMe,
+}: ChatroomDetailChatType) => {
   const dateTime = moment(writtenDateTime).format('LT');
 
   return (
     <S.Wrapper writtenByMe={writtenByMe}>
       {!writtenByMe && (
-        <S.ProfileImgWrapper>
+        <S.ProfileImgWrapper shareWrittenByMe={shareWrittenByMe}>
           <ImgContainer
             imgSrc={writerThumbnailImageUrl}
             imgTitle={writerThumbnailImageUrl}

@@ -1,32 +1,43 @@
-import { RefObject } from 'react';
+import { MouseEvent, RefObject } from 'react';
 
 import * as S from '@components/ToastModal/ToastModal.style';
-import Modal from '@components/common/Modal';
+import Modal, { OnClickBackgroundType } from '@components/common/Modal';
 import { CLOSE } from '@constants/words';
 
 interface ToastModalPropsType {
   modalRef: RefObject<HTMLDivElement>;
-  closeToastModal: () => void;
+  onClickCloseButton: (event?: MouseEvent<HTMLButtonElement>) => void;
   mainButtonTitle: string;
-  mainButtonHandler: () => void;
-  optionButtonHandler?: () => void;
+  mainButtonHandler: (event?: MouseEvent<HTMLButtonElement>) => void;
+  optionButtonTitle?: string;
+  optionButtonHandler?: (event?: MouseEvent<HTMLButtonElement>) => void;
+  onClickBackground?: OnClickBackgroundType;
 }
 
 const ToastModal = ({
   modalRef,
-  closeToastModal,
+  onClickCloseButton,
   mainButtonHandler,
   mainButtonTitle,
   optionButtonHandler,
+  optionButtonTitle,
+  onClickBackground,
 }: ToastModalPropsType) => {
+  const isOptionButton = optionButtonTitle && optionButtonHandler;
+  const handleClickBackground = (event?: MouseEvent<HTMLDivElement>) => {
+    onClickBackground && onClickBackground(event);
+  };
+
   return (
-    <Modal type='bottom' isFull={true}>
+    <Modal type='bottom' isFull={true} onClickBackground={handleClickBackground}>
       <S.ModalWrapper ref={modalRef}>
         <S.ButtonContainer>
-          <S.BasicButton onClick={closeToastModal}>{CLOSE}</S.BasicButton>
+          <S.BasicButton onClick={onClickCloseButton}>{CLOSE}</S.BasicButton>
         </S.ButtonContainer>
         <S.ButtonContainer>
-          <S.BasicButton onClick={mainButtonHandler}>옵션</S.BasicButton>
+          {isOptionButton && (
+            <S.BasicButton onClick={optionButtonHandler}>{optionButtonTitle}</S.BasicButton>
+          )}
           <S.ConfirmButton onClick={mainButtonHandler}>{mainButtonTitle}</S.ConfirmButton>
         </S.ButtonContainer>
       </S.ModalWrapper>

@@ -1,17 +1,17 @@
 import styled, { css } from 'styled-components';
 
-type WrapperPropsType = { isShareFormOrProfile: boolean };
+type WrapperPropsType = { isShareFormButton: boolean };
 
 export const Wrapper = styled.div<WrapperPropsType>`
-  ${({ isShareFormOrProfile }) => css`
+  ${({ isShareFormButton }) => css`
     position: relative;
-    ${isShareFormOrProfile &&
+    ${isShareFormButton &&
     css`
       animation: fadeout 0.2s forwards;
       pointer-events: none;
     `}
 
-    ${!isShareFormOrProfile &&
+    ${!isShareFormButton &&
     css`
       animation: fadein 0.2s forwards;
     `}

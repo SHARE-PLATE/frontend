@@ -11,7 +11,14 @@ export interface RemainedTimeWrapperPropsType {
 }
 
 export const RemainedTimeWrapper = styled.div<RemainedTimeWrapperPropsType>`
-  ${({ theme: { colors, fonts }, left, right, top, bottom, backgroundColor = '#0000007e' }) => css`
+  ${({
+    theme: { colors, fonts },
+    left,
+    right,
+    top,
+    bottom,
+    backgroundColor = 'rgba(25, 25, 25, 0.6);',
+  }) => css`
     ${fonts.xSmall}
     font-weight: 500;
     ${flexCenter}
@@ -23,7 +30,7 @@ export const RemainedTimeWrapper = styled.div<RemainedTimeWrapperPropsType>`
     left: ${left};
     border-radius: 0.25rem;
     background-color: ${backgroundColor};
-    width: 2.625rem;
+    padding: 0 6px;
     height: 1.36rem;
     color: ${colors.white1};
     line-height: 15px;

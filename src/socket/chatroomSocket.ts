@@ -1,16 +1,13 @@
-import { Dispatch, SetStateAction } from 'react';
-
 import SockJs from 'sockjs-client';
 import StompJs from 'stompjs';
 
 import { APP, CHAT, CHATROOMS, CHATROOM_MEMBERS, TOPIC, WEBSOCKET } from '@constants/words';
 import { getAuthHeaders } from '@utils/getAuthHeaders';
 
-import { ChatroomDetailChatsType } from './../type/chat';
-
 type subscribeParamsType = {
-  setter: Dispatch<SetStateAction<ChatroomDetailChatsType>>;
-  chatroomId: string;
+  onReceive: (chatData: StompJs.Message) => void;
+  chatroomId?: string | number;
+  chatroomIds?: string[] | number[];
 };
 
 type SendChatParamsType = { contents: string; chatroomId?: string };
@@ -26,35 +23,27 @@ export const sendChat = ({ contents, chatroomId }: SendChatParamsType) => {
   stompClient.send(sendingURL, headers, JSON.stringify({ contents }));
 };
 
-export const connectChat = () => {
+export const chatroomSocket = () => {
   const sockServer = `${process.env.REACT_APP_BASE_URL}/${WEBSOCKET}`; // 들어갈 주소 설정
   const sock = new SockJs(sockServer);
   const stompClient = StompJs.over(sock);
 
-  const subscribeChat = ({ setter, chatroomId }: subscribeParamsType) => {
-    const subscribeURL = `/${TOPIC}/${CHATROOM_MEMBERS}/${chatroomId}`;
+  const subscribeChat = ({ onReceive, chatroomId, chatroomIds }: subscribeParamsType) => {
     const headers = getAuthHeaders();
+    const subscribeToStomp = (id: string | number) => {
+      const subscribeURL = `/${TOPIC}/${CHATROOM_MEMBERS}/${id}`;
+      stompClient.subscribe(subscribeURL, onReceive, headers);
+    };
 
-    stompClient.subscribe(
-      subscribeURL,
-      (chatData) => {
-        const newChat = JSON.parse(chatData.body);
-
-        setter((chats) => {
-          const newChats = [...chats, newChat];
-
-          return newChats;
-        });
-      },
-      headers,
-    );
+    if (chatroomId) subscribeToStomp(chatroomId);
+    if (chatroomIds) chatroomIds.forEach((id) => subscribeToStomp(id));
   };
 
   const unsubscribe = () => {
     stompClient.unsubscribe('sub-0');
   };
 
-  const chatroomConnect = (subscribeParams: subscribeParamsType) => {
+  const connectChatroom = (subscribeParams: subscribeParamsType) => {
     const headers = getAuthHeaders();
 
     try {
@@ -65,7 +54,7 @@ export const connectChat = () => {
     }
   };
 
-  const chatroomDisconnect = () => {
+  const disconnectChatroom = () => {
     try {
       // stompClient.debug = () => null;
       stompClient.disconnect(() => unsubscribe());
@@ -74,5 +63,5 @@ export const connectChat = () => {
     }
   };
 
-  return { chatroomConnect, chatroomDisconnect };
+  return { connectChatroom, disconnectChatroom };
 };

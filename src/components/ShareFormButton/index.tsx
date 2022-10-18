@@ -13,12 +13,14 @@ const ShareFormButton = () => {
   const navigate = useNavigate();
   const modalRef = useRef<HTMLDivElement>(null);
   const [isModalOpen, setIsModalOpen] = useModal({ modalRef });
-  const isShareFormOrProfile = useCheckPathname({ targetPaths: ['shareForm', 'profile'] });
+  const isShareFormButton = useCheckPathname({
+    targetPaths: ['shareForm', 'profile', 'chatrooms'],
+  });
   const showMenuBar = () => setIsModalOpen(!isModalOpen);
 
   return (
     <Modal isFull={isModalOpen} type='underRight'>
-      <S.Wrapper onClick={showMenuBar} isShareFormOrProfile={isShareFormOrProfile}>
+      <S.Wrapper onClick={showMenuBar} isShareFormButton={isShareFormButton}>
         {isModalOpen ? (
           <>
             <Icon iconName='FormClose' iconSize={3.5} />

@@ -6,7 +6,6 @@ import { deleteMySalesList, deletePurchaseList, getProfileMyMenuData } from '@ap
 import CategoryButton from '@components/CategoryButton';
 import PreviewShareListLeftImage from '@components/PreviewShareListLeftImage';
 import Tabs from '@components/Tabs';
-import KebabMenuModal from '@components/ToastModal';
 import ToastModal from '@components/ToastModal';
 import BackTitleHeader from '@components/common/BackTitleHeader';
 import SelectModal from '@components/common/SelectModal';
@@ -20,7 +19,7 @@ import * as S from '@pages/History/History.style';
 import { activeShareList } from '@store/filterShareList';
 import { activeShareListType } from '@store/filterShareList';
 import { historyTrigger } from '@store/meyMenu';
-import { CloseModal, OpenModal } from '@type/modalFunction';
+import { CloseModal } from '@type/modalFunction';
 import { ShareListType } from '@type/shareList';
 import { getRecencySort } from '@utils/ShareListSort';
 import { getHistoryMention } from '@utils/getMention';
@@ -98,7 +97,7 @@ const History = ({ menuType }: { menuType: string }) => {
       {isKebabMenuModal && (
         <ToastModal
           modalRef={modalRef}
-          closeToastModal={() => setKebabMenuModal(false)}
+          onClickCloseButton={() => setKebabMenuModal(false)}
           mainButtonTitle={DELETE}
           mainButtonHandler={() => {
             setKebabMenuModal(false);

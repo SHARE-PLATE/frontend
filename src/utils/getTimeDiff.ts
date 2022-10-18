@@ -4,6 +4,10 @@ const getTwoLengthTime = (number: number) => {
   return number < 10 ? `0${number}` : number;
 };
 
+export const defaultTime = '00:00';
+const minutesInADay = 1440;
+const minutesInAnHour = 60;
+
 export const getTimeDiffInHour = (targetTime: string) => {
   const curTime = moment();
   const appointTime = moment(targetTime);
@@ -15,6 +19,25 @@ export const getTimeDiffInHour = (targetTime: string) => {
   const minutes = getTwoLengthTime(Math.floor(diffTime / 60));
   const seconds = getTwoLengthTime(diffTime % 60);
   const remainedTime = `${minutes}:${seconds}`;
+
+  return remainedTime;
+};
+
+export const getTimeDiff = (targetTime: string) => {
+  const curTime = moment();
+  const appointTime = moment(targetTime);
+  const diffTime = appointTime.diff(curTime, 'minutes');
+
+  if (diffTime <= 0) return defaultTime; // earlier than now
+  if (diffTime >= minutesInADay) {
+    const days = Math.floor(diffTime / minutesInADay);
+    const remainedTime = `${days} ${days === 1 ? 'DAY' : 'DAYS'}`;
+    return remainedTime;
+  } // more than 1 day
+
+  const hours = getTwoLengthTime(Math.floor(diffTime / minutesInAnHour));
+  const minutes = getTwoLengthTime(diffTime % minutesInAnHour);
+  const remainedTime = `${hours}:${minutes}`;
 
   return remainedTime;
 };

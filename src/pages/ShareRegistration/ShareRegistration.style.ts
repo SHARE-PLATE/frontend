@@ -48,5 +48,9 @@ export const SubmitBtn = styled.button`
     border-radius: 4px;
     width: 100%;
     height: 48px;
+
+    :disabled {
+      background: ${colors.grey4};
+    }
   `}
 `;

@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 
 import { registrationShareListData } from '@api/shareList';
-import HomeLogin from '@components/HomeLogin';
+import ErrorWithButtons from '@components/ErrorWithButtons';
 import {
   FileContainer,
   TextContainer,
@@ -47,21 +47,23 @@ const currentDate = moment().format(dateFormat);
 
 const ShareRegistration = () => {
   const { type } = useParams<TitleType>();
-  if (!type) return <HomeLogin />;
+  if (!type) return <ErrorWithButtons />;
 
   const title = `${titleMatch[type]} ${SHARE_REGISTRATION}`;
   const navigate = useNavigate();
   const [fileImage, setFileImage] = useState<FileList>();
   const [descriptionValue, setDescriptionValue] = useState('');
+  const [recruitmentValue, setRecruitmentValue] = useState(1);
+  const [appointmentDateTime, setAppointmentDateTime] = useState(currentDate);
+  const [appointmentTime, setAppointmentTime] = useState(currentTime);
+  const [isSubmiting, setIsSubmiting] = useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
+
   const { lat, lng, place_name, road_address_name } = useRecoilValue(shareLocationState);
   const resetShareLocation = useResetRecoilState(shareLocationState);
   const tags = useRecoilValue(tagsState);
   const pricePossibleValue = useRecoilValue(pricePossible);
   const locationPossibleValue = useRecoilValue(locationPossible);
-  const [recruitmentValue, setRecruitmentValue] = useState(1);
-  const [appointmentDateTime, setAppointmentDateTime] = useState(currentDate);
-  const [appointmentTime, setAppointmentTime] = useState(currentTime);
-  const modalRef = useRef<HTMLDivElement>(null);
   const [isModalOpen, setIsModalOpen] = useModal({ modalRef });
   const titleInput = useInput('');
   const priceInput = useInput('');
@@ -73,6 +75,7 @@ const ShareRegistration = () => {
     event.preventDefault();
     if (!fileImage || !type) return;
 
+    setIsSubmiting(true);
     const formData = new FormData();
 
     //이미지
@@ -122,6 +125,7 @@ const ShareRegistration = () => {
       navigate('/share-list');
     } else {
       setIsModalOpen(true);
+      setIsSubmiting(false);
     }
   };
 
@@ -166,7 +170,9 @@ const ShareRegistration = () => {
           setDescriptionValue={setDescriptionValue}
         />
 
-        <S.SubmitBtn type='submit'>{FINISH_REGISTRATION}</S.SubmitBtn>
+        <S.SubmitBtn type='submit' disabled={isSubmiting}>
+          {FINISH_REGISTRATION}
+        </S.SubmitBtn>
         {isModalOpen && (
           <FailedModal modalRef={modalRef} closeModal={closeModal} text={dataFailed} />
         )}

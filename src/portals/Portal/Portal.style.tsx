@@ -39,6 +39,8 @@ export const PortalBackground = styled.div<PortalStylePropsType>`
 
 export const PortalContent = styled.div<PortalStylePropsType>`
   ${({ theme: { defaultWidth, colors }, portalType, isPortal }) => css`
+    overflow: hidden;
+
     ${portalType === 'modal' &&
     css`
       position: relative;
