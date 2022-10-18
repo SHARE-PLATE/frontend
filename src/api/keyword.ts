@@ -1,14 +1,14 @@
 import axios from 'axios';
 
 import { API } from '@constants/api';
-import { newKeywordType } from '@type/keyword';
+import { keywordDataType, newKeywordType } from '@type/keyword';
 import { getAuthHeaders } from '@utils/getAuthHeaders';
 
 export const getKeywordListData = async () => {
   const headers = getAuthHeaders();
 
   try {
-    const response = await axios.get(`${API.KEYWORD}`, { headers });
+    const response = await axios.get<keywordDataType[]>(`${API.KEYWORD}`, { headers });
     return response.data;
   } catch (err) {
     console.log(err);

@@ -1,52 +1,39 @@
-import { SetterOrUpdater } from 'recoil';
 import SockJs from 'sockjs-client';
 import StompJs from 'stompjs';
 
-import { ENTRIES, KEYWORD, NOTIFICATIONS, QUEUE, WEBSOCKET } from '@constants/words';
-import { newNoticeStateType } from '@store/notice';
+import { ENTRIES, KEYWORDS, NOTIFICATIONS, QUEUE, WEBSOCKET } from '@constants/words';
 import { getAuthHeaders } from '@utils/getAuthHeaders';
 
 type subscribeParamsType = {
-  entryIds?: number[];
-  keywordIds?: number[];
+  entryIds: number[];
+  keywordIds: number[];
+  onSubscribeEntries: (entryData: StompJs.Message) => void;
+  onSubscribeKeywords: (keywordData: StompJs.Message) => void;
 };
 
-type connectNoticeParamsType = {
-  setter: SetterOrUpdater<newNoticeStateType>;
-};
-
-export const noticeSocket = ({ setter }: connectNoticeParamsType) => {
+export const noticeSocket = () => {
   const sockServer = `${process.env.REACT_APP_BASE_URL}/${WEBSOCKET}`; // 들어갈 주소 설정
   const sock = new SockJs(sockServer);
   const stompClient = StompJs.over(sock);
 
-  const subscribeNotice = ({ entryIds = [], keywordIds = [] }: subscribeParamsType) => {
+  const subscribeNotice = ({
+    entryIds,
+    keywordIds,
+    onSubscribeEntries,
+    onSubscribeKeywords,
+  }: subscribeParamsType) => {
     const subscribeURL = `/${QUEUE}/${NOTIFICATIONS}`;
     const headers = getAuthHeaders();
 
     if (!!entryIds.length) {
       entryIds.forEach((id) => {
-        stompClient.subscribe(
-          subscribeURL + `/${ENTRIES}/${id}`,
-          (entryData) => {
-            const newEntryData = JSON.parse(entryData.body);
-            setter(newEntryData);
-          },
-          headers,
-        );
+        stompClient.subscribe(subscribeURL + `/${ENTRIES}/${id}`, onSubscribeEntries, headers);
       });
     }
 
     if (!!keywordIds.length) {
       keywordIds.forEach((id) => {
-        stompClient.subscribe(
-          subscribeURL + `/${KEYWORD}/${id}`,
-          (keywordData) => {
-            const newKeywordData = JSON.parse(keywordData.body);
-            setter(newKeywordData);
-          },
-          headers,
-        );
+        stompClient.subscribe(subscribeURL + `/${KEYWORDS}/${id}`, onSubscribeKeywords, headers);
       });
     }
   };
