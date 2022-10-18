@@ -18,6 +18,12 @@ export const HeaderBtn = styled.button`
   display: flex;
 `;
 
+export const DeleteModeButton = styled.button`
+  ${({ theme: { fonts } }) => css`
+    ${fonts.largeRegular};
+  `}
+`;
+
 export const Header = styled.div`
   ${({ theme: { defaultHeaderHeight } }) => css`
     height: ${defaultHeaderHeight}rem;

@@ -17,7 +17,11 @@ export const TabsWrapper = styled.div`
 export const DeleteAllBtn = styled.button`
   ${({ theme: { fonts, colors } }) => css`
     ${fonts.large};
-    color: ${colors.grey4};
+    height: 44px;
+    background-color: ${colors.grey2};
+    color: ${colors.black};
+    margin-left: -1rem;
+    width: calc(100% + 2rem);
   `}
 `;
 

@@ -12,7 +12,7 @@ import { activeNoticeState, deleteModeState, noticeInfoState, noticeState } from
 
 import { activityData, keywordData } from './data';
 
-const isTest = true;
+const isTest = false;
 const testData = {
   activity: activityData,
   keyword: keywordData,
@@ -59,12 +59,10 @@ const NoticeContent = () => {
 
   return (
     <>
-      <S.TabsWrapper>
-        <Tabs tabsInfo={noticeTabsInfo} targetAtom={activeNoticeState} />
-        {deleteMode && !!contents.length && (
-          <S.DeleteAllBtn onClick={handleDeleteAllBtn}>{DELETE_ALL}</S.DeleteAllBtn>
-        )}
-      </S.TabsWrapper>
+      <Tabs tabsInfo={noticeTabsInfo} targetAtom={activeNoticeState} />
+      {deleteMode && !!contents.length && (
+        <S.DeleteAllBtn onClick={handleDeleteAllBtn}>{DELETE_ALL}</S.DeleteAllBtn>
+      )}
       <S.Wrapper>{noticeContents}</S.Wrapper>
     </>
   );

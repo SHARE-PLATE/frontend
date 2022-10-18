@@ -3,7 +3,7 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 
 import NoticeContent from '@components/NoticeContent';
 import Icon from '@components/common/Icon';
-import { NOTICE_CENTER } from '@constants/words';
+import { EDIT, FINISH, NOTICE_CENTER } from '@constants/words';
 import * as S from '@pages/Notice/Notice.style';
 import { deleteModeState, newNoticeState } from '@store/notice';
 
@@ -22,7 +22,7 @@ const Notice = () => {
         </S.HeaderBtn>
         <S.HeaderTitle>{NOTICE_CENTER}</S.HeaderTitle>
         <S.HeaderBtn onClick={() => setDeleteMode(!deleteMode)}>
-          <Icon iconName={!deleteMode ? 'DeleteCircle' : 'CheckCircleColor'} iconSize={1.125} />
+          <S.DeleteModeButton>{!deleteMode ? EDIT : FINISH}</S.DeleteModeButton>
         </S.HeaderBtn>
       </S.Header>
       <NoticeContent />

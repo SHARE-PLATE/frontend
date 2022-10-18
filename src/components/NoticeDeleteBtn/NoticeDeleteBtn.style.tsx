@@ -1,11 +1,10 @@
 import styled, { css } from 'styled-components';
 
-export const Wrapper = styled.div<{ isShowed: boolean }>`
+export const Wrapper = styled.button<{ isShowed: boolean }>`
   ${({ isShowed }) => css`
     display: ${isShowed ? 'flex' : 'none'};
     height: auto;
-    min-width: 2rem;
+    min-width: 1rem;
     justify-content: right;
-    align-items: center;
   `}
 `;
