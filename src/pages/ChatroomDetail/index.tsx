@@ -78,8 +78,6 @@ const ChatroomDetail = () => {
     }
   };
 
-  useEffect(() => {}, []);
-
   useEffect(() => {
     return () => {
       // update read time when exit this page

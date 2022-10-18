@@ -22,6 +22,7 @@ const ImgContainer = ({
   imgWrapperRatio,
   borderRadius,
   additionalStyle,
+  noAlign,
 }: ImgContainerPropsType) => {
   const imgWrapperRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
@@ -37,6 +38,7 @@ const ImgContainer = ({
       imgWrapperWidth={imgWrapperWidth}
       isLoaded={isLoaded}
       borderRadius={borderRadius}
+      noAlign={noAlign}
       additionalStyle={additionalStyle}
     >
       <img src={imgSrc} alt={imgTitle} />
