@@ -31,7 +31,7 @@ export const ModalBackground = styled.div<{ isFull: boolean }>`
 `;
 
 export const ModalContainer = styled.div<ModalContainerPropsType>`
-  ${({ type, customedStyle, theme: { colors } }) => css`
+  ${({ type, customedStyle, theme: { colors, defaultWidth } }) => css`
     position: absolute;
     z-index: 201;
     border-radius: 8px;
@@ -49,9 +49,12 @@ export const ModalContainer = styled.div<ModalContainerPropsType>`
     `};
     ${type === 'bottom' &&
     css`
+      ${defaultWidth}
       width: 100%;
       left: 0;
       bottom: 1.5rem;
+      left: 50%;
+      transform: translate(-50%);
     `};
     ${customedStyle};
   `}
