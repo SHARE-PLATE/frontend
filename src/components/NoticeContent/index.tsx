@@ -27,7 +27,6 @@ const NoticeContent = () => {
   const activeNotice = useRecoilValue(activeNoticeState);
   const selector = noticeState<typeof activeNotice>({ type: activeNotice });
   const { state, contents } = useRecoilValueLoadable(selector);
-  const noticeTabsInfo = useRecoilValue(noticeInfoState);
   const deleteMode = useRecoilValue(deleteModeState);
 
   const handleDeleteAllBtn = async () => {
@@ -59,7 +58,6 @@ const NoticeContent = () => {
 
   return (
     <>
-      <Tabs tabsInfo={noticeTabsInfo} targetAtom={activeNoticeState} />
       <S.DeleteAllBtn onClick={handleDeleteAllBtn} isDeleteMode={deleteMode && !!contents.length}>
         {DELETE_ALL}
       </S.DeleteAllBtn>

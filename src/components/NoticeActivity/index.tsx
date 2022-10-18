@@ -2,6 +2,7 @@ import 'moment/locale/ko';
 
 import moment from 'moment';
 import { useRecoilValue } from 'recoil';
+import { v4 as getRandomKey } from 'uuid';
 
 import { IconsType } from '@assets/icons';
 import * as S from '@components/NoticeActivity/NoticeActivity.style';
@@ -80,7 +81,7 @@ const NoticeActivity = ({ contents }: NoticeActivityPropsType) => {
       );
 
       return (
-        <S.Item key={shareId}>
+        <S.Item key={getRandomKey()}>
           <Icon iconName={iconName} iconSize={2.6} />
           <S.TextWrapper>
             <div>{mention}</div>
