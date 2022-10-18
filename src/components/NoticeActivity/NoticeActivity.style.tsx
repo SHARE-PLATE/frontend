@@ -11,7 +11,7 @@ export const Item = styled.div`
   gap: 0.75rem;
 
   > * {
-    flex-basis: 1;
+    align-items: baseline;
   }
 `;
 

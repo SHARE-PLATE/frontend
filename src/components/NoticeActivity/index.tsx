@@ -3,18 +3,62 @@ import 'moment/locale/ko';
 import moment from 'moment';
 import { useRecoilValue } from 'recoil';
 
-import { NoticeActivityDataType } from '@api/notice';
+import { IconsType } from '@assets/icons';
 import * as S from '@components/NoticeActivity/NoticeActivity.style';
 import NoticeDeleteBtn from '@components/NoticeDeleteBtn';
 import Icon from '@components/common/Icon';
 import ImgContainer from '@components/common/ImgContainer';
+import {
+  deadlineMention,
+  entryCanceledMention,
+  entryCancelMention,
+  entryJoinedMention,
+  entryMention,
+  shareCanceledMention,
+  shareCancelMention,
+  thirtyMinuitesLeftMention,
+} from '@constants/mentions';
 import { deleteModeState } from '@store/notice';
+import { ActivityType, NoticeActivityDataType } from '@type/notice';
 
 type NoticeActivityPropsType = {
   contents: NoticeActivityDataType[];
 };
 
-const deadlineMention = '등록하신 상품의 시간이 끝나가요!';
+type TextsByActivityType = {
+  iconName: IconsType;
+  mention: string;
+  desc: string;
+};
+
+const getTextsByActivity = (type: ActivityType, option?: string): TextsByActivityType => {
+  const textsByAcitivity: { [key in ActivityType]: TextsByActivityType } = {
+    ENTRY: {
+      iconName: 'NoticeActivityLogo',
+      mention: entryJoinedMention,
+      desc: entryMention(option),
+    },
+    ENTRY_CANCEL: {
+      iconName: 'NoticeActivityLogo',
+      mention: entryCanceledMention,
+      desc: entryCancelMention(option),
+    },
+    DEADLINE: {
+      iconName: 'NoticeActivityFull',
+      mention: deadlineMention,
+      desc: thirtyMinuitesLeftMention,
+    },
+    SHARE_CANCEL: {
+      iconName: 'NoticeActivityFull',
+      mention: shareCanceledMention,
+      desc: shareCancelMention(option),
+    },
+  };
+
+  const texts = textsByAcitivity[type];
+
+  return texts;
+};
 
 const NoticeActivity = ({ contents }: NoticeActivityPropsType) => {
   const deleteMode = useRecoilValue(deleteModeState);
@@ -28,13 +72,17 @@ const NoticeActivity = ({ contents }: NoticeActivityPropsType) => {
       shareTitle,
     }) => {
       const diffTime = moment(notificationCreatedDateTime).fromNow();
+      const { iconName, mention, desc } = getTextsByActivity(
+        activityType,
+        recruitmentMemberNickname,
+      );
 
       return (
         <S.Item key={shareId}>
-          <Icon iconName='NoticeActivityFull' iconSize={2.6} />
+          <Icon iconName={iconName} iconSize={2.6} />
           <S.TextWrapper>
-            <div>{deadlineMention}</div>
-            <S.DescText>{`[${shareTitle}] 상품이 30분 남았습니다!`}</S.DescText>
+            <div>{mention}</div>
+            <S.DescText>{`[${shareTitle}] ${desc}`}</S.DescText>
             <S.DiffTime>{diffTime}</S.DiffTime>
           </S.TextWrapper>
           <S.ImgWrapper>
@@ -43,6 +91,7 @@ const NoticeActivity = ({ contents }: NoticeActivityPropsType) => {
               imgTitle={shareTitle}
               imgWrapperWidth={S.imgWidth}
               imgWrapperRatio={1 / 1}
+              borderRadius='4px'
             />
           </S.ImgWrapper>
           <NoticeDeleteBtn id={shareId} isShowed={deleteMode} />
