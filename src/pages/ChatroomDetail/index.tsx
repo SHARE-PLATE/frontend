@@ -78,11 +78,12 @@ const ChatroomDetail = () => {
     }
   };
 
+  useEffect(() => {}, []);
+
   useEffect(() => {
     return () => {
       // update read time when exit this page
       putChatUpdateReadTime({ chatRoomId: id });
-
       // reload chats that made during this render
       setchatroomDetailTrigger((prev) => prev + 1);
 

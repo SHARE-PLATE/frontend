@@ -116,6 +116,7 @@ const Chatrooms = () => {
 
   // show remained chat count when go back to chatrooms from chatroom detail
   useEffect(() => {
+    reloadChatroomsData();
     setChatsUnreadTrigger((prev) => prev + 1);
     return () => setChatroomsUpdate({});
   }, []);
