@@ -3,7 +3,11 @@ import { Fragment, useEffect, useRef, useState } from 'react';
 import { useRecoilValueLoadable, useSetRecoilState } from 'recoil';
 
 import { deleteChatroomData } from '@api/chat';
-import ChatroomsItem, { IdType, LongPressOption } from '@components/ChatroomsItem';
+import ChatroomsItem, {
+  ChatroomItemCallBackParamsType,
+  IdType,
+  LongPressOption,
+} from '@components/ChatroomsItem';
 import Loading from '@components/Loading';
 import NoticeIcon from '@components/NoticeIcon';
 import Tabs from '@components/Tabs';
@@ -48,6 +52,12 @@ const Chatrooms = () => {
     setIsSelectModal(true);
   };
 
+  const showSelectWithId = ({ event, id }: ChatroomItemCallBackParamsType) => {
+    event && event.stopPropagation();
+    id && setDeletedId(id);
+    setIsSelectModal(true);
+  };
+
   const handleClickSelectOkBtn = async () => {
     if (!deletedId) return;
     const response = await deleteChatroomData(deletedId);
@@ -78,7 +88,14 @@ const Chatrooms = () => {
         const chatrooms = chatroomsData.map((info) => {
           if (!info.recruitmentMemberNicknames.length) return <Fragment key={info.id}></Fragment>;
           // 참여 멤버가 없을 시 채팅이 보이지 않음
-          return <ChatroomsItem key={info.id} {...info} longPressOption={longPressOption} />;
+          return (
+            <ChatroomsItem
+              key={info.id}
+              longPressOption={longPressOption}
+              onClickExitBtn={showSelectWithId}
+              {...info}
+            />
+          );
         });
         return <S.ContentsWrapper>{chatrooms}</S.ContentsWrapper>;
       case 'hasError':
