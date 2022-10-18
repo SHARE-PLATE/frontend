@@ -18,7 +18,7 @@ export const HeaderBtn = styled.button`
   display: flex;
 `;
 
-export const DeleteModeButton = styled.button`
+export const DeleteModeButton = styled.div`
   ${({ theme: { fonts } }) => css`
     ${fonts.largeRegular};
   `}

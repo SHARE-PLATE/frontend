@@ -12,6 +12,7 @@ const Notice = () => {
   const [deleteMode, setDeleteMode] = useRecoilState(deleteModeState);
   const setNewNotice = useSetRecoilState(newNoticeState);
 
+  // set notice icon show that new notice doesn't exist
   setNewNotice(null);
 
   return (
