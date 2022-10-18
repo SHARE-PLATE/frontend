@@ -37,3 +37,11 @@ export const tagInputPlaceholderMention = '#태그를 입력해주세요. (최�
 export const deleteChatMention =
   '채팅방에서 나가시겠습니까?\n채팅방을 나가면 대화 내용이 삭제됩니다.';
 export const exitMention = '네, 나갈래요.';
+export const deadlineMention = '등록하신 상품의 시간이 끝나가요!';
+export const thirtyMinuitesLeftMention = '상품이 30분 남았습니다!';
+export const entryJoinedMention = '쉐어가 신청되었습니다.';
+export const entryCanceledMention = '쉐어 신청이 취소되었습니다.';
+export const shareCanceledMention = '쉐어가 취소되었습니다.';
+export const entryMention = (name?: string) => `${name}님이 쉐어 신청하였습니다.`;
+export const shareCancelMention = (name?: string) => `${name}님이 쉐어를 취소하였습니다.`;
+export const entryCancelMention = (name?: string) => `${name}님이 쉐어 신청을 취소하였습니다.`;
