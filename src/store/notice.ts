@@ -1,15 +1,15 @@
 import { atom, selector, selectorFamily } from 'recoil';
 import { v4 as getRandomKey } from 'uuid';
 
+import { getNotice } from '@api/notice';
+import { TabsInfoType } from '@components/Tabs';
+import { ACTIVITY } from '@constants/words';
 import {
   ActiveNoticeType,
-  getNotice,
   GetNoticeParamsType,
   NoticeActivityDataType,
   NoticeKeywordDataType,
-} from '@api/notice';
-import { TabsInfoType } from '@components/Tabs';
-import { ACTIVITY } from '@constants/words';
+} from '@type/notice';
 
 export type newNoticeStateType = NoticeActivityDataType | NoticeKeywordDataType | null;
 

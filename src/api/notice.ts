@@ -1,40 +1,13 @@
 import axios from 'axios';
 
 import { API } from '@constants/api';
-import { ACTIVITY, KEYWORD } from '@constants/words';
+import {
+  ActiveNoticeType,
+  DeleteNoticeParamsType,
+  GetNoticeDataType,
+  GetNoticeParamsType,
+} from '@type/notice';
 import { getAuthHeaders } from '@utils/getAuthHeaders';
-
-export type ActiveNoticeType = typeof ACTIVITY | typeof KEYWORD;
-
-export type GetNoticeParamsType = {
-  type: ActiveNoticeType;
-};
-
-export type DeleteNoticeParamsType = {
-  id?: number;
-  idList?: number[];
-};
-
-export type NoticeActivityDataType = {
-  recruitmentMemberNickname: string | null;
-  notificationCreatedDateTime: string;
-  shareTitle: string;
-  shareThumbnailImageUrl: string;
-  shareId: number;
-  activityType: 'ENTRY' | 'DEADLINE';
-};
-
-export type NoticeKeywordDataType = {
-  shareLocation: string;
-  shareId: number;
-  shareTitle: string;
-  shareThumbnailImageUrl: string;
-  notificationCreatedDateTime: string;
-};
-
-export type GetNoticeDataType<T extends ActiveNoticeType> = T extends typeof ACTIVITY
-  ? NoticeActivityDataType[]
-  : NoticeKeywordDataType[];
 
 export const noticeApiByType = {
   activity: API.NOTICE_ACTIVITY,
