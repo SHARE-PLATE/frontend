@@ -48,7 +48,7 @@ const EditUserInfo = () => {
       {isToastModal && (
         <ToastModal
           modalRef={modalRef}
-          closeToastModal={() => setToastModal(false)}
+          onClickCloseButton={() => setToastModal(false)}
           mainButtonTitle={DELETE_PROFILE_PICTURE}
           optionButtonTitle={SELECT_ALBUM}
           mainButtonHandler={() => {
