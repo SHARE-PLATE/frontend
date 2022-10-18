@@ -1,11 +1,10 @@
 import { IconsType } from '@assets/icons';
-
 export interface userMenuType {
   id: number;
   title: string;
   icon: IconsType;
-  link?: string;
-  clickHandler?: () => void;
+  link: string;
+  isLogout?: boolean;
 }
 
 export const profileMenu: userMenuType[] = [
@@ -21,8 +20,7 @@ export const settingMenu: userMenuType[] = [
     id: 6,
     title: '로그아웃',
     icon: 'Logout',
-    clickHandler: () => {
-      console.log('click!');
-    },
+    link: '/',
+    isLogout: true,
   },
 ];
