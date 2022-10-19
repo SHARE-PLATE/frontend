@@ -7,7 +7,8 @@ export const Wrapper = styled.div`
     ${defaultPadding};
     background-color: ${colors.white1};
     flex-grow: 1;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
     height: 100vh;
   `}
 `;

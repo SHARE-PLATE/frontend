@@ -6,7 +6,6 @@ export const imgWidth = '3rem';
 
 export const Wrapper = styled.div`
   ${noScrollBar}
-  height: 100%;
   overflow-y: scroll;
 `;
 

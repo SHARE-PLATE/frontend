@@ -6,7 +6,6 @@ export const itemHeight = '3.9rem';
 
 export const Wrapper = styled.div`
   ${noScrollBar}
-  height: 100%;
   overflow-y: scroll;
 `;
 
