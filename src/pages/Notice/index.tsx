@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
 
+import BottomMessage from '@components/BottomMessage';
 import Loading from '@components/Loading';
 import NoticeActivity from '@components/NoticeActivity';
 import NoticeDeleteAllButton from '@components/NoticeDeleteAllButton';
@@ -9,17 +10,15 @@ import { HeaderBtn } from '@components/NoticeDeleteModeButton/NoticeDeleteModeBu
 import NoticeKeyword from '@components/NoticeKeyword';
 import Tabs from '@components/Tabs';
 import Icon from '@components/common/Icon';
-import { failtoGetNoticeMention, noRecentNoticeMention } from '@constants/mentions';
+import { failtoGetNoticeMention } from '@constants/mentions';
 import { NOTICE_CENTER } from '@constants/words';
 import * as S from '@pages/Notice/Notice.style';
 import { activeNoticeState, noticeInfoState, noticeState } from '@store/notice';
-import { getIsActivityArray } from '@type/notice';
 
 const Notice = () => {
   const navigate = useNavigate();
   const noticeTabsInfo = useRecoilValue(noticeInfoState);
   const activeNotice = useRecoilValue(activeNoticeState);
-  const NoRecentNotice = <S.NoRecentNoticeWrapper>{noRecentNoticeMention}</S.NoRecentNoticeWrapper>;
   const selector = noticeState<typeof activeNotice>({ type: activeNotice });
   const { state, contents } = useRecoilValueLoadable(selector);
   const idList = state === 'hasValue' ? contents.map(({ id }) => id) : undefined;
@@ -27,14 +26,10 @@ const Notice = () => {
   const getNoticeContents = () => {
     switch (state) {
       case 'hasValue':
-        if (!contents.length) return NoRecentNotice;
-        const isActivity = getIsActivityArray(contents);
-
+        const NoticeContent = activeNotice === 'activity' ? NoticeActivity : NoticeKeyword;
         return (
-          <>
-            {isActivity && <NoticeActivity contents={contents} />}
-            {!isActivity && <NoticeKeyword contents={contents} />}
-          </>
+          //@ts-ignore ** 추후에 반드시 처리가 필요합니다!
+          <NoticeContent contents={contents} />
         );
       case 'hasError':
         return <S.ErrorWrapper>{failtoGetNoticeMention}</S.ErrorWrapper>;
@@ -58,6 +53,7 @@ const Notice = () => {
           <NoticeDeleteAllButton idList={idList} />
         </S.TabsWrapper>
       </S.TopFixedWrapper>
+      <BottomMessage />
       {getNoticeContents()}
     </S.Wrapper>
   );

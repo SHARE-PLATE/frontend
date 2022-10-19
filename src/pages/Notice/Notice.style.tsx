@@ -13,14 +13,6 @@ export const Wrapper = styled.div`
   `}
 `;
 
-export const NoRecentNoticeWrapper = styled.div`
-  ${({ theme: { colors } }) => css`
-    ${flexCenter};
-    color: ${colors.grey4};
-    height: 20rem;
-  `}
-`;
-
 export const ErrorWrapper = styled.div`
   ${({ theme: { colors } }) => css`
     ${flexCenter}
