@@ -19,7 +19,7 @@ const NoticeKeyword = ({ contents }: { contents: NoticeKeywordDataType[] }) => {
   const navigate = useNavigate();
   const setNoticeStateTrigger = useSetRecoilState(noticeStateTrigger);
   const [newNotice, setNewNotice] = useRecoilState(newNoticeState);
-  const idList = contents.map(({ id }) => id);
+  const idList = keywordData.map(({ id }) => id);
   const noRecentNotice = <S.NoRecentNoticeWrapper>{noRecentNoticeMention}</S.NoRecentNoticeWrapper>;
 
   const NoticeKeywordItem = ({

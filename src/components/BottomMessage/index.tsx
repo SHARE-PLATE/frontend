@@ -21,11 +21,14 @@ const BottomMessage = () => {
 
   useEffect(() => {
     // position condition is required for first rendering with no bottom message component
+    if (!trigger && position === 'up') {
+      setPosition('down');
+      return;
+    }
     if (trigger && !position) {
       setPosition('up');
-      setBottomMessage(message);
     }
-    if (!trigger && position === 'up') setPosition('down');
+    setBottomMessage(message);
   }, [trigger]);
 
   return (

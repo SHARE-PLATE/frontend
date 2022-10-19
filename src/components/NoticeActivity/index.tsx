@@ -66,7 +66,7 @@ const NoticeActivity = ({ contents }: { contents: NoticeActivityDataType[] }) =>
   const navigate = useNavigate();
   const setNoticeStateTrigger = useSetRecoilState(noticeStateTrigger);
   const [newNotice, setNewNotice] = useRecoilState(newNoticeState);
-  const idList = contents.map(({ id }) => id);
+  const idList = activityData.map(({ id }) => id);
   const noRecentNotice = <S.NoRecentNoticeWrapper>{noRecentNoticeMention}</S.NoRecentNoticeWrapper>;
 
   const NoticeActivityItem = ({
