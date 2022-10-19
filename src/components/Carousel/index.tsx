@@ -11,6 +11,7 @@ interface CarouselPropsType {
   isCount?: boolean;
   width?: string;
   height?: string;
+  onClickHandler?: (itemIdx: number) => void;
 }
 
 const Carousel = ({
@@ -20,19 +21,24 @@ const Carousel = ({
   isCount = true,
   width = '100%',
   height = '6rem',
+  onClickHandler,
 }: CarouselPropsType) => {
-  const [current, setCurrent] = useState(0);
-  const showCurIndex = (curIndex: number) => setCurrent(curIndex);
+  const [current, setCurrent] = useState<number>(0);
+  const changeCurIndex = (curIndex: number) => setCurrent(curIndex);
 
   return (
-    <S.CarouselWrapper width={width} height={height}>
+    <S.CarouselWrapper
+      width={width}
+      height={height}
+      onClick={() => onClickHandler && onClickHandler(current)}
+    >
       {isCount && (
         <S.CarouselCount>
           <S.ShowedIndexWrapper>{current + 1}</S.ShowedIndexWrapper>
           {` / ${contents.length}`}
         </S.CarouselCount>
       )}
-      <S.CarouselSlider {...settings} type={type} afterChange={showCurIndex}>
+      <S.CarouselSlider {...settings} type={type} afterChange={changeCurIndex}>
         {contents}
       </S.CarouselSlider>
     </S.CarouselWrapper>
