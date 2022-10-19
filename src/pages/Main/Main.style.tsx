@@ -8,6 +8,7 @@ export const MainWrapper = styled.div`
 
 export const MainHeaderWrapper = styled.div`
   padding: 0;
+  margin-bottom: 6px;
 `;
 
 export const HeaderBarWrapper = styled.div`

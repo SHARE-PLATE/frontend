@@ -1,11 +1,13 @@
 import { atom } from 'recoil';
 
-type BottomMessageType = {
+export type BottomMessageType = null | string;
+
+type BottomMessageStateType = {
   trigger: number;
-  message: null | string;
+  message: BottomMessageType;
 };
 
-export const bottomMessageState = atom<BottomMessageType>({
+export const bottomMessageState = atom<BottomMessageStateType>({
   key: 'bottomMessage',
   default: {
     trigger: 0,

@@ -4,10 +4,12 @@ import { useRecoilValue, useResetRecoilState } from 'recoil';
 
 import * as S from '@components/BottomMessage/BottomMessage.style';
 import { useDebounce } from '@hooks/useDebounce';
-import { bottomMessageState } from '@store/bottomMessage';
+import { bottomMessageState, BottomMessageType } from '@store/bottomMessage';
 
 const BottomMessage = () => {
   const { message, trigger } = useRecoilValue(bottomMessageState);
+  // set bottom message separately to show message when position is "down"
+  const [bottomMessage, setBottomMessage] = useState<BottomMessageType>(null);
   const [position, setPosition] = useState<S.PositionType>(null);
   const resetBottomMessage = useResetRecoilState(bottomMessageState);
 
@@ -18,13 +20,17 @@ const BottomMessage = () => {
   useDebounce({ func: () => resetBottomMessage(), delay: 3000, deps: [trigger] });
 
   useEffect(() => {
-    if (trigger && !position) setPosition('up');
+    // position condition is required for first rendering with no bottom message component
+    if (trigger && !position) {
+      setPosition('up');
+      setBottomMessage(message);
+    }
     if (!trigger && position === 'up') setPosition('down');
   }, [trigger]);
 
   return (
     <S.Wrapper position={position} onAnimationEnd={handleAnimationEnd}>
-      <S.MessageWrapper>{message}</S.MessageWrapper>
+      <S.MessageWrapper>{bottomMessage}</S.MessageWrapper>
     </S.Wrapper>
   );
 };
