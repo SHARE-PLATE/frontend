@@ -6,6 +6,7 @@ export const Wrapper = styled.button<{ isDeleteMode: boolean }>`
   ${({ theme: { fonts, colors, defaultHeaderHeight }, isDeleteMode }) => css`
     ${fonts.large};
 
+    z-index: 2;
     top: calc(${defaultHeaderHeight}rem + ${tabsHeight});
     position: sticky;
     display: block;

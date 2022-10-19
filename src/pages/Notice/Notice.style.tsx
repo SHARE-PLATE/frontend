@@ -26,7 +26,7 @@ export const TopFixedWrapper = styled.div`
     ${defaultWidth};
     position: sticky;
     top: 0;
-    z-index: 2;
+    z-index: 3;
     background-color: ${colors.white1};
     width: calc(100% + 2rem);
     margin-left: -1rem;
