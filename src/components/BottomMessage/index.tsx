@@ -25,7 +25,7 @@ const BottomMessage = () => {
       setPosition('down');
       return;
     }
-    if (trigger && !position) {
+    if (trigger && position !== 'up') {
       setPosition('up');
     }
     setBottomMessage(message);
