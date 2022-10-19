@@ -26,10 +26,6 @@ const ImgContainer = ({
 }: ImgContainerPropsType) => {
   const imgWrapperRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
-  const imgValue = new Image();
-
-  imgValue.src = imgSrc;
-  imgValue.onload = () => setIsLoaded(true);
 
   return (
     <S.Wrapper
@@ -41,7 +37,7 @@ const ImgContainer = ({
       noAlign={noAlign}
       additionalStyle={additionalStyle}
     >
-      <img src={imgSrc} alt={imgTitle} />
+      <img src={imgSrc} alt={imgTitle} onLoad={() => setIsLoaded(true)} />
     </S.Wrapper>
   );
 };
