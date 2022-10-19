@@ -65,7 +65,6 @@ const SearchPortal = () => {
                 placeholder={inputKeyword}
                 ref={inputRef}
               />
-              {/* <S.SubmitBtn></S.SubmitBtn> 추후 검색 입력 버튼 사용 시*/}
             </S.Form>
           </S.FormWrapper>
           <SearchPopular clickHandler={handleSubmit} />
