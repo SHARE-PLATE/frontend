@@ -1,20 +1,10 @@
 import styled, { css } from 'styled-components';
 
-import { flexCenter } from '@styles/mixin';
-
 export const itemHeight = '3.9rem';
 
 export const Wrapper = styled.div``;
 
-export const NoRecentNoticeWrapper = styled.div`
-  ${({ theme: { colors } }) => css`
-    ${flexCenter};
-    color: ${colors.grey4};
-    height: 10rem;
-  `}
-`;
-
-export const Item = styled.div`
+export const ItemWrapper = styled.div`
   display: flex;
   gap: 0.75rem;
   margin: 1rem 0;

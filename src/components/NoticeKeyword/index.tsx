@@ -1,60 +1,61 @@
 import 'moment/locale/ko';
 
+import { useState } from 'react';
+
 import moment from 'moment';
 import { useRecoilValue } from 'recoil';
 
 import NoticeDeleteBtn from '@components/NoticeDeleteBtn';
 import * as S from '@components/NoticeKeyword/NoticeKeyword.style';
 import ImgContainer from '@components/common/ImgContainer';
-import { newShareEnrolledMention, noRecentNoticeMention } from '@constants/mentions';
+import { newShareEnrolledMention } from '@constants/mentions';
 import { deleteModeState } from '@store/notice';
 import { NoticeKeywordDataType } from '@type/notice';
 
-type NoticeKeywordPropsType = {
-  contents: NoticeKeywordDataType[];
-};
-
-const NoticeKeyword = ({ contents }: NoticeKeywordPropsType) => {
+const NoticeKeyword = ({ contents }: { contents: NoticeKeywordDataType[] }) => {
   const deleteMode = useRecoilValue(deleteModeState);
-  const NoRecentNotice = <S.NoRecentNoticeWrapper>{noRecentNoticeMention}</S.NoRecentNoticeWrapper>;
-  const items = contents.map(
-    ({
-      shareLocation,
-      shareId,
-      shareThumbnailImageUrl,
-      shareTitle,
-      notificationCreatedDateTime,
-    }) => {
-      const diffTime = moment(notificationCreatedDateTime).fromNow();
+  const [keywordData, setKeywordData] = useState(contents);
 
-      return (
-        <S.Item key={shareId}>
-          <S.ImgWrapper>
-            <ImgContainer
-              imgSrc={shareThumbnailImageUrl}
-              imgTitle={shareTitle}
-              imgWrapperRatio={1 / 1}
-              imgWrapperWidth={S.itemHeight}
-              borderRadius='0.25rem'
-            />
-          </S.ImgWrapper>
-          <S.TextWrapper>
-            <S.TextUpper>
-              <S.LocationBox>{shareLocation}</S.LocationBox>
-              <S.EnrollMention>{newShareEnrolledMention}</S.EnrollMention>
-            </S.TextUpper>
-            <S.TitleWrapper>{shareTitle}</S.TitleWrapper>
-            <S.DiffTime>{diffTime}</S.DiffTime>
-          </S.TextWrapper>
-          <NoticeDeleteBtn id={shareId} isShowed={deleteMode} />
-        </S.Item>
-      );
-    },
-  );
+  const getItems = () => {
+    return keywordData.map(
+      ({
+        shareLocation,
+        shareId,
+        shareThumbnailImageUrl,
+        shareTitle,
+        notificationCreatedDateTime,
+      }) => {
+        const diffTime = moment(notificationCreatedDateTime).fromNow();
 
-  const innerContents = !!items.length ? items.reverse() : NoRecentNotice;
+        return (
+          <S.ItemWrapper key={shareId}>
+            <S.ImgWrapper>
+              <ImgContainer
+                imgSrc={shareThumbnailImageUrl}
+                imgTitle={shareTitle}
+                imgWrapperRatio={1 / 1}
+                imgWrapperWidth={S.itemHeight}
+                borderRadius='0.25rem'
+              />
+            </S.ImgWrapper>
+            <S.TextWrapper>
+              <S.TextUpper>
+                <S.LocationBox>{shareLocation}</S.LocationBox>
+                <S.EnrollMention>{newShareEnrolledMention}</S.EnrollMention>
+              </S.TextUpper>
+              <S.TitleWrapper>{shareTitle}</S.TitleWrapper>
+              <S.DiffTime>{diffTime}</S.DiffTime>
+            </S.TextWrapper>
+            <NoticeDeleteBtn id={shareId} isShowed={deleteMode} />
+          </S.ItemWrapper>
+        );
+      },
+    );
+  };
 
-  return <S.Wrapper>{innerContents}</S.Wrapper>;
+  const items = getItems();
+
+  return <S.Wrapper>{items}</S.Wrapper>;
 };
 
 export default NoticeKeyword;
