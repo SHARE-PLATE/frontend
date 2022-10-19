@@ -1,5 +1,7 @@
 import 'moment/locale/ko';
 
+import { useState } from 'react';
+
 import moment from 'moment';
 import { useRecoilValue } from 'recoil';
 import { v4 as getRandomKey } from 'uuid';
@@ -15,17 +17,12 @@ import {
   entryCancelMention,
   entryJoinedMention,
   entryMention,
-  noRecentNoticeMention,
   shareCanceledMention,
   shareCancelMention,
   thirtyMinuitesLeftMention,
 } from '@constants/mentions';
 import { deleteModeState } from '@store/notice';
 import { ActivityType, NoticeActivityDataType } from '@type/notice';
-
-type NoticeActivityPropsType = {
-  contents: NoticeActivityDataType[];
-};
 
 type TextsByActivityType = {
   iconName: IconsType;
@@ -62,50 +59,53 @@ const getTextsByActivity = (type: ActivityType, option?: string): TextsByActivit
   return texts;
 };
 
-const NoticeActivity = ({ contents }: NoticeActivityPropsType) => {
+const NoticeActivity = ({ contents }: { contents: NoticeActivityDataType[] }) => {
   const deleteMode = useRecoilValue(deleteModeState);
-  const NoRecentNotice = <S.NoRecentNoticeWrapper>{noRecentNoticeMention}</S.NoRecentNoticeWrapper>;
-  const items = contents.map(
-    ({
-      activityType,
-      notificationCreatedDateTime,
-      recruitmentMemberNickname,
-      shareId,
-      shareThumbnailImageUrl,
-      shareTitle,
-    }) => {
-      const diffTime = moment(notificationCreatedDateTime).fromNow();
-      const { iconName, mention, desc } = getTextsByActivity(
-        activityType,
-        recruitmentMemberNickname,
-      );
+  const [activityData, setActivityData] = useState(contents);
+  const getItems = () => {
+    return activityData
+      .map(
+        ({
+          activityType,
+          notificationCreatedDateTime,
+          recruitmentMemberNickname,
+          shareId,
+          shareThumbnailImageUrl,
+          shareTitle,
+        }) => {
+          const diffTime = moment(notificationCreatedDateTime).fromNow();
+          const { iconName, mention, desc } = getTextsByActivity(
+            activityType,
+            recruitmentMemberNickname,
+          );
+          return (
+            <S.ItemWrapper key={getRandomKey()}>
+              <Icon iconName={iconName} iconSize={2.6} />
+              <S.TextWrapper>
+                <div>{mention}</div>
+                <S.DescText>{`[${shareTitle}] ${desc}`}</S.DescText>
+                <S.DiffTime>{diffTime}</S.DiffTime>
+              </S.TextWrapper>
+              <S.ImgWrapper>
+                <ImgContainer
+                  imgSrc={shareThumbnailImageUrl}
+                  imgTitle={shareTitle}
+                  imgWrapperWidth={S.imgWidth}
+                  imgWrapperRatio={1 / 1}
+                  borderRadius='4px'
+                />
+              </S.ImgWrapper>
+              <NoticeDeleteBtn id={shareId} isShowed={deleteMode} />
+            </S.ItemWrapper>
+          );
+        },
+      )
+      .reverse();
+  };
 
-      return (
-        <S.Item key={getRandomKey()}>
-          <Icon iconName={iconName} iconSize={2.6} />
-          <S.TextWrapper>
-            <div>{mention}</div>
-            <S.DescText>{`[${shareTitle}] ${desc}`}</S.DescText>
-            <S.DiffTime>{diffTime}</S.DiffTime>
-          </S.TextWrapper>
-          <S.ImgWrapper>
-            <ImgContainer
-              imgSrc={shareThumbnailImageUrl}
-              imgTitle={shareTitle}
-              imgWrapperWidth={S.imgWidth}
-              imgWrapperRatio={1 / 1}
-              borderRadius='4px'
-            />
-          </S.ImgWrapper>
-          <NoticeDeleteBtn id={shareId} isShowed={deleteMode} />
-        </S.Item>
-      );
-    },
-  );
+  const items = getItems();
 
-  const innerContents = !!items.length ? items.reverse() : NoRecentNotice;
-
-  return <S.Wrapper>{innerContents}</S.Wrapper>;
+  return <S.Wrapper>{items}</S.Wrapper>;
 };
 
 export default NoticeActivity;
