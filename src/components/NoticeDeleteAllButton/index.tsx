@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 
 import { deleteNotice } from '@api/notice';
 import * as S from '@components/NoticeDeleteAllButton/NoticeDeleteAllButton.style';

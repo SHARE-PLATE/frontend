@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { v4 as getRandomKey } from 'uuid';
 
 import NoticeDeleteBtn from '@components/NoticeDeleteBtn';
@@ -17,7 +17,7 @@ const NoticeKeyword = ({ contents }: { contents: NoticeKeywordDataType[] }) => {
   const [keywordData, setKeywordData] = useState(contents);
   const navigate = useNavigate();
   const setNoticeStateTrigger = useSetRecoilState(noticeStateTrigger);
-  const newNotice = useRecoilValue(newNoticeState);
+  const [newNotice, setNewNotice] = useRecoilState(newNoticeState);
 
   const NoticeKeywordItem = ({
     id,
@@ -74,7 +74,10 @@ const NoticeKeyword = ({ contents }: { contents: NoticeKeywordDataType[] }) => {
   }, [newNotice]);
 
   useEffect(() => {
-    return () => setNoticeStateTrigger((prev) => prev + 1);
+    return () => {
+      setNoticeStateTrigger((prev) => prev + 1);
+      setNewNotice(null);
+    };
   }, []);
 
   return <S.Wrapper>{getItems()}</S.Wrapper>;

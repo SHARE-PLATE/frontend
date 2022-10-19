@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { v4 as getRandomKey } from 'uuid';
 
 import { IconsType } from '@assets/icons';
@@ -63,7 +63,7 @@ const NoticeActivity = ({ contents }: { contents: NoticeActivityDataType[] }) =>
   const [activityData, setActivityData] = useState(contents);
   const navigate = useNavigate();
   const setNoticeStateTrigger = useSetRecoilState(noticeStateTrigger);
-  const newNotice = useRecoilValue(newNoticeState);
+  const [newNotice, setNewNotice] = useRecoilState(newNoticeState);
 
   const NoticeActivityItem = ({
     id,
@@ -125,8 +125,12 @@ const NoticeActivity = ({ contents }: { contents: NoticeActivityDataType[] }) =>
     });
   }, [newNotice]);
 
+  // set notice icon show that new notice doesn't exist
   useEffect(() => {
-    return () => setNoticeStateTrigger((prev) => prev + 1);
+    return () => {
+      setNewNotice(null);
+      setNoticeStateTrigger((prev) => prev + 1);
+    };
   }, []);
 
   return <S.Wrapper>{getItems()}</S.Wrapper>;
