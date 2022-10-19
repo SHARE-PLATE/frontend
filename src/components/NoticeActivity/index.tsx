@@ -1,9 +1,6 @@
-import 'moment/locale/ko';
-
 import { useState } from 'react';
 
 import moment from 'moment';
-import { useRecoilValue } from 'recoil';
 import { v4 as getRandomKey } from 'uuid';
 
 import { IconsType } from '@assets/icons';
@@ -22,7 +19,6 @@ import {
   shareCancelMention,
   thirtyMinuitesLeftMention,
 } from '@constants/mentions';
-import { deleteModeState } from '@store/notice';
 import { ActivityType, NoticeActivityDataType } from '@type/notice';
 
 type TextsByActivityType = {
@@ -61,47 +57,41 @@ const getTextsByActivity = (type: ActivityType, option?: string): TextsByActivit
 };
 
 const NoticeActivity = ({ contents }: { contents: NoticeActivityDataType[] }) => {
-  const deleteMode = useRecoilValue(deleteModeState);
   const [activityData, setActivityData] = useState(contents);
+  const NoticeActivityItem = ({
+    activityType,
+    notificationCreatedDateTime,
+    recruitmentMemberNickname,
+    shareId,
+    shareThumbnailImageUrl,
+    shareTitle,
+  }: NoticeActivityDataType) => {
+    const diffTime = moment(notificationCreatedDateTime).add(9, 'h').fromNow();
+    const { iconName, mention, desc } = getTextsByActivity(activityType, recruitmentMemberNickname);
+
+    return (
+      <S.ItemWrapper key={getRandomKey()}>
+        <Icon iconName={iconName} iconSize={2.6} />
+        <S.TextWrapper>
+          <div>{mention}</div>
+          <S.DescText>{`[${shareTitle}] ${desc}`}</S.DescText>
+          <S.DiffTime>{diffTime}</S.DiffTime>
+        </S.TextWrapper>
+        <S.ImgWrapper>
+          <ImgContainer
+            imgSrc={shareThumbnailImageUrl}
+            imgTitle={shareTitle}
+            imgWrapperWidth={S.imgWidth}
+            imgWrapperRatio={1 / 1}
+            borderRadius='4px'
+          />
+        </S.ImgWrapper>
+        <NoticeDeleteBtn id={shareId} />
+      </S.ItemWrapper>
+    );
+  };
   const getItems = () => {
-    return activityData
-      .map(
-        ({
-          activityType,
-          notificationCreatedDateTime,
-          recruitmentMemberNickname,
-          shareId,
-          shareThumbnailImageUrl,
-          shareTitle,
-        }) => {
-          const diffTime = moment(notificationCreatedDateTime).fromNow();
-          const { iconName, mention, desc } = getTextsByActivity(
-            activityType,
-            recruitmentMemberNickname,
-          );
-          return (
-            <S.ItemWrapper key={getRandomKey()}>
-              <Icon iconName={iconName} iconSize={2.6} />
-              <S.TextWrapper>
-                <div>{mention}</div>
-                <S.DescText>{`[${shareTitle}] ${desc}`}</S.DescText>
-                <S.DiffTime>{diffTime}</S.DiffTime>
-              </S.TextWrapper>
-              <S.ImgWrapper>
-                <ImgContainer
-                  imgSrc={shareThumbnailImageUrl}
-                  imgTitle={shareTitle}
-                  imgWrapperWidth={S.imgWidth}
-                  imgWrapperRatio={1 / 1}
-                  borderRadius='4px'
-                />
-              </S.ImgWrapper>
-              <NoticeDeleteBtn id={shareId} isShowed={deleteMode} />
-            </S.ItemWrapper>
-          );
-        },
-      )
-      .reverse();
+    return activityData.map((info) => <NoticeActivityItem {...info} />).reverse();
   };
 
   const idList = contents.map(({ shareId }) => shareId);

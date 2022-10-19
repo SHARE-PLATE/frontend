@@ -44,6 +44,7 @@ export const TopFixedWrapper = styled.div`
     top: 0;
     margin-left: -1rem;
     padding: 0 1rem;
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.08);
   `}
 `;
 
