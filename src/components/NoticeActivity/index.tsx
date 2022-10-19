@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
 import moment from 'moment';
+import { useNavigate } from 'react-router-dom';
 import { v4 as getRandomKey } from 'uuid';
 
 import { IconsType } from '@assets/icons';
 import * as S from '@components/NoticeActivity/NoticeActivity.style';
-import NoticeDeleteAllButton from '@components/NoticeDeleteAllButton';
 import NoticeDeleteBtn from '@components/NoticeDeleteBtn';
 import Icon from '@components/common/Icon';
 import ImgContainer from '@components/common/ImgContainer';
@@ -19,6 +19,7 @@ import {
   shareCancelMention,
   thirtyMinuitesLeftMention,
 } from '@constants/mentions';
+import { pathName } from '@constants/pathName';
 import { ActivityType, NoticeActivityDataType } from '@type/notice';
 
 type TextsByActivityType = {
@@ -58,6 +59,7 @@ const getTextsByActivity = (type: ActivityType, option?: string): TextsByActivit
 
 const NoticeActivity = ({ contents }: { contents: NoticeActivityDataType[] }) => {
   const [activityData, setActivityData] = useState(contents);
+  const navigate = useNavigate();
   const NoticeActivityItem = ({
     activityType,
     notificationCreatedDateTime,
@@ -68,9 +70,13 @@ const NoticeActivity = ({ contents }: { contents: NoticeActivityDataType[] }) =>
   }: NoticeActivityDataType) => {
     const diffTime = moment(notificationCreatedDateTime).add(9, 'h').fromNow();
     const { iconName, mention, desc } = getTextsByActivity(activityType, recruitmentMemberNickname);
+    const handleClickItem = () => {
+      if (activityType === 'SHARE_CANCEL') return;
+      navigate(`${pathName.shareDetail}/${shareId}`);
+    };
 
     return (
-      <S.ItemWrapper>
+      <S.ItemWrapper onClick={handleClickItem}>
         <Icon iconName={iconName} iconSize={2.6} />
         <S.TextWrapper>
           <div>{mention}</div>

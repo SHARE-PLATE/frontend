@@ -1,17 +1,19 @@
 import { useState } from 'react';
 
 import moment from 'moment';
+import { useNavigate } from 'react-router-dom';
 import { v4 as getRandomKey } from 'uuid';
 
-import NoticeDeleteAllButton from '@components/NoticeDeleteAllButton';
 import NoticeDeleteBtn from '@components/NoticeDeleteBtn';
 import * as S from '@components/NoticeKeyword/NoticeKeyword.style';
 import ImgContainer from '@components/common/ImgContainer';
 import { newShareEnrolledMention } from '@constants/mentions';
+import { pathName } from '@constants/pathName';
 import { NoticeKeywordDataType } from '@type/notice';
 
 const NoticeKeyword = ({ contents }: { contents: NoticeKeywordDataType[] }) => {
   const [keywordData, setKeywordData] = useState(contents);
+  const navigate = useNavigate();
   const NoticeKeywordItem = ({
     shareLocation,
     shareId,
@@ -20,9 +22,10 @@ const NoticeKeyword = ({ contents }: { contents: NoticeKeywordDataType[] }) => {
     notificationCreatedDateTime,
   }: NoticeKeywordDataType) => {
     const diffTime = moment(notificationCreatedDateTime).add(9, 'h').fromNow();
+    const handleClickItem = () => navigate(`${pathName.shareDetail}/${shareId}`);
 
     return (
-      <S.ItemWrapper>
+      <S.ItemWrapper onClick={handleClickItem}>
         <S.ImgWrapper>
           <ImgContainer
             imgSrc={shareThumbnailImageUrl}
