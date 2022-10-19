@@ -38,8 +38,14 @@ export type GetNoticeDataType<T extends ActiveNoticeType> = T extends 'activity'
   ? NoticeActivityDataType[]
   : NoticeKeywordDataType[];
 
-export type NewNoticeStateType =
-  | ((NoticeActivityDataType | NoticeKeywordDataType) & {
-      type: ActiveNoticeType;
-    })
-  | null;
+export type NewNoticeStateType = NoticeActivityDataType | NoticeKeywordDataType | null;
+
+export const getIsActivityArray = (
+  contents: NoticeActivityDataType[] | NoticeKeywordDataType[],
+  //@ts-ignore ** 추후에 반드시 처리가 필요합니다!
+): contents is NoticeActivityDataType[] => !!contents[0].activityType;
+
+export const getIsActivity = (
+  contents: NoticeActivityDataType | NoticeKeywordDataType,
+  //@ts-ignore ** 추후에 반드시 처리가 필요합니다!
+): contents is NoticeActivityDataType => !!contents.activityType;

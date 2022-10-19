@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { v4 as getRandomKey } from 'uuid';
 
 import NoticeDeleteBtn from '@components/NoticeDeleteBtn';
@@ -9,11 +10,15 @@ import * as S from '@components/NoticeKeyword/NoticeKeyword.style';
 import ImgContainer from '@components/common/ImgContainer';
 import { newShareEnrolledMention } from '@constants/mentions';
 import { pathName } from '@constants/pathName';
-import { NoticeKeywordDataType } from '@type/notice';
+import { newNoticeState, noticeStateTrigger } from '@store/notice';
+import { getIsActivity, NoticeKeywordDataType } from '@type/notice';
 
 const NoticeKeyword = ({ contents }: { contents: NoticeKeywordDataType[] }) => {
   const [keywordData, setKeywordData] = useState(contents);
   const navigate = useNavigate();
+  const setNoticeStateTrigger = useSetRecoilState(noticeStateTrigger);
+  const newNotice = useRecoilValue(newNoticeState);
+
   const NoticeKeywordItem = ({
     id,
     shareLocation,
@@ -55,6 +60,22 @@ const NoticeKeyword = ({ contents }: { contents: NoticeKeywordDataType[] }) => {
   const getItems = () => {
     return keywordData.map((info) => <NoticeKeywordItem {...info} key={getRandomKey()} />);
   };
+
+  useEffect(() => {
+    if (!newNotice) return;
+    const isActivity = getIsActivity(newNotice);
+    if (isActivity) return;
+
+    setKeywordData((curData) => {
+      const newData = [...curData];
+      newData.push(newNotice);
+      return newData;
+    });
+  }, [newNotice]);
+
+  useEffect(() => {
+    return () => setNoticeStateTrigger((prev) => prev + 1);
+  }, []);
 
   return <S.Wrapper>{getItems()}</S.Wrapper>;
 };

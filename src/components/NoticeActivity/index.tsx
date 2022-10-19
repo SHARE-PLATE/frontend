@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { v4 as getRandomKey } from 'uuid';
 
 import { IconsType } from '@assets/icons';
@@ -20,7 +21,8 @@ import {
   thirtyMinuitesLeftMention,
 } from '@constants/mentions';
 import { pathName } from '@constants/pathName';
-import { ActivityType, NoticeActivityDataType } from '@type/notice';
+import { newNoticeState, noticeStateTrigger } from '@store/notice';
+import { ActivityType, getIsActivity, NoticeActivityDataType } from '@type/notice';
 
 type TextsByActivityType = {
   iconName: IconsType;
@@ -60,6 +62,9 @@ const getTextsByActivity = (type: ActivityType, option?: string): TextsByActivit
 const NoticeActivity = ({ contents }: { contents: NoticeActivityDataType[] }) => {
   const [activityData, setActivityData] = useState(contents);
   const navigate = useNavigate();
+  const setNoticeStateTrigger = useSetRecoilState(noticeStateTrigger);
+  const newNotice = useRecoilValue(newNoticeState);
+
   const NoticeActivityItem = ({
     id,
     activityType,
@@ -71,6 +76,7 @@ const NoticeActivity = ({ contents }: { contents: NoticeActivityDataType[] }) =>
   }: NoticeActivityDataType) => {
     const diffTime = moment(notificationCreatedDateTime).add(9, 'h').fromNow();
     const { iconName, mention, desc } = getTextsByActivity(activityType, recruitmentMemberNickname);
+
     const onDeleteSuccess = (id: number) => {
       setActivityData((data) => data.filter(({ id: dataId }) => dataId !== id));
     };
@@ -100,11 +106,28 @@ const NoticeActivity = ({ contents }: { contents: NoticeActivityDataType[] }) =>
       </S.ItemWrapper>
     );
   };
+
   const getItems = () => {
     return activityData
       .map((info) => <NoticeActivityItem {...info} key={getRandomKey()} />)
       .reverse();
   };
+
+  useEffect(() => {
+    if (!newNotice) return;
+    const isActivity = getIsActivity(newNotice);
+    if (!isActivity) return;
+
+    setActivityData((curData) => {
+      const newData = [...curData];
+      newData.push(newNotice);
+      return newData;
+    });
+  }, [newNotice]);
+
+  useEffect(() => {
+    return () => setNoticeStateTrigger((prev) => prev + 1);
+  }, []);
 
   return <S.Wrapper>{getItems()}</S.Wrapper>;
 };

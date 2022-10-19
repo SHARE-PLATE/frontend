@@ -18,12 +18,12 @@ const useNoticeAlarm = () => {
 
   const onSubscribeEntries = (entryData: StompJs.Message) => {
     const newEntryData = JSON.parse(entryData.body);
-    setNewNotice({ ...newEntryData, type: 'activity' });
+    setNewNotice(newEntryData);
   };
 
   const onSubscribeKeywords = (keywordData: StompJs.Message) => {
     const newKeywordData = JSON.parse(keywordData.body);
-    setNewNotice({ ...newKeywordData, type: 'keyword' });
+    setNewNotice(newKeywordData);
   };
 
   return () =>

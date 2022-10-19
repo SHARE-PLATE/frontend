@@ -13,12 +13,7 @@ import { failtoGetNoticeMention, noRecentNoticeMention } from '@constants/mentio
 import { NOTICE_CENTER } from '@constants/words';
 import * as S from '@pages/Notice/Notice.style';
 import { activeNoticeState, newNoticeState, noticeInfoState, noticeState } from '@store/notice';
-import { NoticeActivityDataType, NoticeKeywordDataType } from '@type/notice';
-
-const getIsActivity = (
-  curContents: NoticeActivityDataType[] | NoticeKeywordDataType[],
-  //@ts-ignore ** 추후에 반드시 처리가 필요합니다!
-): curContents is NoticeActivityDataType[] => !!curContents[0].activityType;
+import { getIsActivityArray } from '@type/notice';
 
 const Notice = () => {
   const navigate = useNavigate();
@@ -34,7 +29,7 @@ const Notice = () => {
     switch (state) {
       case 'hasValue':
         if (!contents.length) return NoRecentNotice;
-        const isActivity = getIsActivity(contents);
+        const isActivity = getIsActivityArray(contents);
 
         return (
           <>
