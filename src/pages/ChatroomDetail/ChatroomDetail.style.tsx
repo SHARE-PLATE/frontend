@@ -6,27 +6,30 @@ import { defaultPageStyle, flexCenter } from '@styles/mixin';
 const remainingTimeHeight = 2.5;
 
 export const Wrapper = styled.div`
-  ${defaultPageStyle}
+  ${({ theme: { colors } }) => css`
+    background-color: ${colors.white1};
+    ${defaultPageStyle}
 
-  > :last-child {
-    padding-bottom: 0;
-  }
+    > :last-child {
+      padding-bottom: 0;
+    }
 
-  gap: 0;
+    gap: 0;
+  `}
 `;
 
 export const TopFixedWrapper = styled.div`
-  ${({ theme: { defaultHeaderHeight, defaultWidth } }) => css`
+  ${({ theme: { defaultWidth } }) => css`
     ${defaultWidth}
 
-    position: fixed;
+    position: sticky;
     top: 0;
     box-shadow: 0px 5px 5px #bbbaba47;
     width: 100%;
     z-index: 100;
 
     + * {
-      padding-top: ${defaultHeaderHeight + ChatroomDetailInfoHeight + 1 + remainingTimeHeight}rem;
+      padding-top: ${1 + remainingTimeHeight}rem;
     }
   `}
 `;
@@ -40,8 +43,7 @@ export const RemainingTime = styled.div`
     padding: 0;
     background-color: ${colors.grey7};
     z-index: 101;
-    margin: ;
-    position: fixed;
+    position: absolute;
     width: 10.25rem;
     height: ${remainingTimeHeight}rem;
     border-radius: 6.25rem;
@@ -51,6 +53,11 @@ export const RemainingTime = styled.div`
     top: ${defaultHeaderHeight + ChatroomDetailInfoHeight + 1}rem;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.12);
   `}
+`;
+
+export const EmptyBlock = styled.div`
+  height: 0.75rem;
+  width: 100%;
 `;
 
 export const ErrorWrapper = styled.div`

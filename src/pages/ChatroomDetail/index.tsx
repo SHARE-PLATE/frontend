@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useCallback } from 'react';
 
 import { useParams } from 'react-router-dom';
@@ -26,8 +26,8 @@ const ChatroomDetail = () => {
   );
   if (!id) return ErrorPage;
 
-  const [lastChat, setLastChat] = useState<HTMLDivElement>();
   const chatroomDetail = chatroomDetailState({ id });
+  const lastChatRef = useRef<HTMLDivElement>();
   const { state, contents } = useRecoilValueLoadable(chatroomDetail);
   const setChatroomsTrigger = useSetRecoilState(chatroomsTrigger);
   const setChatroomsUpdate = useSetRecoilState(chatroomsUpdateState);
@@ -38,13 +38,12 @@ const ChatroomDetail = () => {
   const scrollToBottomRef = useCallback((lastChatDiv: HTMLDivElement) => {
     if (!lastChatDiv) return;
     // change target only if last chat didn't exist
-    setLastChat((prevLastChat) => (prevLastChat ? prevLastChat : lastChatDiv));
-    lastChatDiv.scrollIntoView({ block: 'end' });
+    lastChatRef.current = lastChatDiv;
+    lastChatDiv.scrollIntoView();
   }, []);
 
   const scrollToBottom = () => {
-    if (!lastChat) return;
-    lastChat.scrollIntoView({ block: 'end' });
+    lastChatRef.current?.scrollIntoView();
   };
 
   const getContents = () => {
@@ -59,17 +58,18 @@ const ChatroomDetail = () => {
 
         return (
           <S.Wrapper>
-            <ChatroomBar chatroomId={id || ''} scrollToBottom={scrollToBottom} />
-            <S.RemainingTime>남은 시간 : {remainingTime}</S.RemainingTime>
             <S.TopFixedWrapper>
               <ChatroomDatailHeader type={type} writer={writer} />
               <ChatroomDetailInfo {...share} />
+              <S.RemainingTime>남은 시간 : {remainingTime}</S.RemainingTime>
             </S.TopFixedWrapper>
             <ChatroomDetailContents
               chats={chats}
               chatroomId={chatRoomMemberId || ''}
-              scrollToBottomRef={scrollToBottomRef}
+              scrollToBottom={scrollToBottom}
             />
+            <S.EmptyBlock ref={scrollToBottomRef} />
+            <ChatroomBar chatroomId={id || ''} />
           </S.Wrapper>
         );
 
