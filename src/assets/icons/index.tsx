@@ -47,6 +47,7 @@ import Microphone from '@assets/icons/microphone.svg';
 import NoticeActivityEmpty from '@assets/icons/noticeActivityEmpty.svg';
 import NoticeActivityFull from '@assets/icons/noticeActivityFull.svg';
 import NoticeActivityLogo from '@assets/icons/noticeActivityLogo.svg';
+import NoticeFill from '@assets/icons/noticeFill.svg';
 import NoticeOff from '@assets/icons/noticeOff.svg';
 import NoticeOn from '@assets/icons/noticeOn.svg';
 import OffClickBar from '@assets/icons/offClickBar.svg';
@@ -67,6 +68,7 @@ import Search from '@assets/icons/search.svg';
 import SearchNav from '@assets/icons/searchNav.svg';
 import SearchNavFill from '@assets/icons/searchNavFill.svg';
 import SearchSmall from '@assets/icons/searchSmall.svg';
+import SearchThick from '@assets/icons/searchThick.svg';
 import Share from '@assets/icons/share.svg';
 import ShareFill from '@assets/icons/shareFill.svg';
 import SharePlate from '@assets/icons/sharePlate.svg';
@@ -79,6 +81,8 @@ import X_Icon from '@assets/icons/x_icon.svg';
 
 export const Icons = {
   Target,
+  NoticeFill,
+  SearchThick,
   Refresh,
   ChevronLeft,
   SalesHistoryBlack,
