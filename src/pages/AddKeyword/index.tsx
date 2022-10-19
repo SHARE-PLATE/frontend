@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 import { addKeywords } from '@api/keyword';
 import KeywordInput from '@components/KeywordInput';
@@ -13,7 +13,11 @@ import { ADD_NOTICE_KEYWORD } from '@constants/words';
 import useInput from '@hooks/useInput';
 import useModal from '@hooks/useModal';
 import * as S from '@pages/AddKeyword/AddKeyword.style';
-import { keywordListTrigger, registeredKeywordTrigger } from '@store/keyword';
+import {
+  keywordListTrigger,
+  registeredKeywordLength,
+  registeredKeywordTrigger,
+} from '@store/keyword';
 
 const AddKeyword = () => {
   const {
@@ -23,21 +27,18 @@ const AddKeyword = () => {
   };
 
   const navigate = useNavigate();
-  const [keywordLength, setKeywordLength] = useState<number>(0);
   const [curLatitudeLongitude, setCurLatitudeLongitude] = useState<{ lat: string; lng: string }>({
     lat: y || '',
     lng: x || '',
   });
 
+  const keywordLength = useRecoilValue(registeredKeywordLength);
   const setKeywordListTrigger = useSetRecoilState(keywordListTrigger);
   const setRegisteredKeywordTrigger = useSetRecoilState(registeredKeywordTrigger);
 
   const modalRef = useRef<HTMLDivElement>(null);
   const [isInputValueModalOpen, setIsInputValueModalOpen] = useModal({ modalRef });
   const [isKeywordLengthModalOpen, setIsKeywordLengthModalOpen] = useModal({ modalRef });
-
-  const closeInputValueModal = () => setIsInputValueModalOpen(false);
-  const closeKeywordLengthModal = () => setIsKeywordLengthModalOpen(false);
 
   const keywordInputBar = useInput('');
 
@@ -76,20 +77,19 @@ const AddKeyword = () => {
       <KeywordInput {...{ keywordInputBar }} handleSubmitClick={handleSubmitClick} />
       <RegisteredKeyword
         regionName={regionName}
-        setKeywordLength={setKeywordLength}
         setCurLatitudeLongitude={setCurLatitudeLongitude}
       />
       {isInputValueModalOpen && (
         <FailedModal
           modalRef={modalRef}
-          closeModal={closeInputValueModal}
+          closeModal={() => setIsInputValueModalOpen(false)}
           text={inputValueFailed}
         />
       )}
       {isKeywordLengthModalOpen && (
         <FailedModal
           modalRef={modalRef}
-          closeModal={closeKeywordLengthModal}
+          closeModal={() => setIsKeywordLengthModalOpen(false)}
           text={keywordLengthFailed}
         />
       )}
