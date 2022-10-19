@@ -1,8 +1,14 @@
 import styled, { css } from 'styled-components';
 
+import { noScrollBar } from '@styles/mixin';
+
 export const imgWidth = '3rem';
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  ${noScrollBar}
+  height: 100%;
+  overflow-y: scroll;
+`;
 
 export const ItemWrapper = styled.div`
   display: flex;

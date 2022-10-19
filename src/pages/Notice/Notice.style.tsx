@@ -1,20 +1,14 @@
 import styled, { css } from 'styled-components';
 
-import { tabsHeight } from '@components/Tabs/Tabs.styled';
 import { flexCenter } from '@styles/mixin';
 
 export const Wrapper = styled.div`
-  ${({ theme: { defaultPadding, colors, defaultHeaderHeight } }) => css`
+  ${({ theme: { defaultPadding, colors } }) => css`
     ${defaultPadding};
     background-color: ${colors.white1};
     flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-
-    // notice content top padding
-    > :last-child {
-      padding-top: calc(${defaultHeaderHeight}rem + ${tabsHeight});
-    }
+    overflow: hidden;
+    height: 100vh;
   `}
 `;
 
@@ -39,9 +33,7 @@ export const TopFixedWrapper = styled.div`
   ${({ theme: { colors, defaultWidth } }) => css`
     ${defaultWidth};
     background-color: ${colors.white1};
-    width: 100%;
-    position: fixed;
-    top: 0;
+    width: calc(100% + 2rem);
     margin-left: -1rem;
     padding: 0 1rem;
     box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.08);
@@ -66,3 +58,5 @@ export const HeaderTitle = styled.div`
     height: 100%;
   `}
 `;
+
+export const TabsWrapper = styled.div``;

@@ -49,15 +49,7 @@ const NoticeKeyword = ({ contents }: { contents: NoticeKeywordDataType[] }) => {
     return keywordData.map((info) => <NoticeKeywordItem {...info} key={getRandomKey()} />);
   };
 
-  const idList = contents.map(({ shareId }) => shareId);
-  const items = getItems();
-
-  return (
-    <S.Wrapper>
-      <NoticeDeleteAllButton idList={idList} />
-      {items}
-    </S.Wrapper>
-  );
+  return <S.Wrapper>{getItems()}</S.Wrapper>;
 };
 
 export default NoticeKeyword;

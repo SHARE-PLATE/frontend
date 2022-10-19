@@ -3,6 +3,7 @@ import { useRecoilValue, useRecoilValueLoadable, useSetRecoilState } from 'recoi
 
 import Loading from '@components/Loading';
 import NoticeActivity from '@components/NoticeActivity';
+import NoticeDeleteAllButton from '@components/NoticeDeleteAllButton';
 import NoticeDeleteModeButton from '@components/NoticeDeleteModeButton';
 import { HeaderBtn } from '@components/NoticeDeleteModeButton/NoticeDeleteModeButton.style';
 import NoticeKeyword from '@components/NoticeKeyword';
@@ -27,6 +28,7 @@ const Notice = () => {
   const NoRecentNotice = <S.NoRecentNoticeWrapper>{noRecentNoticeMention}</S.NoRecentNoticeWrapper>;
   const selector = noticeState<typeof activeNotice>({ type: activeNotice });
   const { state, contents } = useRecoilValueLoadable(selector);
+  const idList = state === 'hasValue' ? contents.map(({ shareId }) => shareId) : undefined;
 
   const getNoticeContents = () => {
     switch (state) {
@@ -60,7 +62,10 @@ const Notice = () => {
           <S.HeaderTitle>{NOTICE_CENTER}</S.HeaderTitle>
           <NoticeDeleteModeButton />
         </S.Header>
-        <Tabs tabsInfo={noticeTabsInfo} targetAtom={activeNoticeState} />
+        <S.TabsWrapper>
+          <Tabs tabsInfo={noticeTabsInfo} targetAtom={activeNoticeState} />
+          <NoticeDeleteAllButton idList={idList} />
+        </S.TabsWrapper>
       </S.TopFixedWrapper>
       {getNoticeContents()}
     </S.Wrapper>
