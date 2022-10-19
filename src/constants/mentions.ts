@@ -46,3 +46,4 @@ export const noRecentNoticeMention = '새로운 알림이 없습니다.';
 export const entryMention = (name?: string) => `${name}님이 쉐어 신청하였습니다.`;
 export const shareCancelMention = (name?: string) => `${name}님이 쉐어를 취소하였습니다.`;
 export const entryCancelMention = (name?: string) => `${name}님이 쉐어 신청을 취소하였습니다.`;
+export const noticeDeletedMention = (count: number) => `${count}개의 알림이 삭제되었습니다.`;
