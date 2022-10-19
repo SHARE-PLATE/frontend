@@ -1,5 +1,6 @@
 import { useRoutes } from 'react-router-dom';
 
+import BottomMessage from '@components/BottomMessage';
 import NavigationBar from '@components/NavigationBar';
 import useChatAlarm from '@hooks/useChatAlarm';
 import useCheckIsLogin from '@hooks/useCheckIsLogin';
@@ -31,6 +32,7 @@ const App = () => {
         <OptionPortal />
         <KeywordAddressPortal />
         <NavigationBar />
+        <BottomMessage />
       </Styles>
     </div>
   );

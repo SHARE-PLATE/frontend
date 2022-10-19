@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
 
-import BottomMessage from '@components/BottomMessage';
 import Loading from '@components/Loading';
 import NoticeActivity from '@components/NoticeActivity';
 import NoticeDeleteAllButton from '@components/NoticeDeleteAllButton';
@@ -53,7 +52,6 @@ const Notice = () => {
           <NoticeDeleteAllButton idList={idList} />
         </S.TabsWrapper>
       </S.TopFixedWrapper>
-      <BottomMessage />
       {getNoticeContents()}
     </S.Wrapper>
   );

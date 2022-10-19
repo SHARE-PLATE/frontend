@@ -12,7 +12,7 @@ export const Wrapper = styled.div<{ position: PositionType }>`
     bottom: 1.5rem;
     left: 50%;
     transform: translate(-50%);
-    z-index: 10;
+    z-index: 300;
     margin-bottom: -75%;
 
     ${!position &&
