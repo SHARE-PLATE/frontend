@@ -34,6 +34,12 @@ export type NoticeKeywordDataType = {
   notificationCreatedDateTime: string;
 };
 
-export type GetNoticeDataType<T extends ActiveNoticeType> = T extends typeof ACTIVITY
+export type GetNoticeDataType<T extends ActiveNoticeType> = T extends 'activity'
   ? NoticeActivityDataType[]
   : NoticeKeywordDataType[];
+
+export type NewNoticeStateType =
+  | ((NoticeActivityDataType | NoticeKeywordDataType) & {
+      type: ActiveNoticeType;
+    })
+  | null;

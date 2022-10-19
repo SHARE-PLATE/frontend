@@ -12,9 +12,26 @@ export const Wrapper = styled.div`
     flex-direction: column;
 
     // notice content top padding
-    > :last-child {
+    > :nth-child(2) {
       padding-top: calc(${defaultHeaderHeight}rem + ${tabsHeight});
     }
+  `}
+`;
+
+export const NoRecentNoticeWrapper = styled.div`
+  ${({ theme: { colors } }) => css`
+    ${flexCenter};
+    color: ${colors.grey4};
+    height: 20rem;
+  `}
+`;
+
+export const ErrorWrapper = styled.div`
+  ${({ theme: { colors } }) => css`
+    ${flexCenter}
+
+    color: ${colors.grey7};
+    height: 20rem;
   `}
 `;
 

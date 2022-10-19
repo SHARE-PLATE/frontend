@@ -4,14 +4,7 @@ import { v4 as getRandomKey } from 'uuid';
 import { getNotice } from '@api/notice';
 import { TabsInfoType } from '@components/Tabs';
 import { ACTIVITY } from '@constants/words';
-import {
-  ActiveNoticeType,
-  GetNoticeParamsType,
-  NoticeActivityDataType,
-  NoticeKeywordDataType,
-} from '@type/notice';
-
-export type newNoticeStateType = NoticeActivityDataType | NoticeKeywordDataType | null;
+import { ActiveNoticeType, GetNoticeParamsType, NewNoticeStateType } from '@type/notice';
 
 export const activeNoticeState = atom<ActiveNoticeType>({
   key: 'activeNoticeState',
@@ -51,7 +44,7 @@ export const deleteModeState = atom<boolean>({
   default: false,
 });
 
-export const newNoticeState = atom<newNoticeStateType>({
+export const newNoticeState = atom<NewNoticeStateType>({
   key: 'newNotice',
   default: null,
 });
