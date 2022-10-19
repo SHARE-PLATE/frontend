@@ -48,18 +48,6 @@ export const TopFixedWrapper = styled.div`
   `}
 `;
 
-export const HeaderBtn = styled.button`
-  height: 100%;
-  align-items: center;
-  display: flex;
-`;
-
-export const DeleteModeButton = styled.div`
-  ${({ theme: { fonts } }) => css`
-    ${fonts.largeRegular};
-  `}
-`;
-
 export const Header = styled.div`
   ${({ theme: { defaultHeaderHeight } }) => css`
     height: ${defaultHeaderHeight}rem;

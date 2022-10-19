@@ -1,16 +1,18 @@
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState, useRecoilValue, useRecoilValueLoadable, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useRecoilValueLoadable, useSetRecoilState } from 'recoil';
 
 import Loading from '@components/Loading';
 import NoticeActivity from '@components/NoticeActivity';
+import NoticeDeleteModeButton from '@components/NoticeDeleteModeButton';
+import { HeaderBtn } from '@components/NoticeDeleteModeButton/NoticeDeleteModeButton.style';
 import NoticeKeyword from '@components/NoticeKeyword';
 import Tabs from '@components/Tabs';
 import Icon from '@components/common/Icon';
 import { failtoGetNoticeMention, noRecentNoticeMention } from '@constants/mentions';
-import { EDIT, FINISH, NOTICE_CENTER } from '@constants/words';
+import { NOTICE_CENTER } from '@constants/words';
 import * as S from '@pages/Notice/Notice.style';
 import { activeNoticeState } from '@store/activeNotice';
-import { deleteModeState, newNoticeState, noticeInfoState, noticeState } from '@store/notice';
+import { newNoticeState, noticeInfoState, noticeState } from '@store/notice';
 import { NoticeActivityDataType, NoticeKeywordDataType } from '@type/notice';
 
 const getIsActivity = (
@@ -20,7 +22,6 @@ const getIsActivity = (
 
 const Notice = () => {
   const navigate = useNavigate();
-  const [deleteMode, setDeleteMode] = useRecoilState(deleteModeState);
   const setNewNotice = useSetRecoilState(newNoticeState);
   const noticeTabsInfo = useRecoilValue(noticeInfoState);
   const activeNotice = useRecoilValue(activeNoticeState);
@@ -54,13 +55,11 @@ const Notice = () => {
     <S.Wrapper>
       <S.TopFixedWrapper>
         <S.Header>
-          <S.HeaderBtn onClick={() => navigate(-1)}>
+          <HeaderBtn onClick={() => navigate(-1)}>
             <Icon iconName='Back' iconSize={1.125} />
-          </S.HeaderBtn>
+          </HeaderBtn>
           <S.HeaderTitle>{NOTICE_CENTER}</S.HeaderTitle>
-          <S.HeaderBtn onClick={() => setDeleteMode(!deleteMode)}>
-            <S.DeleteModeButton>{!deleteMode ? EDIT : FINISH}</S.DeleteModeButton>
-          </S.HeaderBtn>
+          <NoticeDeleteModeButton />
         </S.Header>
         <Tabs tabsInfo={noticeTabsInfo} targetAtom={activeNoticeState} />
       </S.TopFixedWrapper>
