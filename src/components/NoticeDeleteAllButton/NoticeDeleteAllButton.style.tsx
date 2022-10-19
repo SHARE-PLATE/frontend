@@ -1,9 +1,13 @@
 import styled, { css } from 'styled-components';
 
+import { tabsHeight } from '@components/Tabs/Tabs.styled';
+
 export const Wrapper = styled.button<{ isDeleteMode: boolean }>`
-  ${({ theme: { fonts, colors }, isDeleteMode }) => css`
+  ${({ theme: { fonts, colors, defaultHeaderHeight }, isDeleteMode }) => css`
     ${fonts.large};
 
+    top: calc(${defaultHeaderHeight}rem + ${tabsHeight});
+    position: sticky;
     display: block;
     transition: height 0.3s;
     height: ${isDeleteMode ? '44px' : '0px'};

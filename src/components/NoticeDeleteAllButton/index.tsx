@@ -11,9 +11,10 @@ import { deleteModeState, noticeStateTrigger } from '@store/notice';
 
 type NoticeDeleteAllButtonPropsType = {
   idList?: number[];
+  isList: boolean;
 };
 
-const NoticeDeleteAllButton = ({ idList }: NoticeDeleteAllButtonPropsType) => {
+const NoticeDeleteAllButton = ({ idList, isList }: NoticeDeleteAllButtonPropsType) => {
   const [deleteMode, setDeleteMode] = useRecoilState(deleteModeState);
   const setNoticeStateTrigger = useSetRecoilState(noticeStateTrigger);
   const setBottomMessage = useSetRecoilState(bottomMessageState);
@@ -35,7 +36,7 @@ const NoticeDeleteAllButton = ({ idList }: NoticeDeleteAllButtonPropsType) => {
   }, []);
 
   return (
-    <S.Wrapper onClick={handleDeleteAllBtn} isDeleteMode={deleteMode && !!idList?.length}>
+    <S.Wrapper onClick={handleDeleteAllBtn} isDeleteMode={deleteMode && isList}>
       {DELETE_ALL}
     </S.Wrapper>
   );

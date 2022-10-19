@@ -3,7 +3,6 @@ import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
 
 import Loading from '@components/Loading';
 import NoticeActivity from '@components/NoticeActivity';
-import NoticeDeleteAllButton from '@components/NoticeDeleteAllButton';
 import NoticeDeleteModeButton from '@components/NoticeDeleteModeButton';
 import { HeaderBtn } from '@components/NoticeDeleteModeButton/NoticeDeleteModeButton.style';
 import NoticeKeyword from '@components/NoticeKeyword';
@@ -20,7 +19,6 @@ const Notice = () => {
   const activeNotice = useRecoilValue(activeNoticeState);
   const selector = noticeState<typeof activeNotice>({ type: activeNotice });
   const { state, contents } = useRecoilValueLoadable(selector);
-  const idList = state === 'hasValue' ? contents.map(({ id }) => id) : undefined;
 
   const getNoticeContents = () => {
     switch (state) {
@@ -47,10 +45,7 @@ const Notice = () => {
           <S.HeaderTitle>{NOTICE_CENTER}</S.HeaderTitle>
           <NoticeDeleteModeButton />
         </S.Header>
-        <S.TabsWrapper>
-          <Tabs tabsInfo={noticeTabsInfo} targetAtom={activeNoticeState} />
-          <NoticeDeleteAllButton idList={idList} />
-        </S.TabsWrapper>
+        <Tabs tabsInfo={noticeTabsInfo} targetAtom={activeNoticeState} />
       </S.TopFixedWrapper>
       {getNoticeContents()}
     </S.Wrapper>

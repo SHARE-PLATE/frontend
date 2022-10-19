@@ -4,10 +4,7 @@ import { flexCenter, noScrollBar } from '@styles/mixin';
 
 export const imgWidth = '3rem';
 
-export const Wrapper = styled.div`
-  ${noScrollBar}
-  overflow-y: scroll;
-`;
+export const Wrapper = styled.div``;
 
 export const NoRecentNoticeWrapper = styled.div`
   ${({ theme: { colors } }) => css`

@@ -7,6 +7,7 @@ import { v4 as getRandomKey } from 'uuid';
 
 import { IconsType } from '@assets/icons';
 import * as S from '@components/NoticeActivity/NoticeActivity.style';
+import NoticeDeleteAllButton from '@components/NoticeDeleteAllButton';
 import NoticeDeleteBtn from '@components/NoticeDeleteBtn';
 import Icon from '@components/common/Icon';
 import ImgContainer from '@components/common/ImgContainer';
@@ -65,6 +66,7 @@ const NoticeActivity = ({ contents }: { contents: NoticeActivityDataType[] }) =>
   const navigate = useNavigate();
   const setNoticeStateTrigger = useSetRecoilState(noticeStateTrigger);
   const [newNotice, setNewNotice] = useRecoilState(newNoticeState);
+  const idList = contents.map(({ id }) => id);
   const noRecentNotice = <S.NoRecentNoticeWrapper>{noRecentNoticeMention}</S.NoRecentNoticeWrapper>;
 
   const NoticeActivityItem = ({
@@ -137,7 +139,12 @@ const NoticeActivity = ({ contents }: { contents: NoticeActivityDataType[] }) =>
     };
   }, []);
 
-  return <S.Wrapper>{getContent()}</S.Wrapper>;
+  return (
+    <S.Wrapper>
+      <NoticeDeleteAllButton idList={idList} isList={!!activityData.length} />
+      {getContent()}
+    </S.Wrapper>
+  );
 };
 
 export default NoticeActivity;

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { v4 as getRandomKey } from 'uuid';
 
+import NoticeDeleteAllButton from '@components/NoticeDeleteAllButton';
 import NoticeDeleteBtn from '@components/NoticeDeleteBtn';
 import * as S from '@components/NoticeKeyword/NoticeKeyword.style';
 import ImgContainer from '@components/common/ImgContainer';
@@ -18,6 +19,7 @@ const NoticeKeyword = ({ contents }: { contents: NoticeKeywordDataType[] }) => {
   const navigate = useNavigate();
   const setNoticeStateTrigger = useSetRecoilState(noticeStateTrigger);
   const [newNotice, setNewNotice] = useRecoilState(newNoticeState);
+  const idList = contents.map(({ id }) => id);
   const noRecentNotice = <S.NoRecentNoticeWrapper>{noRecentNoticeMention}</S.NoRecentNoticeWrapper>;
 
   const NoticeKeywordItem = ({
@@ -85,7 +87,12 @@ const NoticeKeyword = ({ contents }: { contents: NoticeKeywordDataType[] }) => {
     };
   }, []);
 
-  return <S.Wrapper>{getItems()}</S.Wrapper>;
+  return (
+    <S.Wrapper>
+      <NoticeDeleteAllButton idList={idList} isList={!!contents.length} />
+      {getItems()}
+    </S.Wrapper>
+  );
 };
 
 export default NoticeKeyword;

@@ -9,7 +9,6 @@ export const Wrapper = styled.div`
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    height: 100vh;
   `}
 `;
 
@@ -25,6 +24,9 @@ export const ErrorWrapper = styled.div`
 export const TopFixedWrapper = styled.div`
   ${({ theme: { colors, defaultWidth } }) => css`
     ${defaultWidth};
+    position: sticky;
+    top: 0;
+    z-index: 2;
     background-color: ${colors.white1};
     width: calc(100% + 2rem);
     margin-left: -1rem;
