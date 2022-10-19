@@ -1,20 +1,25 @@
 import { atom, selector, selectorFamily } from 'recoil';
-import { v1 } from 'uuid';
+import { v4 as createRandomKey } from 'uuid';
 
 import { getKeywordListData, getRegisteredKeywords } from '@api/keyword';
 
 export const keywordListTrigger = atom<number>({
-  key: `keywordListTrigger/${v1()}`,
+  key: `keywordListTrigger/${createRandomKey()}`,
   default: 0,
 });
 
 export const registeredKeywordTrigger = atom<number>({
-  key: `registeredKeywordTrigger/${v1()}`,
+  key: `registeredKeywordTrigger/${createRandomKey()}`,
+  default: 0,
+});
+
+export const registeredKeywordLength = atom<number>({
+  key: `registeredKeywordLength/${createRandomKey()}`,
   default: 0,
 });
 
 export const getKeywordListsData = selector({
-  key: `GET/getKeywordListsData/${v1()}`,
+  key: `GET/getKeywordListsData/${createRandomKey()}`,
   get: async ({ get }) => {
     get(keywordListTrigger);
     const keywordListData = await getKeywordListData();
@@ -23,7 +28,7 @@ export const getKeywordListsData = selector({
 });
 
 export const getRegisteredKeywordData = selectorFamily({
-  key: `GET/getRegisteredKeywordData/${v1()}`,
+  key: `GET/getRegisteredKeywordData/${createRandomKey()}`,
   get:
     (regionName: string) =>
     async ({ get }) => {
