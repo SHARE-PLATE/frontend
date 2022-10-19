@@ -15,6 +15,7 @@ const NoticeKeyword = ({ contents }: { contents: NoticeKeywordDataType[] }) => {
   const [keywordData, setKeywordData] = useState(contents);
   const navigate = useNavigate();
   const NoticeKeywordItem = ({
+    id,
     shareLocation,
     shareId,
     shareThumbnailImageUrl,
@@ -23,6 +24,9 @@ const NoticeKeyword = ({ contents }: { contents: NoticeKeywordDataType[] }) => {
   }: NoticeKeywordDataType) => {
     const diffTime = moment(notificationCreatedDateTime).add(9, 'h').fromNow();
     const handleClickItem = () => navigate(`${pathName.shareDetail}/${shareId}`);
+    const onDeleteSuccess = (id: number) => {
+      setKeywordData((data) => data.filter(({ id: dataId }) => dataId !== id));
+    };
 
     return (
       <S.ItemWrapper onClick={handleClickItem}>
@@ -43,7 +47,7 @@ const NoticeKeyword = ({ contents }: { contents: NoticeKeywordDataType[] }) => {
           <S.TitleWrapper>{shareTitle}</S.TitleWrapper>
           <S.DiffTime>{diffTime}</S.DiffTime>
         </S.TextWrapper>
-        <NoticeDeleteBtn id={shareId} />
+        <NoticeDeleteBtn id={id} onDeleteSuccess={onDeleteSuccess} />
       </S.ItemWrapper>
     );
   };

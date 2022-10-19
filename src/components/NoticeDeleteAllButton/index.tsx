@@ -1,4 +1,4 @@
-import { useRecoilValue_TRANSITION_SUPPORT_UNSTABLE, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 import { deleteNotice } from '@api/notice';
 import * as S from '@components/NoticeDeleteAllButton/NoticeDeleteAllButton.style';
@@ -10,13 +10,13 @@ type NoticeDeleteAllButtonPropsType = {
 };
 
 const NoticeDeleteAllButton = ({ idList }: NoticeDeleteAllButtonPropsType) => {
-  const deleteMode = useRecoilValue_TRANSITION_SUPPORT_UNSTABLE(deleteModeState);
+  const deleteMode = useRecoilValue(deleteModeState);
   const setNoticeStateTrigger = useSetRecoilState(noticeStateTrigger);
 
   const handleDeleteAllBtn = async () => {
     if (!idList || !idList.length) return;
-    const response = await deleteNotice({ idList }); // 응답 후 처리 과정 필요!
-    if (response?.status === 200) setNoticeStateTrigger((prev) => prev + 1);
+    const isDeleted = await deleteNotice({ idList }); // 응답 후 처리 과정 필요!
+    if (isDeleted) setNoticeStateTrigger((prev) => prev + 1);
   };
 
   return (

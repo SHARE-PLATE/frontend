@@ -28,7 +28,7 @@ const Notice = () => {
   const NoRecentNotice = <S.NoRecentNoticeWrapper>{noRecentNoticeMention}</S.NoRecentNoticeWrapper>;
   const selector = noticeState<typeof activeNotice>({ type: activeNotice });
   const { state, contents } = useRecoilValueLoadable(selector);
-  const idList = state === 'hasValue' ? contents.map(({ shareId }) => shareId) : undefined;
+  const idList = state === 'hasValue' ? contents.map(({ id }) => id) : undefined;
 
   const getNoticeContents = () => {
     switch (state) {

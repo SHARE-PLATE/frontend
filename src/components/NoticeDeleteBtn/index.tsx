@@ -1,3 +1,5 @@
+import { MouseEvent } from 'react';
+
 import { useRecoilValue } from 'recoil';
 
 import { deleteNotice } from '@api/notice';
@@ -7,13 +9,15 @@ import { deleteModeState } from '@store/notice';
 
 type NoticeDeleteBtnPropsType = {
   id: number;
+  onDeleteSuccess: (id: number) => void;
 };
 
-const NoticeDeleteBtn = ({ id }: NoticeDeleteBtnPropsType) => {
+const NoticeDeleteBtn = ({ id, onDeleteSuccess }: NoticeDeleteBtnPropsType) => {
   const deleteMode = useRecoilValue(deleteModeState);
-  const handleClickDeleteBtn = async () => {
-    const response = await deleteNotice({ id });
-    console.log('해결하기!' + response);
+  const handleClickDeleteBtn = async (event: MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    const isDeleted = await deleteNotice({ id });
+    if (isDeleted) onDeleteSuccess(id);
   };
 
   return (

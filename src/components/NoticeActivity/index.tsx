@@ -61,6 +61,7 @@ const NoticeActivity = ({ contents }: { contents: NoticeActivityDataType[] }) =>
   const [activityData, setActivityData] = useState(contents);
   const navigate = useNavigate();
   const NoticeActivityItem = ({
+    id,
     activityType,
     notificationCreatedDateTime,
     recruitmentMemberNickname,
@@ -70,6 +71,9 @@ const NoticeActivity = ({ contents }: { contents: NoticeActivityDataType[] }) =>
   }: NoticeActivityDataType) => {
     const diffTime = moment(notificationCreatedDateTime).add(9, 'h').fromNow();
     const { iconName, mention, desc } = getTextsByActivity(activityType, recruitmentMemberNickname);
+    const onDeleteSuccess = (id: number) => {
+      setActivityData((data) => data.filter(({ id: dataId }) => dataId !== id));
+    };
     const handleClickItem = () => {
       if (activityType === 'SHARE_CANCEL') return;
       navigate(`${pathName.shareDetail}/${shareId}`);
@@ -92,7 +96,7 @@ const NoticeActivity = ({ contents }: { contents: NoticeActivityDataType[] }) =>
             borderRadius='4px'
           />
         </S.ImgWrapper>
-        <NoticeDeleteBtn id={shareId} />
+        <NoticeDeleteBtn id={id} onDeleteSuccess={onDeleteSuccess} />
       </S.ItemWrapper>
     );
   };

@@ -30,12 +30,11 @@ export const getNotice = async <T extends ActiveNoticeType>({ type }: GetNoticeP
 export const deleteNotice = async ({ id, idList }: DeleteNoticeParamsType) => {
   const headers = getAuthHeaders();
   const api = API.NOTICE + (id ? `/${id}` : '');
-  const data = idList && JSON.stringify({ idList });
-  console.log({ data });
+  const data = idList && { idList };
 
   try {
     const response = await axios.delete(api, { headers, data });
-    return response;
+    return response.status === 200;
   } catch (error) {
     console.error(error);
   }
