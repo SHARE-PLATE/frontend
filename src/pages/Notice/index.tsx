@@ -11,8 +11,7 @@ import Icon from '@components/common/Icon';
 import { failtoGetNoticeMention, noRecentNoticeMention } from '@constants/mentions';
 import { NOTICE_CENTER } from '@constants/words';
 import * as S from '@pages/Notice/Notice.style';
-import { activeNoticeState } from '@store/activeNotice';
-import { newNoticeState, noticeInfoState, noticeState } from '@store/notice';
+import { activeNoticeState, newNoticeState, noticeInfoState, noticeState } from '@store/notice';
 import { NoticeActivityDataType, NoticeKeywordDataType } from '@type/notice';
 
 const getIsActivity = (

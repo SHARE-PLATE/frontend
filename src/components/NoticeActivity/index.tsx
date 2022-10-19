@@ -70,7 +70,7 @@ const NoticeActivity = ({ contents }: { contents: NoticeActivityDataType[] }) =>
     const { iconName, mention, desc } = getTextsByActivity(activityType, recruitmentMemberNickname);
 
     return (
-      <S.ItemWrapper key={getRandomKey()}>
+      <S.ItemWrapper>
         <Icon iconName={iconName} iconSize={2.6} />
         <S.TextWrapper>
           <div>{mention}</div>
@@ -91,7 +91,9 @@ const NoticeActivity = ({ contents }: { contents: NoticeActivityDataType[] }) =>
     );
   };
   const getItems = () => {
-    return activityData.map((info) => <NoticeActivityItem {...info} />).reverse();
+    return activityData
+      .map((info) => <NoticeActivityItem {...info} key={getRandomKey()} />)
+      .reverse();
   };
 
   const idList = contents.map(({ shareId }) => shareId);

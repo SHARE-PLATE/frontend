@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import moment from 'moment';
+import { v4 as getRandomKey } from 'uuid';
 
 import NoticeDeleteAllButton from '@components/NoticeDeleteAllButton';
 import NoticeDeleteBtn from '@components/NoticeDeleteBtn';
@@ -21,7 +22,7 @@ const NoticeKeyword = ({ contents }: { contents: NoticeKeywordDataType[] }) => {
     const diffTime = moment(notificationCreatedDateTime).add(9, 'h').fromNow();
 
     return (
-      <S.ItemWrapper key={shareId}>
+      <S.ItemWrapper>
         <S.ImgWrapper>
           <ImgContainer
             imgSrc={shareThumbnailImageUrl}
@@ -45,7 +46,7 @@ const NoticeKeyword = ({ contents }: { contents: NoticeKeywordDataType[] }) => {
   };
 
   const getItems = () => {
-    return keywordData.map((info) => <NoticeKeywordItem {...info} />);
+    return keywordData.map((info) => <NoticeKeywordItem {...info} key={getRandomKey()} />);
   };
 
   const idList = contents.map(({ shareId }) => shareId);
