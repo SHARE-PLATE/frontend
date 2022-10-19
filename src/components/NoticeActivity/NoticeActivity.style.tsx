@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { flexCenter, noScrollBar } from '@styles/mixin';
+import { flexCenter } from '@styles/mixin';
 
 export const imgWidth = '3rem';
 
