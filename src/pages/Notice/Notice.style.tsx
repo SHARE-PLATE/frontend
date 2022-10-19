@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
     flex-direction: column;
 
     // notice content top padding
-    > :nth-child(2) {
+    > :last-child {
       padding-top: calc(${defaultHeaderHeight}rem + ${tabsHeight});
     }
   `}

@@ -5,6 +5,7 @@ import { useState } from 'react';
 import moment from 'moment';
 import { useRecoilValue } from 'recoil';
 
+import NoticeDeleteAllButton from '@components/NoticeDeleteAllButton';
 import NoticeDeleteBtn from '@components/NoticeDeleteBtn';
 import * as S from '@components/NoticeKeyword/NoticeKeyword.style';
 import ImgContainer from '@components/common/ImgContainer';
@@ -53,9 +54,15 @@ const NoticeKeyword = ({ contents }: { contents: NoticeKeywordDataType[] }) => {
     );
   };
 
+  const idList = contents.map(({ shareId }) => shareId);
   const items = getItems();
 
-  return <S.Wrapper>{items}</S.Wrapper>;
+  return (
+    <S.Wrapper>
+      <NoticeDeleteAllButton idList={idList} />
+      {items}
+    </S.Wrapper>
+  );
 };
 
 export default NoticeKeyword;

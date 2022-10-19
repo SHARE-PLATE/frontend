@@ -3,7 +3,6 @@ import { useRecoilState, useRecoilValue, useRecoilValueLoadable, useSetRecoilSta
 
 import Loading from '@components/Loading';
 import NoticeActivity from '@components/NoticeActivity';
-import NoticeDeleteAllButton from '@components/NoticeDeleteAllButton';
 import NoticeKeyword from '@components/NoticeKeyword';
 import Tabs from '@components/Tabs';
 import Icon from '@components/common/Icon';
@@ -33,12 +32,10 @@ const Notice = () => {
     switch (state) {
       case 'hasValue':
         if (!contents.length) return NoRecentNotice;
-        const idList = contents.map(({ shareId }) => shareId);
         const isActivity = getIsActivity(contents);
 
         return (
           <>
-            <NoticeDeleteAllButton idList={idList} />
             {isActivity && <NoticeActivity contents={contents} />}
             {!isActivity && <NoticeKeyword contents={contents} />}
           </>

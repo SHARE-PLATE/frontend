@@ -8,6 +8,7 @@ import { v4 as getRandomKey } from 'uuid';
 
 import { IconsType } from '@assets/icons';
 import * as S from '@components/NoticeActivity/NoticeActivity.style';
+import NoticeDeleteAllButton from '@components/NoticeDeleteAllButton';
 import NoticeDeleteBtn from '@components/NoticeDeleteBtn';
 import Icon from '@components/common/Icon';
 import ImgContainer from '@components/common/ImgContainer';
@@ -103,9 +104,15 @@ const NoticeActivity = ({ contents }: { contents: NoticeActivityDataType[] }) =>
       .reverse();
   };
 
+  const idList = contents.map(({ shareId }) => shareId);
   const items = getItems();
 
-  return <S.Wrapper>{items}</S.Wrapper>;
+  return (
+    <S.Wrapper>
+      <NoticeDeleteAllButton idList={idList} />
+      {items}
+    </S.Wrapper>
+  );
 };
 
 export default NoticeActivity;
