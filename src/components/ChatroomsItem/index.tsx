@@ -69,7 +69,7 @@ const ChatroomsItem = ({
       onLongPress && onLongPress({ id, event });
     },
     {
-      threshold: 500,
+      threshold: 300,
       captureEvent: true,
       cancelOnMovement: true,
       onStart: (event) => {
