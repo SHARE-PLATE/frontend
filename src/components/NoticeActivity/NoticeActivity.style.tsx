@@ -1,12 +1,20 @@
 import styled, { css } from 'styled-components';
 
-import { noScrollBar } from '@styles/mixin';
+import { flexCenter, noScrollBar } from '@styles/mixin';
 
 export const imgWidth = '3rem';
 
 export const Wrapper = styled.div`
   ${noScrollBar}
   overflow-y: scroll;
+`;
+
+export const NoRecentNoticeWrapper = styled.div`
+  ${({ theme: { colors } }) => css`
+    ${flexCenter};
+    color: ${colors.grey4};
+    height: 20rem;
+  `}
 `;
 
 export const ItemWrapper = styled.div`

@@ -8,7 +8,7 @@ import { v4 as getRandomKey } from 'uuid';
 import NoticeDeleteBtn from '@components/NoticeDeleteBtn';
 import * as S from '@components/NoticeKeyword/NoticeKeyword.style';
 import ImgContainer from '@components/common/ImgContainer';
-import { newShareEnrolledMention } from '@constants/mentions';
+import { newShareEnrolledMention, noRecentNoticeMention } from '@constants/mentions';
 import { pathName } from '@constants/pathName';
 import { newNoticeState, noticeStateTrigger } from '@store/notice';
 import { getIsActivity, NoticeKeywordDataType } from '@type/notice';
@@ -18,6 +18,7 @@ const NoticeKeyword = ({ contents }: { contents: NoticeKeywordDataType[] }) => {
   const navigate = useNavigate();
   const setNoticeStateTrigger = useSetRecoilState(noticeStateTrigger);
   const [newNotice, setNewNotice] = useRecoilState(newNoticeState);
+  const noRecentNotice = <S.NoRecentNoticeWrapper>{noRecentNoticeMention}</S.NoRecentNoticeWrapper>;
 
   const NoticeKeywordItem = ({
     id,
@@ -58,7 +59,11 @@ const NoticeKeyword = ({ contents }: { contents: NoticeKeywordDataType[] }) => {
   };
 
   const getItems = () => {
-    return keywordData.map((info) => <NoticeKeywordItem {...info} key={getRandomKey()} />);
+    const noticeItems = keywordData
+      .map((info) => <NoticeKeywordItem {...info} key={getRandomKey()} />)
+      .reverse();
+
+    return keywordData.length ? noticeItems : noRecentNotice;
   };
 
   useEffect(() => {

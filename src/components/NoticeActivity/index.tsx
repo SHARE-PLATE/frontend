@@ -16,6 +16,7 @@ import {
   entryCancelMention,
   entryJoinedMention,
   entryMention,
+  noRecentNoticeMention,
   shareCanceledMention,
   shareCancelMention,
   thirtyMinuitesLeftMention,
@@ -64,6 +65,7 @@ const NoticeActivity = ({ contents }: { contents: NoticeActivityDataType[] }) =>
   const navigate = useNavigate();
   const setNoticeStateTrigger = useSetRecoilState(noticeStateTrigger);
   const [newNotice, setNewNotice] = useRecoilState(newNoticeState);
+  const noRecentNotice = <S.NoRecentNoticeWrapper>{noRecentNoticeMention}</S.NoRecentNoticeWrapper>;
 
   const NoticeActivityItem = ({
     id,
@@ -107,10 +109,12 @@ const NoticeActivity = ({ contents }: { contents: NoticeActivityDataType[] }) =>
     );
   };
 
-  const getItems = () => {
-    return activityData
+  const getContent = () => {
+    const noticeItems = activityData
       .map((info) => <NoticeActivityItem {...info} key={getRandomKey()} />)
       .reverse();
+
+    return activityData.length ? noticeItems : noRecentNotice;
   };
 
   useEffect(() => {
@@ -133,7 +137,7 @@ const NoticeActivity = ({ contents }: { contents: NoticeActivityDataType[] }) =>
     };
   }, []);
 
-  return <S.Wrapper>{getItems()}</S.Wrapper>;
+  return <S.Wrapper>{getContent()}</S.Wrapper>;
 };
 
 export default NoticeActivity;
