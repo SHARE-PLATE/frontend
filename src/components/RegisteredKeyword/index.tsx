@@ -38,9 +38,11 @@ const RegisteredKeyword = ({ regionName, setCurLatitudeLongitude }: RegisteredKe
   };
 
   useEffect(() => {
-    if (keywords) setKeywordLength(keywords.length);
+    if (state !== 'hasValue') return;
+    console.log(regionName, keywords.length);
+    if (keywords) setKeywordLength((prev) => ({ ...prev, [regionName]: keywords.length }));
     if (longitude && latitude) setCurLatitudeLongitude({ lat: latitude, lng: longitude });
-  }, [regionName]);
+  }, [state]);
 
   const getRegisterData = (state: 'hasValue' | 'loading' | 'hasError') => {
     switch (state) {

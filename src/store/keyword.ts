@@ -13,9 +13,9 @@ export const registeredKeywordTrigger = atom<number>({
   default: 0,
 });
 
-export const registeredKeywordLength = atom<number>({
+export const registeredKeywordLength = atom<{ [key: string]: number }>({
   key: `registeredKeywordLength/${createRandomKey()}`,
-  default: 0,
+  default: {},
 });
 
 export const getKeywordListsData = selector({

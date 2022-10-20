@@ -47,11 +47,12 @@ const AddKeyword = () => {
       setIsInputValueModalOpen(true);
       return false;
     }
-    if (keywordLength >= 10) {
+    if (keywordLength[regionName] >= 10) {
       setIsKeywordLengthModalOpen(true);
       return false;
     }
-
+    console.log(keywordLength);
+    console.log(keywordLength[regionName]);
     const newKeyword = {
       location: regionName,
       latitude: curLatitudeLongitude.lat,
