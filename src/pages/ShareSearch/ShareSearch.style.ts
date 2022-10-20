@@ -1,9 +1,23 @@
 import styled, { css } from 'styled-components';
 
-import { defaultPageStyle, flexCenter } from '@styles/mixin';
+import { flexCenter } from '@styles/mixin';
 
 export const Wrapper = styled.div`
-  ${defaultPageStyle}
+  ${({ theme: { colors } }) => css`
+    background-color: ${colors.grey1};
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  `}
+
+  > * {
+    ${({ theme }) => theme.defaultPadding}
+  }
+
+  > :last-child {
+    flex-grow: 1;
+    padding-bottom: 5.75rem;
+  }
 `;
 
 export const ListHeader = styled.header`
@@ -14,7 +28,7 @@ export const ListHeader = styled.header`
   z-index: 1;
   background-color: ${({ theme }) => theme.colors.white1};
   padding: 0;
-  width: 100%;
+  width: 86%;
 
   > :first-child,
   > :last-child {
@@ -34,8 +48,7 @@ export const AddKeywordButton = styled.button`
   bottom: 1.5rem;
   left: 50%;
   transform: translate(-50%);
-  width: 10.75rem;
-  /* width: 48%; */
+  max-width: 18rem;
   height: 2.625rem;
   background: ${({ theme }) => theme.colors.orange2};
   box-shadow: 2px 4px 8px rgba(255, 69, 58, 0.2);
@@ -47,10 +60,15 @@ export const KeywordContent = styled.span`
     margin-left: 0.25rem;
     ${fonts.largeBold};
     color: ${colors.white0};
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   `}
 `;
 export const Text = styled.span`
   ${({ theme: { fonts, colors } }) => css`
+    min-width: 4rem;
+    width: 4rem;
     ${fonts.largeRegular};
     color: ${colors.white0};
   `}

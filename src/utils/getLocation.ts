@@ -15,3 +15,12 @@ export const getLocation = async (currentLatLon: LatitudeLongitudeType) => {
     })
     .catch((e) => console.log(e));
 };
+
+export const findRegionName = (addressArr: string[]) => {
+  const regionNameArr = ['동', '읍', '면', '리'];
+
+  for (let i = 0; i < regionNameArr.length; i++) {
+    const findArrResult = addressArr.find((string) => string.at(-1) === regionNameArr[i]);
+    if (findArrResult) return findArrResult;
+  }
+};

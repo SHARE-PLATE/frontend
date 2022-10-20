@@ -20,15 +20,18 @@ import { currentMapKey, searchRecent } from '@store/localStorage';
 import { currentLatitudeLongitude, currentAddressName } from '@store/location';
 import { ShareListType } from '@type/shareList';
 import { getSortData } from '@utils/ShareListSort';
+import { findRegionName } from '@utils/getLocation';
 
 const ShareSearch = () => {
   const [curShareFilterList, setCurrentFilterShareList] = useRecoilState(currentFilterShareList);
   const curMapKey = useRecoilValue(currentMapKey);
-  const keywordLength = useRecoilValue(registeredKeywordLength);
+  const [keywordLength, setKeywordLength] = useRecoilState(registeredKeywordLength);
   const searchRecentMapList = useRecoilValue(searchRecent);
   const { lat, lng } = useRecoilValue(currentLatitudeLongitude);
   const setKeywordListTrigger = useSetRecoilState(keywordListTrigger);
   const curAddressNameArr = useRecoilValue(currentAddressName).split(' ');
+
+  const [isSuccessKeyword, setIsSuccessKeyword] = useState<boolean>(false);
 
   const modalRef = useRef<HTMLDivElement>(null);
   const [isKeywordLengthModalOpen, setIsKeywordLengthModalOpen] = useModal({ modalRef });
@@ -43,14 +46,13 @@ const ShareSearch = () => {
   };
 
   const handleSubmitClick = async () => {
-    if (keywordLength >= 10) {
+    const regionName = findRegionName(curAddressNameArr);
+    if (!regionName) return false;
+
+    if (keywordLength[regionName] >= 10) {
       setIsKeywordLengthModalOpen(true);
       return false;
     }
-
-    let regionName;
-    if (curAddressNameArr.length <= 4) regionName = curAddressNameArr[2];
-    else regionName = curAddressNameArr[3];
 
     const newKeyword = {
       location: regionName,
@@ -62,12 +64,20 @@ const ShareSearch = () => {
     const isSuccessFetch = await addKeywords(newKeyword);
 
     if (isSuccessFetch) {
+      // 하단 알림 필요
+      setIsSuccessKeyword(true);
       setKeywordListTrigger((prev) => prev + 1);
+      setKeywordLength((prev) => ({ ...prev, [regionName]: keywordLength[regionName] + 1 }));
     }
+    console.log(keywordLength);
   };
 
   useEffect(() => {
     getShareList();
+  }, [searchRecentValue]);
+
+  useEffect(() => {
+    setIsSuccessKeyword(false);
   }, [searchRecentValue]);
 
   return (
@@ -79,11 +89,15 @@ const ShareSearch = () => {
           setCurrentFilterList={setCurrentFilterShareList}
         />
       </S.ListHeader>
-      <S.AddKeywordButton onClick={handleSubmitClick}>
-        <Icon iconName='NoticeFill' />
-        <S.KeywordContent>{searchRecentValue}</S.KeywordContent>
-        <S.Text> 알림 받기</S.Text>
-      </S.AddKeywordButton>
+
+      {!isSuccessKeyword && (
+        <S.AddKeywordButton onClick={handleSubmitClick}>
+          <Icon iconName='NoticeFill' />
+          <S.KeywordContent>{searchRecentValue}</S.KeywordContent>
+          <S.Text> 알림 받기</S.Text>
+        </S.AddKeywordButton>
+      )}
+
       {isKeywordLengthModalOpen && (
         <FailedModal
           modalRef={modalRef}
