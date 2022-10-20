@@ -10,6 +10,7 @@ export const Wrapper = styled.div`
 
 export const SuggestedContainer = styled.div`
   ${flexBetween}
+  position: relative;
   gap: 0.375rem;
   height: 2.625rem;
   background: ${({ theme }) => theme.colors.white0};
@@ -42,4 +43,9 @@ export const SuggestedItem = styled.div`
 
 export const AdditionalImgStyle = css`
   padding-right: 1rem;
+`;
+
+export const IconWrapper = styled.div`
+  position: absolute;
+  right: 0; ;
 `;

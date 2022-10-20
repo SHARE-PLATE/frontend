@@ -5,12 +5,15 @@ import { useRecoilValueLoadable, useSetRecoilState } from 'recoil';
 import { deleteRegisteredKeywords } from '@api/keyword';
 import * as S from '@components/RegisteredKeyword/RegisteredKeyword.style';
 import RegisteredKeywordItem from '@components/RegisteredKeyword/RegisteredKeywordItem';
-import { getRegisteredKeywordData, registeredKeywordTrigger } from '@store/keyword';
+import {
+  getRegisteredKeywordData,
+  registeredKeywordLength,
+  registeredKeywordTrigger,
+} from '@store/keyword';
 import { keywordsType } from '@type/keyword';
 
 interface RegisteredKeywordPropsType {
   regionName: string;
-  setKeywordLength: Dispatch<React.SetStateAction<number>>;
   setCurLatitudeLongitude: Dispatch<
     React.SetStateAction<{
       lat: string;
@@ -19,16 +22,14 @@ interface RegisteredKeywordPropsType {
   >;
 }
 
-const RegisteredKeyword = ({
-  regionName,
-  setKeywordLength,
-  setCurLatitudeLongitude,
-}: RegisteredKeywordPropsType) => {
+const RegisteredKeyword = ({ regionName, setCurLatitudeLongitude }: RegisteredKeywordPropsType) => {
   const {
     state,
     contents: { keywords, longitude, latitude },
   } = useRecoilValueLoadable(getRegisteredKeywordData(regionName));
+  const setKeywordLength = useSetRecoilState(registeredKeywordLength);
   const setRegisteredKeywordTrigger = useSetRecoilState(registeredKeywordTrigger);
+
   const buttonClickHandler = async (id: number) => {
     if (!id) return false;
     const isSuccessFetch = await deleteRegisteredKeywords(id);
@@ -37,9 +38,11 @@ const RegisteredKeyword = ({
   };
 
   useEffect(() => {
-    if (keywords) setKeywordLength(keywords.length);
+    if (state !== 'hasValue') return;
+    console.log(regionName, keywords.length);
+    if (keywords) setKeywordLength((prev) => ({ ...prev, [regionName]: keywords.length }));
     if (longitude && latitude) setCurLatitudeLongitude({ lat: latitude, lng: longitude });
-  }, [regionName]);
+  }, [state]);
 
   const getRegisterData = (state: 'hasValue' | 'loading' | 'hasError') => {
     switch (state) {
