@@ -21,17 +21,12 @@ const Carousel = ({
   isCount = true,
   width = '100%',
   height = '6rem',
-  onClickHandler,
 }: CarouselPropsType) => {
   const [current, setCurrent] = useState<number>(0);
   const changeCurIndex = (curIndex: number) => setCurrent(curIndex);
 
   return (
-    <S.CarouselWrapper
-      width={width}
-      height={height}
-      onClick={() => onClickHandler && onClickHandler(current)}
-    >
+    <S.CarouselWrapper width={width} height={height}>
       {isCount && (
         <S.CarouselCount>
           <S.ShowedIndexWrapper>{current + 1}</S.ShowedIndexWrapper>

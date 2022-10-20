@@ -1,4 +1,3 @@
-import { isMobile } from 'react-device-detect';
 import { useNavigate } from 'react-router-dom';
 import { Settings } from 'react-slick';
 import { useRecoilState, useSetRecoilState } from 'recoil';
@@ -29,24 +28,27 @@ const SuggestedSearchTerms = () => {
   const setCurrentMapKey = useSetRecoilState(currentMapKey);
   const [recentListInfoMap, setRecentListInfoMap] = useRecoilState(searchRecent);
 
-  const handleClickProducts = (itemIdx: number) => {
-    const curText = popularKeywordsContents[itemIdx].props.children;
-
-    recentListInfoMap.set(curText, { name: curText, date: getMonthDate() });
+  const handleClickProducts = (itemName: string) => {
+    recentListInfoMap.set(itemName, { name: itemName, date: getMonthDate() });
 
     setLocalStorageInfo({ key: SEARCH_RECENT, info: [...recentListInfoMap] });
     setRecentListInfoMap(() => recentListInfoMap);
-    setCurrentMapKey(curText);
+    setCurrentMapKey(itemName);
     navigate('/search-share');
   };
 
   const popularKeywordsContents = popularKeywordsInfo.map(({ id, name }) => (
-    <S.SuggestedItem key={id}>{name}</S.SuggestedItem>
+    <S.SuggestedItem key={id} onClick={() => handleClickProducts(name)}>
+      {name}
+    </S.SuggestedItem>
   ));
 
   return (
     <S.Wrapper>
       <S.SuggestedContainer>
+        <S.IconWrapper>
+          <Icon iconName='SearchThick' additionalStyle={S.AdditionalImgStyle} />
+        </S.IconWrapper>
         <S.Contents>
           <S.SuggestedTitle>추천 검색</S.SuggestedTitle>
         </S.Contents>
@@ -54,12 +56,10 @@ const SuggestedSearchTerms = () => {
           contents={popularKeywordsContents}
           settings={settings}
           height='100%'
-          width={isMobile ? '63%' : '80%'}
+          width='100%'
           isCount={false}
           type='vertical'
-          onClickHandler={handleClickProducts}
         />
-        <Icon iconName='SearchThick' additionalStyle={S.AdditionalImgStyle} />
       </S.SuggestedContainer>
     </S.Wrapper>
   );
