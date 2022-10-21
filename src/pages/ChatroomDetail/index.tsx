@@ -27,24 +27,11 @@ const ChatroomDetail = () => {
   if (!id) return ErrorPage;
 
   const chatroomDetail = chatroomDetailState({ id });
-  const lastChatRef = useRef<HTMLDivElement>();
   const { state, contents } = useRecoilValueLoadable(chatroomDetail);
   const setChatroomsTrigger = useSetRecoilState(chatroomsTrigger);
   const setChatroomsUpdate = useSetRecoilState(chatroomsUpdateState);
   const setChatsUnreadTrigger = useSetRecoilState(chatsUnreadTrigger);
   const setchatroomDetailTrigger = useSetRecoilState(chatroomDetailTrigger);
-
-  //**callback ref for scroll to bottom */
-  const scrollToBottomRef = useCallback((lastChatDiv: HTMLDivElement) => {
-    if (!lastChatDiv) return;
-    // change target only if last chat didn't exist
-    lastChatRef.current = lastChatDiv;
-    lastChatDiv.scrollIntoView();
-  }, []);
-
-  const scrollToBottom = () => {
-    lastChatRef.current?.scrollIntoView();
-  };
 
   const getContents = () => {
     switch (state) {
@@ -63,12 +50,8 @@ const ChatroomDetail = () => {
               <ChatroomDetailInfo {...share} />
               <S.RemainingTime>남은 시간 : {remainingTime}</S.RemainingTime>
             </S.TopFixedWrapper>
-            <ChatroomDetailContents
-              chats={chats}
-              chatroomId={chatRoomMemberId || ''}
-              scrollToBottom={scrollToBottom}
-            />
-            <S.EmptyBlock ref={scrollToBottomRef} />
+            <ChatroomDetailContents chats={chats} chatroomId={chatRoomMemberId || ''} />
+
             <ChatroomBar chatroomId={id || ''} />
           </S.Wrapper>
         );

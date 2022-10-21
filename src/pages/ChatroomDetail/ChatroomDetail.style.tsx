@@ -55,11 +55,6 @@ export const RemainingTime = styled.div`
   `}
 `;
 
-export const EmptyBlock = styled.div`
-  height: 0.75rem;
-  width: 100%;
-`;
-
 export const ErrorWrapper = styled.div`
   ${({ theme: { colors } }) => css`
     background-color: ${colors.white1};

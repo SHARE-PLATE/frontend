@@ -1,4 +1,12 @@
-import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
+import {
+  Fragment,
+  MutableRefObject,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import moment from 'moment';
 import StompJs from 'stompjs';
@@ -12,16 +20,23 @@ import { ChatroomDetailChatsType, ChatroomDetailChatType } from '@type/chat';
 type ChatroomDetailContentsPropsType = {
   chats: ChatroomDetailChatsType;
   chatroomId: string;
-  scrollToBottom: () => void;
 };
 
-const ChatroomDetailContents = ({
-  chats,
-  chatroomId,
-  scrollToBottom,
-}: ChatroomDetailContentsPropsType) => {
+const ChatroomDetailContents = ({ chats, chatroomId }: ChatroomDetailContentsPropsType) => {
   const [curChats, setCurChats] = useState(chats);
   const dateRef = useRef('');
+  const lastChatRef = useRef<HTMLDivElement>();
+  //**callback ref for scroll to bottom */
+  const scrollToBottomRef = useCallback((lastChatDiv: HTMLDivElement) => {
+    if (!lastChatDiv) return;
+    // change target only if last chat didn't exist
+    lastChatRef.current = lastChatDiv;
+    lastChatDiv.scrollIntoView();
+  }, []);
+
+  const scrollToBottom = () => {
+    lastChatRef.current?.scrollIntoView({ block: 'end' });
+  };
 
   const getSingleChat = (info: ChatroomDetailChatType) => {
     const { writtenDateTime } = info;
@@ -48,11 +63,7 @@ const ChatroomDetailContents = ({
 
   const getNewChatMessage = (chatData: StompJs.Message) => {
     const newChat = JSON.parse(chatData.body);
-    setCurChats((chats) => {
-      const newChats = [...chats, newChat];
-
-      return newChats;
-    });
+    setCurChats((chats) => [...chats, newChat]);
     scrollToBottom();
   };
 
@@ -62,7 +73,12 @@ const ChatroomDetailContents = ({
     return () => disconnectChatroom();
   }, []);
 
-  return <S.Wrapper>{chatroomLogs}</S.Wrapper>;
+  return (
+    <S.Wrapper>
+      {chatroomLogs}
+      <S.LastBottomBlock ref={scrollToBottomRef} />
+    </S.Wrapper>
+  );
 };
 
 export default ChatroomDetailContents;
