@@ -30,7 +30,7 @@ type subscribeChatParamsType = {
   chatroomIds?: number[];
 };
 
-type connectParams = {
+type ConnectStompParamsType = {
   noticeParams: subscribeNoticeParamsType;
   chatParams: subscribeChatParamsType;
 };
@@ -98,7 +98,7 @@ export const sendChat = ({ contents, chatroomId }: SendChatParamsType) => {
   stompClient.send(sendingURL, headers, JSON.stringify({ contents }));
 };
 
-export const connectStomp = ({ noticeParams, chatParams }: connectParams) => {
+export const connectStomp = ({ noticeParams, chatParams }: ConnectStompParamsType) => {
   const headers = getAuthHeaders();
   try {
     // stompClient.debug = () => null;

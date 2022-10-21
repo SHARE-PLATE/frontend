@@ -24,6 +24,15 @@ export const useOnReceiveChat = () => {
   };
 };
 
+export const useOnReceiveNotice = () => {
+  const setNewNotice = useSetRecoilState(newNoticeState);
+
+  return (noticeData: StompJs.Message) => {
+    const newEntryData = JSON.parse(noticeData.body);
+    setNewNotice(newEntryData);
+  };
+};
+
 const useConnectSocket = () => {
   const { state: entriesState, contents: entriesContents } =
     useRecoilValueLoadable(shareListEntriesState);
@@ -32,18 +41,7 @@ const useConnectSocket = () => {
   const { state: chatroomState, contents: chatroomContents } =
     useRecoilValueLoadable(chatroomIdsState);
 
-  const setNewNotice = useSetRecoilState(newNoticeState);
-
-  const onSubscribeEntries = (entryData: StompJs.Message) => {
-    const newEntryData = JSON.parse(entryData.body);
-    setNewNotice(newEntryData);
-  };
-
-  const onSubscribeKeywords = (keywordData: StompJs.Message) => {
-    const newKeywordData = JSON.parse(keywordData.body);
-    setNewNotice(newKeywordData);
-  };
-
+  const onSubscribeNotice = useOnReceiveNotice();
   const onReceiveChat = useOnReceiveChat();
 
   return () => {
@@ -68,8 +66,8 @@ const useConnectSocket = () => {
         noticeParams: {
           entryIds,
           keywordIds,
-          onSubscribeEntries,
-          onSubscribeKeywords,
+          onSubscribeEntries: onSubscribeNotice,
+          onSubscribeKeywords: onSubscribeNotice,
         },
         chatParams: { chatroomIds, onReceiveChat },
       });
