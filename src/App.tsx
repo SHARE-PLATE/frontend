@@ -2,25 +2,22 @@ import { useRoutes } from 'react-router-dom';
 
 import BottomMessage from '@components/BottomMessage';
 import NavigationBar from '@components/NavigationBar';
-import useChatAlarm from '@hooks/useChatAlarm';
 import useCheckIsLogin from '@hooks/useCheckIsLogin';
-import useNoticeAlarm from '@hooks/useNoticeAlarm';
 import AddressPortal from '@portals/AddressPortal';
 import KeywordAddressPortal from '@portals/KeywordAddressPortal';
 import LoginPortal from '@portals/LoginPortal';
 import OptionPortal from '@portals/OptionPortal';
 import SearchPortal from '@portals/SearchPortal';
 import { routes } from '@router';
+import useConnectSocket from '@socket/useConnectSocket';
 import Styles from '@styles';
 
 const App = () => {
   const element = useRoutes(routes);
-  const noticeAlarm = useNoticeAlarm();
-  const chatAlarm = useChatAlarm();
+  const connectSocket = useConnectSocket();
 
   useCheckIsLogin();
-  noticeAlarm();
-  chatAlarm();
+  connectSocket();
 
   return (
     <div className='App'>
