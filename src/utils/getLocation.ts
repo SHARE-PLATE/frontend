@@ -23,4 +23,5 @@ export const findRegionName = (addressArr: string[]) => {
     const findArrResult = addressArr.find((string) => string.at(-1) === regionNameArr[i]);
     if (findArrResult) return findArrResult;
   }
+  return '';
 };
