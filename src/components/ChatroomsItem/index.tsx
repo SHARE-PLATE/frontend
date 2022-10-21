@@ -10,7 +10,7 @@ import * as S from '@components/ChatroomsItem/ChatroomsItem.style';
 import ImgContainer from '@components/common/ImgContainer';
 import { noRecentChatMention } from '@constants/mentions';
 import { pathName } from '@constants/pathName';
-import { chatroomsUpdateState } from '@store/chatrooms';
+import { chatUpdateState } from '@store/chatrooms';
 import { ChatroomsDataType } from '@type/chat';
 
 export type IdType = string | null;
@@ -44,7 +44,11 @@ const ChatroomsItem = ({
   onClickExitBtn,
 }: ChatroomsItemPropsType) => {
   const navigate = useNavigate();
-  const { id: updateId, contents: updateContents } = useRecoilValue(chatroomsUpdateState);
+  const {
+    id: updateId,
+    chat: updateChat,
+    trigger: chatUpdateTrigger,
+  } = useRecoilValue(chatUpdateState);
   const [curUnreadCount, setCurUnreadCount] = useState(unreadCount);
   const [curRecentMessage, setCurRecentMessage] = useState<string | undefined>(recentMessage);
   const [startPoint, setStartPoint] = useState(0);
@@ -137,9 +141,9 @@ const ChatroomsItem = ({
   useEffect(() => {
     if (chatRoomMemberId !== updateId) return;
 
-    setCurRecentMessage(updateContents);
+    setCurRecentMessage(updateChat?.contents);
     setCurUnreadCount((prev) => prev + 1);
-  }, [updateContents]);
+  }, [chatUpdateTrigger]);
 
   return (
     <S.OuterWrapper>

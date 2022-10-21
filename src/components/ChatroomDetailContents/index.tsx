@@ -1,21 +1,27 @@
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import moment from 'moment';
-import StompJs from 'stompjs';
+import { useRecoilValue, useResetRecoilState } from 'recoil';
 import { v4 as createRandomKey } from 'uuid';
 
 import Chat from '@components/Chat';
 import * as S from '@components/ChatroomDetailContents/ChatroomDetailContents.style';
-import { chatroomSocket } from '@socket/chatroomSocket';
+import { chatUpdateState } from '@store/chatrooms';
 import { ChatroomDetailChatsType, ChatroomDetailChatType } from '@type/chat';
 
 type ChatroomDetailContentsPropsType = {
   chats: ChatroomDetailChatsType;
-  chatroomId: string;
+  chatroomId: number;
 };
 
 const ChatroomDetailContents = ({ chats, chatroomId }: ChatroomDetailContentsPropsType) => {
   const [curChats, setCurChats] = useState(chats);
+  const resetChatUpdate = useResetRecoilState(chatUpdateState);
+  const {
+    id: updatedId,
+    chat: updatedChat,
+    trigger: chatUpdateTrigger,
+  } = useRecoilValue(chatUpdateState);
   const dateRef = useRef('');
   const lastChatRef = useRef<HTMLDivElement>();
   //**callback ref for scroll to bottom */
@@ -53,17 +59,18 @@ const ChatroomDetailContents = ({ chats, chatroomId }: ChatroomDetailContentsPro
     return curChats.map(getSingleChat);
   }, [curChats]);
 
-  const getNewChatMessage = (chatData: StompJs.Message) => {
-    const newChat = JSON.parse(chatData.body);
-    setCurChats((chats) => [...chats, newChat]);
-    scrollToBottom();
-  };
+  useEffect(() => {
+    return () => {
+      // delete updated info when occurs in this page (updated info should exists for chatrooms page not chatroom detail page)
+      resetChatUpdate();
+    };
+  }, []);
 
   useEffect(() => {
-    const { disconnectChatroom, connectChatroom } = chatroomSocket();
-    connectChatroom({ onReceive: getNewChatMessage, chatroomId });
-    return () => disconnectChatroom();
-  }, []);
+    if (chatroomId !== updatedId || !updatedChat) return;
+    setCurChats((chats) => [...chats, updatedChat]);
+    scrollToBottom();
+  }, [chatUpdateTrigger]);
 
   return (
     <S.Wrapper>

@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useRef, useState } from 'react';
 
-import { useRecoilValueLoadable, useSetRecoilState } from 'recoil';
+import { useRecoilValueLoadable, useResetRecoilState, useSetRecoilState } from 'recoil';
 
 import { deleteChatroomData } from '@api/chat';
 import ChatroomsItem, {
@@ -22,7 +22,7 @@ import {
   activeChatroomsState,
   chatroomsState,
   chatroomsTrigger,
-  chatroomsUpdateState,
+  chatUpdateState,
   chatsUnreadTrigger,
 } from '@store/chatrooms';
 import { ChatroomsStateType } from '@type/chat';
@@ -32,7 +32,7 @@ const Chatrooms = () => {
   const { contents: chatroomsData, state } = useRecoilValueLoadable(chatroomsState);
   const setChatsUnreadTrigger = useSetRecoilState(chatsUnreadTrigger);
   const setChatroomsTrigger = useSetRecoilState(chatroomsTrigger);
-  const setChatroomsUpdate = useSetRecoilState(chatroomsUpdateState);
+  const resetChatUpdate = useResetRecoilState(chatUpdateState);
   const modalRef = useRef<HTMLDivElement>(null);
   const [deletedId, setDeletedId] = useState<IdType>(null);
   const [isToastModal, setIsToastModal] = useState(false);
@@ -118,7 +118,7 @@ const Chatrooms = () => {
   useEffect(() => {
     reloadChatroomsData();
     setChatsUnreadTrigger((prev) => prev + 1);
-    return () => setChatroomsUpdate({});
+    return () => resetChatUpdate();
   }, []);
 
   return (

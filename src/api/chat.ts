@@ -10,7 +10,7 @@ export type GetChatroomsDataParamsType = {
 };
 
 export type GetChatroomDetailDataParamsType = {
-  id: string;
+  id: number;
 };
 
 export const getChatroomsData = async ({ type }: GetChatroomsDataParamsType) => {

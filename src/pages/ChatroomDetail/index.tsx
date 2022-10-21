@@ -13,7 +13,7 @@ import Loading from '@components/Loading';
 import { failLoadingChatroomsMention } from '@constants/mentions';
 import * as S from '@pages/ChatroomDetail/ChatroomDetail.style';
 import { chatroomDetailState, chatroomDetailTrigger } from '@store/chatroomDetail';
-import { chatroomsTrigger, chatroomsUpdateState, chatsUnreadTrigger } from '@store/chatrooms';
+import { chatroomsTrigger, chatsUnreadTrigger } from '@store/chatrooms';
 import { getTimeDiff } from '@utils/getTimeDiff';
 
 const ChatroomDetail = () => {
@@ -25,10 +25,9 @@ const ChatroomDetail = () => {
   );
   if (!id) return ErrorPage;
 
-  const chatroomDetail = chatroomDetailState({ id });
+  const chatroomDetail = chatroomDetailState({ id: Number(id) });
   const { state, contents } = useRecoilValueLoadable(chatroomDetail);
   const setChatroomsTrigger = useSetRecoilState(chatroomsTrigger);
-  const setChatroomsUpdate = useSetRecoilState(chatroomsUpdateState);
   const setChatsUnreadTrigger = useSetRecoilState(chatsUnreadTrigger);
   const setchatroomDetailTrigger = useSetRecoilState(chatroomDetailTrigger);
 
@@ -49,7 +48,7 @@ const ChatroomDetail = () => {
               <ChatroomDetailInfo {...share} />
               <S.RemainingTime>남은 시간 : {remainingTime}</S.RemainingTime>
             </S.TopFixedWrapper>
-            <ChatroomDetailContents chats={chats} chatroomId={chatRoomMemberId || ''} />
+            <ChatroomDetailContents chats={chats} chatroomId={chatRoomMemberId} />
 
             <ChatroomBar chatroomId={id || ''} />
           </S.Wrapper>
@@ -70,8 +69,6 @@ const ChatroomDetail = () => {
       // reflect chats that occur this render on 'chatrooms' and 'chats unread'
       setChatroomsTrigger((prev) => prev + 1);
       setChatsUnreadTrigger((prev) => prev + 1);
-      // delete updated info when occurs in this page (updated info should exists for chatrooms page not chatroom detail page)
-      setChatroomsUpdate({});
     };
   }, []);
 
