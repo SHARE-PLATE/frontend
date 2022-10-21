@@ -51,8 +51,7 @@ const AddKeyword = () => {
       setIsKeywordLengthModalOpen(true);
       return false;
     }
-    console.log(keywordLength);
-    console.log(keywordLength[regionName]);
+
     const newKeyword = {
       location: regionName,
       latitude: curLatitudeLongitude.lat,
