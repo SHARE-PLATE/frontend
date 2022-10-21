@@ -5,7 +5,7 @@ import { useRecoilValueLoadable, useResetRecoilState, useSetRecoilState } from '
 import { deleteChatroomData } from '@api/chat';
 import ChatroomsItem, {
   ChatroomItemCallBackParamsType,
-  IdType,
+  IdsType,
   LongPressOption,
 } from '@components/ChatroomsItem';
 import Loading from '@components/Loading';
@@ -18,6 +18,7 @@ import { CHATTING, EXIT_CHATROOM, RELOAD } from '@constants/words';
 import useChatroomsInfo from '@hooks/useChatroomsInfo';
 import useModal from '@hooks/useModal';
 import * as S from '@pages/Chatrooms/Chatrooms.style';
+import { chatMap, unsubscribeStomp } from '@socket/stomp';
 import {
   activeChatroomsState,
   chatroomsState,
@@ -34,7 +35,7 @@ const Chatrooms = () => {
   const setChatroomsTrigger = useSetRecoilState(chatroomsTrigger);
   const resetChatUpdate = useResetRecoilState(chatUpdateState);
   const modalRef = useRef<HTMLDivElement>(null);
-  const [deletedId, setDeletedId] = useState<IdType>(null);
+  const [deletedId, setDeletedId] = useState<IdsType>(null);
   const [isToastModal, setIsToastModal] = useState(false);
   const [isSelectModal, setIsSelectModal] = useModal({ modalRef });
 
@@ -52,19 +53,23 @@ const Chatrooms = () => {
     setIsSelectModal(true);
   };
 
-  const showSelectWithId = ({ event, id }: ChatroomItemCallBackParamsType) => {
+  const showSelectWithId = ({ event, ids }: ChatroomItemCallBackParamsType) => {
     event && event.stopPropagation();
-    id && setDeletedId(id);
+    ids && setDeletedId(ids);
     setIsSelectModal(true);
   };
 
   const handleClickSelectOkBtn = async () => {
     if (!deletedId) return;
-    const response = await deleteChatroomData(deletedId);
+    const { id, chatRoomMemberId } = deletedId;
+    const response = await deleteChatroomData(id);
     if (response.status === 200) {
+      const stompId = chatMap.get(chatRoomMemberId);
+      unsubscribeStomp(stompId);
       setChatroomsTrigger((trigger) => trigger + 1);
       setDeletedId(null);
     }
+    setIsSelectModal(false);
   };
 
   const hideSelect = () => {
@@ -72,9 +77,9 @@ const Chatrooms = () => {
     setDeletedId(null);
   };
 
-  const showToastWithId = ({ id }: { id?: string }) => {
-    if (!id) return;
-    setDeletedId(id);
+  const showToastWithId = ({ ids }: { ids: IdsType }) => {
+    if (!ids) return;
+    setDeletedId(ids);
     setIsToastModal(true);
   };
 

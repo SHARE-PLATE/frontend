@@ -42,7 +42,7 @@ export const getChatroomDetailData = async ({ id }: GetChatroomDetailDataParamsT
   }
 };
 
-export const deleteChatroomData = async (id: string) => {
+export const deleteChatroomData = async (id: number) => {
   const data = JSON.stringify({ [CHATROOM_ID]: id });
   const headers: any = getAuthHeaders();
 

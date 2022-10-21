@@ -26,8 +26,8 @@ type subscribeNoticeParamsType = {
 
 type subscribeChatParamsType = {
   onReceiveChat: (chatData: StompJs.Message) => void;
-  chatroomId?: string | number;
-  chatroomIds?: string[] | number[];
+  chatroomId?: number;
+  chatroomIds?: number[];
 };
 
 type connectParams = {
@@ -38,12 +38,16 @@ type connectParams = {
 const sockServer = `${process.env.REACT_APP_BASE_URL}/${WEBSOCKET}`; // 들어갈 주소 설정
 const sock = new SockJs(sockServer);
 export const stompClient = StompJs.over(sock);
+export const keywordMap = new Map<number, string>();
+export const entryMap = new Map<number, string>();
+export const chatMap = new Map<number, string>();
 
 const subscribeChat = ({ onReceiveChat, chatroomId, chatroomIds }: subscribeChatParamsType) => {
-  const subscribeToStomp = (id: string | number) => {
-    const headers = getAuthHeaders();
+  const subscribeToStomp = (id: number) => {
     const subscribeURL = `/${TOPIC}/${CHATROOM_MEMBERS}/${id}`;
-    stompClient.subscribe(subscribeURL, onReceiveChat, headers);
+    const headers = getAuthHeaders();
+    const { id: stompId } = stompClient.subscribe(subscribeURL, onReceiveChat, headers);
+    chatMap.set(id, stompId);
   };
 
   if (chatroomId) subscribeToStomp(chatroomId);
@@ -57,16 +61,18 @@ const subscribeNotice = ({
   onSubscribeKeywords,
 }: subscribeNoticeParamsType) => {
   const subscribeURL = `/${QUEUE}/${NOTIFICATIONS}`;
-  const headers = getAuthHeaders();
+  console.log({ entryIds, keywordIds });
 
   if (!!entryIds.length) {
     entryIds.forEach((id) => {
+      const headers = getAuthHeaders();
       stompClient.subscribe(subscribeURL + `/${ENTRIES}/${id}`, onSubscribeEntries, headers);
     });
   }
 
   if (!!keywordIds.length) {
     keywordIds.forEach((id) => {
+      const headers = getAuthHeaders();
       stompClient.subscribe(subscribeURL + `/${KEYWORDS}/${id}`, onSubscribeKeywords, headers);
     });
   }

@@ -1,5 +1,5 @@
 export type ChatroomsDataType = {
-  id: string;
+  id: number;
   chatRoomMemberId: number;
   shareThumbnailImageUrl: string;
   currentRecruitment: number;

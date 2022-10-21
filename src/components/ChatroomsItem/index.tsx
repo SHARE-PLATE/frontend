@@ -13,19 +13,19 @@ import { pathName } from '@constants/pathName';
 import { chatUpdateState } from '@store/chatrooms';
 import { ChatroomsDataType } from '@type/chat';
 
-export type IdType = string | null;
+export type IdsType = { chatRoomMemberId: number; id: number } | null;
 
-export type ChatroomItemCallBackParamsType = { id?: string; event?: LongPressEvent<any> };
+export type ChatroomItemCallBackParamsType = { ids: IdsType; event?: LongPressEvent<any> };
 
 export type LongPressOption = {
-  onLongPress?: ({ id, event }: ChatroomItemCallBackParamsType) => void;
-  onLongPressStart?: ({ id, event }: ChatroomItemCallBackParamsType) => void;
-  onLongPressFinish?: ({ id, event }: ChatroomItemCallBackParamsType) => void;
+  onLongPress?: ({ ids, event }: ChatroomItemCallBackParamsType) => void;
+  onLongPressStart?: ({ ids, event }: ChatroomItemCallBackParamsType) => void;
+  onLongPressFinish?: ({ ids, event }: ChatroomItemCallBackParamsType) => void;
 };
 
 type ChatroomsItemPropsType = ChatroomsDataType & {
   longPressOption: LongPressOption;
-  onClickExitBtn: ({ id, event }: ChatroomItemCallBackParamsType) => void;
+  onClickExitBtn: ({ ids, event }: ChatroomItemCallBackParamsType) => void;
 };
 
 const defaultStartPoint = 0;
@@ -56,6 +56,7 @@ const ChatroomsItem = ({
   const wrapperRef = useRef<HTMLDivElement>(null);
   const { onLongPress, onLongPressFinish, onLongPressStart } = longPressOption;
   const diffTime = moment(recentMessageDataTime).add(9, 'hours').fromNow();
+  const ids = { id, chatRoomMemberId };
   const recruitmentMemberNicknamesJoined = recruitmentMemberNicknames.join(', ');
   const recruitmentMemberImages = recruitmentMemberImageUrls.map((img) => (
     <ImgContainer
@@ -70,18 +71,18 @@ const ChatroomsItem = ({
   const handleLongPress = useLongPress(
     (event) => {
       event.stopPropagation();
-      onLongPress && onLongPress({ id, event });
+      onLongPress && onLongPress({ ids, event });
     },
     {
       threshold: 300,
       captureEvent: true,
       cancelOnMovement: true,
       onStart: (event) => {
-        onLongPressStart && onLongPressStart({ event, id });
+        onLongPressStart && onLongPressStart({ event, ids });
       },
       onFinish: (event) => {
         setStartPoint(defaultStartPoint);
-        onLongPressFinish && onLongPressFinish({ event, id });
+        onLongPressFinish && onLongPressFinish({ event, ids });
       },
     },
   );
@@ -114,7 +115,7 @@ const ChatroomsItem = ({
   const handleClickExitBtn = (event: MouseEvent<HTMLButtonElement>) => {
     setMoving('right');
     setStartPoint(defaultStartPoint);
-    onClickExitBtn({ event, id });
+    onClickExitBtn({ event, ids });
   };
 
   const handleMouseDown = (event: MouseEvent<HTMLDivElement>) => setStartPoint(event.screenX);

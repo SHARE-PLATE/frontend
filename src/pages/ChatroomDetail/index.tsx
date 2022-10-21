@@ -49,7 +49,6 @@ const ChatroomDetail = () => {
               <S.RemainingTime>남은 시간 : {remainingTime}</S.RemainingTime>
             </S.TopFixedWrapper>
             <ChatroomDetailContents chats={chats} chatroomId={chatRoomMemberId} />
-
             <ChatroomBar chatroomId={id || ''} />
           </S.Wrapper>
         );
