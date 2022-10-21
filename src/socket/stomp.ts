@@ -42,7 +42,11 @@ export const keywordMap = new Map<number, string>();
 export const entryMap = new Map<number, string>();
 export const chatMap = new Map<number, string>();
 
-const subscribeChat = ({ onReceiveChat, chatroomId, chatroomIds }: subscribeChatParamsType) => {
+export const subscribeChat = ({
+  onReceiveChat,
+  chatroomId,
+  chatroomIds,
+}: subscribeChatParamsType) => {
   const subscribeToStomp = (id: number) => {
     const subscribeURL = `/${TOPIC}/${CHATROOM_MEMBERS}/${id}`;
     const headers = getAuthHeaders();
@@ -61,19 +65,28 @@ const subscribeNotice = ({
   onSubscribeKeywords,
 }: subscribeNoticeParamsType) => {
   const subscribeURL = `/${QUEUE}/${NOTIFICATIONS}`;
-  console.log({ entryIds, keywordIds });
 
   if (!!entryIds.length) {
     entryIds.forEach((id) => {
       const headers = getAuthHeaders();
-      stompClient.subscribe(subscribeURL + `/${ENTRIES}/${id}`, onSubscribeEntries, headers);
+      const { id: stompId } = stompClient.subscribe(
+        subscribeURL + `/${ENTRIES}/${id}`,
+        onSubscribeEntries,
+        headers,
+      );
+      entryMap.set(id, stompId);
     });
   }
 
   if (!!keywordIds.length) {
     keywordIds.forEach((id) => {
       const headers = getAuthHeaders();
-      stompClient.subscribe(subscribeURL + `/${KEYWORDS}/${id}`, onSubscribeKeywords, headers);
+      const { id: stompId } = stompClient.subscribe(
+        subscribeURL + `/${KEYWORDS}/${id}`,
+        onSubscribeKeywords,
+        headers,
+      );
+      keywordMap.set(id, stompId);
     });
   }
 };

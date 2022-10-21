@@ -10,6 +10,20 @@ import { shareListEntriesState } from '@store/shareList';
 
 import { connectStomp } from './stomp';
 
+export const useOnReceiveChat = () => {
+  const setChatsUnreadTrigger = useSetRecoilState(chatsUnreadTrigger);
+  const setChatUpdate = useSetRecoilState(chatUpdateState);
+
+  return (chatDate: StompJs.Message) => {
+    const { body, headers } = chatDate;
+    const chat = JSON.parse(body);
+    //@ts-ignore ** 추후에 반드시 처리가 필요합니다!
+    const id = Number(headers.destination.split('/').at(-1));
+    setChatsUnreadTrigger((prev) => prev + 1);
+    setChatUpdate(({ trigger }) => ({ chat, id, trigger: trigger + 1 }));
+  };
+};
+
 const useConnectSocket = () => {
   const { state: entriesState, contents: entriesContents } =
     useRecoilValueLoadable(shareListEntriesState);
@@ -19,8 +33,6 @@ const useConnectSocket = () => {
     useRecoilValueLoadable(chatroomIdsState);
 
   const setNewNotice = useSetRecoilState(newNoticeState);
-  const setChatsUnreadTrigger = useSetRecoilState(chatsUnreadTrigger);
-  const setChatUpdate = useSetRecoilState(chatUpdateState);
 
   const onSubscribeEntries = (entryData: StompJs.Message) => {
     const newEntryData = JSON.parse(entryData.body);
@@ -32,14 +44,7 @@ const useConnectSocket = () => {
     setNewNotice(newKeywordData);
   };
 
-  const onReceiveChat = (chatDate: StompJs.Message) => {
-    const { body, headers } = chatDate;
-    const chat = JSON.parse(body);
-    //@ts-ignore ** 추후에 반드시 처리가 필요합니다!
-    const id = Number(headers.destination.split('/').at(-1));
-    setChatsUnreadTrigger((prev) => prev + 1);
-    setChatUpdate(({ trigger }) => ({ chat, id, trigger: trigger + 1 }));
-  };
+  const onReceiveChat = useOnReceiveChat();
 
   return () => {
     useEffect(() => {

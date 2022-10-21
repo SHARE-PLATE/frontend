@@ -6,6 +6,8 @@ import { v4 as createRandomKey } from 'uuid';
 
 import Chat from '@components/Chat';
 import * as S from '@components/ChatroomDetailContents/ChatroomDetailContents.style';
+import { chatMap, subscribeChat } from '@socket/stomp';
+import { useOnReceiveChat } from '@socket/useConnectSocket';
 import { chatUpdateState } from '@store/chatrooms';
 import { ChatroomDetailChatsType, ChatroomDetailChatType } from '@type/chat';
 
@@ -16,6 +18,8 @@ type ChatroomDetailContentsPropsType = {
 
 const ChatroomDetailContents = ({ chats, chatroomId }: ChatroomDetailContentsPropsType) => {
   const [curChats, setCurChats] = useState(chats);
+  const stompId = chatMap.get(chatroomId);
+  const onReceiveChat = useOnReceiveChat();
   const resetChatUpdate = useResetRecoilState(chatUpdateState);
   const {
     id: updatedId,
@@ -60,8 +64,11 @@ const ChatroomDetailContents = ({ chats, chatroomId }: ChatroomDetailContentsPro
   }, [curChats]);
 
   useEffect(() => {
+    // when use question chat in share detail page
+    if (!stompId) subscribeChat({ onReceiveChat, chatroomId });
+
+    // delete updated info when occurs in this page (updated info should exists for chatrooms page not chatroom detail page)
     return () => {
-      // delete updated info when occurs in this page (updated info should exists for chatrooms page not chatroom detail page)
       resetChatUpdate();
     };
   }, []);
