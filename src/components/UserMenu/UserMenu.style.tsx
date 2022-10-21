@@ -12,7 +12,8 @@ export const ItemWrapper = styled.li`
 
 export const Title = styled.span`
   ${({ theme: { fonts } }) => css`
-    ${fonts.largeBold};
+    ${fonts.large};
+    font-weight: 500;
     gap: 0.5rem;
     display: flex;
     align-items: center;

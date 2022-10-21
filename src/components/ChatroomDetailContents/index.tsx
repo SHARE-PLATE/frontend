@@ -12,13 +12,13 @@ import { ChatroomDetailChatsType, ChatroomDetailChatType } from '@type/chat';
 type ChatroomDetailContentsPropsType = {
   chats: ChatroomDetailChatsType;
   chatroomId: string;
-  scrollToBottomRef: (lastChat: HTMLDivElement) => void;
+  scrollToBottom: () => void;
 };
 
 const ChatroomDetailContents = ({
   chats,
   chatroomId,
-  scrollToBottomRef,
+  scrollToBottom,
 }: ChatroomDetailContentsPropsType) => {
   const [curChats, setCurChats] = useState(chats);
   const dateRef = useRef('');
@@ -53,6 +53,7 @@ const ChatroomDetailContents = ({
 
       return newChats;
     });
+    scrollToBottom();
   };
 
   useEffect(() => {
@@ -61,12 +62,7 @@ const ChatroomDetailContents = ({
     return () => disconnectChatroom();
   }, []);
 
-  return (
-    <S.Wrapper>
-      {chatroomLogs}
-      <S.EmptyBlock ref={scrollToBottomRef} />
-    </S.Wrapper>
-  );
+  return <S.Wrapper>{chatroomLogs}</S.Wrapper>;
 };
 
 export default ChatroomDetailContents;

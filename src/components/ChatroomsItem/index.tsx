@@ -51,7 +51,7 @@ const ChatroomsItem = ({
   const [moving, setMoving] = useState<S.MovingType>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const { onLongPress, onLongPressFinish, onLongPressStart } = longPressOption;
-  const diffTime = moment(recentMessageDataTime).fromNow();
+  const diffTime = moment(recentMessageDataTime).add(9, 'hours').fromNow();
   const recruitmentMemberNicknamesJoined = recruitmentMemberNicknames.join(', ');
   const recruitmentMemberImages = recruitmentMemberImageUrls.map((img) => (
     <ImgContainer
@@ -69,7 +69,7 @@ const ChatroomsItem = ({
       onLongPress && onLongPress({ id, event });
     },
     {
-      threshold: 500,
+      threshold: 300,
       captureEvent: true,
       cancelOnMovement: true,
       onStart: (event) => {
@@ -165,7 +165,7 @@ const ChatroomsItem = ({
               <S.TextUpper>
                 <S.WritersNames>{recruitmentMemberNicknamesJoined}</S.WritersNames>
                 <S.WritersCount>{currentRecruitment}</S.WritersCount>
-                <S.Time>{diffTime}</S.Time>
+                {recentMessageDataTime && <S.Time>{diffTime}</S.Time>}
               </S.TextUpper>
               <S.Content isRecent={!!curRecentMessage}>
                 {curRecentMessage || noRecentChatMention}

@@ -13,7 +13,7 @@ const Chat = ({
   writtenByMe,
   shareWrittenByMe,
 }: ChatroomDetailChatType) => {
-  const dateTime = moment(writtenDateTime).format('LT');
+  const dateTime = moment(writtenDateTime).add(9, 'h').format('A h:mm');
 
   return (
     <S.Wrapper writtenByMe={writtenByMe}>

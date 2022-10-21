@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-import { flexBetween } from '@styles/mixin';
+import { flexBetween, flexCenter } from '@styles/mixin';
 
 export const HeaderWrapper = styled.div`
   ${flexBetween}
@@ -10,6 +10,14 @@ export const HeaderWrapper = styled.div`
 export const Title = styled.h2`
   ${({ theme }) => theme.fonts.xLarge}
   font-weight: 500;
+`;
+
+export const ButtonWrapper = styled.button<{ position: 'left' | 'right' }>`
+  width: 30px;
+  ${({ position }) => css`
+    ${flexCenter};
+    justify-content: ${position};
+  `}
 `;
 
 export const SubmitBtn = styled.button`

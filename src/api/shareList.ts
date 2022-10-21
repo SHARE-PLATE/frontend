@@ -36,6 +36,17 @@ export const getShareListData = async ({ type, location, keyword }: GetShareList
   }
 };
 
+export const deleteShare = async ({ id }: { id: number }) => {
+  const headers = getAuthHeaders();
+
+  try {
+    const response = await axios.delete(`${API.SHARE_LIST}/${id}`, { headers });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const getShareDetailData = async ({ id }: { id: string }) => {
   const headers = getAuthHeaders();
 

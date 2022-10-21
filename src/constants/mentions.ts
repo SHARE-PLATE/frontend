@@ -26,7 +26,7 @@ export const checkAddressWithMap = '지도에서 위치 확인하기';
 export const noAddressListMention = '검색 결과가 없습니다.\n지번, 도로명, 건물명을 입력해주세요.';
 export const addressKeywordQuestionMention = '주소 키워드를\n삭제하시겠습니까?';
 export const newShareEnrolledMention = '새로운 쉐어가 등록되었습니다.';
-export const noRecentNoticeListMention = '현재 알림 목록이 없습니다!';
+export const failtoGetNoticeMention = '알림 목록을 불러오지 못했습니다.';
 export const dataFailed = '데이터를 넣어주세요';
 export const fileFailed = '이미지는 최대 5장까지 첨부할 수 있어요';
 export const inputValueFailed = '키워드를 입력해주세요';
@@ -37,3 +37,13 @@ export const tagInputPlaceholderMention = '#태그를 입력해주세요. (최�
 export const deleteChatMention =
   '채팅방에서 나가시겠습니까?\n채팅방을 나가면 대화 내용이 삭제됩니다.';
 export const exitMention = '네, 나갈래요.';
+export const deadlineMention = '등록하신 상품의 시간이 끝나가요!';
+export const thirtyMinuitesLeftMention = '상품이 30분 남았습니다!';
+export const entryJoinedMention = '쉐어가 신청되었습니다.';
+export const entryCanceledMention = '쉐어 신청이 취소되었습니다.';
+export const shareCanceledMention = '쉐어가 취소되었습니다.';
+export const noRecentNoticeMention = '새로운 알림이 없습니다.';
+export const entryMention = (name?: string) => `${name}님이 쉐어 신청하였습니다.`;
+export const shareCancelMention = (name?: string) => `${name}님이 쉐어를 취소하였습니다.`;
+export const entryCancelMention = (name?: string) => `${name}님이 쉐어 신청을 취소하였습니다.`;
+export const noticeDeletedMention = (count: number) => `${count}개의 알림이 삭제되었습니다.`;

@@ -3,7 +3,7 @@ import { useState, useRef } from 'react';
 import { useRecoilValue } from 'recoil';
 
 import { UserInfoDataType } from '@api/account';
-import EditUserInfoFrom from '@components/EditUserInfoFrom';
+import EditUserInfoForm from '@components/EditUserInfoForm';
 import EditUserInfoHeader from '@components/EditUserInfoHeader';
 import ToastModal from '@components/ToastModal';
 import { DELETE_PROFILE_PICTURE, SELECT_ALBUM } from '@constants/words';
@@ -29,7 +29,7 @@ const EditUserInfo = () => {
   return (
     <S.Wrapper>
       <EditUserInfoHeader editUserInfo={editUserInfo} fileImage={fileImage} />
-      <EditUserInfoFrom
+      <EditUserInfoForm
         editUserInfo={editUserInfo}
         fileImage={fileImage}
         setEditUserInfo={setEditUserInfo}

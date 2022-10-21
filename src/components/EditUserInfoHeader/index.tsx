@@ -38,9 +38,13 @@ const EditUserInfoHeader = ({ editUserInfo, fileImage }: EditUserInfoHeaderProps
   };
   return (
     <S.HeaderWrapper>
-      <Icon iconName='Back' handleClick={handleClickGoBack} />
+      <S.ButtonWrapper position='left'>
+        <Icon iconName='Back' handleClick={handleClickGoBack} />
+      </S.ButtonWrapper>
       <S.Title>{EDIT_PROFILE}</S.Title>
-      <S.SubmitBtn onClick={handleClickSubmit}>{FINISH}</S.SubmitBtn>
+      <S.ButtonWrapper position='right'>
+        <S.SubmitBtn onClick={handleClickSubmit}>{FINISH}</S.SubmitBtn>
+      </S.ButtonWrapper>
     </S.HeaderWrapper>
   );
 };

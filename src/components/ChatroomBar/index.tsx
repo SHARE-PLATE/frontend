@@ -4,9 +4,9 @@ import * as S from '@components/ChatroomBar/ChatroomBar.style';
 import Icon from '@components/common/Icon';
 import { sendChat } from '@socket/chatroomSocket';
 
-type ChatroomBarPropsType = { chatroomId: string; scrollToBottom: () => void };
+type ChatroomBarPropsType = { chatroomId: string };
 
-const ChatroomBar = ({ chatroomId, scrollToBottom }: ChatroomBarPropsType) => {
+const ChatroomBar = ({ chatroomId }: ChatroomBarPropsType) => {
   const [chatValue, setChatValue] = useState('');
 
   const handleChangechatValue = (event: ChangeEvent<HTMLInputElement>) => {
@@ -17,9 +17,8 @@ const ChatroomBar = ({ chatroomId, scrollToBottom }: ChatroomBarPropsType) => {
     event.preventDefault();
     if (!chatValue.length) return;
 
-    setChatValue('');
     sendChat({ contents: chatValue, chatroomId });
-    scrollToBottom();
+    setChatValue('');
   };
 
   return (

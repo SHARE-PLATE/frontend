@@ -2,6 +2,7 @@ import { MouseEvent } from 'react';
 
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 
+import { FINISH, SELECT, SELECT_OPTION } from '@constants/words';
 import HashTag from '@portals/OptionPortal/HashTag';
 import * as S from '@portals/OptionPortal/OptionPortal.style';
 import useOptionInfo from '@portals/OptionPortal/useOptionInfo';
@@ -47,11 +48,11 @@ const OptionPortal = () => {
   return (
     <Portal type='toast' portalName='option' onClose={handleClosePortal}>
       <S.PortalWrapper>
-        <S.OptionTitle>옵션선택</S.OptionTitle>
+        <S.OptionTitle>{SELECT_OPTION}</S.OptionTitle>
         {negotiationBtns}
         <HashTag />
         <S.FinishButton type='button' onClick={handleFinishBtn}>
-          <span>선택완료</span>
+          <span>{SELECT + FINISH}</span>
         </S.FinishButton>
       </S.PortalWrapper>
     </Portal>

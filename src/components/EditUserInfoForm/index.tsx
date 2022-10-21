@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import { UserInfoDataType } from '@api/account';
-import * as S from '@components/EditUserInfoFrom/EditUserInfoFrom.style';
+import * as S from '@components/EditUserInfoForm/EditUserInfoForm.style';
 import Icon from '@components/common/Icon';
 import ImgContainer from '@components/common/ImgContainer';
 import InputForm from '@components/common/InputForm';
@@ -41,7 +41,7 @@ const EditUserInfoFrom = ({
           />
         )}
         <S.IconBackground>
-          <Icon iconName='Camera' iconSize={1.5} handleClick={openToastModal} />
+          <Icon iconName='EditingCamera' iconSize={1.44} handleClick={openToastModal} />
         </S.IconBackground>
       </S.ImgWrapper>
       <S.NickNameWrapper>

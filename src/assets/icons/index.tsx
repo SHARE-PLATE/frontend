@@ -23,6 +23,7 @@ import CountDown from '@assets/icons/countDown.svg';
 import CountUp from '@assets/icons/countUp.svg';
 import DeleteCircle from '@assets/icons/deleteCircle.svg';
 import DotsVertical from '@assets/icons/dotsVertical.svg';
+import EditingCamera from '@assets/icons/editingCamera.svg';
 import Flag from '@assets/icons/flag.svg';
 import Form from '@assets/icons/form.svg';
 import FormClose from '@assets/icons/formClose.svg';
@@ -80,6 +81,7 @@ import UserNavFill from '@assets/icons/userNavFill.svg';
 import X_Icon from '@assets/icons/x_icon.svg';
 
 export const Icons = {
+  EditingCamera,
   Target,
   NoticeFill,
   SearchThick,

@@ -7,6 +7,7 @@ type ImgWrapperPropsType = {
   imgWrapperWidth: string;
   isLoaded: boolean;
   borderRadius?: string;
+  noAlign?: boolean;
   additionalStyle?: FlattenSimpleInterpolation;
 };
 
@@ -25,7 +26,7 @@ export const Wrapper = styled.div<ImgWrapperPropsType>`
       object-fit: cover;
     }
 
-    ${P.isLoaded &&
+    ${(P.isLoaded || P.noAlign) &&
     css`
       opacity: 1;
     `}

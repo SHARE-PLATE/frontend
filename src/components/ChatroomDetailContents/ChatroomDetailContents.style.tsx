@@ -1,7 +1,5 @@
 import styled, { css } from 'styled-components';
 
-import { navigationBarHeight } from '@components/NavigationBar/NavigationBar.style';
-
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -16,9 +14,4 @@ export const Date = styled.div`
     text-align: center;
     color: ${colors.grey4};
   `}
-`;
-
-export const EmptyBlock = styled.div`
-  height: ${navigationBarHeight};
-  width: 100%;
 `;
