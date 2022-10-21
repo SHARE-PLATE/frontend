@@ -99,6 +99,14 @@ const ShareSearch = () => {
     if (keywords) setKeywordLength((prev) => ({ ...prev, [regionName]: keywords.length }));
   }, [state]);
 
+  useEffect(() => {
+    keywords.map((data: { id: number; contents: string }) => {
+      if (data.contents === searchRecentValue) {
+        setIsSuccessKeyword(true);
+      }
+    });
+  }, [keywords, searchRecentValue]);
+
   return (
     <S.Wrapper>
       <S.ListHeader>
