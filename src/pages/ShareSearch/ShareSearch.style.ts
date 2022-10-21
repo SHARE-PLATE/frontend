@@ -4,7 +4,7 @@ import { flexCenter } from '@styles/mixin';
 
 export const Wrapper = styled.div`
   ${({ theme: { colors } }) => css`
-    background-color: ${colors.grey1};
+    background-color: ${colors.white1};
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -28,7 +28,7 @@ export const ListHeader = styled.header`
   z-index: 1;
   background-color: ${({ theme }) => theme.colors.white1};
   padding: 0;
-  width: 86%;
+  width: 100%;
 
   > :first-child,
   > :last-child {

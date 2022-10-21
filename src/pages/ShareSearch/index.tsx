@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useRecoilValueLoadable, useSetRecoilState } from 'recoil';
 
 import { addKeywords } from '@api/keyword';
 import { getShareListData } from '@api/shareList';
@@ -15,9 +15,14 @@ import { keywordLengthFailed } from '@constants/mentions';
 import useModal from '@hooks/useModal';
 import * as S from '@pages/ShareSearch/ShareSearch.style';
 import { currentFilterShareList } from '@store/filterShareList';
-import { keywordListTrigger, registeredKeywordLength } from '@store/keyword';
+import {
+  getRegisteredKeywordData,
+  keywordListTrigger,
+  registeredKeywordLength,
+} from '@store/keyword';
 import { currentMapKey, searchRecent } from '@store/localStorage';
 import { currentLatitudeLongitude, currentAddressName } from '@store/location';
+import { isLoginState } from '@store/user';
 import { ShareListType } from '@type/shareList';
 import { getSortData } from '@utils/ShareListSort';
 import { findRegionName } from '@utils/getLocation';
@@ -28,8 +33,18 @@ const ShareSearch = () => {
   const [keywordLength, setKeywordLength] = useRecoilState(registeredKeywordLength);
   const searchRecentMapList = useRecoilValue(searchRecent);
   const { lat, lng } = useRecoilValue(currentLatitudeLongitude);
+
   const setKeywordListTrigger = useSetRecoilState(keywordListTrigger);
   const curAddressNameArr = useRecoilValue(currentAddressName).split(' ');
+  const regionName = findRegionName(curAddressNameArr);
+
+  const {
+    state,
+    contents: { keywords },
+  } = useRecoilValueLoadable(getRegisteredKeywordData(regionName));
+
+  const loginState = useRecoilValueLoadable(isLoginState);
+  const isLogin = loginState.state === 'hasValue' && loginState.contents;
 
   const [isSuccessKeyword, setIsSuccessKeyword] = useState<boolean>(false);
 
@@ -46,7 +61,6 @@ const ShareSearch = () => {
   };
 
   const handleSubmitClick = async () => {
-    const regionName = findRegionName(curAddressNameArr);
     if (!regionName) return false;
 
     if (keywordLength[regionName] >= 10) {
@@ -69,16 +83,21 @@ const ShareSearch = () => {
       setKeywordListTrigger((prev) => prev + 1);
       setKeywordLength((prev) => ({ ...prev, [regionName]: keywordLength[regionName] + 1 }));
     }
-    console.log(keywordLength);
   };
 
   useEffect(() => {
     getShareList();
+    setIsSuccessKeyword(false);
   }, [searchRecentValue]);
 
   useEffect(() => {
-    setIsSuccessKeyword(false);
-  }, [searchRecentValue]);
+    if (!isLogin) setIsSuccessKeyword(true);
+  }, [isLogin]);
+
+  useEffect(() => {
+    if (state !== 'hasValue') return;
+    if (keywords) setKeywordLength((prev) => ({ ...prev, [regionName]: keywords.length }));
+  }, [state]);
 
   return (
     <S.Wrapper>
