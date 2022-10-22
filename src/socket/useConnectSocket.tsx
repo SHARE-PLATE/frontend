@@ -7,6 +7,7 @@ import { chatroomIdsState, chatUpdateState, chatsUnreadTrigger } from '@store/ch
 import { getKeywordListsData } from '@store/keyword';
 import { newNoticeState } from '@store/notice';
 import { shareListEntriesState } from '@store/shareList';
+import { socketConnectState } from '@store/socket';
 
 import { connectStomp } from './stomp';
 
@@ -40,6 +41,7 @@ const useConnectSocket = () => {
     useRecoilValueLoadable(getKeywordListsData);
   const { state: chatroomState, contents: chatroomContents } =
     useRecoilValueLoadable(chatroomIdsState);
+  const setSocketConnect = useSetRecoilState(socketConnectState);
 
   const onSubscribeNotice = useOnReceiveNotice();
   const onReceiveChat = useOnReceiveChat();
@@ -63,6 +65,8 @@ const useConnectSocket = () => {
       const chatroomIds = chatroomContents.map(({ id }) => id);
 
       connectStomp({
+        onError: () => setSocketConnect(false),
+        onConnect: () => setSocketConnect(true),
         noticeParams: {
           entryIds,
           keywordIds,

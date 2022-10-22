@@ -33,6 +33,8 @@ type subscribeChatParamsType = {
 type ConnectStompParamsType = {
   noticeParams: subscribeNoticeParamsType;
   chatParams: subscribeChatParamsType;
+  onConnect: () => void;
+  onError: () => void;
 };
 
 const sockServer = `${process.env.REACT_APP_BASE_URL}/${WEBSOCKET}`; // 들어갈 주소 설정
@@ -98,14 +100,26 @@ export const sendChat = ({ contents, chatroomId }: SendChatParamsType) => {
   stompClient.send(sendingURL, headers, JSON.stringify({ contents }));
 };
 
-export const connectStomp = ({ noticeParams, chatParams }: ConnectStompParamsType) => {
+export const connectStomp = ({
+  noticeParams,
+  chatParams,
+  onConnect,
+  onError,
+}: ConnectStompParamsType) => {
   const headers = getAuthHeaders();
   try {
     // stompClient.debug = () => null;
-    stompClient.connect(headers, () => {
-      subscribeNotice(noticeParams);
-      subscribeChat(chatParams);
-    });
+    stompClient.connect(
+      headers,
+      () => {
+        onConnect();
+        subscribeNotice(noticeParams);
+        subscribeChat(chatParams);
+      },
+      () => {
+        onError();
+      },
+    );
   } catch (error) {
     console.log(error);
   }
@@ -115,10 +129,13 @@ export const unsubscribeStomp = (id?: string) => {
   stompClient.unsubscribe(id || '');
 };
 
-export const disconnectStomp = () => {
+export const disconnectStomp = (onDisconnect: () => void) => {
   try {
     // stompClient.debug = () => null;
-    stompClient.disconnect(() => unsubscribeStomp());
+    stompClient.disconnect(() => {
+      unsubscribeStomp();
+      onDisconnect();
+    });
   } catch (error) {
     console.log(error);
   }

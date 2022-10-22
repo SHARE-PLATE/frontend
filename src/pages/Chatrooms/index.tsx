@@ -12,6 +12,7 @@ import Loading from '@components/Loading';
 import NoticeIcon from '@components/NoticeIcon';
 import Tabs from '@components/Tabs';
 import ToastModal from '@components/ToastModal';
+import TopFixedWarning from '@components/TopFixedWarning';
 import SelectModal from '@components/common/SelectModal';
 import { deleteChatMention, exitMention, getChatDdataFailedMention } from '@constants/mentions';
 import { CHATTING, EXIT_CHATROOM, RELOAD } from '@constants/words';
@@ -38,6 +39,7 @@ const Chatrooms = () => {
   const [deletedId, setDeletedId] = useState<IdsType>(null);
   const [isToastModal, setIsToastModal] = useState(false);
   const [isSelectModal, setIsSelectModal] = useModal({ modalRef });
+  const [isConnected, setIsConnected] = useState(false);
 
   const reloadChatroomsData = () => {
     setChatroomsTrigger((prev) => prev + 1);
@@ -129,7 +131,8 @@ const Chatrooms = () => {
   return (
     <S.Wrapper>
       <S.HeaderWrapper>
-        <S.Header>
+        <TopFixedWarning text='채팅 연결 끊김' otherStyle={S.TopFixedWarningStyle} />
+        <S.Header onClick={() => setIsConnected(!isConnected)}>
           <S.HeaderTitle>{CHATTING}</S.HeaderTitle>
           <NoticeIcon noticeOnIcon='NoticeOn' noticeOffIcon='NoticeOff' iconSize={1.5} />
         </S.Header>
