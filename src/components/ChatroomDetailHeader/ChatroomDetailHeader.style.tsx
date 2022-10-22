@@ -4,7 +4,7 @@ import { flexBetween } from '@styles/mixin';
 
 export const Wrapper = styled.div`
   ${({ theme: { defaultHeaderHeight } }) => css`
-    ${flexBetween}
+    ${flexBetween};
     height: ${defaultHeaderHeight}rem;
   `}
 `;

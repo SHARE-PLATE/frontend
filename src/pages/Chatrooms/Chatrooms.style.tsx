@@ -13,10 +13,15 @@ export const Wrapper = styled.div`
   `}
 `;
 
+export const TopFixedWarningStyle = css`
+  margin-left: -1rem;
+  width: calc(100% + 2rem);
+`;
+
 export const ContentsWrapper = styled.div`
   ${({ theme: { defaultHeaderHeight, defaultPadding } }) => css`
     ${defaultPadding};
-    padding-top: calc(${defaultHeaderHeight}rem + ${tabsHeight});
+    /* padding-top: calc(${defaultHeaderHeight}rem + ${tabsHeight}); */
   `}
 `;
 
@@ -50,7 +55,7 @@ export const HeaderWrapper = styled.div`
     ${defaultPadding};
 
     background-color: ${colors.white1};
-    position: fixed;
+    position: sticky;
     top: 0;
     width: 100%;
     z-index: 2;
