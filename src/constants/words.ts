@@ -12,6 +12,7 @@ export const CHATROOMS = 'chatrooms';
 export const DELIVERY = 'delivery';
 export const DELIVERY_KOR = '배달';
 export const SHARES = 'shares';
+export const SHARE = '쉐어';
 export const CHATROOM_MEMBERS = 'chatroom-members';
 export const INGREDIENTS = 'ingredients';
 export const INGREDIENTS_KOR = '재료';

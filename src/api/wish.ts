@@ -8,7 +8,7 @@ export type ChangeWishOptionType = 'enroll' | 'cancel';
 
 type ChangeWishParamsType = {
   option: ChangeWishOptionType;
-  id?: string;
+  id?: number;
 };
 
 export const changeWish = async ({ id, option }: ChangeWishParamsType) => {

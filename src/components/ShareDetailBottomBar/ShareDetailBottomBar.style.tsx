@@ -23,9 +23,9 @@ export const LeftWrapper = styled.div`
   margin-left: 0.2rem;
 `;
 
-export const IconWrapper = styled.div<{ isWished?: boolean }>`
-  ${({ theme: { colors }, isWished }) => css`
-    ${isWished &&
+export const IconWrapper = styled.div<{ wish: boolean }>`
+  ${({ theme: { colors }, wish }) => css`
+    ${wish &&
     css`
       svg {
         fill: ${colors.pink0};

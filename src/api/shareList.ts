@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 import { API } from '@constants/api';
 import { DELIVERY, ENTRY, INGREDIENTS } from '@constants/words';
@@ -41,9 +41,10 @@ export const deleteShare = async ({ id }: { id: number }) => {
 
   try {
     const response = await axios.delete(`${API.SHARE_LIST}/${id}`, { headers });
-    return response.data;
+    return { isDeleted: response.status === 200 };
   } catch (error) {
-    console.error(error);
+    const { response } = error as AxiosError<{ message: string }>;
+    return { isDeleted: false, message: response?.data.message };
   }
 };
 
@@ -113,7 +114,7 @@ export const getShareListEntries = async () => {
   }
 };
 
-export const postShareEntry = async ({ id }: { id: string }) => {
+export const postShareEntry = async ({ id }: { id: number }) => {
   const headers = getAuthHeaders();
 
   try {
@@ -126,7 +127,7 @@ export const postShareEntry = async ({ id }: { id: string }) => {
   }
 };
 
-export const deleteShareEntry = async ({ id }: { id: string }) => {
+export const deleteShareEntry = async ({ id }: { id: number }) => {
   const headers = getAuthHeaders();
 
   try {

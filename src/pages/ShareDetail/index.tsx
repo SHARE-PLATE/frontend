@@ -83,7 +83,7 @@ const ShareDetail = () => {
           </>
         )}
       </S.Wrapper>
-      {detailData && <ShareDetailBottomBar isWished={detailData.wish} entry={detailData.entry} />}
+      {detailData && <ShareDetailBottomBar {...detailData} />}
     </>
   );
 };
