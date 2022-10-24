@@ -92,18 +92,20 @@ const Chatrooms = () => {
   const getContents = () => {
     switch (state) {
       case 'hasValue':
-        const chatrooms = chatroomsData.map((info) => {
-          if (!info.recruitmentMemberNicknames.length) return <Fragment key={info.id}></Fragment>;
-          // 참여 멤버가 없을 시 채팅이 보이지 않음
-          return (
-            <ChatroomsItem
-              key={info.id}
-              longPressOption={longPressOption}
-              onClickExitBtn={showSelectWithId}
-              {...info}
-            />
-          );
-        });
+        const chatrooms = chatroomsData
+          .map((info) => {
+            if (!info.recruitmentMemberNicknames.length) return <Fragment key={info.id}></Fragment>;
+            // 참여 멤버가 없을 시 채팅이 보이지 않음
+            return (
+              <ChatroomsItem
+                key={info.id}
+                longPressOption={longPressOption}
+                onClickExitBtn={showSelectWithId}
+                {...info}
+              />
+            );
+          })
+          .reverse();
         return <S.ContentsWrapper>{chatrooms}</S.ContentsWrapper>;
       case 'hasError':
         return (
