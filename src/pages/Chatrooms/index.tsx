@@ -1,25 +1,21 @@
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { useRecoilValueLoadable, useResetRecoilState, useSetRecoilState } from 'recoil';
+import {
+  useRecoilValue,
+  useRecoilValueLoadable,
+  useResetRecoilState,
+  useSetRecoilState,
+} from 'recoil';
 
-import { deleteChatroomData } from '@api/chat';
-import ChatroomsItem, {
-  ChatroomItemCallBackParamsType,
-  IdsType,
-  LongPressOption,
-} from '@components/ChatroomsItem';
+import ChatroomsContent from '@components/ChatroomsContent';
 import Loading from '@components/Loading';
 import NoticeIcon from '@components/NoticeIcon';
 import Tabs from '@components/Tabs';
-import ToastModal from '@components/ToastModal';
 import TopFixedWarning from '@components/TopFixedWarning';
-import SelectModal from '@components/common/SelectModal';
-import { deleteChatMention, exitMention, getChatDdataFailedMention } from '@constants/mentions';
-import { CHATTING, EXIT_CHATROOM, RELOAD } from '@constants/words';
+import { getChatDdataFailedMention } from '@constants/mentions';
+import { CHATTING, RELOAD } from '@constants/words';
 import useChatroomsInfo from '@hooks/useChatroomsInfo';
-import useModal from '@hooks/useModal';
 import * as S from '@pages/Chatrooms/Chatrooms.style';
-import { chatMap, unsubscribeStomp } from '@socket/stomp';
 import {
   activeChatroomsState,
   chatroomsState,
@@ -35,78 +31,18 @@ const Chatrooms = () => {
   const setChatsUnreadTrigger = useSetRecoilState(chatsUnreadTrigger);
   const setChatroomsTrigger = useSetRecoilState(chatroomsTrigger);
   const resetChatUpdate = useResetRecoilState(chatUpdateState);
-  const modalRef = useRef<HTMLDivElement>(null);
-  const [deletedId, setDeletedId] = useState<IdsType>(null);
-  const [isToastModal, setIsToastModal] = useState(false);
-  const [isSelectModal, setIsSelectModal] = useModal({ modalRef });
+  const activeChatrooms = useRecoilValue(activeChatroomsState);
   const [isConnected, setIsConnected] = useState(false);
 
   const reloadChatroomsData = () => {
     setChatroomsTrigger((prev) => prev + 1);
   };
 
-  const hideToast = () => {
-    setDeletedId(null);
-    setIsToastModal(false);
-  };
-
-  const hideToastAndShowSelect = () => {
-    setIsToastModal(false);
-    setIsSelectModal(true);
-  };
-
-  const showSelectWithId = ({ event, ids }: ChatroomItemCallBackParamsType) => {
-    event && event.stopPropagation();
-    ids && setDeletedId(ids);
-    setIsSelectModal(true);
-  };
-
-  const handleClickSelectOkBtn = async () => {
-    if (!deletedId) return;
-    const { id, chatRoomMemberId } = deletedId;
-    const response = await deleteChatroomData(id);
-    if (response.status === 200) {
-      const stompId = chatMap.get(chatRoomMemberId);
-      unsubscribeStomp(stompId);
-      setChatroomsTrigger((trigger) => trigger + 1);
-      setDeletedId(null);
-    }
-    setIsSelectModal(false);
-  };
-
-  const hideSelect = () => {
-    setIsSelectModal(false);
-    setDeletedId(null);
-  };
-
-  const showToastWithId = ({ ids }: { ids: IdsType }) => {
-    if (!ids) return;
-    setDeletedId(ids);
-    setIsToastModal(true);
-  };
-
-  const longPressOption: LongPressOption = {
-    onLongPress: showToastWithId,
-  };
-
   const getContents = () => {
     switch (state) {
       case 'hasValue':
-        const chatrooms = chatroomsData
-          .map((info) => {
-            if (!info.recruitmentMemberNicknames.length) return <Fragment key={info.id}></Fragment>;
-            // 참여 멤버가 없을 시 채팅이 보이지 않음
-            return (
-              <ChatroomsItem
-                key={info.id}
-                longPressOption={longPressOption}
-                onClickExitBtn={showSelectWithId}
-                {...info}
-              />
-            );
-          })
-          .reverse();
-        return <S.ContentsWrapper>{chatrooms}</S.ContentsWrapper>;
+        if (!chatroomsData.length) return <div></div>;
+        return <ChatroomsContent data={chatroomsData} />;
       case 'hasError':
         return (
           <S.CenterWrapper>
@@ -125,10 +61,13 @@ const Chatrooms = () => {
 
   // show remained chat count when go back to chatrooms from chatroom detail
   useEffect(() => {
-    reloadChatroomsData();
     setChatsUnreadTrigger((prev) => prev + 1);
     return () => resetChatUpdate();
   }, []);
+
+  useEffect(() => {
+    reloadChatroomsData();
+  }, [activeChatrooms]);
 
   return (
     <S.Wrapper>
@@ -141,24 +80,6 @@ const Chatrooms = () => {
         <Tabs<ChatroomsStateType> tabsInfo={chatroomsInfo} targetAtom={activeChatroomsState} />
       </S.HeaderWrapper>
       {getContents()}
-      {isToastModal && (
-        <ToastModal
-          modalRef={modalRef}
-          onClickCloseButton={hideToast}
-          mainButtonTitle={EXIT_CHATROOM}
-          mainButtonHandler={hideToastAndShowSelect}
-          onClickBackground={hideToast}
-        />
-      )}
-      {isSelectModal && (
-        <SelectModal
-          modalRef={modalRef}
-          onClickOkButton={handleClickSelectOkBtn}
-          onClickCancelButton={hideSelect}
-          okMention={exitMention}
-          answeringMention={deleteChatMention}
-        />
-      )}
     </S.Wrapper>
   );
 };
