@@ -94,10 +94,11 @@ const subscribeNotice = ({
 };
 
 export const sendChat = ({ contents, chatroomId }: SendChatParamsType) => {
-  const headers = getAuthHeaders();
   const sendingURL = `/${APP}/${CHATROOMS}/${chatroomId}/${CHAT}`;
+  const headers = getAuthHeaders();
+  const body = JSON.stringify({ contents });
 
-  stompClient.send(sendingURL, headers, JSON.stringify({ contents }));
+  stompClient.send(sendingURL, headers, body);
 };
 
 export const connectStomp = ({

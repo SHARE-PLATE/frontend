@@ -17,7 +17,9 @@ import {
   entryCancelMention,
   entryJoinedMention,
   entryMention,
+  newQuestionChatroomMention,
   noRecentNoticeMention,
+  questionChatroomMention,
   shareCanceledMention,
   shareCancelMention,
   thirtyMinuitesLeftMention,
@@ -53,6 +55,11 @@ const getTextsByActivity = (type: ActivityType, option?: string): TextsByActivit
       iconName: 'NoticeActivityFull',
       mention: shareCanceledMention,
       desc: shareCancelMention(option),
+    },
+    QUESTION_CHATROOM: {
+      iconName: 'NoticeActivityLogo',
+      mention: newQuestionChatroomMention,
+      desc: questionChatroomMention(option),
     },
   };
 
