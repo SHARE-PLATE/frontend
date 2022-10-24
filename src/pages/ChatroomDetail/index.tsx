@@ -7,9 +7,9 @@ import { putChatUpdateReadTime } from '@api/chat';
 import ChatroomBar from '@components/ChatroomBar';
 import ChatroomDetailContents from '@components/ChatroomDetailContents';
 import ChatroomDatailHeader from '@components/ChatroomDetailHeader';
-import ChatroomDetailInfo from '@components/ChatroomDetailInfo';
 import ErrorWithButtons from '@components/ErrorWithButtons';
 import Loading from '@components/Loading';
+import ShareDetailInfoBar from '@components/ShareDetailInfoBar';
 import TopFixedWarinng from '@components/TopFixedWarning';
 import { failLoadingChatroomsMention } from '@constants/mentions';
 import * as S from '@pages/ChatroomDetail/ChatroomDetail.style';
@@ -47,7 +47,7 @@ const ChatroomDetail = () => {
             <S.TopFixedWrapper>
               <TopFixedWarinng text='채팅 연결 끊김' />
               <ChatroomDatailHeader type={type} writer={writer} />
-              <ChatroomDetailInfo {...share} />
+              <ShareDetailInfoBar {...share} />
               <S.RemainingTime>남은 시간 : {remainingTime}</S.RemainingTime>
             </S.TopFixedWrapper>
             <ChatroomDetailContents chats={chats} chatroomId={chatRoomMemberId} />

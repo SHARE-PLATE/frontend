@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
 import { getShareDetailData, getShareListWriterData } from '@api/shareList';
@@ -10,7 +10,9 @@ import PreviewShareListHalfImage from '@components/PreviewShareListHalfImage';
 import ShareDetailBottomBar from '@components/ShareDetailBottomBar';
 import ShareDetailHeader from '@components/ShareDetailHeader';
 import ShareDetailInfo from '@components/ShareDetailInfo';
+import ShareDetailInfoBar from '@components/ShareDetailInfoBar';
 import UserInfoWithFollow from '@components/UserInfoWithFollow';
+import Icon from '@components/common/Icon';
 import { noRelatedShareList, offerShare } from '@constants/mentions';
 import * as S from '@pages/ShareDetail/ShareDetail.style';
 import { currentLatitudeLongitude } from '@store/location';
@@ -27,6 +29,9 @@ const ShareDetail = () => {
   const [recommendedData, setRecommendedData] = useState<ShareRecommendationType[]>([]);
   const [writerSharesData, setWriterSharesData] = useState<ShareRecommendationType[]>([]);
   const { lat, lng } = useRecoilValue(currentLatitudeLongitude);
+  const [isInfoBar, setIsInfoBar] = useState(false);
+  const navigate = useNavigate();
+  const infoRef = useRef<HTMLDivElement>(null);
 
   const getShareDetail = async () => {
     const shareDetailData = await getShareDetailData({ id });
@@ -46,6 +51,12 @@ const ShareDetail = () => {
     setWriterSharesData(shares);
   };
 
+  const observer = new IntersectionObserver(([entry]) => setIsInfoBar(!entry.isIntersecting), {
+    threshold: 1,
+  });
+
+  if (infoRef.current) observer.observe(infoRef.current);
+
   useEffect(() => {
     getShareDetail();
     getWriterShares();
@@ -61,9 +72,25 @@ const ShareDetail = () => {
       <S.Wrapper>
         {detailData && (
           <>
+            <S.TopFixedWrapper>
+              <S.IconsWrapper>
+                <Icon iconName='Back' handleClick={() => navigate(-1)} />
+                <Icon iconName='Upload' />
+              </S.IconsWrapper>
+              <S.ShareDetailInfoBarWrapper isInfoBar={isInfoBar}>
+                <ShareDetailInfoBar
+                  title={detailData.title}
+                  currentRecruitment={detailData.currentRecruitment}
+                  finalRecruitment={detailData.finalRecruitment}
+                  thumbnailImageUrl={detailData.imageUrls[0]}
+                  price={detailData.price}
+                  originalPrice={detailData.originalPrice}
+                />
+              </S.ShareDetailInfoBarWrapper>
+            </S.TopFixedWrapper>
             <S.UpperWrapper>
               <ShareDetailHeader {...detailData} />
-              <ShareDetailInfo {...detailData} />
+              <ShareDetailInfo {...detailData} infoRef={infoRef} />
             </S.UpperWrapper>
             <S.LowerWrapper>
               <UserInfoWithFollow {...detailData} />

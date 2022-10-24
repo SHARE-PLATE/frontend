@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { flexCenter, tagStyle } from '@styles/mixin';
+import { flexBetween, flexCenter, tagStyle } from '@styles/mixin';
 
 export const ContentsContainer = styled.div`
   ${({ theme: { defaultPadding, colors } }) => css`
@@ -11,6 +11,22 @@ export const ContentsContainer = styled.div`
     background-color: ${colors.white1};
     box-shadow: 0px -8px 16px rgba(0, 0, 0, 0.08);
     z-index: 0;
+  `}
+`;
+
+export const IconsWrapper = styled.div`
+  ${({ theme: { defaultPadding, colors } }) => css`
+    ${defaultPadding}
+    ${flexBetween}
+    z-index: 2;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    height: 3.25rem;
+
+    path {
+      stroke: ${colors.grey6};
+    }
   `}
 `;
 
