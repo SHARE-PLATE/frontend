@@ -37,6 +37,7 @@ export const ModalContainer = styled.div<ModalContainerPropsType>`
     border-radius: 8px;
     ${type === 'center' &&
     css`
+      position: fixed;
       background-color: ${colors.white1};
       top: 50%;
       left: 50%;
