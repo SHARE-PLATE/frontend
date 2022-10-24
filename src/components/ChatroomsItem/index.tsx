@@ -26,6 +26,7 @@ export type LongPressOption = {
 type ChatroomsItemPropsType = ChatroomsDataType & {
   longPressOption: LongPressOption;
   onClickExitBtn: ({ ids, event }: ChatroomItemCallBackParamsType) => void;
+  onChatroomUpdated: (id: number, time?: string) => void;
 };
 
 const defaultStartPoint = 0;
@@ -42,6 +43,7 @@ const ChatroomsItem = ({
   unreadCount,
   longPressOption,
   onClickExitBtn,
+  onChatroomUpdated,
 }: ChatroomsItemPropsType) => {
   const navigate = useNavigate();
   const {
@@ -142,8 +144,10 @@ const ChatroomsItem = ({
   useEffect(() => {
     if (chatRoomMemberId !== updateId) return;
 
+    console.log(updateChat);
     setCurRecentMessage(updateChat?.contents);
     setCurUnreadCount((prev) => prev + 1);
+    onChatroomUpdated(id, updateChat?.writtenDateTime);
   }, [chatUpdateTrigger]);
 
   return (

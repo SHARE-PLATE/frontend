@@ -71,6 +71,30 @@ const ChatroomsContent = ({ data }: ChatroomsContentPropsType) => {
     setIsToastModal(true);
   };
 
+  const updateItemTime = (targetId: number, writtenDateTime?: string) => {
+    setChatrooms((prevChatrooms) => {
+      let targetIndex;
+      const newChatrooms = [...prevChatrooms];
+      const target = newChatrooms.find(({ id }, index) => {
+        targetIndex = index;
+        return targetId === id;
+      });
+
+      if (!target || !targetIndex) return prevChatrooms;
+
+      const newTarget = { ...target };
+      const updatedTime = moment(writtenDateTime)
+        // writtenDateTime need 9 hours to be korea time
+        .add(writtenDateTime ? 9 : 0, 'h')
+        .format('YYYY-MM-DD HH:mm');
+
+      newTarget.recentMessageDataTime = updatedTime;
+      newChatrooms[targetIndex] = newTarget;
+
+      return newChatrooms;
+    });
+  };
+
   const longPressOption: LongPressOption = {
     onLongPress: showToastWithId,
   };
@@ -92,6 +116,7 @@ const ChatroomsContent = ({ data }: ChatroomsContentPropsType) => {
         key={info.id}
         longPressOption={longPressOption}
         onClickExitBtn={showSelectWithId}
+        onChatroomUpdated={updateItemTime}
         {...info}
       />
     ));
