@@ -144,7 +144,6 @@ const ChatroomsItem = ({
   useEffect(() => {
     if (chatRoomMemberId !== updateId) return;
 
-    console.log(updateChat);
     setCurRecentMessage(updateChat?.contents);
     setCurUnreadCount((prev) => prev + 1);
     onChatroomUpdated(id, updateChat?.writtenDateTime);

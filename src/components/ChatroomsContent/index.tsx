@@ -80,12 +80,12 @@ const ChatroomsContent = ({ data }: ChatroomsContentPropsType) => {
         return targetId === id;
       });
 
-      if (!target || !targetIndex) return prevChatrooms;
+      if (!target || targetIndex === undefined) return prevChatrooms;
 
       const newTarget = { ...target };
       const updatedTime = moment(writtenDateTime)
-        // writtenDateTime need 9 hours to be korea time
-        .add(writtenDateTime ? 9 : 0, 'h')
+        // get current time by korea time zone when written date time is undefined
+        .add(writtenDateTime ? 0 : -9, 'h')
         .format('YYYY-MM-DD HH:mm');
 
       newTarget.recentMessageDataTime = updatedTime;
