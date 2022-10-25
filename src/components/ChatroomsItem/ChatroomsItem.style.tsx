@@ -36,7 +36,7 @@ export const InnerWrapper = styled.div<{ moving: MovingType }>`
 export const ShowedWrapper = styled.div`
   display: flex;
   flex-shrink: 0;
-  gap: 0.75rem;
+  gap: 1.25rem;
   align-items: center;
   justify-content: space-between;
   width: 100%;
@@ -139,7 +139,8 @@ export const TextWrapper = styled.div`
 
 export const TextUpper = styled.div`
   display: flex;
-  align-items: center;
+  align-items: baseline;
+  width: 100%;
 `;
 
 export const WritersNames = styled.div`
@@ -178,19 +179,21 @@ export const Content = styled.div<{ isRecent: boolean }>`
 `;
 
 export const UnreadCountWrapper = styled.div`
-  ${flexCenter}
+  flex-grow: 1;
+  display: flex;
+  justify-content: right;
+  margin-left: 1.5rem;
 `;
 
 export const UnreadCount = styled.div`
   ${({ theme: { colors, fonts } }) => css`
-    ${fonts.xSmallBold};
+    ${fonts.xSmall};
     ${flexCenter};
-    width: 1.25rem;
-    height: 1.25rem;
-    background-color: ${colors.orange2};
+    background-color: ${colors.orange4};
     color: ${colors.white0};
-    border-radius: 10rem;
-    margin-right: 0.5rem;
+    border-radius: 9px;
+    padding: 0.2rem 0.375rem;
+    min-width: 1.5rem;
   `}
 `;
 
