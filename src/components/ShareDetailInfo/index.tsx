@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { v4 as getRandomKey } from 'uuid';
 
@@ -34,7 +34,7 @@ const ShareDetailInfo = ({
   latitude,
   longitude,
   infoRef,
-}: ShareDetailType & { infoRef: RefObject<HTMLDivElement> }) => {
+}: ShareDetailType & { infoRef: (InfoDiv: HTMLDivElement) => void }) => {
   const ImgContents = recruitmentMemberThumbnailImageUrls.map((member: string) => (
     <ImgContainer
       key={getRandomKey()}
@@ -43,6 +43,7 @@ const ShareDetailInfo = ({
       imgWrapperRatio={1 / 1}
       imgWrapperWidth='2.9rem'
       borderRadius='5rem'
+      noAlign={true}
     />
   ));
 

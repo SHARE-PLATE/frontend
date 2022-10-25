@@ -34,15 +34,20 @@ export const ShareDetailInfoBarWrapper = styled.div<{ isInfoBar: boolean }>`
   `}
 `;
 
-export const TopFixedWrapper = styled.div`
-  ${({ theme: { defaultPadding, colors } }) => css`
+export const TopFixedWrapper = styled.div<{ isTop: boolean }>`
+  ${({ theme: { defaultPadding, colors }, isTop }) => css`
     ${defaultPadding};
     background-color: ${colors.white1};
     position: sticky;
     top: 0;
     width: 100%;
     z-index: 200;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s;
+
+    ${!isTop &&
+    css`
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.08);
+    `}
   `}
 `;
 

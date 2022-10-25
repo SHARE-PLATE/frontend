@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import { Settings } from 'react-slick';
 import { v4 as getRandomKey } from 'uuid';
 
@@ -25,9 +24,6 @@ const settings: Settings = {
 };
 
 const ShareDetailHeader = ({ imageUrls, closedDateTime }: ShareDetailHeaderPropsType) => {
-  const navigate = useNavigate();
-  const handleClickGoBack = () => navigate(-1);
-
   const imgCarouselContents = imageUrls.map((imgUrl: string) => (
     <ImgContainer
       key={getRandomKey()}

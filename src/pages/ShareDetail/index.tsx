@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
@@ -14,6 +14,7 @@ import ShareDetailInfoBar from '@components/ShareDetailInfoBar';
 import UserInfoWithFollow from '@components/UserInfoWithFollow';
 import Icon from '@components/common/Icon';
 import { noRelatedShareList, offerShare } from '@constants/mentions';
+import useIsTopState from '@hooks/useIsTopState';
 import * as S from '@pages/ShareDetail/ShareDetail.style';
 import { currentLatitudeLongitude } from '@store/location';
 import { ShareDetailType, ShareRecommendationType } from '@type/shareList';
@@ -31,7 +32,13 @@ const ShareDetail = () => {
   const { lat, lng } = useRecoilValue(currentLatitudeLongitude);
   const [isInfoBar, setIsInfoBar] = useState(false);
   const navigate = useNavigate();
-  const infoRef = useRef<HTMLDivElement>(null);
+  const isTop = useIsTopState();
+  const infoRef = useCallback((infoDiv: HTMLDivElement) => {
+    const infoRefObserver = new IntersectionObserver(([entry]) =>
+      setIsInfoBar(!entry.isIntersecting),
+    );
+    if (infoDiv) infoRefObserver.observe(infoDiv);
+  }, []);
 
   const getShareDetail = async () => {
     const shareDetailData = await getShareDetailData({ id });
@@ -51,12 +58,6 @@ const ShareDetail = () => {
     setWriterSharesData(shares);
   };
 
-  const observer = new IntersectionObserver(([entry]) => setIsInfoBar(!entry.isIntersecting), {
-    threshold: 1,
-  });
-
-  if (infoRef.current) observer.observe(infoRef.current);
-
   useEffect(() => {
     getShareDetail();
     getWriterShares();
@@ -72,7 +73,7 @@ const ShareDetail = () => {
       <S.Wrapper>
         {detailData && (
           <>
-            <S.TopFixedWrapper>
+            <S.TopFixedWrapper isTop={isTop}>
               <S.IconsWrapper>
                 <Icon iconName='Back' handleClick={() => navigate(-1)} />
                 <Icon iconName='Upload' />

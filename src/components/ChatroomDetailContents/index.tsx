@@ -6,7 +6,7 @@ import { v4 as createRandomKey } from 'uuid';
 
 import Chat from '@components/Chat';
 import * as S from '@components/ChatroomDetailContents/ChatroomDetailContents.style';
-import { chatMap, stompClient, subscribeChat } from '@socket/stomp';
+import { chatMap, subscribeChat } from '@socket/stomp';
 import { useOnReceiveChat } from '@socket/useConnectSocket';
 import { chatUpdateState } from '@store/chatrooms';
 import { socketConnectState } from '@store/socket';
