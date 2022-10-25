@@ -33,8 +33,9 @@ export const PlusBtn = styled.button`
   `}
 `;
 
-export const ChatInput = styled.input`
+export const ChatInput = styled.textarea`
   ${({ theme: { colors, fonts } }) => css`
+    ${fonts.main}
     ${fonts.largeRegular}
 
     width: 100%;

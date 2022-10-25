@@ -17,7 +17,7 @@ const BottomMessage = () => {
     if (position === 'down') setPosition(null);
   };
 
-  useDebounce({ func: () => resetBottomMessage(), delay: 3000, deps: [trigger] });
+  useDebounce({ func: () => resetBottomMessage(), delay: 4000, deps: [trigger] });
 
   useEffect(() => {
     // position condition is required for first rendering with no bottom message component

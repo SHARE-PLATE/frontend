@@ -43,7 +43,8 @@ const ShareDetailBottomBar = ({
   originalPrice,
   isWriter,
   id,
-}: ShareDetailBottomBarPropsType) => {
+  isInfoBar,
+}: ShareDetailBottomBarPropsType & { isInfoBar: boolean }) => {
   const navigate = useNavigate();
   const setBottomMessage = useSetRecoilState(bottomMessageState);
   const [isWishedNow, setIsWishedNow] = useState(wish);
@@ -61,7 +62,13 @@ const ShareDetailBottomBar = ({
     }
     const wishControlOption: ChangeWishOptionType = !isWishedNow ? 'enroll' : 'cancel';
     const response = await changeWish({ option: wishControlOption, id });
-    if (response?.status === 200) setIsWishedNow(!isWishedNow);
+    if (response?.status === 200) {
+      setIsWishedNow(!isWishedNow);
+      setBottomMessage(({ trigger }) => ({
+        trigger: trigger + 1,
+        message: '찜한 목록에 추가되었습니다.',
+      }));
+    }
   };
 
   const handleClickStartChattingBtn = async () => {
@@ -108,9 +115,11 @@ const ShareDetailBottomBar = ({
   return (
     <>
       <S.Wrapper>
-        <S.ScrollToTopBtnWrapper>
-          <ScrollToTopBtn />
-        </S.ScrollToTopBtnWrapper>
+        {isInfoBar && (
+          <S.ScrollToTopBtnWrapper>
+            <ScrollToTopBtn />
+          </S.ScrollToTopBtnWrapper>
+        )}
         <S.LeftWrapper>
           <S.IconWrapper wish={isWishedNow}>
             <Icon iconName='HeartEmpty' handleClick={handleClickWishIcon} />

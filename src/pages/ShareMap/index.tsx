@@ -52,7 +52,7 @@ const ShareMap = () => {
         onClick={handleBackgroundClick}
       />
       <S.ListHeader>
-        <ShareMapHeader setIsActive={setIsActive} isActive={isActive} />
+        <ShareMapHeader isActive={isActive} />
         <S.TabsWrapper>
           <Tabs<activeShareListType> tabsInfo={shareListTabsInfo} targetAtom={activeShareList} />
         </S.TabsWrapper>

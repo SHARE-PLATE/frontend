@@ -9,7 +9,7 @@ type ChatroomBarPropsType = { chatroomId: string };
 const ChatroomBar = ({ chatroomId }: ChatroomBarPropsType) => {
   const [chatValue, setChatValue] = useState('');
 
-  const handleChangechatValue = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChangechatValue = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setChatValue(event.target.value);
   };
 

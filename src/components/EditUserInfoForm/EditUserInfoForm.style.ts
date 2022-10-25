@@ -7,6 +7,7 @@ type SetCheckType = { isSet: boolean };
 export const FormWrapper = styled.div`
   ${flexCenter}
   flex-direction: column;
+  padding-top: 1rem;
 `;
 
 export const ImgWrapper = styled.div<SetCheckType>`
@@ -38,6 +39,10 @@ export const IconBackground = styled.div`
 export const NickNameWrapper = styled.div`
   width: 100%;
   margin-top: 0.75rem;
+
+  input {
+    font-weight: 300;
+  }
 `;
 
 export const NickNameTitle = styled.h3`

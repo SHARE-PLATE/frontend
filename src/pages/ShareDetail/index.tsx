@@ -98,19 +98,17 @@ const ShareDetail = () => {
                 title={`${detailData.writer}님의 쉐어상품`}
                 data={writerSharesData}
                 emptyMention={noRelatedShareList}
-                showMoreOption={() => console.log('더보기')}
               />
               <PreviewShareListHalfImage
                 title={offerShare}
                 data={recommendedData}
                 emptyMention={noRelatedShareList}
-                showMoreOption={() => console.log('더보기')}
               />
             </S.LowerWrapper>
           </>
         )}
       </S.Wrapper>
-      {detailData && <ShareDetailBottomBar {...detailData} />}
+      {detailData && <ShareDetailBottomBar {...detailData} isInfoBar={isInfoBar} />}
     </>
   );
 };

@@ -52,7 +52,7 @@ export const UpperInfo = styled.div`
 
 export const BadgeWrapper = styled.div`
   display: flex;
-  gap: 0.75rem;
+  gap: 0.5rem;
   text-align: center;
 `;
 
@@ -70,9 +70,11 @@ export const LowerInfo = styled.div`
 export const PersonnelStatusWrapper = styled.div`
   ${({ theme: { fonts } }) => css`
     ${fonts.medium}
+    font-weight: 500;
     display: flex;
     gap: 0.5rem;
     align-items: center;
+    justify-content: space-between;
     padding-bottom: 0.75rem;
   `}
 `;
@@ -149,6 +151,7 @@ export const LocationWrapper = styled.div`
   > :first-child {
     ${({ theme: { colors } }) => css`
       color: ${colors.grey5};
+      font-weight: 500;
     `}
   }
 `;

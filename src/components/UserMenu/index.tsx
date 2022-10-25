@@ -26,7 +26,7 @@ const UserMenu = ({ userMenu }: UserMenuPropsType) => {
             <Icon iconName={icon} />
             {title}
           </S.Title>
-          <Icon iconName='RightArrow' iconSize='LARGE' />
+          <Icon iconName='RightArrow' iconSize={1} />
         </S.ItemWrapper>
       ))}
     </S.Wrapper>

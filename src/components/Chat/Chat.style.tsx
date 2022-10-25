@@ -36,13 +36,19 @@ export const TextWrapper = styled.div`
 
 export const Writer = styled.div<{ writtenByMe: boolean }>`
   ${({ theme: { fonts }, writtenByMe }) => css`
-    ${fonts.small}
+    ${fonts.medium}
     ${writtenByMe &&
     css`
       text-align: right;
     `}
 
     line-height: 1.125rem;
+  `}
+`;
+
+export const Seller = styled.span`
+  ${({ theme: { fonts } }) => css`
+    ${fonts.small}
   `}
 `;
 
@@ -59,14 +65,15 @@ export const ContentsTimeWrapper = styled.div<{ writtenByMe: boolean }>`
 
 export const Contents = styled.div<{ writtenByMe: boolean }>`
   ${({ theme: { colors, fonts }, writtenByMe }) => css`
-    ${fonts.smallRegular}
+    ${fonts.largeRegular}
 
     word-break: break-all;
     border-radius: 0.5rem;
     border-top-left-radius: 0;
     background-color: ${colors.grey2};
-    padding: 0.6rem;
+    padding: 0.6rem 0.75rem;
     line-height: 1.2rem;
+    max-width: calc((100% + 1.2rem) / 100 * 75);
 
     ${writtenByMe &&
     css`
