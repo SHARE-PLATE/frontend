@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 
 const useIsTopState = () => {
-  const [isTop, setIsTop] = useState(false);
+  const [isTop, setIsTop] = useState(true);
 
-  window.onscroll = () => setIsTop(!window.scrollY);
+  window.onscroll = () => {
+    setIsTop(!window.scrollY);
+  };
 
   useEffect(() => {
     return () => {

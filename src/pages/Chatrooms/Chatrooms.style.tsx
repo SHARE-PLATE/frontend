@@ -41,8 +41,8 @@ export const ReloadButton = styled.button`
   `}
 `;
 
-export const HeaderWrapper = styled.div`
-  ${({ theme: { colors, defaultWidth, defaultPadding } }) => css`
+export const HeaderWrapper = styled.div<{ isTop: boolean }>`
+  ${({ theme: { colors, defaultWidth, defaultPadding }, isTop }) => css`
     ${defaultWidth};
     ${defaultPadding};
 
@@ -51,7 +51,12 @@ export const HeaderWrapper = styled.div`
     top: 0;
     width: 100%;
     z-index: 2;
-    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.08);
+
+    ${!isTop &&
+    css`
+      transition: all 0.3s;
+      box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.08);
+    `}
   `}
 `;
 

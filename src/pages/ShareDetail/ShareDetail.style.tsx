@@ -42,10 +42,10 @@ export const TopFixedWrapper = styled.div<{ isTop: boolean }>`
     top: 0;
     width: 100%;
     z-index: 200;
-    transition: all 0.3s;
 
     ${!isTop &&
     css`
+      transition: all 0.3s;
       box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.08);
     `}
   `}

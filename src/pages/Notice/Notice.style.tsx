@@ -21,8 +21,8 @@ export const ErrorWrapper = styled.div`
   `}
 `;
 
-export const TopFixedWrapper = styled.div`
-  ${({ theme: { colors, defaultWidth } }) => css`
+export const TopFixedWrapper = styled.div<{ isTop: boolean }>`
+  ${({ theme: { colors, defaultWidth }, isTop }) => css`
     ${defaultWidth};
     position: sticky;
     top: 0;
@@ -31,7 +31,12 @@ export const TopFixedWrapper = styled.div`
     width: calc(100% + 2rem);
     margin-left: -1rem;
     padding: 0 1rem;
-    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.08);
+
+    ${!isTop &&
+    css`
+      transition: all 0.3s;
+      box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.08);
+    `}
   `}
 `;
 

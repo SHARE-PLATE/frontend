@@ -10,6 +10,7 @@ import Tabs from '@components/Tabs';
 import Icon from '@components/common/Icon';
 import { failtoGetNoticeMention } from '@constants/mentions';
 import { NOTICE_CENTER } from '@constants/words';
+import useIsTopState from '@hooks/useIsTopState';
 import * as S from '@pages/Notice/Notice.style';
 import { activeNoticeState, noticeInfoState, noticeState } from '@store/notice';
 
@@ -19,6 +20,7 @@ const Notice = () => {
   const activeNotice = useRecoilValue(activeNoticeState);
   const selector = noticeState<typeof activeNotice>({ type: activeNotice });
   const { state, contents } = useRecoilValueLoadable(selector);
+  const isTop = useIsTopState();
 
   const getNoticeContents = () => {
     switch (state) {
@@ -37,7 +39,7 @@ const Notice = () => {
 
   return (
     <S.Wrapper>
-      <S.TopFixedWrapper>
+      <S.TopFixedWrapper isTop={isTop}>
         <S.Header>
           <HeaderBtn onClick={() => navigate(-1)}>
             <Icon iconName='Back' iconSize={1.125} />
