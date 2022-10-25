@@ -24,9 +24,10 @@ export const ListHeader = styled.header<{ isTop: boolean }>`
       > :last-child {
         padding: 0 1rem;
       }
+
+      transition: all 0.3s;
       ${!isTop &&
       css`
-        transition: all 0.3s;
         box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.12);
       `}
     `}
