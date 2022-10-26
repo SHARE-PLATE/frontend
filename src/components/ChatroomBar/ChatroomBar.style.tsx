@@ -2,12 +2,16 @@ import styled, { css } from 'styled-components';
 
 import { flexBetween, flexCenter, noScrollBar } from '@styles/mixin';
 
+export const chatroomBarGap = 0.6; // rem
+
+export const chatroomBarButtonWidth = 2; // rem
+
 export const Wrapper = styled.form`
   ${({ theme: { colors, defaultWidth } }) => css`
     ${defaultWidth}
     ${flexBetween}
     width: 100%;
-    gap: 0.6rem;
+    gap: ${chatroomBarGap}rem;
     background-color: ${colors.white1};
     padding: 0.4rem 0.9rem !important;
     min-height: 3.5rem;
@@ -55,7 +59,7 @@ export const ChatTextarea = styled.textarea`
     width: 100%;
     resize: none;
     border: none;
-    line-height: 1.8rem;
+    line-height: 1.65rem;
     border-radius: 0.5rem;
     background-color: ${colors.grey2};
     min-height: 1.5rem;
@@ -77,6 +81,6 @@ export const ButtonWrapper = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 2rem;
-  min-width: 2rem;
+  width: ${chatroomBarButtonWidth}rem;
+  min-width: ${chatroomBarButtonWidth}rem;
 `;

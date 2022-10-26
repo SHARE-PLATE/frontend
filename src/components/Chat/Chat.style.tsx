@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { chatroomBarButtonWidth, chatroomBarGap } from '@components/ChatroomBar/ChatroomBar.style';
+
 export const profileImgWidth = '2.25rem';
 
 export const Wrapper = styled.div<{ writtenByMe: boolean }>`
@@ -68,13 +70,13 @@ export const Contents = styled.div<{ writtenByMe: boolean }>`
     ${fonts.largeRegular}
 
     word-break: break-all;
-    white-space: pre-wrap;
+    overflow: hidden;
     border-radius: 0.5rem;
     border-top-left-radius: 0;
     background-color: ${colors.grey2};
-    padding: 0.6rem 0.75rem;
-    line-height: 1.5rem;
-    max-width: calc((100% + 1.2rem) / 100 * 75);
+    padding: 0.6rem calc(0.6rem + 2px);
+    line-height: 1.65rem;
+    max-width: calc(100% - 2 * ${chatroomBarGap + chatroomBarButtonWidth}rem + 3px);
 
     ${writtenByMe &&
     css`
