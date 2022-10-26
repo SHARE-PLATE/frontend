@@ -2,18 +2,36 @@ import styled, { css } from 'styled-components';
 
 import { flexBetween, flexCenter, noScrollBar } from '@styles/mixin';
 
+const defaultChatroomBarHeight = 2.62; //rem
+
+export const defaultTextareaHeight = 30; // px
+
+export const chatroomBarPaddingTop = 0.4; // rem
+
+export const chatTextareaWrapperPaddingTop = 0.3; //rem
+
 export const chatroomBarGap = 0.6; // rem
 
 export const chatroomBarButtonWidth = 2; // rem
+
+export const ShadowWrapper = styled.div<{ textareaHeight?: number }>`
+  ${({ textareaHeight }) => css`
+    --height: ${textareaHeight || defaultTextareaHeight}px;
+    min-height: calc(
+      var(--height) + 2 * ${chatroomBarPaddingTop + chatTextareaWrapperPaddingTop}rem + 4px
+    );
+  `}
+`;
 
 export const Wrapper = styled.form`
   ${({ theme: { colors, defaultWidth } }) => css`
     ${defaultWidth}
     ${flexBetween}
     width: 100%;
+    align-items: flex-end;
     gap: ${chatroomBarGap}rem;
     background-color: ${colors.white1};
-    padding: 0.4rem 0.9rem !important;
+    padding: ${chatroomBarPaddingTop}rem 0.9rem !important;
     min-height: 3.5rem;
     position: fixed;
     bottom: 0;
@@ -41,19 +59,22 @@ export const ChatTextareaWrapper = styled.div`
   ${({ theme: { colors } }) => css`
     ${flexCenter}
     width: 100%;
+    flex-direction: column;
     border-radius: 0.5rem;
     background-color: ${colors.grey2};
-    padding: 0.3rem 0.6rem;
-    min-height: 2.62rem;
+    padding: ${chatTextareaWrapperPaddingTop}rem 0.6rem;
+    min-height: ${defaultChatroomBarHeight}rem;
+    overflow: hidden;
   `}
 `;
 
-export const ChatTextarea = styled.textarea`
-  ${({ theme: { colors, fonts } }) => css`
+export const ChatTextarea = styled.textarea<{ isShadow?: boolean }>`
+  ${({ theme: { colors, fonts }, isShadow = false }) => css`
     ${fonts.main}
     ${fonts.largeRegular}
     ${noScrollBar}
     ${flexCenter}
+ 
 
     word-break: break-all;
     width: 100%;
@@ -62,7 +83,7 @@ export const ChatTextarea = styled.textarea`
     line-height: 1.65rem;
     border-radius: 0.5rem;
     background-color: ${colors.grey2};
-    min-height: 1.5rem;
+    transition: all 0.15s;
 
     ::placeholder {
       color: ${colors.grey4};
@@ -74,13 +95,19 @@ export const ChatTextarea = styled.textarea`
         color: transparent;
       }
     }
+
+    ${isShadow &&
+    css`
+      height: 0px;
+      opacity: 0;
+    `}
   `}
 `;
 
 export const ButtonWrapper = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${flexCenter};
+
+  height: ${defaultChatroomBarHeight}rem;
   width: ${chatroomBarButtonWidth}rem;
   min-width: ${chatroomBarButtonWidth}rem;
 `;

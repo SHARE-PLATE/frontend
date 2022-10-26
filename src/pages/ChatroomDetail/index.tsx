@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import { useRecoilValueLoadable, useSetRecoilState } from 'recoil';
 
 import { putChatUpdateReadTime } from '@api/chat';
-import ChatroomBar from '@components/ChatroomBar';
 import ChatroomDetailContents from '@components/ChatroomDetailContents';
 import ChatroomDatailHeader from '@components/ChatroomDetailHeader';
 import ErrorWithButtons from '@components/ErrorWithButtons';
@@ -50,8 +49,11 @@ const ChatroomDetail = () => {
               <ShareDetailInfoBar {...share} />
               <S.RemainingTime>남은 시간 : {remainingTime}</S.RemainingTime>
             </S.TopFixedWrapper>
-            <ChatroomDetailContents chats={chats} chatroomId={chatRoomMemberId} />
-            <ChatroomBar chatroomId={id || ''} />
+            <ChatroomDetailContents
+              chats={chats}
+              chatRoomMemberId={chatRoomMemberId}
+              chatroomId={Number(id)}
+            />
           </S.Wrapper>
         );
 

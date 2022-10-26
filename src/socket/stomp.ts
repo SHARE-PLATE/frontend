@@ -15,7 +15,7 @@ import {
 } from '@constants/words';
 import { getAuthHeaders } from '@utils/getAuthHeaders';
 
-type SendChatParamsType = { contents: string; chatroomId?: string };
+type SendChatParamsType = { contents: string; chatroomId: number };
 
 type subscribeNoticeParamsType = {
   entryIds: number[];
