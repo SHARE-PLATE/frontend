@@ -68,11 +68,12 @@ export const Contents = styled.div<{ writtenByMe: boolean }>`
     ${fonts.largeRegular}
 
     word-break: break-all;
+    white-space: pre-wrap;
     border-radius: 0.5rem;
     border-top-left-radius: 0;
     background-color: ${colors.grey2};
     padding: 0.6rem 0.75rem;
-    line-height: 1.2rem;
+    line-height: 1.5rem;
     max-width: calc((100% + 1.2rem) / 100 * 75);
 
     ${writtenByMe &&

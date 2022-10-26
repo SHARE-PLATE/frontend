@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { flexBetween, flexCenter } from '@styles/mixin';
+import { flexBetween, flexCenter, noScrollBar } from '@styles/mixin';
 
 export const Wrapper = styled.form`
   ${({ theme: { colors, defaultWidth } }) => css`
@@ -9,17 +9,17 @@ export const Wrapper = styled.form`
     width: 100%;
     gap: 0.6rem;
     background-color: ${colors.white1};
-    padding: 0 0.9rem;
-    height: 3.5rem;
+    padding: 0.4rem 0.9rem !important;
+    min-height: 3.5rem;
     position: fixed;
     bottom: 0;
-    box-shadow: 0px -10px 40px #67676740;
+    box-shadow: 0px -8px 16px rgba(0, 0, 0, 0.08);
     z-index: 100;
     flex-grow: 0 !important;
   `}
 `;
 
-export const PlusBtn = styled.button`
+export const PlusBtn = styled.div`
   ${({ theme: { colors } }) => css`
     ${flexCenter}
     border-radius: 0.375rem;
@@ -33,17 +33,32 @@ export const PlusBtn = styled.button`
   `}
 `;
 
-export const ChatInput = styled.textarea`
+export const ChatTextareaWrapper = styled.div`
+  ${({ theme: { colors } }) => css`
+    ${flexCenter}
+    width: 100%;
+    border-radius: 0.5rem;
+    background-color: ${colors.grey2};
+    padding: 0.3rem 0.6rem;
+    min-height: 2.62rem;
+  `}
+`;
+
+export const ChatTextarea = styled.textarea`
   ${({ theme: { colors, fonts } }) => css`
     ${fonts.main}
     ${fonts.largeRegular}
+    ${noScrollBar}
+    ${flexCenter}
 
+    word-break: break-all;
     width: 100%;
+    resize: none;
     border: none;
+    line-height: 1.8rem;
     border-radius: 0.5rem;
     background-color: ${colors.grey2};
-    padding: 0.6rem 0.75rem;
-    height: 2.62rem;
+    min-height: 1.5rem;
 
     ::placeholder {
       color: ${colors.grey4};
@@ -58,8 +73,10 @@ export const ChatInput = styled.textarea`
   `}
 `;
 
-export const Button = styled.button`
+export const ButtonWrapper = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 2rem;
+  min-width: 2rem;
 `;
