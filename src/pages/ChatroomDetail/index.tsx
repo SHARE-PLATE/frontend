@@ -1,5 +1,4 @@
-import { useEffect, useRef } from 'react';
-import { useCallback } from 'react';
+import { useEffect } from 'react';
 
 import { useParams } from 'react-router-dom';
 import { useRecoilValueLoadable, useSetRecoilState } from 'recoil';
@@ -11,10 +10,11 @@ import ChatroomDatailHeader from '@components/ChatroomDetailHeader';
 import ChatroomDetailInfo from '@components/ChatroomDetailInfo';
 import ErrorWithButtons from '@components/ErrorWithButtons';
 import Loading from '@components/Loading';
+import TopFixedWarinng from '@components/TopFixedWarning';
 import { failLoadingChatroomsMention } from '@constants/mentions';
 import * as S from '@pages/ChatroomDetail/ChatroomDetail.style';
 import { chatroomDetailState, chatroomDetailTrigger } from '@store/chatroomDetail';
-import { chatroomsTrigger, chatroomsUpdateState, chatsUnreadTrigger } from '@store/chatrooms';
+import { chatroomsTrigger, chatsUnreadTrigger } from '@store/chatrooms';
 import { getTimeDiff } from '@utils/getTimeDiff';
 
 const ChatroomDetail = () => {
@@ -26,25 +26,11 @@ const ChatroomDetail = () => {
   );
   if (!id) return ErrorPage;
 
-  const chatroomDetail = chatroomDetailState({ id });
-  const lastChatRef = useRef<HTMLDivElement>();
+  const chatroomDetail = chatroomDetailState({ id: Number(id) });
   const { state, contents } = useRecoilValueLoadable(chatroomDetail);
   const setChatroomsTrigger = useSetRecoilState(chatroomsTrigger);
-  const setChatroomsUpdate = useSetRecoilState(chatroomsUpdateState);
   const setChatsUnreadTrigger = useSetRecoilState(chatsUnreadTrigger);
   const setchatroomDetailTrigger = useSetRecoilState(chatroomDetailTrigger);
-
-  //**callback ref for scroll to bottom */
-  const scrollToBottomRef = useCallback((lastChatDiv: HTMLDivElement) => {
-    if (!lastChatDiv) return;
-    // change target only if last chat didn't exist
-    lastChatRef.current = lastChatDiv;
-    lastChatDiv.scrollIntoView();
-  }, []);
-
-  const scrollToBottom = () => {
-    lastChatRef.current?.scrollIntoView();
-  };
 
   const getContents = () => {
     switch (state) {
@@ -59,16 +45,12 @@ const ChatroomDetail = () => {
         return (
           <S.Wrapper>
             <S.TopFixedWrapper>
+              <TopFixedWarinng text='채팅 연결 끊김' />
               <ChatroomDatailHeader type={type} writer={writer} />
               <ChatroomDetailInfo {...share} />
               <S.RemainingTime>남은 시간 : {remainingTime}</S.RemainingTime>
             </S.TopFixedWrapper>
-            <ChatroomDetailContents
-              chats={chats}
-              chatroomId={chatRoomMemberId || ''}
-              scrollToBottom={scrollToBottom}
-            />
-            <S.EmptyBlock ref={scrollToBottomRef} />
+            <ChatroomDetailContents chats={chats} chatroomId={chatRoomMemberId} />
             <ChatroomBar chatroomId={id || ''} />
           </S.Wrapper>
         );
@@ -88,8 +70,6 @@ const ChatroomDetail = () => {
       // reflect chats that occur this render on 'chatrooms' and 'chats unread'
       setChatroomsTrigger((prev) => prev + 1);
       setChatsUnreadTrigger((prev) => prev + 1);
-      // delete updated info when occurs in this page (updated info should exists for chatrooms page not chatroom detail page)
-      setChatroomsUpdate({});
     };
   }, []);
 

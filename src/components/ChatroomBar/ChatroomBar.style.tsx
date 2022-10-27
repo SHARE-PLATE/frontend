@@ -11,10 +11,11 @@ export const Wrapper = styled.form`
     background-color: ${colors.white1};
     padding: 0 0.9rem;
     height: 3.5rem;
-    position: sticky;
+    position: fixed;
     bottom: 0;
     box-shadow: 0px -10px 40px #67676740;
     z-index: 100;
+    flex-grow: 0 !important;
   `}
 `;
 

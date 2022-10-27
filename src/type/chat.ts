@@ -1,5 +1,5 @@
 export type ChatroomsDataType = {
-  id: string;
+  id: number;
   chatRoomMemberId: number;
   shareThumbnailImageUrl: string;
   currentRecruitment: number;
@@ -36,7 +36,7 @@ export type ChatroomDetailShareType = {
 };
 
 export type ChatroomDetailDataType = {
-  chatRoomMemberId: string;
+  chatRoomMemberId: number;
   type: 'QUESTION' | 'SHARE';
   share: ChatroomDetailShareType;
   chats: ChatroomDetailChatsType;
@@ -52,5 +52,6 @@ export type ChatroomIdsType = { id: number; chatRoomId: number }[];
 
 export type ChatroomsUpdate = {
   id?: number;
-  contents?: string;
+  chat?: ChatroomDetailChatType;
+  trigger: number;
 };

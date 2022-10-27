@@ -11,7 +11,12 @@ export type DeleteNoticeParamsType = {
   idList?: number[];
 };
 
-export type ActivityType = 'ENTRY' | 'DEADLINE' | 'ENTRY_CANCEL' | 'SHARE_CANCEL';
+export type ActivityType =
+  | 'ENTRY'
+  | 'DEADLINE'
+  | 'ENTRY_CANCEL'
+  | 'SHARE_CANCEL'
+  | 'QUESTION_CHATROOM';
 
 export type NoticeActivityDataType = {
   id: number;

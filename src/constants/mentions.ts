@@ -43,6 +43,9 @@ export const entryJoinedMention = '쉐어가 신청되었습니다.';
 export const entryCanceledMention = '쉐어 신청이 취소되었습니다.';
 export const shareCanceledMention = '쉐어가 취소되었습니다.';
 export const noRecentNoticeMention = '새로운 알림이 없습니다.';
+export const newQuestionChatroomMention = '새로운 문의가 들어왔습니다.';
+export const questionChatroomMention = (option: string | undefined) =>
+  `${option}님이 문의를 남겼습니다.`;
 export const entryMention = (name?: string) => `${name}님이 쉐어 신청하였습니다.`;
 export const shareCancelMention = (name?: string) => `${name}님이 쉐어를 취소하였습니다.`;
 export const entryCancelMention = (name?: string) => `${name}님이 쉐어 신청을 취소하였습니다.`;

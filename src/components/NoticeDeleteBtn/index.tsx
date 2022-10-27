@@ -9,7 +9,7 @@ import { noticeDeletedMention } from '@constants/mentions';
 import { bottomMessageState } from '@store/bottomMessage';
 import { deleteModeState } from '@store/notice';
 
-type NoticeDeleteBtnPropsType = {
+export type NoticeDeleteBtnPropsType = {
   id: number;
   onDeleteSuccess: (id: number) => void;
 };

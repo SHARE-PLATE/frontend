@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 
 import * as S from '@components/ChatroomBar/ChatroomBar.style';
 import Icon from '@components/common/Icon';
-import { sendChat } from '@socket/chatroomSocket';
+import { sendChat } from '@socket/stomp';
 
 type ChatroomBarPropsType = { chatroomId: string };
 

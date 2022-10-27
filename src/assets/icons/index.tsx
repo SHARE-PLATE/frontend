@@ -78,9 +78,11 @@ import Upload from '@assets/icons/upload.svg';
 import User from '@assets/icons/user.svg';
 import UserNav from '@assets/icons/userNav.svg';
 import UserNavFill from '@assets/icons/userNavFill.svg';
+import Warning from '@assets/icons/warning.svg';
 import X_Icon from '@assets/icons/x_icon.svg';
 
 export const Icons = {
+  Warning,
   EditingCamera,
   Target,
   NoticeFill,

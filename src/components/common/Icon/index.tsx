@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { MouseEvent, useState } from 'react';
 
 import { FlattenSimpleInterpolation } from 'styled-components';
 
@@ -14,7 +14,7 @@ export interface IconPropsType {
   borderRadius?: string;
   noSkeleton?: boolean;
   additionalStyle?: FlattenSimpleInterpolation;
-  handleClick?: (params: any) => void;
+  handleClick?: (event: MouseEvent<HTMLDivElement>) => void;
 }
 
 const Icon = ({
@@ -39,8 +39,9 @@ const Icon = ({
       isSet={isSet}
       additionalStyle={additionalStyle}
       noSkeleton={noSkeleton}
+      onClick={handleClick}
     >
-      <S.Icon src={Icons[iconName]} size={iconSize} onClick={handleClick} onLoad={handleOnLoad} />
+      <S.Icon src={Icons[iconName]} size={iconSize} onLoad={handleOnLoad} />
     </S.IconButton>
   );
 };

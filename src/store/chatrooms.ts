@@ -59,7 +59,7 @@ export const chatroomIdsState = selector<ChatroomIdsType | undefined>({
   },
 });
 
-export const chatroomsUpdateState = atom<ChatroomsUpdate>({
-  key: 'chatroomsUpdate',
-  default: {},
+export const chatUpdateState = atom<ChatroomsUpdate>({
+  key: 'chatUpdate',
+  default: { trigger: 0 },
 });
