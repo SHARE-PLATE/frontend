@@ -35,6 +35,7 @@ export const AdditionalImgStyle = css`
 export const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
   gap: 0.6rem;
   overflow: hidden;
 `;
@@ -61,6 +62,7 @@ export const Seller = styled.span`
 export const ContentsTimeWrapper = styled.div<{ writtenByMe: boolean }>`
   display: flex;
   gap: 0.4rem;
+  width: 100%;
 
   ${({ writtenByMe }) =>
     writtenByMe &&
@@ -78,10 +80,10 @@ export const Contents = styled.div<{ writtenByMe: boolean }>`
     border-radius: 0.5rem;
     border-top-left-radius: 0;
     background-color: ${colors.grey2};
-    padding: 0.6rem calc(0.6rem + 2px);
+    padding: 0.6rem;
     line-height: 1.65rem;
     white-space: break-spaces;
-    /* max-width: calc(100% - 2 * ${chatroomBarGap + chatroomBarButtonWidth}rem + 3px); */
+    max-width: calc(100% - ${2 * (chatroomBarGap + chatroomBarButtonWidth)}rem + 3.5px);
 
     ${writtenByMe &&
     css`

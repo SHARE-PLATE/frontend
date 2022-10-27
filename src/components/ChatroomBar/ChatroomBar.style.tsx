@@ -10,6 +10,8 @@ export const chatroomBarPaddingTop = 0.4; // rem
 
 export const chatTextareaWrapperPaddingTop = 0.3; //rem
 
+export const chatTextareaWrapperPaddingRight = 0.6; //rem
+
 export const chatroomBarGap = 0.6; // rem
 
 export const chatroomBarButtonWidth = 2; // rem
@@ -53,7 +55,7 @@ export const ChatTextareaWrapper = styled.div`
     flex-direction: column;
     border-radius: 0.5rem;
     background-color: ${colors.grey2};
-    padding: ${chatTextareaWrapperPaddingTop}rem 0.6rem;
+    padding: ${chatTextareaWrapperPaddingTop}rem ${chatTextareaWrapperPaddingRight}rem;
     min-height: ${defaultChatroomBarHeight}rem;
     overflow: hidden;
   `}
