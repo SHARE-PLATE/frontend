@@ -47,7 +47,7 @@ export const PriceWrapper = styled.div`
     min-width: 4.9rem;
 
     > :nth-child(1) {
-      ${fonts.xLargeBold}
+      ${fonts.largeBold}
       min-width: 4.7rem;
       text-align: center;
     }
