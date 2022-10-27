@@ -5,13 +5,15 @@ import { chatroomBarButtonWidth, chatroomBarGap } from '@components/ChatroomBar/
 export const profileImgWidth = '2.25rem';
 
 export const Wrapper = styled.div<{ writtenByMe: boolean }>`
-  display: flex;
-  gap: 0.75rem;
-
   ${({ writtenByMe }) =>
-    writtenByMe &&
     css`
-      flex-direction: row-reverse;
+      display: flex;
+      gap: 0.75rem;
+
+      ${writtenByMe &&
+      css`
+        flex-direction: row-reverse;
+      `}
     `}
 `;
 
@@ -34,11 +36,13 @@ export const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
+  overflow: hidden;
 `;
 
 export const Writer = styled.div<{ writtenByMe: boolean }>`
   ${({ theme: { fonts }, writtenByMe }) => css`
-    ${fonts.medium}
+    ${fonts.medium};
+
     ${writtenByMe &&
     css`
       text-align: right;
@@ -76,7 +80,8 @@ export const Contents = styled.div<{ writtenByMe: boolean }>`
     background-color: ${colors.grey2};
     padding: 0.6rem calc(0.6rem + 2px);
     line-height: 1.65rem;
-    max-width: calc(100% - 2 * ${chatroomBarGap + chatroomBarButtonWidth}rem + 3px);
+    white-space: break-spaces;
+    /* max-width: calc(100% - 2 * ${chatroomBarGap + chatroomBarButtonWidth}rem + 3px); */
 
     ${writtenByMe &&
     css`
@@ -90,7 +95,8 @@ export const Contents = styled.div<{ writtenByMe: boolean }>`
 
 export const DateTime = styled.div<{ writtenByMe: boolean }>`
   ${({ theme: { colors, fonts }, writtenByMe }) => css`
-    ${fonts.xSmallRegular}
+    ${fonts.xSmallRegular};
+
     ${writtenByMe &&
     css`
       text-align: right;
@@ -99,7 +105,7 @@ export const DateTime = styled.div<{ writtenByMe: boolean }>`
     display: flex;
     flex-direction: column;
     justify-content: end;
-    min-width: 2.6rem;
+    min-width: 3rem;
     color: ${colors.grey4};
   `}
 `;

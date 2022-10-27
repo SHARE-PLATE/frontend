@@ -29,8 +29,7 @@ export const Date = styled.div`
 export const LastBottomBlock = styled.div<{ blockHeight?: number }>`
   ${({ blockHeight }) => css`
     --height: ${blockHeight || defaultTextareaHeight}px;
-    min-height: calc(
-      var(--height) + 2 * ${chatroomBarPaddingTop + chatTextareaWrapperPaddingTop}rem + 4px
-    );
+    transition: all 0.15s;
+    height: calc(var(--height) + 2 * ${chatroomBarPaddingTop + chatTextareaWrapperPaddingTop}rem);
   `}
 `;

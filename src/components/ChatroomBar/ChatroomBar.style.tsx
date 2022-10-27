@@ -14,15 +14,6 @@ export const chatroomBarGap = 0.6; // rem
 
 export const chatroomBarButtonWidth = 2; // rem
 
-export const ShadowWrapper = styled.div<{ textareaHeight?: number }>`
-  ${({ textareaHeight }) => css`
-    --height: ${textareaHeight || defaultTextareaHeight}px;
-    min-height: calc(
-      var(--height) + 2 * ${chatroomBarPaddingTop + chatTextareaWrapperPaddingTop}rem + 4px
-    );
-  `}
-`;
-
 export const Wrapper = styled.form`
   ${({ theme: { colors, defaultWidth } }) => css`
     ${defaultWidth}
@@ -76,6 +67,8 @@ export const ChatTextarea = styled.textarea<{ isShadow?: boolean }>`
     ${flexCenter}
  
 
+    // remove default padding in browser
+    padding: 0;
     word-break: break-all;
     width: 100%;
     resize: none;
