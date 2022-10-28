@@ -32,8 +32,6 @@ export const MapListWrapper = styled.div`
   display: flex;
   position: relative;
   flex-direction: column;
-  flex-grow: 1;
-  overflow: hidden;
 
   // slide z-index is 100
   // share form button background
