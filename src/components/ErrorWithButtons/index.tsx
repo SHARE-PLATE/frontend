@@ -34,7 +34,7 @@ const ErrorWithButtons = ({ isLoading, mention, buttonType }: ErrorWithButtonsPr
         <Icon iconName='Logo' iconSize={2} />
         <Icon iconName='SharePlate' iconSize={11.5} />
       </S.IconsWrapper>
-      {isLoading && <Loading color='orange2' size={42} border={6} />}
+      {isLoading && <Loading color='orange2' size={42} border={6} height='15%' />}
       {!isLoading && (
         <>
           {mention && <S.Mention>{mention}</S.Mention>}
