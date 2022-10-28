@@ -11,6 +11,7 @@ import SearchPortal from '@portals/SearchPortal';
 import { routes } from '@router';
 import useConnectSocket from '@socket/useConnectSocket';
 import Styles from '@styles';
+import { setAppHeight } from '@styles/GlobalStyle';
 
 const App = () => {
   const element = useRoutes(routes);
@@ -18,6 +19,7 @@ const App = () => {
 
   useCheckIsLogin();
   connectSocket();
+  setAppHeight();
 
   return (
     <div className='App'>
