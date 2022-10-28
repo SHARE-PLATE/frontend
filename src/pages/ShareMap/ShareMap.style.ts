@@ -68,9 +68,6 @@ export const CurrentAddress = styled.div`
   align-items: center;
   gap: 0.25rem;
   height: 2.5rem;
-  path {
-    stroke: ${({ theme }) => theme.colors.orange3};
-  }
 `;
 
 export const AddressText = styled.span`

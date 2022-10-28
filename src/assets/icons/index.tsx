@@ -39,6 +39,7 @@ import ImgDelete from '@assets/icons/imgDelete.svg';
 import Kakao from '@assets/icons/kakao.svg';
 import KebabMenu from '@assets/icons/kebabMenu.svg';
 import LocationMarker from '@assets/icons/locationMarker.svg';
+import LocationMarkerColor from '@assets/icons/locationMarkerColor.svg';
 import Logo from '@assets/icons/logo.svg';
 import LogoWithText from '@assets/icons/logoWithText.svg';
 import Logout from '@assets/icons/logout.svg';
@@ -82,6 +83,7 @@ import Warning from '@assets/icons/warning.svg';
 import X_Icon from '@assets/icons/x_icon.svg';
 
 export const Icons = {
+  LocationMarkerColor,
   Warning,
   EditingCamera,
   Target,

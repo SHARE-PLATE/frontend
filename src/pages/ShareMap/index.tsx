@@ -57,7 +57,7 @@ const ShareMap = () => {
           <Tabs<activeShareListType> tabsInfo={shareListTabsInfo} targetAtom={activeShareList} />
         </S.TabsWrapper>
         <S.CurrentAddress>
-          <Icon iconName='LocationMarker' />
+          <Icon iconName='LocationMarkerColor' />
           <S.AddressText>{curAddressName}</S.AddressText>
         </S.CurrentAddress>
       </S.ListHeader>
