@@ -91,12 +91,12 @@ const ChatroomsItem = ({
 
   const changeInnerLeft = (distance: number) => {
     if (!startPoint || !wrapperRef.current) return;
-    if (distance >= 20) setMoving('left');
-    if (distance > defaultStartPoint && distance < 20)
+    if (distance >= 60) setMoving('left');
+    if (distance > defaultStartPoint && distance < 60)
       wrapperRef.current.style.left = `-${distance / 10}px`;
-    if (distance < defaultStartPoint && distance > -20)
+    if (distance < defaultStartPoint && distance > -60)
       wrapperRef.current.style.left = `${distance / 10}px`;
-    if (distance <= -20) setMoving('right');
+    if (distance <= -60) setMoving('right');
   };
 
   const handleClickItem = () => {
