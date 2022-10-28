@@ -7,7 +7,6 @@ import { SelectedShareListMarker } from '@components/ShareMapArea/SelectedShareL
 import { ShareListMarker } from '@components/ShareMapArea/ShareListMarker';
 import * as S from '@components/ShareMapArea/ShareMapArea.style';
 import Icon from '@components/common/Icon';
-import { selectedAddressState } from '@store/address';
 import { currentLatitudeLongitude } from '@store/location';
 import { getShareListsData } from '@store/shareList';
 import { clickedShareIdState, mapLatitudeLongitudeState } from '@store/shareMap';
@@ -81,6 +80,7 @@ const ShareMapArea = () => {
     if (!mapState) return;
     const { La: newLng, Ma: newLat } = mapState.getCenter();
     // La is Longitude, Ma is Latitude
+    setClickedShareId(null);
     setMapLatitudeLongitude({ lng: newLng, lat: newLat });
   };
 

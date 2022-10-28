@@ -160,6 +160,7 @@ const ShareListSlide = ({ isActive, setIsActive }: ShareListSlidePropsType) => {
   // manage rotate animation
   useEffect(() => {
     if (state !== 'loading') {
+      setSlidePosition('bottom');
       setTimeout(() => setIsRotated(false), 900);
     } else {
       setIsRotated(true);
