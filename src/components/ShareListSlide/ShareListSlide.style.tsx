@@ -70,6 +70,7 @@ export const Title = styled.h1<{ isRotated: boolean }>`
     ${defaultPadding}
 
     display: flex;
+    align-items: center;
     min-height: 44px;
     height: 44px;
     justify-content: left;
