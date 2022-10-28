@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { useRecoilState, useRecoilValue, useRecoilValueLoadable, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useRecoilValueLoadable } from 'recoil';
 
 import { CurrentLocationMarker } from '@components/ShareMapArea/CurrentLocationMarker';
+import { SelectedShareListMarker } from '@components/ShareMapArea/SelectedShareListMarker';
 import { ShareListMarker } from '@components/ShareMapArea/ShareListMarker';
 import * as S from '@components/ShareMapArea/ShareMapArea.style';
 import Icon from '@components/common/Icon';
+import { selectedAddressState } from '@store/address';
 import { currentLatitudeLongitude } from '@store/location';
 import { getShareListsData } from '@store/shareList';
 import { clickedShareIdState, mapLatitudeLongitudeState } from '@store/shareMap';
@@ -16,9 +18,10 @@ const ShareMapArea = () => {
   const [isRotated, setIsRotated] = useState(true);
   const [mapState, setMapState] = useState<any>(null);
   const mapRef = useRef(null);
+  const targetBlurRef = useRef<(id: number | null) => void>();
   const [mapLatitudeLogitude, setMapLatitudeLongitude] = useRecoilState(mapLatitudeLongitudeState);
   const curLatitudeLongitude = useRecoilValue(currentLatitudeLongitude);
-  const setClickedShareId = useSetRecoilState(clickedShareIdState);
+  const [clickedShareId, setClickedShareId] = useRecoilState(clickedShareIdState);
   const centerLatitudeLogitude = mapLatitudeLogitude || curLatitudeLongitude;
   const { lat: curLat, lng: curLng } = curLatitudeLongitude;
   const { lat: centerLat, lng: centerLng } = centerLatitudeLogitude;
@@ -28,8 +31,13 @@ const ShareMapArea = () => {
     getShareListsData({ newLatitudeLongitude: { lat: centerLat, lng: centerLng } }),
   );
 
+  const blurPrevMarker = () => {
+    if (targetBlurRef.current) targetBlurRef.current(clickedShareId);
+  };
+
   const getClickedShare = (targetId: number) => {
     if (dataState !== 'hasValue') return;
+    blurPrevMarker();
     setClickedShareId(targetId);
   };
 
@@ -51,7 +59,14 @@ const ShareMapArea = () => {
     if (dataState !== 'hasValue' || !contents) return;
     contents.forEach(({ latitude, longitude, id }) => {
       const content = document.createElement('button');
-      content.onclick = () => getClickedShare(id);
+      content.onclick = () => {
+        getClickedShare(id);
+        content.innerHTML = SelectedShareListMarker;
+        targetBlurRef.current = (targetId: number | null) => {
+          if (targetId !== id) content.innerHTML = ShareListMarker;
+        };
+      };
+      content.id = String(id);
       content.innerHTML = ShareListMarker;
       const markerInfo = {
         content,
@@ -91,6 +106,10 @@ const ShareMapArea = () => {
       setTimeout(() => setIsRotated(false), 900);
     }
   }, [dataState]);
+
+  useEffect(() => {
+    blurPrevMarker();
+  }, [clickedShareId]);
 
   return (
     <S.Wrapper>
