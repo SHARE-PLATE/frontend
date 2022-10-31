@@ -112,7 +112,7 @@ export const Error = styled.div`
     ${fonts.mediumRegular};
     ${flexCenter};
 
-    height: 200px;
+    height: 100px;
     color: ${colors.grey4};
   `}
 `;
