@@ -29,7 +29,7 @@ const ToastModalTest = () => {
   };
 
   useEffect(() => {
-    if (trigger) setIsToastModal(true);
+    setIsToastModal(!!trigger);
   }, [trigger]);
 
   return isToastModal ? (
