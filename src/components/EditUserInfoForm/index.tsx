@@ -7,7 +7,7 @@ import { UseInputReturnType } from '@hooks/useInput';
 
 interface EditUserInfoFromPropsType {
   fileImage: File | null;
-  openToastModal: () => void;
+  onClickImageButton: () => void;
   prevNickname: string;
   prevImageUrl: string;
   nicknameInput: UseInputReturnType;
@@ -17,7 +17,7 @@ const nicknameMaxLength = 13;
 
 const EditUserInfoForm = ({
   fileImage,
-  openToastModal,
+  onClickImageButton,
   prevImageUrl,
   prevNickname,
   nicknameInput,
@@ -26,7 +26,7 @@ const EditUserInfoForm = ({
 
   return (
     <S.FormWrapper>
-      <S.ImgWrapper isSet={!!profileImageUrl}>
+      <S.ImgWrapper isSet={!!profileImageUrl} onClick={onClickImageButton}>
         {profileImageUrl && (
           <ImgContainer
             imgSrc={profileImageUrl}
@@ -37,16 +37,16 @@ const EditUserInfoForm = ({
           />
         )}
         <S.IconBackground>
-          <Icon iconName='EditingCamera' iconSize={1.44} handleClick={openToastModal} />
+          <Icon iconName='EditingCamera' iconSize={1.44} />
         </S.IconBackground>
       </S.ImgWrapper>
       <S.NickNameWrapper>
         <S.NickNameTitle>{NICKNAME}</S.NickNameTitle>
         <InputForm
           type='text'
-          {...nicknameInput}
           placeholder={prevNickname}
           maxLength={nicknameMaxLength}
+          {...nicknameInput}
         />
       </S.NickNameWrapper>
     </S.FormWrapper>

@@ -13,7 +13,7 @@ export const Title = styled.h2`
 `;
 
 export const ButtonWrapper = styled.button<{ position: 'left' | 'right' }>`
-  width: 30px;
+  width: 50px;
   ${({ position }) => css`
     ${flexCenter};
     justify-content: ${position};
