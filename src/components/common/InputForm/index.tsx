@@ -1,6 +1,6 @@
 import * as S from '@components/common/InputForm/InputForm.style';
 
-type InputFormPropsType = {
+export type InputFormPropsType = {
   inputValue: string;
   onChange?: ({ target }: { target: HTMLInputElement }) => void;
   unit?: string;

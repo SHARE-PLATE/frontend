@@ -1,47 +1,89 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
-import { useRecoilValue } from 'recoil';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 
-import { UserInfoDataType } from '@api/account';
+import { editUserInfoData } from '@api/account';
+import basicProfileURL from '@assets/img/profileBase.png';
 import EditUserInfoForm from '@components/EditUserInfoForm';
 import EditUserInfoHeader from '@components/EditUserInfoHeader';
 import ToastModal from '@components/ToastModal';
+import { failedToChangeUserInfo, successToChangeUserInfo } from '@constants/mentions';
+import { pathName } from '@constants/pathName';
 import { DELETE_PROFILE_PICTURE, SELECT_ALBUM } from '@constants/words';
+import useInput from '@hooks/useInput';
 import useModal from '@hooks/useModal';
 import * as S from '@pages/EditUserInfo/EditUserInfo.style';
+import { bottomMessageState } from '@store/bottomMessage';
 import { userInfoAtom } from '@store/userInfo';
+import checkCharacter from '@utils/checkcharacter';
+import { convertURLtoFile } from '@utils/convertURLtoFile';
 
 const EditUserInfo = () => {
+  const navigate = useNavigate();
+  const prevUserInfo = useRecoilValue(userInfoAtom);
+  const setBottomMessage = useSetRecoilState(bottomMessageState);
+  const [fileImage, setFileImage] = useState<File | null>(null);
   const inputFormBtnRef = useRef<HTMLInputElement>(null);
-
-  const userInfo = useRecoilValue(userInfoAtom);
-  const [editUserInfo, setEditUserInfo] = useState<UserInfoDataType>(userInfo);
-
   const modalRef = useRef<HTMLDivElement>(null);
   const [isToastModal, setToastModal] = useModal({ modalRef });
+  const nicknameInput = useInput(prevUserInfo.nickname || '');
 
-  const [fileImage, setFileImage] = useState<FileList>();
+  const backToSetting = () => navigate(pathName.settingsProfile);
 
-  const changeValues = ({ target: { files } }: React.ChangeEvent<HTMLInputElement>) => {
-    if (files) setFileImage(files);
+  const changeImage = async (event?: React.ChangeEvent<HTMLInputElement>) => {
+    if (event) {
+      const { files } = event.target;
+      files && setFileImage(files[0]);
+    } else {
+      const basicProfileImage = await convertURLtoFile(basicProfileURL);
+      setFileImage(basicProfileImage);
+    }
   };
+
+  const handleClickSubmit = async () => {
+    const formData = new FormData();
+    const { inputValue: nickname } = nicknameInput;
+    const isCharacter = checkCharacter(nickname);
+    if (isCharacter) {
+      setBottomMessage(({ trigger }) => ({
+        trigger: trigger + 1,
+        message: '특수 문자는 사용할 수 없습니다!',
+      }));
+      return;
+    }
+
+    fileImage && formData.append('image', fileImage);
+    !!nickname.length && formData.append('nickname', nickname);
+
+    const isSuccessFetch = await editUserInfoData(formData);
+    setBottomMessage(({ trigger }) => ({
+      trigger: trigger + 1,
+      message: isSuccessFetch ? successToChangeUserInfo : failedToChangeUserInfo,
+    }));
+    backToSetting();
+  };
+
+  useEffect(() => {
+    const isUserInfo = !!Object.keys(prevUserInfo).length;
+    if (!isUserInfo) backToSetting();
+  }, []);
 
   return (
     <S.Wrapper>
-      <EditUserInfoHeader editUserInfo={editUserInfo} fileImage={fileImage} />
+      <EditUserInfoHeader onClickSubmitButton={handleClickSubmit} />
       <EditUserInfoForm
-        editUserInfo={editUserInfo}
+        prevNickname={prevUserInfo.nickname || ''}
+        prevImageUrl={prevUserInfo.profileImageUrl || ''}
         fileImage={fileImage}
-        setEditUserInfo={setEditUserInfo}
-        openToastModal={() => {
-          setToastModal(true);
-        }}
+        openToastModal={() => setToastModal(true)}
+        nicknameInput={nicknameInput}
       />
-      <S.FileForm
+      <S.ImageInput
         type='file'
         id='input-file'
         accept='image/*'
-        onChange={changeValues}
+        onChange={changeImage}
         ref={inputFormBtnRef}
       />
 
@@ -53,7 +95,7 @@ const EditUserInfo = () => {
           optionButtonTitle={SELECT_ALBUM}
           mainButtonHandler={() => {
             setToastModal(false);
-            setEditUserInfo((prev) => ({ ...prev, profileImageUrl: undefined }));
+            changeImage();
           }}
           optionButtonHandler={() => {
             setToastModal(false);

@@ -1,40 +1,36 @@
-import { useEffect } from 'react';
-
-import { UserInfoDataType } from '@api/account';
 import * as S from '@components/EditUserInfoForm/EditUserInfoForm.style';
 import Icon from '@components/common/Icon';
 import ImgContainer from '@components/common/ImgContainer';
 import InputForm from '@components/common/InputForm';
-import useInput from '@hooks/useInput';
+import { NICKNAME } from '@constants/words';
+import { UseInputReturnType } from '@hooks/useInput';
 
 interface EditUserInfoFromPropsType {
-  editUserInfo: UserInfoDataType;
-  fileImage: FileList | undefined;
-  setEditUserInfo: React.Dispatch<React.SetStateAction<UserInfoDataType>>;
+  fileImage: File | null;
   openToastModal: () => void;
+  prevNickname: string;
+  prevImageUrl: string;
+  nicknameInput: UseInputReturnType;
 }
 
-const EditUserInfoFrom = ({
-  editUserInfo,
-  fileImage,
-  setEditUserInfo,
-  openToastModal,
-}: EditUserInfoFromPropsType) => {
-  const profileImageUrl = fileImage
-    ? URL.createObjectURL(fileImage[0])
-    : editUserInfo.profileImageUrl;
-  const nicknameInput = useInput(editUserInfo.nickname || '');
+const nicknameMaxLength = 13;
 
-  useEffect(() => {
-    setEditUserInfo((prev) => ({ ...prev, nickname: nicknameInput.inputValue }));
-  }, [nicknameInput.inputValue]);
+const EditUserInfoForm = ({
+  fileImage,
+  openToastModal,
+  prevImageUrl,
+  prevNickname,
+  nicknameInput,
+}: EditUserInfoFromPropsType) => {
+  const profileImageUrl = fileImage ? URL.createObjectURL(fileImage) : prevImageUrl;
+
   return (
     <S.FormWrapper>
       <S.ImgWrapper isSet={!!profileImageUrl}>
         {profileImageUrl && (
           <ImgContainer
             imgSrc={profileImageUrl}
-            imgTitle={'userImage'}
+            imgTitle='userImage'
             imgWrapperRatio={1 / 1}
             imgWrapperWidth='5.375rem'
             borderRadius='10rem'
@@ -45,11 +41,16 @@ const EditUserInfoFrom = ({
         </S.IconBackground>
       </S.ImgWrapper>
       <S.NickNameWrapper>
-        <S.NickNameTitle>닉네임</S.NickNameTitle>
-        <InputForm type='text' {...nicknameInput} />
+        <S.NickNameTitle>{NICKNAME}</S.NickNameTitle>
+        <InputForm
+          type='text'
+          {...nicknameInput}
+          placeholder={prevNickname}
+          maxLength={nicknameMaxLength}
+        />
       </S.NickNameWrapper>
     </S.FormWrapper>
   );
 };
 
-export default EditUserInfoFrom;
+export default EditUserInfoForm;

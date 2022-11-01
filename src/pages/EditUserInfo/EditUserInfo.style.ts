@@ -8,6 +8,6 @@ export const Wrapper = styled.div`
   `}
 `;
 
-export const FileForm = styled.input`
+export const ImageInput = styled.input`
   display: none;
 `;

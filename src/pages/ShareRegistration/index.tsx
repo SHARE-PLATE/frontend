@@ -23,6 +23,7 @@ import {
 import BackTitleHeader from '@components/common/BackTitleHeader';
 import FailedModal from '@components/common/FailedModal';
 import { dataFailed } from '@constants/mentions';
+import { pathName } from '@constants/pathName';
 import {
   DELIVERY_KOR,
   FINISH_REGISTRATION,
@@ -122,7 +123,7 @@ const ShareRegistration = () => {
 
     if (isSuccessFetch) {
       setShareListTrigger((prev) => prev + 1);
-      navigate('/share-list');
+      navigate(pathName.shareList);
     } else {
       setIsModalOpen(true);
       setIsSubmiting(false);
