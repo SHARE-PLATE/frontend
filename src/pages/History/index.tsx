@@ -78,7 +78,7 @@ const History = ({ menuType }: { menuType: string }) => {
 
   return (
     <S.Wrapper>
-      <BackTitleHeader title={currentMyMenuType.title} />
+      <BackTitleHeader title={currentMyMenuType.title} backIconTargetPathname='profile' />
       <Tabs<activeShareListType> tabsInfo={shareListTabsInfo} targetAtom={activeShareList} />
       <CategoryButton categoryItem={currentCategoryContent} setCurrentFilterList={setIsDone} />
       {!!salesData?.length ? (

@@ -6,7 +6,7 @@ import * as S from '@pages/Keyword/Keyword.style';
 const Keyword = () => {
   return (
     <S.Wrapper>
-      <BackTitleHeader title={NOTICE_KEYWORD} />
+      <BackTitleHeader title={NOTICE_KEYWORD} backIconTargetPathname='profile' />
       <S.Header>{ADDRESS_KEYWORD}</S.Header>
       <KeywordBox />
     </S.Wrapper>

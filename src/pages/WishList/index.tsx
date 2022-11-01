@@ -56,7 +56,7 @@ const WishList = () => {
   }, [curShareType, curShareFilterList]);
   return (
     <S.Wrapper>
-      <BackTitleHeader title={wishListItem.title} />
+      <BackTitleHeader title={wishListItem.title} backIconTargetPathname='profile' />
       <Tabs<activeShareListType> tabsInfo={shareListTabsInfo} targetAtom={activeShareList} />
       <CategoryButton
         categoryItem={currentCategoryContent}

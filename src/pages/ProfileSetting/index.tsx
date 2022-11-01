@@ -13,7 +13,7 @@ const ProfileSetting = () => {
   return (
     <S.Wrapper>
       <S.Header>
-        <BackTitleHeader title={OPTION_PROFILE} />
+        <BackTitleHeader title={OPTION_PROFILE} backIconTargetPathname='profile' />
         <UserInfo textColor='#000' arrowIcon={false} />
         <S.ProfileEditBtn onClick={() => navigate('./edit-user-info')}>
           {EDIT_PROFILE}
