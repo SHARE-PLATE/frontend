@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import UserInfo from '@components/UserInfo';
 import UserMenu from '@components/UserMenu';
 import BackTitleHeader from '@components/common/BackTitleHeader';
+import { pathName } from '@constants/pathName';
 import { settingMenu } from '@constants/userMenu';
 import { EDIT_PROFILE, OPTION_PROFILE } from '@constants/words';
 import * as S from '@pages/ProfileSetting/ProfileSetting.style';
@@ -15,7 +16,7 @@ const ProfileSetting = () => {
       <S.Header>
         <BackTitleHeader title={OPTION_PROFILE} backIconTargetPathname='profile' />
         <UserInfo textColor='#000' arrowIcon={false} />
-        <S.ProfileEditBtn onClick={() => navigate('./edit-user-info')}>
+        <S.ProfileEditBtn onClick={() => navigate(pathName.editUserInfo)}>
           {EDIT_PROFILE}
         </S.ProfileEditBtn>
       </S.Header>

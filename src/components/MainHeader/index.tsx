@@ -4,6 +4,7 @@ import Address from '@components/Address';
 import * as S from '@components/MainHeader/MainHeader.style';
 import NoticeIcon from '@components/NoticeIcon';
 import Icon from '@components/common/Icon';
+import { pathName } from '@constants/pathName';
 import useCheckPathname from '@hooks/useCheckPathname';
 
 const MainHeader = () => {
@@ -22,7 +23,7 @@ const MainHeader = () => {
           <Icon
             iconName='Map'
             iconSize={1.25}
-            handleClick={() => navigate('/shareMap')}
+            handleClick={() => navigate(pathName.shareMap)}
             noSkeleton={true}
           />
         )}
