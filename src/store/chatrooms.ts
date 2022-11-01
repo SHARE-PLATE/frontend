@@ -4,11 +4,11 @@ import { v4 as getRandomKey } from 'uuid';
 import { getChatroomIds, getChatroomsData, getChatsUnread } from '@api/chat';
 import { ChatroomIdsType, ChatroomsStateType, ChatroomsUpdate } from '@type/chat';
 
-const maximalChatCount = 999;
+const maximalChatCount = 99;
 
 export const activeChatroomsState = atom<ChatroomsStateType>({
   key: 'activeChatrooms',
-  default: 'entry',
+  default: 'question',
 });
 
 export const chatroomsTrigger = atom({
