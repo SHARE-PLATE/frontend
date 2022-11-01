@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { flexCenter } from '@styles/mixin';
+
 export const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -94,4 +96,13 @@ export const IconContainer = styled.div``;
 
 export const KebabMenuWrapper = styled.div`
   margin-top: 0.2rem;
+`;
+
+export const NoListWrapper = styled.div`
+  ${({ theme: { colors } }) => css`
+    ${flexCenter};
+    width: 100%;
+    height: 100px;
+    color: ${colors.grey7};
+  `}
 `;
