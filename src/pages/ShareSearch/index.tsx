@@ -12,6 +12,7 @@ import FailedModal from '@components/common/FailedModal';
 import Icon from '@components/common/Icon';
 import { shareListCategoryItem } from '@constants/category';
 import { keywordLengthFailed } from '@constants/mentions';
+import useIsTopState from '@hooks/useIsTopState';
 import useModal from '@hooks/useModal';
 import * as S from '@pages/ShareSearch/ShareSearch.style';
 import { currentFilterShareList } from '@store/filterShareList';
@@ -28,6 +29,7 @@ import { getSortData } from '@utils/ShareListSort';
 import { findRegionName } from '@utils/getLocation';
 
 const ShareSearch = () => {
+  const isTop = useIsTopState();
   const [curShareFilterList, setCurrentFilterShareList] = useRecoilState(currentFilterShareList);
   const curMapKey = useRecoilValue(currentMapKey);
   const [keywordLength, setKeywordLength] = useRecoilState(registeredKeywordLength);
@@ -110,7 +112,7 @@ const ShareSearch = () => {
 
   return (
     <S.Wrapper>
-      <S.ListHeader>
+      <S.ListHeader isTop={isTop}>
         <ShareSearchHeader keyWord={searchRecentValue || ''} />
         <CategoryButton
           categoryItem={shareListCategoryItem}

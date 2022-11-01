@@ -8,8 +8,10 @@ import { portalState } from '@store/portal';
 const ShareSearchHeader = ({ keyWord }: { keyWord: string }) => {
   const setPortal = useSetRecoilState(portalState);
   const navigate = useNavigate();
+
   const handleClickBackBtn = () => navigate(-1);
   const handelClickOpenSearchForm = () => setPortal('search');
+
   return (
     <S.Wrapper>
       <S.FormWrapper>

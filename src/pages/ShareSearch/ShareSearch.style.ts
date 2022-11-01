@@ -20,20 +20,27 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const ListHeader = styled.header`
-  ${({ theme }) => theme.defaultWidth}
+export const ListHeader = styled.header<{ isTop: boolean }>`
+  ${({ theme: { defaultWidth, colors }, isTop }) => css`
+    ${defaultWidth};
 
-  position: fixed;
-  top: 0;
-  z-index: 1;
-  background-color: ${({ theme }) => theme.colors.white1};
-  padding: 0;
-  width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    background-color: ${colors.white1};
+    padding: 0;
+    width: 100%;
 
-  > :first-child,
-  > :last-child {
-    padding: 0 1rem;
-  }
+    ${!isTop &&
+    css`
+      box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.08);
+    `}
+
+    > :first-child,
+    > :last-child {
+      padding: 0 1rem;
+    }
+  `}
 `;
 
 export const ListContent = styled.div`
@@ -42,6 +49,7 @@ export const ListContent = styled.div`
 
 export const AddKeywordButton = styled.button`
   ${flexCenter}
+  z-index: 10;
   flex-direction: row;
   gap: 4px;
   position: fixed;
