@@ -2,6 +2,7 @@ import { useRoutes } from 'react-router-dom';
 
 import BottomMessage from '@components/BottomMessage';
 import NavigationBar from '@components/NavigationBar';
+import ToastModalTest from '@components/ToastModalTest';
 import SelectModal from '@components/common/SelectModal';
 import useCheckIsLogin from '@hooks/useCheckIsLogin';
 import AddressPortal from '@portals/AddressPortal';
@@ -34,6 +35,7 @@ const App = () => {
         <NavigationBar />
         <BottomMessage />
         <SelectModal />
+        <ToastModalTest />
       </Styles>
     </div>
   );
