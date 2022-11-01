@@ -44,7 +44,7 @@ export const ListHeader = styled.header<{ isTop: boolean }>`
 `;
 
 export const ListContent = styled.div`
-  margin-top: 120px;
+  margin-top: 130px;
 `;
 
 export const AddKeywordButton = styled.button`

@@ -74,7 +74,7 @@ const PreviewShareListLeftImage = ({
             <ImgContainer
               imgSrc={thumbnailUrl}
               imgTitle={title}
-              imgWrapperWidth='7rem'
+              imgWrapperWidth='6.6rem'
               imgWrapperRatio={1 / 1}
             />
             <ImageContents dateTime={closedDateTime} isDone={isDone} />
