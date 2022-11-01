@@ -20,6 +20,7 @@ export const notReservation = '현재 예약하신 목록이 없습니다.';
 export const notWishList = '현재 찜한 리스트가 없습니다.';
 export const wrongApproachMEntion = '잘못된 접근입니다!';
 export const addKeyword = '알림 키워드 추가해주세요!';
+export const answeringLogoutMention = '로그아웃 하시겠습니까?';
 export const searchWayMention = '건물명, 도로명 또는 지번으로 검색';
 export const searchAroundMention = '현재 위치로 주소 찾기';
 export const checkAddressWithMap = '지도에서 위치 확인하기';

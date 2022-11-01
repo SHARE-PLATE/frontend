@@ -2,6 +2,7 @@ import { useRoutes } from 'react-router-dom';
 
 import BottomMessage from '@components/BottomMessage';
 import NavigationBar from '@components/NavigationBar';
+import SelectModalTest from '@components/common/SelectModalTest';
 import useCheckIsLogin from '@hooks/useCheckIsLogin';
 import AddressPortal from '@portals/AddressPortal';
 import KeywordAddressPortal from '@portals/KeywordAddressPortal';
@@ -32,6 +33,7 @@ const App = () => {
         <KeywordAddressPortal />
         <NavigationBar />
         <BottomMessage />
+        <SelectModalTest />
       </Styles>
     </div>
   );
