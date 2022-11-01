@@ -34,6 +34,8 @@ export const keywordLengthFailed = '키워드는 최대 10개까지 첨부할 �
 export const failLoadingChatroomsMention = '채팅을 불러오지 못했습니다';
 export const historyDeleteMention = '해당 쉐어목록을\n삭제하시겠습니까?';
 export const tagInputPlaceholderMention = '#태그를 입력해주세요. (최대 5개)';
+export const failedToChangeUserInfo = '사용자 정보 변경을 실패했습니다!';
+export const successToChangeUserInfo = '사용자 정보를 변경했습니다.';
 export const deleteChatMention =
   '채팅방에서 나가시겠습니까?\n채팅방을 나가면 대화 내용이 삭제됩니다.';
 export const exitMention = '네, 나갈래요.';
