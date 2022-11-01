@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, MouseEvent } from 'react';
+import { useEffect, useState, MouseEvent } from 'react';
 
 import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
 
@@ -6,19 +6,17 @@ import { deleteMySalesList, deletePurchaseList, getProfileMyMenuData } from '@ap
 import CategoryButton from '@components/CategoryButton';
 import PreviewShareListLeftImage from '@components/PreviewShareListLeftImage';
 import Tabs from '@components/Tabs';
-import ToastModal from '@components/ToastModal';
 import BackTitleHeader from '@components/common/BackTitleHeader';
 import { historyListCategoryItem } from '@constants/category';
 import { historyDeleteMention } from '@constants/mentions';
 import { DELETE } from '@constants/words';
 import { historyListItem } from '@data/myMenu';
-import useModal from '@hooks/useModal';
 import useShareListTabsInfo from '@hooks/useShareListTabsInfo';
 import * as S from '@pages/History/History.style';
 import { activeShareList } from '@store/filterShareList';
 import { activeShareListType } from '@store/filterShareList';
 import { historyTrigger } from '@store/meyMenu';
-import { selectModalInfoState } from '@store/modal';
+import { selectModalInfoState, toastModalInfoState } from '@store/modal';
 import { ShareListType } from '@type/shareList';
 import { getRecencySort } from '@utils/ShareListSort';
 import { getHistoryMention } from '@utils/getMention';
@@ -32,9 +30,8 @@ const History = ({ menuType }: { menuType: string }) => {
   const currentShareType = useRecoilValue(activeShareList);
   const currentMyMenuType = historyListItem.filter((item) => item.type === menuType)[0];
   const currentCategoryContent = historyListCategoryItem.filter((item) => item.type === menuType);
-  const modalRef = useRef<HTMLDivElement>(null);
-  const [isKebabMenuModal, setKebabMenuModal] = useModal({ modalRef });
   const setSelectModalInfo = useSetRecoilState(selectModalInfoState);
+  const setToastModalInfo = useSetRecoilState(toastModalInfoState);
 
   const openSelectModal = () => {
     setSelectModalInfo(({ trigger }) => ({
@@ -45,10 +42,14 @@ const History = ({ menuType }: { menuType: string }) => {
     }));
   };
 
-  const onClickKebabMenu = (e: MouseEvent<HTMLDivElement>, id: number) => {
-    e.stopPropagation();
+  const onClickKebabMenu = (event: MouseEvent<HTMLDivElement>, id: number) => {
+    event.stopPropagation();
     setDeletedId(id);
-    setKebabMenuModal(true);
+    setToastModalInfo(({ trigger }) => ({
+      trigger: trigger + 1,
+      mainButtonTitle: DELETE,
+      mainButtonHandler: openSelectModal,
+    }));
   };
 
   const onClickDeleteButton = async () => {
@@ -89,17 +90,6 @@ const History = ({ menuType }: { menuType: string }) => {
         <S.FailedContent>
           <S.FailedText>{getHistoryMention(menuType, isDone)}</S.FailedText>
         </S.FailedContent>
-      )}
-      {isKebabMenuModal && (
-        <ToastModal
-          modalRef={modalRef}
-          onClickCloseButton={() => setKebabMenuModal(false)}
-          mainButtonTitle={DELETE}
-          mainButtonHandler={() => {
-            setKebabMenuModal(false);
-            openSelectModal();
-          }}
-        />
       )}
     </S.Wrapper>
   );

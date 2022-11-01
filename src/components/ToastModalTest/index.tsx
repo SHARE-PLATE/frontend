@@ -28,8 +28,8 @@ const ToastModalTest = () => {
     onClose && onClose();
   };
 
-  const handleClickButton = (type: 'basic' | 'option') => {
-    if (type === 'basic') mainButtonHandler && mainButtonHandler();
+  const handleClickButton = (type: 'confirm' | 'option') => {
+    if (type === 'confirm') mainButtonHandler && mainButtonHandler();
     if (type === 'option') optionButtonHandler && optionButtonHandler();
     resetToastModalInfo();
     onClose && onClose();
@@ -47,11 +47,11 @@ const ToastModalTest = () => {
         </S.ButtonContainer>
         <S.ButtonContainer>
           {isOptionButton && (
-            <S.BasicButton onClick={() => handleClickButton('basic')}>
+            <S.BasicButton onClick={() => handleClickButton('option')}>
               {optionButtonTitle}
             </S.BasicButton>
           )}
-          <S.ConfirmButton onClick={() => handleClickButton('option')}>
+          <S.ConfirmButton onClick={() => handleClickButton('confirm')}>
             {mainButtonTitle}
           </S.ConfirmButton>
         </S.ButtonContainer>

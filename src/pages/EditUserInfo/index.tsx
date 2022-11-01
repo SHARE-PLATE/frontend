@@ -71,8 +71,8 @@ const EditUserInfo = () => {
       trigger: trigger + 1,
       mainButtonTitle: DELETE_PROFILE_PICTURE,
       optionButtonTitle: SELECT_ALBUM,
-      optionButtonHandler: () => changeImage(),
-      mainButtonHandler: () => inputFormBtnRef.current?.click(),
+      mainButtonHandler: () => changeImage(),
+      optionButtonHandler: () => inputFormBtnRef.current?.click(),
     }));
   };
 

@@ -67,7 +67,7 @@ const ChatroomsContent = ({ data }: ChatroomsContentPropsType) => {
   };
 
   const showSelectModal = () => {
-    resetToastModalInfo();
+    // resetToastModalInfo();
     setSelectModalInfo(({ trigger }) => ({
       trigger: trigger + 1,
       onClickOkButton: handleClickSelectOkBtn,
