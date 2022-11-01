@@ -5,9 +5,9 @@ import UserMenu from '@components/UserMenu';
 import BackTitleHeader from '@components/common/BackTitleHeader';
 import { settingMenu } from '@constants/userMenu';
 import { EDIT_PROFILE, OPTION_PROFILE } from '@constants/words';
-import * as S from '@pages/SettingProfile/SettingProfile.style';
+import * as S from '@pages/ProfileSetting/ProfileSetting.style';
 
-const SettingProfile = () => {
+const ProfileSetting = () => {
   const navigate = useNavigate();
 
   return (
@@ -26,4 +26,4 @@ const SettingProfile = () => {
   );
 };
 
-export default SettingProfile;
+export default ProfileSetting;

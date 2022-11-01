@@ -13,7 +13,7 @@ export const pathName = {
   shareFormDelivery: '/share-registration/delivery',
   shareFormIngredient: '/share-registration/ingredient',
   profile: '/profile',
-  settingsProfile: '/profile/setting',
+  profileSetting: '/profile/setting',
   editUserInfo: '/profile/setting/edit-user-info',
   salesHistory: '/profile/sales-history',
   purchaseHistory: '/profile/purchase-history',
