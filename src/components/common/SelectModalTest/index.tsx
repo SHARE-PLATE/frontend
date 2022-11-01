@@ -13,16 +13,21 @@ const SelectModalTest = () => {
   const [isSelectModal, setIsSelectModal] = useModal({ modalRef });
   const { trigger, onClickCancelButton, onClickOkButton, okMention, answeringMention } =
     useRecoilValue(selectModalInfoState);
-  const resetselectModalInfo = useResetRecoilState(selectModalInfoState);
+  const resetSelectModalInfo = useResetRecoilState(selectModalInfoState);
+
+  const handleClickOkButton = () => {
+    onClickOkButton && onClickOkButton();
+    setIsSelectModal(false);
+  };
 
   const handleClickCancel = () => {
     onClickCancelButton && onClickCancelButton();
     setIsSelectModal(false);
-    resetselectModalInfo();
+    resetSelectModalInfo();
   };
 
   useEffect(() => {
-    setIsSelectModal(true);
+    if (trigger) setIsSelectModal(true);
   }, [trigger]);
 
   return isSelectModal ? (
@@ -31,7 +36,7 @@ const SelectModalTest = () => {
         <S.Text>{answeringMention}</S.Text>
         <S.ButtonContainer>
           <S.CloseButton onClick={handleClickCancel}>{CANCEL}</S.CloseButton>
-          <S.OkButton onClick={onClickOkButton}>{okMention}</S.OkButton>
+          <S.OkButton onClick={handleClickOkButton}>{okMention}</S.OkButton>
         </S.ButtonContainer>
       </S.ModalWrapper>
     </Modal>

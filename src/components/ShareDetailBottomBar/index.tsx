@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValueLoadable, useSetRecoilState } from 'recoil';
@@ -9,7 +9,6 @@ import { changeWish, ChangeWishOptionType } from '@api/wish';
 import ScrollToTopBtn from '@components/ScrollToTopBtn';
 import * as S from '@components/ShareDetailBottomBar/ShareDetailBottomBar.style';
 import Icon from '@components/common/Icon';
-import SelectModal from '@components/common/SelectModal';
 import {
   failedToDeleteShareMention,
   questionCancelShareMention,
@@ -26,8 +25,8 @@ import {
   SHARE,
   START_CHATTING,
 } from '@constants/words';
-import useModal from '@hooks/useModal';
 import { bottomMessageState } from '@store/bottomMessage';
+import { selectModalInfoState } from '@store/modal';
 import { portalState } from '@store/portal';
 import { isLoginState } from '@store/user';
 import { ShareDetailType } from '@type/shareList';
@@ -48,13 +47,12 @@ const ShareDetailBottomBar = ({
   isInfoBar,
 }: ShareDetailBottomBarPropsType & { isInfoBar: boolean }) => {
   const navigate = useNavigate();
+  const setSelectModalInfo = useSetRecoilState(selectModalInfoState);
   const setBottomMessage = useSetRecoilState(bottomMessageState);
   const [isWishedNow, setIsWishedNow] = useState(wish);
   const [isEntry, setIsEntry] = useState(entry);
   const setPortalState = useSetRecoilState(portalState);
   const { state, contents } = useRecoilValueLoadable(isLoginState);
-  const modalRef = useRef<HTMLDivElement>(null);
-  const [isSelectModal, setIsSelectModal] = useModal({ modalRef });
   const selectModalOkMention = isWriter ? DELETE : isEntry ? CANCEL_PARTICIPATING : PARTICIPATING;
   const selectModalAnsweringMention = isWriter
     ? questionDeleteShareMention
@@ -66,13 +64,12 @@ const ShareDetailBottomBar = ({
   const deleteCurrentShare = async () => {
     const { isDeleted, message: errorMessage } = await deleteShare({ id });
     if (isDeleted) {
-      navigate('/');
+      navigate(pathName.main);
       setBottomMessage(({ trigger }) => ({
         trigger: trigger + 1,
         message: successToDeleteShareMention,
       }));
     } else {
-      setIsSelectModal(false);
       setBottomMessage(({ trigger }) => ({
         trigger: trigger + 1,
         message: errorMessage || failedToDeleteShareMention,
@@ -131,17 +128,15 @@ const ShareDetailBottomBar = ({
       setPortalState('login');
       return;
     }
-    setIsSelectModal(true);
-  };
 
-  const handleClickSelectOkBtn = async () => {
-    if (isWriter) {
-      deleteCurrentShare();
-    } else {
-      participateCurrentShare();
-    }
-
-    setIsSelectModal(false);
+    setSelectModalInfo(({ trigger }) => ({
+      trigger: trigger + 1,
+      onClickOkButton: () => {
+        isWriter ? deleteCurrentShare() : participateCurrentShare();
+      },
+      okMention: selectModalOkMention,
+      answeringMention: selectModalAnsweringMention,
+    }));
   };
 
   return (
@@ -170,15 +165,6 @@ const ShareDetailBottomBar = ({
           </S.Button>
         </S.RightWrapper>
       </S.Wrapper>
-      {isSelectModal && (
-        <SelectModal
-          modalRef={modalRef}
-          onClickOkButton={handleClickSelectOkBtn}
-          onClickCancelButton={() => setIsSelectModal(false)}
-          okMention={selectModalOkMention}
-          answeringMention={selectModalAnsweringMention}
-        />
-      )}
     </>
   );
 };
