@@ -15,17 +15,3 @@ export const ImageContainer = styled.div`
   aspect-ratio: ${ImgContainerRatio};
   overflow: hidden;
 `;
-
-export const IconsWrapper = styled.div`
-  ${({ theme: { defaultPadding, colors } }) => css`
-    ${defaultPadding}
-    ${flexBetween}
-    z-index: 2;
-    width: 100%;
-    height: 3.25rem;
-
-    path {
-      stroke: ${colors.grey6};
-    }
-  `}
-`;

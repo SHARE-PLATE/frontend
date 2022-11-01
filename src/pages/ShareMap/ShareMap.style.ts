@@ -32,8 +32,6 @@ export const MapListWrapper = styled.div`
   display: flex;
   position: relative;
   flex-direction: column;
-  flex-grow: 1;
-  overflow: hidden;
 
   // slide z-index is 100
   // share form button background
@@ -70,9 +68,6 @@ export const CurrentAddress = styled.div`
   align-items: center;
   gap: 0.25rem;
   height: 2.5rem;
-  path {
-    stroke: ${({ theme }) => theme.colors.orange3};
-  }
 `;
 
 export const AddressText = styled.span`

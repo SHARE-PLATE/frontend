@@ -32,7 +32,12 @@ const Chat = ({
         </S.ProfileImgWrapper>
       )}
       <S.TextWrapper>
-        {!writtenByMe && <S.Writer writtenByMe={writtenByMe}>{writer}</S.Writer>}
+        {!writtenByMe && (
+          <S.Writer writtenByMe={writtenByMe}>
+            {writer}
+            <S.Seller>{writer && ' (판매자)'}</S.Seller>
+          </S.Writer>
+        )}
         <S.ContentsTimeWrapper writtenByMe={writtenByMe}>
           <S.Contents writtenByMe={writtenByMe}>{contents}</S.Contents>
           <S.DateTime writtenByMe={writtenByMe}>{dateTime}</S.DateTime>

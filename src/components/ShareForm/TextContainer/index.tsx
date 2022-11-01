@@ -10,6 +10,8 @@ interface TextContainerPropsType {
   originalPriceInput: UseInputReturnType;
 }
 
+const priceMaxLength = 9; // 9,999,999
+
 const TextContainer = ({ titleInput, priceInput, originalPriceInput }: TextContainerPropsType) => {
   const { inputValue: priceInputValue } = priceInput;
   const { inputValue: originalPriceInputValue } = originalPriceInput;
@@ -24,8 +26,20 @@ const TextContainer = ({ titleInput, priceInput, originalPriceInput }: TextConta
       <InputForm type='text' placeholder='제목' {...titleInput} />
 
       <TwoTextBlock>
-        <InputForm placeholder='가격' unit='₩' isValue={isPrice} {...priceInput} />
-        <InputForm placeholder='원가' unit='₩' isValue={isOriginalPrice} {...originalPriceInput} />
+        <InputForm
+          placeholder='가격'
+          unit='₩'
+          isValue={isPrice}
+          {...priceInput}
+          maxLength={priceMaxLength}
+        />
+        <InputForm
+          placeholder='원가'
+          unit='₩'
+          isValue={isOriginalPrice}
+          {...originalPriceInput}
+          maxLength={priceMaxLength}
+        />
       </TwoTextBlock>
     </S.TextContainer>
   );

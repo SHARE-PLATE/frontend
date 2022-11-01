@@ -91,12 +91,12 @@ const ChatroomsItem = ({
 
   const changeInnerLeft = (distance: number) => {
     if (!startPoint || !wrapperRef.current) return;
-    if (distance >= 20) setMoving('left');
-    if (distance > defaultStartPoint && distance < 20)
+    if (distance >= 60) setMoving('left');
+    if (distance > defaultStartPoint && distance < 60)
       wrapperRef.current.style.left = `-${distance / 10}px`;
-    if (distance < defaultStartPoint && distance > -20)
+    if (distance < defaultStartPoint && distance > -60)
       wrapperRef.current.style.left = `${distance / 10}px`;
-    if (distance <= -20) setMoving('right');
+    if (distance <= -60) setMoving('right');
   };
 
   const handleClickItem = () => {
@@ -174,22 +174,24 @@ const ChatroomsItem = ({
                 <S.WritersNames>{recruitmentMemberNicknamesJoined}</S.WritersNames>
                 <S.WritersCount>{currentRecruitment}</S.WritersCount>
                 {recentMessageDataTime && <S.Time>{diffTime}</S.Time>}
+                {!!curUnreadCount && (
+                  <S.UnreadCountWrapper>
+                    <S.UnreadCount>{curUnreadCount > 99 ? '99+' : curUnreadCount}</S.UnreadCount>
+                  </S.UnreadCountWrapper>
+                )}
               </S.TextUpper>
               <S.Content isRecent={!!curRecentMessage}>
                 {curRecentMessage || noRecentChatMention}
               </S.Content>
             </S.TextWrapper>
           </S.InfoWrapper>
-          <S.UnreadCountWrapper>
-            {!!curUnreadCount && <S.UnreadCount>{curUnreadCount}</S.UnreadCount>}
-            <ImgContainer
-              imgSrc={shareThumbnailImageUrl}
-              imgTitle={id + shareThumbnailImageUrl}
-              imgWrapperRatio={1 / 1}
-              imgWrapperWidth='3rem'
-              additionalStyle={S.ShareImgStyle}
-            />
-          </S.UnreadCountWrapper>
+          <ImgContainer
+            imgSrc={shareThumbnailImageUrl}
+            imgTitle={id + shareThumbnailImageUrl}
+            imgWrapperRatio={1 / 1}
+            imgWrapperWidth='3rem'
+            additionalStyle={S.ShareImgStyle}
+          />
         </S.ShowedWrapper>
         <S.ExitBtn onClick={handleClickExitBtn}>나가기</S.ExitBtn>
       </S.InnerWrapper>

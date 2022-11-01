@@ -15,6 +15,7 @@ import TopFixedWarning from '@components/TopFixedWarning';
 import { getChatDdataFailedMention } from '@constants/mentions';
 import { CHATTING, RELOAD } from '@constants/words';
 import useChatroomsInfo from '@hooks/useChatroomsInfo';
+import useIsTopState from '@hooks/useIsTopState';
 import * as S from '@pages/Chatrooms/Chatrooms.style';
 import {
   activeChatroomsState,
@@ -32,6 +33,7 @@ const Chatrooms = () => {
   const setChatroomsTrigger = useSetRecoilState(chatroomsTrigger);
   const resetChatUpdate = useResetRecoilState(chatUpdateState);
   const activeChatrooms = useRecoilValue(activeChatroomsState);
+  const isTop = useIsTopState();
   const [isConnected, setIsConnected] = useState(false);
 
   const reloadChatroomsData = () => {
@@ -71,7 +73,7 @@ const Chatrooms = () => {
 
   return (
     <S.Wrapper>
-      <S.HeaderWrapper>
+      <S.HeaderWrapper isTop={isTop}>
         <TopFixedWarning text='채팅 연결 끊김' otherStyle={S.TopFixedWarningStyle} />
         <S.Header onClick={() => setIsConnected(!isConnected)}>
           <S.HeaderTitle>{CHATTING}</S.HeaderTitle>

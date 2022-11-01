@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { flexCenter, tagStyle } from '@styles/mixin';
+import { flexBetween, flexCenter, tagStyle } from '@styles/mixin';
 
 export const ContentsContainer = styled.div`
   ${({ theme: { defaultPadding, colors } }) => css`
@@ -11,6 +11,22 @@ export const ContentsContainer = styled.div`
     background-color: ${colors.white1};
     box-shadow: 0px -8px 16px rgba(0, 0, 0, 0.08);
     z-index: 0;
+  `}
+`;
+
+export const IconsWrapper = styled.div`
+  ${({ theme: { defaultPadding, colors } }) => css`
+    ${defaultPadding}
+    ${flexBetween}
+    z-index: 2;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    height: 3.25rem;
+
+    path {
+      stroke: ${colors.grey6};
+    }
   `}
 `;
 
@@ -36,8 +52,9 @@ export const UpperInfo = styled.div`
 
 export const BadgeWrapper = styled.div`
   display: flex;
-  gap: 0.75rem;
+  gap: 0.5rem;
   text-align: center;
+  flex-wrap: wrap;
 `;
 
 export const Badge = styled.div`
@@ -54,9 +71,11 @@ export const LowerInfo = styled.div`
 export const PersonnelStatusWrapper = styled.div`
   ${({ theme: { fonts } }) => css`
     ${fonts.medium}
+    font-weight: 500;
     display: flex;
     gap: 0.5rem;
     align-items: center;
+    justify-content: space-between;
     padding-bottom: 0.75rem;
   `}
 `;
@@ -133,6 +152,7 @@ export const LocationWrapper = styled.div`
   > :first-child {
     ${({ theme: { colors } }) => css`
       color: ${colors.grey5};
+      font-weight: 500;
     `}
   }
 `;

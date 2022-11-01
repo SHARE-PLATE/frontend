@@ -100,6 +100,7 @@ const ShareSearch = () => {
   }, [state]);
 
   useEffect(() => {
+    if (state !== 'hasValue') return;
     keywords.map((data: { id: number; contents: string }) => {
       if (data.contents === searchRecentValue) {
         setIsSuccessKeyword(true);

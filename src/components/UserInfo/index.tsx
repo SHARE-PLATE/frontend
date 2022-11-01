@@ -54,7 +54,7 @@ const UserInfo = ({ textColor, arrowIcon = true }: UserInfoPropsType) => {
       </S.InfoContainer>
       {arrowIcon && (
         <S.IconWrapper>
-          <Icon iconName='RightArrow' iconSize='LARGE' handleClick={() => navigate('./setting')} />
+          <Icon iconName='RightArrow' iconSize={1} handleClick={() => navigate('./setting')} />
         </S.IconWrapper>
       )}
     </S.Wrapper>

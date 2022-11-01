@@ -1,11 +1,9 @@
-import { useNavigate } from 'react-router-dom';
 import { Settings } from 'react-slick';
 import { v4 as getRandomKey } from 'uuid';
 
 import Carousel from '@components/Carousel';
 import { RemainedTime } from '@components/RemainedTime';
 import * as S from '@components/ShareDetailHeader/ShareDetailHeader.style';
-import Icon from '@components/common/Icon';
 import ImgContainer from '@components/common/ImgContainer';
 
 interface ShareDetailHeaderPropsType {
@@ -26,9 +24,6 @@ const settings: Settings = {
 };
 
 const ShareDetailHeader = ({ imageUrls, closedDateTime }: ShareDetailHeaderPropsType) => {
-  const navigate = useNavigate();
-  const handleClickGoBack = () => navigate(-1);
-
   const imgCarouselContents = imageUrls.map((imgUrl: string) => (
     <ImgContainer
       key={getRandomKey()}
@@ -41,10 +36,6 @@ const ShareDetailHeader = ({ imageUrls, closedDateTime }: ShareDetailHeaderProps
 
   return (
     <S.Wrapper>
-      <S.IconsWrapper>
-        <Icon iconName='Back' handleClick={handleClickGoBack} />
-        <Icon iconName='Upload' />
-      </S.IconsWrapper>
       <S.ImageContainer>
         <Carousel
           contents={imgCarouselContents}

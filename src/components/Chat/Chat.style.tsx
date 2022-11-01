@@ -1,15 +1,19 @@
 import styled, { css } from 'styled-components';
 
+import { chatroomBarButtonWidth, chatroomBarGap } from '@components/ChatroomBar/ChatroomBar.style';
+
 export const profileImgWidth = '2.25rem';
 
 export const Wrapper = styled.div<{ writtenByMe: boolean }>`
-  display: flex;
-  gap: 0.75rem;
-
   ${({ writtenByMe }) =>
-    writtenByMe &&
     css`
-      flex-direction: row-reverse;
+      display: flex;
+      gap: 0.75rem;
+
+      ${writtenByMe &&
+      css`
+        flex-direction: row-reverse;
+      `}
     `}
 `;
 
@@ -31,12 +35,15 @@ export const AdditionalImgStyle = css`
 export const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
   gap: 0.6rem;
+  overflow: hidden;
 `;
 
 export const Writer = styled.div<{ writtenByMe: boolean }>`
   ${({ theme: { fonts }, writtenByMe }) => css`
-    ${fonts.small}
+    ${fonts.medium};
+
     ${writtenByMe &&
     css`
       text-align: right;
@@ -46,9 +53,16 @@ export const Writer = styled.div<{ writtenByMe: boolean }>`
   `}
 `;
 
+export const Seller = styled.span`
+  ${({ theme: { fonts } }) => css`
+    ${fonts.small}
+  `}
+`;
+
 export const ContentsTimeWrapper = styled.div<{ writtenByMe: boolean }>`
   display: flex;
   gap: 0.4rem;
+  width: 100%;
 
   ${({ writtenByMe }) =>
     writtenByMe &&
@@ -59,14 +73,17 @@ export const ContentsTimeWrapper = styled.div<{ writtenByMe: boolean }>`
 
 export const Contents = styled.div<{ writtenByMe: boolean }>`
   ${({ theme: { colors, fonts }, writtenByMe }) => css`
-    ${fonts.smallRegular}
+    ${fonts.largeRegular}
 
     word-break: break-all;
+    overflow: hidden;
     border-radius: 0.5rem;
     border-top-left-radius: 0;
     background-color: ${colors.grey2};
     padding: 0.6rem;
-    line-height: 1.2rem;
+    line-height: 1.65rem;
+    white-space: break-spaces;
+    max-width: calc(100% - ${2 * (chatroomBarGap + chatroomBarButtonWidth)}rem + 3.5px);
 
     ${writtenByMe &&
     css`
@@ -80,7 +97,8 @@ export const Contents = styled.div<{ writtenByMe: boolean }>`
 
 export const DateTime = styled.div<{ writtenByMe: boolean }>`
   ${({ theme: { colors, fonts }, writtenByMe }) => css`
-    ${fonts.xSmallRegular}
+    ${fonts.xSmallRegular};
+
     ${writtenByMe &&
     css`
       text-align: right;
@@ -89,7 +107,7 @@ export const DateTime = styled.div<{ writtenByMe: boolean }>`
     display: flex;
     flex-direction: column;
     justify-content: end;
-    min-width: 2.6rem;
+    min-width: 3rem;
     color: ${colors.grey4};
   `}
 `;

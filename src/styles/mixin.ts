@@ -62,6 +62,7 @@ export const tagStyle = css`
     align-items: center;
     background-color: ${colors.orange2};
     padding: 0.35rem 0.5rem;
+    height: 1.5rem;
     color: ${colors.white0};
   `}
 `;

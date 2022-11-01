@@ -160,6 +160,7 @@ const ShareListSlide = ({ isActive, setIsActive }: ShareListSlidePropsType) => {
   // manage rotate animation
   useEffect(() => {
     if (state !== 'loading') {
+      setSlidePosition('bottom');
       setTimeout(() => setIsRotated(false), 900);
     } else {
       setIsRotated(true);
@@ -179,30 +180,28 @@ const ShareListSlide = ({ isActive, setIsActive }: ShareListSlidePropsType) => {
   }, [activeShareListValue]);
 
   return (
-    <>
-      <S.Wrapper slidePositionType={slidePosition} activeShareList={activeShareListValue}>
-        <S.IconWrapper
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseOut}
-          onMouseLeave={handleMouseOut}
-          onClick={handleClick}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          isBottom={slidePosition === 'bottom'}
-        >
-          <Icon iconName={'OnClickBar'} iconSize={2.5} />
-        </S.IconWrapper>
+    <S.Wrapper slidePositionType={slidePosition} activeShareList={activeShareListValue}>
+      <S.IconWrapper
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseOut}
+        onMouseLeave={handleMouseOut}
+        onClick={handleClick}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        isBottom={slidePosition === 'bottom'}
+      >
+        <Icon iconName={'OnClickBar'} iconSize={2.5} />
+      </S.IconWrapper>
 
-        {clickedShareId === null && (
-          <S.Title ref={titleRef} isRotated={isRotated}>
-            {AROUND_SHARE_LIST}
-            <Icon iconName='Refresh' iconSize={1} />
-          </S.Title>
-        )}
-        <S.ListContent>{getListContent()}</S.ListContent>
-      </S.Wrapper>
-    </>
+      {clickedShareId === null && (
+        <S.Title ref={titleRef} isRotated={isRotated}>
+          {AROUND_SHARE_LIST}
+          <Icon iconName='Refresh' iconSize={1} />
+        </S.Title>
+      )}
+      <S.ListContent>{getListContent()}</S.ListContent>
+    </S.Wrapper>
   );
 };
 

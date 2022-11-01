@@ -1,13 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 
-import * as S from '@components/ChatroomDetailInfo/ChatroomDetailInfo.style';
+import * as S from '@components/ShareDetailInfoBar/ShareDetailInfoBar.style';
 import ImgContainer from '@components/common/ImgContainer';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import Price from '@components/common/Price';
 import { pathName } from '@constants/pathName';
 import { ChatroomDetailShareType } from '@type/chat';
 
-type ChatroomDetailInfoPropsType = Pick<
+type ShareDetailInfoPropsType = Pick<
   ChatroomDetailShareType,
   | 'thumbnailImageUrl'
   | 'title'
@@ -15,10 +15,9 @@ type ChatroomDetailInfoPropsType = Pick<
   | 'originalPrice'
   | 'currentRecruitment'
   | 'finalRecruitment'
-  | 'id'
->;
+> & { id?: number };
 
-const ChatroomDetailInfo = ({
+const ShareDetailInfoBar = ({
   thumbnailImageUrl,
   title,
   price,
@@ -26,10 +25,10 @@ const ChatroomDetailInfo = ({
   currentRecruitment,
   finalRecruitment,
   id,
-}: ChatroomDetailInfoPropsType) => {
+}: ShareDetailInfoPropsType) => {
   const navigate = useNavigate();
   const handleClickWrapper = () => {
-    navigate(`${pathName.shareDetail}/${id}`);
+    id && navigate(`${pathName.shareDetail}/${id}`);
   };
 
   return (
@@ -52,4 +51,4 @@ const ChatroomDetailInfo = ({
   );
 };
 
-export default ChatroomDetailInfo;
+export default ShareDetailInfoBar;

@@ -8,10 +8,6 @@ export const Wrapper = styled.div`
     background-color: ${colors.white1};
     ${defaultPageStyle}
 
-    > :last-child {
-      padding-bottom: 0;
-    }
-
     gap: 0;
   `}
 `;

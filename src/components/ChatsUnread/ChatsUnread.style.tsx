@@ -3,17 +3,18 @@ import styled, { css } from 'styled-components';
 import { flexCenter } from '@styles/mixin';
 
 export const Wrapper = styled.div<{ isShowed: boolean }>`
-  ${({ theme: { colors }, isShowed }) => css`
+  ${({ theme: { colors, fonts }, isShowed }) => css`
     ${flexCenter};
+    ${fonts.xSmall};
 
     display: ${!isShowed && 'none'};
-    font-size: 8px;
+    background-color: ${colors.orange4};
     color: ${colors.white0};
-    background-color: ${colors.orange2};
-    border-radius: 10rem;
-    width: 1rem;
-    height: 1rem;
-    top: -6px;
+    line-height: 1;
+    border-radius: 9px;
+    padding: 0.2rem 0.375rem;
+    min-width: 1.5rem;
+    top: -4px;
     left: 12px;
     position: absolute;
   `}

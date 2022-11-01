@@ -33,7 +33,8 @@ const ShareDetailInfo = ({
   hashtags,
   latitude,
   longitude,
-}: ShareDetailType) => {
+  infoRef,
+}: ShareDetailType & { infoRef: (InfoDiv: HTMLDivElement) => void }) => {
   const ImgContents = recruitmentMemberThumbnailImageUrls.map((member: string) => (
     <ImgContainer
       key={getRandomKey()}
@@ -42,6 +43,7 @@ const ShareDetailInfo = ({
       imgWrapperRatio={1 / 1}
       imgWrapperWidth='2.9rem'
       borderRadius='5rem'
+      noAlign={true}
     />
   ));
 
@@ -90,7 +92,7 @@ const ShareDetailInfo = ({
   return (
     <S.ContentsContainer>
       <S.Title>{title}</S.Title>
-      <S.UpperInfo>
+      <S.UpperInfo ref={infoRef}>
         <S.BadgeWrapper>
           <S.Badge>{locationGuide}</S.Badge>
           {priceNegotiation && <S.Badge>{PRICE_NEGOTIATION}</S.Badge>}

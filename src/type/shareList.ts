@@ -51,6 +51,7 @@ export type ShareDetailType = {
   locationNegotiation: boolean;
   priceNegotiation: boolean;
   hashtags: string[];
+  isWriter: boolean;
 };
 
 export type ShareWriterType = {

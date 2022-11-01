@@ -30,7 +30,6 @@ export const Wrapper = styled.div<WrapperPropsType>`
     touch-action: none;
     z-index: 100;
     transition: all 0.3s;
-    padding-bottom: 1.5rem;
     background-color: ${colors.white1};
     display: flex;
     flex-direction: column;
@@ -40,7 +39,7 @@ export const Wrapper = styled.div<WrapperPropsType>`
     transform: translate(-50%);
     box-shadow: 0px -8px 16px rgba(0, 0, 0, 0.08);
     border-radius: 8px 8px 0px 0px;
-    overflow-y: scroll;
+    overflow: hidden;
     width: 100%;
     max-width: ${slidePositionType !== 'clicked' ? '' : '400px'};
     scroll-behavior: smooth;
@@ -70,9 +69,13 @@ export const Title = styled.h1<{ isRotated: boolean }>`
     ${fonts.largeBold}
     ${defaultPadding}
 
-    padding-bottom: 22px;
     display: flex;
+    align-items: center;
+    min-height: 44px;
+    height: 44px;
     justify-content: left;
+    padding-bottom: 22px;
+    overflow: hidden;
 
     svg {
       ${!isRotated &&
@@ -99,6 +102,9 @@ export const CloseClickedShareButton = styled.button`
 
 export const ListContent = styled.div`
   ${({ theme: { defaultPadding } }) => defaultPadding};
+  overflow-y: scroll;
+
+  padding-bottom: 1.5rem;
 `;
 
 export const Error = styled.div`
@@ -106,7 +112,7 @@ export const Error = styled.div`
     ${fonts.mediumRegular};
     ${flexCenter};
 
-    height: 200px;
+    height: 100px;
     color: ${colors.grey4};
   `}
 `;

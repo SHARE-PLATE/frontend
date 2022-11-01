@@ -6,6 +6,7 @@ import PreviewShareListBigSizeImage from '@components/PreviewShareListBigSizeIma
 import PreviewShareListLeftImage from '@components/PreviewShareListLeftImage';
 import Tabs from '@components/Tabs';
 import { shareListCategoryItem } from '@constants/category';
+import useIsTopState from '@hooks/useIsTopState';
 import useShareListTabsInfo from '@hooks/useShareListTabsInfo';
 import * as S from '@pages/ShareList/ShareList.style';
 import {
@@ -25,9 +26,8 @@ const ShareList = () => {
   const [curShareFilterList, setCurrentFilterShareList] = useRecoilState(currentFilterShareList);
   const activeShareListValue = useRecoilValue(activeShareList);
   const shareListTabsInfo = useShareListTabsInfo();
-
+  const isTop = useIsTopState();
   const ListContentComponent = ShareListContentComponentInfo[activeShareListValue];
-
   const { state, contents } = useRecoilValueLoadable(getShareListsData({}));
 
   const getListContents = (state: 'hasValue' | 'loading' | 'hasError') => {
@@ -47,7 +47,7 @@ const ShareList = () => {
 
   return (
     <S.Wrapper>
-      <S.ListHeader>
+      <S.ListHeader isTop={isTop}>
         <MainHeader />
         <S.TabsWrapper>
           <Tabs<activeShareListType> tabsInfo={shareListTabsInfo} targetAtom={activeShareList} />

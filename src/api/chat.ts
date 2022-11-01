@@ -56,11 +56,11 @@ export const deleteChatroomData = async (id: number) => {
   }
 };
 
-export const getPersonalChatroom = async ({ shareId }: { shareId: string }) => {
+export const getPersonalChatroom = async ({ shareId }: { shareId: number }) => {
   const headers = getAuthHeaders();
 
   try {
-    const response = await axios.post<{ id: string }>(API.CHATROOMS, { shareId }, { headers });
+    const response = await axios.post<{ id: number }>(API.CHATROOMS, { shareId }, { headers });
     return response.data;
   } catch (error) {
     console.error(error);

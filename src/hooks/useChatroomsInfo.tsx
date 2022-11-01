@@ -8,14 +8,14 @@ const useChatroomsInfo = () => {
   const activeChatrooms = useRecoilValue(activeChatroomsState);
   const chatroomsInfo: TabsInfoType<ChatroomsStateType> = [
     {
-      title: '쉐어채팅',
-      value: 'entry',
-      active: activeChatrooms === 'entry',
-    },
-    {
       title: '문의채팅',
       value: 'question',
       active: activeChatrooms === 'question',
+    },
+    {
+      title: '쉐어채팅',
+      value: 'entry',
+      active: activeChatrooms === 'entry',
     },
   ];
 

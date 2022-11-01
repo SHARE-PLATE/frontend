@@ -4,6 +4,18 @@ import '@styles/animations.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
+const appHeightProperty = '--app-height';
+
+export const setAppHeight = () => {
+  const setHeight = () => {
+    document.documentElement.style.setProperty(appHeightProperty, `${window.innerHeight}px`);
+  };
+
+  window.addEventListener('resize', setHeight);
+
+  setHeight();
+};
+
 const GlobalStyle = createGlobalStyle`
 	${({ theme: { defaultWidth, defaultFontSize, fonts, colors } }) => css`
     * {
@@ -31,16 +43,6 @@ const GlobalStyle = createGlobalStyle`
       color: ${colors.black};
     }
 
-    .App {
-      ${defaultWidth}
-      ${fonts.medium}
-
-      display: flex;
-      flex-direction: column;
-      width: 100vw;
-      min-height: 100vh;
-    }
-
     #portal-root,
     #root {
       ${fonts.main}
@@ -51,6 +53,16 @@ const GlobalStyle = createGlobalStyle`
     }
     input {
       font-family: 'Noto Sans KR';
+    }
+
+    .App {
+      ${defaultWidth}
+      ${fonts.medium}
+      
+      display: flex;
+      flex-direction: column;
+      width: 100vw;
+      height: var(${appHeightProperty});
     }
   `}
 `;

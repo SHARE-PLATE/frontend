@@ -1,5 +1,11 @@
 import styled, { css } from 'styled-components';
 
+import {
+  chatroomBarPaddingTop,
+  chatTextareaWrapperPaddingTop,
+  defaultTextareaHeight,
+} from '@components/ChatroomBar/ChatroomBar.style';
+
 export const contentsPaddingTop = 3.5; //rem
 
 export const Wrapper = styled.div`
@@ -20,6 +26,10 @@ export const Date = styled.div`
   `}
 `;
 
-export const LastBottomBlock = styled.span`
-  height: 3.5rem;
+export const LastBottomBlock = styled.div<{ blockHeight?: number }>`
+  ${({ blockHeight }) => css`
+    --height: ${blockHeight || defaultTextareaHeight}px;
+    transition: all 0.15s;
+    height: calc(var(--height) + 2 * ${chatroomBarPaddingTop + chatTextareaWrapperPaddingTop}rem);
+  `}
 `;

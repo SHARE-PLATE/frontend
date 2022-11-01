@@ -95,24 +95,13 @@ export const getUserInfoData = async () => {
   }
 };
 
-export const editUserInfoData = async (formData: any) => {
-  //에러있음
-  for (let key of formData.keys()) {
-    // console.log(key);
-    // console.log(formData.get(key));
-  }
+export const editUserInfoData = async (formData: FormData) => {
   const headers = getAuthHeaders();
 
   try {
-    const response = await axios({
-      method: 'put',
-      url: `${API.MEMBERS}`,
-      data: formData,
-      headers: headers,
-    });
-
-    if (response.status === 200) return true;
-    else throw Error('잘못된 요청입니다.');
+    const response = await axios.patch(API.MEMBERS, formData, { headers });
+    const isSuccess = response.status === 200;
+    return isSuccess;
   } catch (error) {
     throw error;
   }
