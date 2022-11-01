@@ -11,12 +11,11 @@ import ChatroomsItem, {
   LongPressOption,
 } from '@components/ChatroomsItem';
 import ToastModal from '@components/ToastModal';
-import SelectModal from '@components/common/SelectModal';
 import { deleteChatMention, exitMention } from '@constants/mentions';
 import { EXIT_CHATROOM } from '@constants/words';
-import useModal from '@hooks/useModal';
 import { chatMap, unsubscribeStomp } from '@socket/stomp';
 import { chatroomsTrigger } from '@store/chatrooms';
+import { selectModalInfoState } from '@store/modal';
 import { ChatroomsDataType } from '@type/chat';
 
 type ChatroomsContentPropsType = {
@@ -25,26 +24,15 @@ type ChatroomsContentPropsType = {
 
 const ChatroomsContent = ({ data }: ChatroomsContentPropsType) => {
   const [deletedId, setDeletedId] = useState<IdsType>(null);
+  const setSelectModalInfo = useSetRecoilState(selectModalInfoState);
   const [chatroomsData, setChatrooms] = useState(data);
   const modalRef = useRef<HTMLDivElement>(null);
   const setChatroomsTrigger = useSetRecoilState(chatroomsTrigger);
   const [isToastModal, setIsToastModal] = useState(false);
-  const [isSelectModal, setIsSelectModal] = useModal({ modalRef });
 
   const hideToast = () => {
     setDeletedId(null);
     setIsToastModal(false);
-  };
-
-  const hideToastAndShowSelect = () => {
-    setIsToastModal(false);
-    setIsSelectModal(true);
-  };
-
-  const showSelectWithId = ({ event, ids }: ChatroomItemCallBackParamsType) => {
-    event && event.stopPropagation();
-    ids && setDeletedId(ids);
-    setIsSelectModal(true);
   };
 
   const handleClickSelectOkBtn = async () => {
@@ -57,12 +45,6 @@ const ChatroomsContent = ({ data }: ChatroomsContentPropsType) => {
       setChatroomsTrigger((trigger) => trigger + 1);
       setDeletedId(null);
     }
-    setIsSelectModal(false);
-  };
-
-  const hideSelect = () => {
-    setIsSelectModal(false);
-    setDeletedId(null);
   };
 
   const showToastWithId = ({ ids }: { ids: IdsType }) => {
@@ -93,6 +75,27 @@ const ChatroomsContent = ({ data }: ChatroomsContentPropsType) => {
 
       return newChatrooms;
     });
+  };
+
+  const showSelectModal = () => {
+    setSelectModalInfo(({ trigger }) => ({
+      trigger: trigger + 1,
+      onClickOkButton: handleClickSelectOkBtn,
+      onClickCancelButton: () => setDeletedId(null),
+      okMention: exitMention,
+      answeringMention: deleteChatMention,
+    }));
+  };
+
+  const hideToastAndShowSelect = () => {
+    setIsToastModal(false);
+    showSelectModal();
+  };
+
+  const showSelectWithId = ({ event, ids }: ChatroomItemCallBackParamsType) => {
+    event && event.stopPropagation();
+    ids && setDeletedId(ids);
+    showSelectModal();
   };
 
   const longPressOption: LongPressOption = {
@@ -131,15 +134,6 @@ const ChatroomsContent = ({ data }: ChatroomsContentPropsType) => {
           mainButtonTitle={EXIT_CHATROOM}
           mainButtonHandler={hideToastAndShowSelect}
           onClickBackground={hideToast}
-        />
-      )}
-      {isSelectModal && (
-        <SelectModal
-          modalRef={modalRef}
-          onClickOkButton={handleClickSelectOkBtn}
-          onClickCancelButton={hideSelect}
-          okMention={exitMention}
-          answeringMention={deleteChatMention}
         />
       )}
     </>
