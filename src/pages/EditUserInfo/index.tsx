@@ -29,7 +29,7 @@ const EditUserInfo = () => {
   const [isToastModal, setToastModal] = useModal({ modalRef });
   const nicknameInput = useInput(prevUserInfo.nickname || '');
 
-  const backToSetting = () => navigate(pathName.settingsProfile);
+  const backToSetting = () => navigate(pathName.profileSetting);
 
   const changeImage = async (event?: React.ChangeEvent<HTMLInputElement>) => {
     if (event) {

@@ -1,6 +1,4 @@
-import styled, { css } from 'styled-components';
-
-import { flexBetween } from '@styles/mixin';
+import styled from 'styled-components';
 
 export const ImgContainerRatio = 1.125 / 1;
 

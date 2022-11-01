@@ -23,7 +23,7 @@ const noNavBarPaths: pathNameKeysType[] = [
   'salesHistory',
   'wishList',
   'searchShare',
-  'settingsProfile',
+  'profileSetting',
   'editUserInfo',
 ];
 
