@@ -1,6 +1,7 @@
 import SockJs from 'sockjs-client';
 import StompJs from 'stompjs';
 
+import { API } from '@constants/api';
 import {
   APP,
   CHAT,
@@ -11,7 +12,6 @@ import {
   NOTIFICATIONS,
   QUEUE,
   TOPIC,
-  WEBSOCKET,
 } from '@constants/words';
 import { getAuthHeaders } from '@utils/getAuthHeaders';
 
@@ -37,7 +37,7 @@ type ConnectStompParamsType = {
   onError: () => void;
 };
 
-const sockServer = `${process.env.REACT_APP_BASE_URL}/${WEBSOCKET}`; // 들어갈 주소 설정
+const sockServer = API.WEBSOCKET; // 들어갈 주소 설정
 const sock = new SockJs(sockServer);
 export const stompClient = StompJs.over(sock);
 export const keywordMap = new Map<number, string>();
