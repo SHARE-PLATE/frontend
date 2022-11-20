@@ -17,7 +17,7 @@ import * as S from '@pages/EditUserInfo/EditUserInfo.style';
 import { bottomMessageState } from '@store/bottomMessage';
 import { userInfoAtom } from '@store/userInfo';
 import checkCharacter from '@utils/checkcharacter';
-import { convertURLtoFile } from '@utils/convertURLtoFile';
+import { getFileFromURL } from '@utils/getFileFromURL';
 
 const EditUserInfo = () => {
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ const EditUserInfo = () => {
       const { files } = event.target;
       files && setFileImage(files[0]);
     } else {
-      const basicProfileImage = await convertURLtoFile(basicProfileURL);
+      const basicProfileImage = await getFileFromURL(basicProfileURL);
       setFileImage(basicProfileImage);
     }
   };
