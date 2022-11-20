@@ -12,7 +12,9 @@ import Icon from '@components/common/Icon';
 import SelectModal from '@components/common/SelectModal';
 import {
   failedToDeleteShareMention,
+  questionCancelShareMention,
   questionDeleteShareMention,
+  questionParticipateShareMention,
   successToDeleteShareMention,
 } from '@constants/mentions';
 import { pathName } from '@constants/pathName';
@@ -53,7 +55,30 @@ const ShareDetailBottomBar = ({
   const { state, contents } = useRecoilValueLoadable(isLoginState);
   const modalRef = useRef<HTMLDivElement>(null);
   const [isSelectModal, setIsSelectModal] = useModal({ modalRef });
+  const selectModalOkMention = isWriter ? DELETE : isEntry ? CANCEL_PARTICIPATING : PARTICIPATING;
+  const selectModalAnsweringMention = isWriter
+    ? questionDeleteShareMention
+    : isEntry
+    ? questionCancelShareMention
+    : questionParticipateShareMention;
   const isLogin = state === 'hasValue' && contents;
+
+  const deleteCurrentShare = async () => {
+    const { isDeleted, message: errorMessage } = await deleteShare({ id });
+    if (isDeleted) {
+      navigate('/');
+      setBottomMessage(({ trigger }) => ({
+        trigger: trigger + 1,
+        message: successToDeleteShareMention,
+      }));
+    } else {
+      setIsSelectModal(false);
+      setBottomMessage(({ trigger }) => ({
+        trigger: trigger + 1,
+        message: errorMessage || failedToDeleteShareMention,
+      }));
+    }
+  };
 
   const handleClickWishIcon = async () => {
     if (!isLogin) {
@@ -71,7 +96,7 @@ const ShareDetailBottomBar = ({
     }
   };
 
-  const handleClickStartChattingBtn = async () => {
+  const startChatting = async () => {
     if (!isLogin) {
       setPortalState('login');
       return;
@@ -83,33 +108,40 @@ const ShareDetailBottomBar = ({
     }
   };
 
-  const handleClickParticipatingBtn = async () => {
-    if (!isLogin) {
-      setPortalState('login');
-      return;
-    }
+  const participateCurrentShare = async () => {
     const request = isEntry ? deleteShareEntry : postShareEntry;
     const isRequestSuccess = await request({ id });
     if (isRequestSuccess) setIsEntry(!isEntry);
   };
 
-  const handleClickEditBtn = () => {};
+  const handleClickFirstBtn = () => {
+    if (!isLogin) {
+      setPortalState('login');
+      return;
+    }
+
+    if (isWriter) {
+    } else {
+      startChatting();
+    }
+  };
+
+  const handleClickSecondBtn = async () => {
+    if (!isLogin) {
+      setPortalState('login');
+      return;
+    }
+    setIsSelectModal(true);
+  };
 
   const handleClickSelectOkBtn = async () => {
-    const { isDeleted, message: errorMessage } = await deleteShare({ id: id + 332421 });
-    if (isDeleted) {
-      navigate('/');
-      setBottomMessage(({ trigger }) => ({
-        trigger: trigger + 1,
-        message: successToDeleteShareMention,
-      }));
+    if (isWriter) {
+      deleteCurrentShare();
     } else {
-      setIsSelectModal(false);
-      setBottomMessage(({ trigger }) => ({
-        trigger: trigger + 1,
-        message: errorMessage || failedToDeleteShareMention,
-      }));
+      participateCurrentShare();
     }
+
+    setIsSelectModal(false);
   };
 
   return (
@@ -130,24 +162,12 @@ const ShareDetailBottomBar = ({
           </S.PriceWrapper>
         </S.LeftWrapper>
         <S.RightWrapper>
-          {!isWriter && (
-            <>
-              <S.Button onClick={handleClickStartChattingBtn} blur={true}>
-                {START_CHATTING}
-              </S.Button>
-              <S.Button onClick={handleClickParticipatingBtn}>
-                {isEntry ? CANCEL_PARTICIPATING : PARTICIPATING}
-              </S.Button>
-            </>
-          )}
-          {isWriter && (
-            <>
-              <S.Button onClick={handleClickEditBtn} blur={true}>
-                {SHARE + EDIT}
-              </S.Button>
-              <S.Button onClick={() => setIsSelectModal(true)}>{SHARE + DELETE}</S.Button>
-            </>
-          )}
+          <S.Button onClick={handleClickFirstBtn} blur={true}>
+            {isWriter ? SHARE + EDIT : START_CHATTING}
+          </S.Button>
+          <S.Button onClick={handleClickSecondBtn}>
+            {isWriter ? SHARE + DELETE : isEntry ? CANCEL_PARTICIPATING : PARTICIPATING}
+          </S.Button>
         </S.RightWrapper>
       </S.Wrapper>
       {isSelectModal && (
@@ -155,8 +175,8 @@ const ShareDetailBottomBar = ({
           modalRef={modalRef}
           onClickOkButton={handleClickSelectOkBtn}
           onClickCancelButton={() => setIsSelectModal(false)}
-          okMention={DELETE}
-          answeringMention={questionDeleteShareMention}
+          okMention={selectModalOkMention}
+          answeringMention={selectModalAnsweringMention}
         />
       )}
     </>

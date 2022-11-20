@@ -15,7 +15,7 @@ const ShareMapHeader = ({ isActive }: ShareMapHeaderPropsType) => {
   return (
     <S.Wrapper>
       <S.IconsWrapper position='left'>
-        <Icon iconName='LogoWithText' iconSize={4.2} handleClick={() => navigate('/')} />
+        <Icon iconName='LogoWithText' iconSize={4.2} handleClick={() => navigate(pathName.main)} />
       </S.IconsWrapper>
       <S.Header>내주변</S.Header>
       <S.IconsWrapper position='flex-end' isRightAngle={isActive} rightAngleTarget={2}>

@@ -11,7 +11,7 @@ interface EditUserInfoHeaderPropsType {
 
 const EditUserInfoHeader = ({ onClickSubmitButton }: EditUserInfoHeaderPropsType) => {
   const navigate = useNavigate();
-  const backToSetting = () => navigate(pathName.settingsProfile);
+  const backToSetting = () => navigate(pathName.profileSetting);
 
   return (
     <S.HeaderWrapper>

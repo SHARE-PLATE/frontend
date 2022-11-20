@@ -49,6 +49,8 @@ export const newQuestionChatroomMention = '새로운 문의가 들어왔습니�
 export const failedToDeleteShareMention = '쉐어를 삭제하지 못했습니다.';
 export const successToDeleteShareMention = '쉐어를 성공적으로 삭제했습니다.';
 export const questionDeleteShareMention = '해당 쉐어를 삭제하시겠습니까?';
+export const questionParticipateShareMention = '해당 쉐어에 참여하시겠습니까?';
+export const questionCancelShareMention = '해당 쉐어에 참여를 취소하시겠습니까?';
 export const questionChatroomMention = (option: string | undefined) =>
   `${option}님이 문의를 남겼습니다.`;
 export const entryMention = (name?: string) => `${name}님이 쉐어 신청하였습니다.`;

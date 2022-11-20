@@ -70,7 +70,7 @@ const AddKeyword = () => {
 
   return (
     <S.Wrapper>
-      <BackTitleHeader title={ADD_NOTICE_KEYWORD} />
+      <BackTitleHeader title={ADD_NOTICE_KEYWORD} backIconTargetPathname='keyword' />
       <S.Header>
         <span>{regionName}</span>
       </S.Header>

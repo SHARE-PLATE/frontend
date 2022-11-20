@@ -31,5 +31,6 @@ export const LastBottomBlock = styled.div<{ blockHeight?: number }>`
     --height: ${blockHeight || defaultTextareaHeight}px;
     transition: all 0.15s;
     height: calc(var(--height) + 2 * ${chatroomBarPaddingTop + chatTextareaWrapperPaddingTop}rem);
+    margin-top: 1rem;
   `}
 `;

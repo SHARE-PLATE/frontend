@@ -59,9 +59,9 @@ const useConnectSocket = () => {
         return;
 
       const entryIds = entriesContents.idList;
-      const keywordIds = keywordsContents
-        .map(({ keywords }) => keywords.map(({ id }) => id))
-        .flat();
+      const keywordIds = !keywordsContents.length
+        ? []
+        : keywordsContents.map(({ keywords }) => keywords.map(({ id }) => id)).flat();
       const chatroomIds = chatroomContents.map(({ id }) => id);
 
       connectStomp({

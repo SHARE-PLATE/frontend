@@ -1,4 +1,4 @@
-import { ReactElement, MouseEvent } from 'react';
+import { MouseEvent } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
@@ -11,6 +11,7 @@ import ImageContents from '@components/common/ImageContents';
 import ImgContainer from '@components/common/ImgContainer';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import Price from '@components/common/Price';
+import { noRelatedShareList } from '@constants/mentions';
 import { pathName } from '@constants/pathName';
 import { clickedHeartId } from '@store/meyMenu';
 import { ShareListType } from '@type/shareList';
@@ -21,23 +22,23 @@ interface PreviewShareListLeftImagePropsType {
   count?: number;
   isDone?: boolean;
   isWish?: boolean;
-  onClickKebabMenu?: (e: MouseEvent<HTMLDivElement>, id: number) => void;
+  isSingle?: boolean;
+  onClickKebabMenu?: (event: MouseEvent<HTMLDivElement>, id: number) => void;
 }
 const PreviewShareListLeftImage = ({
   data,
   count,
   isDone,
   isWish,
+  isSingle,
   onClickKebabMenu,
 }: PreviewShareListLeftImagePropsType) => {
   const navigate = useNavigate();
-
   const [heartIdArr, setHeartIdArr] = useRecoilState<number[]>(clickedHeartId);
+  const curData = count && data.length > count ? data.slice(0, count) : data;
 
-  const list: ReactElement[] = [];
-
-  const clickHeartHandler = (e: MouseEvent, id: number) => {
-    e.stopPropagation();
+  const clickHeartHandler = (event: MouseEvent, id: number) => {
+    event.stopPropagation();
     if (!heartIdArr.length) return setHeartIdArr([id]);
     if (!heartIdArr.includes(id)) return setHeartIdArr([...heartIdArr, id]);
 
@@ -49,25 +50,23 @@ const PreviewShareListLeftImage = ({
     navigate(`${pathName.shareDetail}/${id}`);
   };
 
-  data.every(
-    (
-      {
-        id,
-        thumbnailUrl,
-        title,
-        location,
-        price,
-        originalPrice,
-        currentRecruitment,
-        finalRecruitment,
-        createdDateTime,
-        closedDateTime,
-      },
-      dataCount,
-    ) => {
-      list.push(
+  const list = curData.map(
+    ({
+      id,
+      thumbnailUrl,
+      title,
+      location,
+      price,
+      originalPrice,
+      currentRecruitment,
+      finalRecruitment,
+      createdDateTime,
+      closedDateTime,
+    }) => {
+      return (
         <S.Container
           key={id}
+          isSingle={isSingle}
           onClick={() => {
             handelClickShareList(id);
           }}
@@ -76,7 +75,7 @@ const PreviewShareListLeftImage = ({
             <ImgContainer
               imgSrc={thumbnailUrl}
               imgTitle={title}
-              imgWrapperWidth='7rem'
+              imgWrapperWidth='6.6rem'
               imgWrapperRatio={1 / 1}
             />
             <ImageContents dateTime={closedDateTime} isDone={isDone} />
@@ -101,19 +100,20 @@ const PreviewShareListLeftImage = ({
               />
             )}
             {onClickKebabMenu && (
-              <S.KebabMenuWrapper onClick={(e) => onClickKebabMenu(e, id)}>
+              <S.KebabMenuWrapper onClick={(event) => onClickKebabMenu(event, id)}>
                 <Icon iconName='KebabMenu' />
               </S.KebabMenuWrapper>
             )}
           </S.IconContainer>
-        </S.Container>,
+        </S.Container>
       );
-
-      return dataCount + 1 === count ? false : true;
     },
   );
 
-  if (list.length % 2) list.push(<S.Container key={getRandomKey()}></S.Container>);
+  if (count && list.length % 2 && list.length < count)
+    list.push(<S.Container key={getRandomKey()}></S.Container>);
+
+  if (!list.length) list.push(<S.NoListWrapper>{noRelatedShareList}</S.NoListWrapper>);
 
   return <S.Wrapper>{list}</S.Wrapper>;
 };

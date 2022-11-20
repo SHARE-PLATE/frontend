@@ -6,6 +6,7 @@ import { useSetRecoilState } from 'recoil';
 import * as S from '@components/ErrorWithButtons/ErrorWithButtons.style';
 import Loading from '@components/Loading';
 import Icon from '@components/common/Icon';
+import { pathName } from '@constants/pathName';
 import { BACK, HOME, LOGIN } from '@constants/words';
 import { isNavigationState } from '@store/navigation';
 import { portalState } from '@store/portal';
@@ -39,7 +40,7 @@ const ErrorWithButtons = ({ isLoading, mention, buttonType }: ErrorWithButtonsPr
         <>
           {mention && <S.Mention>{mention}</S.Mention>}
           <S.ButtonsWrapper>
-            <S.Button onClick={() => navigate('/')}>{HOME}</S.Button>
+            <S.Button onClick={() => navigate(pathName.main)}>{HOME}</S.Button>
             {isLoginButton ? (
               <S.Button onClick={() => setPortal('login')}>{LOGIN}</S.Button>
             ) : (

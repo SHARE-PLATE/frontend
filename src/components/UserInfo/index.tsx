@@ -7,6 +7,7 @@ import { getUserInfoData } from '@api/account';
 import * as S from '@components/UserInfo/UserInfo.style';
 import Icon from '@components/common/Icon';
 import ImgContainer from '@components/common/ImgContainer';
+import { pathName } from '@constants/pathName';
 import { userInfoAtom } from '@store/userInfo';
 
 interface UserInfoPropsType {
@@ -54,7 +55,11 @@ const UserInfo = ({ textColor, arrowIcon = true }: UserInfoPropsType) => {
       </S.InfoContainer>
       {arrowIcon && (
         <S.IconWrapper>
-          <Icon iconName='RightArrow' iconSize={1} handleClick={() => navigate('./setting')} />
+          <Icon
+            iconName='RightArrow'
+            iconSize={1}
+            handleClick={() => navigate(pathName.profileSetting)}
+          />
         </S.IconWrapper>
       )}
     </S.Wrapper>

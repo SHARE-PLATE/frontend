@@ -1,9 +1,12 @@
 import styled, { css } from 'styled-components';
 
+import { flexCenter } from '@styles/mixin';
+
 export const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  overflow: hidden;
   justify-content: space-between;
 `;
 
@@ -11,28 +14,21 @@ export const Container = styled.div<{ isSingle?: boolean }>`
   ${({ isSingle = false }) => css`
     display: flex;
     justify-content: flex-start;
-    width: ${isSingle ? '100%' : '50%'};
+    width: 100%;
 
-    @media (max-width: 27rem) {
-      width: 100%;
-      max-width: 24rem;
+    @media (min-width: 40rem) {
+      width: ${!isSingle && '48%'};
     }
   `}
 `;
 
-export const ImgWrapper = styled.div<{ isSingle?: boolean }>`
-  ${({ isSingle }) => css`
-    position: relative;
-    border-radius: 0.5rem;
-
-    min-width: ${isSingle ? '6.6rem' : '5rem'};
-    overflow: hidden;
-    aspect-ratio: 1 / 1;
-
-    @media (max-width: 27rem) {
-      min-width: 6.6rem;
-    }
-  `}
+export const ImgWrapper = styled.div`
+  position: relative;
+  border-radius: 0.5rem;
+  min-width: 6.6rem;
+  width: 6.6rem;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
 `;
 
 export const ListInfo = styled.div<{ isSingle?: boolean }>`
@@ -43,12 +39,10 @@ export const ListInfo = styled.div<{ isSingle?: boolean }>`
     overflow-wrap: break-word;
     padding: 0.2rem;
     gap: 0.4rem;
-    margin: 0 0.37rem 0 0.7rem;
-    max-width: ${isSingle ? '65%' : '55%'};
-
-    @media (max-width: 27rem) {
-      max-width: 65%;
-    }
+    margin-left: 0.37rem;
+    flex-grow: 1;
+    overflow: hidden;
+    /* max-width: ${isSingle ? '65%' : '55%'}; */
   `}
 `;
 
@@ -57,7 +51,7 @@ export const ListInfoTexts = styled.div`
   flex-direction: column;
   position: relative;
   gap: 0.4rem;
-  width: 11.375rem;
+  width: 100%;
 `;
 
 export const Title = styled.h3`
@@ -102,4 +96,13 @@ export const IconContainer = styled.div``;
 
 export const KebabMenuWrapper = styled.div`
   margin-top: 0.2rem;
+`;
+
+export const NoListWrapper = styled.div`
+  ${({ theme: { colors } }) => css`
+    ${flexCenter};
+    width: 100%;
+    height: 100px;
+    color: ${colors.grey7};
+  `}
 `;
