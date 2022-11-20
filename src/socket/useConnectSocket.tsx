@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { useRecoilValueLoadable, useSetRecoilState } from 'recoil';
 import StompJs from 'stompjs';
@@ -9,7 +9,9 @@ import { newNoticeState } from '@store/notice';
 import { shareListEntriesState } from '@store/shareList';
 import { socketConnectState } from '@store/socket';
 
-import { connectStomp } from './stomp';
+import { connectStomp, getStompClient } from './stomp';
+
+const maxRetryCount = 3;
 
 export const useOnReceiveChat = () => {
   const setChatsUnreadTrigger = useSetRecoilState(chatsUnreadTrigger);
@@ -42,6 +44,7 @@ const useConnectSocket = () => {
   const { state: chatroomState, contents: chatroomContents } =
     useRecoilValueLoadable(chatroomIdsState);
   const setSocketConnect = useSetRecoilState(socketConnectState);
+  const retryCount = useRef(0);
 
   const onSubscribeNotice = useOnReceiveNotice();
   const onReceiveChat = useOnReceiveChat();
@@ -63,18 +66,29 @@ const useConnectSocket = () => {
         ? []
         : keywordsContents.map(({ keywords }) => keywords.map(({ id }) => id)).flat();
       const chatroomIds = chatroomContents.map(({ id }) => id);
+      const connectSocket = () => {
+        connectStomp({
+          onError: () => {
+            setSocketConnect(false);
+            if (retryCount.current <= maxRetryCount) {
+              retryCount.current += 1;
+              console.log(retryCount);
+              getStompClient();
+              connectSocket();
+            }
+          },
+          onConnect: () => setSocketConnect(true),
+          noticeParams: {
+            entryIds,
+            keywordIds,
+            onSubscribeEntries: onSubscribeNotice,
+            onSubscribeKeywords: onSubscribeNotice,
+          },
+          chatParams: { chatroomIds, onReceiveChat },
+        });
+      };
 
-      connectStomp({
-        onError: () => setSocketConnect(false),
-        onConnect: () => setSocketConnect(true),
-        noticeParams: {
-          entryIds,
-          keywordIds,
-          onSubscribeEntries: onSubscribeNotice,
-          onSubscribeKeywords: onSubscribeNotice,
-        },
-        chatParams: { chatroomIds, onReceiveChat },
-      });
+      connectSocket();
     }, [entriesState, keywordsState, chatroomState]);
   };
 };
