@@ -40,6 +40,11 @@ export const TopFixedWrapper = styled.div<{ isTop: boolean }>`
   `}
 `;
 
+export const TopFixedWarningStyle = css`
+  margin-left: -1rem;
+  width: calc(100% + 2rem);
+`;
+
 export const Header = styled.div`
   ${({ theme: { defaultHeaderHeight } }) => css`
     height: ${defaultHeaderHeight}rem;

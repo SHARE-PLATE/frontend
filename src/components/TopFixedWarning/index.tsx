@@ -16,7 +16,7 @@ type TopFixedWarningPropsType = {
 
 const waitingCheckTime = 5000; // ms
 
-const TopFixedWarinng = ({ text, isShowed, otherStyle }: TopFixedWarningPropsType) => {
+const TopFixedWaring = ({ text, isShowed, otherStyle }: TopFixedWarningPropsType) => {
   const socketConnect = useRecoilValue(socketConnectState);
   const [isConnected, setIsConnected] = useState(true);
   const [timeOver, setTimeOver] = useState(false);
@@ -47,4 +47,4 @@ const TopFixedWarinng = ({ text, isShowed, otherStyle }: TopFixedWarningPropsTyp
   );
 };
 
-export default TopFixedWarinng;
+export default TopFixedWaring;
