@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { flexBetween } from '@styles/mixin';
+import { flexBetween, flexCenter } from '@styles/mixin';
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -27,10 +27,11 @@ export const Contents = styled.div`
 export const SuggestedTitle = styled.div`
   ${({ theme: { colors, fonts } }) => css`
     ${fonts.xSmallBold};
-    ${flexBetween}
+    ${flexCenter};
+
     border-radius: 0.25rem;
     height: 1.375rem;
-    width: 3.125rem;
+    width: 3.5rem;
     padding: 0.25rem 0.375rem;
     color: ${colors.white1};
     background-color: ${colors.orange3};
