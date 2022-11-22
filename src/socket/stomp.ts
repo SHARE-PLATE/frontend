@@ -42,7 +42,8 @@ let stompClient: StompJs.Client;
 export const getStompClient = () => {
   const sockServer = API.WEBSOCKET; // 들어갈 주소 설정
   const sock = new SockJs(sockServer);
-  stompClient = StompJs.over(sock);
+  const newStompClient = StompJs.over(sock);
+  stompClient = newStompClient;
 };
 export const keywordMap = new Map<number, string>();
 export const entryMap = new Map<number, string>();

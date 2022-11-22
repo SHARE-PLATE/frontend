@@ -11,7 +11,8 @@ import { socketConnectState } from '@store/socket';
 
 import { connectStomp, getStompClient } from './stomp';
 
-const maxRetryCount = 3;
+const socketConnectRetryInterval = 5000; // ms
+const socketConnectRetryIntervalMax = 10 * 60 * 1000; // 10mins
 
 export const useOnReceiveChat = () => {
   const setChatsUnreadTrigger = useSetRecoilState(chatsUnreadTrigger);
@@ -44,7 +45,7 @@ const useConnectSocket = () => {
   const { state: chatroomState, contents: chatroomContents } =
     useRecoilValueLoadable(chatroomIdsState);
   const setSocketConnect = useSetRecoilState(socketConnectState);
-  const retryCount = useRef(0);
+  const disconnectTimeRef = useRef(0);
 
   const onSubscribeNotice = useOnReceiveNotice();
   const onReceiveChat = useOnReceiveChat();
@@ -66,18 +67,26 @@ const useConnectSocket = () => {
         ? []
         : keywordsContents.map(({ keywords }) => keywords.map(({ id }) => id)).flat();
       const chatroomIds = chatroomContents.map(({ id }) => id);
+
+      const retrySocketConnect = () => {
+        const disconnectTime = disconnectTimeRef.current;
+        if (disconnectTime > socketConnectRetryIntervalMax) return;
+
+        disconnectTimeRef.current += socketConnectRetryInterval;
+        setSocketConnect(false);
+        setTimeout(() => {
+          getStompClient();
+          connectSocket();
+        }, socketConnectRetryInterval);
+      };
+
       const connectSocket = () => {
         connectStomp({
-          onError: () => {
-            setSocketConnect(false);
-            if (retryCount.current <= maxRetryCount) {
-              retryCount.current += 1;
-              console.log(retryCount);
-              getStompClient();
-              connectSocket();
-            }
+          onError: retrySocketConnect,
+          onConnect: () => {
+            disconnectTimeRef.current = 0;
+            setSocketConnect(true);
           },
-          onConnect: () => setSocketConnect(true),
           noticeParams: {
             entryIds,
             keywordIds,
@@ -89,6 +98,7 @@ const useConnectSocket = () => {
       };
 
       connectSocket();
+      window.addEventListener('offline', retrySocketConnect);
     }, [entriesState, keywordsState, chatroomState]);
   };
 };
