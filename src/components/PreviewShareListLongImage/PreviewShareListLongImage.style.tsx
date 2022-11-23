@@ -23,10 +23,7 @@ export const ListWrapper = styled.div`
   width: 100%;
   height: fit-content;
   overflow-x: scroll;
-
-  > :last-child {
-    margin-right: 1rem;
-  }
+  padding-right: 1rem;
 `;
 
 export const noListWrapper = styled.div`

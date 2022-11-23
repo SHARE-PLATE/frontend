@@ -13,7 +13,8 @@ export const Title = styled.h2`
 `;
 
 export const ButtonWrapper = styled.button<{ position: 'left' | 'right' }>`
-  width: 30px;
+  width: 35px;
+
   ${({ position }) => css`
     ${flexCenter};
     justify-content: ${position};
@@ -21,5 +22,5 @@ export const ButtonWrapper = styled.button<{ position: 'left' | 'right' }>`
 `;
 
 export const SubmitBtn = styled.button`
-  ${({ theme }) => theme.fonts.largeRegular}
+  ${({ theme }) => theme.fonts.largeRegular};
 `;

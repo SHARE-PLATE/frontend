@@ -7,6 +7,7 @@ import NoticeDeleteModeButton from '@components/NoticeDeleteModeButton';
 import { HeaderBtn } from '@components/NoticeDeleteModeButton/NoticeDeleteModeButton.style';
 import NoticeKeyword from '@components/NoticeKeyword';
 import Tabs from '@components/Tabs';
+import TopFixedWaring from '@components/TopFixedWarning';
 import Icon from '@components/common/Icon';
 import { failtoGetNoticeMention } from '@constants/mentions';
 import { NOTICE_CENTER } from '@constants/words';
@@ -40,6 +41,7 @@ const Notice = () => {
   return (
     <S.Wrapper>
       <S.TopFixedWrapper isTop={isTop}>
+        <TopFixedWaring text='알림 연결 끊김' otherStyle={S.TopFixedWarningStyle} />
         <S.Header>
           <HeaderBtn onClick={() => navigate(-1)}>
             <Icon iconName='Back' iconSize={1.125} />

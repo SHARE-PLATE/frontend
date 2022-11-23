@@ -9,7 +9,7 @@ import ChatroomDatailHeader from '@components/ChatroomDetailHeader';
 import ErrorWithButtons from '@components/ErrorWithButtons';
 import Loading from '@components/Loading';
 import ShareDetailInfoBar from '@components/ShareDetailInfoBar';
-import TopFixedWarinng from '@components/TopFixedWarning';
+import TopFixedWaring from '@components/TopFixedWarning';
 import { failLoadingChatroomsMention } from '@constants/mentions';
 import * as S from '@pages/ChatroomDetail/ChatroomDetail.style';
 import { chatroomDetailState, chatroomDetailTrigger } from '@store/chatroomDetail';
@@ -44,7 +44,7 @@ const ChatroomDetail = () => {
         return (
           <S.Wrapper>
             <S.TopFixedWrapper>
-              <TopFixedWarinng text='채팅 연결 끊김' />
+              <TopFixedWaring text='채팅 연결 끊김' />
               <ChatroomDatailHeader type={type} writer={writer} />
               <ShareDetailInfoBar {...share} />
               <S.RemainingTime>남은 시간 : {remainingTime}</S.RemainingTime>
