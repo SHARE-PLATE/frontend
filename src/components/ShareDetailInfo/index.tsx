@@ -8,6 +8,7 @@ import { locationMarker } from '@components/ShareDetailInfo/locationMarker';
 import Icon from '@components/common/Icon';
 import ImgContainer from '@components/common/ImgContainer';
 import PersonnelStatus from '@components/common/PersonnelStatus';
+import { failToGetMapsMention } from '@constants/mentions';
 import {
   CURRENT_SHARE_PARTICIPANTS,
   LOCATION_NEGOTIATION,
@@ -57,7 +58,7 @@ const ShareDetailInfo = ({
   const [mapState, setMapState] = useState(null);
   const mapRef = useRef(null);
   const [roadName, setRoadName] = useState('');
-  const position = new kakao.maps.LatLng(latitude, longitude);
+  const position = kakao && new kakao.maps.LatLng(latitude, longitude);
 
   const getRoadName = async () => {
     const { address_name } = await getRegionWithGeo({ x: longitude, y: latitude });
@@ -65,6 +66,8 @@ const ShareDetailInfo = ({
   };
 
   const initMap = () => {
+    if (!kakao) return;
+
     const options = { center: position, level: 3 };
     const newMap = new kakao.maps.Map(mapRef.current, options);
 
@@ -72,8 +75,9 @@ const ShareDetailInfo = ({
   };
 
   const drawOverlay = () => {
-    const overlay = new kakao.maps.CustomOverlay({ position, content: locationMarker });
+    if (!kakao) return;
 
+    const overlay = new kakao.maps.CustomOverlay({ position, content: locationMarker });
     overlay.setMap(mapState);
   };
 
@@ -121,7 +125,7 @@ const ShareDetailInfo = ({
         </S.Location>
       </S.LocationWrapper>
       <S.MapContainer>
-        <S.Map ref={mapRef} />
+        {kakao ? <S.Map ref={mapRef} /> : <S.NoMap>{failToGetMapsMention}</S.NoMap>}
       </S.MapContainer>
     </S.ContentsContainer>
   );

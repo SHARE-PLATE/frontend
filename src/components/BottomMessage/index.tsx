@@ -3,21 +3,32 @@ import { useEffect, useState } from 'react';
 import { useRecoilValue, useResetRecoilState } from 'recoil';
 
 import * as S from '@components/BottomMessage/BottomMessage.style';
+import Icon from '@components/common/Icon';
 import { useDebounce } from '@hooks/useDebounce';
 import { bottomMessageState, BottomMessageType } from '@store/bottomMessage';
 
+const defaultBottomDistance = 1.5; // rem
+
 const BottomMessage = () => {
-  const { message, trigger } = useRecoilValue(bottomMessageState);
+  const { message, trigger, distance } = useRecoilValue(bottomMessageState);
+  const [bottomDistance, setBottomDistance] = useState(defaultBottomDistance);
   // set bottom message separately to show message when position is "down"
   const [bottomMessage, setBottomMessage] = useState<BottomMessageType>(null);
   const [position, setPosition] = useState<S.PositionType>(null);
   const resetBottomMessage = useResetRecoilState(bottomMessageState);
 
   const handleAnimationEnd = () => {
-    if (position === 'down') setPosition(null);
+    if (position === 'down') {
+      setPosition(null);
+      setBottomDistance(defaultBottomDistance);
+    }
   };
 
-  useDebounce({ func: () => resetBottomMessage(), delay: 4000, deps: [trigger] });
+  useDebounce({
+    func: () => resetBottomMessage(),
+    delay: 3000,
+    deps: [trigger],
+  });
 
   useEffect(() => {
     // position condition is required for first rendering with no bottom message component
@@ -28,12 +39,26 @@ const BottomMessage = () => {
     if (trigger && position !== 'up') {
       setPosition('up');
     }
+
     setBottomMessage(message);
+    distance && setBottomDistance(distance);
   }, [trigger]);
 
   return (
-    <S.Wrapper position={position} onAnimationEnd={handleAnimationEnd}>
-      <S.MessageWrapper>{bottomMessage}</S.MessageWrapper>
+    <S.Wrapper
+      position={position}
+      onAnimationEnd={handleAnimationEnd}
+      bottomDistance={bottomDistance}
+    >
+      <S.MessageWrapper>
+        <S.MessageText>{bottomMessage}</S.MessageText>
+        <Icon
+          iconName='X_Icon'
+          iconSize={0.75}
+          color='white0'
+          handleClick={() => resetBottomMessage()}
+        />
+      </S.MessageWrapper>
     </S.Wrapper>
   );
 };

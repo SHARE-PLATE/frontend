@@ -53,8 +53,10 @@ const ShareDetail = () => {
   const getWriterShares = async () => {
     if (!state?.writerId) return;
     const sharListWriterData = await getShareListWriterData({ writerId: state.writerId });
+
     if (!sharListWriterData) return;
     const { shares } = sharListWriterData;
+
     setWriterSharesData(shares);
   };
 

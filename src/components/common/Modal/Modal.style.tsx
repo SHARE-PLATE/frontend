@@ -23,7 +23,7 @@ export const ModalBackground = styled.div<{ isFull: boolean }>`
   ${({ isFull }) => css`
     ${isFull &&
     css`
-      z-index: 200;
+      z-index: 400;
       visibility: visible;
       background-color: rgba(0, 0, 0, 0.2);
     `};
@@ -33,7 +33,7 @@ export const ModalBackground = styled.div<{ isFull: boolean }>`
 export const ModalContainer = styled.div<ModalContainerPropsType>`
   ${({ type, customedStyle, theme: { colors, defaultWidth } }) => css`
     position: absolute;
-    z-index: 201;
+    z-index: 401;
     border-radius: 8px;
     ${type === 'center' &&
     css`
