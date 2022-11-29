@@ -19,6 +19,9 @@ const NoticeKeywordItem = ({
 }: NoticeKeywordDataType & Pick<NoticeDeleteBtnPropsType, 'onDeleteSuccess'>) => {
   const diffTime = moment(notificationCreatedDateTime).add(9, 'h').fromNow();
   const navigate = useNavigate();
+  const locationParts = shareLocation.split(' ');
+  const location = `${locationParts[2]}∙${locationParts[3]}`;
+
   const handleClickItem = () => navigate(`${pathName.shareDetail}/${shareId}`);
 
   return (
@@ -35,7 +38,7 @@ const NoticeKeywordItem = ({
       </S.ImgWrapper>
       <S.TextWrapper>
         <S.TextUpper>
-          <S.LocationBox>{shareLocation}</S.LocationBox>
+          <S.LocationBox>{location}</S.LocationBox>
           <S.EnrollMention>{newShareEnrolledMention}</S.EnrollMention>
         </S.TextUpper>
         <S.TitleWrapper>{shareTitle}</S.TitleWrapper>
