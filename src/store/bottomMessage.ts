@@ -5,6 +5,7 @@ export type BottomMessageType = null | string;
 type BottomMessageStateType = {
   trigger: number;
   message: BottomMessageType;
+  distance?: number;
 };
 
 export const bottomMessageState = atom<BottomMessageStateType>({

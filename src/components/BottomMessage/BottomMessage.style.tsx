@@ -2,18 +2,23 @@ import styled, { css } from 'styled-components';
 
 export type PositionType = 'up' | 'down' | null;
 
-export const Wrapper = styled.div<{ position: PositionType }>`
-  ${({ theme: { defaultWidth, defaultPadding }, position }) => css`
+export type WrapperPropsType = {
+  position: PositionType;
+  bottomDistance: number;
+};
+
+export const Wrapper = styled.div<WrapperPropsType>`
+  ${({ theme: { defaultWidth, defaultPadding }, position, bottomDistance }) => css`
     ${defaultWidth};
     ${defaultPadding};
 
-    width: 100%;
     position: fixed;
-    bottom: 1.5rem;
+    width: 100%;
     left: 50%;
     transform: translate(-50%);
     z-index: 300;
     margin-bottom: -75%;
+    bottom: ${bottomDistance}rem;
 
     ${!position &&
     css`
@@ -24,10 +29,10 @@ export const Wrapper = styled.div<{ position: PositionType }>`
     css`
       animation: slideout-bottom 0.5s forwards;
     `}
-
+      
     ${position === 'down' &&
     css`
-      animation: slidein-bottom 1s forwards;
+      animation: slidein-bottom 2s forwards;
     `}
   `}
 `;

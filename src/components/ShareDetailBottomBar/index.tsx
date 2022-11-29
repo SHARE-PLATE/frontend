@@ -11,6 +11,10 @@ import * as S from '@components/ShareDetailBottomBar/ShareDetailBottomBar.style'
 import Icon from '@components/common/Icon';
 import SelectModal from '@components/common/SelectModal';
 import {
+  cancelParticipating,
+  cancelWishMention,
+  enrollParticipating,
+  enrollWishMention,
   failedToDeleteShareMention,
   questionCancelShareMention,
   questionDeleteShareMention,
@@ -91,7 +95,8 @@ const ShareDetailBottomBar = ({
       setIsWishedNow(!isWishedNow);
       setBottomMessage(({ trigger }) => ({
         trigger: trigger + 1,
-        message: '찜한 목록에 추가되었습니다.',
+        message: !isWishedNow ? enrollWishMention : cancelWishMention,
+        distance: 5,
       }));
     }
   };
@@ -108,10 +113,18 @@ const ShareDetailBottomBar = ({
     }
   };
 
-  const participateCurrentShare = async () => {
+  const changeParticipating = async () => {
     const request = isEntry ? deleteShareEntry : postShareEntry;
     const isRequestSuccess = await request({ id });
-    if (isRequestSuccess) setIsEntry(!isEntry);
+
+    if (isRequestSuccess) {
+      setBottomMessage(({ trigger }) => ({
+        trigger: trigger + 1,
+        message: !isEntry ? enrollParticipating : cancelParticipating,
+        distance: 5,
+      }));
+      setIsEntry(!isEntry);
+    }
   };
 
   const handleClickFirstBtn = () => {
@@ -138,7 +151,7 @@ const ShareDetailBottomBar = ({
     if (isWriter) {
       deleteCurrentShare();
     } else {
-      participateCurrentShare();
+      changeParticipating();
     }
 
     setIsSelectModal(false);
