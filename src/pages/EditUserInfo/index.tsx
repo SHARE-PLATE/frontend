@@ -8,7 +8,11 @@ import basicProfileURL from '@assets/img/profileBase.png';
 import EditUserInfoForm from '@components/EditUserInfoForm';
 import EditUserInfoHeader from '@components/EditUserInfoHeader';
 import ToastModal from '@components/ToastModal';
-import { failedToChangeUserInfo, successToChangeUserInfo } from '@constants/mentions';
+import {
+  failedToChangeUserInfo,
+  notToUseSpecialCharMention,
+  successToChangeUserInfo,
+} from '@constants/mentions';
 import { pathName } from '@constants/pathName';
 import { DELETE_PROFILE_PICTURE, SELECT_ALBUM } from '@constants/words';
 import useInput from '@hooks/useInput';
@@ -48,7 +52,7 @@ const EditUserInfo = () => {
     if (isCharacter) {
       setBottomMessage(({ trigger }) => ({
         trigger: trigger + 1,
-        message: '특수 문자는 사용할 수 없습니다!',
+        message: notToUseSpecialCharMention,
       }));
       return;
     }

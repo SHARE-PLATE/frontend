@@ -74,12 +74,14 @@ const ShareDetailBottomBar = ({
       setBottomMessage(({ trigger }) => ({
         trigger: trigger + 1,
         message: successToDeleteShareMention,
+        distance: 5,
       }));
     } else {
       setIsSelectModal(false);
       setBottomMessage(({ trigger }) => ({
         trigger: trigger + 1,
         message: errorMessage || failedToDeleteShareMention,
+        distance: 5,
       }));
     }
   };
