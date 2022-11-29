@@ -67,7 +67,12 @@ export const useLogout = () => {
 
   return async () => {
     const response = await axios.post(API.LOGOUT, null, { headers });
-    if (response.status === 200) removeUserInfo();
+    if (response.status === 200) {
+      removeUserInfo();
+      return true;
+    } else {
+      return false;
+    }
   };
 };
 

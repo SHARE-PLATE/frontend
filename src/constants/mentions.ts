@@ -56,6 +56,9 @@ export const questionDeleteShareMention = '해당 쉐어를 삭제하시겠습�
 export const questionParticipateShareMention = '해당 쉐어에 참여하시겠습니까?';
 export const questionCancelShareMention = '해당 쉐어에 참여를 취소하시겠습니까?';
 export const failToGetMapsMention = '지도를 불러오지 못했습니다!';
+export const logoutMention = '로그아웃 하시겠습니까?';
+export const failToLogoutMention = '로그아웃에 실패했습니다. 다시 시도해주세요.';
+export const successToLogoutMention = '로그아웃 되었습니다.';
 export const notToUseSpecialCharMention = '특수 문자는 사용할 수 없습니다!';
 export const questionChatroomMention = (option: string | undefined) =>
   `${option}님이 문의를 남겼습니다.`;
