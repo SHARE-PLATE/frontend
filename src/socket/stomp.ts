@@ -116,7 +116,7 @@ export const connectStomp = ({
 }: ConnectStompParamsType) => {
   const headers = getAuthHeaders();
   try {
-    // stompClient.debug = () => null;
+    stompClient.debug = () => null;
     stompClient.connect(
       headers,
       () => {
@@ -139,7 +139,7 @@ export const unsubscribeStomp = (id?: string) => {
 
 export const disconnectStomp = (onDisconnect?: () => void) => {
   try {
-    // stompClient.debug = () => null;
+    stompClient.debug = () => null;
     stompClient.disconnect(() => {
       unsubscribeStomp();
       onDisconnect && onDisconnect();

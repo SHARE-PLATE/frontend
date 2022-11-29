@@ -102,11 +102,8 @@ const ShareDetailBottomBar = ({
   };
 
   const startChatting = async () => {
-    if (!isLogin) {
-      setPortalState('login');
-      return;
-    }
     const chattingData = await getPersonalChatroom({ shareId: id });
+
     if (chattingData) {
       const { id: chatroomId } = chattingData;
       navigate(`${pathName.chatroomDetail}/${chatroomId}`);

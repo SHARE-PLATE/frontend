@@ -199,3 +199,13 @@ export const Map = styled.div`
   height: 100%;
   z-index: 1;
 `;
+
+export const NoMap = styled.div`
+  ${({ theme: { colors, fonts } }) => css`
+    ${fonts.smallRegular};
+    ${flexCenter};
+    height: 100%;
+    color: ${colors.white0};
+    background-color: ${colors.grey7};
+  `}
+`;

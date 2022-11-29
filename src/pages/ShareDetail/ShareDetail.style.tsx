@@ -38,7 +38,7 @@ export const TopFixedWrapper = styled.div<{ isTop: boolean }>`
   ${({ theme: { defaultPadding, colors }, isTop }) => css`
     ${defaultPadding};
     background-color: ${colors.white1};
-    position: sticky;
+    position: fixed;
     top: 0;
     width: 100%;
     z-index: 200;
@@ -56,6 +56,7 @@ export const UpperWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: -6px;
+  padding-top: ${({ theme: { defaultHeaderHeight } }) => defaultHeaderHeight}rem;
 `;
 
 export const LowerWrapper = styled.section``;
