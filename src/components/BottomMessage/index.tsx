@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useRecoilValue, useResetRecoilState } from 'recoil';
 
 import * as S from '@components/BottomMessage/BottomMessage.style';
+import Icon from '@components/common/Icon';
 import { useDebounce } from '@hooks/useDebounce';
 import { bottomMessageState, BottomMessageType } from '@store/bottomMessage';
 
@@ -23,7 +24,11 @@ const BottomMessage = () => {
     }
   };
 
-  useDebounce({ func: () => resetBottomMessage(), delay: 3000, deps: [trigger] });
+  useDebounce({
+    func: () => resetBottomMessage(),
+    delay: 3000,
+    deps: [trigger],
+  });
 
   useEffect(() => {
     // position condition is required for first rendering with no bottom message component
@@ -45,7 +50,15 @@ const BottomMessage = () => {
       onAnimationEnd={handleAnimationEnd}
       bottomDistance={bottomDistance}
     >
-      <S.MessageWrapper>{bottomMessage}</S.MessageWrapper>
+      <S.MessageWrapper>
+        <S.MessageText>{bottomMessage}</S.MessageText>
+        <Icon
+          iconName='X_Icon'
+          iconSize={0.75}
+          color='white0'
+          handleClick={() => resetBottomMessage()}
+        />
+      </S.MessageWrapper>
     </S.Wrapper>
   );
 };

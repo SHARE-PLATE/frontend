@@ -19,6 +19,9 @@ export const Wrapper = styled.div<WrapperPropsType>`
     z-index: 300;
     margin-bottom: -75%;
     bottom: ${bottomDistance}rem;
+    path {
+      stroke: white;
+    }
 
     ${!position &&
     css`
@@ -47,5 +50,14 @@ export const MessageWrapper = styled.div`
     background-color: ${colors.orange4};
     border-radius: 6px;
     box-shadow: 2px 4px 8px rgba(255, 69, 58, 0.2);
+    display: flex;
+    justify-content: space-between;
+    gap: 4px;
   `}
+`;
+
+export const MessageText = styled.span`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
