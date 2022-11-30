@@ -18,7 +18,7 @@
 
 사람들은 다른 사이트 ∙ 앱에서 재료 공구 ∙ 배달 공구와 같은 게시물들을 올리지만, 이를 적극적으로 안내해줄 플랫폼은 없었죠.
 
-이러한 상황 속에서, 많은 사람들이 편하게 서로의 배달 음식 ∙ 음식 재료를 원하는 장소에서 나눠 가질 수 있도록 하고자, 우리는 **[SHARE PLATE](https://d3ew6nkgwjgkva.cloudfront.net)**를 만들었습니다.
+이러한 상황 속에서, 많은 사람들이 편하게 서로의 배달 음식 ∙ 음식 재료를 원하는 장소에서 나눠 가질 수 있도록 하고자, 우리는 [SHARE PLATE](https://d3ew6nkgwjgkva.cloudfront.net)를 만들었습니다.
 
 ### **기간**
 
@@ -26,27 +26,17 @@
 
 ### **LINKS**
 
-#### **`GITHUB`**
+#### **GITHUB : [https://github.com/HJKL2022](https://github.com/HJKL2022)**
 
-[https://github.com/HJKL2022](https://github.com/HJKL2022)
+#### **NOTION : [https://gusty-art-6de.notion.site/8097bc3aa3b142778ddbd40153188619](https://www.notion.so/c5352a8d177346aeb36f49e26e59cac1)**
 
-#### **`NOTION`**
+#### **API DOCS : [https://louie-03.com/docs/index.html](https://louie-03.com/docs/index.html)**
 
-[**https://gusty-art-6de.notion.site/8097bc3aa3b142778ddbd40153188619**](https://www.notion.so/c5352a8d177346aeb36f49e26e59cac1)
+#### **SERVER**
 
-#### **`API DOCS`**
+##### **BACKEND : [https://louie-03.com](http://louie-03.com/login/form)**
 
-[https://louie-03.com/docs/index.html](https://louie-03.com/docs/index.html)
-
-### **SERVER**
-
-#### **`BACKEND`**
-
-[https://louie-03.com](http://louie-03.com/login/form)
-
-#### **`FRONTEND(PAGE LINK)`**
-
-[https://d3ew6nkgwjgkva.cloudfront.net](https://d3ew6nkgwjgkva.cloudfront.net/)
+##### **FRONTEND(PAGE LINK) : [https://d3ew6nkgwjgkva.cloudfront.net](https://d3ew6nkgwjgkva.cloudfront.net/)**
 
 ---
 
