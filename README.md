@@ -20,23 +20,23 @@
 
 이러한 상황 속에서, 많은 사람들이 편하게 서로의 배달 음식 ∙ 음식 재료를 원하는 장소에서 나눠 가질 수 있도록 하고자, 우리는 [SHARE PLATE](https://d3ew6nkgwjgkva.cloudfront.net)를 만들었습니다.
 
-### **기간**
+### **`기간`**
 
 2022.07.18 - 2022.10.31
 
-### **LINKS**
+### **`LINKS`**
 
-#### **GITHUB : [https://github.com/HJKL2022](https://github.com/HJKL2022)**
+#### **GITHUB [https://github.com/HJKL2022](https://github.com/HJKL2022)**
 
-#### **NOTION : [https://gusty-art-6de.notion.site/8097bc3aa3b142778ddbd40153188619](https://www.notion.so/c5352a8d177346aeb36f49e26e59cac1)**
+#### **NOTION [https://gusty-art-6de.notion.site/8097bc3aa3b142778ddbd40153188619](https://www.notion.so/c5352a8d177346aeb36f49e26e59cac1)**
 
-#### **API DOCS : [https://louie-03.com/docs/index.html](https://louie-03.com/docs/index.html)**
+#### **API DOCS [https://louie-03.com/docs/index.html](https://louie-03.com/docs/index.html)**
 
 #### **SERVER**
 
-##### **BACKEND : [https://louie-03.com](http://louie-03.com/login/form)**
+- ##### **`BACKEND` [https://louie-03.com](http://louie-03.com/login/form)**
 
-##### **FRONTEND(PAGE LINK) : [https://d3ew6nkgwjgkva.cloudfront.net](https://d3ew6nkgwjgkva.cloudfront.net/)**
+- ##### **`FRONTEND(PAGE LINK)` [https://d3ew6nkgwjgkva.cloudfront.net](https://d3ew6nkgwjgkva.cloudfront.net/)**
 
 ---
 
@@ -67,19 +67,19 @@
 
 ## **SKILL STACK**
 
-#### FRONTEND
+### **`FRONTEND`**
 
 ![Untitled](./images/frontend.png)
 
-#### BACKEND
+### **`BACKEND`**
 
 ![Untitled](./images/backend.png)
 
-#### INFRA
+### **`INFRA`**
 
 ![Untitled](./images/infra.png)
 
-#### COMMON
+### **`COMMON`**
 
 ![Untitled](./images/common.png)
 
