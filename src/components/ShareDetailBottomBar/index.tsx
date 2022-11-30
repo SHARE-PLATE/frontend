@@ -42,6 +42,8 @@ type ShareDetailBottomBarPropsType = Pick<
   'wish' | 'entry' | 'price' | 'originalPrice' | 'isWriter' | 'id'
 >;
 
+const bottomMessageDistance = 5; // rem
+
 const ShareDetailBottomBar = ({
   wish,
   entry,
@@ -69,21 +71,17 @@ const ShareDetailBottomBar = ({
 
   const deleteCurrentShare = async () => {
     const { isDeleted, message: errorMessage } = await deleteShare({ id });
-    if (isDeleted) {
-      navigate('/');
-      setBottomMessage(({ trigger }) => ({
-        trigger: trigger + 1,
-        message: successToDeleteShareMention,
-        distance: 5,
-      }));
-    } else {
-      setIsSelectModal(false);
-      setBottomMessage(({ trigger }) => ({
-        trigger: trigger + 1,
-        message: errorMessage || failedToDeleteShareMention,
-        distance: 5,
-      }));
-    }
+    const message = isDeleted
+      ? successToDeleteShareMention
+      : errorMessage || failedToDeleteShareMention;
+
+    setBottomMessage(({ trigger }) => ({
+      trigger: trigger + 1,
+      message,
+      distance: isDeleted ? 4 : bottomMessageDistance,
+    }));
+
+    isDeleted ? navigate('/') : setIsSelectModal;
   };
 
   const handleClickWishIcon = async () => {
@@ -91,16 +89,25 @@ const ShareDetailBottomBar = ({
       setPortalState('login');
       return;
     }
+
     const wishControlOption: ChangeWishOptionType = !isWishedNow ? 'enroll' : 'cancel';
     const response = await changeWish({ option: wishControlOption, id });
-    if (response?.status === 200) {
+    let message = '';
+
+    if (!response) {
+      message = '에러가 발생했습니다.';
+    } else if (!response?.isSuccess) {
+      message = response.message;
+    } else {
+      message = !isWishedNow ? enrollWishMention : cancelWishMention;
       setIsWishedNow(!isWishedNow);
-      setBottomMessage(({ trigger }) => ({
-        trigger: trigger + 1,
-        message: !isWishedNow ? enrollWishMention : cancelWishMention,
-        distance: 5,
-      }));
     }
+
+    setBottomMessage(({ trigger }) => ({
+      trigger: trigger + 1,
+      message,
+      distance: bottomMessageDistance,
+    }));
   };
 
   const startChatting = async () => {
@@ -120,7 +127,7 @@ const ShareDetailBottomBar = ({
       setBottomMessage(({ trigger }) => ({
         trigger: trigger + 1,
         message: !isEntry ? enrollParticipating : cancelParticipating,
-        distance: 5,
+        distance: bottomMessageDistance,
       }));
       setIsEntry(!isEntry);
     }
