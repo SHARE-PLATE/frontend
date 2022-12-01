@@ -22,6 +22,7 @@ export const TOPIC = 'topic';
 export const APP = 'app';
 export const CODE = 'code';
 export const TAG = '태그';
+export const LOGOUT = '로그아웃';
 export const WEBSOCKET = 'websocket';
 export const PRICE_NEGOTIATION = '가격 협의가능';
 export const LOCATION_NEGOTIATION = '장소 협의가능';

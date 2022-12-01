@@ -32,6 +32,7 @@ export type ShareDetailType = {
   imageUrls: string[];
   writer: string;
   writerThumbnailImageUrl: string;
+  writerId: string;
   title: string;
   location: string;
   locationGuide: string;

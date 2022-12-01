@@ -1,21 +1,22 @@
 import { useEffect, useRef, useState } from 'react';
 
+import { useRecoilValueLoadable } from 'recoil';
 import { v4 as getRandomKey } from 'uuid';
 
 import { getRegionWithGeo } from '@api/address';
 import * as S from '@components/ShareDetailInfo/ShareDetailInfo.style';
 import { locationMarker } from '@components/ShareDetailInfo/locationMarker';
+import ShareDetailRecruitments from '@components/ShareDetailRecruitments';
 import Icon from '@components/common/Icon';
-import ImgContainer from '@components/common/ImgContainer';
-import PersonnelStatus from '@components/common/PersonnelStatus';
 import { failToGetMapsMention } from '@constants/mentions';
-import {
-  CURRENT_SHARE_PARTICIPANTS,
-  LOCATION_NEGOTIATION,
-  PRICE_NEGOTIATION,
-} from '@constants/words';
+import { LOCATION_NEGOTIATION, PRICE_NEGOTIATION } from '@constants/words';
+import { recruitmentState } from '@store/shareDetail';
 import { ShareDetailType } from '@type/shareList';
 import { calcTwoTimeDifference } from '@utils/getTimeDiff';
+
+type ShareDetailInfoPropsType = ShareDetailType & {
+  infoRef: (InfoDiv: HTMLDivElement) => void;
+};
 
 const { kakao } = window as any;
 
@@ -24,9 +25,7 @@ const ShareDetailInfo = ({
   location,
   locationGuide,
   createdDateTime,
-  recruitmentMemberThumbnailImageUrls,
-  currentRecruitment,
-  finalRecruitment,
+  writerThumbnailImageUrl,
   description,
   priceNegotiation,
   locationNegotiation,
@@ -35,30 +34,20 @@ const ShareDetailInfo = ({
   latitude,
   longitude,
   infoRef,
-}: ShareDetailType & { infoRef: (InfoDiv: HTMLDivElement) => void }) => {
-  const ImgContents = recruitmentMemberThumbnailImageUrls.map((member: string) => (
-    <ImgContainer
-      key={getRandomKey()}
-      imgSrc={member}
-      imgTitle={member}
-      imgWrapperRatio={1 / 1}
-      imgWrapperWidth='2.9rem'
-      borderRadius='5rem'
-      noAlign={true}
-    />
-  ));
-
+  id,
+}: ShareDetailInfoPropsType) => {
+  const [mapState, setMapState] = useState(null);
+  const [curWishCount, setCurWishCount] = useState(wishCount);
+  const { state, contents } = useRecoilValueLoadable(recruitmentState(`${id}`));
+  const mapRef = useRef(null);
+  const [roadName, setRoadName] = useState('');
+  const position = kakao && new kakao.maps.LatLng(latitude, longitude);
   const hashtagContents = hashtags.map((tag) => (
     <S.Hashtag key={getRandomKey()}>
       <span>#</span>
       <span>{tag}</span>
     </S.Hashtag>
   ));
-
-  const [mapState, setMapState] = useState(null);
-  const mapRef = useRef(null);
-  const [roadName, setRoadName] = useState('');
-  const position = kakao && new kakao.maps.LatLng(latitude, longitude);
 
   const getRoadName = async () => {
     const { address_name } = await getRegionWithGeo({ x: longitude, y: latitude });
@@ -93,6 +82,11 @@ const ShareDetailInfo = ({
     getRoadName();
   }, []);
 
+  useEffect(() => {
+    if (state !== 'hasValue' || !contents) return;
+    setCurWishCount(contents.wishCount);
+  }, [state]);
+
   return (
     <S.ContentsContainer>
       <S.Title>{title}</S.Title>
@@ -104,17 +98,11 @@ const ShareDetailInfo = ({
         </S.BadgeWrapper>
         <S.CreateTime>{calcTwoTimeDifference(createdDateTime)}</S.CreateTime>
       </S.UpperInfo>
-      <S.LowerInfo>
-        <S.PersonnelStatusWrapper>
-          {CURRENT_SHARE_PARTICIPANTS}
-          <PersonnelStatus curPersonnel={currentRecruitment} totalPersonnel={finalRecruitment} />
-        </S.PersonnelStatusWrapper>
-        <S.ImgContentsWrapper>{ImgContents}</S.ImgContentsWrapper>
-      </S.LowerInfo>
+      <ShareDetailRecruitments id={id} writerThumbnailImageUrl={writerThumbnailImageUrl} />
       <S.Description>{description}</S.Description>
       <S.WishCount>
         <Icon iconName='HeartEmpty' iconSize={0.85} />
-        {wishCount}
+        {curWishCount}
       </S.WishCount>
       <S.Hashtags>{hashtagContents}</S.Hashtags>
       <S.LocationWrapper>

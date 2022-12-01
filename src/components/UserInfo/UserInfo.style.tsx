@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { flexBetween } from '@styles/mixin';
+import { flexBetween, flexCenter } from '@styles/mixin';
 
 type SetCheckType = { isSet: boolean };
 type TextType = SetCheckType & {
@@ -10,6 +10,15 @@ type TextType = SetCheckType & {
 export const Wrapper = styled.div`
   ${flexBetween}
   padding-top: 1rem;
+`;
+
+export const NoInfoWrapper = styled.div<{ arrowIcon: boolean }>`
+  ${({ arrowIcon, theme: { colors } }) => css`
+    ${flexCenter};
+    color: ${arrowIcon ? colors.white0 : colors.black};
+    width: 100%;
+    height: 30px;
+  `}
 `;
 
 export const ImgWrapper = styled.div<SetCheckType>`

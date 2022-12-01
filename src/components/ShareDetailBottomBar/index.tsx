@@ -33,6 +33,7 @@ import {
 import useModal from '@hooks/useModal';
 import { bottomMessageState } from '@store/bottomMessage';
 import { portalState } from '@store/portal';
+import { isEntryState, recruitmentTrigger } from '@store/shareDetail';
 import { isLoginState } from '@store/user';
 import { ShareDetailType } from '@type/shareList';
 import { getPriceType } from '@utils/getPriceType';
@@ -40,7 +41,11 @@ import { getPriceType } from '@utils/getPriceType';
 type ShareDetailBottomBarPropsType = Pick<
   ShareDetailType,
   'wish' | 'entry' | 'price' | 'originalPrice' | 'isWriter' | 'id'
->;
+> & {
+  isInfoBar: boolean;
+};
+
+const bottomMessageDistance = 5; // rem
 
 const ShareDetailBottomBar = ({
   wish,
@@ -50,11 +55,13 @@ const ShareDetailBottomBar = ({
   isWriter,
   id,
   isInfoBar,
-}: ShareDetailBottomBarPropsType & { isInfoBar: boolean }) => {
+}: ShareDetailBottomBarPropsType) => {
   const navigate = useNavigate();
   const setBottomMessage = useSetRecoilState(bottomMessageState);
   const [isWishedNow, setIsWishedNow] = useState(wish);
   const [isEntry, setIsEntry] = useState(entry);
+  const setRecruitmentTrigger = useSetRecoilState(recruitmentTrigger);
+  const setCurEntry = useSetRecoilState(isEntryState);
   const setPortalState = useSetRecoilState(portalState);
   const { state, contents } = useRecoilValueLoadable(isLoginState);
   const modalRef = useRef<HTMLDivElement>(null);
@@ -69,21 +76,17 @@ const ShareDetailBottomBar = ({
 
   const deleteCurrentShare = async () => {
     const { isDeleted, message: errorMessage } = await deleteShare({ id });
-    if (isDeleted) {
-      navigate('/');
-      setBottomMessage(({ trigger }) => ({
-        trigger: trigger + 1,
-        message: successToDeleteShareMention,
-        distance: 5,
-      }));
-    } else {
-      setIsSelectModal(false);
-      setBottomMessage(({ trigger }) => ({
-        trigger: trigger + 1,
-        message: errorMessage || failedToDeleteShareMention,
-        distance: 5,
-      }));
-    }
+    const message = isDeleted
+      ? successToDeleteShareMention
+      : errorMessage || failedToDeleteShareMention;
+
+    setBottomMessage(({ trigger }) => ({
+      trigger: trigger + 1,
+      message,
+      distance: isDeleted ? 4 : bottomMessageDistance,
+    }));
+
+    isDeleted ? navigate('/') : setIsSelectModal;
   };
 
   const handleClickWishIcon = async () => {
@@ -91,16 +94,26 @@ const ShareDetailBottomBar = ({
       setPortalState('login');
       return;
     }
+
     const wishControlOption: ChangeWishOptionType = !isWishedNow ? 'enroll' : 'cancel';
     const response = await changeWish({ option: wishControlOption, id });
-    if (response?.status === 200) {
+    let message = '';
+
+    if (!response) {
+      message = '에러가 발생했습니다.';
+    } else if (!response?.isSuccess) {
+      message = response.message;
+    } else {
+      message = !isWishedNow ? enrollWishMention : cancelWishMention;
       setIsWishedNow(!isWishedNow);
-      setBottomMessage(({ trigger }) => ({
-        trigger: trigger + 1,
-        message: !isWishedNow ? enrollWishMention : cancelWishMention,
-        distance: 5,
-      }));
+      setRecruitmentTrigger((prev) => prev + 1);
     }
+
+    setBottomMessage(({ trigger }) => ({
+      trigger: trigger + 1,
+      message,
+      distance: bottomMessageDistance,
+    }));
   };
 
   const startChatting = async () => {
@@ -115,15 +128,22 @@ const ShareDetailBottomBar = ({
   const changeParticipating = async () => {
     const request = isEntry ? deleteShareEntry : postShareEntry;
     const isRequestSuccess = await request({ id });
+    let message = '';
 
     if (isRequestSuccess) {
-      setBottomMessage(({ trigger }) => ({
-        trigger: trigger + 1,
-        message: !isEntry ? enrollParticipating : cancelParticipating,
-        distance: 5,
-      }));
+      message = !isEntry ? enrollParticipating : cancelParticipating;
       setIsEntry(!isEntry);
+      setCurEntry(!isEntry);
+      setRecruitmentTrigger((prev) => prev + 1);
+    } else {
+      message = '요청을 처리하지 못했습니다.';
     }
+
+    setBottomMessage(({ trigger }) => ({
+      trigger: trigger + 1,
+      message,
+      distance: bottomMessageDistance,
+    }));
   };
 
   const handleClickFirstBtn = () => {

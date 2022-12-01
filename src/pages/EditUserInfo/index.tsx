@@ -1,114 +1,26 @@
-import { useState, useRef, useEffect } from 'react';
+import { useRecoilValueLoadable } from 'recoil';
 
-import { useNavigate } from 'react-router-dom';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-
-import { editUserInfoData } from '@api/account';
-import basicProfileURL from '@assets/img/profileBase.png';
-import EditUserInfoForm from '@components/EditUserInfoForm';
-import EditUserInfoHeader from '@components/EditUserInfoHeader';
-import ToastModal from '@components/ToastModal';
-import {
-  failedToChangeUserInfo,
-  notToUseSpecialCharMention,
-  successToChangeUserInfo,
-} from '@constants/mentions';
-import { pathName } from '@constants/pathName';
-import { DELETE_PROFILE_PICTURE, SELECT_ALBUM } from '@constants/words';
-import useInput from '@hooks/useInput';
-import useModal from '@hooks/useModal';
-import * as S from '@pages/EditUserInfo/EditUserInfo.style';
-import { bottomMessageState } from '@store/bottomMessage';
-import { userInfoAtom } from '@store/userInfo';
-import checkCharacter from '@utils/checkcharacter';
-import { getFileFromURL } from '@utils/getFileFromURL';
+import EditUserInfoContents from '@components/EditUserInfoContents';
+import ErrorWithButtons from '@components/ErrorWithButtons';
+import Loading from '@components/Loading';
+import { userInfoState } from '@store/userInfo';
 
 const EditUserInfo = () => {
-  const navigate = useNavigate();
-  const prevUserInfo = useRecoilValue(userInfoAtom);
-  const setBottomMessage = useSetRecoilState(bottomMessageState);
-  const [fileImage, setFileImage] = useState<File | null>(null);
-  const inputFormBtnRef = useRef<HTMLInputElement>(null);
-  const modalRef = useRef<HTMLDivElement>(null);
-  const [isToastModal, setToastModal] = useModal({ modalRef });
-  const nicknameInput = useInput(prevUserInfo.nickname || '');
+  const { state, contents } = useRecoilValueLoadable(userInfoState);
 
-  const backToSetting = () => navigate(pathName.profileSetting);
-
-  const changeImage = async (event?: React.ChangeEvent<HTMLInputElement>) => {
-    if (event) {
-      const { files } = event.target;
-      files && setFileImage(files[0]);
-    } else {
-      const basicProfileImage = await getFileFromURL(basicProfileURL);
-      setFileImage(basicProfileImage);
+  const getContent = () => {
+    switch (state) {
+      case 'loading':
+        return <Loading color='grey3' size={40} border={5} />;
+      case 'hasValue':
+        if (!contents) return <ErrorWithButtons mention='사용자 정보를 불러오지 못했습니다.' />;
+        return <EditUserInfoContents prevUserInfo={contents} />;
+      case 'hasError':
+        return <ErrorWithButtons mention='사용자 정보를 불러오지 못했습니다.' />;
     }
   };
 
-  const handleClickSubmit = async () => {
-    const formData = new FormData();
-    const { inputValue: nickname } = nicknameInput;
-    const isCharacter = checkCharacter(nickname);
-    if (isCharacter) {
-      setBottomMessage(({ trigger }) => ({
-        trigger: trigger + 1,
-        message: notToUseSpecialCharMention,
-      }));
-      return;
-    }
-
-    fileImage && formData.append('image', fileImage);
-    !!nickname.length && formData.append('nickname', nickname);
-
-    const isSuccessFetch = await editUserInfoData(formData);
-    setBottomMessage(({ trigger }) => ({
-      trigger: trigger + 1,
-      message: isSuccessFetch ? successToChangeUserInfo : failedToChangeUserInfo,
-    }));
-    backToSetting();
-  };
-
-  useEffect(() => {
-    const isUserInfo = !!Object.keys(prevUserInfo).length;
-    if (!isUserInfo) backToSetting();
-  }, []);
-
-  return (
-    <S.Wrapper>
-      <EditUserInfoHeader onClickSubmitButton={handleClickSubmit} />
-      <EditUserInfoForm
-        prevNickname={prevUserInfo.nickname || ''}
-        prevImageUrl={prevUserInfo.profileImageUrl || ''}
-        fileImage={fileImage}
-        openToastModal={() => setToastModal(true)}
-        nicknameInput={nicknameInput}
-      />
-      <S.ImageInput
-        type='file'
-        id='input-file'
-        accept='image/*'
-        onChange={changeImage}
-        ref={inputFormBtnRef}
-      />
-
-      {isToastModal && (
-        <ToastModal
-          modalRef={modalRef}
-          onClickCloseButton={() => setToastModal(false)}
-          mainButtonTitle={DELETE_PROFILE_PICTURE}
-          optionButtonTitle={SELECT_ALBUM}
-          mainButtonHandler={() => {
-            setToastModal(false);
-            changeImage();
-          }}
-          optionButtonHandler={() => {
-            setToastModal(false);
-            inputFormBtnRef.current?.click();
-          }}
-        />
-      )}
-    </S.Wrapper>
-  );
+  return getContent();
 };
 
 export default EditUserInfo;

@@ -27,6 +27,7 @@ export const noAddressListMention = '검색 결과가 없습니다.\n지번, 도
 export const addressKeywordQuestionMention = '주소 키워드를\n삭제하시겠습니까?';
 export const newShareEnrolledMention = '신규 쉐어가 등록되었습니다.';
 export const failtoGetNoticeMention = '알림 목록을 불러오지 못했습니다.';
+export const failToGetInfo = '정보를 불러오지 못했습니다.';
 export const dataFailed = '데이터를 넣어주세요';
 export const fileFailed = '이미지는 최대 5장까지 첨부할 수 있어요';
 export const inputValueFailed = '키워드를 입력해주세요';
@@ -56,6 +57,9 @@ export const questionDeleteShareMention = '해당 쉐어를 삭제하시겠습�
 export const questionParticipateShareMention = '해당 쉐어에 참여하시겠습니까?';
 export const questionCancelShareMention = '해당 쉐어에 참여를 취소하시겠습니까?';
 export const failToGetMapsMention = '지도를 불러오지 못했습니다!';
+export const logoutMention = '로그아웃 하시겠습니까?';
+export const failToLogoutMention = '로그아웃에 실패했습니다. 다시 시도해주세요.';
+export const successToLogoutMention = '로그아웃 되었습니다.';
 export const notToUseSpecialCharMention = '특수 문자는 사용할 수 없습니다!';
 export const questionChatroomMention = (option: string | undefined) =>
   `${option}님이 문의를 남겼습니다.`;
