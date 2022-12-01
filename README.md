@@ -6,7 +6,7 @@
 
 ### **[SHARE PLATE](https://d3ew6nkgwjgkva.cloudfront.net)로 배달음식과 재료를 다른 사람들과 나눠보세요!**
 
-## **INTRODUCE**
+# **INTRODUCE**
 
 2022년 현재, 1인 가구의 증가와 함께 배달 ∙ 식자재 구매 수요는 꾸준히 증가하고 있습니다.
 
@@ -25,12 +25,13 @@
 ### **LINKS**
 
 - **[GITHUB](https://github.com/HJKL2022)**
+- **[PORTFOLIO](https://gusty-art-6de.notion.site/SHARE-PLATE-71a75ce4965344f3b3a46be4fb9f9411)**
 - **[NOTION](https://www.notion.so/c5352a8d177346aeb36f49e26e59cac1)**
 - **[API DOCS](https://louie-03.com/docs/index.html)**
 - **[SERVER(BACKEND)](http://louie-03.com)**
 - **[SERVER(FRONTEND)](https://d3ew6nkgwjgkva.cloudfront.net/)**
 
-## **MEMBERS**
+# **MEMBERS**
 
 ### **BACKEND**
 
@@ -53,7 +54,7 @@
 - **홍준표**
   [**PORTFOLIO**](https://www.notion.so/341b4d294dd34058b41ea2087476377f)
 
-## **SKILL STACK**
+# **SKILL STACK**
 
 ### **FRONTEND**
 
@@ -71,14 +72,14 @@
 
 ![Untitled](./images/common.png)
 
-## **DESIGN**
+# **DESIGN**
 
 ![images.png](./images/images.png)
 
-## **FLOW CHART**
+# **FLOW CHART**
 
 ![Untitled](./images/workflow.png)
 
-## **ERD**
+# **ERD**
 
 ![Untitled](/images/erd.png)
