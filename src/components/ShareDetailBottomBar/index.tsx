@@ -33,6 +33,7 @@ import {
 import useModal from '@hooks/useModal';
 import { bottomMessageState } from '@store/bottomMessage';
 import { portalState } from '@store/portal';
+import { isEntryState } from '@store/shareDetail';
 import { isLoginState } from '@store/user';
 import { ShareDetailType } from '@type/shareList';
 import { getPriceType } from '@utils/getPriceType';
@@ -40,7 +41,9 @@ import { getPriceType } from '@utils/getPriceType';
 type ShareDetailBottomBarPropsType = Pick<
   ShareDetailType,
   'wish' | 'entry' | 'price' | 'originalPrice' | 'isWriter' | 'id'
->;
+> & {
+  isInfoBar: boolean;
+};
 
 const bottomMessageDistance = 5; // rem
 
@@ -52,11 +55,12 @@ const ShareDetailBottomBar = ({
   isWriter,
   id,
   isInfoBar,
-}: ShareDetailBottomBarPropsType & { isInfoBar: boolean }) => {
+}: ShareDetailBottomBarPropsType) => {
   const navigate = useNavigate();
   const setBottomMessage = useSetRecoilState(bottomMessageState);
   const [isWishedNow, setIsWishedNow] = useState(wish);
   const [isEntry, setIsEntry] = useState(entry);
+  const setCurEntry = useSetRecoilState(isEntryState);
   const setPortalState = useSetRecoilState(portalState);
   const { state, contents } = useRecoilValueLoadable(isLoginState);
   const modalRef = useRef<HTMLDivElement>(null);
@@ -122,15 +126,21 @@ const ShareDetailBottomBar = ({
   const changeParticipating = async () => {
     const request = isEntry ? deleteShareEntry : postShareEntry;
     const isRequestSuccess = await request({ id });
+    let message = '';
 
     if (isRequestSuccess) {
-      setBottomMessage(({ trigger }) => ({
-        trigger: trigger + 1,
-        message: !isEntry ? enrollParticipating : cancelParticipating,
-        distance: bottomMessageDistance,
-      }));
+      message = !isEntry ? enrollParticipating : cancelParticipating;
       setIsEntry(!isEntry);
+      setCurEntry(!isEntry);
+    } else {
+      message = '요청을 처리하지 못했습니다.';
     }
+
+    setBottomMessage(({ trigger }) => ({
+      trigger: trigger + 1,
+      message,
+      distance: bottomMessageDistance,
+    }));
   };
 
   const handleClickFirstBtn = () => {
