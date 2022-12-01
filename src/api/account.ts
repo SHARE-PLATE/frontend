@@ -13,9 +13,9 @@ import {
 } from '@utils/localStorage';
 
 export type UserInfoDataType = {
-  profileImageUrl?: string;
-  nickname?: string;
-  email?: string;
+  profileImageUrl: string;
+  nickname: string;
+  email: string;
 };
 
 export const getLoginPage = async () => {
