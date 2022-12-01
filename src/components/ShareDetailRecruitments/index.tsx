@@ -20,6 +20,7 @@ const ShareDetailRecruitments = ({
     recruitmentMemberThumbnailImageUrls: [writerThumbnailImageUrl],
     currentRecruitment: 1,
     finalRecruitment: 1,
+    wishCount: 0,
   };
   const [curRecruitmentInfo, setCurRecruitmentInfo] = useState(defaultRecruitmentInfo);
   const { state: recruitmentInfoState, contents: recruitmentInfo } = useRecoilValueLoadable(

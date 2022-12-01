@@ -2,13 +2,16 @@ import { atom, selectorFamily } from 'recoil';
 import { v4 as getRandomKey } from 'uuid';
 
 import { getShareDetailData } from '@api/shareList';
+import { ShareDetailType } from '@type/shareList';
 
 export type RecruitmentType =
-  | {
-      recruitmentMemberThumbnailImageUrls: string[];
-      currentRecruitment: number;
-      finalRecruitment: number;
-    }
+  | Pick<
+      ShareDetailType,
+      | 'recruitmentMemberThumbnailImageUrls'
+      | 'currentRecruitment'
+      | 'finalRecruitment'
+      | 'wishCount'
+    >
   | undefined;
 
 export const shareDetailTrigger = atom<number>({
@@ -37,22 +40,26 @@ export const recruitmentState = selectorFamily<RecruitmentType, string>({
   get:
     (id: string) =>
     async ({ get }) => {
-      // get(shareDetailTrigger);
+      get(shareDetailTrigger);
       get(recruitmentTrigger);
       const shareDetailData = await getShareDetailData({ id });
       if (!shareDetailData || typeof shareDetailData === 'string') return;
-      const { recruitmentMemberThumbnailImageUrls, currentRecruitment, finalRecruitment } =
-        shareDetailData;
-      return { recruitmentMemberThumbnailImageUrls, currentRecruitment, finalRecruitment };
+      const {
+        recruitmentMemberThumbnailImageUrls,
+        currentRecruitment,
+        finalRecruitment,
+        wishCount,
+      } = shareDetailData;
+      return {
+        recruitmentMemberThumbnailImageUrls,
+        currentRecruitment,
+        finalRecruitment,
+        wishCount,
+      };
     },
 });
 
 export const isEntryState = atom<boolean | null>({
   key: 'isEntry',
-  default: null,
-});
-
-export const isWishedState = atom<boolean | null>({
-  key: 'isWished',
   default: null,
 });

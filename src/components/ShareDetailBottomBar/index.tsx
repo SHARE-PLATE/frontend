@@ -106,6 +106,7 @@ const ShareDetailBottomBar = ({
     } else {
       message = !isWishedNow ? enrollWishMention : cancelWishMention;
       setIsWishedNow(!isWishedNow);
+      setRecruitmentTrigger((prev) => prev + 1);
     }
 
     setBottomMessage(({ trigger }) => ({
