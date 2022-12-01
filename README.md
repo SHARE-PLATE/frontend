@@ -6,7 +6,7 @@
 
 ### **[SHARE PLATE](https://d3ew6nkgwjgkva.cloudfront.net)로 배달음식과 재료를 다른 사람들과 나눠보세요!**
 
-## **1. INTRODUCE**
+## **INTRODUCE**
 
 2022년 현재, 1인 가구의 증가와 함께 배달 ∙ 식자재 구매 수요는 꾸준히 증가하고 있습니다.
 
@@ -55,19 +55,19 @@
 
 ## **SKILL STACK**
 
-### **`FRONTEND`**
+### **FRONTEND**
 
 ![Untitled](./images/frontend.png)
 
-### **`BACKEND`**
+### **BACKEND**
 
 ![Untitled](./images/backend.png)
 
-### **`INFRA`**
+### **INFRA**
 
 ![Untitled](./images/infra.png)
 
-### **`COMMON`**
+### **COMMON**
 
 ![Untitled](./images/common.png)
 
