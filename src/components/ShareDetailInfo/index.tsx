@@ -23,9 +23,7 @@ const ShareDetailInfo = ({
   location,
   locationGuide,
   createdDateTime,
-  recruitmentMemberThumbnailImageUrls,
-  currentRecruitment,
-  finalRecruitment,
+  writerThumbnailImageUrl,
   description,
   priceNegotiation,
   locationNegotiation,
@@ -34,6 +32,7 @@ const ShareDetailInfo = ({
   latitude,
   longitude,
   infoRef,
+  id,
 }: ShareDetailInfoPropsType) => {
   const hashtagContents = hashtags.map((tag) => (
     <S.Hashtag key={getRandomKey()}>
@@ -91,11 +90,7 @@ const ShareDetailInfo = ({
         </S.BadgeWrapper>
         <S.CreateTime>{calcTwoTimeDifference(createdDateTime)}</S.CreateTime>
       </S.UpperInfo>
-      <ShareDetailRecruitments
-        currentRecruitment={currentRecruitment}
-        finalRecruitment={finalRecruitment}
-        recruitmentMemberThumbnailImageUrls={recruitmentMemberThumbnailImageUrls}
-      />
+      <ShareDetailRecruitments id={id} writerThumbnailImageUrl={writerThumbnailImageUrl} />
       <S.Description>{description}</S.Description>
       <S.WishCount>
         <Icon iconName='HeartEmpty' iconSize={0.85} />

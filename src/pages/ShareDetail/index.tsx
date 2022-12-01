@@ -53,7 +53,7 @@ const ShareDetail = () => {
   };
 
   const getWriterShares = async () => {
-    if (state !== 'hasValue' || !contents) return;
+    if (state !== 'hasValue' || !contents || typeof contents === 'string') return;
     const sharListWriterData = await getShareListWriterData({ writerId: contents.writerId });
 
     if (!sharListWriterData) return;
@@ -85,7 +85,8 @@ const ShareDetail = () => {
       case 'hasError':
         return <ErrorWithButtons mention='쉐어 정보를 불러오지 못했습니다.' />;
       case 'hasValue':
-        if (!contents) return <ErrorWithButtons mention='쉐어 정보를 불러오지 못했습니다.' />;
+        if (!contents || typeof contents === 'string')
+          return <ErrorWithButtons mention={contents || '쉐어 정보를 불러오지 못했습니다.'} />;
         return (
           <>
             <S.Wrapper>

@@ -22,4 +22,5 @@ export const PersonnelStatusWrapper = styled.div`
 export const ImgContentsWrapper = styled.div`
   display: flex;
   gap: 12px;
+  min-height: 2.9rem;
 `;

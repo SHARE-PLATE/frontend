@@ -33,7 +33,7 @@ import {
 import useModal from '@hooks/useModal';
 import { bottomMessageState } from '@store/bottomMessage';
 import { portalState } from '@store/portal';
-import { isEntryState } from '@store/shareDetail';
+import { isEntryState, recruitmentTrigger } from '@store/shareDetail';
 import { isLoginState } from '@store/user';
 import { ShareDetailType } from '@type/shareList';
 import { getPriceType } from '@utils/getPriceType';
@@ -60,6 +60,7 @@ const ShareDetailBottomBar = ({
   const setBottomMessage = useSetRecoilState(bottomMessageState);
   const [isWishedNow, setIsWishedNow] = useState(wish);
   const [isEntry, setIsEntry] = useState(entry);
+  const setRecruitmentTrigger = useSetRecoilState(recruitmentTrigger);
   const setCurEntry = useSetRecoilState(isEntryState);
   const setPortalState = useSetRecoilState(portalState);
   const { state, contents } = useRecoilValueLoadable(isLoginState);
@@ -132,6 +133,7 @@ const ShareDetailBottomBar = ({
       message = !isEntry ? enrollParticipating : cancelParticipating;
       setIsEntry(!isEntry);
       setCurEntry(!isEntry);
+      setRecruitmentTrigger((prev) => prev + 1);
     } else {
       message = '요청을 처리하지 못했습니다.';
     }
