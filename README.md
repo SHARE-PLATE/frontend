@@ -6,9 +6,7 @@
 
 ### **[SHARE PLATE](https://d3ew6nkgwjgkva.cloudfront.net)로 배달음식과 재료를 다른 사람들과 나눠보세요!**
 
----
-
-## **INTRODUCE**
+## **1. INTRODUCE**
 
 2022년 현재, 1인 가구의 증가와 함께 배달 ∙ 식자재 구매 수요는 꾸준히 증가하고 있습니다.
 
@@ -20,36 +18,28 @@
 
 이러한 상황 속에서, 많은 사람들이 편하게 서로의 배달 음식 ∙ 음식 재료를 원하는 장소에서 나눠 가질 수 있도록 하고자, 우리는 [SHARE PLATE](https://d3ew6nkgwjgkva.cloudfront.net)를 만들었습니다.
 
-### **`기간`**
+### **기간**
 
 2022.07.18 - 2022.10.31
 
-### **`LINKS`**
+### **LINKS**
 
-#### **GITHUB [https://github.com/HJKL2022](https://github.com/HJKL2022)**
-
-#### **NOTION [https://gusty-art-6de.notion.site/8097bc3aa3b142778ddbd40153188619](https://www.notion.so/c5352a8d177346aeb36f49e26e59cac1)**
-
-#### **API DOCS [https://louie-03.com/docs/index.html](https://louie-03.com/docs/index.html)**
-
-#### **SERVER**
-
-- ##### **`BACKEND` [https://louie-03.com](http://louie-03.com/login/form)**
-
-- ##### **`FRONTEND(PAGE LINK)` [https://d3ew6nkgwjgkva.cloudfront.net](https://d3ew6nkgwjgkva.cloudfront.net/)**
-
----
+- **[GITHUB](https://github.com/HJKL2022)**
+- **[NOTION](https://www.notion.so/c5352a8d177346aeb36f49e26e59cac1)**
+- **[API DOCS](https://louie-03.com/docs/index.html)**
+- **[SERVER(BACKEND)](http://louie-03.com)**
+- **[SERVER(FRONTEND)](https://d3ew6nkgwjgkva.cloudfront.net/)**
 
 ## **MEMBERS**
 
-### **`BACKEND`**
+### **BACKEND**
 
 - **정현석(Louie)**
   [**GITHUB**](https://github.com/Louie-03)
 - **한승연(Hanse)**
   [**GITHUB**](https://github.com/rkolx)
 
-### **`FRONTEND`**
+### **FRONTEND**
 
 - **전한용(JinJeon)**
   **[GITHUB](https://github.com/JinJeon)**
@@ -58,12 +48,10 @@
   **[GITHUB](https://github.com/Han-Seung-Chan)**
   **[BLOG](https://velog.io/@pon06188)**
 
-### **`DESIGN`**
+### **DESIGN**
 
 - **홍준표**
   [**PORTFOLIO**](https://www.notion.so/341b4d294dd34058b41ea2087476377f)
-
----
 
 ## **SKILL STACK**
 
@@ -83,19 +71,13 @@
 
 ![Untitled](./images/common.png)
 
----
-
 ## **DESIGN**
 
 ![images.png](./images/images.png)
 
----
-
 ## **FLOW CHART**
 
 ![Untitled](./images/workflow.png)
-
----
 
 ## **ERD**
 
