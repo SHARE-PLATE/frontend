@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
 import {
@@ -38,12 +38,14 @@ const ShareDetail = () => {
   const [writerSharesData, setWriterSharesData] = useState<ShareRecommendationType[]>([]);
   const { lat, lng } = useRecoilValue(currentLatitudeLongitude);
   const [isInfoBar, setIsInfoBar] = useState(false);
+  const loadingRef = useRef<boolean>();
   const navigate = useNavigate();
   const isTop = useIsTopState();
   const infoRef = useCallback((infoDiv: HTMLDivElement) => {
-    const infoRefObserver = new IntersectionObserver(([entry]) =>
-      setIsInfoBar(!entry.isIntersecting),
-    );
+    const infoRefObserver = new IntersectionObserver(([entry]) => {
+      if (loadingRef.current) return;
+      setIsInfoBar(!entry.isIntersecting);
+    });
     if (infoDiv) infoRefObserver.observe(infoDiv);
   }, []);
 
@@ -81,12 +83,14 @@ const ShareDetail = () => {
   const getContents = () => {
     switch (state) {
       case 'loading':
+        loadingRef.current = true;
         return <Loading color='grey4' size={40} border={5} />;
       case 'hasError':
         return <ErrorWithButtons mention='쉐어 정보를 불러오지 못했습니다.' />;
       case 'hasValue':
         if (!contents || typeof contents === 'string')
           return <ErrorWithButtons mention={contents || '쉐어 정보를 불러오지 못했습니다.'} />;
+        loadingRef.current = false;
         return (
           <>
             <S.Wrapper>
