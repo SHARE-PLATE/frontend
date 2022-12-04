@@ -24,7 +24,7 @@
 
 ### **LINKS**
 
-- **[GITHUB](https://github.com/HJKL2022)**
+- **[GITHUB](https://github.com/SHARE-PLATE)**
 - **[PORTFOLIO](https://gusty-art-6de.notion.site/SHARE-PLATE-71a75ce4965344f3b3a46be4fb9f9411)**
 - **[NOTION](https://www.notion.so/c5352a8d177346aeb36f49e26e59cac1)**
 - **[API DOCS](https://louie-03.com/docs/index.html)**
