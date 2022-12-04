@@ -35,7 +35,8 @@ export const ShareDetailInfoBarWrapper = styled.div<{ isInfoBar: boolean }>`
 `;
 
 export const TopFixedWrapper = styled.div<{ isTop: boolean }>`
-  ${({ theme: { defaultPadding, colors }, isTop }) => css`
+  ${({ theme: { defaultPadding, colors, defaultWidth }, isTop }) => css`
+    ${defaultWidth};
     ${defaultPadding};
     background-color: ${colors.white1};
     position: fixed;
