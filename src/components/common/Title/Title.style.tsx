@@ -36,6 +36,11 @@ export const OptionButton = styled.button`
     ${fonts.small}
     color: ${colors.grey4};
     font-weight: 500;
+
+    :hover,
+    :active {
+      color: ${colors.black};
+    }
   `}
 `;
 
