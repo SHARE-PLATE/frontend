@@ -5,7 +5,7 @@ import { getLocalStorageInfo } from '@utils/localStorage';
 
 import { ADDRESS_RECENT } from './../constants/words';
 
-export type AddressRecentType = {
+export type AddressLocalStorageType = {
   id: string;
   lat: string | number;
   lng: string | number;
@@ -28,18 +28,25 @@ const getIsInfoRight = (info: any) => {
 
 const searchRecentListInfo = getLocalStorageInfo(SEARCH_RECENT) || [];
 const addressRecentInfo = getLocalStorageInfo(ADDRESS_RECENT) || [];
+const addressSelectedInfo = getLocalStorageInfo(ADDRESS_RECENT) || [];
 
 const isSearchRecentListInfo = getIsInfoRight(searchRecentListInfo);
 const isAddressRecentInfo = getIsInfoRight(addressRecentInfo);
+const isAddressSearchInfo = getIsInfoRight(addressSelectedInfo);
 
 export const searchRecent = atom<Map<string, SearchRecentType>>({
   key: 'searchRecent',
   default: new Map(isSearchRecentListInfo ? searchRecentListInfo : []),
 });
 
-export const addressRecentState = atom<Map<string, AddressRecentType>>({
+export const addressRecentState = atom<Map<string, AddressLocalStorageType>>({
   key: 'addressRecent',
   default: new Map(isAddressRecentInfo ? addressRecentInfo : []),
+});
+
+export const addressSelectedState = atom<Map<string, AddressLocalStorageType>>({
+  key: 'addressSelected',
+  default: new Map(isAddressSearchInfo ? addressSelectedInfo : []),
 });
 
 export const currentMapKey = atom({

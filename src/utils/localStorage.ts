@@ -1,9 +1,16 @@
-import { ACCESS_TOKEN, ADDRESS_RECENT, REFRESH_TOKEN, SEARCH_RECENT } from '@constants/words';
+import {
+  ACCESS_TOKEN,
+  ADDRESS_RECENT,
+  ADDRESS_SELECTED,
+  REFRESH_TOKEN,
+  SEARCH_RECENT,
+} from '@constants/words';
 
 export type LocalStorageKeyType =
   | typeof SEARCH_RECENT
   | typeof ACCESS_TOKEN
   | typeof REFRESH_TOKEN
+  | typeof ADDRESS_SELECTED
   | typeof ADDRESS_RECENT;
 
 export const getLocalStorageInfo = (key: LocalStorageKeyType) => {

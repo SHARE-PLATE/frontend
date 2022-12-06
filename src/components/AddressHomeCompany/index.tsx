@@ -3,11 +3,12 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { IconsType } from '@assets/icons';
 import * as S from '@components/AddressHomeCompany/AddressHomeCompany.style';
 import Icon from '@components/common/Icon';
-import { COMPANY, HOME } from '@constants/words';
+import { ADDRESS_SELECTED, COMPANY, HOME } from '@constants/words';
 import { addressOptionState } from '@store/address';
 import { addressRecentState } from '@store/localStorage';
 import { currentLatitudeLongitude, currentLocation, shareLocationState } from '@store/location';
 import { portalState } from '@store/portal';
+import { setLocalStorageInfo } from '@utils/localStorage';
 
 type HomeCompanyType = typeof HOME | typeof COMPANY;
 
@@ -32,10 +33,15 @@ const AddressHomeCompany = ({ type, iconName, textKor, textAdd }: AddressHomeCom
 
   const handleClick = () => {
     if (registeredAddress) {
-      const { lat, lng, place_name } = registeredAddress;
+      const { lat, lng, place_name, road_address_name, id, address_name } = registeredAddress;
+
       if (addressOption === 'LOCATION') {
         setCurLocation(place_name || '');
         setCurLatitudeLongitude({ lat, lng });
+        setLocalStorageInfo({
+          key: ADDRESS_SELECTED,
+          info: [type, { lat, lng, place_name, road_address_name, address_name, id }],
+        });
       }
       if (addressOption === 'SHARE') {
         setPortal(null);

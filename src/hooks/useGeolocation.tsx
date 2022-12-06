@@ -5,6 +5,7 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 import { getRegionWithGeo } from '@api/address';
 import { defaultLat, defaultLng, defaultLocation } from '@constants/defaultLocation';
 import { currentLocation, currentLatitudeLongitude, currentAddressName } from '@store/location';
+import { getLocalStorageInfo } from '@utils/localStorage';
 
 interface locationType {
   loaded: boolean;
@@ -23,10 +24,14 @@ const useGeolocation = () => {
   const setCurAddressName = useSetRecoilState(currentAddressName);
   const [{ lat: curLat, lng: curLng }, setCurLatLng] = useRecoilState(currentLatitudeLongitude);
 
+  const prevAddressSelected = getLocalStorageInfo('addressSelected');
+
   // 성공에 대한 로직
   const onSuccess = async ({ coords: { latitude: lat, longitude: lng } }: OnSuccessParamsType) => {
     const regionData = await getRegionWithGeo({ x: lng, y: lat });
     const { address_name } = regionData;
+    const isDefault =
+      curLat === defaultLat && curLng === defaultLng && curLocation === defaultLocation;
 
     setLocation({
       loaded: true,
@@ -36,7 +41,12 @@ const useGeolocation = () => {
       },
     });
 
-    if (curLat === defaultLat && curLng === defaultLng && curLocation === defaultLocation) {
+    if (prevAddressSelected) {
+      const { lat: latSelected, lng: lngSelected, place_name } = prevAddressSelected[1];
+      setCurLocation(place_name);
+      setCurAddressName(place_name);
+      setCurLatLng({ lat: latSelected, lng: lngSelected });
+    } else if (isDefault) {
       setCurLocation(address_name);
       setCurAddressName(address_name);
       setCurLatLng({ lat, lng });

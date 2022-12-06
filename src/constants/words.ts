@@ -33,6 +33,7 @@ export const COMPANY = 'COMPANY';
 export const AUTHORIZATION = 'Authorization';
 export const ACCESS_TOKEN = 'access-token';
 export const ADDRESS_RECENT = 'addressRecent';
+export const ADDRESS_SELECTED = 'addressSelected';
 export const REFRESH_TOKEN = 'refresh-token';
 export const SEARCH_RECENT = 'searchRecent';
 export const SEARCH_TIP = '검색 TIP';

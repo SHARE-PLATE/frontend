@@ -8,6 +8,7 @@ import Icon from '@components/common/Icon';
 import { checkAddressWithMap } from '@constants/mentions';
 import {
   ADDRESS_RECENT,
+  ADDRESS_SELECTED,
   COMPANY,
   COMPANY_KOR,
   DETAIL_ADDRESS,
@@ -52,33 +53,54 @@ const AddressDetail = ({
     setFixedAddress(target === fixedAddress ? '' : target);
   };
 
-  const handleClickFinishBtn = () => {
-    if (!lat || !lng || !place_name || !id || !road_address_name || !address_name) return;
-
-    // change HOME or COMPANY
-    const newAddressRecent = new Map(addressRecent);
-    newAddressRecent.set(id, { lat, lng, place_name, road_address_name, address_name, id });
-
-    // reset and close portal
+  const closePortal = () => {
     resetSelectedAddressState();
     setPortal(null);
     setIsSearching(false);
+  };
+
+  const handleClickFinishBtn = () => {
+    if (!lat || !lng || !place_name || !id || !road_address_name || !address_name) return;
+
+    closePortal();
+
+    const savedId = fixedAddress.length ? fixedAddress : id;
+    const newAddressRecent = new Map(addressRecent);
+    newAddressRecent.set(savedId, {
+      lat,
+      lng,
+      place_name,
+      road_address_name,
+      address_name,
+      id: savedId,
+    });
 
     // set location atoms or share location atoms
     if (addressOption === 'LOCATION') {
       setLatitudeLongitude({ lat, lng });
       setLocation(place_name);
       setAddressName(address_name);
+      setLocalStorageInfo({
+        key: ADDRESS_SELECTED,
+        info: [savedId, { lat, lng, place_name, road_address_name, address_name, id: savedId }],
+      });
     }
     if (addressOption === 'SHARE') {
-      setShareLocation({ lat, lng, road_address_name });
+      setShareLocation({ lat, lng, road_address_name, place_name });
     }
 
     // set address recent in atom, local storage
     if (fixedAddress !== '') {
       // remove this line if alert modal is applied
       if (addressRecent.get(fixedAddress)) console.error(`${fixedAddress} CHANGED!`);
-      setHomeCompany({ target: fixedAddress, lat, lng, place_name, road_address_name });
+      setHomeCompany({
+        target: fixedAddress,
+        lat,
+        lng,
+        place_name,
+        road_address_name,
+        id: savedId,
+      });
     } else {
       setAddressRecent(newAddressRecent);
       setLocalStorageInfo({ key: ADDRESS_RECENT, info: [...newAddressRecent] });
