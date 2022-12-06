@@ -113,7 +113,8 @@ const PreviewShareListLeftImage = ({
   if (count && list.length % 2 && list.length < count)
     list.push(<S.Container key={getRandomKey()}></S.Container>);
 
-  if (!list.length) list.push(<S.NoListWrapper>{noRelatedShareList}</S.NoListWrapper>);
+  if (!list.length)
+    list.push(<S.NoListWrapper key={getRandomKey()}>{noRelatedShareList}</S.NoListWrapper>);
 
   return <S.Wrapper>{list}</S.Wrapper>;
 };
