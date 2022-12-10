@@ -9,7 +9,7 @@ import LoginPortal from '@portals/LoginPortal';
 import OptionPortal from '@portals/OptionPortal';
 import SearchPortal from '@portals/SearchPortal';
 import { routes } from '@router';
-import useConnectSocket from '@socket/useConnectSocket';
+import { useConnectSocket } from '@socket/useConnectSocket';
 import Styles from '@styles';
 import { setAppHeight } from '@styles/GlobalStyle';
 
@@ -18,8 +18,8 @@ const App = () => {
   const connectSocket = useConnectSocket();
 
   useCheckIsLogin();
-  connectSocket();
   setAppHeight();
+  connectSocket();
 
   return (
     <div className='App'>
