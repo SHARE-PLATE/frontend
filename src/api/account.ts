@@ -24,6 +24,7 @@ export const getLoginPage = async () => {
 
 export const useLogin = (code: string | null) => {
   const setThumbnailImageInfo = useSetRecoilState(thumbnailImageUrl);
+  const setIsLoginTrigger = useSetRecoilState(isLoginTriggerState);
 
   return async () => {
     const response = await axios.post(API.LOGIN, { code }).catch((error: Error | AxiosError) => {
@@ -45,6 +46,7 @@ export const useLogin = (code: string | null) => {
       ];
 
       setThumbnailImageInfo(data.thumbnailImageUrl);
+      setIsLoginTrigger((prev) => prev + 1);
       localStorageData.forEach((data) => setLocalStorageInfo(data));
 
       return true;
