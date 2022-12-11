@@ -4,6 +4,8 @@ import { v4 as getRandomKey } from 'uuid';
 import { getChatroomIds, getChatroomsData, getChatsUnread } from '@api/chat';
 import { ChatroomIdsType, ChatroomsStateType, ChatroomsUpdate } from '@type/chat';
 
+import { socketConnectTrigger } from './socket';
+
 const maximalChatCount = 999;
 
 export const activeChatroomsState = atom<ChatroomsStateType>({
@@ -54,6 +56,7 @@ export const chatroomIdsState = selector<ChatroomIdsType | undefined>({
   key: 'GET/chatroomIds',
   get: async ({ get }) => {
     get(chatroomIdsTrigger);
+    get(socketConnectTrigger);
     const data = await getChatroomIds();
     return data;
   },

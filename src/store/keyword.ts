@@ -3,6 +3,8 @@ import { v4 as createRandomKey } from 'uuid';
 
 import { getKeywordListData, getRegisteredKeywords } from '@api/keyword';
 
+import { socketConnectTrigger } from './socket';
+
 export const keywordListTrigger = atom<number>({
   key: `keywordListTrigger/${createRandomKey()}`,
   default: 0,
@@ -22,6 +24,7 @@ export const getKeywordListsData = selector({
   key: `GET/getKeywordListsData/${createRandomKey()}`,
   get: async ({ get }) => {
     get(keywordListTrigger);
+    get(socketConnectTrigger);
     const keywordListData = await getKeywordListData();
     return keywordListData;
   },

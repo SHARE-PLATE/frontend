@@ -3,6 +3,7 @@ import { useResetRecoilState, useSetRecoilState } from 'recoil';
 
 import { API } from '@constants/api';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '@constants/words';
+import { socketConnectTrigger } from '@store/socket';
 import { isLoginTriggerState, thumbnailImageUrl } from '@store/user';
 import { getAuthHeaders } from '@utils/getAuthHeaders';
 import getTokenHeaders from '@utils/getTokenHeaders';
@@ -24,6 +25,8 @@ export const getLoginPage = async () => {
 
 export const useLogin = (code: string | null) => {
   const setThumbnailImageInfo = useSetRecoilState(thumbnailImageUrl);
+  const setIsLoginTrigger = useSetRecoilState(isLoginTriggerState);
+  const setSocketConnectTrigger = useSetRecoilState(socketConnectTrigger);
 
   return async () => {
     const response = await axios.post(API.LOGIN, { code }).catch((error: Error | AxiosError) => {
@@ -44,8 +47,10 @@ export const useLogin = (code: string | null) => {
         { key: REFRESH_TOKEN, info: headers[REFRESH_TOKEN] },
       ];
 
-      setThumbnailImageInfo(data.thumbnailImageUrl);
       localStorageData.forEach((data) => setLocalStorageInfo(data));
+      setThumbnailImageInfo(data.thumbnailImageUrl);
+      setIsLoginTrigger((prev) => prev + 1);
+      setSocketConnectTrigger((prev) => prev + 1);
 
       return true;
     }
