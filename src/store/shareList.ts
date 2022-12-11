@@ -7,6 +7,7 @@ import { activeShareList } from '@store/filterShareList';
 import { currentLatitudeLongitude } from '@store/location';
 
 import { LatitudeLongitudeType } from './location';
+import { socketConnectTrigger } from './socket';
 
 export const shareListTrigger = atom<number>({
   key: `shareListTrigger/${getRandomKey()}`,
@@ -52,6 +53,7 @@ export const shareListEntriesState = selector({
   key: 'shareListEntries',
   get: async ({ get }) => {
     get(shareListEntriesStateTrigger);
+    get(socketConnectTrigger);
     const shareListEntriesData = await getShareListEntries();
     return shareListEntriesData;
   },

@@ -12,3 +12,8 @@ export const retryConenctSocketTimeState = atom<number>({
   key: 'retryConenctSocketTimeState',
   default: 0,
 });
+
+export const socketConnectTrigger = atom<number>({
+  key: 'socketConnectTrigger',
+  default: 0,
+});
