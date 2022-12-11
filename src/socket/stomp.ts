@@ -43,13 +43,12 @@ export const getStompClient = () => {
   const sockServer = API.WEBSOCKET; // 들어갈 주소 설정
   const sock = new SockJs(sockServer);
   const newStompClient = StompJs.over(sock);
+  if (stompClient) disconnectStomp();
   stompClient = newStompClient;
 };
 export const keywordMap = new Map<number, string>();
 export const entryMap = new Map<number, string>();
 export const chatMap = new Map<number, string>();
-
-getStompClient();
 
 export const subscribeChat = ({
   onReceiveChat,

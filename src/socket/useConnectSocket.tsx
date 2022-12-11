@@ -42,9 +42,11 @@ export const useConnectSocket = () => {
   };
 
   const connectSocket = () => {
+    console.log('hi');
     if (!subscribedIds || !isLogin) return;
 
     const { entryIds, keywordIds, chatroomIds } = subscribedIds;
+    getStompClient();
 
     connectStomp({
       onError: retryConnectSocket,
