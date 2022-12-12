@@ -19,7 +19,7 @@ export const useConnectSocket = () => {
   const updateChat = useUpdateChat();
   const retryConnectSocketTime = useRef(0);
 
-  const checkSocketConnected = () => {
+  const markSocketConnected = () => {
     retryConnectSocketTime.current = 0;
     setSocketConnect('connected');
   };
@@ -45,19 +45,13 @@ export const useConnectSocket = () => {
   const connectSocket = () => {
     if (!subscribedIds || socketConnect !== 'connecting') return;
 
-    const { entryIds, keywordIds, chatroomIds } = subscribedIds;
-
     getStompClient();
     connectStomp({
       onError: retryConnectSocket,
-      onConnect: checkSocketConnected,
-      noticeParams: {
-        entryIds,
-        keywordIds,
-        onSubscribeEntries: updateNotice,
-        onSubscribeKeywords: updateNotice,
-      },
-      chatParams: { chatroomIds, onReceiveChat: updateChat },
+      onConnect: markSocketConnected,
+      onReceiveChat: updateChat,
+      onReceiveNotice: updateNotice,
+      ...subscribedIds,
     });
   };
 
