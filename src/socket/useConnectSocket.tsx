@@ -1,54 +1,52 @@
-import { useState } from 'react';
+import { useEffect, useRef } from 'react';
 
-import { useRecoilState, useResetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 
-import {
-  retryConenctSocketTimeState,
-  retryConnectSocketInterval,
-  retryConnectSocketTimeMax,
-  socketConnectState,
-} from '@store/socket';
+import { socketConnectState } from '@store/socket';
 
-import { connectStomp, getStompClient } from './stomp';
+import { connectStomp, disconnectStomp, getStompClient } from './stomp';
 import { useSubscribedIds } from './useSubscribedIds';
 import { useUpdateChat } from './useUpdateChat';
 import { useUpdateNotice } from './useUpdateNotice';
 
+export const retryConnectSocketInterval = 5000; // ms
+export const retryConnectSocketTimeMax = 10 * 60 * 1000; // 10mins
+
 export const useConnectSocket = () => {
   const subscribedIds = useSubscribedIds();
-  const [retryConnectSocketTime, setRetryConnectSocketTime] = useRecoilState(
-    retryConenctSocketTimeState,
-  );
-  const resetRetryConnectSocketTime = useResetRecoilState(retryConenctSocketTimeState);
   const [socketConnect, setSocketConnect] = useRecoilState(socketConnectState);
   const updateNotice = useUpdateNotice();
   const updateChat = useUpdateChat();
-  const [socketConnecting, setSocketConnecting] = useState(false);
+  const retryConnectSocketTime = useRef(0);
 
   const checkSocketConnected = () => {
-    resetRetryConnectSocketTime();
-    setSocketConnecting(false);
-    setSocketConnect(true);
+    retryConnectSocketTime.current = 0;
+    setSocketConnect('connected');
+  };
+
+  const startConnectingSocket = () => setSocketConnect('connecting');
+
+  const disconnectSocket = () => {
+    if (socketConnect === 'disconnected') return;
+
+    disconnectStomp();
+    setSocketConnect('disconnected');
   };
 
   const retryConnectSocket = () => {
-    if (retryConnectSocketTime > retryConnectSocketTimeMax) return;
-    if (socketConnect) return;
+    if (retryConnectSocketTime.current > retryConnectSocketTimeMax) return;
 
-    setRetryConnectSocketTime((prev) => (prev += retryConnectSocketInterval));
-    setSocketConnect(false);
-    setTimeout(() => {
-      getStompClient();
-      connectSocket();
-    }, retryConnectSocketInterval);
+    retryConnectSocketTime.current += retryConnectSocketInterval;
+    disconnectSocket();
+
+    setTimeout(() => startConnectingSocket(), retryConnectSocketInterval);
   };
 
   const connectSocket = () => {
-    if (!subscribedIds || socketConnecting || socketConnect) return;
+    if (!subscribedIds || socketConnect !== 'connecting') return;
 
     const { entryIds, keywordIds, chatroomIds } = subscribedIds;
 
-    setSocketConnecting(true);
     getStompClient();
     connectStomp({
       onError: retryConnectSocket,
@@ -61,9 +59,13 @@ export const useConnectSocket = () => {
       },
       chatParams: { chatroomIds, onReceiveChat: updateChat },
     });
-
-    window.addEventListener('offline', retryConnectSocket);
   };
+
+  window.addEventListener('offline', retryConnectSocket);
+
+  useEffect(() => {
+    startConnectingSocket();
+  }, []);
 
   return connectSocket;
 };
