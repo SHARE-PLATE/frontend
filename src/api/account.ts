@@ -42,7 +42,7 @@ export const useLogin = (code: string | null) => {
       return false;
     } else {
       const { data, headers } = response;
-      const localStorageData: { key: LocalStorageKeyType; info: string }[] = [
+      const localStorageData: { key: LocalStorageKeyType; info?: string }[] = [
         { key: ACCESS_TOKEN, info: headers[ACCESS_TOKEN] },
         { key: REFRESH_TOKEN, info: headers[REFRESH_TOKEN] },
       ];

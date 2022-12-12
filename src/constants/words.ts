@@ -79,3 +79,5 @@ export const EXIT_CHATROOM = '채팅방 나가기';
 export const DELETE_PROFILE_PICTURE = '프로필 사진 삭제';
 export const SELECT_ALBUM = '앨범에서 선택';
 export const SELECT = '선택';
+export const APPLICATION_JSON = 'application/json';
+export const CONTENT_TYPE = 'Content-Type';
