@@ -41,7 +41,7 @@ type ConnectStompParamsType = Pick<SubscribeNoticeParamsType, 'onReceiveNotice'>
 
 let stompClient: StompJs.Client;
 
-const isStompConsole = true;
+const isStompConsole = process.env.NODE_ENV === 'development';
 
 export const getStompClient = () => {
   const sockServer = API.WEBSOCKET; // 들어갈 주소 설정
