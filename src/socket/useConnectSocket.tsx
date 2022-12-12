@@ -1,4 +1,6 @@
-import { useRecoilState, useRecoilValueLoadable, useResetRecoilState } from 'recoil';
+import { useState } from 'react';
+
+import { useRecoilState, useResetRecoilState } from 'recoil';
 
 import {
   retryConenctSocketTimeState,
@@ -6,7 +8,6 @@ import {
   retryConnectSocketTimeMax,
   socketConnectState,
 } from '@store/socket';
-import { isLoginState } from '@store/user';
 
 import { connectStomp, getStompClient } from './stomp';
 import { useSubscribedIds } from './useSubscribedIds';
@@ -15,7 +16,6 @@ import { useUpdateNotice } from './useUpdateNotice';
 
 export const useConnectSocket = () => {
   const subscribedIds = useSubscribedIds();
-  const { contents: isLogin } = useRecoilValueLoadable(isLoginState);
   const [retryConnectSocketTime, setRetryConnectSocketTime] = useRecoilState(
     retryConenctSocketTimeState,
   );
@@ -23,9 +23,11 @@ export const useConnectSocket = () => {
   const [socketConnect, setSocketConnect] = useRecoilState(socketConnectState);
   const updateNotice = useUpdateNotice();
   const updateChat = useUpdateChat();
+  const [socketConnecting, setSocketConnecting] = useState(false);
 
   const checkSocketConnected = () => {
     resetRetryConnectSocketTime();
+    setSocketConnecting(false);
     setSocketConnect(true);
   };
 
@@ -42,12 +44,12 @@ export const useConnectSocket = () => {
   };
 
   const connectSocket = () => {
-    console.log('hi');
-    if (!subscribedIds || !isLogin) return;
+    if (!subscribedIds || socketConnecting || socketConnect) return;
 
     const { entryIds, keywordIds, chatroomIds } = subscribedIds;
-    getStompClient();
 
+    setSocketConnecting(true);
+    getStompClient();
     connectStomp({
       onError: retryConnectSocket,
       onConnect: checkSocketConnected,
