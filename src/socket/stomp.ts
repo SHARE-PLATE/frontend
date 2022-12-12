@@ -39,17 +39,18 @@ type ConnectStompParamsType = {
 
 let stompClient: StompJs.Client;
 
+const isStompConsole = false;
+
 export const getStompClient = () => {
   const sockServer = API.WEBSOCKET; // 들어갈 주소 설정
   const sock = new SockJs(sockServer);
   const newStompClient = StompJs.over(sock);
   stompClient = newStompClient;
 };
+
 export const keywordMap = new Map<number, string>();
 export const entryMap = new Map<number, string>();
 export const chatMap = new Map<number, string>();
-
-getStompClient();
 
 export const subscribeChat = ({
   onReceiveChat,
@@ -116,7 +117,7 @@ export const connectStomp = ({
 }: ConnectStompParamsType) => {
   const headers = getAuthHeaders();
   try {
-    stompClient.debug = () => null;
+    if (!isStompConsole) stompClient.debug = () => null;
     stompClient.connect(
       headers,
       () => {
@@ -133,15 +134,13 @@ export const connectStomp = ({
   }
 };
 
-export const unsubscribeStomp = (id?: string) => {
-  stompClient.unsubscribe(id || '');
+export const unsubscribeStomp = (id: string) => {
+  stompClient.unsubscribe(id);
 };
 
 export const disconnectStomp = (onDisconnect?: () => void) => {
   try {
-    stompClient.debug = () => null;
     stompClient.disconnect(() => {
-      unsubscribeStomp();
       onDisconnect && onDisconnect();
     });
   } catch (error) {

@@ -79,7 +79,7 @@ const ChatroomDetailContents = ({
 
   useEffect(() => {
     // when use question chat in share detail page
-    if (!stompId && socketConnect)
+    if (!stompId && socketConnect === 'connected')
       subscribeChat({ onReceiveChat: updateChat, chatroomId: chatRoomMemberId });
 
     // delete updated info when occurs in this page (updated info should exists for chatrooms page not chatroom detail page)

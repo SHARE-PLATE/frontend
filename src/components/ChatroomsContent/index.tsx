@@ -53,7 +53,7 @@ const ChatroomsContent = ({ data }: ChatroomsContentPropsType) => {
     const response = await deleteChatroomData(id);
     if (response.status === 200) {
       const stompId = chatMap.get(chatRoomMemberId);
-      unsubscribeStomp(stompId);
+      stompId && unsubscribeStomp(stompId);
       setChatroomsTrigger((trigger) => trigger + 1);
       setDeletedId(null);
     }

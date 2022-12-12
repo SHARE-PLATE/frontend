@@ -27,12 +27,12 @@ const TopFixedWaring = ({ text, isShowed, otherStyle }: TopFixedWarningPropsType
 
   useEffect(() => {
     if (!timeOver) return;
-    setIsConnected(socketConnect);
+    setIsConnected(socketConnect === 'connected');
   }, [socketConnect]);
 
   useTimeout(() => {
     setTimeOver(true);
-    setIsConnected(socketConnect);
+    setIsConnected(socketConnect === 'connected');
   }, waitingCheckTime);
 
   return (
