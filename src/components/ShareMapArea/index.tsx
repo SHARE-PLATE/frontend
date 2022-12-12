@@ -58,14 +58,14 @@ const ShareMapArea = () => {
   };
 
   const drawShareList = () => {
-    if (dataState !== 'hasValue' || !contents) return;
+    if (dataState !== 'hasValue' || !contents || !contents.data) return;
     if (markers.length) {
       markers.forEach((marker) => marker.setMap(null));
       setMarkers([]);
     }
     const newMarkers: any = [];
 
-    contents.forEach(({ latitude, longitude, id }) => {
+    contents.data.forEach(({ latitude, longitude, id }) => {
       const content = document.createElement('button');
       const position = new kakao.maps.LatLng(latitude, longitude);
       content.onclick = () => {

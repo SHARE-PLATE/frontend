@@ -1,10 +1,12 @@
 import axios, { AxiosError } from 'axios';
 
 import { API } from '@constants/api';
+import { unexpectedErrorOccursMention } from '@constants/mentions';
 import { DELIVERY, ENTRY, INGREDIENTS } from '@constants/words';
 import { activeShareListType } from '@store/filterShareList';
 import { LatitudeLongitudeType } from '@store/location';
 import { ShareDetailType, ShareListType, ShareWriterType } from '@type/shareList';
+import { createClient, checkError } from '@utils/api';
 import { getAuthHeaders } from '@utils/getAuthHeaders';
 
 type MineType = 'entry' | 'writer' | 'wish';
@@ -27,13 +29,18 @@ export type GetShareListEntriesDataType = {
 
 export const getShareListData = async ({ type, location, keyword }: GetShareListDataParamsType) => {
   const params = { type, latitude: location.lat, longitude: location.lng, keyword };
+  const { client, result } = createClient<ShareListType[]>({ address: 'shares' });
 
   try {
-    const response = await axios.get<ShareListType[]>(API.SHARE_LIST, { params });
-    return response.data;
-  } catch (err) {
-    console.log(err);
+    const { data } = await client.get<ShareListType[]>('', { params });
+    result.isSuccess = true;
+    result.data = data;
+  } catch (error) {
+    const { message, errorCode } = checkError(error);
+    result.errorMessage = errorCode ? unexpectedErrorOccursMention : message;
   }
+
+  return result;
 };
 
 export const deleteShare = async ({ id }: { id: number }) => {

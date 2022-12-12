@@ -11,13 +11,20 @@ type UseFetchParamsType = {
   isAuth?: boolean;
 };
 
-type ErrorDataType = { message: string };
+type ErrorDataType = { message: string; errorCode?: string };
+
+type ResultType<T> = {
+  isSuccess: boolean;
+  data?: T;
+  errorMessage?: string;
+};
 
 const serverApiAddress = process.env.REACT_APP_BASE_URL;
 
-export const createClient = ({ address, isContentType, isAuth }: UseFetchParamsType) => {
+export const createClient = <T>({ address, isContentType, isAuth }: UseFetchParamsType) => {
   const baseURL = `${serverApiAddress}/${address}`;
   const headers: RawAxiosRequestHeaders = {};
+  const result: ResultType<T> = { isSuccess: false };
 
   if (isContentType) {
     headers[CONTENT_TYPE] = APPLICATION_JSON;
@@ -29,15 +36,15 @@ export const createClient = ({ address, isContentType, isAuth }: UseFetchParamsT
 
   const client = axios.create({ baseURL, headers });
 
-  return client;
+  return { client, result };
 };
 
-export const checkError = (error: any) => {
+export const checkError = (error: any): ErrorDataType => {
   const { response } = error as AxiosError<ErrorDataType>;
   if (!response) {
     console.error(error);
-    return unexpectedErrorOccursMention;
+    return { message: unexpectedErrorOccursMention };
   } else {
-    return response.data.message;
+    return response.data;
   }
 };

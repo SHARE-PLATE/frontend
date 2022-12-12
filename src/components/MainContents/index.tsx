@@ -24,12 +24,16 @@ const MainContents = () => {
   const navigate = useNavigate();
   const setActiveShareList = useSetRecoilState(activeShareList);
 
-  const getData = async () => {
-    const deliveryFetchData = await getShareListData({ type: 'delivery', location });
-    const ingredientFetchData = await getShareListData({ type: 'ingredient', location });
+  const getData = async (type: activeShareListType) => {
+    const { data, isSuccess } = await getShareListData({ type, location });
 
-    setDeliveryData(deliveryFetchData);
-    setIngredientData(ingredientFetchData);
+    const setter = {
+      delivery: setDeliveryData,
+      ingredient: setIngredientData,
+    };
+
+    if (!isSuccess) setter[type]([]);
+    if (isSuccess && data) setter[type](data);
   };
 
   const navigateToShareList = (shareListType: activeShareListType) => {
@@ -39,7 +43,8 @@ const MainContents = () => {
   };
 
   useEffect(() => {
-    getData();
+    getData('delivery');
+    getData('ingredient');
   }, [location]);
 
   return (

@@ -15,6 +15,7 @@ import PreviewShareListBigSizeImage from '@components/PreviewShareListBigSizeIma
 import PreviewShareListLeftImage from '@components/PreviewShareListLeftImage';
 import * as S from '@components/ShareListSlide/ShareListSlide.style';
 import Icon from '@components/common/Icon';
+import { unexpectedErrorOccursMention } from '@constants/mentions';
 import { AROUND_SHARE_LIST } from '@constants/words';
 import { activeShareList } from '@store/filterShareList';
 import { currentLatitudeLongitude } from '@store/location';
@@ -110,8 +111,10 @@ const ShareListSlide = ({ isActive, setIsActive }: ShareListSlidePropsType) => {
   const getListContent = () => {
     switch (state) {
       case 'hasValue':
-        if (!contents) return;
-        const sortedData = getSortData('recency', contents);
+        if (!contents.data) return <S.Error>{unexpectedErrorOccursMention}</S.Error>;
+
+        const { data } = contents;
+        const sortedData = getSortData('recency', data);
         const clickedData = sortedData.find((value) => value.id === clickedShareId);
         const isClicked = clickedShareId !== null && !!clickedData;
 

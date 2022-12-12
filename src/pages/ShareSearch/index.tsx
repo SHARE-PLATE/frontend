@@ -58,8 +58,9 @@ const ShareSearch = () => {
 
   const getShareList = async () => {
     const location = { lat, lng };
-    const shareListData = await getShareListData({ location, keyword: searchRecentValue });
-    setSearchData(shareListData);
+    const { isSuccess, data } = await getShareListData({ location, keyword: searchRecentValue });
+    if (!isSuccess || !data) return;
+    setSearchData(data);
   };
 
   const handleSubmitClick = async () => {
@@ -124,7 +125,7 @@ const ShareSearch = () => {
         <S.AddKeywordButton onClick={handleSubmitClick}>
           <Icon iconName='NoticeFill' />
           <S.KeywordContent>{searchRecentValue}</S.KeywordContent>
-          <S.Text> 알림 받기</S.Text>
+          <S.Text>알림 받기</S.Text>
         </S.AddKeywordButton>
       )}
 
