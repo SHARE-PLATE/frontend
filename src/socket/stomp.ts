@@ -17,29 +17,31 @@ import { getAuthHeaders } from '@utils/getAuthHeaders';
 
 type SendChatParamsType = { contents: string; chatroomId: number };
 
-type subscribeNoticeParamsType = {
-  entryIds: number[];
-  keywordIds: number[];
-  onSubscribeEntries: (entryData: StompJs.Message) => void;
-  onSubscribeKeywords: (keywordData: StompJs.Message) => void;
+type OnReceiveStompMessageType = (message: StompJs.Message) => void;
+
+type SubscribeNoticeParamsType = {
+  ids: number[];
+  onReceiveNotice: OnReceiveStompMessageType;
+  type: typeof ENTRIES | typeof KEYWORDS;
 };
 
-type subscribeChatParamsType = {
-  onReceiveChat: (chatData: StompJs.Message) => void;
-  chatroomId?: number;
-  chatroomIds?: number[];
+type SubscribeChatParamsType = {
+  ids: number[];
+  onReceiveChat: OnReceiveStompMessageType;
 };
 
-type ConnectStompParamsType = {
-  noticeParams: subscribeNoticeParamsType;
-  chatParams: subscribeChatParamsType;
-  onConnect: () => void;
-  onError: () => void;
-};
+type ConnectStompParamsType = Pick<SubscribeNoticeParamsType, 'onReceiveNotice'> &
+  Pick<SubscribeChatParamsType, 'onReceiveChat'> & {
+    chatroomIds: number[];
+    entryIds: number[];
+    keywordIds: number[];
+    onConnect: () => void;
+    onError: () => void;
+  };
 
 let stompClient: StompJs.Client;
 
-const isStompConsole = false;
+const isStompConsole = process.env.NODE_ENV === 'development';
 
 export const getStompClient = () => {
   const sockServer = API.WEBSOCKET; // 들어갈 주소 설정
@@ -52,53 +54,37 @@ export const keywordMap = new Map<number, string>();
 export const entryMap = new Map<number, string>();
 export const chatMap = new Map<number, string>();
 
-export const subscribeChat = ({
-  onReceiveChat,
-  chatroomId,
-  chatroomIds,
-}: subscribeChatParamsType) => {
-  const subscribeToStomp = (id: number) => {
-    const subscribeURL = `/${TOPIC}/${CHATROOM_MEMBERS}/${id}`;
-    const headers = getAuthHeaders();
-    const { id: stompId } = stompClient.subscribe(subscribeURL, onReceiveChat, headers);
-    chatMap.set(id, stompId);
-  };
-
-  if (chatroomId) subscribeToStomp(chatroomId);
-  if (chatroomIds) chatroomIds.forEach((id) => subscribeToStomp(id));
+type SubscribeStompClientParamsType = {
+  subscribeURL: string;
+  onReceiveMessage: (message: StompJs.Message) => void;
 };
 
-const subscribeNotice = ({
-  entryIds,
-  keywordIds,
-  onSubscribeEntries,
-  onSubscribeKeywords,
-}: subscribeNoticeParamsType) => {
-  const subscribeURL = `/${QUEUE}/${NOTIFICATIONS}`;
+const subscribeStompClient = ({
+  subscribeURL,
+  onReceiveMessage,
+}: SubscribeStompClientParamsType) => {
+  const headers = getAuthHeaders();
+  const { id: stompId } = stompClient.subscribe(subscribeURL, onReceiveMessage, headers);
 
-  if (!!entryIds.length) {
-    entryIds.forEach((id) => {
-      const headers = getAuthHeaders();
-      const { id: stompId } = stompClient.subscribe(
-        subscribeURL + `/${ENTRIES}/${id}`,
-        onSubscribeEntries,
-        headers,
-      );
-      entryMap.set(id, stompId);
-    });
-  }
+  return stompId;
+};
 
-  if (!!keywordIds.length) {
-    keywordIds.forEach((id) => {
-      const headers = getAuthHeaders();
-      const { id: stompId } = stompClient.subscribe(
-        subscribeURL + `/${KEYWORDS}/${id}`,
-        onSubscribeKeywords,
-        headers,
-      );
-      keywordMap.set(id, stompId);
-    });
-  }
+export const subscribeChat = ({ onReceiveChat, ids }: SubscribeChatParamsType) => {
+  ids.forEach((id) => {
+    const subscribeURL = `/${TOPIC}/${CHATROOM_MEMBERS}/${id}`;
+    const stompId = subscribeStompClient({ subscribeURL, onReceiveMessage: onReceiveChat });
+    chatMap.set(id, stompId);
+  });
+};
+
+export const subscribeNotice = ({ ids, onReceiveNotice, type }: SubscribeNoticeParamsType) => {
+  const baseURL = `/${QUEUE}/${NOTIFICATIONS}`;
+
+  ids.forEach((id) => {
+    const subscribeURL = baseURL + `/${type}/${id}`;
+    const stompId = subscribeStompClient({ subscribeURL, onReceiveMessage: onReceiveNotice });
+    entryMap.set(id, stompId);
+  });
 };
 
 export const sendChat = ({ contents, chatroomId }: SendChatParamsType) => {
@@ -110,10 +96,13 @@ export const sendChat = ({ contents, chatroomId }: SendChatParamsType) => {
 };
 
 export const connectStomp = ({
-  noticeParams,
-  chatParams,
+  chatroomIds,
+  entryIds,
+  keywordIds,
   onConnect,
   onError,
+  onReceiveChat,
+  onReceiveNotice,
 }: ConnectStompParamsType) => {
   const headers = getAuthHeaders();
   try {
@@ -122,15 +111,14 @@ export const connectStomp = ({
       headers,
       () => {
         onConnect();
-        subscribeNotice(noticeParams);
-        subscribeChat(chatParams);
+        subscribeNotice({ ids: entryIds, onReceiveNotice, type: 'entries' });
+        subscribeNotice({ ids: keywordIds, onReceiveNotice, type: 'keywords' });
+        subscribeChat({ ids: chatroomIds, onReceiveChat });
       },
-      () => {
-        onError();
-      },
+      () => onError(),
     );
   } catch (error) {
-    console.log(error);
+    onError();
   }
 };
 

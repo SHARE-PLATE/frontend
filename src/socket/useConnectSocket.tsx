@@ -2,12 +2,11 @@ import { useEffect, useRef } from 'react';
 
 import { useRecoilState } from 'recoil';
 
+import { connectStomp, disconnectStomp, getStompClient } from '@socket/stomp';
+import { useSubscribedIds } from '@socket/useSubscribedIds';
+import { useUpdateChat } from '@socket/useUpdateChat';
+import { useUpdateNotice } from '@socket/useUpdateNotice';
 import { socketConnectState } from '@store/socket';
-
-import { connectStomp, disconnectStomp, getStompClient } from './stomp';
-import { useSubscribedIds } from './useSubscribedIds';
-import { useUpdateChat } from './useUpdateChat';
-import { useUpdateNotice } from './useUpdateNotice';
 
 export const retryConnectSocketInterval = 5000; // ms
 export const retryConnectSocketTimeMax = 10 * 60 * 1000; // 10mins
@@ -19,7 +18,7 @@ export const useConnectSocket = () => {
   const updateChat = useUpdateChat();
   const retryConnectSocketTime = useRef(0);
 
-  const checkSocketConnected = () => {
+  const markSocketConnected = () => {
     retryConnectSocketTime.current = 0;
     setSocketConnect('connected');
   };
@@ -45,19 +44,13 @@ export const useConnectSocket = () => {
   const connectSocket = () => {
     if (!subscribedIds || socketConnect !== 'connecting') return;
 
-    const { entryIds, keywordIds, chatroomIds } = subscribedIds;
-
     getStompClient();
     connectStomp({
       onError: retryConnectSocket,
-      onConnect: checkSocketConnected,
-      noticeParams: {
-        entryIds,
-        keywordIds,
-        onSubscribeEntries: updateNotice,
-        onSubscribeKeywords: updateNotice,
-      },
-      chatParams: { chatroomIds, onReceiveChat: updateChat },
+      onConnect: markSocketConnected,
+      onReceiveChat: updateChat,
+      onReceiveNotice: updateNotice,
+      ...subscribedIds,
     });
   };
 
