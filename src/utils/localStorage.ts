@@ -23,7 +23,7 @@ export const getLocalStorageInfo = (key: LocalStorageKeyType) => {
   }
 };
 
-export const setLocalStorageInfo = ({ key, info }: { key: LocalStorageKeyType; info: any }) => {
+export const setLocalStorageInfo = ({ key, info }: { key: LocalStorageKeyType; info?: any }) => {
   window.localStorage.setItem(key, JSON.stringify(info));
 };
 

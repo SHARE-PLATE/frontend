@@ -69,6 +69,7 @@ const ChatroomDetailContents = ({
 
   const changeBlockHeight = (height: number) => {
     setBlockHeight(height);
+    console.log('hi');
     scrollToBottom();
   };
 
@@ -91,8 +92,11 @@ const ChatroomDetailContents = ({
   useEffect(() => {
     if (chatRoomMemberId !== updatedId || !updatedChat) return;
     setCurChats((chats) => [...chats, updatedChat]);
-    scrollToBottom();
   }, [chatUpdateTrigger]);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [curChats]);
 
   return (
     <>
