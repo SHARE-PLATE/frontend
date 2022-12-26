@@ -1,12 +1,15 @@
 import axios, { AxiosError, RawAxiosRequestHeaders } from 'axios';
 
+import { APITestType } from '@constants/api';
 import { unexpectedErrorOccursMention } from '@constants/mentions';
 import { AUTHORIZATION, CONTENT_TYPE, APPLICATION_JSON } from '@constants/words';
 import { getIsString } from '@utils/getIsString';
 import { getLocalStorageInfoTest } from '@utils/localStorage';
 
+import { APITest } from './../constants/api';
+
 type UseFetchParamsType = {
-  address: string;
+  address: APITestType;
   isContentType?: boolean;
   isAuth?: boolean;
 };
@@ -22,7 +25,7 @@ type ResultType<T> = {
 const serverApiAddress = process.env.REACT_APP_BASE_URL;
 
 export const createClient = <T>({ address, isContentType, isAuth }: UseFetchParamsType) => {
-  const baseURL = `${serverApiAddress}/${address}`;
+  const baseURL = `${serverApiAddress}/${APITest[address]}`;
   const headers: RawAxiosRequestHeaders = {};
   const result: ResultType<T> = { isSuccess: false };
 

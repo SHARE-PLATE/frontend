@@ -29,7 +29,7 @@ export type GetShareListEntriesDataType = {
 
 export const getShareListData = async ({ type, location, keyword }: GetShareListDataParamsType) => {
   const params = { type, latitude: location.lat, longitude: location.lng, keyword };
-  const { client, result } = createClient<ShareListType[]>({ address: 'shares' });
+  const { client, result } = createClient<ShareListType[]>({ address: 'SHARE_LIST' });
 
   try {
     const { data } = await client.get<ShareListType[]>('', { params });

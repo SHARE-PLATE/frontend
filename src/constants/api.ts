@@ -32,3 +32,37 @@ export const API = {
   DELETE_HISTORY_LIST: (id: number) => `${apiAddressHead}/shares/${id}/entry`,
   DELETE_SALES: (id: number) => `${apiAddressHead}/shares/${id}`,
 };
+
+export const APITest = {
+  SHARE_LIST: `shares`,
+  SHARES_WRITER: `shares/writer`,
+  SHARE_RECOMMENDED: `shares/recommendation`,
+  SHARE_MINE: `shares/mine`,
+  CHATROOMS: `chatrooms`,
+  CHATROOM_MEMBERS: `chatroom-members`,
+  CHATS_UNREAD: `chats/unread`,
+  CHATROOM_IDS: `chatroom-members`,
+  CHAT_UPDATE_READ_TIME: `chat-logs/update-read-time`,
+  SOCKET: `socket`,
+  LOGIN_FORM: '/login/form',
+  LOGIN_VERIFICATION: `login/verification`,
+  LOGIN: `login`,
+  LOGOUT: `logout`,
+  ENTRIES: `entries`,
+  CHECK_LOGIN: `reissue/access-token`,
+  WISH_LIST: `wish-list`,
+  MY_SHARE: `shares/mine`,
+  MEMBERS: `members`,
+  KEYWORD: `keywords`,
+  WEBSOCKET: `websocket`,
+  REGISTERED_KEYWORD: `keywords/location`,
+  DELETE_REGISTERED_KEYWORD: (id: number) => `keywords/${id}`,
+  NOTICE: `notifications`,
+  NOTICE_ACTIVITY: `notifications/activity`,
+  NOTICE_KEYWORD: `notifications/keyword`,
+  DELETE_WISH_LIST: `wish-list`,
+  DELETE_HISTORY_LIST: (id: number) => `shares/${id}/entry`,
+  DELETE_SALES: (id: number) => `shares/${id}`,
+};
+
+export type APITestType = keyof typeof APITest;
