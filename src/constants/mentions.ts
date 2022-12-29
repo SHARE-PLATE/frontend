@@ -62,6 +62,9 @@ export const failToLogoutMention = '로그아웃에 실패했습니다. 다시 �
 export const successToLogoutMention = '로그아웃 되었습니다.';
 export const notToUseSpecialCharMention = '특수 문자는 사용할 수 없습니다!';
 export const unexpectedErrorOccursMention = '예상치 못한 에러가 발생했습니다!';
+export const ERROR_GET_WRITER_INFO = '작성자 정보를 불러오지 못했습니다.';
+export const ERROR_GET_SHARE_INFO = '쉐어 정보를 불러오지 못했습니다.';
+
 export const questionChatroomMention = (option: string | undefined) =>
   `${option}님이 문의를 남겼습니다.`;
 export const entryMention = (name?: string) => `${name}님이 쉐어 신청하였습니다.`;

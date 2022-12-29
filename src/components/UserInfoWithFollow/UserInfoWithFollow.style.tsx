@@ -10,6 +10,16 @@ export const Wrapper = styled.div`
   width: 100%;
 `;
 
+export const ErrorWrapper = styled.div`
+  ${flexCenter};
+  ${({ theme: { colors, fonts } }) => css`
+    ${fonts.mediumRegular};
+    color: ${colors.grey4};
+    width: 100%;
+    height: 5rem;
+  `}
+`;
+
 export const LeftWrapper = styled.div`
   display: flex;
   gap: 0.37rem;
@@ -37,6 +47,7 @@ export const InfoDetailWrapper = styled.span`
 
     .number {
       color: ${colors.orange2};
+      margin-left: 0.2rem;
     }
   `}
 `;
