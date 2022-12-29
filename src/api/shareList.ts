@@ -57,14 +57,18 @@ export const deleteShare = async ({ id }: { id: number }) => {
 
 export const getShareDetailData = async ({ id }: { id: string }) => {
   const headers = getAuthHeaders();
+  const { client, result } = createClient<ShareDetailType>({ address: 'SHARE_LIST' });
 
   try {
-    const response = await axios.get<ShareDetailType>(API.SHARE_LIST + `/${id}`, { headers });
-    return response.data;
+    const { data } = await client.get<ShareDetailType>(`/${id}`, { headers });
+    result.isSuccess = true;
+    result.data = data;
   } catch (error) {
-    const { response } = error as AxiosError<{ message: string }>;
-    return response?.data.message;
+    const { message, errorCode } = checkError(error);
+    result.errorMessage = errorCode ? unexpectedErrorOccursMention : message;
   }
+
+  return result;
 };
 
 export const registrationShareListData = async (formData: any) => {

@@ -1,7 +1,9 @@
-import { atom, selectorFamily } from 'recoil';
+import { atom, selector, selectorFamily } from 'recoil';
 import { v4 as getRandomKey } from 'uuid';
 
-import { getShareDetailData } from '@api/shareList';
+import { getShareDetailData, getShareListWriterData } from '@api/shareList';
+import { getShareListRecommendedData } from '@api/shareRecommended';
+import { currentLatitudeLongitude } from '@store/location';
 import { ShareDetailType } from '@type/shareList';
 
 export type RecruitmentType =
@@ -14,8 +16,13 @@ export type RecruitmentType =
     >
   | undefined;
 
+export const shareDetailWriterState = atom<string | null>({
+  key: `shareDetailWriterState`,
+  default: null,
+});
+
 export const shareDetailTrigger = atom<number>({
-  key: `shareListTrigger`,
+  key: `shareDetailTrigger`,
   default: 0,
 });
 
@@ -28,6 +35,30 @@ export const shareDetailState = selectorFamily({
       const shareDetailData = await getShareDetailData({ id });
       return shareDetailData;
     },
+});
+
+export const writerDataState = selectorFamily({
+  key: `GET/writerDataState/${getRandomKey()}`,
+  get:
+    ({ id }: { id: string }) =>
+    async ({ get }) => {
+      const { isSuccess, data } = get(shareDetailState({ id }));
+      if (!isSuccess || !data) return;
+
+      const { writerId } = data;
+      const writerData = await getShareListWriterData({ writerId });
+
+      return writerData;
+    },
+});
+
+export const recommandedDataState = selector({
+  key: 'recommandedDataState',
+  get: async ({ get }) => {
+    const { lat, lng } = get(currentLatitudeLongitude);
+    const recommendedData = await getShareListRecommendedData(lat, lng);
+    return recommendedData;
+  },
 });
 
 export const recruitmentTrigger = atom<number>({
@@ -43,13 +74,13 @@ export const recruitmentState = selectorFamily<RecruitmentType, string>({
       get(shareDetailTrigger);
       get(recruitmentTrigger);
       const shareDetailData = await getShareDetailData({ id });
-      if (!shareDetailData || typeof shareDetailData === 'string') return;
+      if (!shareDetailData || !shareDetailData.isSuccess || !shareDetailData.data) return;
       const {
         recruitmentMemberThumbnailImageUrls,
         currentRecruitment,
         finalRecruitment,
         wishCount,
-      } = shareDetailData;
+      } = shareDetailData.data;
       return {
         recruitmentMemberThumbnailImageUrls,
         currentRecruitment,
