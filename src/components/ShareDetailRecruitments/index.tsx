@@ -47,10 +47,8 @@ const ShareDetailRecruitments = ({
   };
 
   useEffect(() => {
-    if (recruitmentInfoState === 'hasValue' && recruitmentInfo) {
-      setCurRecruitmentInfo(recruitmentInfo);
-      return;
-    }
+    if (recruitmentInfoState !== 'hasValue' || !recruitmentInfo) return;
+    setCurRecruitmentInfo(recruitmentInfo);
   }, [recruitmentInfoState]);
 
   return (

@@ -1,11 +1,13 @@
 import { useRecoilState, useRecoilValue, useRecoilValueLoadable } from 'recoil';
 
 import CategoryButton from '@components/CategoryButton';
+import Loading from '@components/Loading';
 import MainHeader from '@components/MainHeader';
 import PreviewShareListBigSizeImage from '@components/PreviewShareListBigSizeImage';
 import PreviewShareListLeftImage from '@components/PreviewShareListLeftImage';
 import Tabs from '@components/Tabs';
 import { shareListCategoryItem } from '@constants/category';
+import { ERROR_GET_SHARE_INFO } from '@constants/mentions';
 import useIsTopState from '@hooks/useIsTopState';
 import useShareListTabsInfo from '@hooks/useShareListTabsInfo';
 import * as S from '@pages/ShareList/ShareList.style';
@@ -30,18 +32,23 @@ const ShareList = () => {
   const ListContentComponent = ShareListContentComponentInfo[activeShareListValue];
   const { state, contents } = useRecoilValueLoadable(getShareListsData({}));
 
-  const getListContents = (state: 'hasValue' | 'loading' | 'hasError') => {
+  const getListContents = () => {
     switch (state) {
       case 'hasValue':
-        return (
-          <S.ListContent>
-            <ListContentComponent data={getSortData(curShareFilterList, contents)} />
-          </S.ListContent>
-        );
+        const { isSuccess, data } = contents;
+        if (!isSuccess || !data) {
+          return <S.ErrorWrapper>{ERROR_GET_SHARE_INFO}</S.ErrorWrapper>;
+        } else {
+          return (
+            <S.ListContent>
+              <ListContentComponent data={getSortData(curShareFilterList, data)} />
+            </S.ListContent>
+          );
+        }
       case 'loading':
-        return <div>로딩 페이지</div>;
+        return <Loading color='grey4' size={42} border={6} height='100vh' />;
       case 'hasError':
-        return <div>에러 페이지</div>;
+        return <S.ErrorWrapper>{ERROR_GET_SHARE_INFO}</S.ErrorWrapper>;
     }
   };
 
@@ -57,7 +64,7 @@ const ShareList = () => {
           setCurrentFilterList={setCurrentFilterShareList}
         />
       </S.ListHeader>
-      {getListContents(state)}
+      {getListContents()}
     </S.Wrapper>
   );
 };

@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { categoryButtonHeight } from '@components/CategoryButton/CategoryButton.style';
 import { tabsHeight } from '@components/Tabs/Tabs.styled';
-import { defaultPageStyle } from '@styles/mixin';
+import { defaultPageStyle, flexCenter } from '@styles/mixin';
 
 export const Wrapper = styled.div`
   ${defaultPageStyle};
@@ -40,5 +40,15 @@ export const TabsWrapper = styled.div`
 export const ListContent = styled.div`
   ${({ theme: { defaultHeaderHeight } }) => css`
     padding-top: calc(${defaultHeaderHeight}rem + ${tabsHeight} + ${categoryButtonHeight});
+  `}
+`;
+
+export const ErrorWrapper = styled.div`
+  ${flexCenter};
+  ${({ theme: { colors, fonts } }) => css`
+    ${fonts.mediumRegular};
+    color: ${colors.grey4};
+    width: 100%;
+    height: 5rem;
   `}
 `;

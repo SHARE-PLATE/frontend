@@ -73,14 +73,16 @@ export const recruitmentState = selectorFamily<RecruitmentType, string>({
     async ({ get }) => {
       get(shareDetailTrigger);
       get(recruitmentTrigger);
-      const shareDetailData = await getShareDetailData({ id });
-      if (!shareDetailData || !shareDetailData.isSuccess || !shareDetailData.data) return;
+
+      const { isSuccess, data } = await getShareDetailData({ id });
+      if (!isSuccess || !data) return;
+
       const {
         recruitmentMemberThumbnailImageUrls,
         currentRecruitment,
         finalRecruitment,
         wishCount,
-      } = shareDetailData.data;
+      } = data;
       return {
         recruitmentMemberThumbnailImageUrls,
         currentRecruitment,
