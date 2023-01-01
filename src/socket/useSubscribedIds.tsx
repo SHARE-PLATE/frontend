@@ -23,9 +23,9 @@ export const useSubscribedIds = () => {
     return null;
 
   const entryIds = entriesContents.data?.idList || [];
-  const keywordIds = !keywordsContents.length
+  const keywordIds = !keywordsContents.data
     ? []
-    : keywordsContents.map(({ keywords }) => keywords.map(({ id }) => id)).flat();
+    : keywordsContents.data.map(({ keywords }) => keywords.map(({ id }) => id)).flat();
   const chatroomIds = chatroomContents.map(({ id }) => id);
 
   return { entryIds, keywordIds, chatroomIds };

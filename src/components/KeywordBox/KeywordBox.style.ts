@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { flexBetween, tagStyle } from '@styles/mixin';
+import { flexBetween, flexCenter, tagStyle } from '@styles/mixin';
 
 //index.tsx
 export const Table = styled.div``;
@@ -12,6 +12,16 @@ export const TableBox = styled.section`
     border-radius: 8px;
     box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.08);
     padding: 0 1rem;
+  `}
+`;
+
+export const ErrorWrapper = styled.div`
+  ${flexCenter};
+  ${({ theme: { colors, fonts } }) => css`
+    ${fonts.mediumRegular};
+    color: ${colors.grey4};
+    width: 100%;
+    height: 5rem;
   `}
 `;
 

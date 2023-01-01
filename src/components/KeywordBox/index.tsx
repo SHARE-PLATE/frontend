@@ -7,8 +7,9 @@ import { deleteKeywordAddress } from '@api/keyword';
 import * as S from '@components/KeywordBox/KeywordBox.style';
 import KeywordTable from '@components/KeywordBox/KeywordTable';
 import KeywordTableHeader from '@components/KeywordBox/KeywordTableHeader';
+import Loading from '@components/Loading';
 import SelectModal from '@components/common/SelectModal';
-import { addressKeywordQuestionMention } from '@constants/mentions';
+import { addressKeywordQuestionMention, unexpectedErrorOccursMention } from '@constants/mentions';
 import { pathName } from '@constants/pathName';
 import { DELETE } from '@constants/words';
 import useModal from '@hooks/useModal';
@@ -46,38 +47,43 @@ const KeywordBox = () => {
 
   switch (state) {
     case 'hasValue':
-      return (
-        <S.Table>
-          {contents.map(({ location, keywords }: keywordDataType) => (
-            <S.TableBox
-              key={location}
-              onClick={() => {
-                keywordTableClickHandler(location);
-              }}
-            >
-              <KeywordTableHeader
-                location={location}
-                openModal={openModal}
-                setClickedLocation={setClickedLocation}
+      const { isSuccess, data } = contents;
+      if (!isSuccess || !data) {
+        return <S.ErrorWrapper>{unexpectedErrorOccursMention}</S.ErrorWrapper>;
+      } else {
+        return (
+          <S.Table>
+            {data.map(({ location, keywords }: keywordDataType) => (
+              <S.TableBox
+                key={location}
+                onClick={() => {
+                  keywordTableClickHandler(location);
+                }}
+              >
+                <KeywordTableHeader
+                  location={location}
+                  openModal={openModal}
+                  setClickedLocation={setClickedLocation}
+                />
+                <KeywordTable keywords={keywords} />
+              </S.TableBox>
+            ))}
+            {isDeleteModal && (
+              <SelectModal
+                modalRef={modalRef}
+                closeModal={closeModal}
+                onClickOkButton={() => deleteHandler(clickedLocation)}
+                answeringMention={addressKeywordQuestionMention}
+                okMention={DELETE}
               />
-              <KeywordTable keywords={keywords} />
-            </S.TableBox>
-          ))}
-          {isDeleteModal && (
-            <SelectModal
-              modalRef={modalRef}
-              closeModal={closeModal}
-              onClickOkButton={() => deleteHandler(clickedLocation)}
-              answeringMention={addressKeywordQuestionMention}
-              okMention={DELETE}
-            />
-          )}
-        </S.Table>
-      );
+            )}
+          </S.Table>
+        );
+      }
     case 'loading':
-      return <div>로딩 페이지</div>;
+      return <Loading color='grey4' size={40} border={5} />;
     case 'hasError':
-      return <div>에러 페이지</div>;
+      return <S.ErrorWrapper>{contents.data}</S.ErrorWrapper>;
   }
 };
 

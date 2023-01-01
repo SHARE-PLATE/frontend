@@ -1,19 +1,25 @@
 import axios from 'axios';
 
 import { API } from '@constants/api';
+import { unexpectedErrorOccursMention } from '@constants/mentions';
 import { keywordDataType, newKeywordType } from '@type/keyword';
+import { checkError, createClient } from '@utils/api';
 import { getAuthHeaders } from '@utils/getAuthHeaders';
 
 export const getKeywordListData = async () => {
   const headers = getAuthHeaders();
+  const { client, result } = createClient<keywordDataType[]>({ address: 'KEYWORD' });
 
   try {
-    const response = await axios.get<keywordDataType[]>(`${API.KEYWORD}`, { headers });
-    return response.data;
-  } catch (err) {
-    console.log(err);
-    throw err;
+    const { data } = await client.get<keywordDataType[]>('', { headers });
+    result.isSuccess = true;
+    result.data = data;
+  } catch (error) {
+    const { message, errorCode } = checkError(error);
+    result.errorMessage = errorCode ? unexpectedErrorOccursMention : message;
   }
+
+  return result;
 };
 
 export const addKeywords = async (newKeyword: newKeywordType) => {

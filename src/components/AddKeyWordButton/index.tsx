@@ -9,7 +9,7 @@ import { portalState } from '@store/portal';
 const AddKeywordButton = () => {
   const setPortal = useSetRecoilState(portalState);
   const { state, contents } = useRecoilValueLoadable(getKeywordListsData);
-  const isKeyword = state === 'hasValue' && contents.length;
+  const isKeyword = state === 'hasValue' && contents.data?.length;
 
   const handleClickAddKeywordBtn = () => setPortal('keywordAddress');
 
