@@ -1,4 +1,4 @@
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 
 import { API } from '@constants/api';
 import { unexpectedErrorOccursMention } from '@constants/mentions';
@@ -45,14 +45,17 @@ export const getShareListData = async ({ type, location, keyword }: GetShareList
 
 export const deleteShare = async ({ id }: { id: number }) => {
   const headers = getAuthHeaders();
+  const { client, result } = createClient<ShareListType[]>({ address: 'SHARE_LIST' });
 
   try {
-    const response = await axios.delete(`${API.SHARE_LIST}/${id}`, { headers });
-    return { isDeleted: response.status === 200 };
+    await client.delete(`${id}`, { headers });
+    result.isSuccess = true;
   } catch (error) {
-    const { response } = error as AxiosError<{ message: string }>;
-    return { isDeleted: false, message: response?.data.message };
+    const { message, errorCode } = checkError(error);
+    result.errorMessage = errorCode ? unexpectedErrorOccursMention : message;
   }
+
+  return result;
 };
 
 export const getShareDetailData = async ({ id }: { id: string }) => {

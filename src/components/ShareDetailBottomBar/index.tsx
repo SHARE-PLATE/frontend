@@ -75,18 +75,18 @@ const ShareDetailBottomBar = ({
   const isLogin = state === 'hasValue' && contents;
 
   const deleteCurrentShare = async () => {
-    const { isDeleted, message: errorMessage } = await deleteShare({ id });
-    const message = isDeleted
+    const { isSuccess, errorMessage } = await deleteShare({ id });
+    const message = isSuccess
       ? successToDeleteShareMention
       : errorMessage || failedToDeleteShareMention;
 
     setBottomMessage(({ trigger }) => ({
       trigger: trigger + 1,
       message,
-      distance: isDeleted ? 4 : bottomMessageDistance,
+      distance: isSuccess ? 4 : bottomMessageDistance,
     }));
 
-    isDeleted ? navigate('/') : setIsSelectModal;
+    isSuccess ? navigate('/') : setIsSelectModal;
   };
 
   const handleClickWishIcon = async () => {
