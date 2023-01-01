@@ -22,7 +22,7 @@ export const useSubscribedIds = () => {
   )
     return null;
 
-  const entryIds = entriesContents.idList;
+  const entryIds = entriesContents.data?.idList || [];
   const keywordIds = !keywordsContents.length
     ? []
     : keywordsContents.map(({ keywords }) => keywords.map(({ id }) => id)).flat();

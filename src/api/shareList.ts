@@ -119,14 +119,19 @@ export const getShareMineListData = async ({
 };
 
 export const getShareListEntries = async () => {
-  try {
-    const headers = getAuthHeaders();
-    const response = await axios.get<GetShareListEntriesDataType>(API.ENTRIES, { headers });
+  const { client, result } = createClient<GetShareListEntriesDataType>({ address: 'ENTRIES' });
+  const headers = getAuthHeaders();
 
-    return response.data;
+  try {
+    const { data } = await client.get<GetShareListEntriesDataType>('', { headers });
+    result.isSuccess = true;
+    result.data = data;
   } catch (error) {
-    console.error(error);
+    const { message, errorCode } = checkError(error);
+    result.errorMessage = errorCode ? unexpectedErrorOccursMention : message;
   }
+
+  return result;
 };
 
 export const postShareEntry = async ({ id }: { id: number }) => {
