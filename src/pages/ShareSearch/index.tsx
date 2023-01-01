@@ -5,13 +5,13 @@ import { useRecoilState, useRecoilValue, useRecoilValueLoadable, useSetRecoilSta
 import { addKeywords } from '@api/keyword';
 import { getShareListData } from '@api/shareList';
 import CategoryButton from '@components/CategoryButton';
-import FailedContents from '@components/FailedContents';
 import PreviewShareListLeftImage from '@components/PreviewShareListLeftImage';
+import ShareRecommanded from '@components/ShareRecommanded';
 import ShareSearchHeader from '@components/ShareSearchHeader';
 import FailedModal from '@components/common/FailedModal';
 import Icon from '@components/common/Icon';
 import { shareListCategoryItem } from '@constants/category';
-import { keywordLengthFailed } from '@constants/mentions';
+import { keywordLengthFailed, searchFailed } from '@constants/mentions';
 import useIsTopState from '@hooks/useIsTopState';
 import useModal from '@hooks/useModal';
 import * as S from '@pages/ShareSearch/ShareSearch.style';
@@ -142,7 +142,13 @@ const ShareSearch = () => {
           <PreviewShareListLeftImage data={getSortData(curShareFilterList, searchData)} />
         </S.ListContent>
       ) : (
-        <FailedContents />
+        <>
+          <S.FailedContent>
+            <Icon iconName='Search' iconSize={4.2} />
+            <S.FailedText>{searchFailed}</S.FailedText>
+          </S.FailedContent>
+          <ShareRecommanded />
+        </>
       )}
     </S.Wrapper>
   );

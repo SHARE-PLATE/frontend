@@ -2,13 +2,13 @@ import { useRecoilValueLoadable } from 'recoil';
 
 import Loading from '@components/Loading';
 import PreviewShareListHalfImage from '@components/PreviewShareListHalfImage';
-import * as S from '@components/ShareDetailRecommanded/ShareDetailRecommanded.style';
-import { noRelatedShareList, offerShare } from '@constants/mentions';
+import * as S from '@components/ShareRecommanded/ShareRecommanded.style';
+import { NO_RELATED_SHARES, OFFERED_SHARE } from '@constants/mentions';
 import { recommandedDataState } from '@store/shareDetail';
 
 const ERROR_GET_RECOMMANDED_SHARES = '추천 쉐어를 가져오지 못했습니다.';
 
-const ShareDetailRecommanded = () => {
+const ShareRecommanded = () => {
   const { state, contents } = useRecoilValueLoadable(recommandedDataState);
 
   switch (state) {
@@ -22,9 +22,9 @@ const ShareDetailRecommanded = () => {
       if (isSuccess && data) {
         return (
           <PreviewShareListHalfImage
-            title={offerShare}
+            title={OFFERED_SHARE}
             data={data}
-            emptyMention={noRelatedShareList}
+            emptyMention={NO_RELATED_SHARES}
           />
         );
       } else {
@@ -33,4 +33,4 @@ const ShareDetailRecommanded = () => {
   }
 };
 
-export default ShareDetailRecommanded;
+export default ShareRecommanded;

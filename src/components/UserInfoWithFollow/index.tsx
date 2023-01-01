@@ -4,7 +4,7 @@ import Loading from '@components/Loading';
 import PreviewShareListHalfImage from '@components/PreviewShareListHalfImage';
 import * as S from '@components/UserInfoWithFollow/UserInfoWithFollow.style';
 import ImgContainer from '@components/common/ImgContainer';
-import { ERROR_GET_WRITER_INFO, noRelatedShareList } from '@constants/mentions';
+import { ERROR_GET_WRITER_INFO, NO_RELATED_SHARES } from '@constants/mentions';
 import { TOTAL_SHARES } from '@constants/words';
 import { writerDataState } from '@store/shareDetail';
 
@@ -49,7 +49,7 @@ const UserInfoWithFollow = ({ id }: { id: string }) => {
           <PreviewShareListHalfImage
             title={`${writer}님의 쉐어상품`}
             data={shares}
-            emptyMention={noRelatedShareList}
+            emptyMention={NO_RELATED_SHARES}
           />
         </>
       );

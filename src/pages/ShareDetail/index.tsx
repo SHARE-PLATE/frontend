@@ -9,7 +9,7 @@ import ShareDetailBottomBar from '@components/ShareDetailBottomBar';
 import ShareDetailHeader from '@components/ShareDetailHeader';
 import ShareDetailInfo from '@components/ShareDetailInfo';
 import ShareDetailInfoBar from '@components/ShareDetailInfoBar';
-import ShareDetailRecommanded from '@components/ShareDetailRecommanded';
+import ShareRecommanded from '@components/ShareRecommanded';
 import UserInfoWithFollow from '@components/UserInfoWithFollow';
 import Icon from '@components/common/Icon';
 import { ERROR_GET_SHARE_INFO } from '@constants/mentions';
@@ -81,7 +81,7 @@ const ShareDetail = () => {
               </S.UpperWrapper>
               <S.LowerWrapper>
                 <UserInfoWithFollow id={id} />
-                <ShareDetailRecommanded />
+                <ShareRecommanded />
               </S.LowerWrapper>
             </S.Wrapper>
             <ShareDetailBottomBar {...data} isInfoBar={isInfoBar} />

@@ -11,7 +11,7 @@ import ImageContents from '@components/common/ImageContents';
 import ImgContainer from '@components/common/ImgContainer';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import Price from '@components/common/Price';
-import { noRelatedShareList } from '@constants/mentions';
+import { NO_RELATED_SHARES } from '@constants/mentions';
 import { pathName } from '@constants/pathName';
 import { clickedHeartId } from '@store/meyMenu';
 import { ShareListType } from '@type/shareList';
@@ -114,7 +114,7 @@ const PreviewShareListLeftImage = ({
     list.push(<S.Container key={getRandomKey()}></S.Container>);
 
   if (!list.length)
-    list.push(<S.NoListWrapper key={getRandomKey()}>{noRelatedShareList}</S.NoListWrapper>);
+    list.push(<S.NoListWrapper key={getRandomKey()}>{NO_RELATED_SHARES}</S.NoListWrapper>);
 
   return <S.Wrapper>{list}</S.Wrapper>;
 };
