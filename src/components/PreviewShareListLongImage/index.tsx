@@ -1,43 +1,22 @@
-import { useEffect, useState } from 'react';
-
-import { useRecoilValue } from 'recoil';
-
-import { getShareListRecommendedData } from '@api/shareRecommended';
 import * as S from '@components/PreviewShareListLongImage/PreviewShareListLongImage.style';
 import { ShareListItemLongImage } from '@components/ShareListItemLongImage';
-import Title from '@components/common/Title';
-import { littleDeadlineMention, noLittleTimeListMention } from '@constants/mentions';
-import { currentLatitudeLongitude } from '@store/location';
-import { ShareListType } from '@type/shareList';
+import { ShareRecommendationType } from '@type/shareList';
 
-const PreviewShareListLongImage = () => {
-  const [recommendedData, setRecommendedData] = useState<ShareListType[]>();
-  const { lat, lng } = useRecoilValue(currentLatitudeLongitude);
+type PreviewShareListLongImagePropsType = {
+  data: ShareRecommendationType[];
+  noListMention: string;
+};
 
-  useEffect(() => {
-    (async () => {
-      const recommendedFetchData = await getShareListRecommendedData(lat, lng);
-
-      setRecommendedData(recommendedFetchData);
-    })();
-  }, [lat, lng]);
+const PreviewShareListLongImage = ({ data, noListMention }: PreviewShareListLongImagePropsType) => {
+  const list = data.map((item) => <ShareListItemLongImage key={item.id} itemInfo={item} />);
+  const isList = !!data?.length;
 
   return (
     <S.Wrapper>
-      <Title
-        contentTitle={littleDeadlineMention}
-        size='LARGE'
-        iconName='ClockPicture'
-        iconSize={1.43}
-      />
-      {!!recommendedData?.length ? (
-        <S.ListWrapper>
-          {recommendedData.map((item) => (
-            <ShareListItemLongImage key={item.id} itemInfo={item} />
-          ))}
-        </S.ListWrapper>
+      {isList ? (
+        <S.ListWrapper>{list}</S.ListWrapper>
       ) : (
-        <S.noListWrapper>{noLittleTimeListMention}</S.noListWrapper>
+        <S.ErrorWrapper>{noListMention}</S.ErrorWrapper>
       )}
     </S.Wrapper>
   );

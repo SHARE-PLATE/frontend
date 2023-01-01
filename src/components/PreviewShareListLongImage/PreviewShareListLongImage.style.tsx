@@ -7,9 +7,6 @@ export const Wrapper = styled.div`
     ${defaultWidth}
     padding-left: 1rem;
     padding-top: 0.25rem;
-    > :nth-child(1) {
-      padding-top: 1.25rem;
-    }
   `}
 `;
 
@@ -26,7 +23,7 @@ export const ListWrapper = styled.div`
   padding-right: 1rem;
 `;
 
-export const noListWrapper = styled.div`
+export const ErrorWrapper = styled.div`
   ${({ theme: { colors } }) => css`
     ${flexCenter}
     text-align: center;

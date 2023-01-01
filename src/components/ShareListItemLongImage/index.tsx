@@ -5,10 +5,14 @@ import * as S from '@components/ShareListItemLongImage/ShareListItemLongImage.st
 import ImgContainer from '@components/common/ImgContainer';
 import PersonnelStatus from '@components/common/PersonnelStatus';
 import { pathName } from '@constants/pathName';
-import { ShareListType } from '@type/shareList';
+import { ShareListType, ShareRecommendationType } from '@type/shareList';
 import { getPriceType } from '@utils/getPriceType';
 
-export const ShareListItemLongImage = ({ itemInfo }: { itemInfo: ShareListType }) => {
+export const ShareListItemLongImage = ({
+  itemInfo,
+}: {
+  itemInfo: ShareListType | ShareRecommendationType;
+}) => {
   const {
     id,
     title,
